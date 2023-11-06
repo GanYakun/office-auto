@@ -1,0 +1,26 @@
+<ofbiz-edm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://dev.odatalab.com/dtds/edmconfig.xsd" ImportGlobal="false">
+
+    <!--  userLogin  -->
+    <EntityType Name="PartyUserLogin" AutoProperties="true">
+        <NavigationProperty Name="Person" Type="Person" Relations="Party/Person"/>
+        <NavigationProperty Name="PartyRole" Type="PartyRole" Relations="Party/PartyRole" IsCollection="true"/>
+        <NavigationProperty Name="PartyGroup" Type="PartyGroup" Relations="Party/PartyGroup"/>
+        <NavigationProperty Name="UILabApp" Type="UILabApp" Relations="Party/PartyRole/RoleType/RoleTypeUILabApp/UILabApp"/>
+        <NavigationProperty Name="SecurityPermission" Type="SecurityPermission"
+                            Relations="UserLoginSecurityGroup/SecurityGroupPermission/SecurityPermission" IsCollection="true"/>
+        <NavigationProperty Name="RoleTypeSecurityPermission" Type="RoleTypeSecurityPermission"
+                            Relations="Party/PartyRole/RoleType/RoleTypeSecurityPermission" IsCollection="true"/>
+    </EntityType>
+    <EntityType Name="Person" AutoProperties="true"/>
+    <EntityType Name="PartyRole" AutoProperties="true"/>
+    <EntityType Name="PartyGroup" AutoProperties="true"/>
+    <EntityType Name="SecurityPermission" AutoProperties="true"/>
+    <EntityType Name="UILabApp" AutoProperties="true"/>
+    <EntityType Name="RoleTypeSecurityPermission" AutoProperties="true">
+        <NavigationProperty Name="SecurityPermission"/>
+    </EntityType>
+
+    <EntityContainer>
+        <Singleton Name="Me" Type="PartyUserLogin" Handler="com.dpbird.odata.SingletonHandler.getMe"/>
+    </EntityContainer>
+</ofbiz-edm>

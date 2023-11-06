@@ -38,6 +38,100 @@ under the License.
         <event name="test" type="java" path="org.apache.ofbiz.webapp.event.TestEvent" invoke="test"/>
     </postprocessor>
     -->
+    <preprocessor>
+        <event name="basicAuth" type="java" path="com.dpbird.odata.login.LoginEvents" invoke="logInUser"/>
+    </preprocessor>
+    <request-map uri="odatasvc">
+        <security https="false" auth="true"/>
+        <event type="java" path="com.dpbird.odata.AppOdataEvents" invoke="odataSvc"></event>
+        <response name="success" type="none"/>
+    </request-map>
+    <request-map uri="actions">
+        <security https="false" auth="true"/>
+        <event type="java" path="com.dpbird.odata.LrepEvents" invoke="getcsrftoken"></event>
+        <response name="success" type="request" value="json"/>
+        <response name="error" type="request" value="json"/>
+    </request-map>
+
+    <request-map uri="odataAppSvc">
+        <security https="false" auth="true"/>
+        <event type="java" path="com.dpbird.odata.AppOdataEvents" invoke="odataAppSvc"></event>
+        <response name="success" type="none"/>
+    </request-map>
+    <request-map uri="checkLogin" edit="false">
+        <description>Verify a user is logged in.</description>
+        <security https="true" auth="false"/>
+        <event type="java" path="com.dpbird.odata.login.LoginEvents" invoke="extensionCheckLogin"/>
+        <response name="error" type="none"/>
+    </request-map>
+    <request-map uri="flex">
+        <security https="false" auth="true"/>
+        <event type="java" path="com.dpbird.odata.LrepEvents" invoke="flex"></event>
+        <response name="success" type="none"/>
+    </request-map>
+    <request-map uri="checkIsLogin">
+        <security https="false" auth="false"/>
+        <event type="service" invoke="checkIsLogin"/>
+        <response name="success" type="request" value="json"/>
+        <response name="error" type="request" value="json"/>
+    </request-map>
+    <request-map uri="changes">
+        <security https="false" auth="true"/>
+        <event type="java" path="com.dpbird.odata.LrepEvents" invoke="changes"></event>
+        <response name="success" type="none" value="json"/>
+        <response name="error" type="request" value="json"/>
+    </request-map>
+    <request-map uri="uploadFile">
+        <event type="java" path="com.banfftech.common.events.UploadEvent" invoke="uploadFile"/>
+        <response name="success" type="none"/>
+        <response name="error" type="none"/>
+    </request-map>
+    <request-map uri="login">
+        <security https="false" auth="false"/>
+        <!--<event type="service" invoke="userLogin"/>-->
+        <event type="java" path="org.apache.ofbiz.webapp.control.LoginWorker" invoke="login"></event>
+        <response name="success" type="request" value="json"/>
+        <response name="error" type="request" value="json"/>
+    </request-map>
+    <request-map uri="externalLogin">
+        <security https="false" auth="false"/>
+        <!--<event type="service" invoke="userLogin"/>-->
+        <event type="java" path="com.banfftech.common.events.LoginEvent" invoke="externalAndTelLogin"></event>
+        <response name="success" type="request" value="json"/>
+        <response name="error" type="request" value="json"/>
+    </request-map>
+    <request-map uri="logout">
+        <security https="false" auth="false"/>
+        <!--        <event type="java" path="org.apache.ofbiz.webapp.control.LoginWorker" invoke="logout"/>-->
+        <event type="java" path="com.banfftech.common.services.LoginServices" invoke="logout"/>
+        <response name="success" type="request" value="json"/>
+        <response name="error" type="request" value="json"/>
+    </request-map>
+
+    <request-map uri="connectStream" >
+        <security https="false" auth="false"/>
+        <event type="java" path="com.banfftech.bfdemo.events.HTTPStreamEvents" invoke="connectStream"></event>
+        <response name="success" type="none"/>
+    </request-map>
+
+    <request-map uri="sendStream">
+        <security https="false" auth="false"/>
+        <event type="java" path="com.banfftech.bfdemo.events.HTTPStreamEvents" invoke="sendStream"></event>
+        <response name="success" type="none"/>
+    </request-map>
+
+    <!-- Events to run on every request before security (chains exempt) -->
+    <!--
+    <preprocessor>
+    </preprocessor>
+    -->
+    <!-- Events to run on every request after all other processing (chains exempt) -->
+    <!--
+    <postprocessor>
+        <event name="test" type="java" path="org.apache.ofbiz.webapp.event.TestEvent" invoke="test"/>
+    </postprocessor>
+    -->
+
 
     <!-- Request Mappings -->
     <request-map uri="main"><security https="true" auth="true"/><response name="success" type="view" value="main"/></request-map>
