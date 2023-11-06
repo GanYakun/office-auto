@@ -20,4 +20,18 @@ under the License.
 
 <entity-engine-xml>
 
+    <RoleType description="申请人" roleTypeId="APPLICANT"/>
+    <RoleType description="经理" roleTypeId="MANAGER"/>
+    <RoleType description="供应商" roleTypeId="VENDOR"/>
+    <RoleType description="最终客户" roleTypeId="END_USER"/>
+    <RoleType description="法务" roleTypeId="LEGAL_AFFAIRS"/>
+    <RoleType description="合规" roleTypeId="COMPLIANCE"/>
+    <RoleType description="财务" roleTypeId="FINANCE"/>
+    <RoleType description="首席执行官" roleTypeId="CEO"/>
+    <RoleType description="首席技术官" roleTypeId="CTO"/>
+    <RoleType description="首席财务官" roleTypeId="CFO"/>
+
+    <CustRequestType description="采购请求" custRequestTypeId="PURCHASE_REQ"/>
+
+
 </entity-engine-xml>

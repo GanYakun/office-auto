@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<entity-engine-xml>
+    <!-- i18n -->
+    <Internationalization id="I10000" lang="zh" property="RoleType.description.APPLICANT" value="申请人"/>
+    <Internationalization id="I10001" lang="en" property="RoleType.description.APPLICANT" value=""/>
+    <Internationalization id="I10002" lang="zh" property="RoleType.description.MANAGER" value="经理"/>
+    <Internationalization id="I10003" lang="en" property="RoleType.description.MANAGER" value=""/>
+    <Internationalization id="I10004" lang="zh" property="RoleType.description.VENDOR" value="供应商"/>
+    <Internationalization id="I10005" lang="en" property="RoleType.description.VENDOR" value=""/>
+    <Internationalization id="I10006" lang="zh" property="RoleType.description.END_USER" value="最终客户"/>
+    <Internationalization id="I10007" lang="en" property="RoleType.description.END_USER" value=""/>
+    <Internationalization id="I10008" lang="zh" property="RoleType.description.LEGAL_AFFAIRS" value="法务"/>
+    <Internationalization id="I10009" lang="en" property="RoleType.description.LEGAL_AFFAIRS" value=""/>
+    <Internationalization id="I10010" lang="zh" property="RoleType.description.COMPLIANCE" value="合规"/>
+    <Internationalization id="I10011" lang="en" property="RoleType.description.COMPLIANCE" value=""/>
+    <Internationalization id="I10012" lang="zh" property="RoleType.description.FINANCE" value="财务"/>
+    <Internationalization id="I10013" lang="en" property="RoleType.description.FINANCE" value=""/>
+    <Internationalization id="I10014" lang="zh" property="RoleType.description.CEO" value="首席执行官"/>
+    <Internationalization id="I10015" lang="en" property="RoleType.description.CEO" value=""/>
+    <Internationalization id="I10016" lang="zh" property="RoleType.description.CTO" value="首席技术官"/>
+    <Internationalization id="I10017" lang="en" property="RoleType.description.CTO" value=""/>
+    <Internationalization id="I10018" lang="zh" property="RoleType.description.CFO" value="首席财务官"/>
+    <Internationalization id="I10019" lang="en" property="RoleType.description.CFO" value=""/>
+
+    <!-- entity label -->
+    <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
+    <DBField dbFieldId="CUST_REQ_10001" dbFieldName="statusId" dbFieldTypeId="STATUS" description="当前状态" dbEntityId="CUST_REQ_10000"/>
+    <DBField dbFieldId="CUST_REQ_10002" dbFieldName="description" dbFieldTypeId="String" description="采购请求描述" dbEntityId="CUST_REQ_10000"/>
+    <DBField dbFieldId="CUST_REQ_10003" dbFieldName="custRequestDate" dbFieldTypeId="DATE_TIME" description="需求日期" dbEntityId="CUST_REQ_10000"/>
+    <DBField dbFieldId="CUST_REQ_10004" dbFieldName="createdDate" dbFieldTypeId="DATE_TIME" description="创建日期" dbEntityId="CUST_REQ_10000"/>
+    <DBField dbFieldId="CUST_REQ_10005" dbFieldName="fromPartyId" dbFieldTypeId="PARTY" description="申请人" dbEntityId="CUST_REQ_10000"/>
+    <DBFieldLabel dbFieldLabelId="CUST_REQ_10001" dbFieldId="CUST_REQ_10001" language="zh" value="当前状态"/>
+    <DBFieldLabel dbFieldLabelId="CUST_REQ_10002" dbFieldId="CUST_REQ_10001" language="en" value=""/>
+    <DBFieldLabel dbFieldLabelId="CUST_REQ_10003" dbFieldId="CUST_REQ_10002" language="zh" value="采购请求描述"/>
+    <DBFieldLabel dbFieldLabelId="CUST_REQ_10004" dbFieldId="CUST_REQ_10002" language="en" value=""/>
+    <DBFieldLabel dbFieldLabelId="CUST_REQ_10005" dbFieldId="CUST_REQ_10003" language="zh" value="需求日期"/>
+    <DBFieldLabel dbFieldLabelId="CUST_REQ_10006" dbFieldId="CUST_REQ_10003" language="en" value=""/>
+    <DBFieldLabel dbFieldLabelId="CUST_REQ_10007" dbFieldId="CUST_REQ_10004" language="zh" value="创建日期"/>
+    <DBFieldLabel dbFieldLabelId="CUST_REQ_10008" dbFieldId="CUST_REQ_10004" language="en" value=""/>
+    <DBFieldLabel dbFieldLabelId="CUST_REQ_10009" dbFieldId="CUST_REQ_10005" language="zh" value="申请人"/>
+    <DBFieldLabel dbFieldLabelId="CUST_REQ_10010" dbFieldId="CUST_REQ_10005" language="en" value=""/>
+
+
+
+</entity-engine-xml>
