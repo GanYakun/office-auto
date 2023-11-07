@@ -2,7 +2,7 @@
 
     <!--===================================主对象Invoice（采购发票）======================================-->
     <EntityType Name="Invoice" OfbizEntity="Invoice" EntitySetName="Invoices"  AutoProperties="true" DraftEntityName="InvoiceDraft" SearchOption="invoiceId,StatusItem/description,Party/partyName,FromParty/partyName,description"
-                Handler="component://bf-demo/groovyScripts/invoiceManage/invoiceHeader/generateEntityListFields.groovy">
+                Handler="component://officeauto/groovyScripts/invoiceManage/invoiceHeader/generateEntityListFields.groovy">
         <Property Name="cancelHidden" Type="Boolean" Hidden="true" HiddenFilter="true"/>
         <Property Name="dealHidden" Type="Boolean" Hidden="true" HiddenFilter="true"/>
         <Property Name="paidHidden" Type="Boolean" Hidden="true" HiddenFilter="true"/>
