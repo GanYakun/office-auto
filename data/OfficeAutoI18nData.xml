@@ -44,7 +44,7 @@ under the License.
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
     <DBField dbFieldId="CUST_REQ_10001" dbFieldName="statusId" dbFieldTypeId="STATUS" description="当前状态" dbEntityId="CUST_REQ_10000"/>
-    <DBField dbFieldId="CUST_REQ_10002" dbFieldName="description" dbFieldTypeId="String" description="采购请求描述" dbEntityId="CUST_REQ_10000"/>
+    <DBField dbFieldId="CUST_REQ_10002" dbFieldName="description" dbFieldTypeId="STRING" description="采购请求描述" dbEntityId="CUST_REQ_10000"/>
     <DBField dbFieldId="CUST_REQ_10003" dbFieldName="custRequestDate" dbFieldTypeId="DATE_TIME" description="需求日期" dbEntityId="CUST_REQ_10000"/>
     <DBField dbFieldId="CUST_REQ_10004" dbFieldName="createdDate" dbFieldTypeId="DATE_TIME" description="创建日期" dbEntityId="CUST_REQ_10000"/>
     <DBField dbFieldId="CUST_REQ_10005" dbFieldName="fromPartyId" dbFieldTypeId="PARTY" description="申请人" dbEntityId="CUST_REQ_10000"/>
