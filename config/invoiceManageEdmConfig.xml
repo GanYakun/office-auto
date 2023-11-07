@@ -1,0 +1,255 @@
+<ofbiz-edm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://dev.odatalab.com/dtds/edmconfig.xsd" ImportGlobal="false">
+
+    <!--===================================主对象Invoice（采购发票）======================================-->
+    <EntityType Name="Invoice" OfbizEntity="Invoice" EntitySetName="Invoices"  AutoProperties="true" DraftEntityName="InvoiceDraft" SearchOption="invoiceId,StatusItem/description,Party/partyName,FromParty/partyName,description"
+                Handler="component://bf-demo/groovyScripts/invoiceManage/invoiceHeader/generateEntityListFields.groovy">
+        <Property Name="cancelHidden" Type="Boolean" Hidden="true" HiddenFilter="true"/>
+        <Property Name="dealHidden" Type="Boolean" Hidden="true" HiddenFilter="true"/>
+        <Property Name="paidHidden" Type="Boolean" Hidden="true" HiddenFilter="true"/>
+        <Property Name="readyHidden" Type="Boolean" Hidden="true" HiddenFilter="true"/>
+        <Property Name="totalAmount" Type="BigDecimal" Scale="2"/>
+        <Property Name="totalAmountApplied" Type="BigDecimal" Scale="2"/>
+        <Property Name="statusColor"  Type="numeric" Hidden="true" HiddenFilter="true"/>
+        <Property Name="statusId" DefaultValue="INVOICE_GENERAL_READY"/>
+        <NavigationProperty Name="PaymentApplication" AutoBinding="true" IsCollection="true" FilterByDate="false" />
+        <NavigationProperty Name="InvoiceItem" AutoBinding="true" IsCollection="true" FilterByDate="false"  />
+        <NavigationProperty Name="InvoiceStatus" AutoBinding="true" IsCollection="true" FilterByDate="false"  />
+        <NavigationProperty Name="InvoiceRole" AutoBinding="true" IsCollection="true" FilterByDate="false"  />
+        <NavigationProperty Name="AcctgTrans" AutoBinding="true" IsCollection="true" FilterByDate="false"  />
+        <NavigationProperty Name="Party" AutoBinding="true" />
+        <NavigationProperty Name="FromParty" AutoBinding="true"  >
+        </NavigationProperty>
+        <NavigationProperty Name="InvoiceType" AutoBinding="true"/>
+        <NavigationProperty Name="StatusItem" AutoBinding="true"  />
+        <NavigationProperty Name="InvoiceTerm"/>
+        <NavigationProperty Name="OrderHeader" Type="OrderHeader" Relations="OrderItemBilling/OrderHeader"/>
+        <NavigationProperty Name="AcctgTransEntry" Relations="AcctgTrans/AcctgTransEntry" Type="AcctgTransEntry" IsCollection="true"/>
+    </EntityType>
+
+    <!--=============Invoice关联对象（InvoiceTerm、OrderHeader、PaymentApplication、InvoiceItem、InvoiceRole）==============-->
+    <!--InvoiceTerm（发票条款）-->
+    <EntityType Name="InvoiceTerm" AutoProperties="true" EntitySetName="InvoiceTerms" AutoSet="true">
+        <LineItem Qualifier="InvoiceTermLineItem">
+            <DataField Values="termTypeId,termValue,termDays,description,uomId" Importance="High"/>
+        </LineItem>
+
+        <Property Name="termTypeId">
+            <Text Path="TermType/description" TextArrangement="TextOnly"/>
+        </Property>
+
+        <NavigationProperty Name="TermType"/>
+    </EntityType>
+
+    <EntityType Name="TermType" AutoSet="true" EntitySetName="TermTypes" AutoProperties="true">
+        <Property Name="termTypeId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+
+    <!--OrderHeader（订单）-->
+    <EntityType Name="OrderHeader" AutoProperties="true" EntitySetName="OrderHeaders" AutoSet="true"/>
+
+    <!--===========================================================支付相关对象=================================================-->
+    <!--PaymentApplication（支付应用）-->
+    <EntityType Name="PaymentApplication" OfbizEntity="PaymentApplication" AutoProperties="true" EntitySetName="PaymentApplications" DraftEntityName="PaymentApplicationDraft">
+        <NavigationProperty Name="Payment" AutoBinding="true"  />
+    </EntityType>
+    <!--Payment（支付）-->
+    <EntityType Name="Payment" OfbizEntity="Payment" EntitySetName="Payments" AutoProperties="true" >
+        <NavigationProperty Name="StatusItem" AutoBinding="true"  />
+        <NavigationProperty Name="PaymentMethodType"/>
+        <Property Name="paymentMethodTypeId">
+            <Text Path="PaymentMethodType/description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <!--PaymentMethodType（支付方式）-->
+    <EntityType Name="PaymentMethodType" EntitySetName="PaymentMethodTypes" AutoSet="true" AutoProperties="true"/>
+
+    <!--InvoiceItem（发票项目）-->
+    <EntityType Name="InvoiceItem" EntitySetName="InvoiceItems" OfbizEntity="InvoiceItem" AutoProperties="true" DraftEntityName="InvoiceItemDraft" >
+        <Property Name="quantity" Scale="2"/>
+        <Property Name="amount" Scale="2"/>
+        <Property Name="invoiceId" Type="String" Nullable="true" Hidden="true"/>
+        <Property Name="invoiceItemSeqId" Type="String" Nullable="true" Immutable="true"/>
+        <NavigationProperty Name="Product" AutoBinding="true"  />
+        <NavigationProperty Name="InventoryItem" AutoBinding="true"  />
+    </EntityType>
+    <EntityType Name="InvoiceStatus" OfbizEntity="InvoiceStatus" AutoProperties="true" DraftEntityName="InvoiceStatusDraft">
+        <NavigationProperty Name="StatusItem" AutoBinding="true"  />
+    </EntityType>
+
+    <!--InvoiceRole（发票角色）-->
+    <EntityType Name="InvoiceRole" OfbizEntity="InvoiceRole" EntitySetName="InvoiceRoles" DraftEntityName="InvoiceRoleDraft" AutoProperties="true" >
+        <Property Name="invoiceId" Type="String" Hidden="true" Nullable="true"/>
+        <Property Name="partyId" Type="String" Nullable="true"/>
+        <Property Name="partyTypeId" Type="String" Nullable="true"/>
+        <NavigationProperty Name="RoleType" AutoBinding="true"  />
+        <NavigationProperty Name="Party" AutoBinding="true"  />
+    </EntityType>
+
+    <!--=========================================财务相关对象===============================================-->
+    <!--AcctgTrans（财务交易）-->
+    <EntityType Name="AcctgTrans" OfbizEntity="AcctgTrans" EntitySetName="AcctgTranses" AutoProperties="true" >
+        <NavigationProperty Name="AcctgTransType" AutoBinding="true"/>
+        <NavigationProperty Name="AcctgTransEntry"/>
+    </EntityType>
+    <!--AcctgTransType（财务交易类型）-->
+    <EntityType Name="AcctgTransType" EntitySetName="AcctgTransTypes" OfbizEntity="AcctgTransType" AutoProperties="true" >
+        <Property Name="acctgTransTypeId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <!--AcctgTransEntry（财务交易）-->
+    <EntityType Name="AcctgTransEntry" AutoProperties="true" AutoSet="true" EntitySetName="AcctgTransEntries">
+        <NavigationProperty Name="AcctgTrans"/>
+        <NavigationProperty Name="GlAccountType"  FilterByDate="false"/>
+        <NavigationProperty Name="GlAccount"/>
+        <Property Name="glAccountTypeId" >
+            <Text Path="GlAccountType/description" TextArrangement="TextOnly" />
+        </Property>
+    </EntityType>
+    <!--GlAccount（总账）-->
+    <EntityType Name="GlAccount" AutoProperties="true" EntitySetName="GlAccounts" AutoSet="true">
+        <NavigationProperty Name="GlAccountClass"/>
+        <Property Name="glAccountClassId">
+            <Text Path="GlAccountClass/description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <!--GlAccountType（总账类型）-->
+    <EntityType Name="GlAccountType" AutoProperties="true" EntitySetName="GlAccountTypes" AutoSet="true"/>
+    <!--GlAccountClass（总账科目）-->
+    <EntityType Name="GlAccountClass" AutoProperties="true" EntitySetName="GlAccountClasses" AutoSet="true"/>
+
+    <!--==============================Party相关对象===============================-->
+    <!--Party-->
+    <EntityType Name="Party" EntitySetName="Parties" OfbizEntity="Party" AutoProperties="true" >
+        <NavigationProperty Name="PartyType" AutoBinding="true"   />
+        <NavigationProperty Name="StatusItem" Type="PartyStatusItem" AutoBinding="true"/>
+        <NavigationProperty Name="PartyAndContact"/>
+    </EntityType>
+    <!--PartyStatusItem-->
+    <EntityType Name="PartyStatusItem" EntitySetName="PartyStatusItems" EntityCondition="statusTypeId=PARTY_STATUS" OfbizEntity="StatusItem" AutoProperties="true" >
+        <Property Name="statusId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <!--PartyType-->
+    <EntityType Name="PartyType" EntitySetName="PartyTypes" OfbizEntity="PartyType" AutoProperties="true" >
+        <Property Name="partyTypeId">
+            <Text Path="description" TextArrangement="TextOnly" />
+        </Property>
+    </EntityType>
+    <!--RoleType-->
+    <EntityType Name="RoleType" OfbizEntity="RoleType" AutoProperties="true" >
+        <Property Name="roleTypeId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <!--PartyAndContact(Party联系方式)-->
+    <EntityType Name="PartyAndContact" EntitySetName="PartyAndContacts" AutoSet="true" AutoProperties="true"/>
+
+    <EntityType Name="InvoiceType" OfbizEntity="InvoiceType" AutoProperties="true" EntityCondition="invoiceTypeId in (PURCHASE_INVOICE,SALES_INVOICE)" EntitySetName="InvoiceTypes">
+        <Property Name="invoiceTypeId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+
+    <EntityType Name="Product" OfbizEntity="Product" EntitySetName="Products" AutoProperties="true" >
+        <Property Name="productId">
+            <Text Path="productName" TextArrangement="TextFirst"/>
+        </Property>
+        <NavigationProperty Name="QuantityUom"/>
+    </EntityType>
+
+    <EntityType Name="StatusItem" AutoProperties="true" >
+        <Property Name="statusId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+
+    <EntityType Name="InvoiceStatus" EntitySetName="InvoiceStatuses" EntityCondition="statusTypeId=INVOICE_GENERAL_STATUS" OfbizEntity="StatusItem" AutoProperties="true" >
+        <Property Name="statusId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+
+    <EntityType Name="InventoryItem" OfbizEntity="InventoryItem" EntitySetName="InventoryItems" AutoProperties="true">
+        <Property Name="ownerPartyId">
+            <Text Path="OwnerParty/partyName" TextArrangement="TextOnly"/>
+        </Property>
+        <Property Name="productId">
+            <Text Path="Product/productName" TextArrangement="TextOnly"/>
+        </Property>
+        <NavigationProperty Name="OwnerParty" IsCollection="false"/>
+        <NavigationProperty Name="Product" IsCollection="false"/>
+    </EntityType>
+
+    <EntityType Name="Uom" AutoSet="true" EntitySetName="Unm" AutoProperties="true" />
+
+    <!--===============================Action====================================-->
+    <Action Name="InvoiceNewAction" IsBound="true" EntitySetPath="invoice"
+            OfbizService="com.dpbird.odata.services.ProcessorServices.stickySessionNewAction"
+            StickySession="true">
+        <Parameter Name="invoice" Type="Invoice" Nullable="false" IsCollection="true"/>
+        <Parameter Name="invoiceTypeId" Type="String"  />
+        <Parameter Name="partyId" Type="String"  />
+        <Parameter Name="partyIdFrom" Type="String"  />
+        <ReturnType Type="Invoice"/>
+    </Action>
+    <!--<service Name="createInvoice" />-->
+    <Action Name="InvoiceEditAction" IsBound="true" EntitySetPath="invoice"
+            OfbizService="com.dpbird.odata.services.ProcessorServices.stickySessionEditAction"
+            StickySession="true">
+        <Parameter Name="invoice" Type="Invoice" Nullable="false" IsCollection="false"/>
+        <Parameter Name="invoiceTypeId" Type="String"  />
+        <Parameter Name="description" Type="String"  />
+        <Parameter Name="partyId" Type="String"  />
+        <Parameter Name="partyIdFrom" Type="String"  />
+        <Parameter Name="statusId" Type="String"  />
+        <Parameter Name="productId" Type="String"  />
+        <ReturnType Type="Invoice"/>
+    </Action>
+    <Action Name="InvoiceSaveAction" IsBound="true" EntitySetPath="invoice"
+            OfbizService="com.dpbird.odata.services.ProcessorServices.stickySessionSaveAction"
+            StickySession="true">
+        <Parameter Name="invoice" Type="Invoice" Nullable="false" IsCollection="false"/>
+        <Parameter Name="invoiceId" Type="String" />
+        <ReturnType Type="Invoice"/>
+    </Action>
+    <Action Name="DiscardAction" />
+
+    <Action Name="cancelInvoiceHeader" IsBound="true" EntitySetPath="invoice"
+            OfbizService="com.banfftech.bfdemo.events.InvoiceEvents.changeInvoiceHeaderStatus">
+        <Parameter Name="invoice" Type="Invoice" Nullable="false" IsCollection="false" />
+        <Parameter Name="statusId" Type="String"  />
+    </Action>
+
+    <Action Name="dealInvoiceHeader" IsBound="true"
+            OfbizService="com.banfftech.bfdemo.events.InvoiceEvents.changeInvoiceHeaderStatus">
+        <Parameter Name="invoice" Type="Invoice" Nullable="false" IsCollection="false" />
+        <Parameter Name="statusId" Type="String"  />
+    </Action>
+
+    <Action Name="paidInvoiceHeader" IsBound="true"
+                     OfbizService="com.banfftech.bfdemo.events.InvoiceEvents.changeInvoiceHeaderStatus">
+        <Parameter Name="invoice" Type="Invoice" Nullable="false" IsCollection="false" />
+        <Parameter Name="statusId" Type="String"/>
+    </Action>
+
+    <Action Name="readyInvoiceHeader" IsBound="true"
+            OfbizService="com.banfftech.bfdemo.events.InvoiceEvents.changeInvoiceHeaderStatus">
+        <Parameter Name="invoice" Type="Invoice" Nullable="false" IsCollection="false" />
+        <Parameter Name="statusId" Type="String"  />
+    </Action>
+
+    <Action Name="copyInvoice" IsBound="true"
+            OfbizService="com.banfftech.bfdemo.events.InvoiceEvents.copyInvoice">
+        <Parameter Name="invoice" Type="Invoice" Nullable="false" />
+        <Parameter Name="copyInvoiceOnly" Type="Boolean" Nullable="false" />
+        <ReturnType Type="String" />
+    </Action>
+
+    <EntityContainer>
+        <ActionImport Name="DiscardAction" Action="DiscardAction" />
+    </EntityContainer>
+</ofbiz-edm>
