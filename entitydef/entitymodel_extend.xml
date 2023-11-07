@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entitymodel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/entitymodel.xsd">
+	<title>Entities for openui5</title>
+	<description>None</description>
+	<copyright></copyright>
+	<version></version>
+
+    <!-- 增加关系 -->
+	<extend-entity entity-name="Product">
+		<field name="primaryImageContentId" type="id"><description>o3 define 用于列表图片</description></field>
+		<relation type="one" fk-name="PROD_CONTENT" rel-entity-name="Content">
+			<key-map field-name="primaryImageContentId" rel-field-name="contentId"/>
+		</relation>
+        <relation type="many" fk-name="PROD_ITQTY_SUM" rel-entity-name="ProductQuantitySummary">
+            <key-map field-name="productId"/>
+        </relation>
+		<relation type="one-nofk" rel-entity-name="UserLoginAndPersonDetail">
+			<key-map field-name="createdByUserLogin" rel-field-name="userLoginId"/>
+		</relation>
+		<relation type="one-nofk" rel-entity-name="UserLoginAndPersonDetail">
+			<key-map field-name="lastModifiedByUserLogin" rel-field-name="userLoginId"/>
+		</relation>
+		<relation type="many" rel-entity-name="ProductFeatureAndCategory">
+			<key-map field-name="primaryProductCategoryId" rel-field-name="productCategoryId"/>
+		</relation>
+		<relation type="many" rel-entity-name="ProductFeatureAndCatAppl">
+			<key-map field-name="primaryProductCategoryId" rel-field-name="productCategoryId"/>
+		</relation>
+		<relation type="many" rel-entity-name="ProductAllowedFeatureType">
+			<key-map field-name="primaryProductCategoryId" rel-field-name="productCategoryId"/>
+			<key-map field-name="productId" rel-field-name="productId"/>
+		</relation>
+		<relation type="many" rel-entity-name="FacilityAllInventory">
+			<key-map field-name="productId" rel-field-name="productId"/>
+		</relation>
+    </extend-entity>
+
+	<extend-entity entity-name="ProductCategory">
+		<field name="primaryImageContentId" type="id"><description>o3 define 用于分类图片</description></field>
+		<relation type="one" fk-name="PROD_CTGRY_CONTENT" rel-entity-name="Content">
+			<key-map field-name="primaryImageContentId" rel-field-name="contentId"/>
+		</relation>
+	</extend-entity>
+
+	<extend-entity entity-name="PhysicalInventory">
+		<relation type="one" rel-entity-name="Party">
+			<key-map field-name="partyId" rel-field-name="partyId"/>
+		</relation>
+	</extend-entity>
+
+	<extend-entity entity-name="ProductFeatureCatGrpAppl">
+		<field name="sequenceNum" type="numeric">
+			<description>ProductFeatureCatGrpAppl sequenceNums</description>
+		</field>
+	</extend-entity>
+
+	<extend-entity entity-name="ProductFeatureCategoryAppl">
+		<field name="sequenceNum" type="numeric">
+			<description>ProductFeatureCategoryAppl sequenceNums</description>
+		</field>
+	</extend-entity>
+
+	<extend-entity entity-name="FacilityContactMechPurpose">
+		<relation type="one-nofk" rel-entity-name="PostalAddress">
+			<key-map field-name="contactMechId"/>
+		</relation>
+		<relation type="one-nofk" rel-entity-name="TelecomNumber">
+			<key-map field-name="contactMechId"/>
+		</relation>
+	</extend-entity>
+
+	<extend-entity entity-name="FacilityContactMech">
+		<relation type="one-nofk" rel-entity-name="ContactMechAndPostalAddress">
+			<key-map field-name="contactMechId"/>
+		</relation>
+	</extend-entity>
+
+	<extend-entity entity-name="ProductFeatureAppl">
+		<field name="contentId" type="id"></field>
+		<relation type="one" fk-name="PROD_FAPPL_CONTENT" rel-entity-name="Content">
+			<key-map field-name="contentId"/>
+		</relation>
+	</extend-entity>
+
+	<extend-entity entity-name="WorkEffortPartyAssignment">
+		<relation type="one-nofk" rel-entity-name="PartyGroup">
+			<key-map field-name="partyId"/>
+		</relation>
+		<relation type="one-nofk" rel-entity-name="Person">
+			<key-map field-name="partyId"/>
+		</relation>
+
+	</extend-entity>
+
+	<extend-entity entity-name="FinAccount">
+		<relation type="one-nofk" rel-entity-name="StatusItem">
+			<key-map field-name="statusId"/>
+		</relation>
+	</extend-entity>
+
+	<extend-entity entity-name="StatusItem">
+		<relation type="one-nofk" rel-entity-name="UserLoginAndContact">
+			<key-map field-name="statusId"/>
+		</relation>
+	</extend-entity>
+
+	<extend-entity entity-name="PartyRelationship">
+		<relation type="one-nofk" title="To" rel-entity-name="Person">
+			<key-map field-name="partyIdTo" rel-field-name="partyId"/>
+		</relation>
+		<relation type="one-nofk" title="From" rel-entity-name="PartyGroup">
+			<key-map field-name="partyIdFrom" rel-field-name="partyId"/>
+		</relation>
+		<relation type="one-nofk" title="To" rel-entity-name="PartyGroup">
+			<key-map field-name="partyIdTo" rel-field-name="partyId"/>
+		</relation>
+		<relation type="one-nofk" title="To" rel-entity-name="PersonAndContact">
+			<key-map field-name="partyIdTo" rel-field-name="partyId"/>
+		</relation>
+		<relation type="many" rel-entity-name="PartyContactMechPurpose">
+			<key-map field-name="partyIdTo" rel-field-name="partyId"/>
+		</relation>
+		<relation type="one-nofk" rel-entity-name="PartyAndContact">
+			<key-map field-name="partyIdTo" rel-field-name="partyId"/>
+		</relation>
+	</extend-entity>
+
+<!--	<extend-entity entity-name="UserLogin">-->
+<!--		<relation type="one-nofk"  rel-entity-name="WeChatUser">-->
+<!--			<key-map field-name="externalAuthId" rel-field-name="openId"/>-->
+<!--		</relation>-->
+<!--	</extend-entity>-->
+
+	<extend-entity entity-name="Person">
+		<relation type="many" title="From" rel-entity-name="PartyRelationship">
+			<key-map field-name="partyId" rel-field-name="partyIdFrom"/>
+		</relation>
+		<relation type="many" title="To" rel-entity-name="PartyRelationship">
+			<key-map field-name="partyId" rel-field-name="partyIdTo"/>
+		</relation>
+	</extend-entity>
+	<extend-entity entity-name="ProductFeatureAppl">
+		<relation type="many"  rel-entity-name="ContentDataResourceView">
+			<key-map field-name="contentId" />
+		</relation>
+	</extend-entity>
+
+	<extend-entity entity-name="PartyRole">
+		<relation type="one-nofk" rel-entity-name="PartyGroup">
+			<key-map field-name="partyId"/>
+		</relation>
+	</extend-entity>
+	<extend-entity entity-name="Party">
+		<relation type="many" title="From" rel-entity-name="PartyRelationshipAndContactMechDetail">
+			<key-map field-name="partyId" rel-field-name="partyIdFrom"/>
+		</relation>
+		<relation type="many" rel-entity-name="CashAccount">
+			<key-map field-name="partyId"/>
+		</relation>
+		<relation type="many" rel-entity-name="Budget">
+			<key-map field-name="partyId"/>
+		</relation>
+	</extend-entity>
+	<extend-entity entity-name="OrderItemShipGroup">
+		<relation type="many"  rel-entity-name="OrderShipment">
+			<key-map field-name="orderId" />
+			<key-map field-name="shipGroupSeqId" />
+		</relation>
+	</extend-entity>
+
+	<extend-entity entity-name="Person">
+		<field name="personImageUrl" type="url"/>
+		<relation type="many" rel-entity-name="PartyRole">
+			<key-map field-name="partyId"/>
+		</relation>
+	</extend-entity>
+
+	<extend-entity entity-name="SupplierProduct">
+		<relation type="one-nofk" rel-entity-name="PartyGroup">
+			<key-map field-name="partyId"/>
+		</relation>
+		<relation type="one-nofk" rel-entity-name="SupplierParty">
+			<key-map field-name="partyId"/>
+		</relation>
+	</extend-entity>
+
+	<extend-entity entity-name="ProductAttribute">
+		<relation type="one-nofk" rel-entity-name="Enumeration">
+			<key-map field-name="attrValue" rel-field-name="enumId"/>
+		</relation>
+		<relation type="one-nofk" rel-entity-name="ProductFeature">
+			<key-map field-name="attrValue" rel-field-name="productFeatureId"/>
+		</relation>
+		<relation type="one-nofk" rel-entity-name="SupplierParty">
+			<key-map field-name="attrValue" rel-field-name="partyId"/>
+		</relation>
+	</extend-entity>
+
+	<extend-entity entity-name="ReturnHeader">
+		<relation type="many" rel-entity-name="ReturnHeaderNote">
+			<key-map field-name="returnId" rel-field-name="returnId"/>
+		</relation>
+	</extend-entity>
+
+	<extend-entity entity-name="ProductAttributeNumeric">
+		<field name="attributeType" type="short-varchar">
+			<description>attribute type</description>
+		</field>
+	</extend-entity>
+
+	<extend-entity entity-name="ProductMeter">
+		<field name="maximumValue" type="short-varchar">
+			<description>Maximum Value</description>
+		</field>
+		<field name="minimumValue" type="short-varchar">
+			<description>Minimum Value</description>
+		</field>
+	</extend-entity>
+
+	<extend-entity entity-name="CustRequest">
+		<relation type="many"  rel-entity-name="CustRequestAndNote">
+			<key-map field-name="custRequestId"/>
+		</relation>
+		<relation type="one-nofk"  rel-entity-name="PartyAndContact">
+			<key-map field-name="fromPartyId" rel-field-name="partyId"/>
+		</relation>
+		<relation type="many"  rel-entity-name="CustRequestItemAndFixedAssetFault">
+			<key-map field-name="custRequestId"/>
+		</relation>
+	</extend-entity>
+
+	<extend-entity entity-name="Quote">
+		<field name="custRequestId" type="id"/>
+		<relation type="one"  rel-entity-name="CustRequest">
+			<key-map field-name="custRequestId" rel-field-name="custRequestId"/>
+		</relation>
+	</extend-entity>
+
+	<extend-entity entity-name="OrderHeader">
+		<field name="quoteId" type="id"/>
+		<relation type="one"  rel-entity-name="Quote">
+			<key-map field-name="quoteId" rel-field-name="quoteId"/>
+		</relation>
+		<relation type="many"  rel-entity-name="WorkEffort">
+			<key-map field-name="orderId" rel-field-name="orderId"/>
+		</relation>
+	</extend-entity>
+
+	<extend-entity entity-name="Invoice">
+		<field name="orderId" type="id"/>
+		<relation type="one"  rel-entity-name="OrderHeader">
+			<key-map field-name="orderId" rel-field-name="orderId"/>
+		</relation>
+	</extend-entity>
+
+	<extend-entity entity-name="CustRequestItem">
+		<field name="fixedAssetFaultId" type="id"></field>
+		<field name="productId" type="id"></field>
+		<relation type="one"  fk-name="CUST_REQITM_FIXASTFAULT" rel-entity-name="FixedAssetFault">
+			<key-map field-name="fixedAssetFaultId"/>
+		</relation>
+		<relation type="one"  fk-name="CUST_REQITM_PRODUCT" rel-entity-name="Product">
+			<key-map field-name="productId"/>
+		</relation>
+	</extend-entity>
+
+	<extend-entity entity-name="Shipment">
+		<field name="trackingIdNumber" type="id"></field>
+		<relation type="one" rel-entity-name="PartyUserLogin">
+			<key-map field-name="createdByUserLogin" rel-field-name="userLoginId"/>
+		</relation>
+	</extend-entity>
+
+	<extend-entity entity-name="InventoryItemDetail">
+		<relation type="one" rel-entity-name="Shipment">
+			<key-map field-name="shipmentId" rel-field-name="shipmentId"/>
+		</relation>
+	</extend-entity>
+
+	<extend-entity entity-name="ShipmentItem">
+		<field name="fixedAssetId" type="id"/>
+		<relation type="one-nofk"  rel-entity-name="FixedAsset">
+			<key-map field-name="fixedAssetId"/>
+		</relation>
+	</extend-entity>
+
+	<extend-entity entity-name="FixedAsset">
+		<field name="acquiredFromPartyId" type="id"></field>
+		<field name="comment" type="comment"></field>
+		<relation type="one" fk-name="FIXEDAST_FROMPTY" title="AcquiredFrom" rel-entity-name="Party">
+			<key-map field-name="acquiredFromPartyId" rel-field-name="partyId"/>
+		</relation>
+		<relation type="one-nofk" rel-entity-name="PartyGroup">
+			<key-map field-name="acquiredFromPartyId" rel-field-name="partyId"/>
+		</relation>
+	</extend-entity>
+
+	<extend-entity entity-name="Warranty">
+		<field name="isSettle" type="indicator"></field>
+		<relation type="one-nofk" rel-entity-name="PartyAndContact">
+			<key-map field-name="partyId"/>
+		</relation>
+	</extend-entity>
+	<extend-entity entity-name="WarrantyRec">
+		<field name="isSettle" type="indicator"></field>
+	</extend-entity>
+
+	<extend-entity entity-name="Timesheet">
+		<field name="timesheetTypeId" type="id"/>
+		<field name="workFlowId" type="id"/>
+		<relation type="many" rel-entity-name="WeeklyTimeEntry">
+			<key-map field-name="timesheetId"/>
+		</relation>
+		<relation type="one" title="WorkFlow" rel-entity-name="WorkEffort">
+			<key-map field-name="workFlowId" rel-field-name="workEffortId"/>
+		</relation>
+		<relation type="one" rel-entity-name="TimesheetType">
+			<key-map field-name="timesheetTypeId"/>
+		</relation>
+	</extend-entity>
+
+	<extend-entity entity-name="WorkEffort">
+		<field name="orderId" type="id"/>
+		<field name="custRequestId" type="id"/>
+		<relation type="one-nofk" rel-entity-name="UserLogin">
+			<key-map field-name="createdByUserLogin" rel-field-name="userLoginId"/>
+		</relation>
+		<relation type="one-nofk" rel-entity-name="PartyUserLogin">
+			<key-map field-name="createdByUserLogin" rel-field-name="userLoginId"/>
+		</relation>
+		<relation type="many" rel-entity-name="Timesheet">
+			<key-map field-name="workEffortId" rel-field-name="workFlowId"/>
+		</relation>
+		<relation type="one" rel-entity-name="OrderHeader">
+			<key-map field-name="orderId" rel-field-name="orderId"/>
+		</relation>
+	</extend-entity>
+
+	<extend-entity entity-name="Picklist">
+		<relation type="many" rel-entity-name="PicklistItemAndBin">
+			<key-map field-name="picklistId"/>
+		</relation>
+	</extend-entity>
+
+	<extend-entity entity-name="Invoice">
+		<relation type="one-nofk" title="From" rel-entity-name="PartyAndContact">
+			<key-map field-name="partyIdFrom" rel-field-name="partyId"/>
+		</relation>
+		<relation type="one-nofk" rel-entity-name="PartyAndContact">
+			<key-map field-name="partyId"/>
+		</relation>
+	</extend-entity>
+
+	<extend-entity entity-name="FinAccountTrans">
+		<field name="cashAccountId" type="id"/>
+		<field name="availableAmount" type="currency-amount"/>
+		<field name="adjustmentReason" type="id"/>
+		<field name="originAcctgTransId" type="id"/>
+		<field name="periodNum" type="numeric"/>
+		<field name="workEffortId" type="id"/>
+		<relation type="one" fk-name="FINTRNS_CSHACCT" rel-entity-name="CashAccount">
+			<key-map field-name="cashAccountId"/>
+		</relation>
+		<relation type="one" title="AdjustmentReason" fk-name="FINTRNS_ADJ_RSN" rel-entity-name="Enumeration">
+			<key-map field-name="adjustmentReason" rel-field-name="enumId"/>
+		</relation>
+		<relation type="one" fk-name="FINTRNS_WORK_EFFORT" rel-entity-name="WorkEffort">
+			<key-map field-name="workEffortId"/>
+		</relation>
+	</extend-entity>
+
+	<extend-entity entity-name="GlReconciliation">
+		<field name="openingAvailableBalance" type="currency-amount"/>
+		<field name="reconciledAvailableBalance" type="currency-amount"/>
+		<field name="finAccountId" type="id"/>
+		<field name="customTimePeriodId" type="id"/>
+		<relation type="one" fk-name="GR_FINACCT" rel-entity-name="FinAccount">
+			<key-map field-name="finAccountId"/>
+		</relation>
+		<relation type="one" rel-entity-name="CustomTimePeriod">
+			<key-map field-name="customTimePeriodId"/>
+		</relation>
+	</extend-entity>
+	
+	<extend-entity entity-name="Budget">
+		<field name="partyId" type="id"></field>
+		<relation type="one" rel-entity-name="Party">
+			<key-map field-name="partyId"/>
+		</relation>
+	</extend-entity>
+	<extend-entity entity-name="BudgetItem">
+		<field name="cashAccountId" type="id"></field>
+		<relation type="one" rel-entity-name="CashAccount">
+			<key-map field-name="cashAccountId"/>
+		</relation>
+	</extend-entity>
+	<extend-entity entity-name="ProductStoreRole">
+		<relation type="one" rel-entity-name="PartyAndContact">
+			<key-map field-name="partyId"/>
+		</relation>
+	</extend-entity>
+	<extend-entity entity-name="EmplLeave">
+		<field name="leaveAccountId" type="id"></field>
+		<relation type="one" rel-entity-name="LeaveAccount">
+			<key-map field-name="leaveAccountId"/>
+		</relation>
+	</extend-entity>
+	<extend-entity entity-name="TimeEntry">
+		<field name="emplLeaveId" type="id"></field>
+		<relation type="one" rel-entity-name="EmplLeave">
+			<key-map field-name="emplLeaveId"/>
+		</relation>
+	</extend-entity>
+	<extend-entity entity-name="Requirement">
+		<field name="supplierPartyId" type="id"></field>
+		<relation type="one" title="Supplier" rel-entity-name="Party">
+			<key-map field-name="supplierPartyId" rel-field-name="partyId"/>
+		</relation>
+	</extend-entity>
+	<extend-entity entity-name="OrderHeader">
+		<field name="agreementId" type="id"></field>
+		<relation type="one" rel-entity-name="Agreement">
+			<key-map field-name="agreementId" rel-field-name="agreementId"/>
+		</relation>
+	</extend-entity>
+</entitymodel>

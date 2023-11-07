@@ -1,0 +1,135 @@
+<ofbiz-edm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="https://dev.odatalab.com/dtds/edmconfig.xsd" ImportGlobal="false">
+
+    <!--PurchaseAgreement-->
+    <EntityType Name="PurchaseAgreement" EntitySetName="PurchaseAgreements" AutoSet="true" EntityCondition="agreementTypeId=PURCHASE_AGREEMENT" AutoProperties="true" OfbizEntity="Agreement">
+        <LineItem>
+            <DataField Values="agreementId,productId,partyIdFrom,partyIdTo,description,agreementDate,fromDate,thruDate" Importance="High"/>
+        </LineItem>
+
+        <SelectionFields PropertyPath="productId,partyIdFrom,partyIdTo"/>
+
+        <HeaderInfo TypeName="合同" TypeNamePlural="合同列表">
+            <Title Path="agreementId"/>
+            <Description Path="description"/>
+        </HeaderInfo>
+
+        <FieldGroup Qualifier="BaseInfo" Label="BaseInfo">
+            <DataField Values="productId,partyIdFrom,partyIdTo" Importance="High"/>
+        </FieldGroup>
+
+        <FieldGroup Qualifier="AgreementTime" Label="AgreementTime">
+            <DataField Values="agreementDate,fromDate,thruDate" Importance="High"/>
+        </FieldGroup>
+
+        <Property Name="partyIdFrom">
+            <Text Path="Company/partyName" TextArrangement="TextOnly"/>
+            <ValueList CollectionPath="Companies" ParameterDisplayOnly="PartyAndContact/primaryPhone"/>
+        </Property>
+
+        <Property Name="partyIdTo">
+            <Text Path="Supplier/partyName" TextArrangement="TextOnly"/>
+            <ValueList CollectionPath="Suppliers" ParameterDisplayOnly="PartyAndContact/primaryPhone"/>
+        </Property>
+
+        <Property Name="productId">
+            <Text Path="Product/productName" TextArrangement="TextOnly"/>
+        </Property>
+
+        <NavigationProperty Name="AgreementItem"/>
+        <NavigationProperty Name="Product"/>
+        <NavigationProperty Name="Supplier" Type="Supplier" Relations="ToParty"/>
+        <NavigationProperty Name="Company" Type="Company" Relations="FromParty"/>
+        <NavigationProperty Name="AgreementTerm"/>
+    </EntityType>
+
+    <EntityType Name="AgreementItem" EntitySetName="AgreementItems" AutoSet="true" AutoProperties="true">
+        <LineItem Qualifier="AgreementItemLineItem">
+            <DataField Values="agreementItemSeqId,currencyUomId,agreementText,agreementImage" Importance="High"/>
+        </LineItem>
+    </EntityType>
+
+    <EntityType Name="AgreementTerm" EntitySetName="AgreementTerms" AutoSet="true" AutoProperties="true">
+        <LineItem Qualifier="AgreementTermLineItem">
+            <DataField Values="agreementTermId,agreementItemSeqId,termTypeId,termValue,termDays,maxQuantity,minQuantity,description,fromDate,thruDate" Importance="High"/>
+        </LineItem>
+
+        <Property Name="termTypeId">
+            <Text Path="TermType/description" TextArrangement="TextOnly"/>
+        </Property>
+
+        <NavigationProperty Name="TermType"/>
+    </EntityType>
+
+    <EntityType Name="TermType" AutoProperties="true" AutoSet="true" EntitySetName="TermTypes">
+        <Property Name="termTypeId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+
+    <EntityType Name="Company" OfbizEntity="Party" AutoProperties="true" EntityCondition="PartyRole/roleTypeId=INTERNAL_ORGANIZATIO" EntitySetName="Companies" AutoSet="true">
+        <Property Name="partyId">
+            <Text Path="partyName" TextArrangement="TextOnly"/>
+        </Property>
+        <NavigationProperty Name="PartyAndContact"/>
+        <NavigationProperty Name="PartyGroup"/>
+    </EntityType>
+
+    <EntityType Name="Supplier" OfbizEntity="Party" EntityCondition="PartyRole/roleTypeId=SUPPLIER" EntitySetName="Suppliers" AutoSet="true" AutoProperties="true">
+        <Property Name="partyId" Label="供应商">
+            <Text Path="partyName" TextArrangement="TextOnly"/>
+        </Property>
+        <NavigationProperty Name="PartyAndContact"/>
+        <NavigationProperty Name="PartyGroup"/>
+    </EntityType>
+
+    <EntityType Name="PartyAndContact" AutoProperties="true" AutoSet="true" EntitySetName="PartyAndContacts"/>
+
+    <EntityType Name="PartyGroup" AutoProperties="true" AutoSet="true" EntitySetName="PartyGroups"/>
+
+    <EntityType Name="Product" EntitySetName="Products" AutoProperties="true">
+        <ValueList CollectionPath="Products" WithFixedValues="true"/>
+        <Property Name="productId">
+            <Text Path="productName" TextArrangement="TextOnly"/>
+        </Property>
+        <Property Name="productTypeId">
+            <Text Path="ProductType/description" TextArrangement="TextOnly"/>
+        </Property>
+        <Property Name="quantityUomId" Label="单位">
+            <Text Path="QuantityUom/description" TextArrangement="TextOnly"/>
+        </Property>
+        <NavigationProperty Name="ProductType"/>
+        <NavigationProperty Name="QuantityUom"/>
+    </EntityType>
+
+    <EntityType Name="ProductType" EntitySetName="ProductType" AutoProperties="true">
+    </EntityType>
+
+    <EntityType Name="Uom"  EntitySetName="Uoms" AutoProperties="true"/>
+
+    <EntityType Name="Enumeration" EntitySetName="OrderSalesEnumerations" EntityCondition="enumTypeId=ORDER_NEW_SALES_CHANNEL" AutoProperties="true">
+        <ValueList CollectionPath="OrderSalesEnumerations" WithFixedValues="true" Label="选择销售渠道"/>
+        <Property Name="enumId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+
+    <EntityType Name="Enumeration" AutoProperties="true" EntityCondition="enumTypeId=ORDER_NEW_SALES_CHANNEL" EntitySetName="Enumerations" AutoSet="true">
+        <Property Name="enumId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+
+    <EntityContainer>
+        <EntitySet Name="CurrencyUoms" EntityType="Uom" EntityCondition="uomTypeId=CURRENCY_MEASURE"/>
+        <!--=============================    ActionImportStart    =============================-->
+        <ActionImport Name="DiscardAction" Action="DiscardAction"/>
+        <!--=============================     ActionImportEnd    =============================-->
+    </EntityContainer>
+    <!--=====================================     CRUD Action definition Start   =====================================-->
+
+    <Action Name="DiscardAction"/>
+    <!--=====================================     CRUD Action definition End   =====================================-->
+
+
+</ofbiz-edm>
