@@ -20,4 +20,79 @@ under the License.
 
 <entity-engine-xml>
 
+    <!-- 超级管理员 -->
+    <Party partyId="admin" partyTypeId="PERSON" externalId="admin" partyName="超级管理员"/>
+    <UserLogin userLoginId="admin" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" passwordHint="" partyId="admin"/>
+    <UserLoginSecurityGroup groupId="SUPER" userLoginId="admin" fromDate="2001-01-01 12:00:00.0"/>
+
+    <!-- 申请人 -->
+    <Party partyId="applicant" partyTypeId="PERSON" externalId="applicant" partyName="申请人01"/>
+    <Person partyId="applicant"/>
+    <PartyRole partyId="applicant" roleTypeId="APPLICANT"/>
+    <UserLogin userLoginId="applicant" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" passwordHint="" partyId="applicant"/>
+    <UserLoginSecurityGroup groupId="SUPER" userLoginId="applicant" fromDate="2001-01-01 12:00:00.0"/>
+
+    <!-- 经理 -->
+    <Party partyId="manager" partyTypeId="PERSON" externalId="manager" partyName="经理01"/>
+    <Person partyId="manager"/>
+    <PartyRole partyId="manager" roleTypeId="MANAGER"/>
+    <UserLogin userLoginId="manager" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" passwordHint="" partyId="manager"/>
+    <UserLoginSecurityGroup groupId="SUPER" userLoginId="manager" fromDate="2001-01-01 12:00:00.0"/>
+
+    <!-- 供应商 -->
+    <Party partyId="vendor" partyTypeId="PERSON" externalId="vendor" partyName="供应商01"/>
+    <Person partyId="vendor"/>
+    <PartyRole partyId="vendor" roleTypeId="VENDOR"/>
+    <UserLogin userLoginId="vendor" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" passwordHint="" partyId="vendor"/>
+    <UserLoginSecurityGroup groupId="SUPER" userLoginId="vendor" fromDate="2001-01-01 12:00:00.0"/>
+
+    <!-- 最终客户 -->
+    <Party partyId="endUser" partyTypeId="PERSON" externalId="endUser" partyName="最终客户01"/>
+    <Person partyId="endUser"/>
+    <PartyRole partyId="endUser" roleTypeId="END_USER"/>
+    <UserLogin userLoginId="endUser" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" passwordHint="" partyId="endUser"/>
+    <UserLoginSecurityGroup groupId="SUPER" userLoginId="endUser" fromDate="2001-01-01 12:00:00.0"/>
+
+    <!-- 法务 -->
+    <Party partyId="legalAffairs" partyTypeId="PERSON" externalId="legalAffairs" partyName="法务01"/>
+    <Person partyId="legalAffairs"/>
+    <PartyRole partyId="legalAffairs" roleTypeId="LEGAL_AFFAIRS"/>
+    <UserLogin userLoginId="legalAffairs" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" passwordHint="" partyId="legalAffairs"/>
+    <UserLoginSecurityGroup groupId="SUPER" userLoginId="legalAffairs" fromDate="2001-01-01 12:00:00.0"/>
+
+    <!-- 合规 -->
+    <Party partyId="compliance" partyTypeId="PERSON" externalId="compliance" partyName="合规01"/>
+    <Person partyId="compliance"/>
+    <PartyRole partyId="compliance" roleTypeId="COMPLIANCE"/>
+    <UserLogin userLoginId="compliance" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" passwordHint="" partyId="compliance"/>
+    <UserLoginSecurityGroup groupId="SUPER" userLoginId="compliance" fromDate="2001-01-01 12:00:00.0"/>
+
+    <!-- 财务 -->
+    <Party partyId="finance" partyTypeId="PERSON" externalId="finance" partyName="财务01"/>
+    <Person partyId="finance"/>
+    <PartyRole partyId="finance" roleTypeId="FINANCE"/>
+    <UserLogin userLoginId="finance" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" passwordHint="" partyId="finance"/>
+    <UserLoginSecurityGroup groupId="SUPER" userLoginId="finance" fromDate="2001-01-01 12:00:00.0"/>
+
+    <!-- CEO -->
+    <Party partyId="ceo" partyTypeId="PERSON" externalId="ceo" partyName="首席执行官01"/>
+    <Person partyId="ceo"/>
+    <PartyRole partyId="ceo" roleTypeId="CEO"/>
+    <UserLogin userLoginId="ceo" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" passwordHint="" partyId="ceo"/>
+    <UserLoginSecurityGroup groupId="SUPER" userLoginId="ceo" fromDate="2001-01-01 12:00:00.0"/>
+
+    <!-- CTO -->
+    <Party partyId="cto" partyTypeId="PERSON" externalId="cto" partyName="首席技术官01"/>
+    <Person partyId="cto"/>
+    <PartyRole partyId="cto" roleTypeId="CTO"/>
+    <UserLogin userLoginId="cto" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" passwordHint="" partyId="cto"/>
+    <UserLoginSecurityGroup groupId="SUPER" userLoginId="cto" fromDate="2001-01-01 12:00:00.0"/>
+
+    <!-- CFO -->
+    <Party partyId="cfo" partyTypeId="PERSON" externalId="cfo" partyName="首席财务官01"/>
+    <Person partyId="cfo"/>
+    <PartyRole partyId="cfo" roleTypeId="CFO"/>
+    <UserLogin userLoginId="cfo" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" passwordHint="" partyId="cfo"/>
+    <UserLoginSecurityGroup groupId="SUPER" userLoginId="cfo" fromDate="2001-01-01 12:00:00.0"/>
+
 </entity-engine-xml>
