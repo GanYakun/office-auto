@@ -1,6 +1,7 @@
 <ofbiz-edm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:noNamespaceSchemaLocation="https://dev.odatalab.com/dtds/edmconfig.xsd" ImportGlobal="false">
 
+    <!--============================主对象PurchaseAgreement（采购合同）===================================-->
     <!--PurchaseAgreement-->
     <EntityType Name="PurchaseAgreement" EntitySetName="PurchaseAgreements" AutoSet="true" EntityCondition="agreementTypeId=PURCHASE_AGREEMENT" AutoProperties="true" OfbizEntity="Agreement">
         <LineItem>
@@ -43,12 +44,15 @@
         <NavigationProperty Name="AgreementTerm"/>
     </EntityType>
 
+    <!--===========================================采购合同子对象============================================-->
+    <!--AgreementItem（合同项目）-->
     <EntityType Name="AgreementItem" EntitySetName="AgreementItems" AutoSet="true" AutoProperties="true">
         <LineItem Qualifier="AgreementItemLineItem">
             <DataField Values="agreementItemSeqId,currencyUomId,agreementText,agreementImage" Importance="High"/>
         </LineItem>
     </EntityType>
 
+    <!--AgreementItem（合同条款）-->
     <EntityType Name="AgreementTerm" EntitySetName="AgreementTerms" AutoSet="true" AutoProperties="true">
         <LineItem Qualifier="AgreementTermLineItem">
             <DataField Values="agreementTermId,agreementItemSeqId,termTypeId,termValue,termDays,maxQuantity,minQuantity,description,fromDate,thruDate" Importance="High"/>
@@ -61,6 +65,7 @@
         <NavigationProperty Name="TermType"/>
     </EntityType>
 
+    <!--TermType（条款类型）-->
     <EntityType Name="TermType" AutoProperties="true" AutoSet="true" EntitySetName="TermTypes">
         <Property Name="termTypeId">
             <Text Path="description" TextArrangement="TextOnly"/>

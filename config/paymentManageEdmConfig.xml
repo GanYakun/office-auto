@@ -1,0 +1,176 @@
+<ofbiz-edm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://dev.odatalab.com/dtds/edmconfig.xsd" ImportGlobal="false">    <!-- EntityType Party -->
+
+    <EntityType Name="Payment" OfbizEntity="Payment"  AutoProperties="true"
+        Handler="component://bf-demo/groovyScripts/paymentManage/Payment/generateEntityListFields.groovy"
+                SearchOption="paymentId,StatusItem/description,ToParty/partyName,FromParty/partyName">
+        <Property Name="statusId" >
+            <ValueList CollectionPath="PaymentStatusItems" WithFixedValues="true" />
+            <Text Path="StatusItem/description" TextArrangement="TextOnly" />
+        </Property>
+        <Property Name="paymentTypeId" >
+            <Text Path="PaymentType/description" TextArrangement="TextOnly" />
+        </Property>
+        <Property Name="paymentMethodTypeId" >
+            <Text Path="PaymentMethodType/description" TextArrangement="TextOnly" />
+        </Property>
+
+        <Property Name="partyIdFrom" >
+            <Text Path="FromParty/partyName" TextArrangement="TextOnly" />
+        </Property>
+        <Property Name="partyIdTo" >
+            <Text Path="ToParty/partyName" TextArrangement="TextOnly" />
+        </Property>
+        <Property Name="currencyUomId" >
+            <Text Path="CurrencyUom/description" TextArrangement="TextOnly" />
+        </Property>
+        <Property Name="statusColor"  Type="numeric" Hidden="true" HiddenFilter="true"/>
+<!--        <Property Name="chartCriticalValue"  Type="numeric" Hidden="true" HiddenFilter="true"/>-->
+        <NavigationProperty Name="CurrencyUom" AutoBinding="true"  />
+        <NavigationProperty Name="StatusItem" AutoBinding="true"  />
+        <NavigationProperty Name="PaymentType" AutoBinding="true"  />
+        <NavigationProperty Name="FromParty" AutoBinding="true" IsCollection="false"/>
+        <NavigationProperty Name="ToParty" AutoBinding="true"  />
+        <NavigationProperty Name="PaymentMethodType" AutoBinding="true"  />
+        <NavigationProperty Name="OrderPaymentPreference" IsCollection="true"/>
+
+
+        <NavigationProperty Name="InvoiceItem" Relations="AcctgTrans/Invoice/InvoiceItem" Type="InvoiceItem" IsCollection="true"/>
+        <NavigationProperty Name="PaymentApplication" Type="PaymentApplication" IsCollection="true"  FilterByDate="false"/>
+        <NavigationProperty Name="AcctgTrans" Type="AcctgTrans" IsCollection="true"  FilterByDate="false"/>
+        <NavigationProperty Name="PaymentAttribute" Type="PaymentAttribute" IsCollection="true"  FilterByDate="false"/>
+        <NavigationProperty Name="AcctgTransEntry" Type="AcctgTransEntry" IsCollection="true"  FilterByDate="false"
+                            Relations="AcctgTrans/AcctgTransEntry"/>
+        <HeaderInfo TypeName="支付" TypeNamePlural="支付列表">
+            <Title Path="paymentId"/>
+            <Description Path="comments"/>
+        </HeaderInfo>
+
+    </EntityType>
+
+    <EntityType Name="OrderPaymentPreference" EntitySetName="OrderPaymentPreferences" AutoProperties="true" DraftEntityName="OrderPaymentPreferenceAppDraft"
+                Handler="component://bf-demo/groovyScripts/purchaseOrderMange/OrderPaymentPreference/generateEntityListFields.groovy">
+
+        <Property Name="orderPaymentStatus" Type="Edm.Int64"/>
+        <Property Name="statusId" Immutable="true">
+            <Text Path="PaymentStatusItem/description" TextArrangement="TextOnly"/>
+        </Property>
+
+        <NavigationProperty Name="OrderHeader" IsCollection="false"/>
+        <NavigationProperty Name="FinAccount" IsCollection="false"/>
+        <NavigationProperty Name="PaymentStatusItem" Relations="StatusItem" Type="PaymentStatusItem"/>
+        <NavigationProperty Name="Uom" Relations="OrderHeader/Uom" Type="Uom"/>
+        <NavigationProperty Name="FinAccount"/>
+    </EntityType>
+
+    <EntityType Name="FinAccount" AutoSet="true" EntitySetName="FinAccounts" AutoProperties="true" AttrEntityName="FinAccountAttribute">
+        <Property Name="accountName" IsAttribute="true" Type="String"/>
+        <Property Name="statusId">
+            <Text Path="StatusItem/description" TextArrangement="TextOnly"/>
+        </Property>
+
+        <NavigationProperty Name="StatusItem"/>
+    </EntityType>
+    <EntityType Name="OrderHeader" AutoSet="true" EntitySetName="OrderHeaders" AutoProperties="true">
+        <Property Name="statusId">
+            <Text Path="StatusItem/description" TextArrangement="TextOnly"/>
+        </Property>
+        <NavigationProperty Name="StatusItem"/>
+    </EntityType>
+
+    <EntityType Name="PaymentStatusItem" OfbizEntity="StatusItem" EntitySetName="PaymentStatusItems" AutoProperties="true">
+        <Property Name="statusId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+
+    <EntityType Name="InvoiceItem" EntitySetName="InvoiceItems" AutoSet="true" AutoProperties="true">
+        <Property Name="productId">
+            <Text Path="Product/productName" TextArrangement="TextOnly"/>
+        </Property>
+        <NavigationProperty Name="InventoryItem" IsCollection="false"/>
+        <NavigationProperty Name="Product" />
+    </EntityType>
+
+    <EntityType Name="InventoryItem" AutoProperties="true" EntitySetName="InventoryItems" AutoSet="true">
+        <NavigationProperty Name="Product"/>
+        <NavigationProperty Name="OwnerParty"/>
+
+        <Property Name="productId">
+            <Text Path="Product/productName" TextArrangement="TextOnly"/>
+        </Property>
+        <Property Name="ownerPartyId">
+            <Text Path="OwnerParty/partyName" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+
+    <EntityType Name="Product" AutoSet="true" EntitySetName="Products" AutoProperties="true">
+        <NavigationProperty Name="QuantityUom"/>
+    </EntityType>
+
+    <EntityType Name="AcctgTransEntry" AutoProperties="true" >
+        
+        <Property Name="currencyUomId" >
+            <Text Path="CurrencyUom/description" TextArrangement="TextFirst" />
+        </Property>
+        <Property Name="glAccountTypeId" >
+            <Text Path="GlAccountType/description" TextArrangement="TextOnly" />
+        </Property>
+
+        <NavigationProperty Name="AcctgTrans" Type="AcctgTrans"  FilterByDate="false"/>
+        <NavigationProperty Name="GlAccountType"  FilterByDate="false"/>
+        <NavigationProperty Name="CurrencyUom" AutoBinding="true"  />
+        <NavigationProperty Name="GlAccountType"/>
+        <NavigationProperty Name="GlAccount"/>
+    </EntityType>
+
+    <EntityType Name="AcctgTrans" AutoProperties="true" >
+        
+        
+        <Property Name="acctgTransTypeId" >
+            <Text Path="AcctgTransType/description" TextArrangement="TextOnly" />
+        </Property>
+
+        <NavigationProperty Name="AcctgTransType"  />
+    </EntityType>
+
+    <EntityType Name="PaymentApplication" AutoProperties="true" EntitySetName="PaymentApplications" AutoSet="true">
+        <NavigationProperty Name="Payment"  />
+
+    </EntityType>
+
+
+    <EntityType Name="StatusItem" AutoProperties="true" >
+        <Property Name="statusId">
+            <Text Path="description" TextArrangement="TextOnly" />
+        </Property>
+    </EntityType>
+
+
+    <EntityType Name="Party"  AutoProperties="true" AutoSet="true" EntitySetName="Parties">
+        <NavigationProperty Name="PartyAndContact"/>
+    </EntityType>
+    <EntityType Name="PartyAndContact" AutoProperties="true" EntitySetName="PartyAndContacts" AutoSet="true"/>
+    <EntityType Name="PaymentMethodType" AutoProperties="true" EntitySetName="PaymentMethodTypes" AutoSet="true"/>
+    <EntityType Name="PaymentType" AutoProperties="true" EntitySetName="PaymentTypes" AutoSet="true"/>
+    <EntityType Name="Uom" AutoProperties="true" EntitySetName="Unm" AutoSet="true"/>
+    <EntityType Name="PaymentAttribute" AutoProperties="true" EntitySetName="PaymentAttributes" AutoSet="true"/>
+    <EntityType Name="GlAccountType" AutoProperties="true" EntitySetName="GlAccountTypes" AutoSet="true"/>
+    <EntityType Name="GlAccount" AutoProperties="true" EntitySetName="GlAccounts" AutoSet="true">
+        <NavigationProperty Name="GlAccountClass"/>
+        <Property Name="glAccountClassId">
+            <Text Path="GlAccountClass/description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <EntityType Name="GlAccountClass" AutoProperties="true" EntitySetName="GlAccountClasses" AutoSet="true"/>
+    <EntityType Name="AcctgTransType" AutoProperties="true" EntitySetName="AcctgTransTypes" AutoSet="true"/>
+
+    <EntityContainer>
+        <EntitySet Name="Payments" EntityType="Payment" />
+        <EntitySet Name="StatusItems" EntityType="StatusItem" />
+        <EntitySet Name="AcctgTrans" EntityType="AcctgTrans" />
+        <EntitySet Name="AcctgTransEntrys" EntityType="AcctgTransEntry" />
+        <EntitySet Name="PaymentStatusItems" EntityType="StatusItem" EntityCondition="statusTypeId=PAYMENT_GENERAL_STATUS" />
+    </EntityContainer>
+
+
+</ofbiz-edm>
