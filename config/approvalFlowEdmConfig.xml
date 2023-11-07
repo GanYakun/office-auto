@@ -1,0 +1,7 @@
+<ofbiz-edm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="https://dev.odatalab.com/dtds/edmconfig.xsd"
+           ImportGlobal="false">
+    <!-- 人员数据 -->
+    <ImportEdm Path="component://bfcommon/config/orgStructureManageEdmConfig.xml"/>
+    <ImportEdm Path="component://gongsconfig/config/approvalFlowEdmConfig.xml"/>
+</ofbiz-edm>
