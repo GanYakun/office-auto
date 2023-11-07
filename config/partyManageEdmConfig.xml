@@ -61,7 +61,7 @@
         <SelectionFields PropertyPath="statusId,SupplierPartyAndContact/primaryPhone"/>
 
 
-        <Function Name="GetApproverData_Supplier" OfbizService="com.banfftech.event.approve.NbApprovalEvent.getApproverData"
+        <Function Name="GetApproverData_Supplier" OfbizService="com.banfftech.event.ApprovalEvent.getApproverData"
                   IsBound="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
             <ReturnType Type="ApproverData" IsCollection="true"/>
