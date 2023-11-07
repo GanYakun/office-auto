@@ -59,6 +59,14 @@ under the License.
     <DBFieldLabel dbFieldLabelId="CUST_REQ_10009" dbFieldId="CUST_REQ_10005" language="zh" value="申请人"/>
     <DBFieldLabel dbFieldLabelId="CUST_REQ_10010" dbFieldId="CUST_REQ_10005" language="en" value=""/>
 
+    <!--人员-->
+    <DBEntity dbEntityId="PT10000" dbEntityName="Party" description="Party" isOpen="N" />
+    <DBField dbFieldId="PT10001" dbFieldName="partyName" dbFieldTypeId="STRING" dbEntityId="PT10000" description="名称"/>
+    <DBField dbFieldId="PT10002" dbFieldName="usccNumber" dbFieldTypeId="STRING" dbEntityId="PT10000" description="社会统一码"/>
+    <DBFieldLabel dbFieldLabelId="PT10001" dbFieldId="PT10001" language="zh" value="名称"/>
+    <DBFieldLabel dbFieldLabelId="PT10002" dbFieldId="PT10001" language="en" value=""/>
+    <DBFieldLabel dbFieldLabelId="PT10003" dbFieldId="PT10002" language="zh" value="社会统一码"/>
+    <DBFieldLabel dbFieldLabelId="PT10004" dbFieldId="PT10002" language="en" value=""/>
 
 
 </entity-engine-xml>
