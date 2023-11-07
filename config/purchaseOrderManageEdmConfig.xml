@@ -159,23 +159,6 @@
         </LineItem>
     </EntityType>
 
-<!--    <EntityType Name="Approval" AutoProperties="true" EntitySetName="Approvals" AutoSet="true">-->
-<!--        <LineItem Qualifier="ApprovalLineItem">-->
-<!--            <DataField Values="workEffortName,statusId,partyId,comments,actualCompletionDate" Importance="High"/>-->
-<!--        </LineItem>-->
-
-<!--        <Property Name="statusId">-->
-<!--            <Text Path="ApprovalStatusItem/description" TextArrangement="TextOnly"/>-->
-<!--        </Property>-->
-
-<!--        <Property Name="partyId">-->
-<!--            <Text Path="Party/partyName" TextArrangement="TextOnly"/>-->
-<!--        </Property>-->
-
-<!--        <NavigationProperty Name="ApprovalStatusItem"/>-->
-<!--        <NavigationProperty Name="Party"/>-->
-<!--    </EntityType>-->
-
     <EntityType Name="BillToCustomerParty" OfbizEntity="Party" AutoSet="true" EntitySetName="BillToCustomerParties" AutoProperties="true" DraftEntityName="BillToCustomerPartyDraft">
         <NavigationProperty Name="PartyAndContact"/>
         <NavigationProperty Name="PartyGroup"/>

@@ -1,8 +1,19 @@
 <ofbiz-edm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://dev.odatalab.com/dtds/edmconfig.xsd" ImportGlobal="false">
 
+    <!-- 返回用户自选参数 -->
+    <ComplexType Name="ApproverData">
+        <Property Name="nodeId" Type="Edm.Decimal"/>
+        <Property Name="nodeName" Type="String"/>
+        <Property Name="selectList" Type="String"/>
+    </ComplexType>
+    <!-- 用户返回当前正在进行的节点 -->
+    <ComplexType Name="ActiveData">
+        <Property Name="processId" Type="String"/>
+        <Property Name="nodeId" Type="Edm.Decimal"/>
+    </ComplexType>
     <EntityType Name="SupplierParty" OfbizEntity="Party" EntitySetName="SupplierParties" AutoSet="true" AutoProperties="true" AttrDateEntityName="PartyAttributeDate"
-                EntityCondition="PartyRole/roleTypeId=SUPPLIER" DraftEntityName="PartySupplierPartyDraft" AutoLabel="true" SearchOption="partyName,PartyAndContact/primaryEmail,PartyAndContact/address1"
-                Handler="component://bf-demo/groovyScripts/partyManage/supplierParty/generateEntityListFields.groovy">
+                EntityCondition="PartyRole/roleTypeId=VENDOR" DraftEntityName="PartySupplierPartyDraft" AutoLabel="true" SearchOption="partyName,PartyAndContact/primaryEmail,PartyAndContact/address1"
+                Handler="component://officeauto/groovyScripts/partyManage/supplierParty/generateEntityListFields.groovy">
         <Property Name="partyId">
             <Text Path="partyName" TextArrangement="TextFirst"/>
         </Property>
@@ -10,18 +21,22 @@
         <Property Name="collectionDate" Type="Timestamp" IsDateAttribute="true"/>
         <Property Name="totalAmount" Type="BigDecimal" Label="订单总金额" Scale="3"/>
         <Property Name="criticalityValue" Type="numeric" Hidden="true" HiddenFilter="true"/>
-        <Property Name="statusId" Immutable="true" DefaultValue="PARTY_ENABLED">
+        <Property Name="statusId" Immutable="true" DefaultValue="APPROVAL_CREATED">
             <Text Path="StatusItem/description" TextArrangement="TextOnly"/>
             <ValueList CollectionPath="PartyStatusItems" WithFixedValues="true"/>
         </Property>
         <Property Name="usccNumber" Type="String" HiddenFilter="true"/>
         <RelAlias Name="PartyGroup" Relations="PartyGroup"/>
         <Property Name="logoImageUrl" IsImageURL="true" RelAlias="PartyGroup" Field="logoImageUrl"/>
-        <RelAlias Name="PartyAndContact" Relations="FromPartyRelationship(roleTypeIdTo=CONTACT and roleTypeIdFrom=SUPPLIER)/PartyAndContact"/>
+        <RelAlias Name="PartyAndContact" Relations="FromPartyRelationship(roleTypeIdTo=CONTACT and roleTypeIdFrom=VENDOR)/PartyAndContact"/>
         <Property Name="partyNamePrimary" RelAlias="PartyAndContact" Field="partyName" Computed="true"/>
         <Property Name="phoneMobilePrimary" RelAlias="PartyAndContact" Field="phoneMobile" Computed="true"/>
         <Property Name="phonePrimary" RelAlias="PartyAndContact" Field="primaryPhone" Computed="true"/>
         <Property Name="emailPrimary" RelAlias="PartyAndContact" Field="primaryEmail" Computed="true"/>
+        <RelAlias Name="SupplierPartyAndContact" Relations="PartyAndContact"/>
+        <Property Name="supplierPrimaryPhone" RelAlias="PartyAndContact" Field="primaryPhone"/>
+        <Property Name="supplierPrimaryEmail" RelAlias="PartyAndContact" Field="primaryEmail"/>
+        <Property Name="supplierAddress1" RelAlias="PartyAndContact" Field="address1"/>
         <NavigationProperty Name="Person"/>
         <NavigationProperty Name="PartyGroup" IsCollection="false"/>
         <NavigationProperty Name="PartyRole" IsCollection="false"/>
@@ -33,7 +48,7 @@
         <NavigationProperty Name="OwnerFinAccount" Type="FinAccount" IsCollection="true"
                             Relations="OwnerFinAccount(finAccountTypeId=BANK_ACCOUNT)" />
         <NavigationProperty Name="SupplierPartyAndContact" Relations="PartyAndContact" Type="SupplierPartyAndContact"/>
-        <NavigationProperty Name="PartyAndContact" Relations="FromPartyRelationship(roleTypeIdTo=CONTACT and roleTypeIdFrom=SUPPLIER)/PartyAndContact" Type="PartyAndContact" IsCollection="true"/>
+        <NavigationProperty Name="PartyAndContact" Relations="FromPartyRelationship(roleTypeIdTo=CONTACT and roleTypeIdFrom=VENDOR)/PartyAndContact" Type="PartyAndContact" IsCollection="true"/>
         <NavigationProperty Name="UserLoginSecurityGroup"
                             Relations="UserLogin/UserLoginSecurityGroup" Type="UserLoginSecurityGroup" HandlerNode="UserLogin/UserLoginSecurityGroup" IsCollection="true"/>
         <NavigationProperty Name="PurchaseAgreement" Type="PurchaseAgreement" Relations="ToAgreement"/>
@@ -41,10 +56,27 @@
         <NavigationProperty Name="PurchaseOrder" Type="PurchaseOrder" Relations="OrderRole(roleTypeId=BILL_FROM_VENDOR)/OrderHeader" IsCollection="true"/>
         <NavigationProperty Name="Invoice"/>
         <NavigationProperty Name="PurchaseQuote" Type="PurchaseQuote" Relations="Quote"/>
-        <NavigationProperty Name="AfterSalesService" Type="AfterSalesService" Relations="WorkEffortPartyAssignment(roleTypeId=SUPPLIER)/WorkEffort" IsCollection="true"/>
+        <NavigationProperty Name="AfterSalesService" Type="AfterSalesService" Relations="WorkEffortPartyAssignment(roleTypeId=VENDOR)/WorkEffort" IsCollection="true"/>
         <NavigationProperty Name="PartyClassificationGroup" Type="PartyClassificationGroup" Relations="PartyClassification/PartyClassificationGroup" IsCollection="true"/>
         <SelectionFields PropertyPath="statusId,SupplierPartyAndContact/primaryPhone"/>
 
+
+        <Function Name="GetApproverData_Supplier" OfbizService="com.banfftech.event.approve.NbApprovalEvent.getApproverData"
+                  IsBound="true">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <ReturnType Type="ApproverData" IsCollection="true"/>
+        </Function>
+        <Action Name="SubmitApproval_Supplier" IsBound="true" OfbizService="com.banfftech.event.ApprovalEvent.submitApproval">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <Parameter Name="approverData" Type="String" Nullable="true" IsCollection="false"/>
+        </Action>
+        <Action Name="CancelApproval_Supplier" IsBound="true" OfbizService="com.banfftech.event.ApprovalEvent.cancelApproval">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+        </Action>
+        <Action Name="ViewApproval_Supplier" IsBound="true" OfbizService="com.banfftech.event.ApprovalEvent.viewApproval">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <ReturnType Type="ActiveData" Nullable="true"/>
+        </Action>
 
 <!--        <FieldGroup Qualifier="PartyBaseInfo" Label="基本信息">-->
 <!--            <DataField Values="SupplierPartyAndContact/primaryEmail,SupplierPartyAndContact/address1,SupplierPartyAndContact/primaryPhone" Importance="High"/>-->
@@ -59,34 +91,6 @@
             <Description Path="description"/>
         </HeaderInfo>
 
-        <Action Name="SupplierNewAction" IsBound="true" EntitySetPath="supplierParty"
-                OfbizService="com.banfftech.common.events.PartyEvents.newSupplier"
-                StickySession="true">
-            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="true" />
-            <Parameter Name="partyName" Type="String" Nullable="false" />
-            <ReturnType Type="SupplierParty" />
-        </Action>
-
-        <Action Name="SupplierPartyEditAction" IsBound="true" EntitySetPath="supplierParty"
-                OfbizService="com.dpbird.odata.services.ProcessorServices.stickySessionEditAction"
-                StickySession="true">
-            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
-            <ReturnType Type="SupplierParty"/>
-        </Action>
-
-        <Action Name="SupplierPartySaveAction" IsBound="true" EntitySetPath="supplierParty"
-                OfbizService="com.dpbird.odata.services.ProcessorServices.stickySessionSaveAction"
-                StickySession="true">
-            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false" />
-            <ReturnType Type="SupplierParty" />
-        </Action>
-
-        <Action Name="SupplierPartyDeleteAction" IsBound="true" EntitySetPath="supplierParty"
-                OfbizService="com.dpbird.odata.services.ProcessorServices.stickySessionDeleteAction"
-                StickySession="true">
-            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
-            <ReturnType Type="SupplierParty"/>
-        </Action>
         <Action Name="ChangeSupplierStatusToEnable" IsBound="true" EntitySetPath="supplierParty"
                 OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.changeSupplierStatusToEnable"
                 StickySession="true">
