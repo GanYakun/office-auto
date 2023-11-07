@@ -4,7 +4,7 @@
     <EntityType Name="OrderHeader" OfbizEntity="OrderHeader" EntitySetName="PurchaseOrderHeaders"
                 EntityCondition="orderTypeId=PURCHASE_ORDER" DraftEntityName="OrderHeaderAppDraft" AutoProperties="true"
                 SearchOption="orderId,orderName,StatusItem/description"
-                Handler="component://bf-demo/groovyScripts/purchaseOrderMange/OrderHeader/generateEntityListFields.groovy">
+                Handler="component://officeAuto/groovyScripts/purchaseOrderMange/OrderHeader/generateEntityListFields.groovy">
 
         <SelectionFields
                 PropertyPath="orderName,statusId,salesChannelEnumId"/>
@@ -131,7 +131,7 @@
 
     <EntityType Name="FixedAsset" EntitySetName="FixedAssets" AutoProperties="true" AutoSet="true"/>
 
-    <EntityType Name="Invoice" EntitySetName="Invoices" AutoSet="true" AutoProperties="true" Handler="component://bf-demo/groovyScripts/invoiceManage/invoiceHeader/generateEntityListFields.groovy">
+    <EntityType Name="Invoice" EntitySetName="Invoices" AutoSet="true" AutoProperties="true" Handler="component://officeAuto/groovyScripts/invoiceManage/invoiceHeader/generateEntityListFields.groovy">
         <Property Name="statusColor"  Type="numeric" Hidden="true" HiddenFilter="true"/>
         <Property Name="invoiceTypeId">
             <Text Path="InvoiceType/description" TextArrangement="TextOnly"/>
@@ -197,7 +197,7 @@
 
     <!--PurchaseQuote-->
     <EntityType Name="PurchaseQuote" OfbizEntity="Quote" EntityCondition="quoteTypeId=PURCHASE_QUOTE" EntitySetName="PurchaseQuotes" AutoProperties="true" AutoSet="true"
-                Handler="component://bf-demo/groovyScripts/marketingSalesService/quote/generateEntityListFields.groovy">
+                Handler="component://officeAuto/groovyScripts/purchaseQuoteManage/generateEntityListFields.groovy">
         <LineItem>
             <DataField Values="quoteId,quoteName,partyId,custRequestId,salesChannelEnumId" Importance="High"/>
             <DataField Values="statusId" Criticality="statusColor" Importance="High"/>
@@ -343,7 +343,7 @@
     </EntityType>
 
     <EntityType Name="OrderItem" EntitySetName="OrderItems" AutoProperties="true" DraftEntityName="OrderItemAppDraft"
-                Handler="component://bf-demo/groovyScripts/purchaseOrderMange/OrderItem/generateEntityListFields.groovy">
+                Handler="component://officeauto/groovyScripts/purchaseOrderMange/OrderItem/generateEntityListFields.groovy">
 
         <Property Name="totalPrice" Type="BigDecimal" Scale="2"/>
         <Property Name="productId" Label="产品名称">
@@ -398,7 +398,7 @@
     <EntityType Name="Uom"  EntitySetName="Uoms" AutoProperties="true"/>
 
     <EntityType Name="OrderPaymentPreference" EntitySetName="OrderPaymentPreferences" AutoProperties="true" DraftEntityName="OrderPaymentPreferenceAppDraft"
-                Handler="component://bf-demo/groovyScripts/purchaseOrderMange/OrderPaymentPreference/generateEntityListFields.groovy">
+                Handler="component://officeAuto/groovyScripts/purchaseOrderMange/OrderPaymentPreference/generateEntityListFields.groovy">
         <!--订单预付支付状态的颜色显示语义化字段-->
         <Property Name="orderPaymentStatus" Type="Edm.Int64"/>
         <Property Name="statusId" Immutable="true">
@@ -426,7 +426,7 @@
         <ValueList CollectionPath="ProductStores" WithFixedValues="true" Label="选择店铺"/>
     </EntityType>
     <EntityType Name="OrderShipment" OfbizEntity="Shipment" EntitySetName="OrderShipments" AutoProperties="true"
-                DraftEntityName="ShipmentDraft"  Handler="component://bf-demo/groovyScripts/purchaseOrderMange/Shipment/generateEntityListFields.groovy">
+                DraftEntityName="ShipmentDraft"  Handler="component://officeAuto/groovyScripts/purchaseOrderMange/Shipment/generateEntityListFields.groovy">
         <Property Name="originFacilityId">
             <Text Path="OriginFacility/facilityName" TextArrangement="TextOnly"/>
         </Property>
