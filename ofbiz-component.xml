@@ -51,6 +51,6 @@ under the License.
         title="OfficeAuto"
         server="default-server"
         location="webapp/officeauto"
-        base-permission="OFBTOOLS,OFFICEAUTO"
+        base-permission="OFFICEAUTO"
         mount-point="/officeauto"/>
 </ofbiz-component>
