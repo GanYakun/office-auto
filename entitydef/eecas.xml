@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-eca xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="https://ofbiz.apache.org/dtds/entity-eca.xsd">
+    <eca entity="Party" operation="store" event="return">
+        <condition field-name="statusId" operator="equals" value="APPROVAL_APPROVED" type="String"/>
+        <action service="updatePartyStatusToEnable" mode="sync"/>
+    </eca>
+
+</entity-eca>
