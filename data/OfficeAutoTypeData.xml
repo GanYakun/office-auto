@@ -20,16 +20,16 @@ under the License.
 
 <entity-engine-xml>
 
-    <RoleType description="申请人" roleTypeId="APPLICANT"/>
-    <RoleType description="经理" roleTypeId="MANAGER"/>
-    <RoleType description="供应商" roleTypeId="VENDOR"/>
-    <RoleType description="最终客户" roleTypeId="END_USER"/>
-    <RoleType description="法务" roleTypeId="LEGAL_AFFAIRS"/>
-    <RoleType description="合规" roleTypeId="COMPLIANCE"/>
-    <RoleType description="财务" roleTypeId="FINANCE"/>
-    <RoleType description="首席执行官" roleTypeId="CEO"/>
-    <RoleType description="首席技术官" roleTypeId="CTO"/>
-    <RoleType description="首席财务官" roleTypeId="CFO"/>
+    <RoleType description="申请人" roleTypeId="APPLICANT" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
+    <RoleType description="经理" roleTypeId="MANAGER" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
+    <RoleType description="供应商" roleTypeId="VENDOR" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
+    <RoleType description="最终客户" roleTypeId="END_USER" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
+    <RoleType description="法务" roleTypeId="LEGAL_AFFAIRS" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
+    <RoleType description="合规" roleTypeId="COMPLIANCE" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
+    <RoleType description="财务" roleTypeId="FINANCE" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
+    <RoleType description="首席执行官" roleTypeId="CEO" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
+    <RoleType description="首席技术官" roleTypeId="CTO" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
+    <RoleType description="首席财务官" roleTypeId="CFO" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
 
     <CustRequestType description="采购请求" custRequestTypeId="PURCHASE_REQ"/>
 
