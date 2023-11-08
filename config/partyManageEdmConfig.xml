@@ -11,8 +11,8 @@
         <Property Name="processId" Type="String"/>
         <Property Name="nodeId" Type="Edm.Decimal"/>
     </ComplexType>
-    <EntityType Name="SupplierParty" OfbizEntity="Party" EntitySetName="SupplierParties" AutoSet="true" AutoProperties="true" AttrDateEntityName="PartyAttributeDate"
-                EntityCondition="PartyRole/roleTypeId=VENDOR" DraftEntityName="PartySupplierPartyDraft" AutoLabel="true" SearchOption="partyName,PartyAndContact/primaryEmail,PartyAndContact/address1"
+    <EntityType Name="SupplierParty" OfbizEntity="PartyGroupAndContact" EntitySetName="SupplierParties" AutoSet="true" AutoProperties="true" AttrDateEntityName="PartyAttributeDate"
+                EntityCondition="PartyRole/roleTypeId=VENDOR" DraftEntityName="PartySupplierPartyDraft" AutoLabel="true" SearchOption="partyName,primaryEmail,address1"
                 Handler="component://officeauto/groovyScripts/partyManage/supplierParty/generateEntityListFields.groovy">
         <Property Name="partyId">
             <Text Path="partyName" TextArrangement="TextFirst"/>
@@ -22,35 +22,23 @@
         <Property Name="totalAmount" Type="BigDecimal" Label="订单总金额" Scale="3"/>
         <Property Name="criticalityValue" Type="numeric" Hidden="true" HiddenFilter="true"/>
         <Property Name="statusId" Immutable="true" DefaultValue="APPROVAL_CREATED">
-            <Text Path="StatusItem/description" TextArrangement="TextOnly"/>
-            <ValueList CollectionPath="PartyStatusItems" WithFixedValues="true"/>
+            <Text Path="SupplierStatusItem/description" TextArrangement="TextOnly"/>
+            <ValueList CollectionPath="SupplierStatusItems" WithFixedValues="true"/>
         </Property>
         <Property Name="usccNumber" Type="String" HiddenFilter="true"/>
-        <RelAlias Name="PartyGroup" Relations="PartyGroup"/>
-        <Property Name="logoImageUrl" IsImageURL="true" RelAlias="PartyGroup" Field="logoImageUrl"/>
-        <RelAlias Name="PartyAndContact" Relations="FromPartyRelationship(roleTypeIdTo=CONTACT and roleTypeIdFrom=VENDOR)/PartyAndContact"/>
-        <Property Name="partyNamePrimary" RelAlias="PartyAndContact" Field="partyName" Computed="true"/>
-        <Property Name="phoneMobilePrimary" RelAlias="PartyAndContact" Field="phoneMobile" Computed="true"/>
-        <Property Name="phonePrimary" RelAlias="PartyAndContact" Field="primaryPhone" Computed="true"/>
-        <Property Name="emailPrimary" RelAlias="PartyAndContact" Field="primaryEmail" Computed="true"/>
-        <RelAlias Name="SupplierPartyAndContact" Relations="PartyAndContact"/>
-        <Property Name="supplierPrimaryPhone" RelAlias="PartyAndContact" Field="primaryPhone"/>
-        <Property Name="supplierPrimaryEmail" RelAlias="PartyAndContact" Field="primaryEmail"/>
-        <Property Name="supplierAddress1" RelAlias="PartyAndContact" Field="address1"/>
-        <NavigationProperty Name="Person"/>
-        <NavigationProperty Name="PartyGroup" IsCollection="false"/>
-        <NavigationProperty Name="PartyRole" IsCollection="false"/>
+        <RelAlias Name="PersonAndContact" Relations="FromPartyRelationship(roleTypeIdTo=CONTACT and roleTypeIdFrom=VENDOR)/ToPersonAndContact"/>
+<!--        <Property Name="contactName" RelAlias="PersonAndContact" Field="partyName" Computed="true"/>-->
+        <Property Name="contactPhoneMobile" RelAlias="PersonAndContact" Field="phoneMobile" Computed="true"/>
+<!--        <Property Name="contactPhonePrimary" RelAlias="PersonAndContact" Field="primaryPhone" Computed="true"/>-->
+        <Property Name="contactEmailPrimary" RelAlias="PersonAndContact" Field="primaryEmail" Computed="true"/>
+
         <NavigationProperty Name="SupplierProduct"/>
-        <NavigationProperty Name="UserLogin" IsCollection="false"/>
         <NavigationProperty Name="ToShipment"/>
         <NavigationProperty Name="FromShipment"/>
-        <NavigationProperty Name="StatusItem"/>
+        <NavigationProperty Name="SupplierStatusItem" Type="SupplierStatusItem" Relations="StatusItem"/>
         <NavigationProperty Name="OwnerFinAccount" Type="FinAccount" IsCollection="true"
                             Relations="OwnerFinAccount(finAccountTypeId=BANK_ACCOUNT)" />
-        <NavigationProperty Name="SupplierPartyAndContact" Relations="PartyAndContact" Type="SupplierPartyAndContact"/>
-        <NavigationProperty Name="PartyAndContact" Relations="FromPartyRelationship(roleTypeIdTo=CONTACT and roleTypeIdFrom=VENDOR)/PartyAndContact" Type="PartyAndContact" IsCollection="true"/>
-        <NavigationProperty Name="UserLoginSecurityGroup"
-                            Relations="UserLogin/UserLoginSecurityGroup" Type="UserLoginSecurityGroup" HandlerNode="UserLogin/UserLoginSecurityGroup" IsCollection="true"/>
+        <NavigationProperty Name="PersonAndContact" Relations="FromPartyRelationship(roleTypeIdTo=CONTACT and roleTypeIdFrom=VENDOR)/ToPersonAndContact" Type="PersonAndContact" IsCollection="true"/>
         <NavigationProperty Name="PurchaseAgreement" Type="PurchaseAgreement" Relations="ToAgreement"/>
         <NavigationProperty Name="NoteData" Type="NoteData" Relations="PartyNote/NoteData" IsCollection="true"/>
         <NavigationProperty Name="PurchaseOrder" Type="PurchaseOrder" Relations="OrderRole(roleTypeId=BILL_FROM_VENDOR)/OrderHeader" IsCollection="true"/>
@@ -58,7 +46,7 @@
         <NavigationProperty Name="PurchaseQuote" Type="PurchaseQuote" Relations="Quote"/>
         <NavigationProperty Name="AfterSalesService" Type="AfterSalesService" Relations="WorkEffortPartyAssignment(roleTypeId=VENDOR)/WorkEffort" IsCollection="true"/>
         <NavigationProperty Name="PartyClassificationGroup" Type="PartyClassificationGroup" Relations="PartyClassification/PartyClassificationGroup" IsCollection="true"/>
-        <SelectionFields PropertyPath="statusId,SupplierPartyAndContact/primaryPhone"/>
+        <SelectionFields PropertyPath="statusId,primaryPhone"/>
 
 
         <Function Name="GetApproverData_Supplier" OfbizService="com.banfftech.event.approve.NbApprovalEvent.getApproverData"
@@ -124,7 +112,7 @@
             <Text Path="SalesChannelEnumeration/description" TextArrangement="TextOnly"/>
         </Property>
         <Property Name="statusId">
-            <Text Path="StatusItem/description" TextArrangement="TextOnly"/>
+            <Text Path="QuoteStatusItem/description" TextArrangement="TextOnly"/>
         </Property>
         <Property Name="partyId">
             <Text Path="SupplierParty/partyName" TextArrangement="TextOnly"/>
@@ -132,11 +120,11 @@
         </Property>
         <Property Name="statusColor"  Type="numeric" Hidden="true" HiddenFilter="true"/>
 
-        <NavigationProperty Name="StatusItem"/>
+        <NavigationProperty Name="QuoteStatusItem" Type="QuoteStatusItem" Relations="StatusItem"/>
         <NavigationProperty Name="SalesChannelEnumeration"/>
-        <NavigationProperty Name="SupplierParty" Type="SupplierParty" Relations="Party"/>
+        <NavigationProperty Name="SupplierParty" Type="SupplierParty" Relations="PartyGroupAndContact"/>
     </EntityType>
-    
+<!--    -->
     <EntityType Name="PartyClassification" AutoSet="true" AutoProperties="true" EntitySetName="PartyClassIdentifications">
         <NavigationProperty Name="PartyClassificationGroup"/>
     </EntityType>
@@ -174,19 +162,26 @@
         </Property>
     </EntityType>
 
-    <EntityType Name="Invoice" EntitySetName="Invoices" AutoSet="true" AutoProperties="true" Handler="component://bf-demo/groovyScripts/invoiceManage/invoiceHeader/generateEntityListFields.groovy">
+    <EntityType Name="Invoice" EntitySetName="Invoices" AutoSet="true" AutoProperties="true"
+                Handler="component://bf-demo/groovyScripts/invoiceManage/invoiceHeader/generateEntityListFields.groovy">
         <Property Name="statusColor"  Type="numeric" Hidden="true" HiddenFilter="true"/>
         <Property Name="invoiceTypeId">
             <Text Path="InvoiceType/description" TextArrangement="TextOnly"/>
         </Property>
         <Property Name="statusId">
-            <Text Path="StatusItem/description" TextArrangement="TextOnly"/>
+            <Text Path="InvoiceStatusItem/description" TextArrangement="TextOnly"/>
         </Property>
         <Property Name="partyIdFrom">
             <Text Path="FromParty/partyName" TextArrangement="TextOnly"/>
         </Property>
+        <LineItem>
+            <DataField Values="invoiceId" Importance="High"/>
+            <DataField Values="statusId" Criticality="statusColor" Importance="High"/>
+            <DataField Values="partyIdFrom,invoiceDate,description,orderId" Importance="High"/>
+            <Criticality Value="statusColor"/>
+        </LineItem>
         <NavigationProperty Name="InvoiceType" AutoBinding="true"/>
-        <NavigationProperty Name="StatusItem" AutoBinding="true"  />
+        <NavigationProperty Name="InvoiceStatusItem" Type="InvoiceStatusItem" Relations="StatusItem" AutoBinding="true"  />
         <NavigationProperty Name="Party" AutoBinding="true" />
         <NavigationProperty Name="FromParty" AutoBinding="true"/>
     </EntityType>
@@ -199,8 +194,7 @@
         </LineItem>
     </EntityType>
 
-    <EntityType Name="PurchaseAgreement" DraftEntityName="PurchaseAgreementPartyAppDraft" EntitySetName="PurchaseAgreements" AutoSet="true" EntityCondition="agreementTypeId=PURCHASE_AGREEMENT" AutoProperties="true" OfbizEntity="Agreement"
-    >
+    <EntityType Name="PurchaseAgreement" DraftEntityName="PurchaseAgreementPartyAppDraft" EntitySetName="PurchaseAgreements" AutoSet="true" EntityCondition="agreementTypeId=PURCHASE_AGREEMENT" AutoProperties="true" OfbizEntity="Agreement">
         <LineItem Qualifier="PurchaseAgreementLineItem">
             <DataField Values="agreementId,productId,partyIdFrom,description,agreementDate,fromDate,thruDate" Importance="High"/>
         </LineItem>
@@ -234,16 +228,15 @@
             <Text Path="Product/productName" TextArrangement="TextOnly"/>
         </Property>
 
-        <NavigationProperty Name="AgreementItem"/>
         <NavigationProperty Name="Product"/>
-        <NavigationProperty Name="SupplierParty" Type="SupplierParty" Relations="ToParty"/>
-        <NavigationProperty Name="Company" Type="Company" Relations="FromParty"/>
+        <NavigationProperty Name="SupplierParty" Type="SupplierParty" Relations="ToPartyGroupAndContact"/>
+        <NavigationProperty Name="Company" Type="Company" Relations="FromPartyGroupAndContact"/>
         <NavigationProperty Name="AgreementTerm"/>
     </EntityType>
 
     <EntityType Name="PurchaseOrder" OfbizEntity="OrderHeader" EntityCondition="orderTypeId=PURCHASE_ORDER" AutoProperties="true" AutoSet="true" EntitySetName="PurchaseOrders"
                 Handler="component://bf-demo/groovyScripts/purchaseOrderMange/OrderHeader/generateEntityListFields.groovy">
-        <NavigationProperty Name="StatusItem"/>
+        <NavigationProperty Name="OrderStatusItem" Type="OrderStatusItem" Relations="StatusItem"/>
         <NavigationProperty Name="SalesChannelEnumeration"/>
 
         <Property Name="orderHeaderStatus" Type="Edm.Int64"/>
@@ -252,17 +245,11 @@
         <Property Name="targetQuantity" Type="BigDecimal" Scale="2"/>
         <Property Name="donutChartCriticalValue" Type="Edm.Int64"/>
         <Property Name="statusId">
-            <Text Path="StatusItem/description" TextArrangement="TextOnly"/>
+            <Text Path="OrderStatusItem/description" TextArrangement="TextOnly"/>
         </Property>
         <Property Name="salesChannelEnumId">
             <Text Path="SalesChannelEnumeration/description" TextArrangement="TextOnly"/>
         </Property>
-    </EntityType>
-
-    <EntityType Name="AgreementItem" EntitySetName="AgreementItems" AutoSet="true" AutoProperties="true">
-        <LineItem Qualifier="AgreementItemLineItem">
-            <DataField Values="agreementItemSeqId,currencyUomId,agreementText,agreementImage" Importance="High"/>
-        </LineItem>
     </EntityType>
 
     <EntityType Name="AgreementTerm" EntitySetName="AgreementTerms" AutoSet="true" AutoProperties="true">
@@ -283,156 +270,75 @@
         </Property>
     </EntityType>
 
-    <EntityType Name="Company" OfbizEntity="Party" AutoProperties="true" EntityCondition="PartyRole/roleTypeId=INTERNAL_ORGANIZATIO" EntitySetName="Companies" AutoSet="true">
+    <EntityType Name="Company" OfbizEntity="PartyGroupAndContact" AutoProperties="true" EntityCondition="PartyRole/roleTypeId=INTERNAL_ORGANIZATIO" EntitySetName="Companies" AutoSet="true">
         <Property Name="partyId">
             <Text Path="partyName" TextArrangement="TextOnly"/>
         </Property>
-        <NavigationProperty Name="PartyAndContact"/>
-        <NavigationProperty Name="PartyGroup"/>
     </EntityType>
 
-    <EntityType Name="CustomerParty" OfbizEntity="Party" AutoSet="true" EntitySetName="CustomerParties" EntityCondition="PartyRole/roleTypeId=CUSTOMER" DraftEntityName="PartyCustomerPartyDraft"
-                Properties="partyId,partyName,description,createdDate,createdByUserLogin" SearchOption="partyName,PartyAndContact/primaryEmail,PartyAndContact/address1"
-                Handler="component://bf-demo/groovyScripts/partyManage/supplierParty/generateEntityListFields.groovy">
-        <Property Name="partyId">
-            <Text Path="partyName" TextArrangement="TextOnly"/>
-        </Property>
-        <Property Name="statusId" Immutable="true" DefaultValue="PARTY_ENABLED">
-            <Text Path="StatusItem/description" TextArrangement="TextOnly"/>
-            <ValueList CollectionPath="PartyStatusItems" WithFixedValues="true"/>
-        </Property>
-        <Property Name="criticalityValue" Type="numeric" Hidden="true" HiddenFilter="true"/>
-        <Property Name="usccNumber" Type="String" HiddenFilter="true"/>
-        <RelAlias Name="PartyGroup" Relations="PartyGroup"/>
-        <Property Name="logoImageUrl" IsImageURL="true" RelAlias="PartyGroup" Field="logoImageUrl"/>
-        <RelAlias Name="PartyAndContact" Relations="FromPartyRelationship(roleTypeIdTo=CONTACT and roleTypeIdFrom=CUSTOMER)/PartyAndContact"/>
-        <Property Name="partyNamePrimary" RelAlias="PartyAndContact" Field="partyName" Computed="true"/>
-        <Property Name="phoneMobilePrimary" RelAlias="PartyAndContact" Field="phoneMobile" Computed="true"/>
-        <Property Name="phonePrimary" RelAlias="PartyAndContact" Field="primaryPhone" Computed="true"/>
-        <Property Name="emailPrimary" RelAlias="PartyAndContact" Field="primaryEmail" Computed="true"/>
-        <NavigationProperty Name="OrderHeader" Type="OrderHeader" Relations="OrderRole/OrderHeader" IsCollection="true"/>
-        <NavigationProperty Name="Person"/>
-        <NavigationProperty Name="PartyGroup" IsCollection="false"/>
-        <NavigationProperty Name="PartyRole" IsCollection="false"/>
-        <NavigationProperty Name="UserLogin" IsCollection="false"/>
-        <NavigationProperty Name="ToShipment"/>
-        <NavigationProperty Name="FromShipment"/>
-        <NavigationProperty Name="StatusItem"/>
-        <NavigationProperty Name="OwnerFinAccount" Type="FinAccount" IsCollection="true"
-                            Relations="OwnerFinAccount(finAccountTypeId=BANK_ACCOUNT)" />
-        <NavigationProperty Name="CustomerPartyAndContact" Relations="PartyAndContact" Type="CustomerPartyAndContact"/>
-        <NavigationProperty Name="PartyAndContact" Relations="FromPartyRelationship(roleTypeIdTo=CONTACT and roleTypeIdFrom=CUSTOMER)/PartyAndContact" Type="PartyAndContact" IsCollection="true"/>
-        <NavigationProperty Name="UserLoginSecurityGroup"
-                            Relations="UserLogin/UserLoginSecurityGroup" Type="UserLoginSecurityGroup" HandlerNode="UserLogin/UserLoginSecurityGroup" IsCollection="true"/>
-
-        <SelectionFields PropertyPath="statusId,SupplierPartyAndContact/primaryPhone"/>
-
-        <HeaderInfo TypeName="客户" TypeNamePlural="客户列表" ImageUrl="logoImageUrl">
-            <Title Path="partyId"/>
-            <Description Path="description"/>
-        </HeaderInfo>
-
-        <FieldGroup Qualifier="IdentificationCode" Label="IdentificationCode">
-            <DataField Values="usccNumber" Importance="High"/>
-        </FieldGroup>
-
-        <Action Name="CustomerNewAction" IsBound="true" EntitySetPath="customerParty"
-                OfbizService="com.banfftech.common.events.PartyEvents.newCustomer"
-                StickySession="true">
-            <Parameter Name="customerParty" Type="CustomerParty" Nullable="false" IsCollection="true" />
-            <Parameter Name="partyName" Type="String" Nullable="false" />
-            <ReturnType Type="CustomerParty" />
-        </Action>
-        <Action Name="CustomerPartyEditAction" IsBound="true" EntitySetPath="customerParty"
-                OfbizService="com.dpbird.odata.services.ProcessorServices.stickySessionEditAction"
-                StickySession="true">
-            <Parameter Name="customerParty" Type="CustomerParty" Nullable="false" IsCollection="false"/>
-            <ReturnType Type="CustomerParty"/>
-        </Action>
-        <Action Name="CustomerPartySaveAction" IsBound="true" EntitySetPath="customerParty"
-                OfbizService="com.dpbird.odata.services.ProcessorServices.stickySessionSaveAction"
-                StickySession="true">
-            <Parameter Name="customerParty" Type="CustomerParty" Nullable="false" IsCollection="false" />
-            <ReturnType Type="CustomerParty" />
-        </Action>
-        <Action Name="CustomerPartyDeleteAction" IsBound="true" EntitySetPath="customerParty"
-                OfbizService="com.dpbird.odata.services.ProcessorServices.stickySessionDeleteAction"
-                StickySession="true">
-            <Parameter Name="customerParty" Type="CustomerParty" Nullable="false" IsCollection="false"/>
-            <ReturnType Type="CustomerParty"/>
-        </Action>
-        <Action Name="ChangeCustomerStatusToEnable" IsBound="true" EntitySetPath="customerParty"
-                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.changeCustomerStatusToEnable">
-            <Parameter Name="customerParty" Type="CustomerParty" Nullable="false" IsCollection="false"/>
-            <ReturnType Type="CustomerParty"/>
-        </Action>
-    </EntityType>
-
-    <EntityType Name="ContactParty" OfbizEntity="Party" AutoSet="true" EntitySetName="ContactParties" EntityCondition="PartyRole/roleTypeId=CONTACT" DraftEntityName="PartyContactPartyDraft"
+    <EntityType Name="CustomerParty" OfbizEntity="PartyGroupAndContact" AutoSet="true" EntitySetName="CustomerParties" EntityCondition="PartyRole/roleTypeId=CUSTOMER" DraftEntityName="PartyCustomerPartyDraft"
                 Properties="partyId,partyName,description,createdDate,createdByUserLogin">
         <Property Name="partyId">
             <Text Path="partyName" TextArrangement="TextOnly"/>
         </Property>
+
+        <Property Name="criticalityValue" Type="numeric" Hidden="true" HiddenFilter="true"/>
+        <Property Name="usccNumber" Type="String" HiddenFilter="true"/>
+        <NavigationProperty Name="ToShipment"/>
+        <NavigationProperty Name="FromShipment"/>
+        <NavigationProperty Name="OwnerFinAccount" Type="FinAccount" IsCollection="true"
+                            Relations="OwnerFinAccount(finAccountTypeId=BANK_ACCOUNT)" />
     </EntityType>
 
-    <EntityType Name="PartyUserLogin" OfbizEntity="PartyUserLogin" AutoSet="true" EntitySetName="PartyUserLogins" AutoProperties="true" >
-    </EntityType>
-    <EntityType Name="Person" AutoSet="true" EntitySetName="Persons" AutoProperties="true" DraftEntityName="PartyPersonDraft">
-    </EntityType>
-    <EntityType Name="PartyGroup" AutoSet="true" EntitySetName="PartyGroups" AutoProperties="true" DraftEntityName="PartyPartyGroupDraft">
-        <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">
-            <DataField Values="numEmployees,annualRevenue,tickerSymbol,comments" Importance="High"/>
-        </FieldGroup>
-    </EntityType>
-    <EntityType Name="PartyRole" AutoSet="true" EntitySetName="PartyRoles" AutoProperties="true" DraftEntityName="PartyPartyRoleDraft">
-        <Property Name="roleTypeId" >
-            <Text Path="RoleType/description" TextArrangement="TextOnly"/>
-        </Property>
-        <NavigationProperty Name="RoleType"/>
-    </EntityType>
-    <EntityType Name="RoleType" EntitySetName="RoleTypes" AutoSet="true" AutoProperties="true">
-    </EntityType>
+<!--    <EntityType Name="ContactParty" OfbizEntity="Party" AutoSet="true" EntitySetName="ContactParties" EntityCondition="PartyRole/roleTypeId=CONTACT" DraftEntityName="PartyContactPartyDraft"-->
+<!--                Properties="partyId,partyName,description,createdDate,createdByUserLogin">-->
+<!--        <Property Name="partyId">-->
+<!--            <Text Path="partyName" TextArrangement="TextOnly"/>-->
+<!--        </Property>-->
+<!--    </EntityType>-->
 
-    <EntityType Name="PartyAndContact" AutoDraft="true" EntityCondition="PartyAndContacts" OfbizEntity="PartyAndContact" AttrEntityName="PartyAttribute"
-                Properties="primaryPhone,phoneMobile,primaryEmail,partyName,partyId" AutoLabel="true"
-                DraftEntityName="PartyPartyAndContactDraft" AutoSet="true" EntitySetName="PartyAndContacts">
+<!--    <EntityType Name="Person" AutoSet="true" EntitySetName="Persons" AutoProperties="true" DraftEntityName="PartyPersonDraft">-->
+<!--    </EntityType>-->
+<!--    <EntityType Name="PartyGroup" AutoSet="true" EntitySetName="PartyGroups" AutoProperties="true" DraftEntityName="PartyPartyGroupDraft">-->
+<!--        <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">-->
+<!--            <DataField Values="numEmployees,annualRevenue,tickerSymbol,comments" Importance="High"/>-->
+<!--        </FieldGroup>-->
+<!--    </EntityType>-->
+<!--    <EntityType Name="PartyRole" AutoSet="true" EntitySetName="PartyRoles" AutoProperties="true" DraftEntityName="PartyPartyRoleDraft">-->
+<!--        <Property Name="roleTypeId" >-->
+<!--            <Text Path="RoleType/description" TextArrangement="TextOnly"/>-->
+<!--        </Property>-->
+<!--        <NavigationProperty Name="RoleType"/>-->
+<!--    </EntityType>-->
+<!--    <EntityType Name="RoleType" EntitySetName="RoleTypes" AutoSet="true" AutoProperties="true">-->
+<!--    </EntityType>-->
+
+    <EntityType Name="PersonAndContact" AttrEntityName="PartyAttribute" AutoProperties="true" AutoLabel="true"
+                AutoSet="true" EntitySetName="PersonAndContacts">
         <Property Name="position" IsAttribute="true" Type="String"/>
         <LineItem Qualifier="PartyRelationshipLineItemEdm">
             <DataField Values="partyName,primaryPhone,phoneMobile,primaryEmail" Importance="High"/>
         </LineItem>
-        <NavigationProperty Name="PartyRole"/>
+<!--        <NavigationProperty Name="PartyRole"/>-->
     </EntityType>
 
-    <EntityType Name="SupplierPartyAndContact" OfbizEntity="PartyAndContact"
-                Properties="primaryPhone,phoneMobile,primaryEmail,partyName,partyId,address1" AutoLabel="true"
-                DraftEntityName="SupplierPartyPartyAndContactDraft" AutoSet="true" EntitySetName="SupplierPartyAndContacts">
+<!--    <EntityType Name="SupplierPartyAndContactForShip" OfbizEntity="PartyAndContact"-->
+<!--                Properties="primaryPhone,phoneMobile,primaryEmail,partyName,partyId" AutoLabel="true"-->
+<!--                AutoSet="true" EntitySetName="SupplierPartyAndContactForShips">-->
+<!--        <Property Name="address1" Computed="true"/>-->
+<!--    </EntityType>-->
 
-    </EntityType>
+<!--    <EntityType Name="CustomerPartyAndContact" OfbizEntity="PartyAndContact"-->
+<!--                Properties="primaryPhone,phoneMobile,primaryEmail,partyName,partyId,address1" AutoLabel="true"-->
+<!--                DraftEntityName="CustomerPartyAndContactDraft" AutoSet="true" EntitySetName="CustomerPartyAndContacts">-->
+<!--    </EntityType>-->
 
-    <EntityType Name="SupplierPartyAndContactForShip" OfbizEntity="PartyAndContact"
-                Properties="primaryPhone,phoneMobile,primaryEmail,partyName,partyId" AutoLabel="true"
-                AutoSet="true" EntitySetName="SupplierPartyAndContactForShips">
-        <Property Name="address1" Computed="true"/>
-    </EntityType>
+<!--    <EntityType Name="CustomerPartyAndContactForShip" OfbizEntity="PartyAndContact"-->
+<!--                Properties="primaryPhone,phoneMobile,primaryEmail,partyName,partyId" AutoLabel="true"-->
+<!--                AutoSet="true" EntitySetName="CustomerPartyAndContactForShips">-->
+<!--        <Property Name="address1" Computed="true"/>-->
+<!--    </EntityType>-->
 
-    <EntityType Name="CustomerPartyAndContact" OfbizEntity="PartyAndContact"
-                Properties="primaryPhone,phoneMobile,primaryEmail,partyName,partyId,address1" AutoLabel="true"
-                DraftEntityName="CustomerPartyAndContactDraft" AutoSet="true" EntitySetName="CustomerPartyAndContacts">
-    </EntityType>
-
-    <EntityType Name="CustomerPartyAndContactForShip" OfbizEntity="PartyAndContact"
-                Properties="primaryPhone,phoneMobile,primaryEmail,partyName,partyId" AutoLabel="true"
-                AutoSet="true" EntitySetName="CustomerPartyAndContactForShips">
-        <Property Name="address1" Computed="true"/>
-    </EntityType>
-
-    <EntityType Name="UserLogin" EntitySetName="UserLogins" AutoSet="true" AutoProperties="true" DraftEntityName="PartyUserLoginDraft">
-    </EntityType>
-    <EntityType Name="SecurityGroup" EntitySetName="SecurityGroups" AutoSet="true" AutoProperties="true">
-    </EntityType>
-    <EntityType Name="UserLoginSecurityGroup" EntitySetName="UserLoginSecurityGroups" AutoSet="true" AutoProperties="true" DraftEntityName="PartyUserLoginSecurityGroupDraft">
-        <NavigationProperty Name="SecurityGroup"/>
-    </EntityType>
     <EntityType Name="SupplierProduct" AutoSet="true" EntitySetName="SupplierProducts" AutoProperties="true" DraftEntityName="PartySupplierProductDraft" >
         <Property Name="minimumOrderQuantity" DefaultValue="1" Computed="true"/>
         <Property Name="currencyUomId" DefaultValue="CNY" Computed="true"/>
@@ -473,22 +379,25 @@
                 Handler="component://bf-demo/groovyScripts/partyManage/shipment/statusControl.groovy">
         <Property Name="receiveDate" Type="Timestamp" Precision="3" IsAttribute="true"/>
         <Property Name="statusId">
-            <Text Path="StatusItem/description" TextArrangement="TextOnly"/>
+            <Text Path="ShipmentStatusItem/description" TextArrangement="TextOnly"/>
         </Property>
         <Property Name="shipmentStatus" Type="Edm.Int64"/>
-        <Property Name="createdByUserLogin">
-            <Text Path="PartyUserLogin/partyName" TextArrangement="TextOnly"/>
-        </Property>
         <Property Name="currencyUomId">
             <Text Path="CurrencyUom/description" TextArrangement="TextOnly"/>
         </Property>
-        <NavigationProperty Name="PartyUserLogin"/>
+
+        <LineItem Qualifier="ShipmentLineItem">
+            <DataField Values="trackingIdNumber,shipmentId,ShipmentItem/productId,
+            ShipmentRouteSegment/carrierPartyId,primaryOrderId,estimatedShipDate,
+            ShipmentRouteSegment/actualArrivalDate,SupplierPartyAndContactForShip/address1,
+            CustomerPartyAndContactForShip/address1" Importance="High"/>
+            <DataField Importance="High" Values="statusId" Criticality="shipmentStatus"/>
+            <Criticality Value="shipmentStatus"/>
+        </LineItem>
         <NavigationProperty Name="ShipmentItem"/>
-        <NavigationProperty Name="SupplierParty" Relations="Party" Type="SupplierParty" ReadOnly="true"/>
-        <NavigationProperty Name="CustomerParty" Relations="Party" Type="CustomerParty" ReadOnly="true"/>
-        <NavigationProperty Name="StatusItem"/>
-        <NavigationProperty Name="SupplierPartyAndContactForShip" Relations="FromParty/PartyAndContact" Type="SupplierPartyAndContactForShip"/>
-        <NavigationProperty Name="CustomerPartyAndContactForShip" Relations="ToParty/PartyAndContact" Type="CustomerPartyAndContactForShip"/>
+        <NavigationProperty Name="SupplierParty" Relations="PartyGroupAndContact" Type="SupplierParty" ReadOnly="true"/>
+        <NavigationProperty Name="CustomerParty" Relations="PartyGroupAndContact" Type="CustomerParty" ReadOnly="true"/>
+        <NavigationProperty Name="ShipmentStatusItem" Type="ShipmentStatusItem" Relations="StatusItem"/>
         <NavigationProperty Name="CurrencyUom" AutoBinding="true"/>
         <NavigationProperty Name="ShipmentRouteSegment" AutoBinding="true" IsCollection="false"/>
 
@@ -505,7 +414,32 @@
         </Property>
         <NavigationProperty Name="CarrierParty" AutoBinding="true" IsCollection="false"/>
     </EntityType>
-    <EntityType Name="StatusItem" AutoSet="true" EntitySetName="StatusItems" AutoProperties="true">
+    <EntityType Name="SupplierStatusItem" AutoSet="true" EntityCondition="statusTypeId=PARTY_STATUS" EntitySetName="SupplierStatusItems" AutoProperties="true">
+        <Property Name="statusId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <EntityType Name="ShipmentStatusItem" AutoSet="true" EntitySetName="ShipmentStatusItems" AutoProperties="true">
+        <Property Name="statusId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <EntityType Name="AccountStatusItem" AutoSet="true" EntitySetName="AccountStatusItems" AutoProperties="true">
+        <Property Name="statusId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <EntityType Name="OrderStatusItem" AutoSet="true" EntitySetName="OrderStatusItems" AutoProperties="true">
+        <Property Name="statusId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <EntityType Name="InvoiceStatusItem" AutoSet="true" EntitySetName="InvoiceStatusItems" AutoProperties="true">
+        <Property Name="statusId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <EntityType Name="QuoteStatusItem" AutoSet="true" EntitySetName="QuoteStatusItems" AutoProperties="true">
         <Property Name="statusId">
             <Text Path="description" TextArrangement="TextOnly"/>
         </Property>
@@ -533,15 +467,14 @@
 <!--            <DataField Values="finAccountName,finAccountCode,currencyUomId,statusId" Importance="High"/>-->
 <!--        </LineItem>-->
 
-        <NavigationProperty Name="StatusItem" AutoBinding="true" />
+        <NavigationProperty Name="AccountStatusItem" Type="AccountStatusItem" Relations="StatusItem" AutoBinding="true" />
         <NavigationProperty Name="FinAccountType" AutoBinding="true" />
         <NavigationProperty Name="CurrencyUom" AutoBinding="true" />
         <NavigationProperty Name="OwnerParty"/>
     </EntityType>
 
     <EntityType Name="FinAccountType" EntitySetName="FinAccountTypes" AutoSet="true" AutoProperties="true" />
-    <EntityType Name="Party" EntitySetName="Parties" AutoSet="true" AutoProperties="true" DraftEntityName="PartyPartyDraft">
-        <NavigationProperty Name="PartyAndContact" AutoBinding="true"/>
+    <EntityType Name="Party" EntitySetName="Parties" AutoSet="true" AutoProperties="true">
     </EntityType>
 
     <EntityType Name="Uom" AutoProperties="true" AutoSet="true" EntitySetName="Unm" >
@@ -563,19 +496,6 @@
         </Property>
     </EntityType>
 
-    <EntityType Name="OrderHeader" AutoProperties="true" AutoSet="true" EntitySetName="OrderHeaders"
-                Handler="component://bf-demo/groovyScripts/purchaseOrderMange/OrderHeader/generateEntityListFields.groovy">
-        <Property Name="orderHeaderStatus" Type="Edm.Int64"/>
-        <Property Name="salesChannelEnumId">
-            <Text Path="SalesChannelEnumeration/description" TextArrangement="TextOnly"/>
-        </Property>
-        <Property Name="statusId">
-            <Text Path="StatusItem/description" TextArrangement="TextOnly"/>
-        </Property>
-
-        <NavigationProperty Name="StatusItem"/>
-    </EntityType>
-
     <EntityType Name="Enumeration" EntitySetName="OrderSalesEnumerations" EntityCondition="enumTypeId=ORDER_NEW_SALES_CHANNEL" AutoProperties="true">
         <ValueList CollectionPath="OrderSalesEnumerations" WithFixedValues="true" Label="选择销售渠道"/>
         <Property Name="enumId">
@@ -583,13 +503,13 @@
         </Property>
     </EntityType>
 
-    <!--=====================================    EntityContainer Definition Begin   =====================================-->
-    <EntityContainer >
-        <EntitySet Name="UserRoleTypes" EntityType="RoleType" EntityCondition="roleTypeId in (PURCHASING_MANAGER,PRODUCTION_MANAGER,WORKER,STOCKER)"/>
-        <EntitySet EntityType="StatusItem" Name="PartyStatusItems" EntityCondition="statusId in (PARTY_DISABLED,PARTY_ENABLED)"/>
-        <ActionImport Name="DiscardAction" Action="DiscardAction" />
-        <EntitySet EntityType="StatusItem" Name="FinacctStatusItems" EntityCondition="statusId in (FNACT_ACTIVE,FNACT_CANCELLED,FNACT_MANFROZEN)"/>
-    </EntityContainer>
+<!--    &lt;!&ndash;=====================================    EntityContainer Definition Begin   =====================================&ndash;&gt;-->
+<!--    <EntityContainer >-->
+<!--        <EntitySet Name="UserRoleTypes" EntityType="RoleType" EntityCondition="roleTypeId in (PURCHASING_MANAGER,PRODUCTION_MANAGER,WORKER,STOCKER)"/>-->
+<!--        <EntitySet EntityType="StatusItem" Name="PartyStatusItems" EntityCondition="statusId in (PARTY_DISABLED,PARTY_ENABLED)"/>-->
+<!--        <ActionImport Name="DiscardAction" Action="DiscardAction" />-->
+<!--        <EntitySet EntityType="StatusItem" Name="FinacctStatusItems" EntityCondition="statusId in (FNACT_ACTIVE,FNACT_CANCELLED,FNACT_MANFROZEN)"/>-->
+<!--    </EntityContainer>-->
     <!--=====================================    EntityContainer Definition End   =====================================-->
 
     <!--=====================================    Action Definition Begin   =====================================-->

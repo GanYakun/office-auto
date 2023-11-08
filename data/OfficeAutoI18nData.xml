@@ -63,10 +63,28 @@ under the License.
     <DBEntity dbEntityId="PT10000" dbEntityName="Party" description="Party" isOpen="N" />
     <DBField dbFieldId="PT10001" dbFieldName="partyName" dbFieldTypeId="STRING" dbEntityId="PT10000" description="名称"/>
     <DBField dbFieldId="PT10002" dbFieldName="usccNumber" dbFieldTypeId="STRING" dbEntityId="PT10000" description="社会统一码"/>
+    <DBField dbFieldId="PT10003" dbFieldName="statusId" dbFieldTypeId="STATUS" dbEntityId="PT10000" description="状态"/>
     <DBFieldLabel dbFieldLabelId="PT10001" dbFieldId="PT10001" language="zh" value="名称"/>
     <DBFieldLabel dbFieldLabelId="PT10002" dbFieldId="PT10001" language="en" value=""/>
     <DBFieldLabel dbFieldLabelId="PT10003" dbFieldId="PT10002" language="zh" value="社会统一码"/>
     <DBFieldLabel dbFieldLabelId="PT10004" dbFieldId="PT10002" language="en" value=""/>
+    <DBFieldLabel dbFieldLabelId="PT10005" dbFieldId="PT10003" language="zh" value="状态"/>
+    <DBFieldLabel dbFieldLabelId="PT10006" dbFieldId="PT10003" language="en" value=""/>
 
+    <!--发票-->
+    <DBEntity dbEntityId="IV10000" dbEntityName="Invoice" description="Invoice" isOpen="N" />
+    <DBField dbFieldId="IV10000" dbFieldName="invoiceId" dbFieldTypeId="String" dbEntityId="IV10000" description="发票ID"/>
+    <DBField dbFieldId="IV10001" dbFieldName="statusId" dbFieldTypeId="STATUS" dbEntityId="IV10000" description="状态"/>
+    <DBField dbFieldId="IV10002" dbFieldName="partyIdFrom" dbFieldTypeId="String" dbEntityId="IV10000" description="开据方"/>
+    <DBField dbFieldId="IV10003" dbFieldName="invoiceDate" dbFieldTypeId="DATE_TIME" dbEntityId="IV10000" description="开据时间"/>
+    <DBField dbFieldId="IV10004" dbFieldName="description" dbFieldTypeId="DATE_TIME" dbEntityId="IV10000" description="开据时间"/>
+    <DBFieldLabel dbFieldLabelId="IV10000" dbFieldId="IV10000" language="zh" value="发票ID"/>
+    <DBFieldLabel dbFieldLabelId="IV10001" dbFieldId="IV10000" language="en" value=""/>
+    <DBFieldLabel dbFieldLabelId="IV10002" dbFieldId="IV10001" language="zh" value="状态"/>
+    <DBFieldLabel dbFieldLabelId="IV10003" dbFieldId="IV10001" language="en" value=""/>
+    <DBFieldLabel dbFieldLabelId="IV10004" dbFieldId="IV10002" language="zh" value="开据方"/>
+    <DBFieldLabel dbFieldLabelId="IV10005" dbFieldId="IV10002" language="en" value=""/>
+    <DBFieldLabel dbFieldLabelId="IV10006" dbFieldId="IV10003" language="zh" value="开据时间"/>
+    <DBFieldLabel dbFieldLabelId="IV10007" dbFieldId="IV10003" language="en" value=""/>
 
 </entity-engine-xml>
