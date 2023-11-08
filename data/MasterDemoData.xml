@@ -1,0 +1,1500 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<entity-engine-xml>
+    <!--===========================================MasterData==========================================-->
+    <!--Party主数据-->
+    <RoleType roleTypeId="EMPLOYMENT" description="Employee"/>
+    <RoleType roleTypeId="CHARGER" description="Person In Charge"/>
+    <RoleType roleTypeId="LEAD_OWNER" description="Lead Owner By"/>
+    <!--StatusItem(Party暂停使用）-->
+    <StatusItem statusId="PARTY_SUSPEND" sequenceId="02" statusCode="SUSPEND" description="暂停使用" statusTypeId="PARTY_STATUS"/>
+
+    <!--公司-->
+    <Party partyId="Company" partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED" partyName="上海工至信息科技服务有限公司（BanffTech）" />
+    <PartyRole partyId="Company" roleTypeId="INTERNAL_ORGANIZATIO"/>
+    <!--公司部门-->
+    <Party partyId="Company_Depart_Tech" partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED" partyName="技术部门"/>
+    <Party partyId="Company_Depart_Prod" partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED" partyName="产品部门"/>
+    <Party partyId="Company_Depart_Fin" partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED" partyName="财务部门"/>
+    <Party partyId="Company_Depart_HR" partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED" partyName="人事部门"/>
+    <PartyRole partyId="Company_Depart_Tech" roleTypeId="DEPARTMENT"/>
+    <PartyRole partyId="Company_Depart_Prod" roleTypeId="DEPARTMENT"/>
+    <PartyRole partyId="Company_Depart_Fin" roleTypeId="DEPARTMENT"/>
+    <PartyRole partyId="Company_Depart_HR" roleTypeId="DEPARTMENT"/>
+
+    <!--供应商-->
+    <Party partyId="SUPPLIER0001"  partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED"  partyName="华硕电脑股份有限公司（ASUS）" createdDate="2018-05-20 09:30:00.000" lastModifiedDate="2023-10-20 09:30:00.000"/>
+    <Party partyId="SUPPLIER0002"  partyTypeId="PARTY_GROUP" statusId="PARTY_SUSPEND" partyName="上海科慕网络有限公司（COM）" createdDate="2018-05-20 09:30:00.000" lastModifiedDate="2023-10-20 09:30:00.000"/>
+    <Party partyId="SUPPLIER0003"  partyTypeId="PARTY_GROUP" statusId="PARTY_SUSPEND" partyName="上海知行之桥网络科技公司（KAS）" createdDate="2018-05-20 09:30:00.000" lastModifiedDate="2023-10-20 09:30:00.000"/>
+    <Party partyId="SUPPLIER0004"  partyTypeId="PARTY_GROUP" statusId="PARTY_DISABLED" partyName="凌强办公器材服务有限公司（LS）" createdDate="2018-05-20 09:30:00.000" lastModifiedDate="2023-10-20 09:30:00.000"/>
+    <Party partyId="SUPPLIER0005"  partyTypeId="PARTY_GROUP" statusId="PARTY_DISABLED" partyName="英特尔软件服务有限公司（INTEL）" createdDate="2018-05-20 09:30:00.000" lastModifiedDate="2023-10-20 09:30:00.000"/>
+    <Party partyId="SUPPLIER0006"  partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED" partyName="上海班富网络科技有限公司（BANFF）" createdDate="2018-05-20 09:30:00.000" lastModifiedDate="2023-10-20 09:30:00.000"/>
+    <Party partyId="SUPPLIER0007"  partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED" partyName="戴尔硬件服务有限公司（DELL）" createdDate="2018-05-20 09:30:00.000" lastModifiedDate="2023-10-20 09:30:00.000"/>
+
+    <!--PartyIdentification(供应商社会统一信用代码）-->
+    <PartyIdentificationType partyIdentificationTypeId="USCC_OF_CHINESE_ORG"/>
+    <PartyIdentification partyId="SUPPLIER0001" partyIdentificationTypeId="USCC_OF_CHINESE_ORG" idValue="91440101304662708A"/>
+    <PartyIdentification partyId="SUPPLIER0002" partyIdentificationTypeId="USCC_OF_CHINESE_ORG" idValue="56576101304662708C"/>
+    <PartyIdentification partyId="SUPPLIER0003" partyIdentificationTypeId="USCC_OF_CHINESE_ORG" idValue="144342657908326BDA"/>
+    <PartyIdentification partyId="SUPPLIER0004" partyIdentificationTypeId="USCC_OF_CHINESE_ORG" idValue="78670432854046708B"/>
+    <PartyIdentification partyId="SUPPLIER0005" partyIdentificationTypeId="USCC_OF_CHINESE_ORG" idValue="43526500143252708D"/>
+    <PartyIdentification partyId="SUPPLIER0006" partyIdentificationTypeId="USCC_OF_CHINESE_ORG" idValue="91440101304662708E"/>
+    <PartyIdentification partyId="SUPPLIER0007" partyIdentificationTypeId="USCC_OF_CHINESE_ORG" idValue="78392657860082708G"/>
+
+    <!--Party(账户）-->
+    <Party partyId="ACCOUNT00001" partyTypeId="PARTY_GROUP" partyName="瑞金互联网科技有限公司" statusId="PARTY_ENABLED"/>
+    <Party partyId="ACCOUNT00002" partyTypeId="PARTY_GROUP" partyName="心叶软件科技有限公司" statusId="PARTY_ENABLED"/>
+    <Party partyId="ACCOUNT00003" partyTypeId="PARTY_GROUP" partyName="科博电子科技有限公司" statusId="PARTY_ENABLED"/>
+    <Party partyId="ACCOUNT00004" partyTypeId="PARTY_GROUP" partyName="溯新计算机科技有限公司" statusId="PARTY_ENABLED"/>
+    <Party partyId="ACCOUNT00005" partyTypeId="PARTY_GROUP" partyName="海博计算机科技有限公司" statusId="PARTY_ENABLED"/>
+
+    <!--快递公司-->
+    <Party partyId="EXPRESS0001" partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED" partyName="顺丰速运有限公司（SF）"/>
+    <Party partyId="EXPRESS0002" partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED" partyName="韵达快递（YD）" />
+    <Party partyId="EXPRESS0003" partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED" partyName="中通快递（ZTO）" />
+    <Party partyId="EXPRESS0004" partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED" partyName="申通快递（STO）" />
+    <Party partyId="EXPRESS0005" partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED" partyName="京东物流（JD）" />
+    <Party partyId="EXPRESS0006" partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED" partyName="圆通快递（YTO）" />
+
+    <!--客户-->
+    <Party partyId="CUSTOMER0001" statusId="PARTY_ENABLED" partyTypeId="PARTY_GROUP" partyName="腾讯计算机系统有限公司（TENCENT）"/>
+    <Party partyId="CUSTOMER0002" partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED" partyName="上海桂仪仪器仪表有限公司（GUIYI）"/>
+    <Party partyId="CUSTOMER0003" partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED" partyName="苏州矩度电子科技有限公司（JUTZE）"/>
+    <Party partyId="CUSTOMER0004" partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED" partyName="北京京东世纪贸易有限公司（JD）"/>
+    <Party partyId="CUSTOMER0005" partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED" partyName="北京海通（HT）"/>
+    <Party partyId="CUSTOMER0006" partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED" partyName="北京天宇智图科技有限公司（TYTECH）"/>
+    <Party partyId="CUSTOMER0007" partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED" partyName="中电文思海瑞技术有限公司（PACTERA）"/>
+    <!--公司-->
+    <Party partyId="Company_SH" partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED" partyName="工至上海分公司" />
+    <Party partyId="Company_HZ" partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED" partyName="工至杭州分公司" />
+    <Party partyId="Company_GZ" partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED" partyName="工至广州分公司" />
+    <Party partyId="AGENT10000" partyTypeId="AUTOMATED_AGENT" statusId="PARTY_ENABLED" partyName="AGENT 10000"/>
+    <Party partyId="AGENT10001" partyTypeId="AUTOMATED_AGENT" statusId="PARTY_ENABLED" partyName="AGENT 10001"/>
+    <!--联系人-->
+    <Party partyId="MANAGER_10000" partyName="工至管理员" statusId="PARTY_ENABLED"  partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00001" partyName="张政" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00002" partyName="陈晓欣" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00003" partyName="杨琳" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00004" partyName="常婷" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00005" partyName="周俊明" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00006" partyName="陈晓彤" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00007" partyName="王修平" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00008" partyName="陈博涛" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00009" partyName="杨宏兴" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00010" partyName="孙磊" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00011" partyName="张程" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00012" partyName="刘云" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00013" partyName="程鑫" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00014" partyName="朱新兰" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00015" partyName="汤质" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00016" partyName="秦枫" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00017" partyName="曾梦琳" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00018" partyName="姚瑞" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00019" partyName="陈金艺" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00020" partyName="杨含沁" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00021" partyName="张宇翔" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00022" partyName="包文洋" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <!--店铺成员-->
+    <Party partyId="STORE_MANAGER_00001" statusId="PARTY_ENABLED" partyTypeId="PERSON" partyName="金婷"/>
+    <Party partyId="STORE_MANAGER_00002" statusId="PARTY_ENABLED" partyTypeId="PERSON" partyName="张政"/>
+    <Party partyId="STORE_MANAGER_00003" statusId="PARTY_ENABLED" partyTypeId="PERSON" partyName="杨帆"/>
+    <Party partyId="STORE_MANAGER_00004" statusId="PARTY_ENABLED" partyTypeId="PERSON" partyName="黄雨晴"/>
+    <Party partyId="STORE_MANAGER_00005" statusId="PARTY_ENABLED" partyTypeId="PERSON" partyName="陈晨"/>
+    <!--公司员工-->
+    <Party partyId="COMPANY_EMPLOYEE00001" partyName="郑涛" statusId="PARTY_ENABLED" partyTypeId="PERSON" externalId="GZ200805060004"/>
+    <Party partyId="COMPANY_EMPLOYEE00002" partyName="王梦然" statusId="PARTY_ENABLED" partyTypeId="PERSON" externalId="GZ200903210010"/>
+    <Party partyId="COMPANY_EMPLOYEE00003" partyName="陈锦华" statusId="PARTY_ENABLED" partyTypeId="PERSON" externalId="GZ201208200013"/>
+    <Party partyId="COMPANY_EMPLOYEE00004" partyName="肖亚楠" statusId="PARTY_ENABLED" partyTypeId="PERSON" externalId="GZ201209110026"/>
+    <Party partyId="COMPANY_EMPLOYEE00005" partyName="郑明明" statusId="PARTY_ENABLED" partyTypeId="PERSON" externalId="GZ201504150030"/>
+    <!--Party(线索）-->
+    <Party partyId="LEAD00001" partyTypeId="PERSON" partyName="陈琳" statusId="PARTY_ENABLED"/>
+    <Party partyId="LEAD00002" partyTypeId="PERSON" partyName="林如民" statusId="PARTY_ENABLED"/>
+    <Party partyId="LEAD00003" partyTypeId="PERSON" partyName="蔡建欣" statusId="PARTY_ENABLED"/>
+    <Party partyId="LEAD00004" partyTypeId="PERSON" partyName="罗泽悦" statusId="PARTY_ENABLED"/>
+    <Party partyId="LEAD00005" partyTypeId="PERSON" partyName="曾梦琳" statusId="PARTY_ENABLED"/>
+
+    <!--PartyAttribute(职位）-->
+    <PartyAttribute partyId="CONTACT00001" attrName="position" attrValue="部门经理"/>
+    <PartyAttribute partyId="CONTACT00002" attrName="position" attrValue="公司总经理"/>
+    <PartyAttribute partyId="CONTACT00003" attrName="position" attrValue="项目组长"/>
+    <PartyAttribute partyId="CONTACT00004" attrName="position" attrValue="部门经理"/>
+    <PartyAttribute partyId="CONTACT00005" attrName="position" attrValue="公司总经理"/>
+    <PartyAttribute partyId="CONTACT00006" attrName="position" attrValue="部门经理"/>
+    <PartyAttribute partyId="CONTACT00007" attrName="position" attrValue="公司总经理"/>
+    <PartyAttribute partyId="CONTACT00008" attrName="position" attrValue="部门经理"/>
+    <PartyAttribute partyId="CONTACT00009" attrName="position" attrValue="项目组长"/>
+    <PartyAttribute partyId="CONTACT00010" attrName="position" attrValue="部门经理"/>
+    <PartyAttribute partyId="CONTACT00011" attrName="position" attrValue="项目组长"/>
+    <PartyAttribute partyId="CONTACT00012" attrName="position" attrValue="部门经理"/>
+    <PartyAttribute partyId="CONTACT00013" attrName="position" attrValue="项目组长"/>
+    <PartyAttribute partyId="CONTACT00014" attrName="position" attrValue="公司总经理"/>
+    <PartyAttribute partyId="CONTACT00015" attrName="position" attrValue="公司总经理"/>
+    <PartyAttribute partyId="CONTACT00016" attrName="position" attrValue="项目组长"/>
+    <PartyAttribute partyId="CONTACT00017" attrName="position" attrValue="公司总经理"/>
+    <PartyAttribute partyId="CONTACT00018" attrName="position" attrValue="部门经理"/>
+    <PartyAttribute partyId="CONTACT00019" attrName="position" attrValue="公司总经理"/>
+    <PartyAttribute partyId="CONTACT00020" attrName="position" attrValue="部门经理"/>
+    <PartyAttribute partyId="CONTACT00021" attrName="position" attrValue="部门经理"/>
+    <PartyAttribute partyId="CONTACT00022" attrName="position" attrValue="公司总经理"/>
+    <PartyAttribute partyId="COMPANY_EMPLOYEE00001" attrName="position" attrValue="公司员工"/>
+    <PartyAttribute partyId="COMPANY_EMPLOYEE00002" attrName="position" attrValue="公司员工"/>
+    <PartyAttribute partyId="COMPANY_EMPLOYEE00003" attrName="position" attrValue="公司员工"/>
+    <PartyAttribute partyId="COMPANY_EMPLOYEE00004" attrName="position" attrValue="公司员工"/>
+    <PartyAttribute partyId="COMPANY_EMPLOYEE00005" attrName="position" attrValue="公司员工"/>
+
+    <!--PartyAttributeDate(供应商首订单日期、加入日期）-->
+    <PartyAttributeDate partyId="SUPPLIER0001" attrName="firstOrderDate" attrValue="2019-03-19 09:30:00.000"/>
+    <PartyAttributeDate partyId="SUPPLIER0002" attrName="firstOrderDate" attrValue="2019-03-19 09:30:00.000"/>
+    <PartyAttributeDate partyId="SUPPLIER0003" attrName="firstOrderDate" attrValue="2019-03-19 09:30:00.000"/>
+    <PartyAttributeDate partyId="SUPPLIER0004" attrName="firstOrderDate" attrValue="2019-03-19 09:30:00.000"/>
+    <PartyAttributeDate partyId="SUPPLIER0005" attrName="firstOrderDate" attrValue="2019-03-19 09:30:00.000"/>
+    <PartyAttributeDate partyId="SUPPLIER0006" attrName="firstOrderDate" attrValue="2019-03-19 09:30:00.000"/>
+    <PartyAttributeDate partyId="SUPPLIER0007" attrName="firstOrderDate" attrValue="2019-03-19 09:30:00.000"/>
+
+    <PartyAttributeDate partyId="SUPPLIER0001" attrName="collectionDate" attrValue="2018-11-19 09:30:00.000"/>
+    <PartyAttributeDate partyId="SUPPLIER0002" attrName="collectionDate" attrValue="2018-11-19 09:30:00.000"/>
+    <PartyAttributeDate partyId="SUPPLIER0003" attrName="collectionDate" attrValue="2018-11-19 09:30:00.000"/>
+    <PartyAttributeDate partyId="SUPPLIER0004" attrName="collectionDate" attrValue="2018-11-19 09:30:00.000"/>
+    <PartyAttributeDate partyId="SUPPLIER0005" attrName="collectionDate" attrValue="2018-11-19 09:30:00.000"/>
+    <PartyAttributeDate partyId="SUPPLIER0006" attrName="collectionDate" attrValue="2018-11-19 09:30:00.000"/>
+    <PartyAttributeDate partyId="SUPPLIER0007" attrName="collectionDate" attrValue="2018-11-19 09:30:00.000"/>
+
+    <!--PartyGroup-->
+    <!--PartyGroup(供应商)-->
+    <PartyGroup partyId="SUPPLIER0001" groupName="华硕电脑股份有限公司（ASUS）" numEmployees="420" annualRevenue="2000000" tickerSymbol="as341254" comments="计算机硬件及相关配件供应" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/aa3cc9ec-4f0f-455c-9839-fa86f004b33b.png"/>
+    <PartyGroup partyId="SUPPLIER0002" groupName="上海科慕网络有限公司（COM）" numEmployees="8201" annualRevenue="320000" tickerSymbol="ds53456" comments="计算机软件服务" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/1e175eb7-1466-41a7-b623-b522bb43c90c.png"/>
+    <PartyGroup partyId="SUPPLIER0003" groupName="上海知行之桥网络科技公司（KAS）" numEmployees="3500" annualRevenue="4200000" tickerSymbol="dsfa213" comments="计算机软件服务" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/7f132f90-5317-47c2-a728-a8bf88f9d2cd.png"/>
+    <PartyGroup partyId="SUPPLIER0004" groupName="凌强办公器材服务有限公司（LS）" numEmployees="2871" annualRevenue="5003000" tickerSymbol="qwe2435" comments="办公器材供应" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/bd2f3c73-80d8-4b15-8c74-00404a194197.png"/>
+    <PartyGroup partyId="SUPPLIER0005" groupName="英特尔软件服务有限公司（INTEL）" numEmployees="198" annualRevenue="300000" tickerSymbol="xcv2346" comments="软件服务" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/e66b8026-c8a6-458e-b507-2ab95eea9c86.png"/>
+    <PartyGroup partyId="SUPPLIER0006" groupName="上海班富网络科技有限公司（BANFF）" numEmployees="892" annualRevenue="200000" tickerSymbol="3254ad" comments="软件服务及硬件配套供应" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/4e48e170-4540-4766-8f03-2df5c501a1db.png"/>
+    <PartyGroup partyId="SUPPLIER0007" groupName="戴尔硬件服务有限公司（DELL）" numEmployees="1200" annualRevenue="2004000" tickerSymbol="ret5346" comments="电子器材供应" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/5a38b6eb-110d-40c5-92e5-3b2f84dd92f1.png"/>
+    <!--PartyGroup(客户)-->
+    <PartyGroup partyId="CUSTOMER0001" groupName="腾讯计算机系统有限公司（TENCENT）" numEmployees="19871" annualRevenue="123000000" tickerSymbol="DH356457" comments="互联网服务运营" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/c485ff8e-0b72-4216-923b-4c1807da9a60.jpg"/>
+    <PartyGroup partyId="CUSTOMER0002" groupName="上海桂仪仪器仪表有限公司（GUIYI）" numEmployees="231" annualRevenue="3200000" tickerSymbol="BP2456" comments="仪表仪器供应" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/2e3bde80-89ec-4bdb-820a-730949994e56.png"/>
+    <PartyGroup partyId="CUSTOMER0003" groupName="苏州矩度电子科技有限公司（JUTZE）" numEmployees="187" annualRevenue="2000000" tickerSymbol="SP6546" comments="电子元件供应" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/2609a427-4704-47e7-8647-0d47f14cc5e1.png"/>
+    <PartyGroup partyId="CUSTOMER0004" groupName="北京京东世纪贸易有限公司（JD）" numEmployees="25601" annualRevenue="356000" tickerSymbol="TP43265" comments="电商物流贸易服务" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/3c5e520f-4330-4000-8b77-6fad963e992a.png"/>
+    <PartyGroup partyId="CUSTOMER0005" groupName="北京海通有限公司（HT）" numEmployees="122" annualRevenue="6000000" tickerSymbol="as341254" comments="计算机硬件及相关配件供应" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/59819b8c-f8c6-4f24-9fb5-a53c339ee8ac.png"/>
+    <PartyGroup partyId="CUSTOMER0006" groupName="北京天宇智图科技有限公司（TYTECH）" numEmployees="390" annualRevenue="1500000" tickerSymbol="as341254" comments="电子元件供应" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/daed7d80-ea3c-4eb6-9f70-bf3cbe1bca06.png"/>
+    <PartyGroup partyId="CUSTOMER0007" groupName="中电文思海瑞技术有限公司（PACTERA）" numEmployees="281" annualRevenue="82000000" tickerSymbol="as341254" comments="电子商务服务" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/f2e40f14-09cc-43b7-82c0-631e81f54c89.png"/>
+    <!--PartyGroup(快递公司)-->
+    <PartyGroup partyId="EXPRESS0001" groupName="顺丰速运"/>
+    <PartyGroup partyId="EXPRESS0002" groupName="韵达快递"/>
+    <PartyGroup partyId="EXPRESS0003" groupName="中通快递"/>
+    <PartyGroup partyId="EXPRESS0004" groupName="申通快递"/>
+    <PartyGroup partyId="EXPRESS0005" groupName="京东物流"/>
+    <PartyGroup partyId="EXPRESS0006" groupName="圆通快递"/>
+    <!--PartyGroup(账户）-->
+    <PartyGroup partyId="ACCOUNT00001" groupName="瑞金医疗器械有限公司"/>
+    <PartyGroup partyId="ACCOUNT00002" groupName="心叶服装品牌有限公司"/>
+    <PartyGroup partyId="ACCOUNT00003" groupName="科博电子科技有限公司"/>
+    <PartyGroup partyId="ACCOUNT00004" groupName="溯新计算机科技有限公司"/>
+    <PartyGroup partyId="ACCOUNT00005" groupName="海博计算机科技有限公司"/>
+
+    <PartyGroup partyId="Company_SH" groupName="上海分公司" />
+    <PartyGroup partyId="Company_HZ" groupName="杭州分公司" />
+    <PartyGroup partyId="Company_GZ" groupName="广州分公司" />
+    <PartyGroup partyId="Company" groupName="上海工至信息科技服务有限公司（BanffTech）" />
+
+    <PartyGroup partyId="Company_Depart_Tech" groupName="工至技术部门"/>
+    <PartyGroup partyId="Company_Depart_Prod" groupName="工至产品部门"/>
+    <PartyGroup partyId="Company_Depart_Fin" groupName="工至财务部门"/>
+    <PartyGroup partyId="Company_Depart_HR" groupName="工至人事部门"/>
+
+    <!--Person-->
+    <!--Person（联系人）-->
+    <Person partyId="MANAGER_10000" firstName="周杨" />
+    <Person partyId="CONTACT00001" firstName="张政" />
+    <Person partyId="CONTACT00002" firstName="陈晓欣" />
+    <Person partyId="CONTACT00003" firstName="杨琳" />
+    <Person partyId="CONTACT00004" firstName="常婷" />
+    <Person partyId="CONTACT00005" firstName="周俊明" />
+    <Person partyId="CONTACT00006" firstName="陈晓彤" />
+    <Person partyId="CONTACT00007" firstName="王修平" />
+    <Person partyId="CONTACT00008" firstName="陈博涛" />
+    <Person partyId="CONTACT00009" firstName="杨宏兴" />
+    <Person partyId="CONTACT00010" firstName="孙磊" />
+    <Person partyId="CONTACT00011" firstName="张程" />
+    <Person partyId="CONTACT00012" firstName="刘云" />
+    <Person partyId="CONTACT00013" firstName="程鑫" />
+    <Person partyId="CONTACT00014" firstName="朱新兰" />
+    <Person partyId="CONTACT00015" firstName="汤质" />
+    <Person partyId="CONTACT00016" firstName="秦枫" />
+    <Person partyId="CONTACT00016" firstName="曾梦琳" />
+    <Person partyId="CONTACT00016" firstName="姚瑞" />
+    <Person partyId="CONTACT00016" firstName="陈金艺" />
+    <Person partyId="CONTACT00016" firstName="杨含沁" />
+    <Person partyId="CONTACT00016" firstName="张宇翔" />
+    <Person partyId="CONTACT00016" firstName="包文洋" />
+    <!--Person（公司员工）-->
+    <Person partyId="COMPANY_EMPLOYEE00001" firstName="郑涛" personImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/828191d8-8805-49f8-bea6-2a0231ab795c.png"/>
+    <Person partyId="COMPANY_EMPLOYEE00002" firstName="王梦然" personImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/eeba1cbe-ce73-4f10-901d-bb7922409a8b.png"/>
+    <Person partyId="COMPANY_EMPLOYEE00003" firstName="陈锦华" personImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/3ca13a89-fff2-48d3-849c-ea1ed085e832.png"/>
+    <Person partyId="COMPANY_EMPLOYEE00004" firstName="肖亚楠" personImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/f23bb757-e390-41d8-a040-9d77ac5a3428.png"/>
+    <Person partyId="COMPANY_EMPLOYEE00005" firstName="郑明明" personImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/de32462f-c677-4e3a-976f-fed452a85e31.png"/>
+    <!--Person（店铺成员）-->
+    <Person partyId="STORE_MANAGER_00001" firstName="金婷" personImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/de32462f-c677-4e3a-976f-fed452a85e31.png"/>
+    <Person partyId="STORE_MANAGER_00002" firstName="张政" personImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/828191d8-8805-49f8-bea6-2a0231ab795c.png"/>
+    <Person partyId="STORE_MANAGER_00003" firstName="杨帆" personImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/3ca13a89-fff2-48d3-849c-ea1ed085e832.png"/>
+    <Person partyId="STORE_MANAGER_00004" firstName="黄雨晴" personImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/eeba1cbe-ce73-4f10-901d-bb7922409a8b.png"/>
+    <Person partyId="STORE_MANAGER_00005" firstName="陈晨" personImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/f23bb757-e390-41d8-a040-9d77ac5a3428.png"/>
+    <!--Person(线索）-->
+    <Person partyId="LEAD00001"/>
+    <Person partyId="LEAD00001"/>
+    <Person partyId="LEAD00001"/>
+    <Person partyId="LEAD00001"/>
+    <Person partyId="LEAD00001"/>
+
+    <!--PartyRole(供应商)-->
+    <PartyRole partyId="SUPPLIER0001" roleTypeId="VENDOR"/>
+    <PartyRole partyId="SUPPLIER0002" roleTypeId="VENDOR"/>
+    <PartyRole partyId="SUPPLIER0003" roleTypeId="VENDOR"/>
+    <PartyRole partyId="SUPPLIER0004" roleTypeId="VENDOR"/>
+    <PartyRole partyId="SUPPLIER0005" roleTypeId="VENDOR"/>
+    <PartyRole partyId="SUPPLIER0006" roleTypeId="VENDOR"/>
+    <PartyRole partyId="SUPPLIER0007" roleTypeId="VENDOR"/>
+    <PartyRole partyId="SUPPLIER0001" roleTypeId="BILL_FROM_VENDOR"/>
+    <PartyRole partyId="SUPPLIER0002" roleTypeId="BILL_FROM_VENDOR"/>
+    <PartyRole partyId="SUPPLIER0003" roleTypeId="BILL_FROM_VENDOR"/>
+    <PartyRole partyId="SUPPLIER0004" roleTypeId="BILL_FROM_VENDOR"/>
+    <PartyRole partyId="SUPPLIER0005" roleTypeId="BILL_FROM_VENDOR"/>
+    <PartyRole partyId="SUPPLIER0006" roleTypeId="BILL_FROM_VENDOR"/>
+    <PartyRole partyId="SUPPLIER0007" roleTypeId="BILL_FROM_VENDOR"/>
+    <!--PartyRole(客户)-->
+    <PartyRole partyId="CUSTOMER0001" roleTypeId="CUSTOMER"/>
+    <PartyRole partyId="CUSTOMER0002" roleTypeId="CUSTOMER"/>
+    <PartyRole partyId="CUSTOMER0003" roleTypeId="CUSTOMER"/>
+    <PartyRole partyId="CUSTOMER0004" roleTypeId="CUSTOMER"/>
+    <PartyRole partyId="CUSTOMER0005" roleTypeId="CUSTOMER"/>
+    <PartyRole partyId="CUSTOMER0006" roleTypeId="CUSTOMER"/>
+    <PartyRole partyId="CUSTOMER0007" roleTypeId="CUSTOMER"/>
+    <PartyRole partyId="CUSTOMER0001" roleTypeId="BILL_TO_CUSTOMER"/>
+    <PartyRole partyId="CUSTOMER0002" roleTypeId="BILL_TO_CUSTOMER"/>
+    <PartyRole partyId="CUSTOMER0003" roleTypeId="BILL_TO_CUSTOMER"/>
+    <PartyRole partyId="CUSTOMER0004" roleTypeId="BILL_TO_CUSTOMER"/>
+    <PartyRole partyId="CUSTOMER0005" roleTypeId="BILL_TO_CUSTOMER"/>
+    <PartyRole partyId="CUSTOMER0006" roleTypeId="BILL_TO_CUSTOMER"/>
+    <PartyRole partyId="CUSTOMER0007" roleTypeId="BILL_TO_CUSTOMER"/>
+    <!--PartyRole(联系人)-->
+    <PartyRole partyId="CONTACT00001" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00002" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00003" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00004" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00005" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00006" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00007" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00008" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00009" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00010" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00011" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00012" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00013" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00014" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00015" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00016" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00017" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00018" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00019" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00020" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00021" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00021" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00022" roleTypeId="CONTACT"/>
+    <!--PartyRole(公司联系人)-->
+    <PartyRole partyId="COMPANY_EMPLOYEE00001" roleTypeId="CONTACT"/>
+    <PartyRole partyId="COMPANY_EMPLOYEE00002" roleTypeId="CONTACT"/>
+    <PartyRole partyId="COMPANY_EMPLOYEE00003" roleTypeId="CONTACT"/>
+    <PartyRole partyId="COMPANY_EMPLOYEE00004" roleTypeId="CONTACT"/>
+    <PartyRole partyId="COMPANY_EMPLOYEE00005" roleTypeId="CONTACT"/>
+    <!--PartyRole(公司员工)-->
+    <PartyRole partyId="COMPANY_EMPLOYEE00001" roleTypeId="EMPLOYMENT"/>
+    <PartyRole partyId="COMPANY_EMPLOYEE00002" roleTypeId="EMPLOYMENT"/>
+    <PartyRole partyId="COMPANY_EMPLOYEE00003" roleTypeId="EMPLOYMENT"/>
+    <PartyRole partyId="COMPANY_EMPLOYEE00004" roleTypeId="EMPLOYMENT"/>
+    <PartyRole partyId="COMPANY_EMPLOYEE00005" roleTypeId="EMPLOYMENT"/>
+    <!--PartyRole(公司业务负责人)-->
+    <PartyRole partyId="COMPANY_EMPLOYEE00001" roleTypeId="CHARGER"/>
+    <PartyRole partyId="COMPANY_EMPLOYEE00002" roleTypeId="CHARGER"/>
+    <PartyRole partyId="COMPANY_EMPLOYEE00003" roleTypeId="CHARGER"/>
+    <PartyRole partyId="COMPANY_EMPLOYEE00004" roleTypeId="CHARGER"/>
+    <PartyRole partyId="COMPANY_EMPLOYEE00005" roleTypeId="CHARGER"/>
+    <!--PartyRole(快递公司)-->
+    <PartyRole partyId="EXPRESS0001" roleTypeId="CARRIER"/>
+    <PartyRole partyId="EXPRESS0002" roleTypeId="CARRIER"/>
+    <PartyRole partyId="EXPRESS0003" roleTypeId="CARRIER"/>
+    <PartyRole partyId="EXPRESS0004" roleTypeId="CARRIER"/>
+    <PartyRole partyId="EXPRESS0005" roleTypeId="CARRIER"/>
+    <PartyRole partyId="EXPRESS0006" roleTypeId="CARRIER"/>
+    <PartyRole partyId="Company" roleTypeId="INTERNAL_ORGANIZATIO"/>
+    <PartyRole partyId="Company" roleTypeId="BILL_TO_CUSTOMER"/>
+    <PartyRole partyId="Company" roleTypeId="BILL_FROM_VENDOR"/>
+    <!--PartyRole(店铺成员)-->
+    <PartyRole partyId="STORE_MANAGER_00001" roleTypeId="MANAGER"/>
+    <PartyRole partyId="STORE_MANAGER_00002" roleTypeId="EMPLOYEE"/>
+    <PartyRole partyId="STORE_MANAGER_00003" roleTypeId="MANAGER"/>
+    <PartyRole partyId="STORE_MANAGER_00004" roleTypeId="MANAGER"/>
+    <PartyRole partyId="STORE_MANAGER_00005" roleTypeId="MANAGER"/>
+    <!--PartyRole(账户）-->
+    <PartyRole partyId="ACCOUNT00001" roleTypeId="ACCOUNT"/>
+    <PartyRole partyId="ACCOUNT00002" roleTypeId="ACCOUNT"/>
+    <PartyRole partyId="ACCOUNT00003" roleTypeId="ACCOUNT"/>
+    <PartyRole partyId="ACCOUNT00004" roleTypeId="ACCOUNT"/>
+    <PartyRole partyId="ACCOUNT00005" roleTypeId="ACCOUNT"/>
+    <PartyRole partyId="ACCOUNT00001" roleTypeId="LEAD_OWNER"/>
+    <PartyRole partyId="ACCOUNT00002" roleTypeId="LEAD_OWNER"/>
+    <PartyRole partyId="ACCOUNT00003" roleTypeId="LEAD_OWNER"/>
+    <PartyRole partyId="ACCOUNT00004" roleTypeId="LEAD_OWNER"/>
+    <PartyRole partyId="ACCOUNT00005" roleTypeId="LEAD_OWNER"/>
+    <!--PartyRole(线索）-->
+    <PartyRole partyId="LEAD00001" roleTypeId="LEAD"/>
+    <PartyRole partyId="LEAD00002" roleTypeId="LEAD"/>
+    <PartyRole partyId="LEAD00003" roleTypeId="LEAD"/>
+    <PartyRole partyId="LEAD00004" roleTypeId="LEAD"/>
+    <PartyRole partyId="LEAD00005" roleTypeId="LEAD"/>
+    <PartyRole partyId="LEAD00001" roleTypeId="EMPLOYMENT"/>
+    <PartyRole partyId="LEAD00002" roleTypeId="EMPLOYMENT"/>
+    <PartyRole partyId="LEAD00003" roleTypeId="EMPLOYMENT"/>
+    <PartyRole partyId="LEAD00004" roleTypeId="EMPLOYMENT"/>
+    <PartyRole partyId="LEAD00005" roleTypeId="EMPLOYMENT"/>
+
+    <!--PartyRelationship(公司联系人关系）-->
+    <PartyRelationship partyRelationshipId="RELATION00001" partyIdFrom="Company" partyIdTo="CONTACT00001" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION_COMPANY00001" partyIdFrom="Company" partyIdTo="COMPANY_EMPLOYEE00001" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION_COMPANY00002" partyIdFrom="Company" partyIdTo="COMPANY_EMPLOYEE00002" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION_COMPANY00003" partyIdFrom="Company" partyIdTo="COMPANY_EMPLOYEE00003" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION_COMPANY00004" partyIdFrom="Company" partyIdTo="COMPANY_EMPLOYEE00004" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION_COMPANY00005" partyIdFrom="Company" partyIdTo="COMPANY_EMPLOYEE00005" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION_COMPANY00006" partyIdFrom="Company" partyIdTo="COMPANY_EMPLOYEE00001" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="EMPLOYMENT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION_COMPANY00007" partyIdFrom="Company" partyIdTo="COMPANY_EMPLOYEE00002" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="EMPLOYMENT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION_COMPANY00008" partyIdFrom="Company" partyIdTo="COMPANY_EMPLOYEE00003" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="EMPLOYMENT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION_COMPANY00009" partyIdFrom="Company" partyIdTo="COMPANY_EMPLOYEE00004" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="EMPLOYMENT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION_COMPANY00010" partyIdFrom="Company" partyIdTo="COMPANY_EMPLOYEE00005" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="EMPLOYMENT" fromDate="2023-08-18 11:45:31.928"/>
+    <!--PartyRelationship(客户联系人关系）-->
+    <PartyRelationship partyRelationshipId="RELATION00002" partyIdFrom="CUSTOMER0001" partyIdTo="CONTACT00002" roleTypeIdFrom="CUSTOMER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00003" partyIdFrom="CUSTOMER0002" partyIdTo="CONTACT00003" roleTypeIdFrom="CUSTOMER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00004" partyIdFrom="CUSTOMER0003" partyIdTo="CONTACT00004" roleTypeIdFrom="CUSTOMER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00005" partyIdFrom="CUSTOMER0004" partyIdTo="CONTACT00005" roleTypeIdFrom="CUSTOMER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00006" partyIdFrom="CUSTOMER0005" partyIdTo="CONTACT00006" roleTypeIdFrom="CUSTOMER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00007" partyIdFrom="CUSTOMER0006" partyIdTo="CONTACT00007" roleTypeIdFrom="CUSTOMER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00008" partyIdFrom="CUSTOMER0007" partyIdTo="CONTACT00008" roleTypeIdFrom="CUSTOMER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <!--PartyRelationship(供应商联系人关系）-->
+    <PartyRelationship partyRelationshipId="RELATION00009" partyIdFrom="SUPPLIER0001" partyIdTo="CONTACT00009" roleTypeIdFrom="VENDOR" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00010" partyIdFrom="SUPPLIER0002" partyIdTo="CONTACT00010" roleTypeIdFrom="VENDOR" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00011" partyIdFrom="SUPPLIER0003" partyIdTo="CONTACT00011" roleTypeIdFrom="VENDOR" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00012" partyIdFrom="SUPPLIER0004" partyIdTo="CONTACT00012" roleTypeIdFrom="VENDOR" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00013" partyIdFrom="SUPPLIER0005" partyIdTo="CONTACT00013" roleTypeIdFrom="VENDOR" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00014" partyIdFrom="SUPPLIER0006" partyIdTo="CONTACT00014" roleTypeIdFrom="VENDOR" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00015" partyIdFrom="SUPPLIER0007" partyIdTo="CONTACT00015" roleTypeIdFrom="VENDOR" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <!--PartyRelationship(物流联系人关系）-->
+    <PartyRelationship partyRelationshipId="RELATION00016" partyIdFrom="EXPRESS0001" partyIdTo="CONTACT00016" roleTypeIdFrom="CARRIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00017" partyIdFrom="EXPRESS0002" partyIdTo="CONTACT00017" roleTypeIdFrom="CARRIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00018" partyIdFrom="EXPRESS0003" partyIdTo="CONTACT00018" roleTypeIdFrom="CARRIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00019" partyIdFrom="EXPRESS0004" partyIdTo="CONTACT00019" roleTypeIdFrom="CARRIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00020" partyIdFrom="EXPRESS0005" partyIdTo="CONTACT00020" roleTypeIdFrom="CARRIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00021" partyIdFrom="EXPRESS0006" partyIdTo="CONTACT00021" roleTypeIdFrom="CARRIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <!--PartyRelationship(公司与供应商）-->
+    <PartyRelationship partyRelationshipId="RELATION00022" partyIdFrom="Company" partyIdTo="SUPPLIER0001" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="BILL_FROM_VENDOR" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00023" partyIdFrom="Company" partyIdTo="SUPPLIER0002" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="BILL_FROM_VENDOR" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00024" partyIdFrom="Company" partyIdTo="SUPPLIER0003" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="BILL_FROM_VENDOR" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00025" partyIdFrom="Company" partyIdTo="SUPPLIER0004" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="BILL_FROM_VENDOR" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00026" partyIdFrom="Company" partyIdTo="SUPPLIER0005" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="BILL_FROM_VENDOR" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00027" partyIdFrom="Company" partyIdTo="SUPPLIER0006" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="BILL_FROM_VENDOR" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00028" partyIdFrom="Company" partyIdTo="SUPPLIER0007" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="BILL_FROM_VENDOR" fromDate="2023-08-18 11:45:31.928"/>
+    <!--PartyRelationship(公司与客户）-->
+    <PartyRelationship partyRelationshipId="RELATION00029" partyIdFrom="Company" partyIdTo="CUSTOMER0001" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="BILL_TO_CUSTOMER" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00030" partyIdFrom="Company" partyIdTo="CUSTOMER0002" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="BILL_TO_CUSTOMER" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00031" partyIdFrom="Company" partyIdTo="CUSTOMER0003" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="BILL_TO_CUSTOMER" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00032" partyIdFrom="Company" partyIdTo="CUSTOMER0004" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="BILL_TO_CUSTOMER" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00033" partyIdFrom="Company" partyIdTo="CUSTOMER0005" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="BILL_TO_CUSTOMER" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00034" partyIdFrom="Company" partyIdTo="CUSTOMER0006" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="BILL_TO_CUSTOMER" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00035" partyIdFrom="Company" partyIdTo="CUSTOMER0007" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="BILL_TO_CUSTOMER" fromDate="2023-08-18 11:45:31.928"/>
+    <!--PartyRelationship（线索和账户的关系）-->
+    <PartyRelationship partyRelationshipId="ACCOUNT_LEAD_00001" partyIdFrom="ACCOUNT00001" partyIdTo="LEAD00001" roleTypeIdFrom="LEAD_OWNER" roleTypeIdTo="EMPLOYMENT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="ACCOUNT_LEAD_00002" partyIdFrom="ACCOUNT00002" partyIdTo="LEAD00002" roleTypeIdFrom="LEAD_OWNER" roleTypeIdTo="EMPLOYMENT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="ACCOUNT_LEAD_00003" partyIdFrom="ACCOUNT00003" partyIdTo="LEAD00003" roleTypeIdFrom="LEAD_OWNER" roleTypeIdTo="EMPLOYMENT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="ACCOUNT_LEAD_00004" partyIdFrom="ACCOUNT00004" partyIdTo="LEAD00004" roleTypeIdFrom="LEAD_OWNER" roleTypeIdTo="EMPLOYMENT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="ACCOUNT_LEAD_00005" partyIdFrom="ACCOUNT00005" partyIdTo="LEAD00005" roleTypeIdFrom="LEAD_OWNER" roleTypeIdTo="EMPLOYMENT" fromDate="2023-08-18 11:45:31.928"/>
+    <!--PartyRelationship（线索负责人）-->
+    <PartyRelationship partyRelationshipId="CONTACT_LEAD_00001" partyIdFrom="COMPANY_EMPLOYEE00001" partyIdTo="LEAD00001" roleTypeIdFrom="CHARGER" roleTypeIdTo="LEAD" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="CONTACT_LEAD_00002" partyIdFrom="COMPANY_EMPLOYEE00002" partyIdTo="LEAD00002" roleTypeIdFrom="CHARGER" roleTypeIdTo="LEAD" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="CONTACT_LEAD_00003" partyIdFrom="COMPANY_EMPLOYEE00003" partyIdTo="LEAD00003" roleTypeIdFrom="CHARGER" roleTypeIdTo="LEAD" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="CONTACT_LEAD_00004" partyIdFrom="COMPANY_EMPLOYEE00004" partyIdTo="LEAD00004" roleTypeIdFrom="CHARGER" roleTypeIdTo="LEAD" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="CONTACT_LEAD_00005" partyIdFrom="COMPANY_EMPLOYEE00005" partyIdTo="LEAD00005" roleTypeIdFrom="CHARGER" roleTypeIdTo="LEAD" fromDate="2023-08-18 11:45:31.928"/>
+    <!--PartyRelationship（账户负责人）-->
+    <PartyRelationship partyRelationshipId="CONTACT_ACCOUNT_00001" partyIdFrom="COMPANY_EMPLOYEE00001" partyIdTo="ACCOUNT00001" roleTypeIdFrom="CHARGER" roleTypeIdTo="ACCOUNT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="CONTACT_ACCOUNT_00002" partyIdFrom="COMPANY_EMPLOYEE00002" partyIdTo="ACCOUNT00002" roleTypeIdFrom="CHARGER" roleTypeIdTo="ACCOUNT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="CONTACT_ACCOUNT_00003" partyIdFrom="COMPANY_EMPLOYEE00003" partyIdTo="ACCOUNT00003" roleTypeIdFrom="CHARGER" roleTypeIdTo="ACCOUNT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="CONTACT_ACCOUNT_00004" partyIdFrom="COMPANY_EMPLOYEE00004" partyIdTo="ACCOUNT00004" roleTypeIdFrom="CHARGER" roleTypeIdTo="ACCOUNT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="CONTACT_ACCOUNT_00005" partyIdFrom="COMPANY_EMPLOYEE00005" partyIdTo="ACCOUNT00005" roleTypeIdFrom="CHARGER" roleTypeIdTo="ACCOUNT" fromDate="2023-08-18 11:45:31.928"/>
+    <!--PartyRelationship(公司部门关系）-->
+    <PartyRelationship partyRelationshipId="COMPANY_DEPART_00001" partyIdFrom="Company" partyIdTo="Company_Depart_Tech" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="DEPARTMENT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="COMPANY_DEPART_00002" partyIdFrom="Company" partyIdTo="Company_Depart_Prod" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="DEPARTMENT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="COMPANY_DEPART_00003" partyIdFrom="Company" partyIdTo="Company_Depart_Fin" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="DEPARTMENT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="COMPANY_DEPART_00004" partyIdFrom="Company" partyIdTo="Company_Depart_HR" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="DEPARTMENT" fromDate="2023-08-18 11:45:31.928"/>
+    <!--PartyRelationship(部门员工关系）-->
+    <PartyRelationship partyRelationshipId="DEPART_EMPLOYEE_00001" partyIdFrom="Company_Depart_Tech" partyIdTo="COMPANY_EMPLOYEE00001" roleTypeIdFrom="DEPARTMENT" roleTypeIdTo="EMPLOYMENT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="DEPART_EMPLOYEE_00002" partyIdFrom="Company_Depart_Tech" partyIdTo="COMPANY_EMPLOYEE00002" roleTypeIdFrom="DEPARTMENT" roleTypeIdTo="EMPLOYMENT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="DEPART_EMPLOYEE_00003" partyIdFrom="Company_Depart_Prod" partyIdTo="COMPANY_EMPLOYEE00003" roleTypeIdFrom="DEPARTMENT" roleTypeIdTo="EMPLOYMENT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="DEPART_EMPLOYEE_00004" partyIdFrom="Company_Depart_Fin" partyIdTo="COMPANY_EMPLOYEE00004" roleTypeIdFrom="DEPARTMENT" roleTypeIdTo="EMPLOYMENT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="DEPART_EMPLOYEE_00005" partyIdFrom="Company_Depart_HR" partyIdTo="COMPANY_EMPLOYEE00005" roleTypeIdFrom="DEPARTMENT" roleTypeIdTo="EMPLOYMENT" fromDate="2023-08-18 11:45:31.928"/>
+
+    <!--ContactMech-->
+    <!--ContactMech(供应商电话)-->
+    <ContactMech contactMechId="TELE_SUPPLIER00001" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_SUPPLIER00002" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_SUPPLIER00003" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_SUPPLIER00004" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_SUPPLIER00005" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_SUPPLIER00006" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_SUPPLIER00007" contactMechTypeId="TELECOM_NUMBER"/>
+    <!--ContactMech(供应商地址)-->
+    <ContactMech contactMechId="POST_SUPPLIER00001" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="POST_SUPPLIER00002" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="POST_SUPPLIER00003" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="POST_SUPPLIER00004" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="POST_SUPPLIER00005" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="POST_SUPPLIER00006" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="POST_SUPPLIER00007" contactMechTypeId="POSTAL_ADDRESS"/>
+    <!--ContactMech(供应商Email)-->
+    <ContactMech contactMechId="EMAIL_SUPPLIER0001" infoString="ISFY39857@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_SUPPLIER0002" infoString="MBY4546@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_SUPPLIER0003" infoString="GS34245@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_SUPPLIER0004" infoString="OUU23425@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_SUPPLIER0005" infoString="123986FDY@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_SUPPLIER0006" infoString="77483254@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_SUPPLIER0007" infoString="8879232DGYSU@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+
+    <!--ContactMech(客户电话)-->
+    <ContactMech contactMechId="TELE_CUSTOMER00001" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CUSTOMER00002" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CUSTOMER00003" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CUSTOMER00004" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CUSTOMER00005" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CUSTOMER00006" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CUSTOMER00007" contactMechTypeId="TELECOM_NUMBER"/>
+    <!--ContactMech(客户地址)-->
+    <ContactMech contactMechId="POST_CUSTOMER00001" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="POST_CUSTOMER00002" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="POST_CUSTOMER00003" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="POST_CUSTOMER00004" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="POST_CUSTOMER00005" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="POST_CUSTOMER00006" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="POST_CUSTOMER00007" contactMechTypeId="POSTAL_ADDRESS"/>
+    <!--ContactMech(客户Email)-->
+    <ContactMech contactMechId="EMAIL_CUSTOMER0001" infoString="IHYIG5346@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CUSTOMER0002" infoString="928647QS@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CUSTOMER0003" infoString="ZM453623@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CUSTOMER0004" infoString="NFD42355@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CUSTOMER0005" infoString="HYIG98572@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CUSTOMER0006" infoString="qes2436457@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CUSTOMER0007" infoString="ZZ4563465@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+
+    <!--ContactMech(快递公司电话)-->
+    <ContactMech contactMechId="TELE_EXPRESS00001" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_EXPRESS00002" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_EXPRESS00003" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_EXPRESS00004" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_EXPRESS00005" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_EXPRESS00006" contactMechTypeId="TELECOM_NUMBER"/>
+    <!--ContactMech(快递公司地址)-->
+    <ContactMech contactMechId="POST_EXPRESS00001" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="POST_EXPRESS00002" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="POST_EXPRESS00003" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="POST_EXPRESS00004" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="POST_EXPRESS00005" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="POST_EXPRESS00006" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="POST_EXPRESS00007" contactMechTypeId="POSTAL_ADDRESS"/>
+    <!--ContactMech(快递公司Email)-->
+    <ContactMech contactMechId="EMAIL_EXPRESS0001" infoString="IN76REYUG@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_EXPRESS0002" infoString="NJFUBI345@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_EXPRESS0003" infoString="IUI345667@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_EXPRESS0004" infoString="BMCVB456@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_EXPRESS0005" infoString="3464NVHB@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_EXPRESS0006" infoString="FSHIDU34534@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_EXPRESS0007" infoString="ZMNB4356@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+
+    <!--ContactMech(公司电话)-->
+    <ContactMech contactMechId="TELE_COMPANY00001" contactMechTypeId="TELECOM_NUMBER"/>
+    <!--ContactMech(公司地址)-->
+    <ContactMech contactMechId="POST_COMPANY00001" contactMechTypeId="POSTAL_ADDRESS"/>
+    <!--ContactMech(公司邮箱)-->
+    <ContactMech contactMechId="EMAIL_COMPANY00001" infoString="CUIO5436@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+
+    <!--ContactMech(账户联系电话）-->
+    <ContactMech contactMechId="TELE_ACCOUNT00001" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_ACCOUNT00002" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_ACCOUNT00003" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_ACCOUNT00004" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_ACCOUNT00005" contactMechTypeId="TELECOM_NUMBER"/>
+    <!--ContactMech(账户地址）-->
+    <ContactMech contactMechId="POST_ACCOUNT00001" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="POST_ACCOUNT00002" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="POST_ACCOUNT00003" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="POST_ACCOUNT00004" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="POST_ACCOUNT00005" contactMechTypeId="POSTAL_ADDRESS"/>
+    <!--ContactMech(账户邮箱）-->
+    <ContactMech contactMechId="EMAIL_ACCOUNT00001" infoString="QSR1235@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_ACCOUNT00002" infoString="EQW24657@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_ACCOUNT00003" infoString="1246MMN@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_ACCOUNT00004" infoString="CS5476@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_ACCOUNT00005" infoString="QQ089023@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+
+    <!--ContactMech(联系人电话)-->
+    <ContactMech contactMechId="TELE_CONTACT00001" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00002" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00003" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00004" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00005" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00006" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00007" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00008" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00009" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00010" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00011" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00012" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00013" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00014" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00015" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00016" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00017" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00018" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00019" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00020" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00021" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00022" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00023" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00024" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00025" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00026" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00027" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00028" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00029" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00030" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00031" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00032" contactMechTypeId="TELECOM_NUMBER"/>
+    <!--ContactMech(联系人邮箱)-->
+    <ContactMech contactMechId="EMAIL_CONTACT00001" infoString="ZZJGUIH@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00002" infoString="CXX968756@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00003" infoString="YL534CBY@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00004" infoString="CT5345YGU@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00005" infoString="CXV3654@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00006" infoString="239869876@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00007" infoString="ZX54653@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00008" infoString="9087BUYG@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00009" infoString="NCBY45365@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00010" infoString="NNMM536@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00011" infoString="1235NUIGM@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00012" infoString="256C89FDT@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00013" infoString="GZ8349657@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00014" infoString="MN534BYU@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00015" infoString="43IUSFYDG@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00016" infoString="CVBYU346534@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00017" infoString="534BYUVT@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00018" infoString="SDFD654@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00019" infoString="IUY346654@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00020" infoString="ICBC435645@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00021" infoString="IU89786@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00022" infoString="324546BUYV@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00023" infoString="324546BUYV@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00024" infoString="324546BUYV@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00025" infoString="ads456@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00026" infoString="FHY5436@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00027" infoString="3245FDGYV@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00028" infoString="ZT990324@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00029" infoString="WMR1209@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00030" infoString="CJH110811@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00031" infoString="XYN960321@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00032" infoString="ZMM6357324@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <!--ContactMech(联系人微信)-->
+    <ContactMech contactMechId="VX_CONTACT00001" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00002" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00003" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00004" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00005" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00006" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00007" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00008" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00009" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00010" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00011" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00012" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00013" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00014" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00015" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00016" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00017" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00018" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00019" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00020" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00021" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00022" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00023" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00024" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00025" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00026" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00027" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00028" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00029" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00030" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00031" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00032" contactMechTypeId="TELECOM_NUMBER"/>
+
+    <!--ContactMech(线索电话)-->
+    <ContactMech contactMechId="TELE_LEAD00001" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_LEAD00002" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_LEAD00003" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_LEAD00004" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_LEAD00005" contactMechTypeId="TELECOM_NUMBER"/>
+    <!--ContactMech(线索邮箱)-->
+    <ContactMech contactMechId="EMAIL_LEAD00001" infoString="poa4364@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_LEAD00002" infoString="zmn54365@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_LEAD00003" infoString="990506qwe@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_LEAD00004" infoString="jgd990823@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_LEAD00005" infoString="960221fds@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <!--ContactMech(线索微信)-->
+    <ContactMech contactMechId="VX_LEAD00001" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_LEAD00002" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_LEAD00003" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_LEAD00004" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_LEAD00005" contactMechTypeId="TELECOM_NUMBER"/>
+
+    <!--TelecomNumber-->
+    <!--TelecomNumber(供应商电话)-->
+    <TelecomNumber contactMechId="TELE_SUPPLIER00001" contactNumber="0871-896786"/>
+    <TelecomNumber contactMechId="TELE_SUPPLIER00002" contactNumber="0871-194637"/>
+    <TelecomNumber contactMechId="TELE_SUPPLIER00003" contactNumber="0871-224630"/>
+    <TelecomNumber contactMechId="TELE_SUPPLIER00004" contactNumber="0871-324566"/>
+    <TelecomNumber contactMechId="TELE_SUPPLIER00005" contactNumber="0871-246907"/>
+    <TelecomNumber contactMechId="TELE_SUPPLIER00006" contactNumber="0871-256756"/>
+    <TelecomNumber contactMechId="TELE_SUPPLIER00007" contactNumber="0871-986876"/>
+    <!--TelecomNumber(客户电话)-->
+    <TelecomNumber contactMechId="TELE_CUSTOMER00001" contactNumber="0871-678634"/>
+    <TelecomNumber contactMechId="TELE_CUSTOMER00002" contactNumber="0871-928153"/>
+    <TelecomNumber contactMechId="TELE_CUSTOMER00003" contactNumber="0871-798678"/>
+    <TelecomNumber contactMechId="TELE_CUSTOMER00004" contactNumber="0871-912873"/>
+    <TelecomNumber contactMechId="TELE_CUSTOMER00005" contactNumber="0871-131254"/>
+    <TelecomNumber contactMechId="TELE_CUSTOMER00006" contactNumber="0871-968322"/>
+    <TelecomNumber contactMechId="TELE_CUSTOMER00007" contactNumber="0871-145432"/>
+    <!--TelecomNumber(快递公司电话)-->
+    <TelecomNumber contactMechId="TELE_EXPRESS00001" contactNumber="0871-189723"/>
+    <TelecomNumber contactMechId="TELE_EXPRESS00002" contactNumber="0871-194637"/>
+    <TelecomNumber contactMechId="TELE_EXPRESS00003" contactNumber="0871-224630"/>
+    <TelecomNumber contactMechId="TELE_EXPRESS00004" contactNumber="0871-897863"/>
+    <TelecomNumber contactMechId="TELE_EXPRESS00005" contactNumber="0871-123143"/>
+    <TelecomNumber contactMechId="TELE_EXPRESS00006" contactNumber="0871-123980"/>
+    <!--TelecomNumber(公司电话)-->
+    <TelecomNumber contactMechId="TELE_COMPANY00001" contactNumber="0871-097895"/>
+    <!--TelecomNumber(联系人电话)-->
+    <TelecomNumber contactMechId="TELE_CONTACT00001" contactNumber="19946345361"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00002" contactNumber="18374260957"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00003" contactNumber="13246792210"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00004" contactNumber="18014723319"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00005" contactNumber="18880412334"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00006" contactNumber="17923406725"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00007" contactNumber="13947270871"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00008" contactNumber="15674722218"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00009" contactNumber="19946730021"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00010" contactNumber="12846771380"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00011" contactNumber="17910403725"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00012" contactNumber="18014722372"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00013" contactNumber="15945267478"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00014" contactNumber="13908276623"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00015" contactNumber="18084721138"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00016" contactNumber="17809572375"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00017" contactNumber="14900821383"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00018" contactNumber="16309211248"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00019" contactNumber="18784420851"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00020" contactNumber="19908902213"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00021" contactNumber="18806092218"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00022" contactNumber="17922304546"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00023" contactNumber="18905674211"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00024" contactNumber="13527460921"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00025" contactNumber="19943566572"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00026" contactNumber="13208954520"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00027" contactNumber="12954632500"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00028" contactNumber="15974270831"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00029" contactNumber="18903567611"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00030" contactNumber="19943279080"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00031" contactNumber="18813465793"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00032" contactNumber="13980871923"/>
+    <!--TelecomNumber(账户联系电话）-->
+    <TelecomNumber contactMechId="TELE_ACCOUNT00001" contactNumber="0871-086365"/>
+    <TelecomNumber contactMechId="TELE_ACCOUNT00002" contactNumber="0871-105436"/>
+    <TelecomNumber contactMechId="TELE_ACCOUNT00003" contactNumber="0871-200657"/>
+    <TelecomNumber contactMechId="TELE_ACCOUNT00004" contactNumber="0871-981465"/>
+    <TelecomNumber contactMechId="TELE_ACCOUNT00005" contactNumber="0871-139864"/>
+    <!--TelecomNumber(线索电话)-->
+    <TelecomNumber contactMechId="TELE_LEAD00001" contactNumber="18903546244"/>
+    <TelecomNumber contactMechId="TELE_LEAD00002" contactNumber="13789743546"/>
+    <TelecomNumber contactMechId="TELE_LEAD00003" contactNumber="19909742652"/>
+    <TelecomNumber contactMechId="TELE_LEAD00004" contactNumber="13277804412"/>
+    <TelecomNumber contactMechId="TELE_LEAD00005" contactNumber="13903255634"/>
+
+    <!--TelecomNumber(联系人微信)-->
+    <TelecomNumber contactMechId="VX_CONTACT00001" contactNumber="VX:ZZG890821"/>
+    <TelecomNumber contactMechId="VX_CONTACT00002" contactNumber="VX:YL980643"/>
+    <TelecomNumber contactMechId="VX_CONTACT00003" contactNumber="VX:CT43254CT"/>
+    <TelecomNumber contactMechId="VX_CONTACT00004" contactNumber="VX:zhou43645634"/>
+    <TelecomNumber contactMechId="VX_CONTACT00005" contactNumber="VX:xiaotong32546"/>
+    <TelecomNumber contactMechId="VX_CONTACT00006" contactNumber="VX:9867864235xp"/>
+    <TelecomNumber contactMechId="VX_CONTACT00007" contactNumber="VX:49cbt8973"/>
+    <TelecomNumber contactMechId="VX_CONTACT00008" contactNumber="VX:YHX42356"/>
+    <TelecomNumber contactMechId="VX_CONTACT00009" contactNumber="VX:SL32978BH"/>
+    <TelecomNumber contactMechId="VX_CONTACT00010" contactNumber="VX:BBS732459"/>
+    <TelecomNumber contactMechId="VX_CONTACT00011" contactNumber="VX:LIU8294725"/>
+    <TelecomNumber contactMechId="VX_CONTACT00012" contactNumber="VX:CX248973948seq"/>
+    <TelecomNumber contactMechId="VX_CONTACT00013" contactNumber="VX:xinlan34526"/>
+    <TelecomNumber contactMechId="VX_CONTACT00014" contactNumber="VX:TZ923876727"/>
+    <TelecomNumber contactMechId="VX_CONTACT00015" contactNumber="VX:QF436HYGNIU"/>
+    <TelecomNumber contactMechId="VX_CONTACT00016" contactNumber="VX:huigy435546"/>
+    <TelecomNumber contactMechId="VX_CONTACT00017" contactNumber="VX:QSE8397fsdhyi"/>
+    <TelecomNumber contactMechId="VX_CONTACT00018" contactNumber="VX:YHQ892578FDGYG"/>
+    <TelecomNumber contactMechId="VX_CONTACT00019" contactNumber="VX:ZYX895734586"/>
+    <TelecomNumber contactMechId="VX_CONTACT00020" contactNumber="VX:BUIG47382456"/>
+    <TelecomNumber contactMechId="VX_CONTACT00021" contactNumber="VX:soinim3545"/>
+    <TelecomNumber contactMechId="VX_CONTACT00022" contactNumber="VX:yyq8978556"/>
+    <TelecomNumber contactMechId="VX_CONTACT00023" contactNumber="VX:JT546547"/>
+    <TelecomNumber contactMechId="VX_CONTACT00024" contactNumber="VX:Z19990606"/>
+    <TelecomNumber contactMechId="VX_CONTACT00025" contactNumber="VX:QA5776SC"/>
+    <TelecomNumber contactMechId="VX_CONTACT00026" contactNumber="VX:fgy356576"/>
+    <TelecomNumber contactMechId="VX_CONTACT00027" contactNumber="VX:MNF3257AS"/>
+    <TelecomNumber contactMechId="VX_CONTACT00028" contactNumber="VX:ZT15974270831"/>
+    <TelecomNumber contactMechId="VX_CONTACT00029" contactNumber="VX:WMR18903567611"/>
+    <TelecomNumber contactMechId="VX_CONTACT00030" contactNumber="VX:19943279080"/>
+    <TelecomNumber contactMechId="VX_CONTACT00031" contactNumber="VX:XYN990506"/>
+    <TelecomNumber contactMechId="VX_CONTACT00032" contactNumber="VX:1242565ZMM"/>
+    <!--TelecomNumber(线索微信)-->
+    <TelecomNumber contactMechId="VX_LEAD00001" contactNumber="VX:GER214654"/>
+    <TelecomNumber contactMechId="VX_LEAD00002" contactNumber="VX:NM897"/>
+    <TelecomNumber contactMechId="VX_LEAD00003" contactNumber="VX:QWX54634"/>
+    <TelecomNumber contactMechId="VX_LEAD00004" contactNumber="VX:897875IU"/>
+    <TelecomNumber contactMechId="VX_LEAD00005" contactNumber="VX:98776KK"/>
+
+    <!--PostalAddress-->
+    <!--PostalAddress(供应商地址)-->
+    <PostalAddress contactMechId="POST_SUPPLIER00001" address1="上海市浦东新区浦南路100号"/>
+    <PostalAddress contactMechId="POST_SUPPLIER00002" address1="上海市打浦桥100号普惠大厦"/>
+    <PostalAddress contactMechId="POST_SUPPLIER00003" address1="上海市虹口区昆明路230号之桥大厦"/>
+    <PostalAddress contactMechId="POST_SUPPLIER00004" address1="河南省郑州市长虹路782号"/>
+    <PostalAddress contactMechId="POST_SUPPLIER00005" address1="北京中关村清华东门清华科技园C座"/>
+    <PostalAddress contactMechId="POST_SUPPLIER00006" address1="上海市闵行区浦江镇临江科技广场2号楼318"/>
+    <PostalAddress contactMechId="POST_SUPPLIER00007" address1="北京市海淀区上地十街10号百度大厦"/>
+    <!--PostalAddress(客户地址)-->
+    <PostalAddress contactMechId="POST_CUSTOMER00001" address1="广东省深圳市龙腾路腾讯大厦2009"/>
+    <PostalAddress contactMechId="POST_CUSTOMER00002" address1="上海市桂林路环球科技园A栋302"/>
+    <PostalAddress contactMechId="POST_CUSTOMER00003" address1="苏州苏南路苏南科技园21栋409"/>
+    <PostalAddress contactMechId="POST_CUSTOMER00004" address1="北京市中关村京东大厦201"/>
+    <PostalAddress contactMechId="POST_CUSTOMER00005" address1="北京市长宁路100号"/>
+    <PostalAddress contactMechId="POST_CUSTOMER00006" address1="北京市解放西路南段891号智宇大厦"/>
+    <PostalAddress contactMechId="POST_CUSTOMER00007" address1="北京市文辉路100号文辉大厦"/>
+    <!--PostalAddress(快递公司地址)-->
+    <PostalAddress contactMechId="POST_EXPRESS00001" address1="广东省深圳市南田路100号顺丰大厦"/>
+    <PostalAddress contactMechId="POST_EXPRESS00002" address1="上海市青浦区盈港东路6679号(靠近裕华路路口)"/>
+    <PostalAddress contactMechId="POST_EXPRESS00003" address1="上海市青浦区华新镇华志路1685号"/>
+    <PostalAddress contactMechId="POST_EXPRESS00004" address1="深圳市罗湖区新田大道与望桐新路交叉路口西侧(罗湖区新田幼儿园东侧约50米)"/>
+    <PostalAddress contactMechId="POST_EXPRESS00005" address1="北京市中关村京东大厦201"/>
+    <PostalAddress contactMechId="POST_EXPRESS00006" address1="浙江省杭州市余杭区中泰路201号"/>
+    <!--PostalAddress(公司地址)-->
+    <PostalAddress contactMechId="POST_COMPANY00001" address1="上海市闵行区浦江镇临江科技广场8号楼610"/>
+    <!--PostalAddress(账户地址）-->
+    <PostalAddress contactMechId="POST_ACCOUNT00001" address1="上海市普陀区淞虹路100号"/>
+    <PostalAddress contactMechId="POST_ACCOUNT00002" address1="上海市普陀区清峪路100号"/>
+    <PostalAddress contactMechId="POST_ACCOUNT00003" address1="上海市闵行区七宝路300号"/>
+    <PostalAddress contactMechId="POST_ACCOUNT00004" address1="上海市浦东新区浦南路200号"/>
+    <PostalAddress contactMechId="POST_ACCOUNT00005" address1="上海市浦东新区世纪大道100号"/>
+
+    <!--PartyContactMechPurpose-->
+    <!--PartyContactMechPurpose(供应商电话)-->
+    <PartyContactMechPurpose partyId="SUPPLIER0001" contactMechId="TELE_SUPPLIER00001" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="SUPPLIER0002" contactMechId="TELE_SUPPLIER00002" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="SUPPLIER0003" contactMechId="TELE_SUPPLIER00003" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="SUPPLIER0004" contactMechId="TELE_SUPPLIER00004" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="SUPPLIER0005" contactMechId="TELE_SUPPLIER00005" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="SUPPLIER0006" contactMechId="TELE_SUPPLIER00006" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="SUPPLIER0007" contactMechId="TELE_SUPPLIER00007" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <!--PartyContactMechPurpose(供应商地址)-->
+    <PartyContactMechPurpose partyId="SUPPLIER0001" contactMechId="POST_SUPPLIER00001" contactMechPurposeTypeId="PRIMARY_LOCATION" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="SUPPLIER0002" contactMechId="POST_SUPPLIER00002" contactMechPurposeTypeId="PRIMARY_LOCATION" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="SUPPLIER0003" contactMechId="POST_SUPPLIER00003" contactMechPurposeTypeId="PRIMARY_LOCATION" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="SUPPLIER0004" contactMechId="POST_SUPPLIER00004" contactMechPurposeTypeId="PRIMARY_LOCATION" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="SUPPLIER0005" contactMechId="POST_SUPPLIER00005" contactMechPurposeTypeId="PRIMARY_LOCATION" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="SUPPLIER0006" contactMechId="POST_SUPPLIER00006" contactMechPurposeTypeId="PRIMARY_LOCATION" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="SUPPLIER0007" contactMechId="POST_SUPPLIER00007" contactMechPurposeTypeId="PRIMARY_LOCATION" fromDate="2023-01-28 11:45:31.928"/>
+    <!--PartyContactMechPurpose(供应商邮箱)-->
+    <PartyContactMechPurpose partyId="SUPPLIER0001" contactMechId="EMAIL_SUPPLIER0001" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="SUPPLIER0002" contactMechId="EMAIL_SUPPLIER0002" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="SUPPLIER0003" contactMechId="EMAIL_SUPPLIER0003" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="SUPPLIER0004" contactMechId="EMAIL_SUPPLIER0004" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="SUPPLIER0005" contactMechId="EMAIL_SUPPLIER0005" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="SUPPLIER0006" contactMechId="EMAIL_SUPPLIER0006" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="SUPPLIER0007" contactMechId="EMAIL_SUPPLIER0007" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+
+    <!--PartyContactMechPurpose(客户电话)-->
+    <PartyContactMechPurpose partyId="CUSTOMER0001" contactMechId="TELE_CUSTOMER00001" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CUSTOMER0002" contactMechId="TELE_CUSTOMER00002" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CUSTOMER0003" contactMechId="TELE_CUSTOMER00003" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CUSTOMER0004" contactMechId="TELE_CUSTOMER00004" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CUSTOMER0005" contactMechId="TELE_CUSTOMER00005" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CUSTOMER0006" contactMechId="TELE_CUSTOMER00006" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CUSTOMER0007" contactMechId="TELE_CUSTOMER00007" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <!--PartyContactMechPurpose(客户地址)-->
+    <PartyContactMechPurpose partyId="CUSTOMER0001" contactMechId="POST_CUSTOMER00001" contactMechPurposeTypeId="PRIMARY_LOCATION" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CUSTOMER0002" contactMechId="POST_CUSTOMER00002" contactMechPurposeTypeId="PRIMARY_LOCATION" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CUSTOMER0003" contactMechId="POST_CUSTOMER00003" contactMechPurposeTypeId="PRIMARY_LOCATION" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CUSTOMER0004" contactMechId="POST_CUSTOMER00004" contactMechPurposeTypeId="PRIMARY_LOCATION" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CUSTOMER0005" contactMechId="POST_CUSTOMER00005" contactMechPurposeTypeId="PRIMARY_LOCATION" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CUSTOMER0006" contactMechId="POST_CUSTOMER00006" contactMechPurposeTypeId="PRIMARY_LOCATION" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CUSTOMER0007" contactMechId="POST_CUSTOMER00007" contactMechPurposeTypeId="PRIMARY_LOCATION" fromDate="2023-01-28 11:45:31.928"/>
+    <!--PartyContactMechPurpose(客户邮箱)-->
+    <PartyContactMechPurpose partyId="CUSTOMER0001" contactMechId="EMAIL_CUSTOMER0001" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CUSTOMER0002" contactMechId="EMAIL_CUSTOMER0002" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CUSTOMER0003" contactMechId="EMAIL_CUSTOMER0003" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CUSTOMER0004" contactMechId="EMAIL_CUSTOMER0004" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CUSTOMER0005" contactMechId="EMAIL_CUSTOMER0005" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CUSTOMER0006" contactMechId="EMAIL_CUSTOMER0006" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CUSTOMER0007" contactMechId="EMAIL_CUSTOMER0007" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+
+    <!--PartyContactMechPurpose(快递公司电话)-->
+    <PartyContactMechPurpose partyId="EXPRESS0001" contactMechId="TELE_EXPRESS00001" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="EXPRESS0002" contactMechId="TELE_EXPRESS00002" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="EXPRESS0003" contactMechId="TELE_EXPRESS00003" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="EXPRESS0004" contactMechId="TELE_EXPRESS00004" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="EXPRESS0005" contactMechId="TELE_EXPRESS00005" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="EXPRESS0006" contactMechId="TELE_EXPRESS00006" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <!--PartyContactMechPurpose(快递公司地址)-->
+    <PartyContactMechPurpose partyId="EXPRESS0001" contactMechId="POST_EXPRESS00001" contactMechPurposeTypeId="PRIMARY_LOCATION" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="EXPRESS0002" contactMechId="POST_EXPRESS00002" contactMechPurposeTypeId="PRIMARY_LOCATION" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="EXPRESS0003" contactMechId="POST_EXPRESS00003" contactMechPurposeTypeId="PRIMARY_LOCATION" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="EXPRESS0004" contactMechId="POST_EXPRESS00004" contactMechPurposeTypeId="PRIMARY_LOCATION" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="EXPRESS0005" contactMechId="POST_EXPRESS00005" contactMechPurposeTypeId="PRIMARY_LOCATION" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="EXPRESS0006" contactMechId="POST_EXPRESS00006" contactMechPurposeTypeId="PRIMARY_LOCATION" fromDate="2023-01-28 11:45:31.928"/>
+    <!--PartyContactMechPurpose(快递公司邮箱)-->
+    <PartyContactMechPurpose partyId="EXPRESS0001" contactMechId="EMAIL_EXPRESS0001" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="EXPRESS0002" contactMechId="EMAIL_EXPRESS0002" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="EXPRESS0003" contactMechId="EMAIL_EXPRESS0003" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="EXPRESS0004" contactMechId="EMAIL_EXPRESS0004" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="EXPRESS0005" contactMechId="EMAIL_EXPRESS0005" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="EXPRESS0006" contactMechId="EMAIL_EXPRESS0006" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+
+    <!--PartyContactMechPurpose(公司电话)-->
+    <PartyContactMechPurpose partyId="Company" contactMechId="TELE_COMPANY00001" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <!--PartyContactMechPurpose(公司地址)-->
+    <PartyContactMechPurpose partyId="Company" contactMechId="POST_COMPANY00001" contactMechPurposeTypeId="PRIMARY_LOCATION" fromDate="2023-01-28 11:45:31.928"/>
+    <!--PartyContactMechPurpose(公司邮箱)-->
+    <PartyContactMechPurpose partyId="Company" contactMechId="EMAIL_COMPANY00001" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+
+    <!--PartyContactMechPurpose(联系人电话)-->
+    <PartyContactMechPurpose partyId="CONTACT00001" contactMechId="TELE_CONTACT00001" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00002" contactMechId="TELE_CONTACT00002" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00003" contactMechId="TELE_CONTACT00003" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00004" contactMechId="TELE_CONTACT00004" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00005" contactMechId="TELE_CONTACT00005" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00006" contactMechId="TELE_CONTACT00006" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00007" contactMechId="TELE_CONTACT00007" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00008" contactMechId="TELE_CONTACT00008" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00009" contactMechId="TELE_CONTACT00009" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00010" contactMechId="TELE_CONTACT00010" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00011" contactMechId="TELE_CONTACT00011" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00012" contactMechId="TELE_CONTACT00012" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00013" contactMechId="TELE_CONTACT00013" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00014" contactMechId="TELE_CONTACT00014" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00015" contactMechId="TELE_CONTACT00015" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00016" contactMechId="TELE_CONTACT00016" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00017" contactMechId="TELE_CONTACT00017" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00018" contactMechId="TELE_CONTACT00018" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00019" contactMechId="TELE_CONTACT00019" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00020" contactMechId="TELE_CONTACT00020" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00021" contactMechId="TELE_CONTACT00021" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00022" contactMechId="TELE_CONTACT00022" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="STORE_MANAGER_00001" contactMechId="TELE_CONTACT00023" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="STORE_MANAGER_00002" contactMechId="TELE_CONTACT00024" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="STORE_MANAGER_00003" contactMechId="TELE_CONTACT00025" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="STORE_MANAGER_00004" contactMechId="TELE_CONTACT00026" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="STORE_MANAGER_00005" contactMechId="TELE_CONTACT00027" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="COMPANY_EMPLOYEE00001" contactMechId="TELE_CONTACT00028" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="COMPANY_EMPLOYEE00002" contactMechId="TELE_CONTACT00029" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="COMPANY_EMPLOYEE00003" contactMechId="TELE_CONTACT00030" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="COMPANY_EMPLOYEE00004" contactMechId="TELE_CONTACT00031" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="COMPANY_EMPLOYEE00005" contactMechId="TELE_CONTACT00032" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <!--PartyContactMechPurpose(联系人微信)-->
+    <PartyContactMechPurpose partyId="CONTACT00001" contactMechId="VX_CONTACT00001" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00002" contactMechId="VX_CONTACT00002" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00003" contactMechId="VX_CONTACT00003" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00004" contactMechId="VX_CONTACT00004" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00005" contactMechId="VX_CONTACT00005" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00006" contactMechId="VX_CONTACT00006" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00007" contactMechId="VX_CONTACT00007" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00008" contactMechId="VX_CONTACT00008" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00009" contactMechId="VX_CONTACT00009" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00010" contactMechId="VX_CONTACT00010" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00011" contactMechId="VX_CONTACT00011" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00012" contactMechId="VX_CONTACT00012" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00013" contactMechId="VX_CONTACT00013" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00014" contactMechId="VX_CONTACT00014" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00015" contactMechId="VX_CONTACT00015" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00016" contactMechId="VX_CONTACT00016" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00017" contactMechId="VX_CONTACT00017" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00018" contactMechId="VX_CONTACT00018" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00019" contactMechId="VX_CONTACT00019" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00020" contactMechId="VX_CONTACT00020" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00021" contactMechId="VX_CONTACT00021" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00022" contactMechId="VX_CONTACT00022" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="STORE_MANAGER_00001" contactMechId="VX_CONTACT00023" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="STORE_MANAGER_00002" contactMechId="VX_CONTACT00024" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="STORE_MANAGER_00003" contactMechId="VX_CONTACT00025" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="STORE_MANAGER_00004" contactMechId="VX_CONTACT00026" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="STORE_MANAGER_00005" contactMechId="VX_CONTACT00027" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="COMPANY_EMPLOYEE00001" contactMechId="VX_CONTACT00028" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="COMPANY_EMPLOYEE00002" contactMechId="VX_CONTACT00029" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="COMPANY_EMPLOYEE00003" contactMechId="VX_CONTACT00030" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="COMPANY_EMPLOYEE00004" contactMechId="VX_CONTACT00031" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="COMPANY_EMPLOYEE00005" contactMechId="VX_CONTACT00032" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <!--PartyContactMechPurpose(联系人邮箱)-->
+    <PartyContactMechPurpose partyId="CONTACT00001" contactMechId="EMAIL_CONTACT00001" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00002" contactMechId="EMAIL_CONTACT00002" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00003" contactMechId="EMAIL_CONTACT00003" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00004" contactMechId="EMAIL_CONTACT00004" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00005" contactMechId="EMAIL_CONTACT00005" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00006" contactMechId="EMAIL_CONTACT00006" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00007" contactMechId="EMAIL_CONTACT00007" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00008" contactMechId="EMAIL_CONTACT00008" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00009" contactMechId="EMAIL_CONTACT00009" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00010" contactMechId="EMAIL_CONTACT00010" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00011" contactMechId="EMAIL_CONTACT00011" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00012" contactMechId="EMAIL_CONTACT00012" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00013" contactMechId="EMAIL_CONTACT00013" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00014" contactMechId="EMAIL_CONTACT00014" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00015" contactMechId="EMAIL_CONTACT00015" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00016" contactMechId="EMAIL_CONTACT00016" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00017" contactMechId="EMAIL_CONTACT00017" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00018" contactMechId="EMAIL_CONTACT00018" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00019" contactMechId="EMAIL_CONTACT00019" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00020" contactMechId="EMAIL_CONTACT00020" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00021" contactMechId="EMAIL_CONTACT00021" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00022" contactMechId="EMAIL_CONTACT00022" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="STORE_MANAGER_00001" contactMechId="EMAIL_CONTACT00023" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="STORE_MANAGER_00002" contactMechId="EMAIL_CONTACT00024" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="STORE_MANAGER_00003" contactMechId="EMAIL_CONTACT00025" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="STORE_MANAGER_00004" contactMechId="EMAIL_CONTACT00026" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="STORE_MANAGER_00005" contactMechId="EMAIL_CONTACT00027" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="COMPANY_EMPLOYEE00001" contactMechId="EMAIL_CONTACT00028" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="COMPANY_EMPLOYEE00002" contactMechId="EMAIL_CONTACT00029" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="COMPANY_EMPLOYEE00003" contactMechId="EMAIL_CONTACT00030" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="COMPANY_EMPLOYEE00004" contactMechId="EMAIL_CONTACT00031" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="COMPANY_EMPLOYEE00005" contactMechId="EMAIL_CONTACT00032" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+
+    <!--PartyContactMechPurpose(账户）-->
+    <!--PartyContactMechPurpose(账户电话）-->
+    <PartyContactMechPurpose partyId="ACCOUNT00001" contactMechId="TELE_ACCOUNT00001" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="ACCOUNT00002" contactMechId="TELE_ACCOUNT00002" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="ACCOUNT00003" contactMechId="TELE_ACCOUNT00003" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="ACCOUNT00004" contactMechId="TELE_ACCOUNT00004" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="ACCOUNT00005" contactMechId="TELE_ACCOUNT00005" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <!--PartyContactMechPurpose(账户地址）-->
+    <PartyContactMechPurpose partyId="ACCOUNT00001" contactMechId="POST_ACCOUNT00001" contactMechPurposeTypeId="PRIMARY_LOCATION" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="ACCOUNT00002" contactMechId="POST_ACCOUNT00002" contactMechPurposeTypeId="PRIMARY_LOCATION" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="ACCOUNT00003" contactMechId="POST_ACCOUNT00003" contactMechPurposeTypeId="PRIMARY_LOCATION" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="ACCOUNT00004" contactMechId="POST_ACCOUNT00004" contactMechPurposeTypeId="PRIMARY_LOCATION" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="ACCOUNT00005" contactMechId="POST_ACCOUNT00005" contactMechPurposeTypeId="PRIMARY_LOCATION" fromDate="2023-01-28 11:45:31.928"/>
+    <!--PartyContactMechPurpose(账户邮箱）-->
+    <PartyContactMechPurpose partyId="ACCOUNT00001" contactMechId="EMAIL_ACCOUNT00001" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="ACCOUNT00002" contactMechId="EMAIL_ACCOUNT00002" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="ACCOUNT00003" contactMechId="EMAIL_ACCOUNT00003" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="ACCOUNT00004" contactMechId="EMAIL_ACCOUNT00004" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="ACCOUNT00005" contactMechId="EMAIL_ACCOUNT00005" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+
+    <!--PartyContactMechPurpose(线索)-->
+    <!--PartyContactMechPurpose(线索电话）-->
+    <PartyContactMechPurpose partyId="LEAD00001" contactMechId="TELE_LEAD00001" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="LEAD00002" contactMechId="TELE_LEAD00002" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="LEAD00003" contactMechId="TELE_LEAD00003" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="LEAD00004" contactMechId="TELE_LEAD00004" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="LEAD00005" contactMechId="TELE_LEAD00005" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <!--PartyContactMechPurpose(线索微信）-->
+    <PartyContactMechPurpose partyId="LEAD00001" contactMechId="VX_LEAD00001" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="LEAD00002" contactMechId="VX_LEAD00002" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="LEAD00003" contactMechId="VX_LEAD00003" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="LEAD00004" contactMechId="VX_LEAD00004" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="LEAD00005" contactMechId="VX_LEAD00005" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <!--PartyContactMechPurpose(线索邮箱）-->
+    <PartyContactMechPurpose partyId="LEAD00001" contactMechId="EMAIL_LEAD00001" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="LEAD00002" contactMechId="EMAIL_LEAD00002" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="LEAD00003" contactMechId="EMAIL_LEAD00003" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="LEAD00004" contactMechId="EMAIL_LEAD00004" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="LEAD00005" contactMechId="EMAIL_LEAD00005" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+
+
+    <!--FinAccount(公司账户)-->
+    <FinAccountType finAccountTypeId="BANK_ACCOUNT" description="Bank Account"/>
+    <FinAccount finAccountId="FIN0001" finAccountName="上海银行" currencyUomId="CNY" ownerPartyId="SUPPLIER0001" finAccountTypeId="BANK_ACCOUNT" statusId="FNACT_ACTIVE"/>
+    <FinAccount finAccountId="FIN0002" finAccountName="工商银行" currencyUomId="CNY" ownerPartyId="CUSTOMER0001" finAccountTypeId="BANK_ACCOUNT" statusId="FNACT_ACTIVE"/>
+    <FinAccount finAccountId="FIN0003" finAccountName="工商银行" currencyUomId="CNY" ownerPartyId="Company" organizationPartyId="Company" finAccountTypeId="BANK_ACCOUNT" statusId="FNACT_ACTIVE"/>
+    <FinAccount finAccountId="FIN0004" finAccountName="建设银行" currencyUomId="CNY" ownerPartyId="Company" organizationPartyId="Company" finAccountTypeId="BANK_ACCOUNT" statusId="FNACT_ACTIVE"/>
+    <FinAccount finAccountId="FIN0005" finAccountName="招商银行" currencyUomId="CNY" ownerPartyId="Company" organizationPartyId="Company" finAccountTypeId="BANK_ACCOUNT" statusId="FNACT_ACTIVE"/>
+    <!--FinAccount(供应商账户)-->
+    <FinAccount finAccountId="FIN0006" finAccountName="中国银行" currencyUomId="CNY" ownerPartyId="SUPPLIER0001" organizationPartyId="SUPPLIER0001" finAccountTypeId="BANK_ACCOUNT" statusId="FNACT_ACTIVE"/>
+    <FinAccount finAccountId="FIN0007" finAccountName="建设银行" currencyUomId="CNY" ownerPartyId="SUPPLIER0001" organizationPartyId="SUPPLIER0001" finAccountTypeId="BANK_ACCOUNT" statusId="FNACT_ACTIVE"/>
+    <FinAccount finAccountId="FIN0008" finAccountName="上海交通银行" currencyUomId="CNY" ownerPartyId="SUPPLIER0002" organizationPartyId="SUPPLIER0002" finAccountTypeId="BANK_ACCOUNT" statusId="FNACT_ACTIVE"/>
+    <FinAccount finAccountId="FIN0008" finAccountName="建设银行" currencyUomId="CNY" ownerPartyId="SUPPLIER0002" organizationPartyId="SUPPLIER0002" finAccountTypeId="BANK_ACCOUNT" statusId="FNACT_ACTIVE"/>
+    <FinAccount finAccountId="FIN0009" finAccountName="中国农业银行" currencyUomId="CNY" ownerPartyId="SUPPLIER0002" organizationPartyId="SUPPLIER0002" finAccountTypeId="BANK_ACCOUNT" statusId="FNACT_ACTIVE"/>
+    <FinAccount finAccountId="FIN0010" finAccountName="中国银行" currencyUomId="CNY" ownerPartyId="SUPPLIER0003" organizationPartyId="SUPPLIER0003" finAccountTypeId="BANK_ACCOUNT" statusId="FNACT_ACTIVE"/>
+    <!--FinAccount（账户）-->
+    <FinAccount finAccountId="9000" finAccountTypeId="BANK_ACCOUNT" finAccountName="工商银行" finAccountPin="10000" statusId="FNACT_ACTIVE" ownerPartyId="Company" organizationPartyId="Company"/>
+    <FinAccount finAccountId="9010" finAccountTypeId="BANK_ACCOUNT" finAccountName="建设银行" finAccountPin="10000" statusId="FNACT_ACTIVE" ownerPartyId="Company" organizationPartyId="Company"/>
+
+    <FinAccountAttribute finAccountId="FIN0001" attrName="accountName" attrValue="华硕电脑股份有限公司"/>
+    <FinAccountAttribute finAccountId="FIN0002" attrName="accountName" attrValue="孙文"/>
+    <FinAccountAttribute finAccountId="FIN0003" attrName="accountName" attrValue="李涛"/>
+    <FinAccountAttribute finAccountId="FIN0004" attrName="accountName" attrValue="童文戟"/>
+    <FinAccountAttribute finAccountId="FIN0005" attrName="accountName" attrValue="冯浩"/>
+    <FinAccountAttribute finAccountId="FIN0006" attrName="accountName" attrValue="华硕电脑股份有限公司"/>
+    <FinAccountAttribute finAccountId="FIN0007" attrName="accountName" attrValue="华硕电脑股份有限公司"/>
+    <FinAccountAttribute finAccountId="FIN0008" attrName="accountName" attrValue="胡文秀"/>
+    <FinAccountAttribute finAccountId="FIN0009" attrName="accountName" attrValue="常昊"/>
+    <FinAccountAttribute finAccountId="FIN0010" attrName="accountName" attrValue="陈伯翰"/>
+
+    <!--仓库、产品及库存主数据-->
+    <!--Facility（仓库数据-供应商客户仓）-->
+    <FacilityType facilityTypeId="WAREHOUSE" descripiton="Ware House"/>
+    <FacilityType facilityTypeId="RETAIL_STORE" descripiton="Retail Store"/>
+    <Facility facilityId="FAC0001" facilityTypeId="WAREHOUSE" facilityName="因特尔中国上海浦东总仓库" ownerPartyId="SUPPLIER0005" facilitySize="15" facilitySizeUomId="AREA_km2" openedDate="2023-01-28 11:45:31.928" description="因特尔上海地区总仓库"/>
+    <Facility facilityId="FAC0002" facilityTypeId="WAREHOUSE" facilityName="华硕浙江温州仓库" ownerPartyId="SUPPLIER0001" facilitySize="22" facilitySizeUomId="AREA_km2" openedDate="2023-01-28 11:45:31.928" description="华硕温州机械设备总仓库"/>
+    <Facility facilityId="FAC0003" facilityTypeId="WAREHOUSE" facilityName="腾讯办公用品仓" ownerPartyId="CUSTOMER0001" facilitySize="220" facilitySizeUomId="AREA_m2" openedDate="2023-01-28 11:45:31.928" description="腾讯办公用品仓库"/>
+    <!--Facility（仓库数据-原料仓）-->
+    <Facility facilityId="MATERIAL-WH" facilityTypeId="WAREHOUSE" ownerPartyId="Company" facilityName="原料仓" facilitySize="45" facilitySizeUomId="AREA_km2" openedDate="2023-01-28 11:45:31.928" description="工至上海地区原料存储仓库"/>
+    <!--Facility（仓库数据-成品仓）-->
+    <Facility facilityId="PRODUCT-WH" facilityTypeId="WAREHOUSE" ownerPartyId="Company" facilityName="成品仓" facilitySize="55" facilitySizeUomId="AREA_km2" openedDate="2023-01-28 11:45:31.928" description="工至上海地区成品存储仓库"/>
+    <Facility facilityId="GENERAL-WH" facilityTypeId="WAREHOUSE" ownerPartyId="Company" facilityName="通用仓" facilitySize="35" facilitySizeUomId="AREA_km2" openedDate="2023-01-28 11:45:31.928" description="工至通用管理仓库"/>
+    <Facility facilityId="SALES-WH" facilityTypeId="WAREHOUSE" ownerPartyId="Company" facilityName="销售仓" facilitySize="58" facilitySizeUomId="AREA_km2" openedDate="2023-01-28 11:45:31.928" description="工至销售仓库"/>
+    <Facility facilityId="WebStoreWarehouse" facilityTypeId="WAREHOUSE" ownerPartyId="Company" facilityName="线上销售仓" facilitySize="75" facilitySizeUomId="AREA_km2" openedDate="2023-01-28 11:45:31.928" description="网络零售发货仓库"/>
+    <!--Facility发货仓库-->
+    <Facility facilityId="DELIVERY_WAREHOUSE10000" facilityTypeId="WAREHOUSE" ownerPartyId="Company" facilityName="发货仓库" facilitySize="52" facilitySizeUomId="AREA_km2" openedDate="2023-01-28 11:45:31.928" description="工至普陀区发货仓库"/>
+    <Facility facilityId="DELIVERY_WAREHOUSE10001" facilityTypeId="WAREHOUSE" ownerPartyId="Company" facilityName="发货仓库" facilitySize="46" facilitySizeUomId="AREA_km2" openedDate="2023-01-28 11:45:31.928" description="工至浦东区发货仓库"/>
+    <Facility facilityId="DELIVERY_WAREHOUSE10002" facilityTypeId="WAREHOUSE" ownerPartyId="Company" facilityName="发货仓库" facilitySize="70" facilitySizeUomId="AREA_km2" openedDate="2023-01-28 11:45:31.928" description="工至闵行区发货仓库"/>
+    <!--Facility店铺场所-->
+    <Facility facilityId="STORE00001" facilityTypeId="RETAIL_STORE" ownerPartyId="SUPPLIER0004" facilityName="凌强办公用品直营店" facilitySize="12" facilitySizeUomId="AREA_km2" openedDate="2023-01-28 11:45:31.928" description="线下实体店"/>
+    <Facility facilityId="STORE00002" facilityTypeId="RETAIL_STORE" ownerPartyId="SUPPLIER0001" facilityName="新知电脑零件专售直营店" facilitySize="8" facilitySizeUomId="AREA_km2" openedDate="2023-01-28 11:45:31.928" description="线下实体店"/>
+    <Facility facilityId="STORE00003" facilityTypeId="RETAIL_STORE" ownerPartyId="SUPPLIER0007" facilityName="戴尔电脑直营店" facilitySize="7.5" facilitySizeUomId="AREA_km2" openedDate="2023-01-28 11:45:31.928" description="线下实体店"/>
+    <Facility facilityId="STORE00004" facilityTypeId="RETAIL_STORE" ownerPartyId="CUSTOMER0004" facilityName="京东数码直营店" facilitySize="5" facilitySizeUomId="AREA_km2" openedDate="2023-01-28 11:45:31.928" description="线下实体店"/>
+
+    <!--ContactMech（仓库地址）-->
+    <ContactMech contactMechId="FACILITY_PO_00001" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="FACILITY_PO_00002" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="FACILITY_PO_00003" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="FACILITY_PO_00004" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="FACILITY_PO_00005" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="FACILITY_PO_00006" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="FACILITY_PO_00007" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="FACILITY_PO_00008" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="FACILITY_PO_00009" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="FACILITY_PO_00010" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="FACILITY_PO_00011" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="FACILITY_PO_00012" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="FACILITY_PO_00013" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="FACILITY_PO_00014" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="FACILITY_PO_00015" contactMechTypeId="POSTAL_ADDRESS"/>
+    <!--ContactMech（仓库联系电话）-->
+    <ContactMech contactMechId="FACILITY_TL_00001" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="FACILITY_TL_00002" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="FACILITY_TL_00003" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="FACILITY_TL_00004" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="FACILITY_TL_00005" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="FACILITY_TL_00006" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="FACILITY_TL_00007" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="FACILITY_TL_00008" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="FACILITY_TL_00009" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="FACILITY_TL_00010" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="FACILITY_TL_00011" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="FACILITY_TL_00012" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="FACILITY_TL_00013" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="FACILITY_TL_00014" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="FACILITY_TL_00015" contactMechTypeId="TELECOM_NUMBER"/>
+    <!--PostalAddress（仓库PostalAddress）-->
+    <PostalAddress contactMechId="FACILITY_PO_00001" address1="上海浦东新区周宁路100号浦宁科技园"/>
+    <PostalAddress contactMechId="FACILITY_PO_00002" address1="浙江省温州市长明路100号华硕成品原料仓"/>
+    <PostalAddress contactMechId="FACILITY_PO_00003" address1="广东省深圳市奉柘路300号腾讯办公仓"/>
+    <PostalAddress contactMechId="FACILITY_PO_00004" address1="上海市钟欣路200号工至原料仓库"/>
+    <PostalAddress contactMechId="FACILITY_PO_00005" address1="上海市富林路100号工至成品仓库"/>
+    <PostalAddress contactMechId="FACILITY_PO_00006" address1="上海市南浦路100号工至通用仓库"/>
+    <PostalAddress contactMechId="FACILITY_PO_00007" address1="上海市桂林路100号工至销售仓库"/>
+    <PostalAddress contactMechId="FACILITY_PO_00008" address1="上海市汇源路300号工至线上发货仓库"/>
+    <PostalAddress contactMechId="FACILITY_PO_00009" address1="上海市海平100号工至发货仓"/>
+    <PostalAddress contactMechId="FACILITY_PO_00010" address1="上海市上南路100号工至发货仓"/>
+    <PostalAddress contactMechId="FACILITY_PO_00011" address1="上海市东巷路100号工至发货仓"/>
+    <PostalAddress contactMechId="FACILITY_PO_00012" address1="上海市黄浦区松高路100号"/>
+    <PostalAddress contactMechId="FACILITY_PO_00013" address1="上海市肇嘉浜路100号"/>
+    <PostalAddress contactMechId="FACILITY_PO_00014" address1="上海市虹桥路100号"/>
+    <PostalAddress contactMechId="FACILITY_PO_00015" address1="北京市周环路正义街200号"/>
+    <!--TelecomNumber（仓库TelecomNumber）-->
+    <TelecomNumber contactMechId="FACILITY_TL_00001" contactNumber="0871-154672"/>
+    <TelecomNumber contactMechId="FACILITY_TL_00002" contactNumber="0871-195342"/>
+    <TelecomNumber contactMechId="FACILITY_TL_00003" contactNumber="0871-254366"/>
+    <TelecomNumber contactMechId="FACILITY_TL_00004" contactNumber="0871-539678"/>
+    <TelecomNumber contactMechId="FACILITY_TL_00005" contactNumber="0871-124078"/>
+    <TelecomNumber contactMechId="FACILITY_TL_00006" contactNumber="0871-987734"/>
+    <TelecomNumber contactMechId="FACILITY_TL_00007" contactNumber="0871-679435"/>
+    <TelecomNumber contactMechId="FACILITY_TL_00008" contactNumber="0871-165734"/>
+    <TelecomNumber contactMechId="FACILITY_TL_00009" contactNumber="0871-199356"/>
+    <TelecomNumber contactMechId="FACILITY_TL_00010" contactNumber="0871-132657"/>
+    <TelecomNumber contactMechId="FACILITY_TL_00011" contactNumber="0871-117843"/>
+    <TelecomNumber contactMechId="FACILITY_TL_00012" contactNumber="0871-547432"/>
+    <TelecomNumber contactMechId="FACILITY_TL_00013" contactNumber="0871-579090"/>
+    <TelecomNumber contactMechId="FACILITY_TL_00014" contactNumber="0871-084561"/>
+    <TelecomNumber contactMechId="FACILITY_TL_00015" contactNumber="0871-121790"/>
+
+    <!--FacilityContactMech-->
+    <FacilityContactMech facilityId="FAC0001" contactMechId="FACILITY_PO_00001" fromDate="2023-01-28 11:45:31.928"/>
+    <FacilityContactMech facilityId="FAC0002" contactMechId="FACILITY_PO_00002" fromDate="2023-01-28 11:45:31.928"/>
+    <FacilityContactMech facilityId="FAC0003" contactMechId="FACILITY_PO_00003" fromDate="2023-01-28 11:45:31.928"/>
+    <FacilityContactMech facilityId="MATERIAL-WH" contactMechId="FACILITY_PO_00004" fromDate="2023-01-28 11:45:31.928"/>
+    <FacilityContactMech facilityId="PRODUCT-WH" contactMechId="FACILITY_PO_00005" fromDate="2023-01-28 11:45:31.928"/>
+    <FacilityContactMech facilityId="GENERAL-WH" contactMechId="FACILITY_PO_00006" fromDate="2023-01-28 11:45:31.928"/>
+    <FacilityContactMech facilityId="SALES-WH" contactMechId="FACILITY_PO_00007" fromDate="2023-01-28 11:45:31.928"/>
+    <FacilityContactMech facilityId="WebStoreWarehouse" contactMechId="FACILITY_PO_00008" fromDate="2023-01-28 11:45:31.928"/>
+    <FacilityContactMech facilityId="DELIVERY_WAREHOUSE10000" contactMechId="FACILITY_PO_00009" fromDate="2023-01-28 11:45:31.928"/>
+    <FacilityContactMech facilityId="DELIVERY_WAREHOUSE10001" contactMechId="FACILITY_PO_00010" fromDate="2023-01-28 11:45:31.928"/>
+    <FacilityContactMech facilityId="DELIVERY_WAREHOUSE10002" contactMechId="FACILITY_PO_00011" fromDate="2023-01-28 11:45:31.928"/>
+    <FacilityContactMech facilityId="STORE00001" contactMechId="FACILITY_PO_00012" fromDate="2023-01-28 11:45:31.928"/>
+    <FacilityContactMech facilityId="STORE00002" contactMechId="FACILITY_PO_00013" fromDate="2023-01-28 11:45:31.928"/>
+    <FacilityContactMech facilityId="STORE00003" contactMechId="FACILITY_PO_00014" fromDate="2023-01-28 11:45:31.928"/>
+    <FacilityContactMech facilityId="STORE00004" contactMechId="FACILITY_PO_00015" fromDate="2023-01-28 11:45:31.928"/>
+
+    <FacilityContactMech facilityId="FAC0001" contactMechId="FACILITY_TL_00001" fromDate="2023-01-28 11:45:31.928"/>
+    <FacilityContactMech facilityId="FAC0002" contactMechId="FACILITY_TL_00002" fromDate="2023-01-28 11:45:31.928"/>
+    <FacilityContactMech facilityId="FAC0003" contactMechId="FACILITY_TL_00003" fromDate="2023-01-28 11:45:31.928"/>
+    <FacilityContactMech facilityId="MATERIAL-WH" contactMechId="FACILITY_TL_00004" fromDate="2023-01-28 11:45:31.928"/>
+    <FacilityContactMech facilityId="PRODUCT-WH" contactMechId="FACILITY_TL_00005" fromDate="2023-01-28 11:45:31.928"/>
+    <FacilityContactMech facilityId="GENERAL-WH" contactMechId="FACILITY_TL_00006" fromDate="2023-01-28 11:45:31.928"/>
+    <FacilityContactMech facilityId="SALES-WH" contactMechId="FACILITY_TL_00007" fromDate="2023-01-28 11:45:31.928"/>
+    <FacilityContactMech facilityId="WebStoreWarehouse" contactMechId="FACILITY_TL_00008" fromDate="2023-01-28 11:45:31.928"/>
+    <FacilityContactMech facilityId="DELIVERY_WAREHOUSE10000" contactMechId="FACILITY_TL_00009" fromDate="2023-01-28 11:45:31.928"/>
+    <FacilityContactMech facilityId="DELIVERY_WAREHOUSE10001" contactMechId="FACILITY_TL_00010" fromDate="2023-01-28 11:45:31.928"/>
+    <FacilityContactMech facilityId="DELIVERY_WAREHOUSE10002" contactMechId="FACILITY_TL_00011" fromDate="2023-01-28 11:45:31.928"/>
+    <FacilityContactMech facilityId="STORE00001" contactMechId="FACILITY_TL_00012" fromDate="2023-01-28 11:45:31.928"/>
+    <FacilityContactMech facilityId="STORE00002" contactMechId="FACILITY_TL_00013" fromDate="2023-01-28 11:45:31.928"/>
+    <FacilityContactMech facilityId="STORE00003" contactMechId="FACILITY_TL_00014" fromDate="2023-01-28 11:45:31.928"/>
+    <FacilityContactMech facilityId="STORE00004" contactMechId="FACILITY_TL_00015" fromDate="2023-01-28 11:45:31.928"/>
+
+    <FacilityLocation facilityLocationId="FAC_LOC_00001" facilityId="GENERAL-WH" locationSeqId="g101ail1003R5LV4LO03121" areaId="g101" aisleId="ail1003" sectionId="R5" levelId="LV4" positionId="LO03121"/>
+    <FacilityLocation facilityLocationId="FAC_LOC_00002" facilityId="GENERAL-WH" locationSeqId="g101ail1003R6LV4LO03122" areaId="g101" aisleId="ail1003" sectionId="R6" levelId="LV4" positionId="LO03122"/>
+    <FacilityLocation facilityLocationId="FAC_LOC_00003" facilityId="GENERAL-WH" locationSeqId="g101ail1003R6LV4LO03123" areaId="g101" aisleId="ail1003" sectionId="R6" levelId="LV4" positionId="LO03123"/>
+    <FacilityLocation facilityLocationId="FAC_LOC_00004" facilityId="GENERAL-WH" locationSeqId="g101ail1003R7LV4LO00010" areaId="g101" aisleId="ail1003" sectionId="R7" levelId="LV4" positionId="LO00010"/>
+    <FacilityLocation facilityLocationId="FAC_LOC_00005" facilityId="GENERAL-WH" locationSeqId="g101ail1003R7LV5LO00011" areaId="g101" aisleId="ail1003" sectionId="R7" levelId="LV5" positionId="LO00011"/>
+    <FacilityLocation facilityLocationId="FAC_LOC_00006" facilityId="GENERAL-WH" locationSeqId="g101ail1003R7LV5LO00012" areaId="g101" aisleId="ail1003" sectionId="R7" levelId="LV5" positionId="LO00012"/>
+    <FacilityLocation facilityLocationId="FAC_LOC_00007" facilityId="MATERIAL-WH" locationSeqId="b101ail0003R2LV4LO00121" areaId="b101" aisleId="ail0003" sectionId="R2" levelId="LV4" positionId="LO00121"/>
+    <FacilityLocation facilityLocationId="FAC_LOC_00008" facilityId="MATERIAL-WH" locationSeqId="b101ail0004R3LV4LO00122" areaId="b101" aisleId="ail0004" sectionId="R3" levelId="LV4" positionId="LO00122"/>
+    <FacilityLocation facilityLocationId="FAC_LOC_00009" facilityId="MATERIAL-WH" locationSeqId="b101ail0004R3LV5LO00100" areaId="b101" aisleId="ail0004" sectionId="R3" levelId="LV5" positionId="LO00100"/>
+    <FacilityLocation facilityLocationId="FAC_LOC_00010" facilityId="MATERIAL-WH" locationSeqId="b101ail0005R4LV1LO00120" areaId="b101" aisleId="ail0005" sectionId="R4" levelId="LV1" positionId="LO00120"/>
+    <FacilityLocation facilityLocationId="FAC_LOC_00011" facilityId="MATERIAL-WH" locationSeqId="b101ail0005R4LV2LO00121" areaId="b101" aisleId="ail0005" sectionId="R4" levelId="LV2" positionId="LO00121"/>
+    <FacilityLocation facilityLocationId="FAC_LOC_00012" facilityId="PRODUCT-WH" locationSeqId="a101ael001S1LV1LO0021" areaId="a101" aisleId="ael001" sectionId="S1" levelId="LV1" positionId="LO0021"/>
+    <FacilityLocation facilityLocationId="FAC_LOC_00013" facilityId="PRODUCT-WH" locationSeqId="a101ael001S1LV1LO0022" areaId="a101" aisleId="ael001" sectionId="S1" levelId="LV1" positionId="LO0022"/>
+    <FacilityLocation facilityLocationId="FAC_LOC_00014" facilityId="PRODUCT-WH" locationSeqId="a101ael001S1LV1LO0023" areaId="a101" aisleId="ael001" sectionId="S1" levelId="LV1" positionId="LO0023"/>
+    <FacilityLocation facilityLocationId="FAC_LOC_00015" facilityId="PRODUCT-WH" locationSeqId="a101ael001S1LV1LO0024" areaId="a101" aisleId="ael001" sectionId="S1" levelId="LV1" positionId="LO0024"/>
+    <FacilityLocation facilityLocationId="FAC_LOC_00016" facilityId="PRODUCT-WH" locationSeqId="a101ael001S1LV1LO0025" areaId="a101" aisleId="ael001" sectionId="S1" levelId="LV1" positionId="LO0025"/>
+
+    <!--Uom单位数据-->
+    <UomType uomTypeId="QUANTITY_MEASURE" description="Quantity"/>
+    <Uom uomId="TAI" uomTypeId="QUANTITY_MEASURE" description="台"/>
+    <Uom uomId="GE" uomTypeId="QUANTITY_MEASURE" description="个"/>
+    <Uom uomId="FU" uomTypeId="QUANTITY_MEASURE" description="副"/>
+    <Uom uomId="ZHI" uomTypeId="QUANTITY_MEASURE" description="只"/>
+
+    <!--ProductCategoryType-->
+    <ProductCategoryType productCategoryTypeId="GENERAL_ELECTRONIC_CATEGORY" description="通用电子产品分类"/>
+    <ProductCategoryType productCategoryTypeId="CUSTOMER_MADE_CATEGORY" description="定制化产品"/>
+
+    <!--ProductCategory-->
+    <ProductCategory productCategoryId="CAT00001" categoryName="电子产品" primaryParentCategoryId="" description="销售大类" productCategoryTypeId="GENERAL_ELECTRONIC_CATEGORY" categoryImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/f074fd6d-662c-46dd-819d-9d126de423fd.png"/>
+    <ProductCategory productCategoryId="CAT00002" categoryName="电脑整机" primaryParentCategoryId="CAT00001" description="用于整体销售" productCategoryTypeId="GENERAL_ELECTRONIC_CATEGORY" categoryImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/9fde78d1-fe6c-4fca-af2c-d0c5cbcc1b0f.png"/>
+    <ProductCategory productCategoryId="CAT00003" categoryName="台式电脑" description="一般包含主机及主机配件" primaryParentCategoryId="CAT00002" productCategoryTypeId="GENERAL_ELECTRONIC_CATEGORY" categoryImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/f26d78e8-095a-4984-bf48-257be1082a92.png"/>
+    <ProductCategory productCategoryId="CAT00004" categoryName="笔记本电脑" description="包含笔记本电脑配件" primaryParentCategoryId="CAT00002" productCategoryTypeId="GENERAL_ELECTRONIC_CATEGORY" categoryImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/5e7a9e23-15c6-4764-a640-a0f60485d920.png"/>
+    <ProductCategory productCategoryId="CAT00005" categoryName="电脑配件" description="单独的电脑配件" primaryParentCategoryId="CAT00001" productCategoryTypeId="GENERAL_ELECTRONIC_CATEGORY" categoryImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/f3757c43-da84-4d9f-92d0-fb0550f24fd5.png"/>
+    <ProductCategory productCategoryId="CAT00006" categoryName="输入设备" description="各类型号的输入设备" primaryParentCategoryId="CAT00005" productCategoryTypeId="GENERAL_ELECTRONIC_CATEGORY" categoryImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/d3f33fdb-8659-4f72-8d16-87196f6f1768.png"/>
+    <ProductCategory productCategoryId="CAT00007" categoryName="输出设备" description="各类型号的输出设备" primaryParentCategoryId="CAT00005" productCategoryTypeId="GENERAL_ELECTRONIC_CATEGORY" categoryImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/a5bfaca8-33c1-49e4-867c-d13fec6d1e9f.png"/>
+    <ProductCategory productCategoryId="CAT00008" categoryName="存储设备" description="包含了固态硬盘及移动硬盘等存储设备" primaryParentCategoryId="CAT00005" productCategoryTypeId="GENERAL_ELECTRONIC_CATEGORY" categoryImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/1c328118-6680-4223-b25a-7ac146a3bd03.png"/>
+    <ProductCategory productCategoryId="CAT00009" categoryName="电子元件" primaryParentCategoryId="" description="可自定义组装型原料产品" productCategoryTypeId="CUSTOMER_MADE_CATEGORY" categoryImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/39b02610-4684-4951-8521-4f1f0d6a3f68.png"/>
+    <ProductCategory productCategoryId="CAT00010" categoryName="芯片" primaryParentCategoryId="CAT00009" description="可扩展式芯片" productCategoryTypeId="CUSTOMER_MADE_CATEGORY" categoryImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/ca5a9eb2-e4e2-4589-8bec-5c1ea04e30e7.png"/>
+    <ProductCategory productCategoryId="CAT00011" categoryName="定制化存储器芯片" primaryParentCategoryId="CAT00010" description="用于存储系统" productCategoryTypeId="CUSTOMER_MADE_CATEGORY" categoryImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/3419ea2f-8776-4dd0-b012-0f90581ca735.png"/>
+    <ProductCategory productCategoryId="CAT00012" categoryName="定制化传感器芯片" primaryParentCategoryId="CAT00010" description="用于传感交互" productCategoryTypeId="CUSTOMER_MADE_CATEGORY" categoryImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/ad101abe-2cda-4e11-8904-d0a5a761a53e.png"/>
+    <ProductCategory productCategoryId="CAT00013" categoryName="定制化通信芯片" primaryParentCategoryId="CAT00010" description="用于通信" productCategoryTypeId="CUSTOMER_MADE_CATEGORY" categoryImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/7b7dfd17-e7bb-4bbe-b738-66c705aa29f3.png"/>
+
+    <!--Product（华硕成品数据）-->
+    <ProductType productTypeId="FINISHED_GOOD" descripiton="Finished Good"/>
+    <ProductType productTypeId="RAW_MATERIAL" descripiton="Raw Material"/>
+    <Product productId="DEMO0001" productRating="50" internalName="A30 Book" primaryProductCategoryId="CAT00004" productName="华硕笔记本A30" productTypeId="FINISHED_GOOD" quantityUomId="TAI" brandName="华硕A30" productHeight="25" productWidth="550" shippingHeight="30" shippingWidth="600" widthUomId="LEN_mm" heightUomId="LEN_mm" productWeight="2.5" weightUomId="WT_kg" smallImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/f1c55d65-9f88-4396-a12f-ebe63c681e44.png" mediumImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/f1c55d65-9f88-4396-a12f-ebe63c681e44.png"/>
+    <Product productId="DEMO0002" productRating="50" internalName="B001 LEX001" primaryProductCategoryId="CAT00006" productName="华硕笔记本专用鼠标镭射B001" productTypeId="FINISHED_GOOD" quantityUomId="GE" brandName="镭射B001" productHeight="36" productWidth="58" shippingHeight="40" shippingWidth="65" widthUomId="LEN_mm" heightUomId="LEN_mm" productWeight="0.05" weightUomId="WT_kg" mediumImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/72b3e287-0a6c-4b6d-a8c6-9eef0105a7db.png" smallImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/72b3e287-0a6c-4b6d-a8c6-9eef0105a7db.png"/>
+    <Product productId="DEMO0003" productRating="50" internalName="B001 LEX002" primaryProductCategoryId="CAT00006" productName="华硕笔记本专用键盘镭射B001" productTypeId="FINISHED_GOOD" quantityUomId="GE" brandName="镭射B001" productHeight="22" productWidth="560" shippingHeight="30" shippingWidth="560" widthUomId="LEN_mm" heightUomId="LEN_mm" productWeight="0.1" weightUomId="WT_kg" smallImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/187b7288-852d-4b2d-abca-f944b5feb551.png" mediumImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/187b7288-852d-4b2d-abca-f944b5feb551.png"/>
+    <Product productId="DEMO0004" productRating="50" internalName="T90 BOX" primaryProductCategoryId="CAT00008" productName="华硕笔记本专用固态硬盘T90" productTypeId="FINISHED_GOOD" quantityUomId="GE" brandName="T90" productHeight="15" productWidth="40" shippingHeight="20" shippingWidth="45" widthUomId="LEN_mm" heightUomId="LEN_mm" productWeight="0.08" weightUomId="WT_kg" mediumImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/b01c7e59-41e0-403d-8b1f-9770d91745c3.png" smallImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/b01c7e59-41e0-403d-8b1f-9770d91745c3.png"/>
+    <Product productId="DEMO0005" productRating="50" internalName="i5-13490F" primaryProductCategoryId="CAT00003" productName="华硕i5-13490F台式主机" productTypeId="FINISHED_GOOD" quantityUomId="TAI" brandName="华硕i5-13490F" productHeight="550" productWidth="350" shippingHeight="600" shippingWidth="360" widthUomId="LEN_mm" heightUomId="LEN_mm" productWeight="4.2" weightUomId="WT_kg" smallImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/55b79326-16f1-4a61-99d9-1c24a2ec5cf6.png" mediumImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/55b79326-16f1-4a61-99d9-1c24a2ec5cf6.png"/>
+    <Product productId="DEMO0006" productRating="50" internalName="B001 LEX003" primaryProductCategoryId="CAT00007" productName="华硕显示器镭射B001" productTypeId="FINISHED_GOOD" quantityUomId="TAI" brandName="镭射B001" productHeight="36" productWidth="58" shippingHeight="40" shippingWidth="65" widthUomId="LEN_mm" heightUomId="LEN_mm" productWeight="0.05" weightUomId="WT_kg" mediumImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/4e64f723-dea2-4333-812d-e9dc16348013.png" smallImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/4e64f723-dea2-4333-812d-e9dc16348013.png"/>
+    <Product productId="DEMO0007" productRating="50" internalName="B001 LEX004" primaryProductCategoryId="CAT00007" productName="华硕有线耳机镭射B001" productTypeId="FINISHED_GOOD" quantityUomId="FU" brandName="镭射B001" productHeight="36" productWidth="58" shippingHeight="40" shippingWidth="65" widthUomId="LEN_mm" heightUomId="LEN_mm" productWeight="0.05" weightUomId="WT_kg" smallImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/9f015289-fb6c-4193-993b-9a2ae1b1af2d.png" mediumImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/9f015289-fb6c-4193-993b-9a2ae1b1af2d.png"/>
+    <Product productId="DEMO0008" productRating="50" internalName="x86 CARD" primaryProductCategoryId="CAT00001" productName="华硕x86显卡" productTypeId="FINISHED_GOOD" quantityUomId="GE" brandName="华硕x86" productHeight="36" productWidth="58" shippingHeight="40" shippingWidth="65" widthUomId="LEN_mm" heightUomId="LEN_mm" productWeight="0.05" weightUomId="WT_kg" mediumImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/4eea8d94-6884-4576-8292-cbcfee24bbd3.png" smallImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/4eea8d94-6884-4576-8292-cbcfee24bbd3.png"/>
+    <Product productId="DEMO0009" productRating="50" internalName="C336" primaryProductCategoryId="CAT00003" productName="华硕C336一体化台式机" productTypeId="FINISHED_GOOD" quantityUomId="TAI" brandName="华硕C336" productHeight="36" productWidth="58" shippingHeight="40" shippingWidth="65" widthUomId="LEN_mm" heightUomId="LEN_mm" productWeight="0.05" weightUomId="WT_kg" mediumImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/0cee77fd-960a-4814-b9e7-0da4a8ba06b0.png" smallImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/0cee77fd-960a-4814-b9e7-0da4a8ba06b0.png"/>
+    <Product productId="DEMO0010" productRating="50" internalName="A30 book" primaryProductCategoryId="CAT00007" productName="华硕台式机配套音响镭射B001" productTypeId="FINISHED_GOOD" quantityUomId="TAI" brandName="镭射B001" productHeight="36" productWidth="58" shippingHeight="40" shippingWidth="65" widthUomId="LEN_mm" heightUomId="LEN_mm" productWeight="0.05" weightUomId="WT_kg" smallImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/88380fb2-82c9-42e2-b52c-98554aeb714c.png" mediumImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/88380fb2-82c9-42e2-b52c-98554aeb714c.png"/>
+    <Product productId="DEMO0011" productRating="50" internalName="B001 LEX005" primaryProductCategoryId="CAT00006" productName="华硕台式机配套麦克风镭射B001" productTypeId="FINISHED_GOOD" quantityUomId="ZHI" brandName="镭射B001" productHeight="36" productWidth="58" shippingHeight="40" shippingWidth="65" widthUomId="LEN_mm" heightUomId="LEN_mm" productWeight="0.05" weightUomId="WT_kg" smallImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/582e9aa4-c9e1-4945-aa07-dc62e74267f9.png" mediumImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/582e9aa4-c9e1-4945-aa07-dc62e74267f9.png"/>
+    <Product productId="DEMO0012" productRating="50" internalName="B001 LEX006" primaryProductCategoryId="CAT00008" productName="华硕台式机专用硬盘T90" productTypeId="FINISHED_GOOD" quantityUomId="GE" brandName="T90" productHeight="36" productWidth="58" shippingHeight="40" shippingWidth="65" widthUomId="LEN_mm" heightUomId="LEN_mm" productWeight="0.05" weightUomId="WT_kg" mediumImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/d7bc9f71-5629-4c07-a5d5-c23f6cca869a.png" smallImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/d7bc9f71-5629-4c07-a5d5-c23f6cca869a.png"/>
+    <!--Product（华硕原料数据）-->
+    <Product productId="DEMO_MATERIAL0001" productTypeId="RAW_MATERIAL" productName="华硕CX003系列定制型存储芯片" internalName="CX003-CUSTOMER-MADE" quantityUomId="GE" brandName="华硕CX003系列" primaryProductCategoryId="CAT00011" mediumImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/1ec8932e-176e-461f-b4cc-aff6b5120d1e.png" smallImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/1ec8932e-176e-461f-b4cc-aff6b5120d1e.png"/>
+    <Product productId="DEMO_MATERIAL0002" productTypeId="RAW_MATERIAL" productName="华硕CX004系列定制型存储芯片" internalName="CX004-CUSTOMER-MADE" quantityUomId="GE" brandName="华硕CX004系列" primaryProductCategoryId="CAT00011" mediumImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/1ec8932e-176e-461f-b4cc-aff6b5120d1e.png" smallImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/1ec8932e-176e-461f-b4cc-aff6b5120d1e.png"/>
+    <Product productId="DEMO_MATERIAL0003" productTypeId="RAW_MATERIAL" productName="华硕CX005系列定制型存储芯片" internalName="CX005-CUSTOMER-MADE" quantityUomId="GE" brandName="华硕CX005系列" primaryProductCategoryId="CAT00011" mediumImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/1ec8932e-176e-461f-b4cc-aff6b5120d1e.png" smallImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/1ec8932e-176e-461f-b4cc-aff6b5120d1e.png"/>
+    <Product productId="DEMO_MATERIAL0004" productTypeId="RAW_MATERIAL" productName="华硕Z70系列湿度传感器芯片" internalName="Z70-HUMIDITY-CUSTOMER-MADE" quantityUomId="GE" brandName="华硕Z70系列" primaryProductCategoryId="CAT00012" mediumImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/7b6350f8-7c97-429b-b699-767a16ac4350.png" smallImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/7b6350f8-7c97-429b-b699-767a16ac4350.png"/>
+    <Product productId="DEMO_MATERIAL0005" productTypeId="RAW_MATERIAL" productName="华硕Z70系列温度传感器芯片" internalName="Z70-TEMP-CUSTOMER-MADE" quantityUomId="GE" brandName="华硕Z70系列" primaryProductCategoryId="CAT00012" mediumImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/7b6350f8-7c97-429b-b699-767a16ac4350.png" smallImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/7b6350f8-7c97-429b-b699-767a16ac4350.png"/>
+    <Product productId="DEMO_MATERIAL0006" productTypeId="RAW_MATERIAL" productName="华硕Z70系列压力传感器芯片" internalName="Z70-PRESS-CUSTOMER-MADE" quantityUomId="GE" brandName="华硕Z70系列" primaryProductCategoryId="CAT00012" mediumImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/7b6350f8-7c97-429b-b699-767a16ac4350.png" smallImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/7b6350f8-7c97-429b-b699-767a16ac4350.png"/>
+    <Product productId="DEMO_MATERIAL0007" productTypeId="RAW_MATERIAL" productName="华硕Z70系列烟雾传感器芯片" internalName="Z70-SMOKE-CUSTOMER-MADE" quantityUomId="GE" brandName="华硕Z70系列" primaryProductCategoryId="CAT00012" mediumImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/7b6350f8-7c97-429b-b699-767a16ac4350.png" smallImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/7b6350f8-7c97-429b-b699-767a16ac4350.png"/>
+    <Product productId="DEMO_MATERIAL0008" productTypeId="RAW_MATERIAL" productName="华硕Z71系列楼宇湿度传感器芯片" internalName="Z71-HUM-BUILD-CUSTOMER-MADE" quantityUomId="GE" brandName="华硕Z71系列" primaryProductCategoryId="CAT00012" mediumImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/d4a7e75d-502c-4a2b-ac33-926d46e3eaab.png" smallImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/d4a7e75d-502c-4a2b-ac33-926d46e3eaab.png"/>
+    <Product productId="DEMO_MATERIAL0009" productTypeId="RAW_MATERIAL" productName="华硕Z71系列楼宇温度传感器芯片" internalName="Z71-TEMP-BUILD-CUSTOMER-MADE" quantityUomId="GE" brandName="华硕Z71系列" primaryProductCategoryId="CAT00012" mediumImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/d4a7e75d-502c-4a2b-ac33-926d46e3eaab.png" smallImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/d4a7e75d-502c-4a2b-ac33-926d46e3eaab.png"/>
+    <Product productId="DEMO_MATERIAL0010" productTypeId="RAW_MATERIAL" productName="华硕Z71系列楼宇压力传感器芯片" internalName="Z71-PRE-BUILD-CUSTOMER-MADE" quantityUomId="GE" brandName="华硕Z71系列" primaryProductCategoryId="CAT00012" mediumImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/d4a7e75d-502c-4a2b-ac33-926d46e3eaab.png" smallImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/d4a7e75d-502c-4a2b-ac33-926d46e3eaab.png"/>
+    <Product productId="DEMO_MATERIAL0011" productTypeId="RAW_MATERIAL" productName="华硕Z71系列烟雾压力传感器芯片" internalName="Z71-SMO-BUILD-CUSTOMER-MADE" quantityUomId="GE" brandName="华硕Z71系列" primaryProductCategoryId="CAT00012" mediumImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/d4a7e75d-502c-4a2b-ac33-926d46e3eaab.png" smallImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/d4a7e75d-502c-4a2b-ac33-926d46e3eaab.png"/>
+    <Product productId="DEMO_MATERIAL0012" productTypeId="RAW_MATERIAL" productName="华硕C90系列通信芯片" internalName="C90-INFO-CUSTOMER" quantityUomId="GE" brandName="华硕C90系列" primaryProductCategoryId="CAT00013" mediumImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/7b7dfd17-e7bb-4bbe-b738-66c705aa29f3.png" smallImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/7b7dfd17-e7bb-4bbe-b738-66c705aa29f3.png"/>
+    <Product productId="DEMO_MATERIAL0013" productTypeId="RAW_MATERIAL" productName="华硕C91系列通信芯片" internalName="C91-INFO-CUSTOMER" quantityUomId="GE" brandName="华硕C91系列" primaryProductCategoryId="CAT00013" mediumImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/7b7dfd17-e7bb-4bbe-b738-66c705aa29f3.png" smallImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/7b7dfd17-e7bb-4bbe-b738-66c705aa29f3.png"/>
+    <!--Product（华硕原料状态）-->
+    <EnumerationType enumTypeId="MAT_STATUS_TYPE" description="Materials Status Type"/>
+    <Enumeration enumId="RUN_STATUS_ENUM" enumTypeId="MAT_STATUS_TYPE" description="可投入生产"/>
+    <Enumeration enumId="INCOMING_STATUS_ENUM" enumTypeId="MAT_STATUS_TYPE" description="已入库"/>
+    <Enumeration enumId="LACK_STATUS_ENUM" enumTypeId="MAT_STATUS_TYPE" description="货源不足"/>
+
+    <ProductAttribute productId="DEMO0001" attrName="statusName" attrValue="RUN_STATUS_ENUM"/>
+    <ProductAttribute productId="DEMO0002" attrName="statusName" attrValue="RUN_STATUS_ENUM"/>
+    <ProductAttribute productId="DEMO0003" attrName="statusName" attrValue="RUN_STATUS_ENUM"/>
+    <ProductAttribute productId="DEMO0004" attrName="statusName" attrValue="RUN_STATUS_ENUM"/>
+    <ProductAttribute productId="DEMO0005" attrName="statusName" attrValue="RUN_STATUS_ENUM"/>
+    <ProductAttribute productId="DEMO0006" attrName="statusName" attrValue="RUN_STATUS_ENUM"/>
+    <ProductAttribute productId="DEMO0007" attrName="statusName" attrValue="RUN_STATUS_ENUM"/>
+    <ProductAttribute productId="DEMO0008" attrName="statusName" attrValue="RUN_STATUS_ENUM"/>
+    <ProductAttribute productId="DEMO0009" attrName="statusName" attrValue="RUN_STATUS_ENUM"/>
+    <ProductAttribute productId="DEMO0010" attrName="statusName" attrValue="RUN_STATUS_ENUM"/>
+    <ProductAttribute productId="DEMO0011" attrName="statusName" attrValue="RUN_STATUS_ENUM"/>
+    <ProductAttribute productId="DEMO0012" attrName="statusName" attrValue="RUN_STATUS_ENUM"/>
+    <!--Product（华硕成品销售状态）-->
+    <EnumerationType enumTypeId="PRO_STATUS_TYPE" description="Product Status Type"/>
+    <Enumeration enumId="SALES_STATUS_ENUM" enumTypeId="PRO_STATUS_TYPE" description="销售中"/>
+    <Enumeration enumId="REMOVE_STATUS_ENUM" enumTypeId="PRO_STATUS_TYPE" description="已下架"/>
+    <Enumeration enumId="LACK_STATUS_ENUM" enumTypeId="PRO_STATUS_TYPE" description="货源不足"/>
+
+    <ProductAttribute productId="DEMO0001" attrName="statusName" attrValue="SALES_STATUS_ENUM"/>
+    <ProductAttribute productId="DEMO0002" attrName="statusName" attrValue="SALES_STATUS_ENUM"/>
+    <ProductAttribute productId="DEMO0003" attrName="statusName" attrValue="SALES_STATUS_ENUM"/>
+    <ProductAttribute productId="DEMO0004" attrName="statusName" attrValue="SALES_STATUS_ENUM"/>
+    <ProductAttribute productId="DEMO0005" attrName="statusName" attrValue="SALES_STATUS_ENUM"/>
+    <ProductAttribute productId="DEMO0006" attrName="statusName" attrValue="SALES_STATUS_ENUM"/>
+    <ProductAttribute productId="DEMO0007" attrName="statusName" attrValue="SALES_STATUS_ENUM"/>
+    <ProductAttribute productId="DEMO0008" attrName="statusName" attrValue="REMOVE_STATUS_ENUM"/>
+    <ProductAttribute productId="DEMO0009" attrName="statusName" attrValue="SALES_STATUS_ENUM"/>
+    <ProductAttribute productId="DEMO0010" attrName="statusName" attrValue="SALES_STATUS_ENUM"/>
+    <ProductAttribute productId="DEMO0011" attrName="statusName" attrValue="SALES_STATUS_ENUM"/>
+    <ProductAttribute productId="DEMO0012" attrName="statusName" attrValue="LACK_STATUS_ENUM"/>
+
+    <!--FixedAsset（工至设备）-->
+    <FixedAsset fixedAssetId="FIXED-ASSET-00001" fixedAssetName="员工办公使用笔记本电脑" fixedAssetTypeId="EQUIPMENT" instanceOfProductId="DEMO0001" partyId="Company" purchaseCost="2500" depreciation="1500" dateAcquired="2023-05-14 19:10:00.0" expectedEndOfLife="2024-01-01" actualEndOfLife="" purchaseCostUomId="CNY" locatedAtFacilityId="" locatedAtLocationSeqId="" acquireOrderId="" aquireOrderItemSeqId="" serialNumber="EQP-OFFICE-COM100001"/>
+    <FixedAsset fixedAssetId="FIXED-ASSET-00002" fixedAssetName="员工办公使用显示屏" fixedAssetTypeId="EQUIPMENT" instanceOfProductId="DEMO0006" partyId="Company" purchaseCost="1201" depreciation="800" dateAcquired="2023-05-14 19:10:00.0" expectedEndOfLife="2024-01-01" actualEndOfLife="" purchaseCostUomId="CNY" locatedAtFacilityId="" locatedAtLocationSeqId="" acquireOrderId="" aquireOrderItemSeqId="" serialNumber="EQP-OFFICE-OUTPUT100001"/>
+    <FixedAsset fixedAssetId="FIXED-ASSET-00003" fixedAssetName="员工办公使用鼠标" fixedAssetTypeId="EQUIPMENT" instanceOfProductId="DEMO0002" partyId="Company" purchaseCost="56" depreciation="20" dateAcquired="2023-05-14 19:10:00.0" expectedEndOfLife="2024-01-01" actualEndOfLife="" purchaseCostUomId="CNY" locatedAtFacilityId="" locatedAtLocationSeqId="" acquireOrderId="" aquireOrderItemSeqId="" serialNumber="EQP-OFFICE-INPUT100001"/>
+    <FixedAsset fixedAssetId="FIXED-ASSET-00004" fixedAssetName="员工办公使用键盘" fixedAssetTypeId="EQUIPMENT" instanceOfProductId="DEMO0003" partyId="Company" purchaseCost="188" depreciation="100" dateAcquired="2023-05-14 19:10:00.0" expectedEndOfLife="2024-01-01" actualEndOfLife="" purchaseCostUomId="CNY" locatedAtFacilityId="" locatedAtLocationSeqId="" acquireOrderId="" aquireOrderItemSeqId="" serialNumber="EQP-OFFICE-INPUT100001"/>
+    <FixedAsset fixedAssetId="FIXED-ASSET-00005" fixedAssetName="员工办公使用硬盘" fixedAssetTypeId="EQUIPMENT" instanceOfProductId="DEMO0004" partyId="Company" purchaseCost="139" depreciation="50" dateAcquired="2023-05-14 19:10:00.0" expectedEndOfLife="2024-01-01" actualEndOfLife="" purchaseCostUomId="CNY" locatedAtFacilityId="" locatedAtLocationSeqId="" acquireOrderId="" aquireOrderItemSeqId="" serialNumber="EQP-OFFICE-STORE100001"/>
+
+    <!--ProductCategoryMember（华硕成品分类成员数据）-->
+    <ProductCategoryMember productCategoryMemberId="PMD00001" productCategoryId="CAT00001" productId="DEMO0001" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00002" productCategoryId="CAT00001" productId="DEMO0002" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00003" productCategoryId="CAT00001" productId="DEMO0003" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00004" productCategoryId="CAT00001" productId="DEMO0004" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00005" productCategoryId="CAT00001" productId="DEMO0005" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00006" productCategoryId="CAT00001" productId="DEMO0006" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00007" productCategoryId="CAT00001" productId="DEMO0007" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00008" productCategoryId="CAT00001" productId="DEMO0008" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00009" productCategoryId="CAT00001" productId="DEMO0009" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00010" productCategoryId="CAT00001" productId="DEMO0010" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00011" productCategoryId="CAT00001" productId="DEMO0011" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00012" productCategoryId="CAT00001" productId="DEMO0012" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00013" productCategoryId="CAT00002" productId="DEMO0001" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00014" productCategoryId="CAT00002" productId="DEMO0005" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00015" productCategoryId="CAT00002" productId="DEMO0009" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00016" productCategoryId="CAT00003" productId="DEMO0005" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00017" productCategoryId="CAT00003" productId="DEMO0009" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00018" productCategoryId="CAT00004" productId="DEMO0001" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00019" productCategoryId="CAT00005" productId="DEMO0002" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00020" productCategoryId="CAT00005" productId="DEMO0003" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00021" productCategoryId="CAT00005" productId="DEMO0004" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00022" productCategoryId="CAT00005" productId="DEMO0007" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00023" productCategoryId="CAT00005" productId="DEMO0008" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00024" productCategoryId="CAT00005" productId="DEMO0010" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00025" productCategoryId="CAT00005" productId="DEMO0011" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00026" productCategoryId="CAT00005" productId="DEMO0012" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00026" productCategoryId="CAT00006" productId="DEMO0002" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00027" productCategoryId="CAT00006" productId="DEMO0003" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00028" productCategoryId="CAT00006" productId="DEMO0011" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00029" productCategoryId="CAT00007" productId="DEMO0006" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00030" productCategoryId="CAT00007" productId="DEMO0007" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00031" productCategoryId="CAT00007" productId="DEMO0010" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00032" productCategoryId="CAT00008" productId="DEMO0004" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductCategoryMember productCategoryMemberId="PMD00033" productCategoryId="CAT00008" productId="DEMO0012" quantity="" fromDate="2023-05-14 19:10:00.0"/>
+
+    <!--ProductPrice（华硕成品价格数据）-->
+    <ProductPriceType productPriceTypeId="DEFAULT_PRICE" description="Default Price"/>
+    <ProductPricePurpose productPricePurposeId="PURCHASE"/>
+    <ProductStoreGroup productStoreGroupId="_NA_"/>
+    <ProductPrice productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" productId="DEMO0001" currencyUomId="CNY" productStoreGroupId="_NA_" price="2500" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductPrice productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" productId="DEMO0002" currencyUomId="CNY" productStoreGroupId="_NA_" price="56" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductPrice productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" productId="DEMO0003" currencyUomId="CNY" productStoreGroupId="_NA_" price="188" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductPrice productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" productId="DEMO0004" currencyUomId="CNY" productStoreGroupId="_NA_" price="139" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductPrice productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" productId="DEMO0005" currencyUomId="CNY" productStoreGroupId="_NA_" price="6892" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductPrice productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" productId="DEMO0006" currencyUomId="CNY" productStoreGroupId="_NA_" price="1201" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductPrice productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" productId="DEMO0007" currencyUomId="CNY" productStoreGroupId="_NA_" price="58" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductPrice productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" productId="DEMO0008" currencyUomId="CNY" productStoreGroupId="_NA_" price="1259" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductPrice productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" productId="DEMO0009" currencyUomId="CNY" productStoreGroupId="_NA_" price="5895" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductPrice productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" productId="DEMO0010" currencyUomId="CNY" productStoreGroupId="_NA_" price="332" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductPrice productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" productId="DEMO0011" currencyUomId="CNY" productStoreGroupId="_NA_" price="89" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductPrice productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" productId="DEMO0012" currencyUomId="CNY" productStoreGroupId="_NA_" price="233" fromDate="2023-05-14 19:10:00.0"/>
+
+    <ProductPrice productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" productId="DEMO_MATERIAL0001" currencyUomId="CNY" productStoreGroupId="_NA_" price="1329" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductPrice productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" productId="DEMO_MATERIAL0002" currencyUomId="CNY" productStoreGroupId="_NA_" price="1329" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductPrice productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" productId="DEMO_MATERIAL0003" currencyUomId="CNY" productStoreGroupId="_NA_" price="1329" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductPrice productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" productId="DEMO_MATERIAL0004" currencyUomId="CNY" productStoreGroupId="_NA_" price="89" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductPrice productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" productId="DEMO_MATERIAL0005" currencyUomId="CNY" productStoreGroupId="_NA_" price="89" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductPrice productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" productId="DEMO_MATERIAL0006" currencyUomId="CNY" productStoreGroupId="_NA_" price="89" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductPrice productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" productId="DEMO_MATERIAL0007" currencyUomId="CNY" productStoreGroupId="_NA_" price="89" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductPrice productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" productId="DEMO_MATERIAL0008" currencyUomId="CNY" productStoreGroupId="_NA_" price="87" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductPrice productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" productId="DEMO_MATERIAL0009" currencyUomId="CNY" productStoreGroupId="_NA_" price="87" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductPrice productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" productId="DEMO_MATERIAL0010" currencyUomId="CNY" productStoreGroupId="_NA_" price="87" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductPrice productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" productId="DEMO_MATERIAL0011" currencyUomId="CNY" productStoreGroupId="_NA_" price="87" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductPrice productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" productId="DEMO_MATERIAL0012" currencyUomId="CNY" productStoreGroupId="_NA_" price="102" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductPrice productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" productId="DEMO_MATERIAL0013" currencyUomId="CNY" productStoreGroupId="_NA_" price="102" fromDate="2023-05-14 19:10:00.0"/>
+
+    <!--SupplierProduct（产品供应商）-->
+    <SupplierProduct supplierProductId="SUPPLIER_PRO_00001" productId="DEMO0001" partyId="SUPPLIER0001" availableFromDate="2023-05-10 13:10:00.0" minimumOrderQuantity="50" quantityUomId="TAI" currencyUomId="CNY"/>
+    <SupplierProduct supplierProductId="SUPPLIER_PRO_00002" productId="DEMO0002" partyId="SUPPLIER0001" availableFromDate="2023-05-10 13:10:00.0" minimumOrderQuantity="50" quantityUomId="GE" currencyUomId="CNY"/>
+    <SupplierProduct supplierProductId="SUPPLIER_PRO_00003" productId="DEMO0003" partyId="SUPPLIER0001" availableFromDate="2023-05-10 13:10:00.0" minimumOrderQuantity="50" quantityUomId="GE" currencyUomId="CNY"/>
+    <SupplierProduct supplierProductId="SUPPLIER_PRO_00004" productId="DEMO0004" partyId="SUPPLIER0001" availableFromDate="2023-05-10 13:10:00.0" minimumOrderQuantity="50" quantityUomId="GE" currencyUomId="CNY"/>
+    <SupplierProduct supplierProductId="SUPPLIER_PRO_00005" productId="DEMO0005" partyId="SUPPLIER0001" availableFromDate="2023-05-10 13:10:00.0" minimumOrderQuantity="50" quantityUomId="TAI" currencyUomId="CNY"/>
+    <SupplierProduct supplierProductId="SUPPLIER_PRO_00006" productId="DEMO0006" partyId="SUPPLIER0001" availableFromDate="2023-05-10 13:10:00.0" minimumOrderQuantity="50" quantityUomId="TAI" currencyUomId="CNY"/>
+    <SupplierProduct supplierProductId="SUPPLIER_PRO_00007" productId="DEMO0007" partyId="SUPPLIER0001" availableFromDate="2023-05-10 13:10:00.0" minimumOrderQuantity="50" quantityUomId="FU" currencyUomId="CNY"/>
+    <SupplierProduct supplierProductId="SUPPLIER_PRO_00008" productId="DEMO0008" partyId="SUPPLIER0001" availableFromDate="2023-05-10 13:10:00.0" minimumOrderQuantity="50" quantityUomId="GE" currencyUomId="CNY"/>
+    <SupplierProduct supplierProductId="SUPPLIER_PRO_00009" productId="DEMO0009" partyId="SUPPLIER0001" availableFromDate="2023-05-10 13:10:00.0" minimumOrderQuantity="50" quantityUomId="TAI" currencyUomId="CNY"/>
+    <SupplierProduct supplierProductId="SUPPLIER_PRO_00010" productId="DEMO0010" partyId="SUPPLIER0001" availableFromDate="2023-05-10 13:10:00.0" minimumOrderQuantity="50" quantityUomId="TAI" currencyUomId="CNY"/>
+    <SupplierProduct supplierProductId="SUPPLIER_PRO_00011" productId="DEMO0011" partyId="SUPPLIER0001" availableFromDate="2023-05-10 13:10:00.0" minimumOrderQuantity="50" quantityUomId="ZHI" currencyUomId="CNY"/>
+    <SupplierProduct supplierProductId="SUPPLIER_PRO_00012" productId="DEMO0012" partyId="SUPPLIER0001" availableFromDate="2023-05-10 13:10:00.0" minimumOrderQuantity="50" quantityUomId="GE" currencyUomId="CNY"/>
+    <SupplierProduct supplierProductId="SUPPLIER_PRO_00013" productId="DEMO_MATERIAL0001" partyId="SUPPLIER0001" availableFromDate="2023-05-10 13:10:00.0" minimumOrderQuantity="50" quantityUomId="GE" currencyUomId="CNY"/>
+    <SupplierProduct supplierProductId="SUPPLIER_PRO_00014" productId="DEMO_MATERIAL0002" partyId="SUPPLIER0001" availableFromDate="2023-05-10 13:10:00.0" minimumOrderQuantity="50" quantityUomId="GE" currencyUomId="CNY"/>
+    <SupplierProduct supplierProductId="SUPPLIER_PRO_00015" productId="DEMO_MATERIAL0003" partyId="SUPPLIER0001" availableFromDate="2023-05-10 13:10:00.0" minimumOrderQuantity="50" quantityUomId="GE" currencyUomId="CNY"/>
+    <SupplierProduct supplierProductId="SUPPLIER_PRO_00016" productId="DEMO_MATERIAL0004" partyId="SUPPLIER0001" availableFromDate="2023-05-10 13:10:00.0" minimumOrderQuantity="50" quantityUomId="GE" currencyUomId="CNY"/>
+    <SupplierProduct supplierProductId="SUPPLIER_PRO_00017" productId="DEMO_MATERIAL0005" partyId="SUPPLIER0001" availableFromDate="2023-05-10 13:10:00.0" minimumOrderQuantity="50" quantityUomId="GE" currencyUomId="CNY"/>
+    <SupplierProduct supplierProductId="SUPPLIER_PRO_00018" productId="DEMO_MATERIAL0006" partyId="SUPPLIER0001" availableFromDate="2023-05-10 13:10:00.0" minimumOrderQuantity="50" quantityUomId="GE" currencyUomId="CNY"/>
+    <SupplierProduct supplierProductId="SUPPLIER_PRO_00019" productId="DEMO_MATERIAL0007" partyId="SUPPLIER0001" availableFromDate="2023-05-10 13:10:00.0" minimumOrderQuantity="50" quantityUomId="GE" currencyUomId="CNY"/>
+    <SupplierProduct supplierProductId="SUPPLIER_PRO_00020" productId="DEMO_MATERIAL0008" partyId="SUPPLIER0001" availableFromDate="2023-05-10 13:10:00.0" minimumOrderQuantity="50" quantityUomId="GE" currencyUomId="CNY"/>
+    <SupplierProduct supplierProductId="SUPPLIER_PRO_00021" productId="DEMO_MATERIAL0009" partyId="SUPPLIER0001" availableFromDate="2023-05-10 13:10:00.0" minimumOrderQuantity="50" quantityUomId="GE" currencyUomId="CNY"/>
+    <SupplierProduct supplierProductId="SUPPLIER_PRO_00022" productId="DEMO_MATERIAL0010" partyId="SUPPLIER0001" availableFromDate="2023-05-10 13:10:00.0" minimumOrderQuantity="50" quantityUomId="GE" currencyUomId="CNY"/>
+    <SupplierProduct supplierProductId="SUPPLIER_PRO_00023" productId="DEMO_MATERIAL0011" partyId="SUPPLIER0001" availableFromDate="2023-05-10 13:10:00.0" minimumOrderQuantity="50" quantityUomId="GE" currencyUomId="CNY"/>
+    <SupplierProduct supplierProductId="SUPPLIER_PRO_00024" productId="DEMO_MATERIAL0012" partyId="SUPPLIER0001" availableFromDate="2023-05-10 13:10:00.0" minimumOrderQuantity="50" quantityUomId="GE" currencyUomId="CNY"/>
+    <SupplierProduct supplierProductId="SUPPLIER_PRO_00025" productId="DEMO_MATERIAL0013" partyId="SUPPLIER0001" availableFromDate="2023-05-10 13:10:00.0" minimumOrderQuantity="50" quantityUomId="GE" currencyUomId="CNY"/>
+
+
+    <!--InventoryItem（华硕成品库存）-->
+    <InventoryItemType inventoryItemTypeId="SERIALIZED_INV_ITEM"/>
+    <InventoryItem inventoryItemId="INV00001" productId="DEMO0001" inventoryItemTypeId="SERIALIZED_INV_ITEM" ownerPartyId="Company" facilityId="FAC0001" uomId="TAI" quantityOnHandTotal="0.00" availableToPromiseTotal="0.00" serialNumber="HUA154432A38BB1"/>
+    <InventoryItem inventoryItemId="INV00002" productId="DEMO0002" inventoryItemTypeId="SERIALIZED_INV_ITEM" ownerPartyId="Company" facilityId="FAC0001" uomId="GE" quantityOnHandTotal="0.00" availableToPromiseTotal="0.00" serialNumber="HUA154432B00101"/>
+    <InventoryItem inventoryItemId="INV00003" productId="DEMO0003" inventoryItemTypeId="SERIALIZED_INV_ITEM" ownerPartyId="Company" facilityId="FAC0001" uomId="GE" quantityOnHandTotal="0.00" availableToPromiseTotal="0.00" serialNumber="HUA154432B00102"/>
+    <InventoryItem inventoryItemId="INV00004" productId="DEMO0004" inventoryItemTypeId="SERIALIZED_INV_ITEM" ownerPartyId="Company" facilityId="FAC0001" uomId="GE" quantityOnHandTotal="0.00" availableToPromiseTotal="0.00" serialNumber="HUA154432T90001"/>
+    <InventoryItem inventoryItemId="INV00005" productId="DEMO0005" inventoryItemTypeId="SERIALIZED_INV_ITEM" ownerPartyId="Company" facilityId="FAC0001" uomId="TAI" quantityOnHandTotal="0.00" availableToPromiseTotal="0.00" serialNumber="HUA1513490F0002"/>
+    <InventoryItem inventoryItemId="INV00006" productId="DEMO0006" inventoryItemTypeId="SERIALIZED_INV_ITEM" ownerPartyId="Company" facilityId="FAC0001" uomId="TAI" quantityOnHandTotal="0.00" availableToPromiseTotal="0.00" serialNumber="HUA15134B001102"/>
+    <InventoryItem inventoryItemId="INV00007" productId="DEMO0007" inventoryItemTypeId="SERIALIZED_INV_ITEM" ownerPartyId="Company" facilityId="FAC0001" uomId="FU" quantityOnHandTotal="0.00" availableToPromiseTotal="0.00" serialNumber="HUA15134B001105"/>
+    <InventoryItem inventoryItemId="INV00008" productId="DEMO0008" inventoryItemTypeId="SERIALIZED_INV_ITEM" ownerPartyId="Company" facilityId="FAC0001" uomId="GE" quantityOnHandTotal="0.00" availableToPromiseTotal="0.00" serialNumber="HUA15134x861109"/>
+    <InventoryItem inventoryItemId="INV00009" productId="DEMO0009" inventoryItemTypeId="SERIALIZED_INV_ITEM" ownerPartyId="Company" facilityId="FAC0001" uomId="TAI" quantityOnHandTotal="0.00" availableToPromiseTotal="0.00" serialNumber="HUA151HSC3362580"/>
+    <InventoryItem inventoryItemId="INV00010" productId="DEMO0010" inventoryItemTypeId="SERIALIZED_INV_ITEM" ownerPartyId="Company" facilityId="FAC0001" uomId="TAI" quantityOnHandTotal="0.00" availableToPromiseTotal="0.00" serialNumber="HUA151HSB0017891"/>
+    <InventoryItem inventoryItemId="INV00011" productId="DEMO0011" inventoryItemTypeId="SERIALIZED_INV_ITEM" ownerPartyId="Company" facilityId="FAC0001" uomId="ZHI" quantityOnHandTotal="0.00" availableToPromiseTotal="0.00" serialNumber="HUA151HSB0012741"/>
+    <InventoryItem inventoryItemId="INV00012" productId="DEMO0012" inventoryItemTypeId="SERIALIZED_INV_ITEM" ownerPartyId="Company" facilityId="FAC0001" uomId="GE" quantityOnHandTotal="0.00" availableToPromiseTotal="0.00" serialNumber="HUA151HST9062423"/>
+
+    <InventoryItem inventoryItemId="INV00013" productId="DEMO_MATERIAL0001" inventoryItemTypeId="SERIALIZED_INV_ITEM" ownerPartyId="Company" facilityId="FAC0001" uomId="GE" quantityOnHandTotal="0.00" availableToPromiseTotal="0.00" serialNumber="HUA154432A38BB1"/>
+    <InventoryItem inventoryItemId="INV00014" productId="DEMO_MATERIAL0002" inventoryItemTypeId="SERIALIZED_INV_ITEM" ownerPartyId="Company" facilityId="FAC0001" uomId="GE" quantityOnHandTotal="0.00" availableToPromiseTotal="0.00" serialNumber="HUA154432B00101"/>
+    <InventoryItem inventoryItemId="INV00015" productId="DEMO_MATERIAL0003" inventoryItemTypeId="SERIALIZED_INV_ITEM" ownerPartyId="Company" facilityId="FAC0001" uomId="GE" quantityOnHandTotal="0.00" availableToPromiseTotal="0.00" serialNumber="HUA154432B00102"/>
+    <InventoryItem inventoryItemId="INV00016" productId="DEMO_MATERIAL0004" inventoryItemTypeId="SERIALIZED_INV_ITEM" ownerPartyId="Company" facilityId="FAC0001" uomId="GE" quantityOnHandTotal="0.00" availableToPromiseTotal="0.00" serialNumber="HUA154432T90001"/>
+    <InventoryItem inventoryItemId="INV00017" productId="DEMO_MATERIAL0005" inventoryItemTypeId="SERIALIZED_INV_ITEM" ownerPartyId="Company" facilityId="FAC0001" uomId="GE" quantityOnHandTotal="0.00" availableToPromiseTotal="0.00" serialNumber="HUA1513490F0002"/>
+    <InventoryItem inventoryItemId="INV00018" productId="DEMO_MATERIAL0006" inventoryItemTypeId="SERIALIZED_INV_ITEM" ownerPartyId="Company" facilityId="FAC0001" uomId="GE" quantityOnHandTotal="0.00" availableToPromiseTotal="0.00" serialNumber="HUA15134B001102"/>
+    <InventoryItem inventoryItemId="INV00019" productId="DEMO_MATERIAL0007" inventoryItemTypeId="SERIALIZED_INV_ITEM" ownerPartyId="Company" facilityId="FAC0001" uomId="GE" quantityOnHandTotal="0.00" availableToPromiseTotal="0.00" serialNumber="HUA15134B001105"/>
+    <InventoryItem inventoryItemId="INV00020" productId="DEMO_MATERIAL0008" inventoryItemTypeId="SERIALIZED_INV_ITEM" ownerPartyId="Company" facilityId="FAC0001" uomId="GE" quantityOnHandTotal="0.00" availableToPromiseTotal="0.00" serialNumber="HUA15134x861109"/>
+    <InventoryItem inventoryItemId="INV00021" productId="DEMO_MATERIAL0009" inventoryItemTypeId="SERIALIZED_INV_ITEM" ownerPartyId="Company" facilityId="FAC0001" uomId="GE" quantityOnHandTotal="0.00" availableToPromiseTotal="0.00" serialNumber="HUA151HSC3362580"/>
+    <InventoryItem inventoryItemId="INV00022" productId="DEMO_MATERIAL0010" inventoryItemTypeId="SERIALIZED_INV_ITEM" ownerPartyId="Company" facilityId="FAC0001" uomId="GE" quantityOnHandTotal="0.00" availableToPromiseTotal="0.00" serialNumber="HUA151HSB0017891"/>
+    <InventoryItem inventoryItemId="INV00023" productId="DEMO_MATERIAL0011" inventoryItemTypeId="SERIALIZED_INV_ITEM" ownerPartyId="Company" facilityId="FAC0001" uomId="GE" quantityOnHandTotal="0.00" availableToPromiseTotal="0.00" serialNumber="HUA151HSB0012741"/>
+    <InventoryItem inventoryItemId="INV00024" productId="DEMO_MATERIAL0012" inventoryItemTypeId="SERIALIZED_INV_ITEM" ownerPartyId="Company" facilityId="FAC0001" uomId="GE" quantityOnHandTotal="0.00" availableToPromiseTotal="0.00" serialNumber="HUA151HST9062423"/>
+    <InventoryItem inventoryItemId="INV00025" productId="DEMO_MATERIAL0013" inventoryItemTypeId="SERIALIZED_INV_ITEM" ownerPartyId="Company" facilityId="FAC0001" uomId="GE" quantityOnHandTotal="0.00" availableToPromiseTotal="0.00" serialNumber="HUA151HST9062423"/>
+
+    <!--PaymentMethod支付方式-->
+    <PaymentMethodType paymentMethodTypeId="CASH"/>
+    <PaymentMethodType paymentMethodTypeId="CREDIT_CARD"/>
+    <PaymentMethod paymentMethodId="Petty Cash" paymentMethodTypeId="CASH" partyId="Company" description="Petty Cash"/>
+    <PaymentMethod paymentMethodId="Card payment" paymentMethodTypeId="CREDIT_CARD" partyId="Company" description="Card payment"/>
+    <PaymentMethod paymentMethodId="Scan code payment" paymentMethodTypeId="CREDIT_CARD" partyId="Company" description="Scan code payment"/>
+    <PaymentMethod paymentMethodId="Cloud flash payment" paymentMethodTypeId="CREDIT_CARD" partyId="Company" description="Cloud flash payment"/>
+
+    <!--Enumeration采购渠道-->
+    <EnumerationType enumTypeId="ORDER_NEW_PURCHASE_CHANNEL" description="New Purchase Channel"/>
+    <Enumeration enumId="DIRECT_PURCHASE_CHANNEL" enumTypeId="ORDER_NEW_PURCHASE_CHANNEL" enumCode="DIRECT_SALES" sequenceId="01" description="直接采购"/>
+    <Enumeration enumId="AGENCY_PURCHASE_CHANNEL" enumTypeId="ORDER_NEW_PURCHASE_CHANNEL" enumCode="AGENCY_SALES" sequenceId="02" description="代理采购"/>
+    <Enumeration enumId="INVITE_PURCHASE_CHANNEL" enumTypeId="ORDER_NEW_PURCHASE_CHANNEL" enumCode="INVITE_SALES" sequenceId="03" description="招标采购"/>
+    <Enumeration enumId="INTERNAL_PURCHASE_CHANNEL" enumTypeId="ORDER_NEW_PURCHASE_CHANNEL" enumCode="INTERNAL_SALES" sequenceId="04" description="网络采购"/>
+    <Enumeration enumId="WHOLE_PURCHASE_CHANNEL" enumTypeId="ORDER_NEW_PURCHASE_CHANNEL" enumCode="AGENCY_SALES" sequenceId="05" description="批发采购"/>
+    <Enumeration enumId="RETAIL_PURCHASE_CHANNEL" enumTypeId="ORDER_NEW_PURCHASE_CHANNEL" enumCode="AGENCY_SALES" sequenceId="06" description="零售采购"/>
+    <!--Enumeration销售渠道-->
+    <EnumerationType enumTypeId="ORDER_NEW_SALES_CHANNEL" description="New Sales Channel"/>
+    <Enumeration enumId="DIRECT_SALES_CHANNEL" enumTypeId="ORDER_NEW_SALES_CHANNEL" enumCode="DIRECT_SALES" sequenceId="01" description="直接销售"/>
+    <Enumeration enumId="AGENCY_SALES_CHANNEL" enumTypeId="ORDER_NEW_SALES_CHANNEL" enumCode="AGENCY_SALES" sequenceId="02" description="代理销售"/>
+    <Enumeration enumId="INTERNAL_SALES_CHANNEL" enumTypeId="ORDER_NEW_SALES_CHANNEL" enumCode="INTERNAL_SALES" sequenceId="04" description="网络销售"/>
+    <Enumeration enumId="WHOLE_SALES_CHANNEL" enumTypeId="ORDER_NEW_SALES_CHANNEL" enumCode="AGENCY_SALES" sequenceId="05" description="批发销售"/>
+    <Enumeration enumId="RETAIL_SALES_CHANNEL" enumTypeId="ORDER_NEW_SALES_CHANNEL" enumCode="AGENCY_SALES" sequenceId="06" description="零售销售"/>
+    <!--ProductStore店铺-->
+    <ProductStore productStoreId="Store10000" storeName="凌强办公用品直营店" companyName="凌强办公器材服务有限公司" payToPartyId="SUPPLIER0004" defaultSalesChannelEnumId="DIRECT_SALES_CHANNEL" inventoryFacilityId="GENERAL-WH"/>
+    <ProductStore productStoreId="Store10001" storeName="新知电脑零件专售直营店" companyName="华硕科技有限公司" payToPartyId="SUPPLIER0001" defaultSalesChannelEnumId="DIRECT_SALES_CHANNEL" inventoryFacilityId="GENERAL-WH"/>
+    <ProductStore productStoreId="Store10002"  storeName="戴尔电脑直营店" companyName="戴尔硬件服务有限公司" payToPartyId="SUPPLIER0007" defaultSalesChannelEnumId="DIRECT_SALES_CHANNEL" inventoryFacilityId="PRODUCT-WH"/>
+    <ProductStore productStoreId="Store10003" storeName="京东数码直营店" companyName="北京京东世纪贸易有限公司" payToPartyId="CUSTOMER0004" defaultSalesChannelEnumId="DIRECT_SALES_CHANNEL" inventoryFacilityId="PRODUCT-WH"/>
+    <!--ProductStoreRole店铺成员-->
+    <ProductStoreRole productStoreRoleId="Store10000" productStoreId="Store10000" roleTypeId="MANAGER" partyId="STORE_MANAGER_00001" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductStoreRole productStoreRoleId="Store10001" productStoreId="Store10000" roleTypeId="EMPLOYEE" partyId="STORE_MANAGER_00002" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductStoreRole productStoreRoleId="Store10002" productStoreId="Store10001" roleTypeId="MANAGER" partyId="STORE_MANAGER_00003" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductStoreRole productStoreRoleId="Store10003" productStoreId="Store10002" roleTypeId="MANAGER" partyId="STORE_MANAGER_00004" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductStoreRole productStoreRoleId="Store10004" productStoreId="Store10003" roleTypeId="MANAGER" partyId="STORE_MANAGER_00005" fromDate="2023-05-14 19:10:00.0"/>
+    <!--ProductStoreFacility店铺场所-->
+    <ProductStoreFacility productStoreId="Store10000" facilityId="STORE00001" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductStoreFacility productStoreId="Store10001" facilityId="STORE00002" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductStoreFacility productStoreId="Store10002" facilityId="STORE00003" fromDate="2023-05-14 19:10:00.0"/>
+    <ProductStoreFacility productStoreId="Store10003" facilityId="STORE00004" fromDate="2023-05-14 19:10:00.0"/>
+    <!--ProductReview产品评价-->
+    <ProductReview productReviewId="REVIEW00001" productStoreId="Store10000" productId="DEMO0002" userLoginId="admin" productRating="4" postedDateTime="2023-05-14 19:00:00.0" productReview="该产品使用起来比较顺畅，设计合理，且反应灵敏，但缺点是触感比较差，交互没有做好"/>
+    <ProductReview productReviewId="REVIEW00002" productStoreId="Store10000" productId="DEMO0002" userLoginId="admin" productRating="5" postedDateTime="2023-05-18 15:15:00.0" productReview="产品非常好用，很丝滑，外观设计也很好看，已有多次回购"/>
+    <ProductReview productReviewId="REVIEW00003" productStoreId="Store10002" productId="DEMO0002" userLoginId="admin" productRating="2" postedDateTime="2023-05-19 09:13:00.0" productReview="产品质量存在问题，鼠标灵敏度无法调整，且有时无法连上电脑"/>
+    <ProductReview productReviewId="REVIEW00004" productStoreId="Store10001" productId="DEMO0001" userLoginId="admin" productRating="5" postedDateTime="2023-05-13 16:10:00.0" productReview="笔记本各方面性能都很优秀，散热也做的很好，外观很有科技感"/>
+    <ProductReview productReviewId="REVIEW00005" productStoreId="Store10003" productId="DEMO0001" userLoginId="admin" productRating="4" postedDateTime="2023-05-18 19:12:00.0" productReview="电脑性能优秀是毋庸置疑的，但就是太过于笨重，不是很适合办公，且续航较差，难以实现在外没有充电的情况下长时间使用"/>
+    <ProductReview productReviewId="REVIEW00006" productStoreId="Store10002" productId="DEMO0003" userLoginId="admin" productRating="4" postedDateTime="2023-05-14 13:10:00.0" productReview="键盘打字时体验很好，按下后的触感反馈做的很好，就是噪音太大"/>
+    <ProductReview productReviewId="REVIEW00007" productStoreId="Store10001" productId="DEMO0003" userLoginId="admin" productRating="4" postedDateTime="2023-05-16 19:50:00.0" productReview="噪音太大，其他方面都还好"/>
+    <ProductReview productReviewId="REVIEW00008" productStoreId="Store10000" productId="DEMO0004" userLoginId="admin" productRating="5" postedDateTime="2023-05-18 19:22:00.0" productReview="存储空间很大，性价比很高"/>
+    <ProductReview productReviewId="REVIEW00009" productStoreId="Store10003" productId="DEMO0004" userLoginId="admin" productRating="5" postedDateTime="2023-05-18 19:14:00.0" productReview="有较大的存储空间"/>
+    <ProductReview productReviewId="REVIEW00010" productStoreId="Store10001" productId="DEMO0005" userLoginId="admin" productRating="4" postedDateTime="2023-05-18 19:13:00.0" productReview="主机性能很强大，处理速度很快，能胜任很多工作"/>
+    <ProductReview productReviewId="REVIEW00011" productStoreId="Store10002" productId="DEMO0005" userLoginId="admin" productRating="5" postedDateTime="2023-05-18 20:12:00.0" productReview="性能相当强大，接口很丰富也很多"/>
+    <ProductReview productReviewId="REVIEW00012" productStoreId="Store10003" productId="DEMO0006" userLoginId="admin" productRating="2" postedDateTime="2023-05-18 15:21:00.0" productReview="显示器画质比较差，屏幕也不轻薄"/>
+    <ProductReview productReviewId="REVIEW00013" productStoreId="Store10000" productId="DEMO0006" userLoginId="admin" productRating="4" postedDateTime="2023-05-18 17:36:00.0" productReview="价格中下，所以对显示的画质没有太高要求，在这个价格区间内已经做的很好了"/>
+    <ProductReview productReviewId="REVIEW00014" productStoreId="Store10003" productId="DEMO0007" userLoginId="admin" productRating="4" postedDateTime="2023-05-18 09:57:00.0" productReview="耳机各方面都很优秀，就是太紧了，难以调节，佩戴时间长了有压迫感"/>
+    <ProductReview productReviewId="REVIEW00015" productStoreId="Store10001" productId="DEMO0007" userLoginId="admin" productRating="5" postedDateTime="2023-05-18 19:49:00.0" productReview="音质很好，佩戴柔软舒适"/>
+    <ProductReview productReviewId="REVIEW00016" productStoreId="Store10002" productId="DEMO0008" userLoginId="admin" productRating="3" postedDateTime="2023-05-18 21:28:00.0" productReview="在1080p分辨率下，可以探索3A游戏大作了，但价格较为昂贵"/>
+    <ProductReview productReviewId="REVIEW00017" productStoreId="Store10000" productId="DEMO0008" userLoginId="admin" productRating="4" postedDateTime="2023-05-18 20:17:00.0" productReview="大显存比较适合3A游戏大作和生产力需求，就是价格偏高了"/>
+    <ProductReview productReviewId="REVIEW00018" productStoreId="Store10002" productId="DEMO0009" userLoginId="admin" productRating="5" postedDateTime="2023-05-18 17:22:00.0" productReview="即买即用，送到以后还会帮忙组装，整体性能很优秀，赠品很多"/>
+    <ProductReview productReviewId="REVIEW00019" productStoreId="Store10001" productId="DEMO0009" userLoginId="admin" productRating="5" postedDateTime="2023-05-18 15:14:00.0" productReview="非常优秀的家用台式电脑，适合办公游戏，性能很好"/>
+    <ProductReview productReviewId="REVIEW00020" productStoreId="Store10003" productId="DEMO0010" userLoginId="admin" productRating="3" postedDateTime="2023-05-18 13:11:00.0" productReview="音质不太行偶尔会有杂音"/>
+    <ProductReview productReviewId="REVIEW00021" productStoreId="Store10002" productId="DEMO0010" userLoginId="admin" productRating="3" postedDateTime="2023-05-18 12:22:00.0" productReview="音质一般，但价格偏高了"/>
+    <ProductReview productReviewId="REVIEW00022" productStoreId="Store10000" productId="DEMO0011" userLoginId="admin" productRating="4" postedDateTime="2023-05-18 22:30:00.0" productReview="声音很大也很清晰"/>
+    <ProductReview productReviewId="REVIEW00023" productStoreId="Store10001" productId="DEMO0011" userLoginId="admin" productRating="5" postedDateTime="2023-05-18 19:29:00.0" productReview="很好用，声音很清晰，价格也适中"/>
+    <ProductReview productReviewId="REVIEW00024" productStoreId="Store10002" productId="DEMO0012" userLoginId="admin" productRating="5" postedDateTime="2023-05-18 18:10:00.0" productReview="非常受欢迎的一款产品，存储空间很多，并且不像其他产品虚标空间，实际可用空间和产品标售的一样"/>
+    <ProductReview productReviewId="REVIEW00025" productStoreId="Store10003" productId="DEMO0012" userLoginId="admin" productRating="5" postedDateTime="2023-05-18 16:13:00.0" productReview="性价比很高，无可挑剔"/>
+
+</entity-engine-xml>

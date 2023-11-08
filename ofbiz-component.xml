@@ -38,6 +38,8 @@ under the License.
     <entity-resource type="data" reader-name="seed" loader="main" location="data/OfficeAutoI18nData.xml"/>
     <entity-resource type="data" reader-name="demo" loader="main" location="data/OfficeAutoSecurityGroupDemoData.xml"/>
     <entity-resource type="data" reader-name="demo" loader="main" location="data/OfficeAutoDemoData.xml"/>
+    <entity-resource type="data" reader-name="demo" loader="main" location="data/MasterDemoData.xml"/>
+    <entity-resource type="data" reader-name="demo" loader="main" location="data/BusinessDemoData.xml"/>
 
     <!-- service resources: model(s), eca(s) and group definitions -->
     <service-resource type="model" loader="main" location="servicedef/services.xml"/>

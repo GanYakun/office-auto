@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<entity-engine-xml>
+    <StatusType statusTypeId="GENERAL_SHIP_STATUS" description="General Shipment Status"/>
+    <StatusItem statusId="GENERAL_SHIP_SEND" statusTypeId="GENERAL_SHIP_STATUS" stautsCode="0" description="已发货"/>
+    <StatusItem statusId="GENERAL_SHIP_SHIPPED" statusTypeId="GENERAL_SHIP_STATUS" stautsCode="1" description="运输中"/>
+    <StatusItem statusId="GENERAL_SHIP_RECEIVED" statusTypeId="GENERAL_SHIP_STATUS" stautsCode="2" description="已签收"/>
+    <StatusItem statusId="GENERAL_SHIP_CANCELLED" statusTypeId="GENERAL_SHIP_STATUS" stautsCode="3" description="已取消"/>
+
+    <EnumerationType enumTypeId="ORDER_NEW_SALES_CHANNEL" description="New Sales Channel"/>
+    <Enumeration enumId="DIRECT_SALES_CHANNEL" enumTypeId="ORDER_NEW_SALES_CHANNEL" enumCode="DIRECT_SALES" sequenceId="01" description="直接采购"/>
+    <Enumeration enumId="AGENCY_SALES_CHANNEL" enumTypeId="ORDER_NEW_SALES_CHANNEL" enumCode="AGENCY_SALES" sequenceId="02" description="代理采购"/>
+    <Enumeration enumId="INVITE_SALES_CHANNEL" enumTypeId="ORDER_NEW_SALES_CHANNEL" enumCode="INVITE_SALES" sequenceId="03" description="招标采购"/>
+    <Enumeration enumId="INTERNAL_SALES_CHANNEL" enumTypeId="ORDER_NEW_SALES_CHANNEL" enumCode="INTERNAL_SALES" sequenceId="04" description="网络采购"/>
+    <Enumeration enumId="WHOLE_SALES_CHANNEL" enumTypeId="ORDER_NEW_SALES_CHANNEL" enumCode="AGENCY_SALES" sequenceId="05" description="批发采购"/>
+    <Enumeration enumId="RETAIL_SALES_CHANNEL" enumTypeId="ORDER_NEW_SALES_CHANNEL" enumCode="AGENCY_SALES" sequenceId="06" description="零售采购"/>
+
+    <StatusType statusTypeId="PAYMENT_GENERAL_STATUS" description="General payment status"/>
+    <PaymentMethodType paymentMethodTypeId="PAY_CASH" description="现金支付"/>
+    <PaymentMethodType paymentMethodTypeId="PAY_COMPANY_CARD" description="公司借记卡支付"/>
+    <PaymentMethodType paymentMethodTypeId="PAY_COMPANY_CREDIT" description="公司信用卡支付"/>
+    <PaymentMethodType paymentMethodTypeId="PAY_COMPANY_OTHER" description="第三方交易软件支付"/>
+    <PaymentMethodType paymentMethodTypeId="PAY_COMPANY_CHECK" description="公司支票支付"/>
+
+    <StatusType statusTypeId="INVOICE_GENERAL_STATUS" description="General invoice status"/>
+    <StatusItem statusId="INVOICE_GENERAL_DEAL" statusTypeId="INVOICE_GENERAL_STATUS" statusCode="DEAL" sequenceId="01" description="处理中"/>
+    <StatusItem statusId="INVOICE_GENERAL_READY" statusTypeId="INVOICE_GENERAL_STATUS" statusCode="READY" sequenceId="02" description="过账准备就绪"/>
+    <StatusItem statusId="INVOICE_GENERAL_PAID" statusTypeId="INVOICE_GENERAL_STATUS" statusCode="PAID" sequenceId="03" description="已支付"/>
+    <StatusItem statusId="INVOICE_GENERAL_CANCELLED" statusTypeId="INVOICE_GENERAL_STATUS" statusCode="CANCELLED" sequenceId="04" description="已取消"/>
+
+    <StatusItem statusId="PAYMENT_GENERAL_UNPAID" statusTypeId="PAYMENT_GENERAL_STATUS" statusCode="UNPAID" sequenceId="01" description="未支付"/>
+    <StatusItem statusId="PAYMENT_GENERAL_CONFIRM" statusTypeId="PAYMENT_GENERAL_STATUS" statusCode="CONFIRM" sequenceId="02" description="已确认"/>
+    <StatusItem statusId="PAYMENT_GENERAL_PAID" statusTypeId="PAYMENT_GENERAL_STATUS" statusCode="PAID" sequenceId="03" description="已支付"/>
+    <StatusItem statusId="PAYMENT_GENERAL_CANCELLED" statusTypeId="PAYMENT_GENERAL_STATUS" statusCode="CANCELLED" sequenceId="04" description="已取消"/>
+
+    <StatusValidChange statusId="INVOICE_GENERAL_READY" statusIdTo="INVOICE_GENERAL_DEAL" transitionName="Dealing"/>
+    <StatusValidChange statusId="INVOICE_GENERAL_DEAL" statusIdTo="INVOICE_GENERAL_PAID" transitionName="Paid"/>
+    <StatusValidChange statusId="INVOICE_GENERAL_DEAL" statusIdTo="INVOICE_GENERAL_CANCELLED" transitionName="Cancelled"/>
+    <StatusValidChange statusId="INVOICE_GENERAL_READY" statusIdTo="INVOICE_GENERAL_CANCELLED" transitionName="Cancelled"/>
+
+    <!--公司采购业务数据-->
+    <!--采购完成业务数据-->
+    <ShipmentType shipmentTypeId="PURCHASE_SHIPMENT" descripiton="Purchase Shipment"/>
+    <ShipmentType shipmentTypeId="SALES_SHIPMENT" descripiton="Sales Shipment"/>
+    <CustRequest custRequestId="9005" custRequestTypeId="RF_PUR_QUOTE" statusId="CRQ_ACCEPTED" reason="采购新一批电脑用于销售" fromPartyId="COMPANY_EMPLOYEE00003" description="产品部门采购新一批电脑请求" custRequestDate="2023-10-17 17:30:00.000"/>
+
+    <CustRequestItem custRequestId="9005" custRequestItemSeqId="0001" productId="DEMO0001" quantity="100" maximumAmount="3000"/>
+
+    <Quote quoteId="9005" quoteName="采购新一批电脑报价" statusId="QUO_ORDERED" partyId="SUPPLIER0001" salesChannelEnumId="DIRECT_SALES_CHANNEL" quoteTypeId="PURCHASE_QUOTE" custRequestId="9005"/>
+
+    <QuoteItem quoteId="9005" quoteItemSeqId="0001" productId="DEMO0001" quantity="100" quoteUnitPrice="2500" custRequestId="9005" custRequestItemSeq="0001"/>
+
+    <QuoteTerm quoteId="9005" quoteItemSeqId="0001" termTypeId="FIN_PAY_NETDAYS_1" termValue="30000" termDays="10" textValue="10天内付款3万" description="10天内付款3万"/>
+    <QuoteTerm quoteId="9005" quoteItemSeqId="0001" termTypeId="FIN_PAY_NETDAYS_2" termValue="60000" termDays="20" textValue="20天内付款6万" description="20天内付款6万"/>
+    <QuoteTerm quoteId="9005" quoteItemSeqId="0001" termTypeId="FIN_PAY_NETDAYS_3" termValue="10000" termDays="30" textValue="30天内付款1万" description="30天内付款1万"/>
+
+    <OrderHeader orderId="9000" orderName="采购新一批电脑" statusId="ORDER_COMPLETED" orderTypeId="PURCHASE_ORDER" grandTotal="250000" orderDate="2023-05-13 13:10:00.0" salesChannelEnumId="DIRECT_SALES_CHANNEL" originFacilityId="FAC0001" quoteId="9005"/>
+
+    <OrderItem orderId="9000" orderItemSeqId="0001" productId="DEMO0001" fromInventoryItemId="INV00001" quantity="100" unitPrice="2500" estimatedShipDate="2023-05-13 15:10:00.0" estimatedDeliveryDate="2023-05-14 19:10:00.0" quoteId="9005" quoteItemSeqId="0001"/>
+
+    <OrderRole orderId="9000" partyId="Company" roleTypeId="BILL_TO_CUSTOMER"/>
+    <OrderRole orderId="9000" partyId="SUPPLIER0001" roleTypeId="BILL_FROM_VENDOR"/>
+    <OrderTerm orderId="9000" orderItemSeqId="0001" termTypeId="FIN_PAY_NETDAYS_1" termValue="30000" termDays="10" textValue="10天内付款3万" description="10天内付款3万"/>
+    <OrderTerm orderId="9000" orderItemSeqId="0001" termTypeId="FIN_PAY_NETDAYS_2" termValue="60000" termDays="20" textValue="20天内付款6万" description="20天内付款6万"/>
+    <OrderTerm orderId="9000" orderItemSeqId="0001" termTypeId="FIN_PAY_NETDAYS_3" termValue="10000" termDays="30" textValue="30天内付款1万" description="30天内付款1万"/>
+
+    <OrderPaymentPreference orderPaymentPreferenceId="9000" orderId="9000" orderItemSeqId="0001" paymentMethodTypeId="PAY_COMPANY_CARD" finAccountId="FIN0003" maxAmount="250000" statusId="PAYMENT_RECEIVED" createdDate="2023-05-13 17:57:27.0"/>
+
+    <Payment paymentId="9000" paymentTypeId="CUSTOMER_PAYMENT" comments="华硕笔记本A30采购全额支付" paymentPreferenceId="9000" paymentMethodTypeId="PAY_COMPANY_CARD" partyIdFrom="Company" partyIdTo="SUPPLIER0001" statusId="PAYMENT_GENERAL_PAID" effectiveDate="2023-05-13 15:10:00.0" amount="250000" actualCurrencyAmount="250000" currencyUomId="CNY"/>
+
+    <Shipment shipmentId="9000" trackingIdNumber="ID1246542345SF" shipmentTypeId="PURCHASE_SHIPMENT" statusId="GENERAL_SHIP_RECEIVED" primaryOrderId="9000" estimatedArrivalDate="2023-05-14 15:10:00.0" estimatedShipDate="2023-05-13 15:10:00.0" estimatedShipCost="200" currencyUomId="CNY" originContactMechId="POST_SUPPLIER00001" destinationContactMechId="POST_COMPANY00001" partyIdTo="Company" partyIdFrom="SUPPLIER0001" originFacilityId="FAC0001" destinationFacilityId="PRODUCT-WH"/>
+
+    <ShipmentItem shipmentId="9000" shipmentItemSeqId="0001" productId="DEMO0001" quantity="100"/>
+
+    <ShipmentRouteSegment shipmentId="9000" shipmentRouteSegmentId="SHIP_SEG0001" actualArrivalDate="2023-05-13 00:00:00.0" carrierPartyId="EXPRESS0001"/>
+
+    <Invoice invoiceId="9000" description="笔记本电脑采购发票" invoiceTypeId="PURCHASE_INVOICE" partyIdFrom="Company" partyId="SUPPLIER0001" statusId="INVOICE_GENERAL_PAID" paidDate="2023-05-13 15:10:00.0" invoiceDate="2023-05-13 15:10:00.0" currencyUomId="CNY" orderId="9000"/>
+
+    <InvoiceItem invoiceId="9000" invoiceItemSeqId="0001" inventoryItemId="INV00001" productId="DEMO0001" quantity="100" amount="2500"/>
+
+    <InvoiceStatus statusId="INVOICE_GENERAL_READY" invoiceId="9000" statusDate="2022-05-13 17:57:27.0"/>
+    <InvoiceStatus statusId="INVOICE_GENERAL_DEAL" invoiceId="9000" statusDate="2022-05-14 17:57:27.0"/>
+    <InvoiceStatus statusId="INVOICE_GENERAL_PAID" invoiceId="9000" statusDate="2022-05-15 17:57:27.0"/>
+
+    <PaymentApplication paymentApplicationId="9000" paymentId="9000" invoiceId="9000" invoiceItemSeqId="0001" amountApplied="250000"/>
+
+    <AcctgTrans acctgTransId="9000" shipmentId="9000" invoiceId="9000" paymentId="9000" transactionDate="2022-12-13 17:57:27.0"/>
+
+    <GlAccountClass glAccountClassId="CASH_EQUIVALENT" description="现金及等价物"/>
+
+    <GlAccount glAccountId="GL0001" accountName="一般支票账户" accountCode="111100" glAccountClassId="CASH_EQUIVALENT"/>
+
+    <AcctgTransEntry acctgTransId="9000" glAccountId="GL0001" acctgTransEntrySeqId="00001" partyId="Company" amount="250000" currencyUomId="CNY" debitCreditFlag="D" glAccountTypeId="PURCHASE_ACCOUNT"/>
+    <AcctgTransEntry acctgTransId="9000" glAccountId="GL0001" acctgTransEntrySeqId="00002" partyId="Company" amount="250000" currencyUomId="CNY" debitCreditFlag="C" glAccountTypeId="PURCHASE_ACCOUNT"/>
+
+    <InventoryItemDetail inventoryItemId="INV00001" inventoryItemDetailSeqId="0001" quantityOnHandDiff="100" availableToPromiseDiff="100" shipmentId="9000" shipmentItemSeqId="0001" orderId="9000" orderItemSeqId="0001"/>
+
+    <!--采购单创建业务数据（采购电脑配件Demo0002-Demo0005）-->
+    <CustRequest custRequestId="9006" custRequestTypeId="RF_PUR_QUOTE" statusId="CRQ_ACCEPTED" reason="采购电脑配件用于销售" fromPartyId="COMPANY_EMPLOYEE00003" description="产品部门采购电脑配件请求" custRequestDate="2023-10-17 17:30:00.000"/>
+
+    <CustRequestItem custRequestId="9006" custRequestItemSeqId="0001" productId="DEMO0002" quantity="100" maximumAmount="60"/>
+    <CustRequestItem custRequestId="9006" custRequestItemSeqId="0002" productId="DEMO0003" quantity="100" maximumAmount="200"/>
+    <CustRequestItem custRequestId="9006" custRequestItemSeqId="0003" productId="DEMO0004" quantity="100" maximumAmount="150"/>
+
+    <Quote quoteId="9006" quoteName="采购电脑配件报价" statusId="QUO_ORDERED" partyId="SUPPLIER0001" salesChannelEnumId="DIRECT_SALES_CHANNEL" quoteTypeId="PURCHASE_QUOTE" custRequestId="9006"/>
+
+    <QuoteItem quoteId="9006" quoteItemSeqId="0001" productId="DEMO0002" quantity="100" quoteUnitPrice="56" custRequestId="9006" custRequestItemSeq="0001"/>
+    <QuoteItem quoteId="9006" quoteItemSeqId="0002" productId="DEMO0003" quantity="100" quoteUnitPrice="188" custRequestId="9006" custRequestItemSeq="0002"/>
+    <QuoteItem quoteId="9006" quoteItemSeqId="0003" productId="DEMO0004" quantity="100" quoteUnitPrice="139" custRequestId="9006" custRequestItemSeq="0003"/>
+
+    <OrderHeader orderId="9001" orderName="采购电脑配件" statusId="ORDER_CREATED" orderTypeId="PURCHASE_ORDER" grandTotal="15000" orderDate="2023-05-14 13:10:00.0" salesChannelEnumId="DIRECT_SALES_CHANNEL" originFacilityId="FAC0001" quoteId="9006"/>
+
+    <OrderItem orderId="9001" orderItemSeqId="0001" productId="DEMO0002" fromInventoryItemId="INV00002" quantity="100" unitPrice="56" estimatedShipDate="2023-05-14 15:10:00.0" estimatedDeliveryDate="2023-05-15 19:10:00.0" quoteId="9006" quoteItemSeqId="0001"/>
+    <OrderItem orderId="9001" orderItemSeqId="0002" productId="DEMO0003" fromInventoryItemId="INV00003" quantity="100" unitPrice="188" estimatedShipDate="2023-05-14 15:10:00.0" estimatedDeliveryDate="2023-05-15 19:10:00.0" quoteId="9006" quoteItemSeqId="0002"/>
+    <OrderItem orderId="9001" orderItemSeqId="0003" productId="DEMO0004" fromInventoryItemId="INV00004" quantity="100" unitPrice="139" estimatedShipDate="2023-05-14 15:10:00.0" estimatedDeliveryDate="2023-05-15 19:10:00.0" quoteId="9006" quoteItemSeqId="0003"/>
+
+    <OrderRole orderId="9001" partyId="Company" roleTypeId="BILL_TO_CUSTOMER"/>
+    <OrderRole orderId="9001" partyId="SUPPLIER0001" roleTypeId="BILL_FROM_VENDOR"/>
+
+    <OrderPaymentPreference orderPaymentPreferenceId="9001" orderId="9001" orderItemSeqId="0001" paymentMethodTypeId="PAY_COMPANY_CARD" finAccountId="FIN0003" maxAmount="5600" statusId="PAYMENT_GENERAL_UNPAID" createdDate="2023-05-13 17:57:27.0"/>
+    <OrderPaymentPreference orderPaymentPreferenceId="9002" orderId="9001" orderItemSeqId="0002" paymentMethodTypeId="PAY_COMPANY_CARD" finAccountId="FIN0003" maxAmount="18800" statusId="PAYMENT_GENERAL_UNPAID" createdDate="2023-05-13 17:57:27.0"/>
+    <OrderPaymentPreference orderPaymentPreferenceId="9003" orderId="9001" orderItemSeqId="0003" paymentMethodTypeId="PAY_COMPANY_CARD" finAccountId="FIN0003" maxAmount="13900" statusId="PAYMENT_GENERAL_UNPAID" createdDate="2023-05-13 17:57:27.0"/>
+
+    <Payment paymentId="9001" paymentTypeId="CUSTOMER_PAYMENT" comments="华硕镭射鼠标采购全额支付"  paymentPreferenceId="9001" paymentMethodTypeId="PAY_COMPANY_CARD" partyIdFrom="Company" partyIdTo="SUPPLIER0001" statusId="PAYMENT_GENERAL_UNPAID" effectiveDate="2023-05-13 15:10:00.0" amount="5600" actualCurrencyAmount="5600" currencyUomId="CNY"/>
+    <Payment paymentId="9002" paymentTypeId="CUSTOMER_PAYMENT" comments="华硕镭射键盘采购全额支付" paymentPreferenceId="9002" paymentMethodTypeId="PAY_COMPANY_CARD" partyIdFrom="Company" partyIdTo="SUPPLIER0001" statusId="PAYMENT_GENERAL_UNPAID" effectiveDate="2023-05-13 15:10:00.0" amount="18800" actualCurrencyAmount="5600" currencyUomId="CNY"/>
+    <Payment paymentId="9003" paymentTypeId="CUSTOMER_PAYMENT" comments="华硕固态硬盘采购全额支付" paymentPreferenceId="9003" paymentMethodTypeId="PAY_COMPANY_CARD" partyIdFrom="Company" partyIdTo="SUPPLIER0001" statusId="PAYMENT_GENERAL_UNPAID" effectiveDate="2023-05-13 15:10:00.0" amount="13900" actualCurrencyAmount="5600" currencyUomId="CNY"/>
+
+    <!--采购单处理业务数据-->
+    <CustRequest custRequestId="9007" custRequestTypeId="RF_PUR_QUOTE" statusId="CRQ_ACCEPTED" reason="采购主机及显示屏用于销售" fromPartyId="COMPANY_EMPLOYEE00003" description="产品部门采购主机及显示屏请求" custRequestDate="2023-10-17 17:30:00.000"/>
+
+    <CustRequestItem custRequestId="9007" custRequestItemSeqId="0001" productId="DEMO0005" quantity="120" maximumAmount="7000"/>
+    <CustRequestItem custRequestId="9007" custRequestItemSeqId="0002" productId="DEMO0006" quantity="120" maximumAmount="1400"/>
+
+    <Quote quoteId="9007" quoteName="采购主机及显示屏报价" statusId="QUO_ORDERED" partyId="SUPPLIER0001" salesChannelEnumId="DIRECT_SALES_CHANNEL" quoteTypeId="PURCHASE_QUOTE" custRequestId="9007"/>
+
+    <QuoteItem quoteId="9007" quoteItemSeqId="0001" productId="DEMO0005" quantity="120" quoteUnitPrice="6892" custRequestId="9007" custRequestItemSeq="0001"/>
+    <QuoteItem quoteId="9007" quoteItemSeqId="0002" productId="DEMO0006" quantity="120" quoteUnitPrice="1201" custRequestId="9007" custRequestItemSeq="0002"/>
+
+    <OrderHeader orderId="9002" orderName="采购主机及显示屏" statusId="ORDER_PROCESSING" orderTypeId="PURCHASE_ORDER" grandTotal="971160" orderDate="2023-05-14 13:10:00.0" salesChannelEnumId="DIRECT_SALES_CHANNEL" originFacilityId="FAC0001" quoteId="9007"/>
+
+    <OrderItem orderId="9002" orderItemSeqId="0001" productId="DEMO0005" fromInventoryItemId="INV00005" quantity="120" unitPrice="6892" estimatedShipDate="2023-05-14 15:10:00.0" estimatedDeliveryDate="2023-05-15 19:10:00.0" quoteId="9007" quoteItemSeqId="0001"/>
+    <OrderItem orderId="9002" orderItemSeqId="0002" productId="DEMO0006" fromInventoryItemId="INV00006" quantity="120" unitPrice="1201" estimatedShipDate="2023-05-14 15:10:00.0" estimatedDeliveryDate="2023-05-15 19:10:00.0" quoteId="9007" quoteItemSeqId="0002"/>
+
+    <OrderRole orderId="9002" partyId="Company" roleTypeId="BILL_TO_CUSTOMER"/>
+    <OrderRole orderId="9002" partyId="SUPPLIER0001" roleTypeId="BILL_FROM_VENDOR"/>
+
+    <OrderPaymentPreference orderPaymentPreferenceId="9004" orderId="9002" orderItemSeqId="0001" paymentMethodTypeId="PAY_COMPANY_CARD" finAccountId="FIN0003" maxAmount="827040" statusId="PAYMENT_GENERAL_CONFIRM" createdDate="2023-05-13 17:57:27.0"/>
+    <OrderPaymentPreference orderPaymentPreferenceId="9005" orderId="9002" orderItemSeqId="0002" paymentMethodTypeId="PAY_COMPANY_CARD" finAccountId="FIN0003" maxAmount="144120" statusId="PAYMENT_GENERAL_CONFIRM" createdDate="2023-05-13 17:57:27.0"/>
+
+    <Payment paymentId="9004" paymentTypeId="CUSTOMER_PAYMENT" comments="华硕台式电脑采购全额支付" paymentPreferenceId="9004" paymentMethodTypeId="PAY_COMPANY_CARD" partyIdFrom="Company" partyIdTo="SUPPLIER0001" statusId="PAYMENT_GENERAL_CONFIRM" effectiveDate="2023-05-13 15:10:00.0" amount="827040" actualCurrencyAmount="827040" currencyUomId="CNY"/>
+    <Payment paymentId="9005" paymentTypeId="CUSTOMER_PAYMENT" comments="华硕显示屏采购全额支付" paymentPreferenceId="9005" paymentMethodTypeId="PAY_COMPANY_CARD" partyIdFrom="Company" partyIdTo="SUPPLIER0001" statusId="PAYMENT_GENERAL_CONFIRM" effectiveDate="2023-05-13 15:10:00.0" amount="144120" actualCurrencyAmount="144120" currencyUomId="CNY"/>
+
+    <Shipment shipmentId="9001" trackingIdNumber="ID1246544349SF" shipmentTypeId="PURCHASE_SHIPMENT" statusId="GENERAL_SHIP_SEND" primaryOrderId="9002" estimatedArrivalDate="2023-05-14 15:10:00.0" estimatedShipDate="2023-05-13 15:10:00.0" estimatedShipCost="200" currencyUomId="CNY" originContactMechId="POST_SUPPLIER00001" destinationContactMechId="POST_COMPANY00001" partyIdTo="Company" partyIdFrom="SUPPLIER0001" originFacilityId="FAC0001" destinationFacilityId="PRODUCT-WH"/>
+    <Shipment shipmentId="9002" trackingIdNumber="ID1246544350SF" shipmentTypeId="PURCHASE_SHIPMENT" statusId="GENERAL_SHIP_SHIPPED" primaryOrderId="9002" estimatedArrivalDate="2023-05-14 15:10:00.0" estimatedShipDate="2023-05-13 15:10:00.0" estimatedShipCost="200" currencyUomId="CNY" originContactMechId="POST_SUPPLIER00001" destinationContactMechId="POST_COMPANY00001" partyIdTo="Company" partyIdFrom="SUPPLIER0001" originFacilityId="FAC0001" destinationFacilityId="PRODUCT-WH"/>
+
+    <ShipmentItem shipmentId="9001" shipmentItemSeqId="0001" productId="DEMO0005" quantity="120"/>
+    <ShipmentItem shipmentId="9002" shipmentItemSeqId="0001" productId="DEMO0006" quantity="120"/>
+
+    <ShipmentRouteSegment shipmentId="9001" shipmentRouteSegmentId="SHIP_SEG0003" actualArrivalDate="" carrierPartyId="EXPRESS0001"/>
+    <ShipmentRouteSegment shipmentId="9002" shipmentRouteSegmentId="SHIP_SEG0004" actualArrivalDate="" carrierPartyId="EXPRESS0001"/>
+
+    <Invoice invoiceId="9001" description="台式主机采购发票" invoiceTypeId="PURCHASE_INVOICE" partyIdFrom="Company" partyId="SUPPLIER0001" statusId="INVOICE_GENERAL_READY" paidDate="2023-05-13 15:10:00.0" invoiceDate="2023-05-12 15:10:00.0" currencyUomId="CNY" orderId="9002"/>
+    <Invoice invoiceId="9002" description="显示屏采购发票" invoiceTypeId="PURCHASE_INVOICE" partyIdFrom="Company" partyId="SUPPLIER0001" statusId="INVOICE_GENERAL_READY" paidDate="2023-05-13 15:10:00.0" invoiceDate="2023-05-12 15:10:00.0" currencyUomId="CNY" orderId="9002"/>
+
+    <InvoiceItem invoiceId="9001" invoiceItemSeqId="0001" inventoryItemId="INV00005" productId="DEMO0005" quantity="120" amount="6892"/>
+    <InvoiceItem invoiceId="9002" invoiceItemSeqId="0001" inventoryItemId="INV00006" productId="DEMO0006" quantity="120" amount="1201"/>
+
+    <PaymentApplication paymentApplicationId="9001" paymentId="9004" invoiceId="9001" invoiceItemSeqId="0001" amountApplied="827040"/>
+    <PaymentApplication paymentApplicationId="9002" paymentId="9005" invoiceId="9002" invoiceItemSeqId="0001" amountApplied="144120"/>
+
+    <AcctgTrans acctgTransId="9001" shipmentId="9001" invoiceId="9001" paymentId="9004" transactionDate="2022-12-13 17:57:27.0"/>
+    <AcctgTrans acctgTransId="9002" shipmentId="9002" invoiceId="9002" paymentId="9005" transactionDate="2022-12-13 17:57:27.0"/>
+
+    <GlAccountClass glAccountClassId="CASH_EQUIVALENT" description="现金及等价物"/>
+
+    <GlAccount glAccountId="GL0002" accountName="一般支票账户" accountCode="111101" glAccountClassId="CASH_EQUIVALENT"/>
+    <GlAccount glAccountId="GL0003" accountName="一般支票账户" accountCode="111102" glAccountClassId="CASH_EQUIVALENT"/>
+
+    <AcctgTransEntry acctgTransId="9001" glAccountId="GL0002" acctgTransEntrySeqId="00001" partyId="Company" amount="827040" currencyUomId="CNY" debitCreditFlag="D" glAccountTypeId="PURCHASE_ACCOUNT"/>
+    <AcctgTransEntry acctgTransId="9001" glAccountId="GL0002" acctgTransEntrySeqId="00002" partyId="Company" amount="827040" currencyUomId="CNY" debitCreditFlag="C" glAccountTypeId="PURCHASE_ACCOUNT"/>
+
+    <AcctgTransEntry acctgTransId="9002" glAccountId="GL0003" acctgTransEntrySeqId="00001" partyId="Company" amount="144120" currencyUomId="CNY" debitCreditFlag="D" glAccountTypeId="PURCHASE_ACCOUNT"/>
+    <AcctgTransEntry acctgTransId="9002" glAccountId="GL0003" acctgTransEntrySeqId="00002" partyId="Company" amount="144120" currencyUomId="CNY" debitCreditFlag="C" glAccountTypeId="PURCHASE_ACCOUNT"/>
+
+    <!--取消采购单业务数据-->
+    <CustRequest custRequestId="9008" custRequestTypeId="RF_PUR_QUOTE" statusId="CRQ_ACCEPTED" reason="采购耳机用于销售" fromPartyId="COMPANY_EMPLOYEE00003" description="产品部门采购耳机请求" custRequestDate="2023-10-17 17:30:00.000"/>
+
+    <CustRequestItem custRequestId="9008" custRequestItemSeqId="0001" productId="DEMO0007" quantity="120" maximumAmount="100"/>
+
+    <Quote quoteId="9008" quoteName="采购耳机报价" statusId="QUO_ORDERED" partyId="SUPPLIER0001" salesChannelEnumId="DIRECT_SALES_CHANNEL" quoteTypeId="PURCHASE_QUOTE" custRequestId="9008"/>
+
+    <QuoteItem quoteId="9008" quoteItemSeqId="0001" productId="DEMO0007" quantity="120" quoteUnitPrice="58" custRequestId="9008" custRequestItemSeq="0001"/>
+
+    <OrderHeader orderId="9003" orderName="采购耳机" statusId="ORDER_CANCELLED" orderTypeId="PURCHASE_ORDER" grandTotal="15000" orderDate="2023-05-14 13:10:00.0" salesChannelEnumId="DIRECT_SALES_CHANNEL" originFacilityId="FAC0001" quoteId="9008"/>
+
+    <OrderItem orderId="9003" orderItemSeqId="0001" productId="DEMO0007" fromInventoryItemId="INV00007" quantity="120" unitPrice="58" estimatedShipDate="2023-05-14 15:10:00.0" estimatedDeliveryDate="2023-05-15 19:10:00.0" quoteId="9008" quoteItemSeqId="0001"/>
+
+    <OrderRole orderId="9003" partyId="Company" roleTypeId="BILL_TO_CUSTOMER"/>
+    <OrderRole orderId="9003" partyId="SUPPLIER0001" roleTypeId="BILL_FROM_VENDOR"/>
+
+    <OrderPaymentPreference orderPaymentPreferenceId="9006" orderId="9003" orderItemSeqId="0001" paymentMethodTypeId="PAY_COMPANY_CARD" finAccountId="FIN0003" maxAmount="6960" statusId="PAYMENT_GENERAL_CANCELLED" createdDate="2023-05-13 17:57:27.0"/>
+
+    <Payment paymentId="9006" paymentTypeId="CUSTOMER_PAYMENT" comments="华硕耳机采购全额支付" paymentPreferenceId="9006" paymentMethodTypeId="PAY_COMPANY_CARD" partyIdFrom="Company" partyIdTo="SUPPLIER0001" statusId="PAYMENT_GENERAL_CANCELLED" effectiveDate="2023-05-13 15:10:00.0" amount="6960" actualCurrencyAmount="6960" currencyUomId="CNY"/>
+
+    <!--采购单退货业务数据-->
+    <CustRequest custRequestId="9009" custRequestTypeId="RF_PUR_QUOTE" statusId="CRQ_ACCEPTED" reason="采购显卡用于销售" fromPartyId="COMPANY_EMPLOYEE00003" description="产品部门采购显卡请求" custRequestDate="2023-10-17 17:30:00.000"/>
+
+    <CustRequestItem custRequestId="9009" custRequestItemSeqId="0001" productId="DEMO0008" quantity="100" maximumAmount="1300"/>
+
+    <Quote quoteId="9009" quoteName="采购显卡报价" statusId="QUO_ORDERED" partyId="SUPPLIER0001" salesChannelEnumId="DIRECT_SALES_CHANNEL" quoteTypeId="PURCHASE_QUOTE" custRequestId="9009"/>
+
+    <QuoteItem quoteId="9009" quoteItemSeqId="0001" productId="DEMO0008" quantity="100" quoteUnitPrice="1259"/>
+
+    <OrderHeader orderId="9004" orderName="采购显卡" statusId="ORDER_PROCESSING" orderTypeId="PURCHASE_ORDER" grandTotal="125900" orderDate="2023-05-14 13:10:00.0" salesChannelEnumId="DIRECT_SALES_CHANNEL" originFacilityId="FAC0001" quoteId="9009"/>
+
+    <OrderItem orderId="9004" orderItemSeqId="0001" productId="DEMO0008" fromInventoryItemId="INV00008" quantity="100" unitPrice="1259" estimatedShipDate="2023-05-14 15:10:00.0" estimatedDeliveryDate="2023-05-15 19:10:00.0" quoteId="9009" quoteItemSeqId="0001"/>
+
+    <OrderRole orderId="9004" partyId="Company" roleTypeId="BILL_TO_CUSTOMER"/>
+    <OrderRole orderId="9004" partyId="SUPPLIER0001" roleTypeId="BILL_FROM_VENDOR"/>
+
+    <OrderPaymentPreference orderPaymentPreferenceId="9007" orderId="9004" orderItemSeqId="0001" paymentMethodTypeId="PAY_COMPANY_CARD" finAccountId="FIN0003" maxAmount="125900" statusId="PAYMENT_GENERAL_CONFIRM" createdDate="2023-05-13 17:57:27.0"/>
+
+    <Payment paymentId="9007" paymentTypeId="CUSTOMER_PAYMENT" comments="华硕显卡采购全额支付" paymentPreferenceId="9007" paymentMethodTypeId="PAY_COMPANY_CARD" partyIdFrom="Company" partyIdTo="SUPPLIER0001" statusId="PAYMENT_GENERAL_CONFIRM" effectiveDate="2023-05-13 15:10:00.0" amount="125900" actualCurrencyAmount="125900" currencyUomId="CNY"/>
+
+    <Shipment shipmentId="9003" trackingIdNumber="ID1246544359SF" shipmentTypeId="PURCHASE_SHIPMENT" statusId="GENERAL_SHIP_CANCELLED" primaryOrderId="9004" estimatedArrivalDate="2023-05-14 15:10:00.0" estimatedShipDate="2023-05-13 15:10:00.0" estimatedShipCost="150" currencyUomId="CNY" originContactMechId="POST_SUPPLIER00001" destinationContactMechId="POST_COMPANY00001" partyIdTo="Company" partyIdFrom="SUPPLIER0001" originFacilityId="FAC0001" destinationFacilityId="PRODUCT-WH"/>
+
+    <ShipmentItem shipmentId="9003" shipmentItemSeqId="0001" productId="DEMO0008" quantity="100"/>
+
+    <ShipmentRouteSegment shipmentId="9003" shipmentRouteSegmentId="SHIP_SEG0005" actualArrivalDate="2023-05-13 00:00:00.0" carrierPartyId="EXPRESS0001"/>
+
+    <ReturnHeader returnId="9000" returnHeaderTypeId="CUSTOMER_RETURN" statusId="RETURN_RECEIVED" fromPartyId="Company" toPartyId="SUPPLIER0001" finAccountId="FIN0003" currencyUomId="CNY" destinationFacilityId="FAC0001"/>
+
+    <ReturnItem returnId="9000" returnItemSeqId="0001" productId="DEMO0008" orderId="9004" orderItemSeqId="0001" returnQuantity="50" receivedQuantiy="50" returnPrice="1259"/>
+
+    <!--采购配件完整业务数据-->
+    <CustRequest custRequestId="9010" custRequestTypeId="RF_PUR_QUOTE" statusId="CRQ_ACCEPTED" reason="采购第二批华硕电脑配件用于销售" fromPartyId="COMPANY_EMPLOYEE00003" description="产品部门采购第二批华硕电脑配件请求" custRequestDate="2023-10-17 17:30:00.000"/>
+
+    <CustRequestItem custRequestId="9010" custRequestItemSeqId="0001" productId="DEMO0007" quantity="120" maximumAmount="58"/>
+    <CustRequestItem custRequestId="9010" custRequestItemSeqId="0002" productId="DEMO0002" quantity="100" maximumAmount="56"/>
+    <CustRequestItem custRequestId="9010" custRequestItemSeqId="0003" productId="DEMO0003" quantity="100" maximumAmount="188"/>
+    <CustRequestItem custRequestId="9010" custRequestItemSeqId="0004" productId="DEMO0004" quantity="100" maximumAmount="139"/>
+
+    <Quote quoteId="9010" partyId="SUPPLIER0001" quoteName="华硕电脑配件第二批采购报价" statusId="QUO_ORDERED" quoteTypeId="PURCHASE_QUOTE" salesChannelEnumId="DIRECT_SALES_CHANNEL" custRequestId="9010"/>
+
+    <QuoteItem quoteId="9010" quoteItemSeqId="0001" productId="DEMO0007" quantity="120" quoteUnitPrice="58"/>
+    <QuoteItem quoteId="9010" quoteItemSeqId="0002" productId="DEMO0002" quantity="100" quoteUnitPrice="56"/>
+    <QuoteItem quoteId="9010" quoteItemSeqId="0003" productId="DEMO0003" quantity="100" quoteUnitPrice="188"/>
+    <QuoteItem quoteId="9010" quoteItemSeqId="0004" productId="DEMO0004" quantity="100" quoteUnitPrice="139"/>
+
+    <OrderHeader orderId="9005" orderName="华硕电脑配件第二批采购订单" statusId="ORDER_COMPLETED" orderTypeId="PURCHASE_ORDER" grandTotal="45260" orderDate="2023-05-14 13:10:00.0" salesChannelEnumId="DIRECT_SALES_CHANNEL" originFacilityId="FAC0001" quoteId="9010"/>
+
+    <OrderItem orderId="9005" orderItemSeqId="0001" productId="DEMO0007" fromInventoryItemId="INV00007" quantity="120" unitPrice="58" estimatedShipDate="2023-05-14 15:10:00.0" estimatedDeliveryDate="2023-05-15 19:10:00.0" quoteId="9010" quoteItemSeqId="0001"/>
+    <OrderItem orderId="9005" orderItemSeqId="0002" productId="DEMO0002" fromInventoryItemId="INV00002" quantity="100" unitPrice="56" estimatedShipDate="2023-05-14 15:10:00.0" estimatedDeliveryDate="2023-05-15 19:10:00.0" quoteId="9010" quoteItemSeqId="0002"/>
+    <OrderItem orderId="9005" orderItemSeqId="0003" productId="DEMO0003" fromInventoryItemId="INV00003" quantity="100" unitPrice="188" estimatedShipDate="2023-05-14 15:10:00.0" estimatedDeliveryDate="2023-05-15 19:10:00.0" quoteId="9010" quoteItemSeqId="0003"/>
+    <OrderItem orderId="9005" orderItemSeqId="0004" productId="DEMO0004" fromInventoryItemId="INV00004" quantity="100" unitPrice="139" estimatedShipDate="2023-05-14 15:10:00.0" estimatedDeliveryDate="2023-05-15 19:10:00.0" quoteId="9010" quoteItemSeqId="0004"/>
+
+    <OrderRole orderId="9005" partyId="Company" roleTypeId="BILL_TO_CUSTOMER"/>
+    <OrderRole orderId="9005" partyId="SUPPLIER0001" roleTypeId="BILL_FROM_VENDOR"/>
+
+    <OrderPaymentPreference orderPaymentPreferenceId="9008" orderId="9005" orderItemSeqId="0001" paymentMethodTypeId="PAY_COMPANY_CARD" finAccountId="FIN0003" maxAmount="6960" statusId="PAYMENT_GENERAL_PAID" createdDate="2023-05-13 17:57:27.0"/>
+    <OrderPaymentPreference orderPaymentPreferenceId="9009" orderId="9005" orderItemSeqId="0002" paymentMethodTypeId="PAY_COMPANY_CARD" finAccountId="FIN0004" maxAmount="5600" statusId="PAYMENT_GENERAL_PAID" createdDate="2023-05-13 17:57:27.0"/>
+    <OrderPaymentPreference orderPaymentPreferenceId="9010" orderId="9005" orderItemSeqId="0003" paymentMethodTypeId="PAY_COMPANY_CARD" finAccountId="FIN0004" maxAmount="18800" statusId="PAYMENT_GENERAL_PAID" createdDate="2023-05-13 17:57:27.0"/>
+    <OrderPaymentPreference orderPaymentPreferenceId="9011" orderId="9005" orderItemSeqId="0004" paymentMethodTypeId="PAY_COMPANY_CARD" finAccountId="FIN0004" maxAmount="13900" statusId="PAYMENT_GENERAL_PAID" createdDate="2023-05-13 17:57:27.0"/>
+
+    <Payment paymentId="9008" paymentTypeId="CUSTOMER_PAYMENT" comments="华硕耳机第二批采购全额支付" paymentPreferenceId="9008" paymentMethodTypeId="PAY_COMPANY_CARD" partyIdFrom="Company" partyIdTo="SUPPLIER0001" statusId="PAYMENT_GENERAL_PAID" effectiveDate="2023-05-13 15:10:00.0" amount="6960" actualCurrencyAmount="6960" currencyUomId="CNY"/>
+    <Payment paymentId="9009" paymentTypeId="CUSTOMER_PAYMENT" comments="华硕鼠标第二批采购全额支付" paymentPreferenceId="9009" paymentMethodTypeId="PAY_COMPANY_CARD" partyIdFrom="Company" partyIdTo="SUPPLIER0001" statusId="PAYMENT_GENERAL_PAID" effectiveDate="2023-05-13 15:10:00.0" amount="5600" actualCurrencyAmount="5600" currencyUomId="CNY"/>
+    <Payment paymentId="9010" paymentTypeId="CUSTOMER_PAYMENT" comments="华硕键盘第二批采购全额支付" paymentPreferenceId="9010" paymentMethodTypeId="PAY_COMPANY_CARD" partyIdFrom="Company" partyIdTo="SUPPLIER0001" statusId="PAYMENT_GENERAL_PAID" effectiveDate="2023-05-13 15:10:00.0" amount="18800" actualCurrencyAmount="18800" currencyUomId="CNY"/>
+    <Payment paymentId="9011" paymentTypeId="CUSTOMER_PAYMENT" comments="华硕硬盘第二批采购全额支付" paymentPreferenceId="9011" paymentMethodTypeId="PAY_COMPANY_CARD" partyIdFrom="Company" partyIdTo="SUPPLIER0001" statusId="PAYMENT_GENERAL_PAID" effectiveDate="2023-05-13 15:10:00.0" amount="13900" actualCurrencyAmount="13900" currencyUomId="CNY"/>
+
+    <Shipment shipmentId="9004" trackingIdNumber="ID1246544640SF" shipmentTypeId="PURCHASE_SHIPMENT" statusId="GENERAL_SHIP_RECEIVED" primaryOrderId="9005" estimatedArrivalDate="2023-05-14 15:10:00.0" estimatedShipDate="2023-05-13 15:10:00.0" estimatedShipCost="350" currencyUomId="CNY" originContactMechId="POST_SUPPLIER00001" destinationContactMechId="POST_COMPANY00001" partyIdTo="Company" partyIdFrom="SUPPLIER0001" originFacilityId="FAC0001" destinationFacilityId="PRODUCT-WH"/>
+
+    <ShipmentItem shipmentId="9004" shipmentItemSeqId="0001" productId="DEMO0007" quantity="120"/>
+    <ShipmentItem shipmentId="9004" shipmentItemSeqId="0002" productId="DEMO0002" quantity="100"/>
+    <ShipmentItem shipmentId="9004" shipmentItemSeqId="0002" productId="DEMO0003" quantity="100"/>
+    <ShipmentItem shipmentId="9004" shipmentItemSeqId="0002" productId="DEMO0004" quantity="100"/>
+
+    <ShipmentRouteSegment shipmentId="9004" shipmentRouteSegmentId="SHIP_SEG0006" actualArrivalDate="2023-05-13 00:00:00.0" carrierPartyId="EXPRESS0001"/>
+
+    <Invoice invoiceId="9003" description="第二批耳机采购发票" invoiceTypeId="PURCHASE_INVOICE" partyIdFrom="Company" partyId="SUPPLIER0001" statusId="INVOICE_GENERAL_PAID" paidDate="2023-05-13 15:10:00.0" invoiceDate="2023-05-13 15:10:00.0" currencyUomId="CNY" orderId="9002"/>
+    <Invoice invoiceId="9004" description="第二批电脑配件采购发票" invoiceTypeId="PURCHASE_INVOICE" partyIdFrom="Company" partyId="SUPPLIER0001" statusId="INVOICE_GENERAL_PAID" paidDate="2023-05-13 15:10:00.0" invoiceDate="2023-05-13 15:10:00.0" currencyUomId="CNY" orderId="9002"/>
+
+    <InvoiceItem invoiceId="9003" invoiceItemSeqId="0001" inventoryItemId="INV00007" productId="DEMO0007" quantity="120" amount="58"/>
+    <InvoiceItem invoiceId="9004" invoiceItemSeqId="0001" inventoryItemId="INV00002" productId="DEMO0002" quantity="100" amount="56"/>
+    <InvoiceItem invoiceId="9004" invoiceItemSeqId="0002" inventoryItemId="INV00003" productId="DEMO0003" quantity="100" amount="188"/>
+    <InvoiceItem invoiceId="9004" invoiceItemSeqId="0003" inventoryItemId="INV00004" productId="DEMO0004" quantity="100" amount="139"/>
+
+    <PaymentApplication paymentApplicationId="9003" paymentId="9008" invoiceId="9003" invoiceItemSeqId="0001" amountApplied="6960"/>
+    <PaymentApplication paymentApplicationId="9004" paymentId="9009" invoiceId="9004" invoiceItemSeqId="0001" amountApplied="5600"/>
+    <PaymentApplication paymentApplicationId="9005" paymentId="9010" invoiceId="9004" invoiceItemSeqId="0002" amountApplied="18800"/>
+    <PaymentApplication paymentApplicationId="9006" paymentId="9011" invoiceId="9004" invoiceItemSeqId="0003" amountApplied="13900"/>
+
+    <AcctgTrans acctgTransId="9003" shipmentId="9004" invoiceId="9003" paymentId="9008" transactionDate="2022-12-13 17:57:27.0"/>
+    <AcctgTrans acctgTransId="9004" shipmentId="9004" invoiceId="9004" paymentId="9009" transactionDate="2022-12-13 17:57:27.0"/>
+    <AcctgTrans acctgTransId="9005" shipmentId="9004" invoiceId="9004" paymentId="9010" transactionDate="2022-12-13 17:57:27.0"/>
+    <AcctgTrans acctgTransId="9006" shipmentId="9004" invoiceId="9004" paymentId="9011" transactionDate="2022-12-13 17:57:27.0"/>
+
+    <GlAccountClass glAccountClassId="CASH_EQUIVALENT" description="现金及等价物"/>
+
+    <GlAccount glAccountId="GL0002" accountName="一般支票账户" accountCode="111101" glAccountClassId="CASH_EQUIVALENT"/>
+    <GlAccount glAccountId="GL0003" accountName="一般支票账户" accountCode="111102" glAccountClassId="CASH_EQUIVALENT"/>
+
+    <AcctgTransEntry acctgTransId="9003" glAccountId="GL0002" acctgTransEntrySeqId="00001" partyId="Company" amount="6960" currencyUomId="CNY" debitCreditFlag="D" glAccountTypeId="PURCHASE_ACCOUNT"/>
+    <AcctgTransEntry acctgTransId="9003" glAccountId="GL0003" acctgTransEntrySeqId="00002" partyId="Company" amount="6960" currencyUomId="CNY" debitCreditFlag="C" glAccountTypeId="PURCHASE_ACCOUNT"/>
+
+    <AcctgTransEntry acctgTransId="9004" glAccountId="GL0002" acctgTransEntrySeqId="00001" partyId="Company" amount="5600" currencyUomId="CNY" debitCreditFlag="D" glAccountTypeId="PURCHASE_ACCOUNT"/>
+    <AcctgTransEntry acctgTransId="9004" glAccountId="GL0003" acctgTransEntrySeqId="00002" partyId="Company" amount="5600" currencyUomId="CNY" debitCreditFlag="C" glAccountTypeId="PURCHASE_ACCOUNT"/>
+
+    <AcctgTransEntry acctgTransId="9005" glAccountId="GL0002" acctgTransEntrySeqId="00001" partyId="Company" amount="18800" currencyUomId="CNY" debitCreditFlag="D" glAccountTypeId="PURCHASE_ACCOUNT"/>
+    <AcctgTransEntry acctgTransId="9005" glAccountId="GL0003" acctgTransEntrySeqId="00002" partyId="Company" amount="18800" currencyUomId="CNY" debitCreditFlag="C" glAccountTypeId="PURCHASE_ACCOUNT"/>
+
+    <AcctgTransEntry acctgTransId="9006" glAccountId="GL0002" acctgTransEntrySeqId="00001" partyId="Company" amount="13900" currencyUomId="CNY" debitCreditFlag="D" glAccountTypeId="PURCHASE_ACCOUNT"/>
+    <AcctgTransEntry acctgTransId="9006" glAccountId="GL0003" acctgTransEntrySeqId="00002" partyId="Company" amount="13900" currencyUomId="CNY" debitCreditFlag="C" glAccountTypeId="PURCHASE_ACCOUNT"/>
+
+    <InvoiceStatus statusId="INVOICE_GENERAL_READY" invoiceId="9003" statusDate="2022-05-13 17:57:27.0"/>
+    <InvoiceStatus statusId="INVOICE_GENERAL_DEAL" invoiceId="9003" statusDate="2022-05-14 17:57:27.0"/>
+    <InvoiceStatus statusId="INVOICE_GENERAL_PAID" invoiceId="9003" statusDate="2022-05-15 17:57:27.0"/>
+
+    <InvoiceStatus statusId="INVOICE_GENERAL_READY" invoiceId="9004" statusDate="2023-05-13 17:57:27.0"/>
+    <InvoiceStatus statusId="INVOICE_GENERAL_DEAL" invoiceId="9004" statusDate="2023-05-14 17:57:27.0"/>
+    <InvoiceStatus statusId="INVOICE_GENERAL_PAID" invoiceId="9004" statusDate="2023-05-15 17:57:27.0"/>
+
+    <InventoryItemDetail inventoryItemId="INV00007" inventoryItemDetailSeqId="0001" quantityOnHandDiff="120" availableToPromiseDiff="120" shipmentId="9004" shipmentItemSeqId="0001" orderId="9005" orderItemSeqId="0001"/>
+    <InventoryItemDetail inventoryItemId="INV00002" inventoryItemDetailSeqId="0001" quantityOnHandDiff="100" availableToPromiseDiff="100" shipmentId="9004" shipmentItemSeqId="0002" orderId="9005" orderItemSeqId="0002"/>
+    <InventoryItemDetail inventoryItemId="INV00003" inventoryItemDetailSeqId="0001" quantityOnHandDiff="100" availableToPromiseDiff="100" shipmentId="9004" shipmentItemSeqId="0003" orderId="9005" orderItemSeqId="0003"/>
+    <InventoryItemDetail inventoryItemId="INV00004" inventoryItemDetailSeqId="0001" quantityOnHandDiff="100" availableToPromiseDiff="100" shipmentId="9004" shipmentItemSeqId="0004" orderId="9005" orderItemSeqId="0004"/>
+
+    <!--采购台式一体机及配件业务数据-->
+    <OrderHeader orderId="9006" orderName="华硕台式一体机采购订单" statusId="ORDER_COMPLETED" orderTypeId="PURCHASE_ORDER" grandTotal="45260" orderDate="2023-05-14 13:10:00.0" salesChannelEnumId="DIRECT_SALES_CHANNEL" originFacilityId="FAC0001"/>
+
+    <OrderItem productId="DEMO0009" quantity="100" estimatedShipDate="2023-09-15 17:57:27.0" estimatedDeliveryDate="2023-09-16 17:57:27.0" unitPrice="5895" orderItemSeqId="0001" fromInventoryItemId="INV00009" orderId="9006"/>
+    <OrderItem productId="DEMO0010" quantity="100" estimatedShipDate="2023-09-17 17:57:27.0" estimatedDeliveryDate="2023-09-18 17:57:27.0" unitPrice="332" orderItemSeqId="0002" fromInventoryItemId="INV00010" orderId="9006"/>
+    <OrderItem productId="DEMO0011" quantity="100" estimatedShipDate="2023-09-15 17:57:27.0" estimatedDeliveryDate="2023-09-16 17:57:27.0" unitPrice="89" orderItemSeqId="0003" fromInventoryItemId="INV00011" orderId="9006"/>
+    <OrderItem productId="DEMO0012" quantity="100" estimatedShipDate="2023-09-15 17:57:27.0" estimatedDeliveryDate="2023-09-16 17:57:27.0" unitPrice="233" orderItemSeqId="0004" fromInventoryItemId="INV00012" orderId="9006"/>
+
+    <OrderRole orderId="9006" partyId="Company" roleTypeId="BILL_TO_CUSTOMER"/>
+    <OrderRole orderId="9006" partyId="SUPPLIER0001" roleTypeId="BILL_FROM_VENDOR"/>
+
+    <OrderPaymentPreference orderPaymentPreferenceId="9012" orderId="9006" orderItemSeqId="0001" paymentMethodTypeId="PAY_COMPANY_CARD" finAccountId="FIN0003" maxAmount="194750" statusId="PAYMENT_GENERAL_PAID" createdDate="2023-05-13 17:57:27.0"/>
+    <OrderPaymentPreference orderPaymentPreferenceId="9016" orderId="9006" orderItemSeqId="0001" paymentMethodTypeId="PAY_COMPANY_CARD" finAccountId="FIN0003" maxAmount="100000" statusId="PAYMENT_GENERAL_CONFIRM" createdDate="2023-05-13 17:57:27.0"/>
+    <OrderPaymentPreference orderPaymentPreferenceId="9017" orderId="9006" orderItemSeqId="0001" paymentMethodTypeId="PAY_COMPANY_CARD" finAccountId="FIN0003" maxAmount="294750" statusId="PAYMENT_GENERAL_CONFIRM" createdDate="2023-05-13 17:57:27.0"/>
+    <OrderPaymentPreference orderPaymentPreferenceId="9013" orderId="9006" orderItemSeqId="0002" paymentMethodTypeId="PAY_COMPANY_CARD" finAccountId="FIN0005" maxAmount="33200" statusId="PAYMENT_GENERAL_PAID" createdDate="2023-05-13 17:57:27.0"/>
+    <OrderPaymentPreference orderPaymentPreferenceId="9014" orderId="9006" orderItemSeqId="0003" paymentMethodTypeId="PAY_COMPANY_CARD" finAccountId="FIN0004" maxAmount="8900" statusId="PAYMENT_GENERAL_PAID" createdDate="2023-05-13 17:57:27.0"/>
+    <OrderPaymentPreference orderPaymentPreferenceId="9015" orderId="9006" orderItemSeqId="0004" paymentMethodTypeId="PAY_COMPANY_CARD" finAccountId="FIN0004" maxAmount="23300" statusId="PAYMENT_GENERAL_PAID" createdDate="2023-05-13 17:57:27.0"/>
+
+    <Payment paymentId="9012" paymentTypeId="CUSTOMER_PAYMENT" comments="华硕一体机采购第一期支付" paymentPreferenceId="9012" paymentMethodTypeId="PAY_COMPANY_CARD" partyIdFrom="Company" partyIdTo="SUPPLIER0001" statusId="PAYMENT_GENERAL_PAID" effectiveDate="2023-05-13 15:10:00.0" amount="194750" actualCurrencyAmount="194750" currencyUomId="CNY"/>
+    <Payment paymentId="9016" paymentTypeId="CUSTOMER_PAYMENT" comments="华硕一体机采购第二期支付" paymentPreferenceId="9016" paymentMethodTypeId="PAY_COMPANY_CARD" partyIdFrom="Company" partyIdTo="SUPPLIER0001" statusId="PAYMENT_GENERAL_PAID" effectiveDate="2023-05-13 15:10:00.0" amount="100000" actualCurrencyAmount="100000" currencyUomId="CNY"/>
+    <Payment paymentId="9017" paymentTypeId="CUSTOMER_PAYMENT" comments="华硕一体机采购第三期支付" paymentPreferenceId="9017" paymentMethodTypeId="PAY_COMPANY_CARD" partyIdFrom="Company" partyIdTo="SUPPLIER0001" statusId="PAYMENT_GENERAL_PAID" effectiveDate="2023-05-13 15:10:00.0" amount="294750" actualCurrencyAmount="294750" currencyUomId="CNY"/>
+    <Payment paymentId="9013" paymentTypeId="CUSTOMER_PAYMENT" comments="华硕音响采购全额支付" paymentPreferenceId="9013" paymentMethodTypeId="PAY_COMPANY_CARD" partyIdFrom="Company" partyIdTo="SUPPLIER0001" statusId="PAYMENT_GENERAL_PAID" effectiveDate="2023-05-13 15:10:00.0" amount="33200" actualCurrencyAmount="33200" currencyUomId="CNY"/>
+    <Payment paymentId="9014" paymentTypeId="CUSTOMER_PAYMENT" comments="华硕麦克风采购全额支付" paymentPreferenceId="9014" paymentMethodTypeId="PAY_COMPANY_CARD" partyIdFrom="Company" partyIdTo="SUPPLIER0001" statusId="PAYMENT_GENERAL_PAID" effectiveDate="2023-05-13 15:10:00.0" amount="8900" actualCurrencyAmount="8900" currencyUomId="CNY"/>
+    <Payment paymentId="9015" paymentTypeId="CUSTOMER_PAYMENT" comments="华硕台式机专用硬盘采购全额支付" paymentPreferenceId="9015" paymentMethodTypeId="PAY_COMPANY_CARD" partyIdFrom="Company" partyIdTo="SUPPLIER0001" statusId="PAYMENT_GENERAL_PAID" effectiveDate="2023-05-13 15:10:00.0" amount="23300" actualCurrencyAmount="23300" currencyUomId="CNY"/>
+
+    <Shipment shipmentId="SHIP0007" trackingIdNumber="ID1246347800SF" shipmentTypeId="PURCHASE_SHIPMENT" statusId="GENERAL_SHIP_RECEIVED" primaryOrderId="9006" estimatedArrivalDate="2023-09-16 15:10:00.0" estimatedShipDate="2023-09-15 15:10:00.0" estimatedShipCost="180" currencyUomId="CNY" originContactMechId="POST_SUPPLIER00001" destinationContactMechId="POST_COMPANY00001" partyIdTo="Company" partyIdFrom="SUPPLIER0001" originFacilityId="FAC0001" destinationFacilityId="PRODUCT-WH"/>
+    <Shipment shipmentId="SHIP0008" trackingIdNumber="ID1246542353SF" shipmentTypeId="PURCHASE_SHIPMENT" statusId="GENERAL_SHIP_SEND" primaryOrderId="9006" estimatedArrivalDate="2023-09-18 15:10:00.0" estimatedShipDate="2023-09-17 15:10:00.0" estimatedShipCost="180" currencyUomId="CNY" originContactMechId="POST_SUPPLIER00001" destinationContactMechId="POST_COMPANY00001" partyIdTo="Company" partyIdFrom="SUPPLIER0001" originFacilityId="FAC0001" destinationFacilityId="PRODUCT-WH"/>
+    <Shipment shipmentId="SHIP0009" trackingIdNumber="ID1246540943SF" shipmentTypeId="PURCHASE_SHIPMENT" statusId="GENERAL_SHIP_RECEIVED" primaryOrderId="9006" estimatedArrivalDate="2023-09-16 15:10:00.0" estimatedShipDate="2023-09-15 15:10:00.0" estimatedShipCost="270" currencyUomId="CNY" originContactMechId="POST_SUPPLIER00001" destinationContactMechId="POST_COMPANY00001" partyIdTo="Company" partyIdFrom="SUPPLIER0001" originFacilityId="FAC0001" destinationFacilityId="PRODUCT-WH"/>
+
+    <ShipmentItem shipmentId="SHIP0007" shipmentItemSeqId="0001" productId="DEMO0009" quantity="50"/>
+    <ShipmentItem shipmentId="SHIP0008" shipmentItemSeqId="0001" productId="DEMO0009" quantity="50"/>
+    <ShipmentItem shipmentId="SHIP0009" shipmentItemSeqId="0001" productId="DEMO0010" quantity="100"/>
+    <ShipmentItem shipmentId="SHIP0009" shipmentItemSeqId="0002" productId="DEMO0011" quantity="100"/>
+    <ShipmentItem shipmentId="SHIP0009" shipmentItemSeqId="0003" productId="DEMO0012" quantity="100"/>
+
+    <ShipmentRouteSegment shipmentId="SHIP0007" shipmentRouteSegmentId="SHIP_SEG0007" actualArrivalDate="2023-09-16 00:00:00.0" carrierPartyId="EXPRESS0001"/>
+    <ShipmentRouteSegment shipmentId="SHIP0008" shipmentRouteSegmentId="SHIP_SEG0008" actualArrivalDate="" carrierPartyId="EXPRESS0001"/>
+    <ShipmentRouteSegment shipmentId="SHIP0009" shipmentRouteSegmentId="SHIP_SEG0009" actualArrivalDate="2023-09-16 00:00:00.0" carrierPartyId="EXPRESS0001"/>
+
+    <Invoice invoiceId="9005" description="台式一体机第一批发货采购发票" invoiceTypeId="PURCHASE_INVOICE" partyIdFrom="Company" partyId="SUPPLIER0001" statusId="INVOICE_GENERAL_DEAL" paidDate="2023-09-15 15:10:00.0" invoiceDate="2023-09-16 15:10:00.0" currencyUomId="CNY" orderId="9006"/>
+    <Invoice invoiceId="9006" description="台式一体机配件采购发票" invoiceTypeId="PURCHASE_INVOICE" partyIdFrom="Company" partyId="SUPPLIER0001" statusId="INVOICE_GENERAL_PAID" paidDate="2023-05-13 15:10:00.0" invoiceDate="2023-09-13 15:10:00.0" currencyUomId="CNY" orderId="9006"/>
+
+    <InvoiceItem invoiceId="9005" invoiceItemSeqId="0001" inventoryItemId="INV00009" productId="DEMO0009" quantity="50" amount="5895"/>
+    <InvoiceItem invoiceId="9006" invoiceItemSeqId="0001" inventoryItemId="INV00010" productId="DEMO0010" quantity="100" amount="332"/>
+    <InvoiceItem invoiceId="9006" invoiceItemSeqId="0002" inventoryItemId="INV00011" productId="DEMO0011" quantity="100" amount="89"/>
+    <InvoiceItem invoiceId="9006" invoiceItemSeqId="0003" inventoryItemId="INV00012" productId="DEMO0012" quantity="100" amount="233"/>
+
+    <PaymentApplication paymentApplicationId="9007" paymentId="9012" invoiceId="9005" invoiceItemSeqId="0001" amountApplied="194750"/>
+    <PaymentApplication paymentApplicationId="9008" paymentId="9013" invoiceId="9006" invoiceItemSeqId="0001" amountApplied="33200"/>
+    <PaymentApplication paymentApplicationId="9009" paymentId="9014" invoiceId="9006" invoiceItemSeqId="0002" amountApplied="8900"/>
+    <PaymentApplication paymentApplicationId="9010" paymentId="9015" invoiceId="9006" invoiceItemSeqId="0003" amountApplied="23300"/>
+
+    <AcctgTrans acctgTransId="ACCTG0009" shipmentId="SHIP0007" invoiceId="9005" paymentId="9012" transactionDate="2022-12-13 17:57:27.0"/>
+    <AcctgTrans acctgTransId="ACCTG0010" shipmentId="SHIP0009" invoiceId="9006" paymentId="9013" transactionDate="2022-12-13 17:57:27.0"/>
+    <AcctgTrans acctgTransId="ACCTG0011" shipmentId="SHIP0009" invoiceId="9006" paymentId="9014" transactionDate="2022-12-13 17:57:27.0"/>
+    <AcctgTrans acctgTransId="ACCTG0012" shipmentId="SHIP0009" invoiceId="9006" paymentId="9015" transactionDate="2022-12-13 17:57:27.0"/>
+
+    <AcctgTransEntry acctgTransId="ACCTG0009" glAccountId="GL0002" acctgTransEntrySeqId="00001" partyId="Company" amount="194750" currencyUomId="CNY" debitCreditFlag="D" glAccountTypeId="PURCHASE_ACCOUNT"/>
+    <AcctgTransEntry acctgTransId="ACCTG0009" glAccountId="GL0003" acctgTransEntrySeqId="00002" partyId="Company" amount="194750" currencyUomId="CNY" debitCreditFlag="C" glAccountTypeId="PURCHASE_ACCOUNT"/>
+
+    <AcctgTransEntry acctgTransId="ACCTG0010" glAccountId="GL0002" acctgTransEntrySeqId="00001" partyId="Company" amount="33200" currencyUomId="CNY" debitCreditFlag="D" glAccountTypeId="PURCHASE_ACCOUNT"/>
+    <AcctgTransEntry acctgTransId="ACCTG0010" glAccountId="GL0003" acctgTransEntrySeqId="00002" partyId="Company" amount="33200" currencyUomId="CNY" debitCreditFlag="C" glAccountTypeId="PURCHASE_ACCOUNT"/>
+
+    <AcctgTransEntry acctgTransId="ACCTG0011" glAccountId="GL0002" acctgTransEntrySeqId="00001" partyId="Company" amount="8900" currencyUomId="CNY" debitCreditFlag="D" glAccountTypeId="PURCHASE_ACCOUNT"/>
+    <AcctgTransEntry acctgTransId="ACCTG0011" glAccountId="GL0003" acctgTransEntrySeqId="00002" partyId="Company" amount="8900" currencyUomId="CNY" debitCreditFlag="C" glAccountTypeId="PURCHASE_ACCOUNT"/>
+
+    <AcctgTransEntry acctgTransId="ACCTG0012" glAccountId="GL0002" acctgTransEntrySeqId="00001" partyId="Company" amount="23300" currencyUomId="CNY" debitCreditFlag="D" glAccountTypeId="PURCHASE_ACCOUNT"/>
+    <AcctgTransEntry acctgTransId="ACCTG0012" glAccountId="GL0003" acctgTransEntrySeqId="00002" partyId="Company" amount="23300" currencyUomId="CNY" debitCreditFlag="C" glAccountTypeId="PURCHASE_ACCOUNT"/>
+
+    <InvoiceStatus statusId="INVOICE_GENERAL_READY" invoiceId="9005" statusDate="2023-09-15 17:57:27.0"/>
+    <InvoiceStatus statusId="INVOICE_GENERAL_DEAL" invoiceId="9005" statusDate="2023-09-16 17:57:27.0"/>
+
+    <InvoiceStatus statusId="INVOICE_GENERAL_READY" invoiceId="9006" statusDate="2023-09-15 17:57:27.0"/>
+    <InvoiceStatus statusId="INVOICE_GENERAL_DEAL" invoiceId="9006" statusDate="2023-09-16 17:57:27.0"/>
+    <InvoiceStatus statusId="INVOICE_GENERAL_PAID" invoiceId="9006" statusDate="2023-09-17 17:57:27.0"/>
+
+    <InventoryItemDetail inventoryItemId="INV00009" inventoryItemDetailSeqId="0001" quantityOnHandDiff="50" availableToPromiseDiff="50" shipmentId="SHIP0007" shipmentItemSeqId="0001" orderId="9006" orderItemSeqId="0001"/>
+    <InventoryItemDetail inventoryItemId="INV00010" inventoryItemDetailSeqId="0001" quantityOnHandDiff="100" availableToPromiseDiff="100" shipmentId="SHIP0009" shipmentItemSeqId="0001" orderId="9006" orderItemSeqId="0002"/>
+    <InventoryItemDetail inventoryItemId="INV00011" inventoryItemDetailSeqId="0001" quantityOnHandDiff="100" availableToPromiseDiff="100" shipmentId="SHIP0009" shipmentItemSeqId="0002" orderId="9006" orderItemSeqId="0003"/>
+    <InventoryItemDetail inventoryItemId="INV00012" inventoryItemDetailSeqId="0001" quantityOnHandDiff="100" availableToPromiseDiff="100" shipmentId="SHIP0009" shipmentItemSeqId="0003" orderId="9006" orderItemSeqId="0004"/>
+
+    <!--公司销售业务数据-->
+    <!--销售笔记本完整流程业务数据-->
+    <OrderHeader orderId="ORDER00001" orderName="出售新一批电脑用于办公" statusId="ORDER_COMPLETED" orderTypeId="SALES_ORDER" grandTotal="200000" currencyUomId="CNY" orderDate="2023-05-18 13:10:00.0" salesChannelEnumId="DIRECT_SALES_CHANNEL" originFacilityId="PRODUCT-WH"/>
+
+    <OrderItem orderId="ORDER00001" orderItemSeqId="0001" productId="DEMO0001" fromInventoryItemId="INV00001" quantity="50" unitPrice="4000" estimatedDeliveryDate="2023-05-18 13:10:00.0" estimatedShipDate="2023-05-18 13:10:00.0"/>
+
+    <OrderRole orderId="ORDER00001" partyId="CUSTOMER0001" roleTypeId="BILL_TO_CUSTOMER"/>
+    <OrderRole orderId="ORDER00001" partyId="Company" roleTypeId="BILL_FROM_VENDOR"/>
+
+    <OrderPaymentPreference orderPaymentPreferenceId="ORDER_PAY_0001" orderId="ORDER00001" orderItemSeqId="0001" paymentMethodTypeId="PAY_COMPANY_CARD" finAccountId="FIN0001" maxAmount="200000" statusId="PAYMENT_RECEIVED" createdDate="2023-05-13 17:57:27.0"/>
+
+    <Payment paymentId="9018" paymentTypeId="CUSTOMER_PAYMENT" comments="华硕笔记本销售收款" paymentMethodTypeId="PAY_COMPANY_CARD" paymentPreferenceId="ORDER_PAY_0001" partyIdFrom="CUSTOMER0001" partyIdTo="Company" statusId="PAYMENT_GENERAL_PAID" effectiveDate="2023-05-13 15:10:00.0" amount="200000" actualCurrencyAmount="200000" currencyUomId="CNY"/>
+
+    <Shipment shipmentId="SHIP0002" trackingIdNumber="ID1246542398SF" shipmentTypeId="SALES_SHIPMENT" statusId="GENERAL_SHIP_SEND" primaryOrderId="ORDER00001" estimatedArrivalDate="2023-05-19 15:10:00.0" estimatedShipDate="2023-05-18 15:10:00.0" estimatedShipCost="150" currencyUomId="CNY" originContactMechId="POST_SUPPLIER00001" destinationContactMechId="POST_CUSTOMER00001" partyIdTo="CUSTOMER0001" partyIdFrom="Company" originFacilityId="PRODUCT-WH" destinationFacilityId="FAC0003"/>
+
+    <ShipmentItem shipmentId="SHIP0002" shipmentItemSeqId="0001" productId="DEMO0001" quantity="50"/>
+
+    <ShipmentRouteSegment shipmentId="SHIP0002" shipmentRouteSegmentId="SHIP_SEG0002" actualArrivalDate="" carrierPartyId="EXPRESS0001"/>
+
+    <Invoice invoiceId="9007" description="笔记本电脑销售发票" invoiceTypeId="SALES_INVOICE" partyIdFrom="Company" partyId="CUSTOMER0001" statusId="INVOICE_GENERAL_PAID" paidDate="2023-05-18 15:10:00.0" invoiceDate="2023-05-17 15:10:00.0" currencyUomId="CNY"/>
+
+    <InvoiceItem invoiceId="9007" invoiceItemSeqId="0001" inventoryItemId="INV00001" productId="DEMO0001" quantity="50" amount="4000"/>
+
+    <InvoiceStatus statusId="INVOICE_GENERAL_READY" invoiceId="9007" statusDate="2022-12-13 17:57:27.0"/>
+    <InvoiceStatus statusId="INVOICE_GENERAL_DEAL" invoiceId="9007" statusDate="2022-12-14 17:57:27.0"/>
+    <InvoiceStatus statusId="INVOICE_GENERAL_PAID" invoiceId="9007" statusDate="2022-12-15 17:57:27.0"/>
+
+    <PaymentApplication paymentApplicationId="PAY_APPLIED_0002" paymentId="9018" invoiceId="9007" invoiceItemSeqId="0001" amountApplied="200000"/>
+
+    <AcctgTrans acctgTransId="ACCTG0002" shipmentId="SHIP0002" invoiceId="9007" paymentId="9018" transactionDate="2022-12-13 17:57:27.0"/>
+
+    <GlAccountClass glAccountClassId="CASH_EQUIVALENT" description="现金及等价物"/>
+    <GlAccountClass glAccountClassId="CURRENT_ASSET" description="流动资产"/>
+
+    <GlAccount glAccountId="GL0004" accountName="未存入银行收款" accountCode="111180" glAccountClassId="CASH_EQUIVALENT"/>
+    <GlAccount glAccountId="GL0005" accountName="应收账款" accountCode="111170" glAccountClassId="CURRENT_ASSET"/>
+
+    <AcctgTransEntry acctgTransId="ACCTG0002" glAccountId="GL0004" acctgTransEntrySeqId="00001" partyId="Company" amount="125000" currencyUomId="CNY" debitCreditFlag="D" glAccountTypeId="SALES_ACCOUNT"/>
+    <AcctgTransEntry acctgTransId="ACCTG0002" glAccountId="GL0005" acctgTransEntrySeqId="00002" partyId="Company" amount="125000" currencyUomId="CNY" debitCreditFlag="C" glAccountTypeId="SALES_ACCOUNT"/>
+
+    <InventoryItemDetail inventoryItemId="INV00001" inventoryItemDetailSeqId="0002" quantityOnHandDiff="-50" availableToPromiseDiff="-50" shipmentId="SHIP0002" shipmentItemSeqId="0001" orderId="9001" orderItemSeqId="0001"/>
+
+    <!--销售单创建业务数据-->
+    <OrderHeader orderId="ORDER00002" orderName="销售电脑配件" statusId="ORDER_CREATED" orderTypeId="SALES_ORDER" grandTotal="30850" orderDate="2023-05-14 13:10:00.0" salesChannelEnumId="DIRECT_SALES_CHANNEL" originFacilityId="PRODUCT-WH"/>
+
+    <OrderItem orderId="ORDER00002" orderItemSeqId="0001" productId="DEMO0002" fromInventoryItemId="INV00002" quantity="50" unitPrice="82" estimatedShipDate="2023-05-14 15:10:00.0" estimatedDeliveryDate="2023-05-15 19:10:00.0"/>
+    <OrderItem orderId="ORDER00002" orderItemSeqId="0002" productId="DEMO0003" fromInventoryItemId="INV00003" quantity="50" unitPrice="290" estimatedShipDate="2023-05-14 15:10:00.0" estimatedDeliveryDate="2023-05-15 19:10:00.0"/>
+    <OrderItem orderId="ORDER00002" orderItemSeqId="0003" productId="DEMO0004" fromInventoryItemId="INV00004" quantity="50" unitPrice="245" estimatedShipDate="2023-05-14 15:10:00.0" estimatedDeliveryDate="2023-05-15 19:10:00.0"/>
+
+    <OrderRole orderId="ORDER00002" partyId="CUSTOMER0001" roleTypeId="BILL_TO_CUSTOMER"/>
+    <OrderRole orderId="ORDER00002" partyId="Company" roleTypeId="BILL_FROM_VENDOR"/>
+
+    <OrderPaymentPreference orderPaymentPreferenceId="9015" orderId="ORDER00002" orderItemSeqId="0001" paymentMethodTypeId="PAY_COMPANY_CARD" finAccountId="FIN0005" maxAmount="4100" statusId="PAYMENT_GENERAL_UNPAID" createdDate="2023-05-13 17:57:27.0"/>
+    <OrderPaymentPreference orderPaymentPreferenceId="9016" orderId="ORDER00002" orderItemSeqId="0002" paymentMethodTypeId="PAY_COMPANY_CARD" finAccountId="FIN0005" maxAmount="14500" statusId="PAYMENT_GENERAL_UNPAID" createdDate="2023-05-13 17:57:27.0"/>
+    <OrderPaymentPreference orderPaymentPreferenceId="9017" orderId="ORDER00002" orderItemSeqId="0003" paymentMethodTypeId="PAY_COMPANY_CARD" finAccountId="FIN0005" maxAmount="12250" statusId="PAYMENT_GENERAL_UNPAID" createdDate="2023-05-13 17:57:27.0"/>
+
+    <Payment paymentId="9016" paymentTypeId="CUSTOMER_PAYMENT" comments="华硕镭射鼠标销售收款"  paymentPreferenceId="9015" paymentMethodTypeId="PAY_COMPANY_CARD" partyIdFrom="CUSTOMER0001" partyIdTo="Company" statusId="PAYMENT_GENERAL_UNPAID" effectiveDate="2023-05-13 15:10:00.0" amount="4100" actualCurrencyAmount="4100" currencyUomId="CNY"/>
+    <Payment paymentId="9017" paymentTypeId="CUSTOMER_PAYMENT" comments="华硕镭射键盘销售收款" paymentPreferenceId="9016" paymentMethodTypeId="PAY_COMPANY_CARD" partyIdFrom="CUSTOMER0001" partyIdTo="Company" statusId="PAYMENT_GENERAL_UNPAID" effectiveDate="2023-05-13 15:10:00.0" amount="14500" actualCurrencyAmount="14500" currencyUomId="CNY"/>
+    <Payment paymentId="9019" paymentTypeId="CUSTOMER_PAYMENT" comments="华硕固态硬盘销售收款" paymentPreferenceId="9017" paymentMethodTypeId="PAY_COMPANY_CARD" partyIdFrom="CUSTOMER0001" partyIdTo="Company" statusId="PAYMENT_GENERAL_UNPAID" effectiveDate="2023-05-13 15:10:00.0" amount="12250" actualCurrencyAmount="12250" currencyUomId="CNY"/>
+
+    <!--销售单处理中业务数据-->
+    <OrderHeader orderId="ORDER00003" orderName="销售主机及显示屏" statusId="ORDER_PROCESSING" orderTypeId="SALES_ORDER" grandTotal="971160" orderDate="2023-05-14 13:10:00.0" salesChannelEnumId="DIRECT_SALES_CHANNEL" originFacilityId="FAC0001"/>
+
+    <OrderItem orderId="ORDER00003" orderItemSeqId="0001" productId="DEMO0005" fromInventoryItemId="INV00005" quantity="60" unitPrice="7960" estimatedShipDate="2023-05-14 15:10:00.0" estimatedDeliveryDate="2023-05-15 19:10:00.0"/>
+    <OrderItem orderId="ORDER00003" orderItemSeqId="0002" productId="DEMO0006" fromInventoryItemId="INV00006" quantity="60" unitPrice="1980" estimatedShipDate="2023-05-14 15:10:00.0" estimatedDeliveryDate="2023-05-15 19:10:00.0"/>
+
+    <OrderRole orderId="ORDER00003" partyId="CUSTOMER0001" roleTypeId="BILL_TO_CUSTOMER"/>
+    <OrderRole orderId="ORDER00003" partyId="Company" roleTypeId="BILL_FROM_VENDOR"/>
+
+    <OrderPaymentPreference orderPaymentPreferenceId="PUR_PAY_0020" orderId="ORDER00003" orderItemSeqId="0001" paymentMethodTypeId="PAY_COMPANY_CARD" finAccountId="FIN0005" maxAmount="477600" statusId="PAYMENT_GENERAL_CONFIRM" createdDate="2023-05-13 17:57:27.0"/>
+    <OrderPaymentPreference orderPaymentPreferenceId="PUR_PAY_0021" orderId="ORDER00003" orderItemSeqId="0002" paymentMethodTypeId="PAY_COMPANY_CARD" finAccountId="FIN0003" maxAmount="118800" statusId="PAYMENT_GENERAL_CONFIRM" createdDate="2023-05-13 17:57:27.0"/>
+
+    <Payment paymentId="9020" paymentTypeId="CUSTOMER_PAYMENT" comments="华硕台式电脑销售收款" paymentPreferenceId="PUR_PAY_0020" paymentMethodTypeId="PAY_COMPANY_CARD" partyIdFrom="CUSTOMER0001" partyIdTo="Company" statusId="PAYMENT_GENERAL_CONFIRM" effectiveDate="2023-05-13 15:10:00.0" amount="827040" actualCurrencyAmount="827040" currencyUomId="CNY"/>
+    <Payment paymentId="9021" paymentTypeId="CUSTOMER_PAYMENT" comments="华硕显示屏销售收款" paymentPreferenceId="PUR_PAY_0021" paymentMethodTypeId="PAY_COMPANY_CARD" partyIdFrom="CUSTOMER0001" partyIdTo="Company" statusId="PAYMENT_GENERAL_CONFIRM" effectiveDate="2023-05-13 15:10:00.0" amount="144120" actualCurrencyAmount="144120" currencyUomId="CNY"/>
+
+    <Shipment shipmentId="SHIP0010" trackingIdNumber="ID1496544309SF" shipmentTypeId="SALES_SHIPMENT" statusId="GENERAL_SHIP_SEND" primaryOrderId="ORDER00003" estimatedArrivalDate="2023-05-14 15:10:00.0" estimatedShipDate="2023-05-13 15:10:00.0" estimatedShipCost="200" currencyUomId="CNY" originContactMechId="POST_COMPANY00001" destinationContactMechId="POST_CUSTOMER00001" partyIdTo="CUSTOMER0001" partyIdFrom="Company" originFacilityId="PRODUCT-WH" destinationFacilityId="FAC0003"/>
+    <Shipment shipmentId="SHIP0011" trackingIdNumber="ID1546544370SF" shipmentTypeId="SALES_SHIPMENT" statusId="GENERAL_SHIP_SHIPPED" primaryOrderId="ORDER00003" estimatedArrivalDate="2023-05-14 15:10:00.0" estimatedShipDate="2023-05-13 15:10:00.0" estimatedShipCost="200" currencyUomId="CNY" originContactMechId="POST_COMPANY00001" destinationContactMechId="POST_CUSTOMER00001" partyIdTo="CUSTOMER0001" partyIdFrom="Company" originFacilityId="PRODUCT-WH" destinationFacilityId="FAC0003"/>
+
+    <ShipmentItem shipmentId="SHIP0010" shipmentItemSeqId="0001" productId="DEMO0005" quantity="60"/>
+    <ShipmentItem shipmentId="SHIP0011" shipmentItemSeqId="0001" productId="DEMO0006" quantity="60"/>
+
+    <ShipmentRouteSegment shipmentId="SHIP0010" shipmentRouteSegmentId="SHIP_SEG0010" actualArrivalDate="" carrierPartyId="EXPRESS0001"/>
+    <ShipmentRouteSegment shipmentId="SHIP0011" shipmentRouteSegmentId="SHIP_SEG0011" actualArrivalDate="" carrierPartyId="EXPRESS0001"/>
+
+    <Invoice invoiceId="9008" description="台式主机销售发票" invoiceTypeId="SALES_INVOICE" partyIdFrom="Company" partyId="CUSTOMER0001" statusId="INVOICE_GENERAL_READY" paidDate="2023-05-13 15:10:00.0" invoiceDate="2023-05-12 15:10:00.0" currencyUomId="CNY"/>
+    <Invoice invoiceId="9009" description="显示屏销售发票" invoiceTypeId="SALES_INVOICE" partyIdFrom="Company" partyId="CUSTOMER0001" statusId="INVOICE_GENERAL_READY" paidDate="2023-05-13 15:10:00.0" invoiceDate="2023-05-12 15:10:00.0" currencyUomId="CNY"/>
+
+    <InvoiceItem invoiceId="9008" invoiceItemSeqId="0001" inventoryItemId="INV00005" productId="DEMO0005" quantity="60" amount="7960"/>
+    <InvoiceItem invoiceId="9009" invoiceItemSeqId="0001" inventoryItemId="INV00006" productId="DEMO0006" quantity="60" amount="1980"/>
+
+    <PaymentApplication paymentApplicationId="PAY_APPLIED_0017" paymentId="9020" invoiceId="9008" invoiceItemSeqId="0001" amountApplied="827040"/>
+    <PaymentApplication paymentApplicationId="PAY_APPLIED_0018" paymentId="9021" invoiceId="9009" invoiceItemSeqId="0001" amountApplied="144120"/>
+
+    <AcctgTrans acctgTransId="ACCTG0013" shipmentId="SHIP0010" invoiceId="9008" paymentId="9020" transactionDate="2022-12-13 17:57:27.0"/>
+    <AcctgTrans acctgTransId="ACCTG0014" shipmentId="SHIP0011" invoiceId="9009" paymentId="9021" transactionDate="2022-12-13 17:57:27.0"/>
+
+    <AcctgTransEntry acctgTransId="ACCTG0013" glAccountId="GL0004" acctgTransEntrySeqId="00001" partyId="Company" amount="477600" currencyUomId="CNY" debitCreditFlag="D" glAccountTypeId="SALES_ACCOUNT"/>
+    <AcctgTransEntry acctgTransId="ACCTG0013" glAccountId="GL0005" acctgTransEntrySeqId="00002" partyId="Company" amount="477600" currencyUomId="CNY" debitCreditFlag="C" glAccountTypeId="SALES_ACCOUNT"/>
+
+    <AcctgTransEntry acctgTransId="ACCTG0014" glAccountId="GL0004" acctgTransEntrySeqId="00001" partyId="Company" amount="118800" currencyUomId="CNY" debitCreditFlag="D" glAccountTypeId="SALES_ACCOUNT"/>
+    <AcctgTransEntry acctgTransId="ACCTG0014" glAccountId="GL0005" acctgTransEntrySeqId="00002" partyId="Company" amount="118800" currencyUomId="CNY" debitCreditFlag="C" glAccountTypeId="SALES_ACCOUNT"/>
+
+    <InventoryItemDetail inventoryItemId="INV00005" inventoryItemDetailSeqId="0002" quantityOnHandDiff="-60" availableToPromiseDiff="-60" shipmentId="SHIP0010" shipmentItemSeqId="0001" orderId="ORDER00003" orderItemSeqId="0001"/>
+    <InventoryItemDetail inventoryItemId="INV00006" inventoryItemDetailSeqId="0002" quantityOnHandDiff="-60" availableToPromiseDiff="-60" shipmentId="SHIP0011" shipmentItemSeqId="0001" orderId="ORDER00003" orderItemSeqId="0002"/>
+
+    <!--取消销售单业务数据-->
+    <OrderHeader orderId="ORDER00004" orderName="采购耳机" statusId="ORDER_CANCELLED" orderTypeId="SALES_ORDER" grandTotal="8400" orderDate="2023-05-14 13:10:00.0" salesChannelEnumId="DIRECT_SALES_CHANNEL" originFacilityId="FAC0001"/>
+
+    <OrderItem orderId="ORDER00004" orderItemSeqId="0001" productId="DEMO0007" fromInventoryItemId="INV00007" quantity="120" unitPrice="70" estimatedShipDate="2023-05-14 15:10:00.0" estimatedDeliveryDate="2023-05-15 19:10:00.0"/>
+
+    <OrderRole orderId="ORDER00004" partyId="CUSTOMER0001" roleTypeId="BILL_TO_CUSTOMER"/>
+    <OrderRole orderId="ORDER00004" partyId="Company" roleTypeId="BILL_FROM_VENDOR"/>
+
+    <OrderPaymentPreference orderPaymentPreferenceId="PUR_PAY_0022" orderId="ORDER00004" orderItemSeqId="0001" paymentMethodTypeId="PAY_COMPANY_CARD" finAccountId="FIN0005" maxAmount="8400" statusId="PAYMENT_GENERAL_CANCELLED" createdDate="2023-05-13 17:57:27.0"/>
+
+    <Payment paymentId="9022" paymentTypeId="CUSTOMER_PAYMENT" comments="华硕耳机销售收款" paymentPreferenceId="PUR_PAY_0022" paymentMethodTypeId="PAY_COMPANY_CARD" partyIdFrom="CUSTOMER0001" partyIdTo="Company" statusId="PAYMENT_GENERAL_CANCELLED" effectiveDate="2023-05-13 15:10:00.0" amount="8400" actualCurrencyAmount="8400" currencyUomId="CNY"/>
+
+
+</entity-engine-xml>
