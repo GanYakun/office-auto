@@ -139,6 +139,12 @@
 		<relation type="one" rel-entity-name="PartyUserLogin">
 			<key-map field-name="createdByUserLogin" rel-field-name="userLoginId"/>
 		</relation>
+		<relation type="one" title="From" rel-entity-name="PartyGroupAndContact">
+			<key-map field-name="partyIdFrom" rel-field-name="partyId"/>
+		</relation>
+		<relation type="one" title="To" rel-entity-name="PartyGroupAndContact">
+			<key-map field-name="partyIdTo" rel-field-name="partyId"/>
+		</relation>
 	</extend-entity>
 
 
