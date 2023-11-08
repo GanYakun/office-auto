@@ -33,5 +33,8 @@ under the License.
 
     <CustRequestType description="采购请求" custRequestTypeId="PURCHASE_REQ"/>
 
+    <WorkEffortType description="工作流" workEffortTypeId="COWORK"/>
+    <WorkEffortType description="工作流节点" workEffortTypeId="COWORK_TASK"/>
+
 
 </entity-engine-xml>

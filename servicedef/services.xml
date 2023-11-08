@@ -35,5 +35,20 @@ under the License.
         <auto-attributes include="pk" mode="IN" optional="false"/>
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
     </service>
+
+
+    <service name="banfftech.createWorkEffortAndPartyGroupContact" engine="java"
+             location="com.banfftech.services.VendorService" default-entity-name="WorkEffortAndPartyGroupContact"
+             invoke="createWorkEffortAndPartyGroupContact">
+        <auto-attributes include="pk" mode="INOUT" optional="true"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+
+    <service name="banfftech.updateWorkEffortAndPartyGroupContact" engine="java"
+             location="com.banfftech.services.VendorService" default-entity-name="WorkEffortAndPartyGroupContact"
+             invoke="updateWorkEffortAndPartyGroupContact">
+        <auto-attributes include="pk" mode="INOUT" />
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
     
 </services>

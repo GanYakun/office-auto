@@ -116,4 +116,73 @@
         </relation>
     </view-entity>
 
+
+    <view-entity entity-name="WorkEffortAndPartyGroupContact"
+                 package-name="com.banfftech.common"
+                 never-cache="true">
+        <member-entity entity-alias="WF" entity-name="WorkEffort"/>
+        <member-entity entity-alias="PTY" entity-name="PartyGroupAndContact"/>
+        <alias-all entity-alias="WF" group-by="true">
+            <exclude field="partyId"/>
+            <exclude field="workEffortId"/>
+        </alias-all>
+        <alias-all entity-alias="PTY" group-by="true">
+            <exclude field="description"/>
+        </alias-all>
+        <view-link entity-alias="WF" rel-entity-alias="PTY" rel-optional="false">
+            <key-map field-name="partyId"/>
+        </view-link>
+        <relation type="many" rel-entity-name="PartyRole">
+            <key-map field-name="partyId"/>
+        </relation>
+        <relation type="many" rel-entity-name="UserLogin">
+            <key-map field-name="partyId"/>
+        </relation>
+        <relation type="many" title="From" rel-entity-name="PartyRelationship">
+            <key-map field-name="partyId" rel-field-name="partyIdFrom"/>
+        </relation>
+        <relation type="many" title="To" rel-entity-name="PartyRelationship">
+            <key-map field-name="partyId" rel-field-name="partyIdTo"/>
+        </relation>
+        <relation type="one-nofk" rel-entity-name="StatusItem">
+            <key-map field-name="statusId"/>
+        </relation>
+        <relation type="many" rel-entity-name="SupplierProduct">
+            <key-map field-name="partyId" rel-field-name="partyId"/>
+        </relation>
+        <relation type="many" title="To" rel-entity-name="Shipment">
+            <key-map field-name="partyId" rel-field-name="partyIdTo"/>
+        </relation>
+        <relation type="many" title="From" rel-entity-name="Shipment">
+            <key-map field-name="partyId" rel-field-name="partyIdFrom"/>
+        </relation>
+        <relation type="many" title="Owner" rel-entity-name="FinAccount">
+            <key-map field-name="partyId" rel-field-name="ownerPartyId"/>
+        </relation>
+        <relation type="many" title="To" rel-entity-name="Agreement">
+            <key-map field-name="partyId" rel-field-name="partyIdTo"/>
+        </relation>
+        <relation type="many" title="From" rel-entity-name="Agreement">
+            <key-map field-name="partyId" rel-field-name="partyIdFrom"/>
+        </relation>
+        <relation type="many" rel-entity-name="PartyNote">
+            <key-map field-name="partyId" rel-field-name="partyId"/>
+        </relation>
+        <relation type="many" rel-entity-name="OrderRole">
+            <key-map field-name="partyId" rel-field-name="partyId"/>
+        </relation>
+        <relation type="many" rel-entity-name="Invoice">
+            <key-map field-name="partyId" rel-field-name="partyId"/>
+        </relation>
+        <relation type="many" title="From" rel-entity-name="Invoice">
+            <key-map field-name="partyId" rel-field-name="partyIdFrom"/>
+        </relation>
+        <relation type="many" rel-entity-name="WorkEffortPartyAssignment">
+            <key-map field-name="partyId" rel-field-name="partyId"/>
+        </relation>
+        <relation type="many" rel-entity-name="PartyClassification">
+            <key-map field-name="partyId" rel-field-name="partyId"/>
+        </relation>
+    </view-entity>
+
 </entitymodel>
