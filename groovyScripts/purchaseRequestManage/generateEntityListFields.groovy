@@ -1,6 +1,6 @@
 import com.dpbird.odata.OfbizMapOdata
 import com.dpbird.odata.edm.OdataOfbizEntity
-import com.banfftech.bfdemo.worker.CriticalValueWorker;
+import com.banfftech.worker.CriticalValueWorker;
 import org.apache.olingo.commons.api.data.Property
 import org.apache.olingo.commons.api.data.ValueType
 import org.apache.olingo.commons.api.data.Entity

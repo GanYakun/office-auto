@@ -6,7 +6,7 @@ import org.apache.olingo.commons.api.data.Entity
 import org.apache.ofbiz.entity.GenericValue
 import com.dpbird.odata.OdataEntityQuery
 import org.apache.ofbiz.base.util.UtilMisc;
-import com.banfftech.bfdemo.worker.CriticalValueWorker;
+import com.banfftech.worker.CriticalValueWorker;
 import org.apache.ofbiz.entity.Delegator
 import java.math.BigDecimal;
 import org.apache.ofbiz.base.util.UtilValidate;

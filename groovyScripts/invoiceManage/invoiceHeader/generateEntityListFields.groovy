@@ -5,7 +5,7 @@ import org.apache.olingo.commons.api.data.ValueType
 import org.apache.olingo.commons.api.data.Entity
 import org.apache.ofbiz.entity.GenericValue
 import org.apache.ofbiz.base.util.UtilValidate;
-import com.banfftech.bfdemo.worker.CriticalValueWorker;
+import com.banfftech.worker.CriticalValueWorker;
 import com.dpbird.odata.OdataEntityQuery
 import org.apache.ofbiz.base.util.UtilMisc;
 import com.banfftech.common.util.CommonUtils;
