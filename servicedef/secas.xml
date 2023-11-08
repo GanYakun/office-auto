@@ -8,4 +8,13 @@
         <condition field-name="statusId" operator="equals" value="APPROVAL_APPROVED"/>
         <action service="updatePartyStatusToEnable" mode="sync"/>
     </eca>
+    <!-- 创建WorkEffortAndPartyGroupContact后添加角色 -->
+    <eca service="banfftech.createWorkEffortAndPartyGroupContact" event="return">
+        <action service="banfftech.createSupplierRole" mode="sync"/>
+    </eca>
+    <!-- 创建WorkEffortAndPartyGroupContact后添加角色 -->
+    <eca service="banfftech.createWorkEffortAndPartyGroupContact" event="return">
+        <action service="banfftech.createSupplierUserLogin" mode="sync"/>
+    </eca>
+
 </service-eca>

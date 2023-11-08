@@ -58,4 +58,24 @@ public class VendorService {
         return resultMap;
     }
 
+    public static Map<String, Object> createSupplierRole(DispatchContext dctx, Map<String, Object> context) throws GeneralServiceException, GenericEntityException, OfbizODataException, GenericServiceException {
+        Map<String, Object> resultMap = ServiceUtil.returnSuccess();
+        GenericValue userLogin = (GenericValue) context.get("userLogin");
+        LocalDispatcher dispatcher = dctx.getDispatcher();
+        String partyId = (String) context.get("partyId");
+        dispatcher.runSync("banfftech.createPartyRole", UtilMisc.toMap("userLogin", userLogin,
+                "partyId", partyId, "roleTypeId", "VENDOR"));
+        return resultMap;
+    }
+
+    public static Map<String, Object> createSupplierUserLogin(DispatchContext dctx, Map<String, Object> context) throws GeneralServiceException, GenericEntityException, OfbizODataException, GenericServiceException {
+        Map<String, Object> resultMap = ServiceUtil.returnSuccess();
+        GenericValue userLogin = (GenericValue) context.get("userLogin");
+        LocalDispatcher dispatcher = dctx.getDispatcher();
+        String partyId = (String) context.get("partyId");
+        dispatcher.runSync("banfftech.createUserLogin", UtilMisc.toMap("userLogin", userLogin, "enabled", "Y",
+                "partyId", partyId));
+        return resultMap;
+    }
+
 }

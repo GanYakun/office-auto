@@ -50,5 +50,19 @@ under the License.
         <auto-attributes include="pk" mode="INOUT" />
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
     </service>
+
+    <service name="banfftech.createSupplierRole" default-entity-name="PartyRole"
+             location="com.banfftech.services.VendorService" engine="java" invoke="createSupplierRole" auth="true">
+        <description>Create a PartyRole</description>
+        <auto-attributes include="pk" mode="IN" optional="true"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+
+    <service name="banfftech.createSupplierUserLogin" default-entity-name="UserLogin"
+             location="com.banfftech.services.VendorService" engine="java" invoke="createSupplierUserLogin" auth="true">
+        <description>Create a PartyRole</description>
+        <auto-attributes include="pk" mode="IN" optional="true"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
     
 </services>
