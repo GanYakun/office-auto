@@ -148,6 +148,10 @@
 	</extend-entity>
 
 
+	<extend-entity entity-name="WorkEffort">
+		<field name="partyId" type="id"/>
+	</extend-entity>
+
 	<extend-entity entity-name="Invoice">
 		<relation type="one-nofk" title="From" rel-entity-name="PartyAndContact">
 			<key-map field-name="partyIdFrom" rel-field-name="partyId"/>

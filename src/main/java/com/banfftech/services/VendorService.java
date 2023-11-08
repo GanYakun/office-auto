@@ -2,6 +2,8 @@ package com.banfftech.services;
 
 
 import com.banfftech.common.util.CommonUtils;
+import com.dpbird.odata.OfbizODataException;
+import org.apache.ofbiz.base.util.UtilMisc;
 import org.apache.ofbiz.entity.Delegator;
 import org.apache.ofbiz.entity.GenericEntityException;
 import org.apache.ofbiz.entity.GenericValue;
@@ -11,6 +13,16 @@ import java.util.Map;
 
 
 public class VendorService {
+
+    public static Map<String, Object> updatePartyStatusToEnable(DispatchContext dctx, Map<String, Object> context) throws GeneralServiceException, GenericEntityException, OfbizODataException, GenericServiceException {
+        Map<String, Object> resultMap = ServiceUtil.returnSuccess();
+        GenericValue userLogin = (GenericValue) context.get("userLogin");
+        LocalDispatcher dispatcher = dctx.getDispatcher();
+        String partyId = (String) context.get("partyId");
+        dispatcher.runSync("banfftech.updateParty", UtilMisc.toMap("userLogin", userLogin,
+                "partyId", partyId, "statusId", "PARTY_ENABLED"));
+        return resultMap;
+    }
 
     public static Map<String, Object> createWorkEffortAndPartyGroupContact(DispatchContext dctx, Map<String, Object> context) throws GeneralServiceException, GenericServiceException {
         GenericValue userLogin = (GenericValue) context.get("userLogin");
@@ -45,4 +57,5 @@ public class VendorService {
         resultMap.put("partyId", partyId);
         return resultMap;
     }
+
 }

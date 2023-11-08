@@ -29,7 +29,7 @@ under the License.
             Dummy service to prevent empty files and syntax error - Remove when the 1st real service will be added here 
         </description>
     </service>
-    <service name="updatePartyStatusToEnable" engine="java" default-entity-name="Party" location="com.banfftech.services.BfdemoService"
+    <service name="updatePartyStatusToEnable" engine="java" default-entity-name="Party" location="com.banfftech.services.VendorService"
              invoke="updatePartyStatusToEnable" auth="true">
         <description>update a Party And UserLogin</description>
         <auto-attributes include="pk" mode="IN" optional="false"/>
