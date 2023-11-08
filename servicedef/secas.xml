@@ -3,8 +3,9 @@
 <service-eca xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/service-eca.xsd">
 
-    <!-- 记录货运状态变更时间 -->
+    <!-- 审批通过 -->
     <eca service="banfftech.updateParty" event="global-commit">
+        <condition field-name="statusId" operator="equals" value="APPROVAL_APPROVED"/>
         <action service="updatePartyStatusToEnable" mode="sync"/>
     </eca>
 </service-eca>
