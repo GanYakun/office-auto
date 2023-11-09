@@ -333,7 +333,18 @@
         <Property Name="position" IsAttribute="true" Type="String"/>
         <LineItem Qualifier="PartyRelationshipLineItem">
             <DataField Values="partyName,primaryPhone,phoneMobile,primaryEmail,position" Importance="High"/>
+            <DataFieldForAction Label="创建" Action="CreatePersonAndContact" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
+        <Action Name="CreatePersonAndContact" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createPersonAndContact">
+            <Parameter Name="personAndContact" Type="PersonAndContact" Nullable="false" IsCollection="true"/>
+            <Parameter Name="partyName" Type="String" Label="联系人名称"/>
+            <Parameter Name="primaryPhone" Type="String" Label="其他联系方式"/>
+            <Parameter Name="phoneMobile" Type="String" Label="手机"/>
+            <Parameter Name="primaryEmail" Type="String" Label="邮箱"/>
+            <Parameter Name="position" Type="String" Label="职位"/>
+            <ReturnType Type="PersonAndContact"/>
+        </Action>
+
     </EntityType>
 
     <EntityType Name="SupplierProduct" AutoSet="true" EntitySetName="SupplierProducts" AutoProperties="true" DraftEntityName="PartySupplierProductDraft" >
