@@ -64,6 +64,15 @@ under the License.
     <UserLoginSecurityGroup groupId="SUPER" userLoginId="applicant" fromDate="2001-01-01 12:00:00.0"/>
     <PartyRelationship partyRelationshipId="PR10008" partyIdFrom="IT" partyIdTo="applicant" roleTypeIdTo="ORD_EMPLOYEE"/>
 
+    <!-- 采购 -->
+    <Party partyId="procurement" partyTypeId="PERSON" externalId="procurement" partyName="采购部门经理01"/>
+    <Person partyId="procurement"/>
+    <PartyRole partyId="procurement" roleTypeId="MANAGER"/>
+    <PartyRole partyId="procurement" roleTypeId="ORD_EMPLOYEE"/>
+    <UserLogin userLoginId="procurement" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" passwordHint="" partyId="procurement"/>
+    <UserLoginSecurityGroup groupId="SUPER" userLoginId="procurement" fromDate="2001-01-01 12:00:00.0"/>
+    <PartyRelationship partyRelationshipId="PR_procurement" partyIdFrom="CG" partyIdTo="procurement" roleTypeIdTo="ORD_EMPLOYEE"/>
+
     <!-- 经理 -->
     <Party partyId="manager" partyTypeId="PERSON" externalId="manager" partyName="经理01"/>
     <Person partyId="manager"/>

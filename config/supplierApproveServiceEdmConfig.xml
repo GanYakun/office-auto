@@ -119,7 +119,7 @@
 
         <!--推送给采购部门的Action-->
         <Action Name="SubmitToProcurement" IsBound="true" EntitySetPath="supplierParty"
-                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.changeSupplierStatusToEnable"
+                OfbizService="com.banfftech.events.SupplierApproveEvents.transfer"
                 StickySession="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
             <Parameter Name="target" Type="String" IsCollection="false"/>
@@ -127,7 +127,7 @@
         </Action>
         <!--推送到申请人的Action-->
         <Action Name="ReturnToApplication" IsBound="true" EntitySetPath="supplierParty"
-                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.changeSupplierStatusToEnable"
+                OfbizService="com.banfftech.events.SupplierApproveEvents.transfer"
                 StickySession="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
             <Parameter Name="target" Type="String" IsCollection="false"/>
@@ -135,14 +135,15 @@
         </Action>
         <!--推送到供应商的Action-->
         <Action Name="ReturnToSupplier" IsBound="true" EntitySetPath="supplierParty"
-                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.changeSupplierStatusToEnable"
+                OfbizService="com.banfftech.events.SupplierApproveEvents.transfer"
                 StickySession="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <Parameter Name="target" Type="String" IsCollection="false"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
         <!--推送到合规部门的Action-->
         <Action Name="ReturnToCompliance" IsBound="true" EntitySetPath="supplierParty"
-                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.changeSupplierStatusToEnable"
+                OfbizService="com.banfftech.events.SupplierApproveEvents.transfer"
                 StickySession="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
             <Parameter Name="target" Type="String" IsCollection="false"/>
