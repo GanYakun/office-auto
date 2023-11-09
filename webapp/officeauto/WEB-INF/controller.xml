@@ -39,7 +39,7 @@ under the License.
     </postprocessor>
     -->
     <preprocessor>
-        <event name="basicAuth" type="java" path="com.banfftech.common.events.LoginEvent" invoke="telAndUserLoginPreProcess"/>
+        <event name="basicAuth" type="java" path="com.banfftech.events.LoginEvents" invoke="telAndUserLoginPreProcess"/>
 <!--        <event name="basicAuth" type="java" path="com.banfftech.events.LoginEvents" invoke="logInUser"/>-->
     </preprocessor>
     <request-map uri="odatasvc">

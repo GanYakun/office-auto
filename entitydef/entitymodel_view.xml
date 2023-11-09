@@ -121,6 +121,7 @@
                  package-name="com.banfftech.common"
                  never-cache="true">
         <member-entity entity-alias="WF" entity-name="WorkEffort"/>
+        <member-entity entity-alias="WFPTASSI" entity-name="WorkEffortPartyAssignment"/>
         <member-entity entity-alias="PTY" entity-name="PartyGroupAndContact"/>
         <alias-all entity-alias="WF" group-by="true">
             <exclude field="partyId"/>
@@ -129,8 +130,12 @@
             <exclude field="description"/>
         </alias-all>
         <alias name="partyId" entity-alias="PTY" prim-key="false"/>
+        <alias name="approvePartyId" entity-alias="WFPTASSI" field="partyId" prim-key="false"/>
         <view-link entity-alias="WF" rel-entity-alias="PTY" rel-optional="false">
             <key-map field-name="partyId"/>
+        </view-link>
+        <view-link entity-alias="WF" rel-entity-alias="WFPTASSI" rel-optional="true">
+            <key-map field-name="workEffortId"/>
         </view-link>
         <relation type="many" rel-entity-name="PartyRole">
             <key-map field-name="partyId"/>
@@ -182,6 +187,12 @@
         </relation>
         <relation type="many" rel-entity-name="PartyClassification">
             <key-map field-name="partyId" rel-field-name="partyId"/>
+        </relation>
+        <relation type="one-nofk" title="Parent" rel-entity-name="WorkEffort">
+            <key-map field-name="workEffortParentId" rel-field-name="workEffortId"/>
+        </relation>
+        <relation type="one-nofk" title="Approve" rel-entity-name="Party">
+            <key-map field-name="approvePartyId" rel-field-name="partyId"/>
         </relation>
     </view-entity>
 
