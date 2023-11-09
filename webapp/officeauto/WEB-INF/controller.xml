@@ -39,7 +39,7 @@ under the License.
     </postprocessor>
     -->
     <preprocessor>
-        <event name="basicAuth" type="java" path="com.dpbird.odata.login.LoginEvents" invoke="logInUser"/>
+        <event name="basicAuth" type="java" path="com.banfftech.events.LoginEvents" invoke="logInUser"/>
     </preprocessor>
     <request-map uri="odatasvc">
         <security https="false" auth="true"/>

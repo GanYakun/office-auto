@@ -36,6 +36,11 @@ under the License.
     <WorkEffortType description="工作流" workEffortTypeId="COWORK"/>
     <WorkEffortType description="工作流节点" workEffortTypeId="COWORK_TASK"/>
 
+    <StatusType statusTypeId="COWORK_STATUS"/>
+    <StatusItem statusId="NOT_PROCESSED" statusTypeId="COWORK_STATUS" description="待处理"/>
+    <StatusItem statusId="PROCESSED" statusTypeId="COWORK_STATUS" description="已处理"/>
+
+
     <SurveyApplType surveyApplTypeId="DD_FORM" description="Due Diligence Form"/>
 
 <!--    <PartyQuestionApplType description="Due Diligence Form" partyQuestionApplTypeId="DD_FORM" hasTable="N"/>-->
