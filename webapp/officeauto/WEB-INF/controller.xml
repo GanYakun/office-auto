@@ -55,7 +55,7 @@ under the License.
     </request-map>
 
     <request-map uri="odataAppSvc">
-        <security https="false" auth="true"/>
+        <security https="false" auth="false"/>
         <event type="java" path="com.dpbird.odata.AppOdataEvents" invoke="odataAppSvc"></event>
         <response name="success" type="none"/>
     </request-map>
