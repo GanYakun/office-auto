@@ -41,4 +41,42 @@ under the License.
             <key-map field-name="partyId"/>
         </relation>
     </entity>
+    
+    <entity entity-name="PartySurveyAppl" package-name="com.banfftech.officeauto">
+        <field name="partySurveyApplId" type="id"></field>
+        <field name="partyId" type="id"></field>
+        <field name="surveyId" type="id"></field>
+        <field name="surveyApplTypeId" type="id"></field>
+        <prim-key field="partySurveyApplId"/>
+    </entity>
+
+    <entity entity-name="SurveyQuestionAnswer" package-name="com.banfftech.officeauto">
+        <field name="surveyQuestionId" type="id"></field>
+        <field name="partyId" type="id"></field>
+        <field name="booleanResponse" type="indicator"></field>
+        <field name="currencyResponse" type="currency-amount"></field>
+        <field name="floatResponse" type="floating-point"></field>
+        <field name="numericResponse" type="numeric"></field>
+        <field name="textResponse" type="very-long"></field>
+        <field name="surveyOptionSeqId" type="id"></field>
+        <field name="answeredDate" type="date-time"></field>
+        <field name="lastModifiedDate" type="date-time"></field>
+        <prim-key field="surveyQuestionId"/>
+    </entity>
+    
+<!--    <entity entity-name="PartyQuestionApplType" package-name="com.banfftech.officeauto">-->
+<!--        <field name="partyQuestionApplTypeId" type="id"></field>-->
+<!--        <field name="parentTypeId" type="id"></field>-->
+<!--        <field name="hasTable" type="indicator"></field>-->
+<!--        <field name="description" type="description"></field>-->
+<!--    </entity>-->
+
+<!--    <entity entity-name="PartyQuestionAppl" package-name="com.banfftech.officeauto">-->
+<!--        <field name="partyQuatsionApplId" type="id"></field>-->
+<!--        <field name="partyId" type="id"></field>-->
+<!--        <field name="surveyQuestionId" type="id"></field>-->
+<!--        <field name="partyQuestionApplTypeId" type="id"></field>-->
+<!--        <field name="requiredField" type="indicator"></field>-->
+<!--        <field name="sequenceNum" type="numeric"></field>-->
+<!--    </entity>-->
 </entitymodel>

@@ -36,5 +36,7 @@ under the License.
     <WorkEffortType description="工作流" workEffortTypeId="COWORK"/>
     <WorkEffortType description="工作流节点" workEffortTypeId="COWORK_TASK"/>
 
+    <SurveyApplType surveyApplTypeId="DD_FORM" description="Due Diligence Form"/>
 
+<!--    <PartyQuestionApplType description="Due Diligence Form" partyQuestionApplTypeId="DD_FORM" hasTable="N"/>-->
 </entity-engine-xml>

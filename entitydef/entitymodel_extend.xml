@@ -173,4 +173,10 @@
 			<key-map field-name="description" rel-field-name="enumId"/>
 		</relation>
 	</extend-entity>
+	
+	<extend-entity entity-name="SurveyQuestion">
+		<relation type="one-nofk" rel-entity-name="SurveyQuestionAnswer">
+			<key-map field-name="surveyQuestionId"/>
+		</relation>
+	</extend-entity>
 </entitymodel>
