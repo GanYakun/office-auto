@@ -11,7 +11,7 @@
         <Property Name="processId" Type="String"/>
         <Property Name="nodeId" Type="Edm.Decimal"/>
     </ComplexType>
-    <EntityType Name="SupplierParty" OfbizType="PartyRole/roleTypeId=VENDOR" OfbizEntity="WorkEffortAndPartyGroupContact" EntitySetName="SupplierParties" AutoSet="true" AutoProperties="true" AttrDateEntityName="PartyAttributeDate"
+    <EntityType Name="SupplierParty" OfbizType="PartyRole/roleTypeId=SUPPLIER" OfbizEntity="WorkEffortAndPartyGroupContact" EntitySetName="SupplierParties" AutoSet="true" AutoProperties="true" AttrDateEntityName="PartyAttributeDate"
                 DraftEntityName="PartySupplierPartyDraft" AutoLabel="true" SearchOption="partyName,primaryEmail,address1"
                 Handler="component://officeauto/groovyScripts/partyManage/supplierParty/generateEntityListFields.groovy">
         <Property Name="partyId">
@@ -26,7 +26,7 @@
             <ValueList CollectionPath="SupplierStatusItems" WithFixedValues="true"/>
         </Property>
         <Property Name="usccNumber" Type="String" HiddenFilter="true"/>
-        <RelAlias Name="PersonAndContact" Relations="FromPartyRelationship(roleTypeIdTo=CONTACT and roleTypeIdFrom=VENDOR)/ToPersonAndContact"/>
+        <RelAlias Name="PersonAndContact" Relations="FromPartyRelationship(roleTypeIdTo=CONTACT and roleTypeIdFrom=SUPPLIER)/ToPersonAndContact"/>
         <Property Name="contactName" RelAlias="PersonAndContact" Field="partyName" Computed="true"/>
         <Property Name="contactPhoneMobile" RelAlias="PersonAndContact" Field="phoneMobile" Computed="true"/>
         <Property Name="contactPhonePrimary" RelAlias="PersonAndContact" Field="primaryPhone" Computed="true"/>
@@ -38,13 +38,13 @@
         <NavigationProperty Name="SupplierStatusItem" Type="SupplierStatusItem" Relations="StatusItem"/>
         <NavigationProperty Name="OwnerFinAccount" Type="FinAccount" IsCollection="true"
                             Relations="OwnerFinAccount(finAccountTypeId=BANK_ACCOUNT)" />
-        <NavigationProperty Name="PersonAndContact" Relations="FromPartyRelationship(roleTypeIdTo=CONTACT and roleTypeIdFrom=VENDOR)/ToPersonAndContact" Type="PersonAndContact" IsCollection="true"/>
+        <NavigationProperty Name="PersonAndContact" Relations="FromPartyRelationship(roleTypeIdTo=CONTACT and roleTypeIdFrom=SUPPLIER)/ToPersonAndContact" Type="PersonAndContact" IsCollection="true"/>
         <NavigationProperty Name="PurchaseAgreement" Type="PurchaseAgreement" Relations="ToAgreement"/>
         <NavigationProperty Name="NoteData" Type="NoteData" Relations="PartyNote/NoteData" IsCollection="true"/>
         <NavigationProperty Name="PurchaseOrder" Type="PurchaseOrder" Relations="OrderRole(roleTypeId=BILL_FROM_VENDOR)/OrderHeader" IsCollection="true"/>
         <NavigationProperty Name="Invoice"/>
         <NavigationProperty Name="PurchaseQuote" Type="PurchaseQuote" Relations="Quote" IsCollection="true"/>
-        <NavigationProperty Name="AfterSalesService" Type="AfterSalesService" Relations="WorkEffortPartyAssignment(roleTypeId=VENDOR)/WorkEffort" IsCollection="true"/>
+        <NavigationProperty Name="AfterSalesService" Type="AfterSalesService" Relations="WorkEffortPartyAssignment(roleTypeId=SUPPLIER)/WorkEffort" IsCollection="true"/>
         <NavigationProperty Name="PartyClassificationGroup" Type="PartyClassificationGroup" Relations="PartyClassification/PartyClassificationGroup" IsCollection="true"/>
         <NavigationProperty Name="SurveyQuestionAppl" Type="SurveyQuestionAppl" Relations="PartySurveyAppl/SurveyQuestionAppl" IsCollection="true"/>
         <SelectionFields PropertyPath="statusId,primaryPhone"/>
