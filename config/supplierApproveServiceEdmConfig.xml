@@ -11,7 +11,7 @@
         <Property Name="processId" Type="String"/>
         <Property Name="nodeId" Type="Edm.Decimal"/>
     </ComplexType>
-    <EntityType Name="SupplierParty" OfbizType="PartyRole/roleTypeId=SUPPLIER" OfbizEntity="WorkEffortAndPartyGroupContact" EntitySetName="SupplierParties" AutoSet="true" AutoProperties="true" AttrDateEntityName="PartyAttributeDate"
+    <EntityType Name="SupplierParty" OfbizType="PartyRole/roleTypeId=SUPPLIER" EntityCondition="approvePartyId=${company.partyId}" OfbizEntity="WorkEffortAndPartyGroupContact" EntitySetName="SupplierParties" AutoSet="true" AutoProperties="true" AttrDateEntityName="PartyAttributeDate"
                 DraftEntityName="PartySupplierPartyDraft" AutoLabel="true" SearchOption="partyName,primaryEmail,address1"
                 Handler="component://officeauto/groovyScripts/partyManage/supplierParty/generateEntityListFields.groovy">
         <LineItem>
