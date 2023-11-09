@@ -167,4 +167,10 @@
 			<key-map field-name="agreementId" rel-field-name="agreementId"/>
 		</relation>
 	</extend-entity>
+
+	<extend-entity entity-name="PartyClassificationGroup">
+		<relation type="one" rel-entity-name="Enumeration">
+			<key-map field-name="description" rel-field-name="enumId"/>
+		</relation>
+	</extend-entity>
 </entitymodel>

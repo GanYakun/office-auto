@@ -95,6 +95,8 @@ under the License.
     <UserLogin userLoginId="cfo" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" passwordHint="" partyId="cfo"/>
     <UserLoginSecurityGroup groupId="SUPER" userLoginId="cfo" fromDate="2001-01-01 12:00:00.0"/>
 
+    <!-- 供应商 -->
+    <!-- Party -->
     <Party partyId="9000" partyName="供应商1" partyTypeId="PARTY_GROUP" statusId="APPROVAL_CREATED"/>
     <Party partyId="9001" partyName="供应商2" partyTypeId="PARTY_GROUP" statusId="APPROVAL_CREATED"/>
     <Party partyId="9002" partyName="供应商3" partyTypeId="PARTY_GROUP" statusId="APPROVAL_CREATED"/>
@@ -105,7 +107,7 @@ under the License.
     <Party partyId="9007" partyName="供应商8" partyTypeId="PARTY_GROUP" statusId="APPROVAL_CREATED"/>
     <Party partyId="9008" partyName="供应商9" partyTypeId="PARTY_GROUP" statusId="APPROVAL_CREATED"/>
     <Party partyId="9009" partyName="供应商10" partyTypeId="PARTY_GROUP" statusId="APPROVAL_CREATED"/>
-
+    <!-- PartyRole -->
     <PartyRole partyId="9000" roleTypeId="VENDOR"/>
     <PartyRole partyId="9001" roleTypeId="VENDOR"/>
     <PartyRole partyId="9002" roleTypeId="VENDOR"/>
@@ -116,6 +118,17 @@ under the License.
     <PartyRole partyId="9007" roleTypeId="VENDOR"/>
     <PartyRole partyId="9008" roleTypeId="VENDOR"/>
     <PartyRole partyId="9009" roleTypeId="VENDOR"/>
-
+    <!-- StatusValidChange -->
     <StatusValidChange statusId="APPROVAL_APPROVED" statusIdTo="PARTY_ENABLED"/>
+
+    <!-- 风险评级数据 -->
+    <!-- PartyClassificationType(评级类型) -->
+    <PartyClassificationType partyClassificationTypeId="RISQUE_RATING" hasTable="N" description="Risque Rating"/>
+    <!-- EnumerationType(枚举类型) -->
+    <EnumerationType enumTypeId="CLASSIFICATION_TYPE" description="Classification Type"/>
+    <!-- Enumeration(风险组评级描述枚举值) -->
+    <Enumeration enumId="HIGH_LEVEL" enumTypeId="CLASSIFICATION_TYPE" description="High Level"/>
+    <Enumeration enumId="MIDDLE_LEVEL" enumTypeId="CLASSIFICATION_TYPE" description="Middle Level"/>
+    <Enumeration enumId="LOW_LEVEL" enumTypeId="CLASSIFICATION_TYPE" description="Low Level"/>
+
 </entity-engine-xml>

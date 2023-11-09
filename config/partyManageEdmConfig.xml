@@ -17,12 +17,12 @@
         <Property Name="partyId">
             <Text Path="partyName" TextArrangement="TextFirst"/>
         </Property>
+        <Property Name="createSupplierHidden" Type="Boolean" Hidden="true"/>
         <Property Name="firstOrderDate" Type="Timestamp" IsDateAttribute="true"/>
         <Property Name="collectionDate" Type="Timestamp" IsDateAttribute="true"/>
         <Property Name="totalAmount" Type="BigDecimal" Label="订单总金额" Scale="3"/>
         <Property Name="criticalityValue" Type="numeric" Hidden="true" HiddenFilter="true"/>
         <Property Name="statusId" Immutable="true" DefaultValue="APPROVAL_CREATED">
-<!--            <Text Path="SupplierStatusItem/description" TextArrangement="TextOnly"/>-->
             <ValueList CollectionPath="SupplierStatusItems" WithFixedValues="true"/>
         </Property>
         <Property Name="usccNumber" Type="String" HiddenFilter="true"/>
@@ -73,10 +73,6 @@
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
             <ReturnType Type="ActiveData" Nullable="true"/>
         </Action>
-
-<!--        <FieldGroup Qualifier="PartyBaseInfo" Label="基本信息">-->
-<!--            <DataField Values="SupplierPartyAndContact/primaryEmail,SupplierPartyAndContact/address1,SupplierPartyAndContact/primaryPhone" Importance="High"/>-->
-<!--        </FieldGroup>-->
 
         <FieldGroup Qualifier="IdentificationCode" Label="IdentificationCode">
             <DataField Values="usccNumber" Importance="High"/>
@@ -132,7 +128,7 @@
         <NavigationProperty Name="SalesChannelEnumeration"/>
         <NavigationProperty Name="SupplierParty" Type="SupplierParty" Relations="PartyGroupAndContact"/>
     </EntityType>
-<!--    -->
+    
     <EntityType Name="PartyClassification" AutoSet="true" AutoProperties="true" EntitySetName="PartyClassIdentifications">
         <NavigationProperty Name="PartyClassificationGroup"/>
     </EntityType>
@@ -153,18 +149,48 @@
     <EntityType Name="PartyClassificationGroup" AutoSet="true" AutoProperties="true" EntitySetName="PartyClassificationGroups"
                 Handler="component://officeauto/groovyScripts/partyManage/partyClassificationGroup/statusControl.groovy">
         <NavigationProperty Name="PartyClassificationType"/>
+        <NavigationProperty Name="ClassificationEnumeration" Type="ClassificationEnumeration" Relations="Enumeration"/>
         <LineItem Qualifier="PartyClassificationGroupLineItem">
             <DataField Values="partyClassificationTypeId" Importance="High"/>
             <DataField Values="description" Importance="High" Criticality="statusColor"/>
             <Criticality Value="statusColor"/>
+            <DataFieldForAction Label="修改评级" Action="UpdatePartyClassificationGroup" Importance="High" Criticality="Positive" Inline="true" InvocationGrouping="Isolated"/>
+            <DataFieldForAction Label="创建" Action="CreatePartyClassificationGroup" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
         <Property Name="partyClassificationTypeId">
             <Text Path="PartyClassificationType/description" TextArrangement="TextOnly"/>
         </Property>
+        <Property Name="description">
+            <Text Path="ClassificationEnumeration/description" TextArrangement="TextOnly"/>
+        </Property>
         <Property Name="statusColor" Type="numeric" Hidden="true" HiddenFilter="true"/>
+        <Action Name="UpdatePartyClassificationGroup" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.updatePartyClassificationGroup">
+            <Parameter Name="partyClassificationGroup" Type="PartyClassificationGroup" Nullable="false" IsCollection="false"/>
+            <Parameter Name="description" Type="String" Label="评级">
+                <ValueList CollectionPath="ClassificationEnumerations" WithFixedValues="true">
+                    <ParameterInOut LocalDataProperty="description" ValueListProperty="enumId"/>
+                </ValueList>
+            </Parameter>
+            <Parameter Name="partyClassificationTypeId" Type="String" Label="类型">
+                <ValueList CollectionPath="PartyClassificationTypes" WithFixedValues="true">
+                    <ParameterInOut ValueListProperty="partyClassificationTypeId" LocalDataProperty="partyClassificationTypeId"/>
+                </ValueList>
+            </Parameter>
+            <ReturnType Type="PartyClassificationGroup"/>
+        </Action>
+        <Action Name="CreatePartyClassificationGroup" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createPartyClassificationGroup">
+            <Parameter Name="partyClassificationGroup" Type="PartyClassificationGroup" Nullable="false" IsCollection="true"/>
+            <Parameter Name="description" Type="String"/>
+            <Parameter Name="partyClassificationTypeId" Type="String" Label="类型">
+                <ValueList CollectionPath="PartyClassificationTypes" WithFixedValues="true">
+                    <ParameterInOut ValueListProperty="partyClassificationTypeId" LocalDataProperty="partyClassificationTypeId"/>
+                </ValueList>
+            </Parameter>
+            <ReturnType Type="PartyClassificationGroup"/>
+        </Action>
     </EntityType>
 
-    <EntityType Name="PartyClassificationType" AutoSet="true" AutoProperties="true" EntitySetName="PartyClassificationTypes">
+    <EntityType Name="PartyClassificationType" EntityCondition="partyClassificationTypeId in (VALUE_RATING,RISQUE_RATING)" AutoSet="true" AutoProperties="true" EntitySetName="PartyClassificationTypes">
         <Property Name="partyClassificationTypeId">
             <Text Path="description" TextArrangement="TextOnly"/>
         </Property>
@@ -462,6 +488,12 @@
 
     <EntityType Name="Enumeration" EntitySetName="OrderSalesEnumerations" EntityCondition="enumTypeId=ORDER_NEW_SALES_CHANNEL" AutoProperties="true">
         <ValueList CollectionPath="OrderSalesEnumerations" WithFixedValues="true" Label="选择销售渠道"/>
+        <Property Name="enumId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+
+    <EntityType Name="ClassificationEnumeration" OfbizEntity="Enumeration" EntitySetName="ClassificationEnumerations" EntityCondition="enumTypeId=CLASSIFICATION_TYPE" AutoProperties="true">
         <Property Name="enumId">
             <Text Path="description" TextArrangement="TextOnly"/>
         </Property>
