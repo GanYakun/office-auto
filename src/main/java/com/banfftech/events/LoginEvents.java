@@ -65,7 +65,7 @@ public class LoginEvents {
             if (UtilValidate.isNotEmpty(partyRole)) {
                 //获取供应商
                 GenericValue relationship = EntityQuery.use(delegator).from("PartyRelationship")
-                        .where("partyIdTo", partyId, "roleTypeIdFrom", "VENDOR").queryFirst();
+                        .where("partyIdTo", partyId, "roleTypeIdFrom", "SUPPLIER").queryFirst();
                 partyCompany = relationship.getString("partyIdFrom");
             } else {
                 //获取部门

@@ -263,13 +263,13 @@ under the License.
     <Person partyId="LEAD00001"/>
 
     <!--PartyRole(供应商)-->
-    <PartyRole partyId="SUPPLIER0001" roleTypeId="VENDOR"/>
-    <PartyRole partyId="SUPPLIER0002" roleTypeId="VENDOR"/>
-    <PartyRole partyId="SUPPLIER0003" roleTypeId="VENDOR"/>
-    <PartyRole partyId="SUPPLIER0004" roleTypeId="VENDOR"/>
-    <PartyRole partyId="SUPPLIER0005" roleTypeId="VENDOR"/>
-    <PartyRole partyId="SUPPLIER0006" roleTypeId="VENDOR"/>
-    <PartyRole partyId="SUPPLIER0007" roleTypeId="VENDOR"/>
+    <PartyRole partyId="SUPPLIER0001" roleTypeId="SUPPLIER"/>
+    <PartyRole partyId="SUPPLIER0002" roleTypeId="SUPPLIER"/>
+    <PartyRole partyId="SUPPLIER0003" roleTypeId="SUPPLIER"/>
+    <PartyRole partyId="SUPPLIER0004" roleTypeId="SUPPLIER"/>
+    <PartyRole partyId="SUPPLIER0005" roleTypeId="SUPPLIER"/>
+    <PartyRole partyId="SUPPLIER0006" roleTypeId="SUPPLIER"/>
+    <PartyRole partyId="SUPPLIER0007" roleTypeId="SUPPLIER"/>
     <PartyRole partyId="SUPPLIER0001" roleTypeId="BILL_FROM_VENDOR"/>
     <PartyRole partyId="SUPPLIER0002" roleTypeId="BILL_FROM_VENDOR"/>
     <PartyRole partyId="SUPPLIER0003" roleTypeId="BILL_FROM_VENDOR"/>
@@ -394,13 +394,13 @@ under the License.
     <PartyRelationship partyRelationshipId="RELATION00007" partyIdFrom="CUSTOMER0006" partyIdTo="CONTACT00007" roleTypeIdFrom="CUSTOMER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
     <PartyRelationship partyRelationshipId="RELATION00008" partyIdFrom="CUSTOMER0007" partyIdTo="CONTACT00008" roleTypeIdFrom="CUSTOMER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
     <!--PartyRelationship(供应商联系人关系）-->
-    <PartyRelationship partyRelationshipId="RELATION00009" partyIdFrom="SUPPLIER0001" partyIdTo="CONTACT00009" roleTypeIdFrom="VENDOR" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
-    <PartyRelationship partyRelationshipId="RELATION00010" partyIdFrom="SUPPLIER0002" partyIdTo="CONTACT00010" roleTypeIdFrom="VENDOR" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
-    <PartyRelationship partyRelationshipId="RELATION00011" partyIdFrom="SUPPLIER0003" partyIdTo="CONTACT00011" roleTypeIdFrom="VENDOR" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
-    <PartyRelationship partyRelationshipId="RELATION00012" partyIdFrom="SUPPLIER0004" partyIdTo="CONTACT00012" roleTypeIdFrom="VENDOR" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
-    <PartyRelationship partyRelationshipId="RELATION00013" partyIdFrom="SUPPLIER0005" partyIdTo="CONTACT00013" roleTypeIdFrom="VENDOR" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
-    <PartyRelationship partyRelationshipId="RELATION00014" partyIdFrom="SUPPLIER0006" partyIdTo="CONTACT00014" roleTypeIdFrom="VENDOR" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
-    <PartyRelationship partyRelationshipId="RELATION00015" partyIdFrom="SUPPLIER0007" partyIdTo="CONTACT00015" roleTypeIdFrom="VENDOR" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00009" partyIdFrom="SUPPLIER0001" partyIdTo="CONTACT00009" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00010" partyIdFrom="SUPPLIER0002" partyIdTo="CONTACT00010" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00011" partyIdFrom="SUPPLIER0003" partyIdTo="CONTACT00011" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00012" partyIdFrom="SUPPLIER0004" partyIdTo="CONTACT00012" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00013" partyIdFrom="SUPPLIER0005" partyIdTo="CONTACT00013" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00014" partyIdFrom="SUPPLIER0006" partyIdTo="CONTACT00014" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="RELATION00015" partyIdFrom="SUPPLIER0007" partyIdTo="CONTACT00015" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
     <!--PartyRelationship(物流联系人关系）-->
     <PartyRelationship partyRelationshipId="RELATION00016" partyIdFrom="EXPRESS0001" partyIdTo="CONTACT00016" roleTypeIdFrom="CARRIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
     <PartyRelationship partyRelationshipId="RELATION00017" partyIdFrom="EXPRESS0002" partyIdTo="CONTACT00017" roleTypeIdFrom="CARRIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>

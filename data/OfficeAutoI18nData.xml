@@ -24,8 +24,8 @@ under the License.
     <Internationalization id="I10001" lang="en" property="RoleType.description.APPLICANT" value=""/>
     <Internationalization id="I10002" lang="zh" property="RoleType.description.MANAGER" value="经理"/>
     <Internationalization id="I10003" lang="en" property="RoleType.description.MANAGER" value=""/>
-    <Internationalization id="I10004" lang="zh" property="RoleType.description.VENDOR" value="供应商"/>
-    <Internationalization id="I10005" lang="en" property="RoleType.description.VENDOR" value=""/>
+    <Internationalization id="I10004" lang="zh" property="RoleType.description.SUPPLIER" value="供应商"/>
+    <Internationalization id="I10005" lang="en" property="RoleType.description.SUPPLIER" value=""/>
     <Internationalization id="I10006" lang="zh" property="RoleType.description.END_USER" value="最终客户"/>
     <Internationalization id="I10007" lang="en" property="RoleType.description.END_USER" value=""/>
     <Internationalization id="I10008" lang="zh" property="RoleType.description.LEGAL_AFFAIRS" value="法务"/>

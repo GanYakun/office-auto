@@ -73,12 +73,12 @@ under the License.
     <UserLoginSecurityGroup groupId="SUPER" userLoginId="manager" fromDate="2001-01-01 12:00:00.0"/>
 
     <!-- 供应商 -->
-    <Party partyId="vendor" partyTypeId="PERSON" externalId="vendor" partyName="供应商01"/>
-    <Person partyId="vendor"/>
-    <PartyRole partyId="vendor" roleTypeId="VENDOR"/>
-    <PartyRole partyId="vendor" roleTypeId="ORD_EMPLOYEE"/>
-    <UserLogin userLoginId="vendor" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" passwordHint="" partyId="vendor"/>
-    <UserLoginSecurityGroup groupId="SUPER" userLoginId="vendor" fromDate="2001-01-01 12:00:00.0"/>
+    <Party partyId="supplier" partyTypeId="PERSON" externalId="supplier" partyName="供应商01"/>
+    <Person partyId="supplier"/>
+    <PartyRole partyId="supplier" roleTypeId="SUPPLIER"/>
+    <PartyRole partyId="supplier" roleTypeId="ORD_EMPLOYEE"/>
+    <UserLogin userLoginId="supplier" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" passwordHint="" partyId="supplier"/>
+    <UserLoginSecurityGroup groupId="SUPER" userLoginId="supplier" fromDate="2001-01-01 12:00:00.0"/>
 
     <!-- 最终客户 -->
     <Party partyId="endUser" partyTypeId="PERSON" externalId="endUser" partyName="最终客户01"/>
@@ -151,16 +151,16 @@ under the License.
     <Party partyId="9008" partyName="供应商9" partyTypeId="PARTY_GROUP" statusId="APPROVAL_CREATED"/>
     <Party partyId="9009" partyName="供应商10" partyTypeId="PARTY_GROUP" statusId="APPROVAL_CREATED"/>
     <!-- PartyRole -->
-    <PartyRole partyId="9000" roleTypeId="VENDOR"/>
-    <PartyRole partyId="9001" roleTypeId="VENDOR"/>
-    <PartyRole partyId="9002" roleTypeId="VENDOR"/>
-    <PartyRole partyId="9003" roleTypeId="VENDOR"/>
-    <PartyRole partyId="9004" roleTypeId="VENDOR"/>
-    <PartyRole partyId="9005" roleTypeId="VENDOR"/>
-    <PartyRole partyId="9006" roleTypeId="VENDOR"/>
-    <PartyRole partyId="9007" roleTypeId="VENDOR"/>
-    <PartyRole partyId="9008" roleTypeId="VENDOR"/>
-    <PartyRole partyId="9009" roleTypeId="VENDOR"/>
+    <PartyRole partyId="9000" roleTypeId="SUPPLIER"/>
+    <PartyRole partyId="9001" roleTypeId="SUPPLIER"/>
+    <PartyRole partyId="9002" roleTypeId="SUPPLIER"/>
+    <PartyRole partyId="9003" roleTypeId="SUPPLIER"/>
+    <PartyRole partyId="9004" roleTypeId="SUPPLIER"/>
+    <PartyRole partyId="9005" roleTypeId="SUPPLIER"/>
+    <PartyRole partyId="9006" roleTypeId="SUPPLIER"/>
+    <PartyRole partyId="9007" roleTypeId="SUPPLIER"/>
+    <PartyRole partyId="9008" roleTypeId="SUPPLIER"/>
+    <PartyRole partyId="9009" roleTypeId="SUPPLIER"/>
     <!-- StatusValidChange -->
     <StatusValidChange statusId="APPROVAL_APPROVED" statusIdTo="PARTY_ENABLED"/>
 
