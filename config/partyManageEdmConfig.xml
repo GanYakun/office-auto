@@ -49,9 +49,9 @@
 
         <SelectionFields PropertyPath="statusId,primaryPhone"/>
 
-        <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">
-            <DataField Values="numEmployees,annualRevenue,tickerSymbol,comments" Importance="High"/>
-        </FieldGroup>
+<!--        <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">-->
+<!--            <DataField Values="numEmployees,annualRevenue,tickerSymbol,comments" Importance="High"/>-->
+<!--        </FieldGroup>-->
 
         <FieldGroup Qualifier="TimeInfo" Label="TimeInfo">
             <DataField Values="createdDate,lastModifiedDate,firstOrderDate,collectionDate" Importance="High"/>
@@ -82,6 +82,64 @@
             <Title Path="partyId"/>
             <Description Path="description"/>
         </HeaderInfo>
+
+        <Action Name="FillSupplierBaseInfo" IsBound="true" EntitySetPath="supplierParty"
+                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.fillSupplierBaseInfo"
+                StickySession="true">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <Parameter Name="numEmployees" Type="String"/>
+            <Parameter Name="annualRevenue" Type="String"/>
+            <Parameter Name="tickerSymbol" Type="String"/>
+            <Parameter Name="comments" Type="String"/>
+            <ReturnType Type="SupplierParty"/>
+        </Action>
+
+        <Action Name="UpdateSupplierContactInfo" IsBound="true" EntitySetPath="supplierParty"
+                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.fillSupplierBaseInfo"
+                StickySession="true">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <Parameter Name="primaryPhone" Type="String"/>
+            <Parameter Name="primaryEmail" Type="String"/>
+            <Parameter Name="address1" Type="String"/>
+            <ReturnType Type="SupplierParty"/>
+        </Action>
+
+        <Action Name="UpdateSupplierTimeInfo" IsBound="true" EntitySetPath="supplierParty"
+                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.fillSupplierBaseInfo"
+                StickySession="true">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <Parameter Name="collectionDate" Type="Timestamp"/>
+            <Parameter Name="firstOrderDate" Type="Timestamp"/>
+            <ReturnType Type="SupplierParty"/>
+        </Action>
+
+        <Action Name="ReturnToApplication" IsBound="true" EntitySetPath="supplierParty"
+                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.changeSupplierStatusToEnable"
+                StickySession="true">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <ReturnType Type="SupplierParty"/>
+        </Action>
+
+        <Action Name="ReturnToApplication" IsBound="true" EntitySetPath="supplierParty"
+                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.changeSupplierStatusToEnable"
+                StickySession="true">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <ReturnType Type="SupplierParty"/>
+        </Action>
+
+        <Action Name="ReturnToSupplier" IsBound="true" EntitySetPath="supplierParty"
+                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.changeSupplierStatusToEnable"
+                StickySession="true">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <ReturnType Type="SupplierParty"/>
+        </Action>
+
+        <Action Name="ReturnToCompliance" IsBound="true" EntitySetPath="supplierParty"
+                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.changeSupplierStatusToEnable"
+                StickySession="true">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <ReturnType Type="SupplierParty"/>
+        </Action>
 
         <Action Name="ChangeSupplierStatusToEnable" IsBound="true" EntitySetPath="supplierParty"
                 OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.changeSupplierStatusToEnable"
