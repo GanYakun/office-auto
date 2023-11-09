@@ -1,5 +1,4 @@
-package com.banfftech.services;
-
+package com.banfftech.events;
 
 import com.banfftech.common.util.CommonUtils;
 import com.dpbird.odata.OfbizODataException;
@@ -10,18 +9,14 @@ import org.apache.ofbiz.base.util.UtilValidate;
 import org.apache.ofbiz.entity.Delegator;
 import org.apache.ofbiz.entity.GenericEntityException;
 import org.apache.ofbiz.entity.GenericValue;
-import org.apache.ofbiz.entity.util.EntityQuery;
 import org.apache.ofbiz.service.GeneralServiceException;
 import org.apache.ofbiz.service.GenericServiceException;
 import org.apache.ofbiz.service.LocalDispatcher;
 import org.apache.olingo.commons.api.edm.EdmBindingTarget;
 
-import java.util.HashMap;
 import java.util.Map;
 
-
-public class VendorEvent {
-
+public class SupplierApproveEvents {
     /**
      * 传递
      */
@@ -40,7 +35,7 @@ public class VendorEvent {
         String workEffortId = (String) boundEntity.getPropertyValue("workEffortId");
         String workEffortParentId = (String) boundEntity.getPropertyValue("workEffortParentId");
         //当前的改为已处理
-        Map<String, Object> updateWorkMap = UtilMisc.toMap(workEffortId, "currentStatusId", "PROCESSED");
+        Map<String, Object> updateWorkMap = UtilMisc.toMap("workEffortId", workEffortId, "currentStatusId", "PROCESSED");
         CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), updateWorkMap, "banfftech.updateWorkEffort", systemUser);
 
         //传递
@@ -124,6 +119,4 @@ public class VendorEvent {
         dispatcher.runSync("banfftech.createWorkEffortPartyAssignment",
                 UtilMisc.toMap("userLogin", systemUser, "workEffortId", nextWorkEffortId, "partyId", "HG"));
     }
-
-
 }
