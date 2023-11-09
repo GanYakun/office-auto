@@ -64,6 +64,9 @@
 		<relation type="many" rel-entity-name="Budget">
 			<key-map field-name="partyId"/>
 		</relation>
+		<relation type="many" rel-entity-name="PartySurveyAppl">
+			<key-map field-name="partyId"/>
+		</relation>
 	</extend-entity>
 	<extend-entity entity-name="OrderItemShipGroup">
 		<relation type="many"  rel-entity-name="OrderShipment">
