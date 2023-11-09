@@ -88,9 +88,11 @@ public class VendorService {
         Map<String, Object> resultMap = ServiceUtil.returnSuccess();
         GenericValue userLogin = (GenericValue) context.get("userLogin");
         LocalDispatcher dispatcher = dctx.getDispatcher();
+        Delegator delegator = dispatcher.getDelegator();
         String partyId = (String) context.get("partyId");
+        String code = CommonUtils.getEncryptedPassword(delegator, "ofbiz");
         dispatcher.runSync("banfftech.createUserLogin", UtilMisc.toMap("userLogin", userLogin, "enabled", "Y",
-                "partyId", partyId));
+                "partyId", partyId, "currentPassword", code));
         return resultMap;
     }
 
