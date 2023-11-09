@@ -46,7 +46,7 @@
         <NavigationProperty Name="PurchaseQuote" Type="PurchaseQuote" Relations="Quote" IsCollection="true"/>
         <NavigationProperty Name="AfterSalesService" Type="AfterSalesService" Relations="WorkEffortPartyAssignment(roleTypeId=VENDOR)/WorkEffort" IsCollection="true"/>
         <NavigationProperty Name="PartyClassificationGroup" Type="PartyClassificationGroup" Relations="PartyClassification/PartyClassificationGroup" IsCollection="true"/>
-
+        <NavigationProperty Name="SurveyQuestionAppl" Type="SurveyQuestionAppl" Relations="PartySurveyAppl/SurveyQuestionAppl" IsCollection="true"/>
         <SelectionFields PropertyPath="statusId,primaryPhone"/>
 
 <!--        <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">-->
@@ -147,6 +147,25 @@
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
+    </EntityType>
+    
+    <EntityType Name="SurveyQuestionAppl" AutoProperties="true" EntitySetName="SurveyQuestionAppls" AutoSet="true">
+        <LineItem Qualifier="SurveyQuestionApplLineItem">
+            <DataField Values="surveyId,SurveyQuestion/surveyQuestionCategoryId,SurveyQuestion/question,SurveyQuestionAnswer/partyId,SurveyQuestionAnswer/booleanResponse" Importance="High"/>
+        </LineItem>
+        
+        <NavigationProperty Name="SurveyQuestion"/>
+        <NavigationProperty Name="Survey"/>
+        <NavigationProperty Name="SurveyQuestionAnswer" Type="SurveyQuestionAnswer" Relations="SurveyQuestion/SurveyQuestionAnswer" IsCollection="false"/>
+    </EntityType>
+
+    <EntityType Name="SurveyQuestion" AutoSet="true" EntitySetName="SurveyQuestions" AutoProperties="true">
+    </EntityType>
+
+    <EntityType Name="Survey" AutoSet="true" EntitySetName="Surveys" AutoProperties="true">
+    </EntityType>
+
+    <EntityType Name="SurveyQuestionAnswer" AutoSet="true" EntitySetName="SurveyQuestionAnswers" AutoProperties="true">
     </EntityType>
 
     <EntityType Name="PurchaseQuote" OfbizEntity="Quote" EntityCondition="quoteTypeId=PURCHASE_QUOTE" EntitySetName="PurchaseQuotes" AutoProperties="true" AutoSet="true"

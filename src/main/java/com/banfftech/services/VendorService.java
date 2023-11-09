@@ -79,7 +79,7 @@ public class VendorService {
         LocalDispatcher dispatcher = dctx.getDispatcher();
         String partyId = (String) context.get("partyId");
         dispatcher.runSync("banfftech.createPartyRole", UtilMisc.toMap("userLogin", userLogin,
-                "partyId", partyId, "roleTypeId", "VENDOR"));
+                "partyId", partyId, "roleTypeId", "SUPPLIER"));
         return resultMap;
     }
 

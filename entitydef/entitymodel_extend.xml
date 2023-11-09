@@ -176,6 +176,15 @@
 			<key-map field-name="description" rel-field-name="enumId"/>
 		</relation>
 	</extend-entity>
+
+	<extend-entity entity-name="PartySurveyAppl">
+		<relation type="many" rel-entity-name="SurveyQuestionAppl">
+			<key-map field-name="surveyId" rel-field-name="surveyId"/>
+		</relation>
+		<relation type="one" rel-entity-name="WorkEffortAndPartyGroupContact">
+			<key-map field-name="partyId" rel-field-name="partyId"/>
+		</relation>
+	</extend-entity>
 	
 	<extend-entity entity-name="SurveyQuestion">
 		<relation type="one-nofk" rel-entity-name="SurveyQuestionAnswer">
