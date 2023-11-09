@@ -11,13 +11,16 @@
         <Property Name="processId" Type="String"/>
         <Property Name="nodeId" Type="Edm.Decimal"/>
     </ComplexType>
-    <EntityType Name="SupplierParty" OfbizType="PartyRole/roleTypeId=SUPPLIER" OfbizEntity="PartyGroupAndContact" EntitySetName="SupplierParties" AutoSet="true" AutoProperties="true" AttrDateEntityName="PartyAttributeDate"
+    <EntityType Name="SupplierParty" OfbizType="PartyRole/roleTypeId=SUPPLIER" OfbizEntity="WorkEffortAndPartyGroupContact" EntitySetName="SupplierParties" AutoSet="true" AutoProperties="true" AttrDateEntityName="PartyAttributeDate"
                 DraftEntityName="PartySupplierPartyDraft" AutoLabel="true" SearchOption="partyName,primaryEmail,address1"
                 Handler="component://officeauto/groovyScripts/partyManage/supplierParty/generateEntityListFields.groovy">
+        <LineItem>
+            <DataField Values="partyId,currentStatusId,primaryEmail,address1,primaryPhone" Importance="High"/>
+        </LineItem>
         <Property Name="partyId">
             <Text Path="partyName" TextArrangement="TextFirst"/>
         </Property>
-        <Property Name="logoImageUrl" IsImageURL="true"/>
+        <Property Name="currentStatusId" DefaultValue="PROCESSED"/>
         <Property Name="createSupplierHidden" Type="Boolean" Hidden="true"/>
         <Property Name="firstOrderDate" Type="Timestamp" IsDateAttribute="true"/>
         <Property Name="collectionDate" Type="Timestamp" IsDateAttribute="true"/>
@@ -58,94 +61,99 @@
             <DataField Values="createdDate,lastModifiedDate,firstOrderDate,collectionDate" Importance="High"/>
         </FieldGroup>
 
-<!--        <Function Name="GetApproverData_Supplier" OfbizService="com.banfftech.event.ApprovalEvent.getApproverData"-->
-<!--                  IsBound="true">-->
-<!--            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>-->
-<!--            <ReturnType Type="ApproverData" IsCollection="true"/>-->
-<!--        </Function>-->
-<!--        <Action Name="SubmitApproval_Supplier" IsBound="true" OfbizService="com.banfftech.event.ApprovalEvent.submitApproval">-->
-<!--            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>-->
-<!--            <Parameter Name="approverData" Type="String" Nullable="true" IsCollection="false"/>-->
-<!--        </Action>-->
-<!--        <Action Name="CancelApproval_Supplier" IsBound="true" OfbizService="com.banfftech.event.ApprovalEvent.cancelApproval">-->
-<!--            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>-->
-<!--        </Action>-->
-<!--        <Action Name="ViewApproval_Supplier" IsBound="true" OfbizService="com.banfftech.event.ApprovalEvent.viewApproval">-->
-<!--            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>-->
-<!--            <ReturnType Type="ActiveData" Nullable="true"/>-->
-<!--        </Action>-->
+        <Function Name="GetApproverData_Supplier" OfbizService="com.banfftech.event.ApprovalEvent.getApproverData"
+                  IsBound="true">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <ReturnType Type="ApproverData" IsCollection="true"/>
+        </Function>
+        <Action Name="SubmitApproval_Supplier" IsBound="true" OfbizService="com.banfftech.event.ApprovalEvent.submitApproval">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <Parameter Name="approverData" Type="String" Nullable="true" IsCollection="false"/>
+        </Action>
+        <Action Name="CancelApproval_Supplier" IsBound="true" OfbizService="com.banfftech.event.ApprovalEvent.cancelApproval">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+        </Action>
+        <Action Name="ViewApproval_Supplier" IsBound="true" OfbizService="com.banfftech.event.ApprovalEvent.viewApproval">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <ReturnType Type="ActiveData" Nullable="true"/>
+        </Action>
 
         <FieldGroup Qualifier="IdentificationCode" Label="IdentificationCode">
             <DataField Values="usccNumber" Importance="High"/>
         </FieldGroup>
 
-        <HeaderInfo TypeName="供应商" TypeNamePlural="供应商列表" ImageUrl="logoImageUrl">
+        <HeaderInfo TypeName="供应商" TypeNamePlural="供应商列表">
             <Title Path="partyId"/>
             <Description Path="description"/>
         </HeaderInfo>
 
-<!--        <Action Name="FillSupplierBaseInfo" IsBound="true" EntitySetPath="supplierParty"-->
-<!--                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.fillSupplierBaseInfo"-->
-<!--                StickySession="true">-->
-<!--            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>-->
-<!--            <Parameter Name="numEmployees" Type="String"/>-->
-<!--            <Parameter Name="annualRevenue" Type="String"/>-->
-<!--            <Parameter Name="tickerSymbol" Type="String"/>-->
-<!--            <Parameter Name="comments" Type="String"/>-->
-<!--            <ReturnType Type="SupplierParty"/>-->
-<!--        </Action>-->
+        <Action Name="FillSupplierBaseInfo" IsBound="true" EntitySetPath="supplierParty"
+                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.fillSupplierBaseInfo"
+                StickySession="true">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <Parameter Name="numEmployees" Type="String"/>
+            <Parameter Name="annualRevenue" Type="String"/>
+            <Parameter Name="tickerSymbol" Type="String"/>
+            <Parameter Name="comments" Type="String"/>
+            <ReturnType Type="SupplierParty"/>
+        </Action>
 
-<!--        <Action Name="UpdateSupplierContactInfo" IsBound="true" EntitySetPath="supplierParty"-->
-<!--                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.fillSupplierBaseInfo"-->
-<!--                StickySession="true">-->
-<!--            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>-->
-<!--            <Parameter Name="primaryPhone" Type="String"/>-->
-<!--            <Parameter Name="primaryEmail" Type="String"/>-->
-<!--            <Parameter Name="address1" Type="String"/>-->
-<!--            <ReturnType Type="SupplierParty"/>-->
-<!--        </Action>-->
+        <Action Name="UpdateSupplierContactInfo" IsBound="true" EntitySetPath="supplierParty"
+                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.fillSupplierBaseInfo"
+                StickySession="true">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <Parameter Name="primaryPhone" Type="String"/>
+            <Parameter Name="primaryEmail" Type="String"/>
+            <Parameter Name="address1" Type="String"/>
+            <ReturnType Type="SupplierParty"/>
+        </Action>
 
-<!--        <Action Name="UpdateSupplierTimeInfo" IsBound="true" EntitySetPath="supplierParty"-->
-<!--                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.fillSupplierBaseInfo"-->
-<!--                StickySession="true">-->
-<!--            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>-->
-<!--            <Parameter Name="collectionDate" Type="Timestamp"/>-->
-<!--            <Parameter Name="firstOrderDate" Type="Timestamp"/>-->
-<!--            <ReturnType Type="SupplierParty"/>-->
-<!--        </Action>-->
+        <Action Name="UpdateSupplierTimeInfo" IsBound="true" EntitySetPath="supplierParty"
+                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.fillSupplierBaseInfo"
+                StickySession="true">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <Parameter Name="collectionDate" Type="Timestamp"/>
+            <Parameter Name="firstOrderDate" Type="Timestamp"/>
+            <ReturnType Type="SupplierParty"/>
+        </Action>
 
-<!--        <Action Name="ReturnToApplication" IsBound="true" EntitySetPath="supplierParty"-->
-<!--                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.changeSupplierStatusToEnable"-->
-<!--                StickySession="true">-->
-<!--            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>-->
-<!--            <ReturnType Type="SupplierParty"/>-->
-<!--        </Action>-->
-
-<!--        <Action Name="ReturnToApplication" IsBound="true" EntitySetPath="supplierParty"-->
-<!--                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.changeSupplierStatusToEnable"-->
-<!--                StickySession="true">-->
-<!--            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>-->
-<!--            <ReturnType Type="SupplierParty"/>-->
-<!--        </Action>-->
-
-<!--        <Action Name="ReturnToSupplier" IsBound="true" EntitySetPath="supplierParty"-->
-<!--                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.changeSupplierStatusToEnable"-->
-<!--                StickySession="true">-->
-<!--            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>-->
-<!--            <ReturnType Type="SupplierParty"/>-->
-<!--        </Action>-->
-
-<!--        <Action Name="ReturnToCompliance" IsBound="true" EntitySetPath="supplierParty"-->
-<!--                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.changeSupplierStatusToEnable"-->
-<!--                StickySession="true">-->
-<!--            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>-->
-<!--            <ReturnType Type="SupplierParty"/>-->
-<!--        </Action>-->
+        <!--推送给采购部门的Action-->
+        <Action Name="SubmitToProcurement" IsBound="true" EntitySetPath="supplierParty"
+                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.changeSupplierStatusToEnable"
+                StickySession="true">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <Parameter Name="target" Type="String" IsCollection="false"/>
+            <ReturnType Type="SupplierParty"/>
+        </Action>
+        <!--推送到申请人的Action-->
+        <Action Name="ReturnToApplication" IsBound="true" EntitySetPath="supplierParty"
+                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.changeSupplierStatusToEnable"
+                StickySession="true">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <Parameter Name="target" Type="String" IsCollection="false"/>
+            <ReturnType Type="SupplierParty"/>
+        </Action>
+        <!--推送到供应商的Action-->
+        <Action Name="ReturnToSupplier" IsBound="true" EntitySetPath="supplierParty"
+                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.changeSupplierStatusToEnable"
+                StickySession="true">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <ReturnType Type="SupplierParty"/>
+        </Action>
+        <!--推送到合规部门的Action-->
+        <Action Name="ReturnToCompliance" IsBound="true" EntitySetPath="supplierParty"
+                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.changeSupplierStatusToEnable"
+                StickySession="true">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <Parameter Name="target" Type="String" IsCollection="false"/>
+            <ReturnType Type="SupplierParty"/>
+        </Action>
 
         <Action Name="ChangeSupplierStatusToEnable" IsBound="true" EntitySetPath="supplierParty"
                 OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.changeSupplierStatusToEnable"
                 StickySession="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <Parameter Name="target" Type="String" IsCollection="false"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
     </EntityType>
@@ -232,8 +240,8 @@
             <DataField Values="partyClassificationTypeId" Importance="High"/>
             <DataField Values="description" Importance="High" Criticality="statusColor"/>
             <Criticality Value="statusColor"/>
-<!--            <DataFieldForAction Label="修改评级" Action="UpdatePartyClassificationGroup" Importance="High" Criticality="Positive" Inline="true" InvocationGrouping="Isolated"/>-->
-<!--            <DataFieldForAction Label="创建" Action="CreatePartyClassificationGroup" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>-->
+            <DataFieldForAction Label="修改评级" Action="UpdatePartyClassificationGroup" Importance="High" Criticality="Positive" Inline="true" InvocationGrouping="Isolated"/>
+            <DataFieldForAction Label="创建" Action="CreatePartyClassificationGroup" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
         <Property Name="partyClassificationTypeId">
             <Text Path="PartyClassificationType/description" TextArrangement="TextOnly"/>
@@ -242,34 +250,34 @@
             <Text Path="ClassificationEnumeration/description" TextArrangement="TextOnly"/>
         </Property>
         <Property Name="statusColor" Type="numeric" Hidden="true" HiddenFilter="true"/>
-<!--        <Action Name="UpdatePartyClassificationGroup" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.updatePartyClassificationGroup">-->
-<!--            <Parameter Name="partyClassificationGroup" Type="PartyClassificationGroup" Nullable="false" IsCollection="false"/>-->
-<!--            <Parameter Name="partyClassificationTypeId" Type="String" Label="类型">-->
-<!--                <ValueList CollectionPath="PartyClassificationTypes" WithFixedValues="true">-->
-<!--                    <ParameterInOut ValueListProperty="partyClassificationTypeId" LocalDataProperty="partyClassificationTypeId"/>-->
-<!--                </ValueList>-->
-<!--            </Parameter>-->
-<!--            <Parameter Name="description" Type="String" Label="评级">-->
-<!--                <ValueList CollectionPath="ClassificationEnumerations" WithFixedValues="true">-->
-<!--                    <ParameterInOut LocalDataProperty="description" ValueListProperty="enumId"/>-->
-<!--                </ValueList>-->
-<!--            </Parameter>-->
-<!--            <ReturnType Type="PartyClassificationGroup"/>-->
-<!--        </Action>-->
-<!--        <Action Name="CreatePartyClassificationGroup" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createPartyClassificationGroup">-->
-<!--            <Parameter Name="partyClassificationGroup" Type="PartyClassificationGroup" Nullable="false" IsCollection="true"/>-->
-<!--            <Parameter Name="partyClassificationTypeId" Type="String" Label="类型">-->
-<!--                <ValueList CollectionPath="PartyClassificationTypes" WithFixedValues="true">-->
-<!--                    <ParameterInOut ValueListProperty="partyClassificationTypeId" LocalDataProperty="partyClassificationTypeId"/>-->
-<!--                </ValueList>-->
-<!--            </Parameter>-->
-<!--            <Parameter Name="description" Type="String" Label="评级">-->
-<!--                <ValueList CollectionPath="ClassificationEnumerations" WithFixedValues="true">-->
-<!--                    <ParameterInOut LocalDataProperty="description" ValueListProperty="enumId"/>-->
-<!--                </ValueList>-->
-<!--            </Parameter>-->
-<!--            <ReturnType Type="PartyClassificationGroup"/>-->
-<!--        </Action>-->
+        <Action Name="UpdatePartyClassificationGroup" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.updatePartyClassificationGroup">
+            <Parameter Name="partyClassificationGroup" Type="PartyClassificationGroup" Nullable="false" IsCollection="false"/>
+            <Parameter Name="partyClassificationTypeId" Type="String" Label="类型">
+                <ValueList CollectionPath="PartyClassificationTypes" WithFixedValues="true">
+                    <ParameterInOut ValueListProperty="partyClassificationTypeId" LocalDataProperty="partyClassificationTypeId"/>
+                </ValueList>
+            </Parameter>
+            <Parameter Name="description" Type="String" Label="评级">
+                <ValueList CollectionPath="ClassificationEnumerations" WithFixedValues="true">
+                    <ParameterInOut LocalDataProperty="description" ValueListProperty="enumId"/>
+                </ValueList>
+            </Parameter>
+            <ReturnType Type="PartyClassificationGroup"/>
+        </Action>
+        <Action Name="CreatePartyClassificationGroup" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createPartyClassificationGroup">
+            <Parameter Name="partyClassificationGroup" Type="PartyClassificationGroup" Nullable="false" IsCollection="true"/>
+            <Parameter Name="partyClassificationTypeId" Type="String" Label="类型">
+                <ValueList CollectionPath="PartyClassificationTypes" WithFixedValues="true">
+                    <ParameterInOut ValueListProperty="partyClassificationTypeId" LocalDataProperty="partyClassificationTypeId"/>
+                </ValueList>
+            </Parameter>
+            <Parameter Name="description" Type="String" Label="评级">
+                <ValueList CollectionPath="ClassificationEnumerations" WithFixedValues="true">
+                    <ParameterInOut LocalDataProperty="description" ValueListProperty="enumId"/>
+                </ValueList>
+            </Parameter>
+            <ReturnType Type="PartyClassificationGroup"/>
+        </Action>
     </EntityType>
 
     <EntityType Name="PartyClassificationType" EntityCondition="partyClassificationTypeId in (VALUE_RATING,RISQUE_RATING)" AutoSet="true" AutoProperties="true" EntitySetName="PartyClassificationTypes">
@@ -411,17 +419,17 @@
         <Property Name="position" IsAttribute="true" Type="String"/>
         <LineItem Qualifier="PartyRelationshipLineItem">
             <DataField Values="partyName,primaryPhone,phoneMobile,primaryEmail,position" Importance="High"/>
-<!--            <DataFieldForAction Label="创建" Action="CreatePersonAndContact" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>-->
+            <DataFieldForAction Label="创建" Action="CreatePersonAndContact" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
-<!--        <Action Name="CreatePersonAndContact" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createPersonAndContact">-->
-<!--            <Parameter Name="personAndContact" Type="PersonAndContact" Nullable="false" IsCollection="true"/>-->
-<!--            <Parameter Name="partyName" Type="String" Label="联系人名称"/>-->
-<!--            <Parameter Name="primaryPhone" Type="String" Label="其他联系方式"/>-->
-<!--            <Parameter Name="phoneMobile" Type="String" Label="手机"/>-->
-<!--            <Parameter Name="primaryEmail" Type="String" Label="邮箱"/>-->
-<!--            <Parameter Name="position" Type="String" Label="职位"/>-->
-<!--            <ReturnType Type="PersonAndContact"/>-->
-<!--        </Action>-->
+        <Action Name="CreatePersonAndContact" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createPersonAndContact">
+            <Parameter Name="personAndContact" Type="PersonAndContact" Nullable="false" IsCollection="true"/>
+            <Parameter Name="partyName" Type="String" Label="联系人名称"/>
+            <Parameter Name="primaryPhone" Type="String" Label="其他联系方式"/>
+            <Parameter Name="phoneMobile" Type="String" Label="手机"/>
+            <Parameter Name="primaryEmail" Type="String" Label="邮箱"/>
+            <Parameter Name="position" Type="String" Label="职位"/>
+            <ReturnType Type="PersonAndContact"/>
+        </Action>
 
     </EntityType>
 
