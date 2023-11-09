@@ -193,7 +193,7 @@ under the License.
     <SurveyQuestionAppl surveyId="DD_STD_FORM" surveyQuestionId="9001" sequenceNum="2" requiredField="Y" fromDate="2023-08-18 11:45:31.928"/>
     <SurveyQuestionAppl surveyId="DD_STD_FORM" surveyQuestionId="9002" sequenceNum="3" requiredField="Y" fromDate="2023-08-18 11:45:31.928"/>
     <SurveyQuestionAppl surveyId="DD_STD_FORM" surveyQuestionId="9003" sequenceNum="4" requiredField="Y" fromDate="2023-08-18 11:45:31.928"/>
-    <PartySurveyAppl partyId="10100" surveyId="DD_STD_FORM" surveyApplTypeId="DD_FORM"/>
+    <PartySurveyAppl partyId="SUPPLIER0001" surveyId="DD_STD_FORM" surveyApplTypeId="DD_FORM"/>
     <SurveyQuestionAnswer surveyQuestionId="9000" partyId="SUPPLIER0001" booleanResponse="Y"/>
     <SurveyQuestionAnswer surveyQuestionId="9001" partyId="SUPPLIER0001" booleanResponse="Y"/>
     <SurveyQuestionAnswer surveyQuestionId="9002" partyId="SUPPLIER0001" booleanResponse="N"/>
