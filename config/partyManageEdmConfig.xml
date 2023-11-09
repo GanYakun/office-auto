@@ -166,24 +166,28 @@
         <Property Name="statusColor" Type="numeric" Hidden="true" HiddenFilter="true"/>
         <Action Name="UpdatePartyClassificationGroup" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.updatePartyClassificationGroup">
             <Parameter Name="partyClassificationGroup" Type="PartyClassificationGroup" Nullable="false" IsCollection="false"/>
-            <Parameter Name="description" Type="String" Label="评级">
-                <ValueList CollectionPath="ClassificationEnumerations" WithFixedValues="true">
-                    <ParameterInOut LocalDataProperty="description" ValueListProperty="enumId"/>
-                </ValueList>
-            </Parameter>
             <Parameter Name="partyClassificationTypeId" Type="String" Label="类型">
                 <ValueList CollectionPath="PartyClassificationTypes" WithFixedValues="true">
                     <ParameterInOut ValueListProperty="partyClassificationTypeId" LocalDataProperty="partyClassificationTypeId"/>
+                </ValueList>
+            </Parameter>
+            <Parameter Name="description" Type="String" Label="评级">
+                <ValueList CollectionPath="ClassificationEnumerations" WithFixedValues="true">
+                    <ParameterInOut LocalDataProperty="description" ValueListProperty="enumId"/>
                 </ValueList>
             </Parameter>
             <ReturnType Type="PartyClassificationGroup"/>
         </Action>
         <Action Name="CreatePartyClassificationGroup" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createPartyClassificationGroup">
             <Parameter Name="partyClassificationGroup" Type="PartyClassificationGroup" Nullable="false" IsCollection="true"/>
-            <Parameter Name="description" Type="String"/>
             <Parameter Name="partyClassificationTypeId" Type="String" Label="类型">
                 <ValueList CollectionPath="PartyClassificationTypes" WithFixedValues="true">
                     <ParameterInOut ValueListProperty="partyClassificationTypeId" LocalDataProperty="partyClassificationTypeId"/>
+                </ValueList>
+            </Parameter>
+            <Parameter Name="description" Type="String" Label="评级">
+                <ValueList CollectionPath="ClassificationEnumerations" WithFixedValues="true">
+                    <ParameterInOut LocalDataProperty="description" ValueListProperty="enumId"/>
                 </ValueList>
             </Parameter>
             <ReturnType Type="PartyClassificationGroup"/>
