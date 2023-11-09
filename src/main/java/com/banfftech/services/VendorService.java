@@ -58,7 +58,8 @@ public class VendorService {
         dispatcher.runSync("banfftech.createWorkEffortPartyAssignment",
                 UtilMisc.toMap("userLogin", userLogin, "workEffortId", workEffortId, "partyId", partyCompany));
         Map<String, Object> resultMap = ServiceUtil.returnSuccess();
-        resultMap.put("partyId", partyId);
+//        resultMap.put("partyId", partyId);
+        resultMap.put("workEffortId", workEffortId);
         return resultMap;
     }
 

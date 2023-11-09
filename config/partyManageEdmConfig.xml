@@ -113,6 +113,14 @@
             <ReturnType Type="SupplierParty"/>
         </Action>
 
+        <Action Name="Transfer" IsBound="true" EntitySetPath="supplierParty"
+                OfbizService="com.banfftech.events.SupplierApproveEvents.transfer"
+                StickySession="true">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <Parameter Name="target" Type="String" Nullable="false" IsCollection="false"/>
+            <Parameter Name="note" Type="String" Nullable="false" IsCollection="false"/>
+        </Action>
+
         <Action Name="ReturnToApplication" IsBound="true" EntitySetPath="supplierParty"
                 OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.changeSupplierStatusToEnable"
                 StickySession="true">
