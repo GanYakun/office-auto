@@ -39,7 +39,8 @@ under the License.
     </postprocessor>
     -->
     <preprocessor>
-        <event name="basicAuth" type="java" path="com.banfftech.events.LoginEvents" invoke="logInUser"/>
+        <event name="basicAuth" type="java" path="com.banfftech.common.events.LoginEvent" invoke="telAndUserLoginPreProcess"/>
+<!--        <event name="basicAuth" type="java" path="com.banfftech.events.LoginEvents" invoke="logInUser"/>-->
     </preprocessor>
     <request-map uri="odatasvc">
         <security https="false" auth="true"/>
@@ -96,7 +97,7 @@ under the License.
     <request-map uri="externalLogin">
         <security https="false" auth="false"/>
         <!--<event type="service" invoke="userLogin"/>-->
-        <event type="java" path="com.banfftech.common.events.LoginEvent" invoke="externalAndTelLogin"></event>
+        <event type="java" path="com.banfftech.common.events.LoginEvent" invoke="telAndUserIdLogin"></event>
         <response name="success" type="request" value="json"/>
         <response name="error" type="request" value="json"/>
     </request-map>

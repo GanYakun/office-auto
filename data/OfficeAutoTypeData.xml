@@ -22,7 +22,7 @@ under the License.
 
     <RoleType description="申请人" roleTypeId="APPLICANT" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
     <RoleType description="经理" roleTypeId="MANAGER" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
-    <RoleType description="供应商" roleTypeId="VENDOR" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
+    <RoleType description="供应商" roleTypeId="SUPPLIER" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
     <RoleType description="最终客户" roleTypeId="END_USER" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
     <RoleType description="法务" roleTypeId="LEGAL_AFFAIRS" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
     <RoleType description="合规" roleTypeId="COMPLIANCE" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
