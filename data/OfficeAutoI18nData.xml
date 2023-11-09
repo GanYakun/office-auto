@@ -73,9 +73,9 @@ under the License.
 
     <!--发票-->
     <DBEntity dbEntityId="IV10000" dbEntityName="Invoice" description="Invoice" isOpen="N" />
-    <DBField dbFieldId="IV10000" dbFieldName="invoiceId" dbFieldTypeId="String" dbEntityId="IV10000" description="发票ID"/>
+    <DBField dbFieldId="IV10000" dbFieldName="invoiceId" dbFieldTypeId="STRING" dbEntityId="IV10000" description="发票ID"/>
     <DBField dbFieldId="IV10001" dbFieldName="statusId" dbFieldTypeId="STATUS" dbEntityId="IV10000" description="状态"/>
-    <DBField dbFieldId="IV10002" dbFieldName="partyIdFrom" dbFieldTypeId="String" dbEntityId="IV10000" description="开据方"/>
+    <DBField dbFieldId="IV10002" dbFieldName="partyIdFrom" dbFieldTypeId="STRING" dbEntityId="IV10000" description="开据方"/>
     <DBField dbFieldId="IV10003" dbFieldName="invoiceDate" dbFieldTypeId="DATE_TIME" dbEntityId="IV10000" description="开据时间"/>
     <DBField dbFieldId="IV10004" dbFieldName="description" dbFieldTypeId="DATE_TIME" dbEntityId="IV10000" description="开据时间"/>
     <DBFieldLabel dbFieldLabelId="IV10000" dbFieldId="IV10000" language="zh" value="发票ID"/>
