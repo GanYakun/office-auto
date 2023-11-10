@@ -126,18 +126,11 @@
         <alias-all entity-alias="WF" group-by="true">
             <exclude field="partyId"/>
         </alias-all>
-        <alias name="partyId" entity-alias="PTY" prim-key="false"/>
-        <alias name="statusId" entity-alias="PTY" />
-        <alias name="partyName" entity-alias="PTY"/>
-        <alias name="primaryPhone" entity-alias="PTY" />
-        <alias name="phoneMobile" entity-alias="PTY" />
-        <alias name="primaryEmail" entity-alias="PTY" />
-        <alias name="city" entity-alias="PTY" />
-        <alias name="address1" entity-alias="PTY" />
-        <alias name="address2" entity-alias="PTY" />
-        <alias name="externalId" entity-alias="PTY" />
-        <alias name="partyTypeId" entity-alias="PTY" />
-        <alias name="approvePartyId" entity-alias="WFPTASSI" field="partyId" prim-key="false"/>
+        <alias-all entity-alias="PTY" group-by="true">
+            <exclude field="description"/>
+        </alias-all>
+        <alias name="partyId" entity-alias="PTY" prim-key="false" group-by="true"/>
+        <alias name="approvePartyId" entity-alias="WFPTASSI" field="partyId" group-by="true"/>
         <view-link entity-alias="WF" rel-entity-alias="PTY" rel-optional="false">
             <key-map field-name="partyId"/>
         </view-link>
