@@ -18,15 +18,17 @@ def generateFields(Map<String, Object> context) {
         GenericValue surveyQuestionAppl = odataOfbizEntity.getGenericValue();
         if(UtilValidate.isNotEmpty(surveyQuestionAppl)){
             GenericValue surveyQuestionAnswer = delegator.findOne("SurveyQuestionAnswer",UtilMisc.toMap("surveyQuestionId", surveyQuestionAppl.getString("surveyQuestionId")), true);
-            if(UtilValidate.isNotEmpty(surveyQuestionAnswer.get("currencyResponse"))){
+            GenericValue surveyQuestion = delegator.findOne("SurveyQuestion",UtilMisc.toMap("surveyQuestionId", surveyQuestionAppl.getString("surveyQuestionId")), true);
+            String surveyQuestionTypeId = surveyQuestion.getString("surveyQuestionTypeId")
+            if(surveyQuestionTypeId.equals("NUMBER_CURRENCY")){
                 response = (String) surveyQuestionAnswer.get("currencyResponse") + "CNY"
-            }else if (UtilValidate.isNotEmpty(surveyQuestionAnswer.get("floatResponse"))){
+            }else if (surveyQuestionTypeId.equals("NUMBER_FLOAT")){
                 response = (String) surveyQuestionAnswer.get("floatResponse")
-            }else if (UtilValidate.isNotEmpty(surveyQuestionAnswer.get("numericResponse"))){
+            }else if (surveyQuestionTypeId.equals("NUMBER_LONG")){
                 response = (String) surveyQuestionAnswer.get("numericResponse")
-            }else if (UtilValidate.isNotEmpty(surveyQuestionAnswer.get("textResponse"))){
+            }else if (surveyQuestionTypeId.equals("TEXT_LONG")){
                 response = (String) surveyQuestionAnswer.get("textResponse")
-            }else if (UtilValidate.isNotEmpty(surveyQuestionAnswer.get("booleanResponse"))){
+            }else if (surveyQuestionTypeId.equals("BOOLEAN")){
                 String booleanResponse = (String) surveyQuestionAnswer.get("booleanResponse")
                 if (booleanResponse.equals("Y")) {
                     response = "yes"
