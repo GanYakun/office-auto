@@ -1,5 +1,6 @@
 package com.banfftech.events;
 
+import com.banfftech.common.util.CommonUtils;
 import com.dpbird.odata.OdataParts;
 import com.dpbird.odata.OfbizODataException;
 import com.dpbird.odata.edm.OdataOfbizEntity;
@@ -91,6 +92,9 @@ public class SupplierEvents {
             String phoneMobile = (String) actionParameters.get("phoneMobile");
             String primaryEmail = (String) actionParameters.get("primaryEmail");
             String position = (String) actionParameters.get("position");
+            if (CommonUtils.checkInputRepeat(delegator,"contactNumber","TelecomNumber", null, phoneMobile)){
+                throw new OfbizODataException("手机号重复！");
+            }
             Map<String, Object> result = dispatcher.runSync("banfftech.createPersonAndContact",
                     UtilMisc.toMap("partyName", partyName, "primaryPhone", primaryPhone, "phoneMobile", phoneMobile,
                             "primaryEmail", primaryEmail, "userLogin", userLogin));

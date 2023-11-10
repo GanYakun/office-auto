@@ -20,7 +20,7 @@
         <Property Name="partyId">
             <Text Path="partyName" TextArrangement="TextFirst"/>
         </Property>
-        <Property Name="currentStatusId" DefaultValue="PROCESSED"/>
+        <Property Name="currentStatusId" DefaultValue="NOT_PROCESSED"/>
         <Property Name="createSupplierHidden" Type="Boolean" Hidden="true"/>
         <Property Name="firstOrderDate" Type="Timestamp" IsDateAttribute="true"/>
         <Property Name="collectionDate" Type="Timestamp" IsDateAttribute="true"/>
