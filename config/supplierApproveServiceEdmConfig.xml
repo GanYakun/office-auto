@@ -128,7 +128,7 @@
 
         <!--推送给采购部门的Action-->
         <Action Name="SubmitToProcurement" IsBound="true" EntitySetPath="supplierParty"
-                OfbizService="com.banfftech.events.SupplierApproveEvents.transfer"
+                OfbizService="com.banfftech.events.SupplierApproveEvents.toProcurement"
                 StickySession="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
             <Parameter Name="target" Type="String" IsCollection="false"/>
@@ -136,7 +136,7 @@
         </Action>
         <!--推送到申请人的Action-->
         <Action Name="ReturnToApplication" IsBound="true" EntitySetPath="supplierParty"
-                OfbizService="com.banfftech.events.SupplierApproveEvents.transfer"
+                OfbizService="com.banfftech.events.SupplierApproveEvents.procurementReturn"
                 StickySession="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
             <Parameter Name="target" Type="String" IsCollection="false"/>
@@ -144,7 +144,7 @@
         </Action>
         <!--推送到供应商的Action-->
         <Action Name="ReturnToSupplier" IsBound="true" EntitySetPath="supplierParty"
-                OfbizService="com.banfftech.events.SupplierApproveEvents.transfer"
+                OfbizService="com.banfftech.events.SupplierApproveEvents.procurementReturn"
                 StickySession="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
             <Parameter Name="target" Type="String" IsCollection="false"/>
@@ -152,7 +152,7 @@
         </Action>
         <!--推送到合规部门的Action-->
         <Action Name="ReturnToCompliance" IsBound="true" EntitySetPath="supplierParty"
-                OfbizService="com.banfftech.events.SupplierApproveEvents.transfer"
+                OfbizService="com.banfftech.events.SupplierApproveEvents.procurementReturn"
                 StickySession="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
             <Parameter Name="target" Type="String" IsCollection="false"/>

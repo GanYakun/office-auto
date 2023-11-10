@@ -34,21 +34,21 @@ public class VendorService {
         if (ServiceUtil.isError(serviceResult)) {
             return serviceResult;
         }
-        //create ParentWorkEffort
-        Map<String, Object> createParentWorkMap = new HashMap<>();
-        String workEffortParentId = delegator.getNextSeqId("WorkEffort");
-        createParentWorkMap.put("workEffortId", workEffortParentId);
-        createParentWorkMap.put("workEffortTypeId", "COWORK");
-        createParentWorkMap.put("currentStatusId", "NOT_PROCESSED");
-        CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(),
-                createParentWorkMap, "banfftech.createWorkEffort", userLogin);
+//        //create ParentWorkEffort
+//        Map<String, Object> createParentWorkMap = new HashMap<>();
+//        String workEffortParentId = delegator.getNextSeqId("WorkEffort");
+//        createParentWorkMap.put("workEffortId", workEffortParentId);
+//        createParentWorkMap.put("workEffortTypeId", "COWORK");
+//        createParentWorkMap.put("currentStatusId", "NOT_PROCESSED");
+//        CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(),
+//                createParentWorkMap, "banfftech.createWorkEffort", userLogin);
         //create WorkEffort
         String partyId = (String) serviceResult.get("partyId");
         String workEffortId = delegator.getNextSeqId("WorkEffort");
         context.put("partyId", partyId);
         context.put("workEffortId", workEffortId);
         context.put("workEffortTypeId", "COWORK_TASK");
-        context.put("workEffortParentId", workEffortParentId);
+//        context.put("workEffortParentId", workEffortParentId);
         Map<String, Object> personServiceResult = CommonUtils.setServiceFieldsAndRun(dctx, context, "banfftech.createWorkEffort", userLogin);
         if (ServiceUtil.isError(personServiceResult)) {
             return personServiceResult;
