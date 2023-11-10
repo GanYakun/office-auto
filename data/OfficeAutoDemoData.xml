@@ -176,12 +176,10 @@ under the License.
     <!-- 风险评级数据 -->
     <!-- PartyClassificationType(评级类型) -->
     <PartyClassificationType partyClassificationTypeId="RISQUE_RATING" hasTable="N" description="Risque Rating"/>
-    <!-- EnumerationType(枚举类型) -->
-    <EnumerationType enumTypeId="CLASSIFICATION_TYPE" description="Classification Type"/>
-    <!-- Enumeration(风险组评级描述枚举值) -->
-    <Enumeration enumId="HIGH_LEVEL" enumTypeId="CLASSIFICATION_TYPE" description="High Level"/>
-    <Enumeration enumId="MIDDLE_LEVEL" enumTypeId="CLASSIFICATION_TYPE" description="Middle Level"/>
-    <Enumeration enumId="LOW_LEVEL" enumTypeId="CLASSIFICATION_TYPE" description="Low Level"/>
+
+    <PartyClassificationGroup partyClassificationGroupId="HIGH_LEVEL" partyClassificationTypeId="RISQUE_RATING" description="High Level"/>
+    <PartyClassificationGroup partyClassificationGroupId="MIDDLE_LEVEL" partyClassificationTypeId="RISQUE_RATING" description="Middle Level"/>
+    <PartyClassificationGroup partyClassificationGroupId="LOW_LEVEL" partyClassificationTypeId="RISQUE_RATING" description="Low Level"/>
 
     <SurveyQuestionCategory surveyQuestionCategoryId="DD_QUESTIONS" description="Due Diligence Questions"/>
     <SurveyQuestionCategory surveyQuestionCategoryId="DD_STD_QUESTIONS" parentCategoryId="DD_QUESTIONS" description="Due Diligence Standard Questions"/>

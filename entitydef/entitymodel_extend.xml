@@ -171,12 +171,6 @@
 		</relation>
 	</extend-entity>
 
-	<extend-entity entity-name="PartyClassificationGroup">
-		<relation type="one" rel-entity-name="Enumeration">
-			<key-map field-name="description" rel-field-name="enumId"/>
-		</relation>
-	</extend-entity>
-
 	<extend-entity entity-name="PartySurveyAppl">
 		<relation type="many" rel-entity-name="SurveyQuestionAppl">
 			<key-map field-name="surveyId" rel-field-name="surveyId"/>

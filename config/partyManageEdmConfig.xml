@@ -46,7 +46,7 @@
         <NavigationProperty Name="Invoice"/>
         <NavigationProperty Name="PurchaseQuote" Type="PurchaseQuote" Relations="Quote" IsCollection="true"/>
         <NavigationProperty Name="AfterSalesService" Type="AfterSalesService" Relations="WorkEffortPartyAssignment(roleTypeId=SUPPLIER)/WorkEffort" IsCollection="true"/>
-        <NavigationProperty Name="PartyClassificationGroup" Type="PartyClassificationGroup" Relations="PartyClassification/PartyClassificationGroup" IsCollection="true"/>
+        <NavigationProperty Name="PartyClassification" IsCollection="false"/>
         <NavigationProperty Name="SurveyQuestionAppl" Type="SurveyQuestionAppl" Relations="PartySurveyAppl/SurveyQuestionAppl" IsCollection="true"/>
         <SelectionFields PropertyPath="statusId,primaryPhone"/>
 
@@ -209,8 +209,34 @@
         <NavigationProperty Name="SupplierParty" Type="SupplierParty" Relations="PartyGroupAndContact"/>
     </EntityType>
     
-    <EntityType Name="PartyClassification" AutoSet="true" AutoProperties="true" EntitySetName="PartyClassIdentifications">
+    <EntityType Name="PartyClassification" AutoSet="true" AutoProperties="true" EntitySetName="PartyClassIdentifications"
+                Handler="component://officeauto/groovyScripts/partyManage/partyClassification/statusControl.groovy">
+        <FieldGroup Qualifier="PartyClassificationFieldGroup" Label="PartyClassificationFieldGroup">
+            <DataField Values="PartyClassificationGroup/description" Importance="High"/>
+        </FieldGroup>
         <NavigationProperty Name="PartyClassificationGroup"/>
+        <Property Name="statusColor" Type="numeric" Hidden="true" HiddenFilter="true"/>
+
+        <Action Name="FillPartyClassification" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.fillPartyClassification">
+            <Parameter Name="partyClassification" Type="PartyClassification" Nullable="false" IsCollection="true"/>
+            <Parameter Name="partyClassificationGroupId" Type="String" Label="评级">
+                <ValueList CollectionPath="PartyClassificationGroups" WithFixedValues="true">
+                    <ParameterInOut LocalDataProperty="partyClassificationGroupId" ValueListProperty="partyClassificationGroupId"/>
+                </ValueList>
+            </Parameter>
+            <ReturnType Type="PartyClassification"/>
+        </Action>
+    </EntityType>
+
+    <EntityType Name="PartyClassificationGroup" AutoSet="true" AutoProperties="true" EntitySetName="PartyClassificationGroups">
+        <NavigationProperty Name="PartyClassificationType"/>
+        <NavigationProperty Name="ClassificationEnumeration" Type="ClassificationEnumeration" Relations="Enumeration"/>
+        <Property Name="partyClassificationTypeId">
+            <Text Path="PartyClassificationType/description" TextArrangement="TextOnly"/>
+        </Property>
+        <Property Name="partyClassificationGroupId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
     </EntityType>
 
     <EntityType Name="AfterSalesService" OfbizEntity="WorkEffort" EntityCondition="workEffortTypeId=AFTER_SALES" AutoProperties="true" EntitySetName="AfterSalesServices">
@@ -224,55 +250,6 @@
     </EntityType>
 
     <EntityType Name="FixedAsset" EntitySetName="FixedAssets" AutoProperties="true" AutoSet="true"/>
-
-
-    <EntityType Name="PartyClassificationGroup" AutoSet="true" AutoProperties="true" EntitySetName="PartyClassificationGroups"
-                Handler="component://officeauto/groovyScripts/partyManage/partyClassificationGroup/statusControl.groovy">
-        <NavigationProperty Name="PartyClassificationType"/>
-        <NavigationProperty Name="ClassificationEnumeration" Type="ClassificationEnumeration" Relations="Enumeration"/>
-        <LineItem Qualifier="PartyClassificationGroupLineItem">
-            <DataField Values="partyClassificationTypeId" Importance="High"/>
-            <DataField Values="description" Importance="High" Criticality="statusColor"/>
-            <Criticality Value="statusColor"/>
-<!--            <DataFieldForAction Label="修改评级" Action="UpdatePartyClassificationGroup" Importance="High" Criticality="Positive" Inline="true" InvocationGrouping="Isolated"/>-->
-<!--            <DataFieldForAction Label="创建" Action="CreatePartyClassificationGroup" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>-->
-        </LineItem>
-        <Property Name="partyClassificationTypeId">
-            <Text Path="PartyClassificationType/description" TextArrangement="TextOnly"/>
-        </Property>
-        <Property Name="description">
-            <Text Path="ClassificationEnumeration/description" TextArrangement="TextOnly"/>
-        </Property>
-        <Property Name="statusColor" Type="numeric" Hidden="true" HiddenFilter="true"/>
-<!--        <Action Name="UpdatePartyClassificationGroup" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.updatePartyClassificationGroup">-->
-<!--            <Parameter Name="partyClassificationGroup" Type="PartyClassificationGroup" Nullable="false" IsCollection="false"/>-->
-<!--            <Parameter Name="partyClassificationTypeId" Type="String" Label="类型">-->
-<!--                <ValueList CollectionPath="PartyClassificationTypes" WithFixedValues="true">-->
-<!--                    <ParameterInOut ValueListProperty="partyClassificationTypeId" LocalDataProperty="partyClassificationTypeId"/>-->
-<!--                </ValueList>-->
-<!--            </Parameter>-->
-<!--            <Parameter Name="description" Type="String" Label="评级">-->
-<!--                <ValueList CollectionPath="ClassificationEnumerations" WithFixedValues="true">-->
-<!--                    <ParameterInOut LocalDataProperty="description" ValueListProperty="enumId"/>-->
-<!--                </ValueList>-->
-<!--            </Parameter>-->
-<!--            <ReturnType Type="PartyClassificationGroup"/>-->
-<!--        </Action>-->
-<!--        <Action Name="CreatePartyClassificationGroup" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createPartyClassificationGroup">-->
-<!--            <Parameter Name="partyClassificationGroup" Type="PartyClassificationGroup" Nullable="false" IsCollection="true"/>-->
-<!--            <Parameter Name="partyClassificationTypeId" Type="String" Label="类型">-->
-<!--                <ValueList CollectionPath="PartyClassificationTypes" WithFixedValues="true">-->
-<!--                    <ParameterInOut ValueListProperty="partyClassificationTypeId" LocalDataProperty="partyClassificationTypeId"/>-->
-<!--                </ValueList>-->
-<!--            </Parameter>-->
-<!--            <Parameter Name="description" Type="String" Label="评级">-->
-<!--                <ValueList CollectionPath="ClassificationEnumerations" WithFixedValues="true">-->
-<!--                    <ParameterInOut LocalDataProperty="description" ValueListProperty="enumId"/>-->
-<!--                </ValueList>-->
-<!--            </Parameter>-->
-<!--            <ReturnType Type="PartyClassificationGroup"/>-->
-<!--        </Action>-->
-    </EntityType>
 
     <EntityType Name="PartyClassificationType" EntityCondition="partyClassificationTypeId in (VALUE_RATING,RISQUE_RATING)" AutoSet="true" AutoProperties="true" EntitySetName="PartyClassificationTypes">
         <Property Name="partyClassificationTypeId">

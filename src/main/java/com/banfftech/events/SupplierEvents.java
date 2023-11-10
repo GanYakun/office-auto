@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 public class SupplierEvents {
-    public static Object createPartyClassificationGroup(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
+    public static Object fillPartyClassification(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
                                        EdmBindingTarget edmBindingTarget) throws OfbizODataException {
         Delegator delegator = (Delegator) oDataContext.get("delegator");
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
@@ -35,36 +35,19 @@ public class SupplierEvents {
                 throw new OfbizODataException("Account is invalid");
             }
             String partyId = (String) supplierParty.get("partyId");
-
-            String partyClassificationTypeId = (String) actionParameters.get("partyClassificationTypeId");
-            String description = (String) actionParameters.get("description");
-            Map<String, Object> result = dispatcher.runSync("banfftech.createPartyClassificationGroup",
-                    UtilMisc.toMap("partyClassificationTypeId", partyClassificationTypeId,
-                            "description", description, "userLogin", userLogin));
-            String partyClassificationGroupId = (String) result.get("partyClassificationGroupId");
+            List<GenericValue> partyClassifications = delegator.findByAnd("PartyClassification", UtilMisc.toMap("partyId", partyId), null, false);
+            if (UtilValidate.isNotEmpty(partyClassifications)){
+                for (GenericValue partyClassification : partyClassifications){
+                    dispatcher.runSync("banfftech.deletePartyClassification", UtilMisc.toMap("partyId", partyId, "fromDate", partyClassification.get("fromDate"),
+                            "partyClassificationGroupId", partyClassification.get("partyClassificationGroupId"), "userLogin", userLogin));
+                }
+            }
+            String partyClassificationGroupId = (String) actionParameters.get("partyClassificationGroupId");
             dispatcher.runSync("banfftech.createPartyClassification", UtilMisc.toMap("userLogin", userLogin,
                     "partyId", partyId, "partyClassificationGroupId", partyClassificationGroupId, "fromDate", UtilDateTime.nowTimestamp()));
-            return delegator.findOne("PartyClassificationGroup", true, "partyClassificationGroupId", partyClassificationGroupId);
-        } catch (GenericEntityException | GenericServiceException e) {
-            throw new OfbizODataException(e.getMessage());
-        }
-    }
-
-    public static Object updatePartyClassificationGroup(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
-                                                        EdmBindingTarget edmBindingTarget) throws OfbizODataException {
-        Delegator delegator = (Delegator) oDataContext.get("delegator");
-        LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
-        GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
-        try {
-            String partyClassificationTypeId = (String) actionParameters.get("partyClassificationTypeId");
-            String description = (String) actionParameters.get("description");
-            OdataOfbizEntity partyClassificationGroupEntity = (OdataOfbizEntity) actionParameters.get("partyClassificationGroup");
-            GenericValue partyClassificationGroup = partyClassificationGroupEntity.getGenericValue();
-            Map<String, Object> result = dispatcher.runSync("banfftech.updatePartyClassificationGroup",
-                    UtilMisc.toMap("partyClassificationTypeId", partyClassificationTypeId, "partyClassificationGroupId", partyClassificationGroup.get("partyClassificationGroupId"),
-                            "description", description, "userLogin", userLogin));
-            String partyClassificationGroupId = (String) result.get("partyClassificationGroupId");
-            return delegator.findOne("PartyClassificationGroup", true, "partyClassificationGroupId", partyClassificationGroupId);
+            List<GenericValue> partyClassificationReturns = delegator.findByAnd("PartyClassification", UtilMisc.toMap("partyId", partyId, "partyClassificationGroupId", partyClassificationGroupId), null, true);
+            GenericValue partyClassificationReturn = EntityUtil.getFirst(partyClassificationReturns);
+            return partyClassificationReturn;
         } catch (GenericEntityException | GenericServiceException e) {
             throw new OfbizODataException(e.getMessage());
         }
