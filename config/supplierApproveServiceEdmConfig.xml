@@ -117,6 +117,15 @@
             <ReturnType Type="SupplierParty"/>
         </Action>
 
+        <Action Name="CreateSupplierParty" IsBound="true" OfbizService="com.dpbird.odata.events.ActionEvents.createEntity">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="true"/>
+            <Parameter Name="partyName" Type="String" Label="供应商名称" Nullable="false"/>
+            <Parameter Name="primaryPhone" Type="String" Label="电话" Nullable="true"/>
+            <Parameter Name="address1" Type="String" Label="地址" Nullable="false"/>
+            <Parameter Name="primaryEmail" Type="String" Label="邮箱" Nullable="true"/>
+            <ReturnType Type="SupplierParty"/>
+        </Action>
+
         <!--推送给采购部门的Action-->
         <Action Name="SubmitToProcurement" IsBound="true" EntitySetPath="supplierParty"
                 OfbizService="com.banfftech.events.SupplierApproveEvents.transfer"

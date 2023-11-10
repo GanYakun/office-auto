@@ -150,9 +150,11 @@
         </Action>
     </EntityType>
     
-    <EntityType Name="SurveyQuestionAppl" AutoProperties="true" EntitySetName="SurveyQuestionAppls" AutoSet="true">
+    <EntityType Name="SurveyQuestionAppl" AutoProperties="true" EntitySetName="SurveyQuestionAppls" AutoSet="true"
+                Handler="component://officeauto/groovyScripts/partyManage/surveyQuestionAppl/generateEntityListFields.groovy">
+        <Property Name="response" Type="String"/>
         <LineItem Qualifier="SurveyQuestionApplLineItem">
-            <DataField Values="surveyId,SurveyQuestion/surveyQuestionCategoryId,SurveyQuestion/question,SurveyQuestionAnswer/partyId,SurveyQuestionAnswer/booleanResponse" Importance="High"/>
+            <DataField Values="SurveyQuestion/question,response" Importance="High"/>
         </LineItem>
         
         <NavigationProperty Name="SurveyQuestion"/>

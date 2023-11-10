@@ -87,4 +87,6 @@ under the License.
     <DBFieldLabel dbFieldLabelId="IV10006" dbFieldId="IV10003" language="zh" value="开据时间"/>
     <DBFieldLabel dbFieldLabelId="IV10007" dbFieldId="IV10003" language="en" value=""/>
 
+    <!--供应商-->
+    <DBEntity dbEntityId="IV10000" dbEntityName="Invoice" description="Invoice" isOpen="N" />
 </entity-engine-xml>
