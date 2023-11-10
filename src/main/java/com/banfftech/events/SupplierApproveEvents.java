@@ -24,9 +24,10 @@ public class SupplierApproveEvents {
             throws GenericEntityException, OfbizODataException, GeneralServiceException, GenericServiceException {
         Delegator delegator = (Delegator) oDataContext.get("delegator");
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
-        GenericValue systemUser = Util.getSystemUser(delegator);
+        GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
         //要传递的目标 procurement,applicant,compliance,vendor
         String target = (String) actionParameters.get("target");
+        String comments = (String) actionParameters.get("comments");
         OdataOfbizEntity boundEntity = Util.getBoundEntity(actionParameters);
         if (UtilValidate.isEmpty(boundEntity)) {
             throw new OfbizODataException("Parameter error");
@@ -36,15 +37,15 @@ public class SupplierApproveEvents {
         String workEffortParentId = (String) boundEntity.getPropertyValue("workEffortParentId");
         //当前的改为已处理
         Map<String, Object> updateWorkMap = UtilMisc.toMap("workEffortId", workEffortId, "currentStatusId", "PROCESSED");
-        CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), updateWorkMap, "banfftech.updateWorkEffort", systemUser);
+        CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), updateWorkMap, "banfftech.updateWorkEffort", userLogin);
         //传递
         String transferTarget = getTransferTarget(delegator, target, boundEntity.getGenericValue());
         String nextWorkEffortId = delegator.getNextSeqId("WorkEffort");
-        Map<String, Object> createWorkMap = UtilMisc.toMap("partyId", partyId, "workEffortId", nextWorkEffortId,
+        Map<String, Object> createWorkMap = UtilMisc.toMap("partyId", partyId, "workEffortId", nextWorkEffortId, "comments", comments,
                 "workEffortTypeId", "COWORK_TASK", "currentStatusId", "NOT_PROCESSED", "workEffortParentId", workEffortParentId);
-        CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), createWorkMap, "banfftech.createWorkEffort", systemUser);
+        CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), createWorkMap, "banfftech.createWorkEffort", userLogin);
         dispatcher.runSync("banfftech.createWorkEffortPartyAssignment",
-                UtilMisc.toMap("userLogin", systemUser, "workEffortId", nextWorkEffortId, "partyId", transferTarget));
+                UtilMisc.toMap("userLogin", userLogin, "workEffortId", nextWorkEffortId, "partyId", transferTarget));
     }
 
     private static String getTransferTarget(Delegator delegator, String target, GenericValue workEffort) throws GenericEntityException {
