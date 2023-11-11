@@ -141,6 +141,7 @@
                 StickySession="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
             <Parameter Name="target" Type="String" IsCollection="false"/>
+            <Parameter Name="noteInfo" Type="String"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
         <!--推送到供应商的Action-->
@@ -149,6 +150,7 @@
                 StickySession="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
             <Parameter Name="target" Type="String" IsCollection="false"/>
+            <Parameter Name="noteInfo" Type="String"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
         <!--推送到合规部门的Action-->
@@ -157,6 +159,7 @@
                 StickySession="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
             <Parameter Name="target" Type="String" IsCollection="false"/>
+            <Parameter Name="noteInfo" Type="String"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
 
@@ -416,11 +419,11 @@
         </LineItem>
         <Action Name="CreatePersonAndContact" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createPersonAndContact">
             <Parameter Name="personAndContact" Type="PersonAndContact" Nullable="false" IsCollection="true"/>
-            <Parameter Name="partyName" Type="String" Label="联系人名称" Nullable="false"/>
-            <Parameter Name="primaryPhone" Type="String" Label="其他联系方式" Nullable="true"/>
-            <Parameter Name="phoneMobile" Type="String" Label="手机" Nullable="false"/>
-            <Parameter Name="primaryEmail" Type="String" Label="邮箱" Nullable="true"/>
-            <Parameter Name="position" Type="String" Label="职位" Nullable="true"/>
+            <Parameter Name="partyName" Type="String" Label="${partyName}" Nullable="false"/>
+            <Parameter Name="primaryPhone" Type="String" Label="${phone}" Nullable="true"/>
+            <Parameter Name="phoneMobile" Type="String" Label="${mobile}" Nullable="false"/>
+            <Parameter Name="primaryEmail" Type="String" Label="${email}" Nullable="true"/>
+            <Parameter Name="position" Type="String" Label="${position}" Nullable="true"/>
             <ReturnType Type="PersonAndContact"/>
         </Action>
 

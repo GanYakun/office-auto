@@ -62,7 +62,8 @@ public class SupplierApproveEvents {
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
         String target = (String) actionParameters.get("target");
-        String comments = (String) actionParameters.get("comments");
+        String comments = (String) actionParameters.get("comments"); // 也许不需要comments了
+        String noteInfo = (String) actionParameters.get("noteInfo");
         OdataOfbizEntity boundEntity = Util.getBoundEntity(actionParameters);
         if (UtilValidate.isEmpty(boundEntity)) {
             throw new OfbizODataException("Parameter error");
@@ -88,6 +89,14 @@ public class SupplierApproveEvents {
             CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), UtilMisc.toMap("workEffortId", supplierTask.getString("workEffortId"),
                     "currentStatusId", "NOT_PROCESSED", "comments", comments, "userLogin", userLogin), "banfftech.updateWorkEffort", userLogin);
         }
+        // create NoteData for the Party
+        if (UtilValidate.isEmpty(noteInfo)) {
+            noteInfo = "Procurement to " + target + " note";
+        }
+        Map<String, Object> noteMap = UtilMisc.toMap("noteName", "Procument to " + target, "noteInfo", noteInfo, "noteParty", userLogin.get("partyId"), "userLogin", userLogin);
+        Map<String, Object> noteDataResult = CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), noteMap, "banfftech.createNoteData", userLogin);
+        // create PartyNote
+        CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), UtilMisc.toMap("noteId", noteDataResult.get("noteId"), "partyId", partyId, "userLogin", userLogin), "banfftech.createPartyNote", userLogin);
     }
 
     private static String getTransferTarget(Delegator delegator, String target, GenericValue parentWorkEffort) throws GenericEntityException {

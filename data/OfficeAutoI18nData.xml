@@ -40,6 +40,16 @@ under the License.
     <Internationalization id="I10017" lang="en" property="RoleType.description.CTO" value=""/>
     <Internationalization id="I10018" lang="zh" property="RoleType.description.CFO" value="首席财务官"/>
     <Internationalization id="I10019" lang="en" property="RoleType.description.CFO" value=""/>
+    <Internationalization id="I10020" lang="zh" property="partyName" value="名称"/>
+    <Internationalization id="I10021" lang="en" property="partyName" value="Party Name"/>
+    <Internationalization id="I10022" lang="zh" property="phone" value="电话"/>
+    <Internationalization id="I10023" lang="en" property="phone" value="Phone"/>
+    <Internationalization id="I10024" lang="zh" property="mobile" value="手机"/>
+    <Internationalization id="I10025" lang="en" property="mobile" value="Mobile"/>
+    <Internationalization id="I10026" lang="zh" property="email" value="Email"/>
+    <Internationalization id="I10027" lang="en" property="email" value="Email"/>
+    <Internationalization id="I10028" lang="zh" property="position" value="职位"/>
+    <Internationalization id="I10029" lang="en" property="position" value="Position"/>
 
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
