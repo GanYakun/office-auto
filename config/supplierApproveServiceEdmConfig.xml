@@ -51,6 +51,7 @@
         <NavigationProperty Name="AfterSalesService" Type="AfterSalesService" Relations="WorkEffortPartyAssignment(roleTypeId=SUPPLIER)/WorkEffort" IsCollection="true"/>
         <NavigationProperty Name="PartyClassification" IsCollection="false"/>
         <NavigationProperty Name="SurveyQuestionAppl" Type="SurveyQuestionAppl" Relations="PartySurveyAppl/SurveyQuestionAppl" IsCollection="true"/>
+        <NavigationProperty Name="ChildWorkEffortAndPartyGroupContact" Type="CoWorkHistory" Relations="ChildWorkEffortAndPartyGroupContact" IsCollection="true"/>
         <SelectionFields PropertyPath="statusId,primaryPhone"/>
 
 <!--        <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">-->
@@ -166,6 +167,12 @@
             <Parameter Name="target" Type="String" IsCollection="false"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
+    </EntityType>
+
+    <EntityType Name="CoWorkHistory" Properties="workEffortId,partyId,approvePartyId,currentStatusId" OfbizEntity="WorkEffortAndPartyGroupContact" OfbizType="PartyRole/roleTypeId=SUPPLIER">
+        <LineItem Qualifier="HistoryRecord">
+            <DataField Values="workEffortId,partyId,approvePartyId,currentStatusId" Importance="High"/>
+        </LineItem>
     </EntityType>
     
     <EntityType Name="SurveyQuestionAppl" AutoProperties="true" EntitySetName="SurveyQuestionAppls" AutoSet="true">

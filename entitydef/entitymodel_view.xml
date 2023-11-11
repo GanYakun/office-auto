@@ -194,6 +194,9 @@
         <relation type="one-nofk" title="Approve" rel-entity-name="Party">
             <key-map field-name="approvePartyId" rel-field-name="partyId"/>
         </relation>
+        <relation type="many" title="Child" rel-entity-name="WorkEffortAndPartyGroupContact">
+            <key-map field-name="workEffortId" rel-field-name="workEffortParentId"/>
+        </relation>
     </view-entity>
 
 </entitymodel>
