@@ -180,7 +180,7 @@
     
     <EntityType Name="SurveyQuestionAppl" AutoProperties="true" EntitySetName="SurveyQuestionAppls" AutoSet="true">
         <LineItem Qualifier="SurveyQuestionApplLineItem">
-            <DataField Values="surveyId,SurveyQuestion/surveyQuestionCategoryId,SurveyQuestion/question,SurveyQuestionAnswer/partyId,SurveyQuestionAnswer/booleanResponse" Importance="High"/>
+            <DataField Values="surveyQuestionId,SurveyQuestion/question,SurveyQuestionAnswer/booleanResponse,SurveyQuestionAnswer/textResponse" Importance="High"/>
         </LineItem>
         
         <NavigationProperty Name="SurveyQuestion"/>

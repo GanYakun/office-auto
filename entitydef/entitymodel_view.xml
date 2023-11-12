@@ -116,7 +116,6 @@
         </relation>
     </view-entity>
 
-
     <view-entity entity-name="WorkEffortAndPartyGroupContact"
                  package-name="com.banfftech.common"
                  never-cache="true">

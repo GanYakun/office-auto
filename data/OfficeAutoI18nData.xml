@@ -98,5 +98,72 @@ under the License.
     <DBFieldLabel dbFieldLabelId="IV10007" dbFieldId="IV10003" language="en" value=""/>
 
     <!--供应商-->
-    <DBEntity dbEntityId="IV10000" dbEntityName="Invoice" description="Invoice" isOpen="N" />
+    <!-- Entity labels for view-entity WorkEffortAndPartyGroupContact -->
+    <DBEntity dbEntityId="WPC10000" dbEntityName="WorkEffortAndPartyGroupContact" dbEntityTypeField="PartyRole/roleTypeId" dbEntityTypeId="SUPPLIER" description="Vendor" isOpen="N" />
+    <DBField dbFieldId="WPC10000_01" dbFieldName="primaryEmail" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Email"/>
+    <DBField dbFieldId="WPC10000_02" dbFieldName="address1" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Address"/>
+    <DBField dbFieldId="WPC10000_03" dbFieldName="primaryPhone" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Primary phone"/>
+    <DBField dbFieldId="WPC10000_04" dbFieldName="createdDate" dbFieldTypeId="DATE_TIME" dbEntityId="WPC10000" description="Created date"/>
+    <DBField dbFieldId="WPC10000_05" dbFieldName="lastModifiedDate" dbFieldTypeId="DATE_TIME" dbEntityId="WPC10000" description="Last modified date"/>
+    <DBField dbFieldId="WPC10000_06" dbFieldName="firstOrderDate" dbFieldTypeId="DATE_TIME" dbEntityId="WPC10000" description="First order date"/>
+    <DBField dbFieldId="WPC10000_07" dbFieldName="collectionDate" dbFieldTypeId="DATE_TIME" dbEntityId="WPC10000" description="On-board date"/>
+    <DBField dbFieldId="WPC10000_08" dbFieldName="usccNumber" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Tax code"/>
+    <DBField dbFieldId="WPC10000_09" dbFieldName="numEmployees" dbFieldTypeId="NUMBER" dbEntityId="WPC10000" description="Employee numbers"/>
+    <DBField dbFieldId="WPC10000_10" dbFieldName="annualRevenue" dbFieldTypeId="NUMBER" dbEntityId="WPC10000" description="Annual revenue"/>
+    <DBField dbFieldId="WPC10000_11" dbFieldName="tickerSymbol" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Ticker symbol"/>
+    <DBField dbFieldId="WPC10000_12" dbFieldName="comments" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Comments"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_01_ZH" dbFieldId="WPC10000_01" language="zh" value="Email"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_01_EN" dbFieldId="WPC10000_01" language="en" value="Email"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_02_ZH" dbFieldId="WPC10000_02" language="zh" value="Address"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_02_EN" dbFieldId="WPC10000_02" language="en" value="Address"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_03_ZH" dbFieldId="WPC10000_03" language="zh" value="电话"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_03_EN" dbFieldId="WPC10000_03" language="en" value="Phone"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_04_ZH" dbFieldId="WPC10000_04" language="zh" value="创建日期"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_04_EN" dbFieldId="WPC10000_04" language="en" value="Created date"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_05_ZH" dbFieldId="WPC10000_05" language="zh" value="最后修改日期"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_05_EN" dbFieldId="WPC10000_05" language="en" value="Last modified date"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_06_ZH" dbFieldId="WPC10000_06" language="zh" value="首次下单日期"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_06_EN" dbFieldId="WPC10000_06" language="en" value="First order date"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_07_ZH" dbFieldId="WPC10000_07" language="zh" value="入驻日期"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_07_EN" dbFieldId="WPC10000_07" language="en" value="On-board date"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_08_ZH" dbFieldId="WPC10000_08" language="zh" value="税号"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_08_EN" dbFieldId="WPC10000_08" language="en" value="Tax code"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_09_ZH" dbFieldId="WPC10000_09" language="zh" value="员工人数"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_09_EN" dbFieldId="WPC10000_09" language="en" value="Employee numbers"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_10_ZH" dbFieldId="WPC10000_10" language="zh" value="年收入"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_10_EN" dbFieldId="WPC10000_10" language="en" value="Annual revenue"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_11_ZH" dbFieldId="WPC10000_11" language="zh" value="股票代码"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_11_EN" dbFieldId="WPC10000_11" language="en" value="Ticker symbol"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_12_ZH" dbFieldId="WPC10000_12" language="zh" value="备注"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_12_EN" dbFieldId="WPC10000_12" language="en" value="Comments"/>
+
+    <!-- Entity labels for entity SurveyQuestion -->
+    <DBEntity dbEntityId="SQ10000" dbEntityName="SurveyQuestion" description="Survey question" isOpen="N" />
+    <DBField dbFieldId="SQ10000_01" dbFieldName="description" dbFieldTypeId="STRING" dbEntityId="SQ10000" description="Description"/>
+    <DBField dbFieldId="SQ10000_02" dbFieldName="question" dbFieldTypeId="STRING" dbEntityId="SQ10000" description="Question"/>
+    <DBField dbFieldId="SQ10000_03" dbFieldName="surveyQuestionTypeId" dbFieldTypeId="STRING" dbEntityId="SQ10000" description="Question type"/>
+    <DBField dbFieldId="SQ10000_04" dbFieldName="hint" dbFieldTypeId="STRING" dbEntityId="SQ10000" description="Hint"/>
+    <DBFieldLabel dbFieldLabelId="SQ10000_01_ZH" dbFieldId="SQ10000_01" language="zh" value="描述"/>
+    <DBFieldLabel dbFieldLabelId="SQ10000_01_EN" dbFieldId="SQ10000_01" language="en" value="Description"/>
+    <DBFieldLabel dbFieldLabelId="SQ10000_02_ZH" dbFieldId="SQ10000_02" language="zh" value="问题"/>
+    <DBFieldLabel dbFieldLabelId="SQ10000_02_EN" dbFieldId="SQ10000_02" language="en" value="Question"/>
+    <DBFieldLabel dbFieldLabelId="SQ10000_03_ZH" dbFieldId="SQ10000_03" language="zh" value="问题类型"/>
+    <DBFieldLabel dbFieldLabelId="SQ10000_03_EN" dbFieldId="SQ10000_03" language="en" value="Question type"/>
+    <DBFieldLabel dbFieldLabelId="SQ10000_04_ZH" dbFieldId="SQ10000_04" language="zh" value="提示"/>
+    <DBFieldLabel dbFieldLabelId="SQ10000_04_EN" dbFieldId="SQ10000_04" language="en" value="Hint"/>
+
+    <!-- Entity labels for entity SurveyQuestionAppl -->
+    <DBEntity dbEntityId="SQA10000" dbEntityName="SurveyQuestionAppl" description="Survey question application" isOpen="N" />
+    <DBField dbFieldId="SQA10000_01" dbFieldName="surveyId" dbFieldTypeId="STRING" dbEntityId="SQA10000" description="Survey ID"/>
+    <DBField dbFieldId="SQA10000_02" dbFieldName="surveyQuestionId" dbFieldTypeId="STRING" dbEntityId="SQA10000" description="Survey question ID"/>
+    <DBField dbFieldId="SQA10000_03" dbFieldName="requiredField" dbFieldTypeId="STRING" dbEntityId="SQA10000" description="Required field"/>
+    <DBField dbFieldId="SQA10000_04" dbFieldName="sequenceNum" dbFieldTypeId="STRING" dbEntityId="SQA10000" description="Sequence number"/>
+    <DBFieldLabel dbFieldLabelId="SQA10000_01_ZH" dbFieldId="SQA10000_01" language="zh" value="调查ID"/>
+    <DBFieldLabel dbFieldLabelId="SQA10000_01_EN" dbFieldId="SQA10000_01" language="en" value="Survey ID"/>
+    <DBFieldLabel dbFieldLabelId="SQA10000_02_ZH" dbFieldId="SQA10000_02" language="zh" value="问题ID"/>
+    <DBFieldLabel dbFieldLabelId="SQA10000_02_EN" dbFieldId="SQA10000_02" language="en" value="Question ID"/>
+    <DBFieldLabel dbFieldLabelId="SQA10000_03_ZH" dbFieldId="SQA10000_03" language="zh" value="必填"/>
+    <DBFieldLabel dbFieldLabelId="SQA10000_03_EN" dbFieldId="SQA10000_03" language="en" value="Required"/>
+    <DBFieldLabel dbFieldLabelId="SQA10000_04_ZH" dbFieldId="SQA10000_04" language="zh" value="序号"/>
+    <DBFieldLabel dbFieldLabelId="SQA10000_04_EN" dbFieldId="SQA10000_04" language="en" value="Seq."/>
 </entity-engine-xml>
