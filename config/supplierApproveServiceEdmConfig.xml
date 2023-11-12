@@ -133,6 +133,7 @@
                 StickySession="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
             <Parameter Name="target" Type="String" IsCollection="false"/>
+            <Parameter Name="noteInfo" Type="String" Label="${noteInfo}"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
         <!--推送到申请人的Action-->
@@ -141,7 +142,7 @@
                 StickySession="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
             <Parameter Name="target" Type="String" IsCollection="false"/>
-            <Parameter Name="noteInfo" Type="String"/>
+            <Parameter Name="noteInfo" Type="String" Label="${noteInfo}"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
         <!--推送到供应商的Action-->
@@ -150,7 +151,7 @@
                 StickySession="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
             <Parameter Name="target" Type="String" IsCollection="false"/>
-            <Parameter Name="noteInfo" Type="String"/>
+            <Parameter Name="noteInfo" Type="String" Label="${noteInfo}"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
         <!--推送到合规部门的Action-->
@@ -159,7 +160,7 @@
                 StickySession="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
             <Parameter Name="target" Type="String" IsCollection="false"/>
-            <Parameter Name="noteInfo" Type="String"/>
+            <Parameter Name="noteInfo" Type="String" Label="${noteInfo}"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
 
@@ -172,9 +173,9 @@
         </Action>
     </EntityType>
 
-    <EntityType Name="CoWorkHistory" Properties="workEffortId,partyId,approvePartyId,currentStatusId" OfbizEntity="WorkEffortAndPartyGroupContact" OfbizType="PartyRole/roleTypeId=SUPPLIER">
+    <EntityType Name="CoWorkHistory" Properties="workEffortId,partyId,approvePartyId,currentStatusId,lastModifiedDate" OfbizEntity="WorkEffortAndPartyGroupContact" OfbizType="PartyRole/roleTypeId=SUPPLIER">
         <LineItem Qualifier="HistoryRecord">
-            <DataField Values="workEffortId,partyId,approvePartyId,currentStatusId" Importance="High"/>
+            <DataField Values="workEffortId,approvePartyId,currentStatusId,lastModifiedDate" Importance="High"/>
         </LineItem>
     </EntityType>
     
@@ -310,7 +311,7 @@
 
     <EntityType Name="NoteData" EntitySetName="NoteData" DraftEntityName="PartyNoteDataAppDraft" AutoSet="true" AutoProperties="true">
         <LineItem Qualifier="NoteDataLineItem">
-            <DataField Values="noteName,noteInfo,noteParty,noteDateTime,moreInfoUrl" Importance="High"/>
+            <DataField Values="noteId,noteName,noteInfo,noteParty,noteDateTime" Importance="High"/>
         </LineItem>
     </EntityType>
 
@@ -415,7 +416,7 @@
         <Property Name="position" IsAttribute="true" Type="String"/>
         <LineItem Qualifier="PartyRelationshipLineItem">
             <DataField Values="partyName,primaryPhone,phoneMobile,primaryEmail,position" Importance="High"/>
-            <DataFieldForAction Label="创建" Action="CreatePersonAndContact" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
+            <DataFieldForAction Label="${create}" Action="CreatePersonAndContact" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
         <Action Name="CreatePersonAndContact" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createPersonAndContact">
             <Parameter Name="personAndContact" Type="PersonAndContact" Nullable="false" IsCollection="true"/>

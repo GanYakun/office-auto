@@ -50,6 +50,10 @@ under the License.
     <Internationalization id="I10027" lang="en" property="email" value="Email"/>
     <Internationalization id="I10028" lang="zh" property="position" value="职位"/>
     <Internationalization id="I10029" lang="en" property="position" value="Position"/>
+    <Internationalization id="I10030" lang="zh" property="noteInfo" value="内容"/>
+    <Internationalization id="I10031" lang="en" property="noteInfo" value="Note Info"/>
+    <Internationalization id="I10032" lang="zh" property="create" value="创建"/>
+    <Internationalization id="I10033" lang="en" property="create" value="Create"/>
 
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
@@ -112,6 +116,9 @@ under the License.
     <DBField dbFieldId="WPC10000_10" dbFieldName="annualRevenue" dbFieldTypeId="NUMBER" dbEntityId="WPC10000" description="Annual revenue"/>
     <DBField dbFieldId="WPC10000_11" dbFieldName="tickerSymbol" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Ticker symbol"/>
     <DBField dbFieldId="WPC10000_12" dbFieldName="comments" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Comments"/>
+    <DBField dbFieldId="WPC10000_13" dbFieldName="approvePartyId" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Task party"/>
+    <DBField dbFieldId="WPC10000_14" dbFieldName="currentStatusId" dbFieldTypeId="STATUS" dbEntityId="WPC10000" description="Status"/>
+    <DBField dbFieldId="WPC10000_15" dbFieldName="workEffortId" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Task ID"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_01_ZH" dbFieldId="WPC10000_01" language="zh" value="Email"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_01_EN" dbFieldId="WPC10000_01" language="en" value="Email"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_02_ZH" dbFieldId="WPC10000_02" language="zh" value="Address"/>
@@ -136,6 +143,12 @@ under the License.
     <DBFieldLabel dbFieldLabelId="WPC10000_11_EN" dbFieldId="WPC10000_11" language="en" value="Ticker symbol"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_12_ZH" dbFieldId="WPC10000_12" language="zh" value="备注"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_12_EN" dbFieldId="WPC10000_12" language="en" value="Comments"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_13_ZH" dbFieldId="WPC10000_13" language="zh" value="任务处理人"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_13_EN" dbFieldId="WPC10000_13" language="en" value="Task party"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_14_ZH" dbFieldId="WPC10000_14" language="zh" value="状态"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_14_EN" dbFieldId="WPC10000_14" language="en" value="Status"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_15_ZH" dbFieldId="WPC10000_15" language="zh" value="任务ID"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_15_EN" dbFieldId="WPC10000_15" language="en" value="Task ID"/>
 
     <!-- Entity labels for entity SurveyQuestion -->
     <DBEntity dbEntityId="SQ10000" dbEntityName="SurveyQuestion" description="Survey question" isOpen="N" />
@@ -166,4 +179,76 @@ under the License.
     <DBFieldLabel dbFieldLabelId="SQA10000_03_EN" dbFieldId="SQA10000_03" language="en" value="Required"/>
     <DBFieldLabel dbFieldLabelId="SQA10000_04_ZH" dbFieldId="SQA10000_04" language="zh" value="序号"/>
     <DBFieldLabel dbFieldLabelId="SQA10000_04_EN" dbFieldId="SQA10000_04" language="en" value="Seq."/>
+
+    <!-- Entity labels for entity SurveyQuestionAnswer -->
+    <DBEntity dbEntityId="SQA10001" dbEntityName="SurveyQuestionAnswer" description="Survey question answer" isOpen="N" />
+    <DBField dbFieldId="SQA10001_01" dbFieldName="surveyQuestionId" dbFieldTypeId="STRING" dbEntityId="SQA10001" description="Survey question ID"/>
+    <DBField dbFieldId="SQA10001_02" dbFieldName="partyId" dbFieldTypeId="STRING" dbEntityId="SQA10001" description="Party ID"/>
+    <DBField dbFieldId="SQA10001_03" dbFieldName="booleanResponse" dbFieldTypeId="STRING" dbEntityId="SQA10001" description="Boolean response"/>
+    <DBField dbFieldId="SQA10001_04" dbFieldName="currencyResponse" dbFieldTypeId="STRING" dbEntityId="SQA10001" description="Currency response"/>
+    <DBField dbFieldId="SQA10001_05" dbFieldName="floatResponse" dbFieldTypeId="STRING" dbEntityId="SQA10001" description="Float response"/>
+    <DBField dbFieldId="SQA10001_06" dbFieldName="numericResponse" dbFieldTypeId="STRING" dbEntityId="SQA10001" description="Numeric response"/>
+    <DBField dbFieldId="SQA10001_07" dbFieldName="textResponse" dbFieldTypeId="STRING" dbEntityId="SQA10001" description="Text response"/>
+    <DBField dbFieldId="SQA10001_08" dbFieldName="surveyOptionSeqId" dbFieldTypeId="STRING" dbEntityId="SQA10001" description="Survey option sequence ID"/>
+    <DBField dbFieldId="SQA10001_09" dbFieldName="answeredDate" dbFieldTypeId="STRING" dbEntityId="SQA10001" description="Answered date"/>
+    <DBField dbFieldId="SQA10001_10" dbFieldName="lastModifiedDate" dbFieldTypeId="STRING" dbEntityId="SQA10001" description="Last modified date"/>
+    <DBFieldLabel dbFieldLabelId="SQA10001_01_ZH" dbFieldId="SQA10001_01" language="zh" value="问题ID"/>
+    <DBFieldLabel dbFieldLabelId="SQA10001_01_EN" dbFieldId="SQA10001_01" language="en" value="Question ID"/>
+    <DBFieldLabel dbFieldLabelId="SQA10001_02_ZH" dbFieldId="SQA10001_02" language="zh" value="应答者ID"/>
+    <DBFieldLabel dbFieldLabelId="SQA10001_02_EN" dbFieldId="SQA10001_02" language="en" value="Party ID"/>
+    <DBFieldLabel dbFieldLabelId="SQA10001_03_ZH" dbFieldId="SQA10001_03" language="zh" value="是否"/>
+    <DBFieldLabel dbFieldLabelId="SQA10001_03_EN" dbFieldId="SQA10001_03" language="en" value="Y/N"/>
+    <DBFieldLabel dbFieldLabelId="SQA10001_04_ZH" dbFieldId="SQA10001_04" language="zh" value="金额"/>
+    <DBFieldLabel dbFieldLabelId="SQA10001_04_EN" dbFieldId="SQA10001_04" language="en" value="Amount"/>
+    <DBFieldLabel dbFieldLabelId="SQA10001_05_ZH" dbFieldId="SQA10001_05" language="zh" value="浮点数"/>
+    <DBFieldLabel dbFieldLabelId="SQA10001_05_EN" dbFieldId="SQA10001_05" language="en" value="Float"/>
+    <DBFieldLabel dbFieldLabelId="SQA10001_06_ZH" dbFieldId="SQA10001_06" language="zh" value="数值"/>
+    <DBFieldLabel dbFieldLabelId="SQA10001_06_EN" dbFieldId="SQA10001_06" language="en" value="Numeric"/>
+    <DBFieldLabel dbFieldLabelId="SQA10001_07_ZH" dbFieldId="SQA10001_07" language="zh" value="文本回答"/>
+    <DBFieldLabel dbFieldLabelId="SQA10001_07_EN" dbFieldId="SQA10001_07" language="en" value="Text"/>
+    <DBFieldLabel dbFieldLabelId="SQA10001_08_ZH" dbFieldId="SQA10001_08" language="zh" value="选项序号"/>
+    <DBFieldLabel dbFieldLabelId="SQA10001_08_EN" dbFieldId="SQA10001_08" language="en" value="Option seq."/>
+    <DBFieldLabel dbFieldLabelId="SQA10001_09_ZH" dbFieldId="SQA10001_09" language="zh" value="回答日期"/>
+    <DBFieldLabel dbFieldLabelId="SQA10001_09_EN" dbFieldId="SQA10001_09" language="en" value="Answered date"/>
+    <DBFieldLabel dbFieldLabelId="SQA10001_10_ZH" dbFieldId="SQA10001_10" language="zh" value="最后修改日期"/>
+    <DBFieldLabel dbFieldLabelId="SQA10001_10_EN" dbFieldId="SQA10001_10" language="en" value="Last modified date"/>
+
+    <!-- Entity labels for entity NoteData -->
+    <DBEntity dbEntityId="ND10000" dbEntityName="NoteData" description="Note data" isOpen="N" />
+    <DBField dbFieldId="ND10000_01" dbFieldName="noteName" dbFieldTypeId="STRING" dbEntityId="ND10000" description="Note name"/>
+    <DBField dbFieldId="ND10000_02" dbFieldName="noteInfo" dbFieldTypeId="STRING" dbEntityId="ND10000" description="Note info"/>
+    <DBField dbFieldId="ND10000_03" dbFieldName="noteDateTime" dbFieldTypeId="STRING" dbEntityId="ND10000" description="Note date time"/>
+    <DBField dbFieldId="ND10000_04" dbFieldName="noteParty" dbFieldTypeId="STRING" dbEntityId="ND10000" description="Note party"/>
+    <DBField dbFieldId="ND10000_06" dbFieldName="noteId" dbFieldTypeId="STRING" dbEntityId="ND10000" description="Note ID"/>
+    <DBFieldLabel dbFieldLabelId="ND10000_01_ZH" dbFieldId="ND10000_01" language="zh" value="备注名称"/>
+    <DBFieldLabel dbFieldLabelId="ND10000_01_EN" dbFieldId="ND10000_01" language="en" value="Note name"/>
+    <DBFieldLabel dbFieldLabelId="ND10000_02_ZH" dbFieldId="ND10000_02" language="zh" value="备注信息"/>
+    <DBFieldLabel dbFieldLabelId="ND10000_02_EN" dbFieldId="ND10000_02" language="en" value="Note info"/>
+    <DBFieldLabel dbFieldLabelId="ND10000_03_ZH" dbFieldId="ND10000_03" language="zh" value="备注日期"/>
+    <DBFieldLabel dbFieldLabelId="ND10000_03_EN" dbFieldId="ND10000_03" language="en" value="Note date time"/>
+    <DBFieldLabel dbFieldLabelId="ND10000_04_ZH" dbFieldId="ND10000_04" language="zh" value="备注人"/>
+    <DBFieldLabel dbFieldLabelId="ND10000_04_EN" dbFieldId="ND10000_04" language="en" value="Note party"/>
+    <DBFieldLabel dbFieldLabelId="ND10000_06_ZH" dbFieldId="ND10000_06" language="zh" value="备注ID"/>
+    <DBFieldLabel dbFieldLabelId="ND10000_06_EN" dbFieldId="ND10000_06" language="en" value="Note ID"/>
+
+    <!-- Entity labels for entity PersonAndContact -->
+    <DBEntity dbEntityId="PAC10000" dbEntityName="PersonAndContact" description="Person and contact" isOpen="N" />
+    <DBField dbFieldId="PAC10000_01" dbFieldName="partyName" dbFieldTypeId="STRING" dbEntityId="PAC10000" description="Name"/>
+    <DBField dbFieldId="PAC10000_02" dbFieldName="position" dbFieldTypeId="STRING" dbEntityId="PAC10000" description="Position"/>
+    <DBField dbFieldId="PAC10000_03" dbFieldName="primaryEmail" dbFieldTypeId="STRING" dbEntityId="PAC10000" description="Email"/>
+    <DBField dbFieldId="PAC10000_04" dbFieldName="primaryPhone" dbFieldTypeId="STRING" dbEntityId="PAC10000" description="Telephone"/>
+    <DBField dbFieldId="PAC10000_05" dbFieldName="phoneMobile" dbFieldTypeId="STRING" dbEntityId="PAC10000" description="Mobile"/>
+    <DBField dbFieldId="PAC10000_06" dbFieldName="partyId" dbFieldTypeId="STRING" dbEntityId="PAC10000" description="Party ID"/>
+    <DBFieldLabel dbFieldLabelId="PAC10000_01_ZH" dbFieldId="PAC10000_01" language="zh" value="名字"/>
+    <DBFieldLabel dbFieldLabelId="PAC10000_01_EN" dbFieldId="PAC10000_01" language="en" value="Name"/>
+    <DBFieldLabel dbFieldLabelId="PAC10000_02_ZH" dbFieldId="PAC10000_02" language="zh" value="职位"/>
+    <DBFieldLabel dbFieldLabelId="PAC10000_02_EN" dbFieldId="PAC10000_02" language="en" value="Position"/>
+    <DBFieldLabel dbFieldLabelId="PAC10000_03_ZH" dbFieldId="PAC10000_03" language="zh" value="Email"/>
+    <DBFieldLabel dbFieldLabelId="PAC10000_03_EN" dbFieldId="PAC10000_03" language="en" value="Email"/>
+    <DBFieldLabel dbFieldLabelId="PAC10000_04_ZH" dbFieldId="PAC10000_04" language="zh" value="电话"/>
+    <DBFieldLabel dbFieldLabelId="PAC10000_04_EN" dbFieldId="PAC10000_04" language="en" value="Telephone"/>
+    <DBFieldLabel dbFieldLabelId="PAC10000_05_ZH" dbFieldId="PAC10000_05" language="zh" value="手机"/>
+    <DBFieldLabel dbFieldLabelId="PAC10000_05_EN" dbFieldId="PAC10000_05" language="en" value="Mobile"/>
+    <DBFieldLabel dbFieldLabelId="PAC10000_06_ZH" dbFieldId="PAC10000_06" language="zh" value="Party ID"/>
+    <DBFieldLabel dbFieldLabelId="PAC10000_06_EN" dbFieldId="PAC10000_06" language="en" value="Party ID"/>
 </entity-engine-xml>
