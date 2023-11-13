@@ -158,6 +158,7 @@ public class SupplierEvents {
 
         String finAccountName = (String) actionParameters.get("finAccountName");
         String finAccountCode = (String) actionParameters.get("finAccountCode");
+        String currencyUomId = (String) actionParameters.get("currencyUomId");
 
         OdataOfbizEntity supplierPartyEntity = CommonUtils.getOdataPartByEntityType(oDataContext, "SupplierParty");
         GenericValue supplierParty = null;
@@ -168,7 +169,7 @@ public class SupplierEvents {
         dispatcher.runSync("banfftech.createFinAccount",
                 UtilMisc.toMap("userLogin", userLogin, "finAccountName", finAccountName, "finAccountCode",
                         finAccountCode, "ownerPartyId", supplierParty.getString("partyId"), "finAccountTypeId",
-                        "BANK_ACCOUNT", "statusId", "FNACT_ACTIVE", "currencyUomId", "CNY"));
+                        "BANK_ACCOUNT", "statusId", "FNACT_ACTIVE", "currencyUomId", currencyUomId));
         return null;
     }
 

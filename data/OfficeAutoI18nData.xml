@@ -50,8 +50,8 @@ under the License.
     <Internationalization id="I10027" lang="en" property="email" value="Email"/>
     <Internationalization id="I10028" lang="zh" property="position" value="职位"/>
     <Internationalization id="I10029" lang="en" property="position" value="Position"/>
-    <Internationalization id="I10030" lang="zh" property="noteInfo" value="内容"/>
-    <Internationalization id="I10031" lang="en" property="noteInfo" value="Note Info"/>
+    <Internationalization id="I10030" lang="zh" property="noteInfo" value="备注信息"/>
+    <Internationalization id="I10031" lang="en" property="noteInfo" value="Note info"/>
     <Internationalization id="I10032" lang="zh" property="create" value="创建"/>
     <Internationalization id="I10033" lang="en" property="create" value="Create"/>
     <Internationalization id="I10034" lang="zh" property="noteName" value="备注名称"/>
@@ -59,13 +59,15 @@ under the License.
     <Internationalization id="I10036" lang="zh" property="productId" value="产品标识"/>
     <Internationalization id="I10037" lang="en" property="productId" value="Product ID"/>
     <Internationalization id="I10038" lang="zh" property="currencyUomId" value="货币单位"/>
-    <Internationalization id="I10039" lang="en" property="currencyUomId" value="Currency UOM"/>
+    <Internationalization id="I10039" lang="en" property="currencyUomId" value="Currency"/>
     <Internationalization id="I10040" lang="zh" property="minimumOrderQuantity" value="最小订单数量"/>
     <Internationalization id="I10041" lang="en" property="minimumOrderQuantity" value="Min Order Quantity"/>
     <Internationalization id="I10042" lang="zh" property="finAccountName" value="账户名称"/>
-    <Internationalization id="I10043" lang="en" property="finAccountName" value="Financial account name"/>
+    <Internationalization id="I10043" lang="en" property="finAccountName" value="Account name"/>
     <Internationalization id="I10044" lang="zh" property="finAccountCode" value="账户代码"/>
     <Internationalization id="I10045" lang="en" property="finAccountCode" value="Account code"/>
+    <Internationalization id="I10046" lang="zh" property="StatusItem.description.APPROVAL_CREATED" value="已创建-待提交"/>
+    <Internationalization id="I10047" lang="en" property="StatusItem.description.APPROVAL_CREATED" value="Approval created"/>
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
     <DBField dbFieldId="CUST_REQ_10001" dbFieldName="statusId" dbFieldTypeId="STATUS" description="当前状态" dbEntityId="CUST_REQ_10000"/>
