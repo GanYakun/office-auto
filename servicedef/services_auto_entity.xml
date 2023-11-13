@@ -104,4 +104,23 @@ under the License.
         <auto-attributes include="pk" mode="INOUT" optional="true"/>
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
     </service>
+
+    <!--PartySurveyAppl-->
+    <service name="banfftech.createPartySurveyAppl" default-entity-name="PartySurveyAppl" engine="entity-auto" invoke="create" auth="true">
+        <description>Create a PartySurveyAppl</description>
+        <auto-attributes include="pk" mode="INOUT" optional="true"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+
+    <!--SurveyQuestionAnswer-->
+    <service name="banfftech.createSurveyQuestionAnswer" default-entity-name="SurveyQuestionAnswer" engine="entity-auto" invoke="create" auth="true">
+        <description>Create a SurveyQuestionAnswer</description>
+        <auto-attributes include="pk" mode="INOUT" optional="true"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+    <service name="banfftech.updateSurveyQuestionAnswer" default-entity-name="SurveyQuestionAnswer" engine="entity-auto" invoke="update" auth="true">
+        <description>Update a SurveyQuestionAnswer</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
 </services>

@@ -171,6 +171,11 @@
             <Parameter Name="target" Type="String" IsCollection="false"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
+        <!--生成调查问卷的回答-->
+        <Action Name="GenerateSurveyQuestionAnswer" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.generateSurveyQuestionAnswer" SideEffects="true">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <ReturnType Type="SupplierParty"/>
+        </Action>
     </EntityType>
 
     <EntityType Name="CoWorkHistory" Properties="workEffortId,partyId,approvePartyId,currentStatusId,lastModifiedDate" OfbizEntity="WorkEffortAndPartyGroupContact" OfbizType="PartyRole/roleTypeId=SUPPLIER">

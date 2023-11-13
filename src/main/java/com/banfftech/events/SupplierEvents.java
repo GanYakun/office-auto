@@ -171,4 +171,33 @@ public class SupplierEvents {
                         "BANK_ACCOUNT", "statusId", "FNACT_ACTIVE", "currencyUomId", "CNY"));
         return null;
     }
+
+    public static Object generateSurveyQuestionAnswer(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
+                                                      EdmBindingTarget edmBindingTarget) throws OfbizODataException, GenericServiceException {
+        LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
+        GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
+        OdataOfbizEntity supplierPartyEntity = CommonUtils.getOdataPartByEntityType(oDataContext, "SupplierParty");
+        GenericValue supplierParty = null;
+        if (UtilValidate.isEmpty(supplierPartyEntity)) {
+            return null;
+        }
+        supplierParty = supplierPartyEntity.getGenericValue();
+        dispatcher.runSync("banfftech.createPartySurveyAppl",
+                UtilMisc.toMap("userLogin", userLogin, "partyId", supplierParty.getString("partyId"),
+                        "surveyId", "DD_STD_FORM", "surveyApplTypeId", "DD_FORM"));
+
+        dispatcher.runSync("banfftech.updateSurveyQuestionAnswer",
+                UtilMisc.toMap("userLogin", userLogin, "surveyQuestionId", "9000",
+                        "partyId", supplierParty.getString("partyId"), "booleanResponse", "Y"));
+        dispatcher.runSync("banfftech.updateSurveyQuestionAnswer",
+                UtilMisc.toMap("userLogin", userLogin, "surveyQuestionId", "9001",
+                        "partyId", supplierParty.getString("partyId"), "booleanResponse", "Y"));
+        dispatcher.runSync("banfftech.updateSurveyQuestionAnswer",
+                UtilMisc.toMap("userLogin", userLogin, "surveyQuestionId", "9002",
+                        "partyId", supplierParty.getString("partyId"), "booleanResponse", "N"));
+        dispatcher.runSync("banfftech.updateSurveyQuestionAnswer",
+                UtilMisc.toMap("userLogin", userLogin, "surveyQuestionId", "9003",
+                        "partyId", supplierParty.getString("partyId"), "booleanResponse", "N"));
+        return null;
+    }
 }
