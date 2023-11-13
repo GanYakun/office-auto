@@ -21,6 +21,9 @@
             <Text Path="partyName" TextArrangement="TextFirst"/>
         </Property>
         <Property Name="currentStatusId" DefaultValue="NOT_PROCESSED"/>
+        <Property Name="statusId">
+            <Text Path="SupplierStatusItem/description" TextArrangement="TextOnly"/>
+        </Property>
         <Property Name="createSupplierHidden" Type="Boolean" Hidden="true"/>
         <Property Name="firstOrderDate" Type="Timestamp" IsDateAttribute="true"/>
         <Property Name="collectionDate" Type="Timestamp" IsDateAttribute="true"/>
@@ -580,6 +583,7 @@
             <Parameter Name="finAccount" Type="FinAccount" Nullable="false" IsCollection="true"/>
             <Parameter Name="finAccountName" Type="String" Label="${finAccountName}" Nullable="false"/>
             <Parameter Name="finAccountCode" Type="String" Label="${finAccountCode}" Nullable="false"/>
+            <Parameter Name="currencyUomId" Type="String" Label="${currencyUomId}" Nullable="false"/>
             <ReturnType Type="NoteData"/>
         </Action>
         <NavigationProperty Name="AccountStatusItem" Type="AccountStatusItem" Relations="StatusItem" AutoBinding="true" />
@@ -593,6 +597,19 @@
     </EntityType>
 
     <EntityType Name="Uom" AutoProperties="true" AutoSet="true" EntitySetName="Unm" >
+        <Property Name="uomId">
+            <Text Path="description" TextArrangement="TextLast" />
+        </Property>
+
+        <Property Name="uomTypeId" >
+            <Text Path="UomType/description" TextArrangement="TextOnly" />
+            <ValueList CollectionPath="UomTypes" WithFixedValues="true" />
+        </Property>
+
+        <NavigationProperty Name="UomType" AutoBinding="true" />
+    </EntityType>
+
+    <EntityType Name="CurrencyUom" OfbizEntity="Uom" AutoProperties="true" EntitySetName="CurrencyUnm" OfbizType="uomTypeId=CURRENCY_MEASURE">
         <Property Name="uomId">
             <Text Path="description" TextArrangement="TextLast" />
         </Property>

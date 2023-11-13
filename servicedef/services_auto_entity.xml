@@ -120,7 +120,7 @@ under the License.
     </service>
     <service name="banfftech.updateSurveyQuestionAnswer" default-entity-name="SurveyQuestionAnswer" engine="entity-auto" invoke="update" auth="true">
         <description>Update a SurveyQuestionAnswer</description>
-        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="pk" mode="INOUT" optional="true"/>
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
     </service>
 </services>
