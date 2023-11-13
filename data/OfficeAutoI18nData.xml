@@ -56,6 +56,12 @@ under the License.
     <Internationalization id="I10033" lang="en" property="create" value="Create"/>
     <Internationalization id="I10034" lang="zh" property="noteName" value="备注名称"/>
     <Internationalization id="I10035" lang="en" property="noteName" value="Note name"/>
+    <Internationalization id="I10036" lang="zh" property="productId" value="产品标识"/>
+    <Internationalization id="I10037" lang="en" property="productId" value="Product ID"/>
+    <Internationalization id="I10038" lang="zh" property="currencyUomId" value="货币单位"/>
+    <Internationalization id="I10039" lang="en" property="currencyUomId" value="Currency UOM"/>
+    <Internationalization id="I10040" lang="zh" property="minimumOrderQuantity" value="最小订单数量"/>
+    <Internationalization id="I10041" lang="en" property="minimumOrderQuantity" value="Min Order Quantity"/>
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
     <DBField dbFieldId="CUST_REQ_10001" dbFieldName="statusId" dbFieldTypeId="STATUS" description="当前状态" dbEntityId="CUST_REQ_10000"/>
@@ -266,7 +272,7 @@ under the License.
     <DBFieldLabel dbFieldLabelId="SP10000_03_EN" dbFieldId="SP10000_03" language="en" value="From date"/>
 
     <!-- Entity labels for entity Product -->
-    <DBEntity dbEntityId="PRD10000" dbEntityName="Product" description="Product" isOpen="N" />
+    <DBEntity dbEntityId="PRD10000" dbEntityName="Product" dbEntityTypeId="FINISHED_GOOD" description="Product" isOpen="N" />
     <DBField dbFieldId="PRD10000_01" dbFieldName="productId" dbFieldTypeId="STRING" dbEntityId="PRD10000" description="Product ID"/>
     <DBField dbFieldId="PRD10000_02" dbFieldName="productName" dbFieldTypeId="STRING" dbEntityId="PRD10000" description="Product name"/>
     <DBField dbFieldId="PRD10000_03" dbFieldName="productTypeId" dbFieldTypeId="STRING" dbEntityId="PRD10000" description="Product type"/>

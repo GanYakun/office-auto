@@ -445,17 +445,21 @@
         <Property Name="minimumOrderQuantity" DefaultValue="1" Computed="true"/>
         <Property Name="currencyUomId" DefaultValue="CNY" Computed="true"/>
         <Property Name="partyId" Computed="true"/>
-        <Property Name="productId" />
         <Property Name="availableFromDate" Computed="true"/>
         <NavigationProperty Name="Product"/>
         <NavigationProperty Name="CurrencyUom"/>
         <NavigationProperty Name="Uom" Relations="Product/QuantityUom" Type="Uom" AutoBinding="true"/>
-
         <LineItem Qualifier="SupplierProductLineItem">
             <DataField Values="productId,Product/productName,Product/quantityUomId" Importance="High" />
+            <DataFieldForAction Label="${create}" Action="CreateSupplierProduct" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
+        <Action Name="CreateSupplierProduct" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createSupplierProduct" SideEffects="true">
+            <Parameter Name="supplierProduct" Type="SupplierProduct" Nullable="false" IsCollection="true"/>
+            <Parameter Name="productId" Type="String" Label="${productId}" Nullable="false"/>
+            <ReturnType Type="SupplierProduct"/>
+        </Action>
     </EntityType>
-    <EntityType Name="Product" EntitySetName="Products" AutoSet="true" AutoProperties="true">
+    <EntityType Name="Product" EntitySetName="Products" AutoSet="true" AutoProperties="true" OfbizType="productTypeId=FINISHED_GOOD">
         <Property Name="productTypeId" >
             <Text Path="ProductType/description" TextArrangement="TextOnly"/>
         </Property>

@@ -90,4 +90,11 @@ under the License.
         <auto-attributes include="pk" mode="INOUT" optional="true"/>
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
     </service>
+
+    <!--SupplierProduct-->
+    <service name="banfftech.createSupplierProduct" default-entity-name="SupplierProduct" engine="entity-auto" invoke="create" auth="true">
+        <description>Create a SupplierProduct</description>
+        <auto-attributes include="pk" mode="INOUT" optional="true"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
 </services>

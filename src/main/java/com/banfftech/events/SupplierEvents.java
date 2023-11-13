@@ -15,6 +15,7 @@ import org.apache.ofbiz.service.GenericServiceException;
 import org.apache.ofbiz.service.LocalDispatcher;
 import org.apache.olingo.commons.api.edm.EdmBindingTarget;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.sql.Timestamp;
@@ -94,6 +95,12 @@ public class SupplierEvents {
         }
     }
 
+    /**
+     * @Author yyp
+     * @Description Action创建供应商备注信息
+     * @Date 12:15 2023/11/13
+     * @Edmconfig supplierApprovalServiceEdmConfig.xml
+     **/
     public static Object createNoteData(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
                                         EdmBindingTarget edmBindingTarget) throws OfbizODataException, GenericServiceException {
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
@@ -105,7 +112,7 @@ public class SupplierEvents {
 
         OdataOfbizEntity supplierPartyEntity = CommonUtils.getOdataPartByEntityType(oDataContext, "SupplierParty");
         GenericValue supplierParty = null;
-        if(UtilValidate.isEmpty(supplierPartyEntity)){
+        if (UtilValidate.isEmpty(supplierPartyEntity)) {
             return null;
         }
         supplierParty = supplierPartyEntity.getGenericValue();
@@ -116,6 +123,31 @@ public class SupplierEvents {
         dispatcher.runSync("banfftech.createPartyNote",
                 UtilMisc.toMap("userLogin", userLogin, "partyId", supplierParty.getString("partyId"),
                         "noteId", NoteDatResult.get("noteId")));
+
+
+        return null;
+    }
+
+    public static Object createSupplierProduct(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
+                                               EdmBindingTarget edmBindingTarget) throws OfbizODataException, GenericServiceException {
+        LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
+        GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
+
+        String productId = (String) actionParameters.get("productId");
+        Timestamp availableFromDate = UtilDateTime.nowTimestamp();
+
+
+        OdataOfbizEntity supplierPartyEntity = CommonUtils.getOdataPartByEntityType(oDataContext, "SupplierParty");
+        GenericValue supplierParty = null;
+        if (UtilValidate.isEmpty(supplierPartyEntity)) {
+            return null;
+        }
+        supplierParty = supplierPartyEntity.getGenericValue();
+
+        dispatcher.runSync("banfftech.createSupplierProduct",
+                UtilMisc.toMap("userLogin", userLogin, "partyId", supplierParty.getString("partyId"),
+                        "productId", productId, "minimumOrderQuantity", 10, "currencyUomId", "CNY",
+                        "availableFromDate", availableFromDate));
 
 
         return null;
