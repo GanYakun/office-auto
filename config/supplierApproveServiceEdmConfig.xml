@@ -317,12 +317,12 @@
 
     <EntityType Name="PurchaseAgreement" DraftEntityName="PurchaseAgreementPartyAppDraft" EntitySetName="PurchaseAgreements" AutoSet="true" EntityCondition="agreementTypeId=PURCHASE_AGREEMENT" AutoProperties="true" OfbizEntity="Agreement">
         <LineItem Qualifier="PurchaseAgreementLineItem">
-            <DataField Values="agreementId,productId,partyIdFrom,description,agreementDate,fromDate,thruDate" Importance="High"/>
+            <DataField Values="agreementId,productId,description,agreementDate,fromDate,thruDate" Importance="High"/>
         </LineItem>
 
         <SelectionFields PropertyPath="productId,partyIdFrom,partyIdTo"/>
 
-        <HeaderInfo TypeName="合同" TypeNamePlural="合同列表">
+        <HeaderInfo TypeName="合同">
             <Title Path="agreementId"/>
             <Description Path="description"/>
         </HeaderInfo>
@@ -434,7 +434,7 @@
         <Property Name="minimumOrderQuantity" DefaultValue="1" Computed="true"/>
         <Property Name="currencyUomId" DefaultValue="CNY" Computed="true"/>
         <Property Name="partyId" Computed="true"/>
-        <Property Name="productId" Label="产品ID"/>
+        <Property Name="productId" />
         <Property Name="availableFromDate" Computed="true"/>
         <NavigationProperty Name="Product"/>
         <NavigationProperty Name="CurrencyUom"/>
@@ -448,10 +448,10 @@
         <Property Name="productTypeId" >
             <Text Path="ProductType/description" TextArrangement="TextOnly"/>
         </Property>
-        <Property Name="quantityUomId" Immutable="true" Label="计量单位">
+        <Property Name="quantityUomId" Immutable="true">
             <Text Path="QuantityUom/description" TextArrangement="TextOnly"/>
         </Property>
-        <Property Name="productName" Label="产品名称" Immutable="true"/>
+        <Property Name="productName" Immutable="true"/>
         <NavigationProperty Name="ProductType"/>
         <NavigationProperty Name="QuantityUom"/>
     </EntityType>
