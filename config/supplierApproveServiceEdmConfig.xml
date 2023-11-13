@@ -152,6 +152,8 @@
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
             <Parameter Name="target" Type="String" IsCollection="false"/>
             <Parameter Name="noteInfo" Type="String" Label="${noteInfo}"/>
+            <Parameter Name="isSimplifiedForm" Type="Boolean" Label="${isSimplifiedForm}"/>
+            <Parameter Name="email" Type="String" Label="${email}"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
         <!--推送到合规部门的Action-->

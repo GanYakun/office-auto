@@ -56,7 +56,7 @@ under the License.
     <UserLoginSecurityGroup groupId="SUPER" userLoginId="admin" fromDate="2001-01-01 12:00:00.0"/>
 
     <!-- 申请人 -->
-    <Party partyId="applicant" partyTypeId="PERSON" externalId="applicant" partyName="申请人01"/>
+    <Party partyId="applicant" partyTypeId="PERSON" externalId="applicant" partyName="Applicant01"/>
     <Person partyId="applicant"/>
     <PartyRole partyId="applicant" roleTypeId="APPLICANT"/>
     <PartyRole partyId="applicant" roleTypeId="ORD_EMPLOYEE"/>
@@ -65,7 +65,7 @@ under the License.
     <PartyRelationship partyRelationshipId="PR10008" partyIdFrom="IT" partyIdTo="applicant" roleTypeIdTo="ORD_EMPLOYEE"/>
 
     <!-- 采购 -->
-    <Party partyId="procurement" partyTypeId="PERSON" externalId="procurement" partyName="采购部门经理01"/>
+    <Party partyId="procurement" partyTypeId="PERSON" externalId="procurement" partyName="Procurement01"/>
     <Person partyId="procurement"/>
     <PartyRole partyId="procurement" roleTypeId="MANAGER"/>
     <PartyRole partyId="procurement" roleTypeId="ORD_EMPLOYEE"/>
@@ -74,15 +74,15 @@ under the License.
     <PartyRelationship partyRelationshipId="PR_procurement" partyIdFrom="CG" partyIdTo="procurement" roleTypeIdTo="ORD_EMPLOYEE"/>
 
     <!-- 经理 -->
-    <Party partyId="manager" partyTypeId="PERSON" externalId="manager" partyName="经理01"/>
+    <Party partyId="manager" partyTypeId="PERSON" externalId="manager" partyName="Manager01"/>
     <Person partyId="manager"/>
     <PartyRole partyId="manager" roleTypeId="MANAGER"/>
     <PartyRole partyId="manager" roleTypeId="ORD_EMPLOYEE"/>
     <UserLogin userLoginId="manager" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" passwordHint="" partyId="manager"/>
     <UserLoginSecurityGroup groupId="SUPER" userLoginId="manager" fromDate="2001-01-01 12:00:00.0"/>
 
-    <!-- 供应商 -->
-    <Party partyId="supplier" partyTypeId="PERSON" externalId="supplier" partyName="供应商01"/>
+    <!-- Vendor -->
+    <Party partyId="supplier" partyTypeId="PERSON" externalId="supplier" partyName="Vendor01"/>
     <Person partyId="supplier"/>
     <PartyRole partyId="supplier" roleTypeId="SUPPLIER"/>
     <PartyRole partyId="supplier" roleTypeId="ORD_EMPLOYEE"/>
@@ -90,7 +90,7 @@ under the License.
     <UserLoginSecurityGroup groupId="SUPER" userLoginId="supplier" fromDate="2001-01-01 12:00:00.0"/>
 
     <!-- 最终客户 -->
-    <Party partyId="endUser" partyTypeId="PERSON" externalId="endUser" partyName="最终客户01"/>
+    <Party partyId="endUser" partyTypeId="PERSON" externalId="endUser" partyName="EndUser01"/>
     <Person partyId="endUser"/>
     <PartyRole partyId="endUser" roleTypeId="END_USER"/>
     <PartyRole partyId="endUser" roleTypeId="ORD_EMPLOYEE"/>
@@ -98,7 +98,7 @@ under the License.
     <UserLoginSecurityGroup groupId="SUPER" userLoginId="endUser" fromDate="2001-01-01 12:00:00.0"/>
 
     <!-- 法务 -->
-    <Party partyId="legalAffairs" partyTypeId="PERSON" externalId="legalAffairs" partyName="法务01"/>
+    <Party partyId="legalAffairs" partyTypeId="PERSON" externalId="legalAffairs" partyName="Legal01"/>
     <Person partyId="legalAffairs"/>
     <PartyRole partyId="legalAffairs" roleTypeId="LEGAL_AFFAIRS"/>
     <PartyRole partyId="legalAffairs" roleTypeId="ORD_EMPLOYEE"/>
@@ -107,7 +107,7 @@ under the License.
     <PartyRelationship partyRelationshipId="PR10005" partyIdFrom="FW" partyIdTo="legalAffairs" roleTypeIdTo="ORD_EMPLOYEE"/>
 
     <!-- 合规 -->
-    <Party partyId="compliance" partyTypeId="PERSON" externalId="compliance" partyName="合规01"/>
+    <Party partyId="compliance" partyTypeId="PERSON" externalId="compliance" partyName="Compliance01"/>
     <Person partyId="compliance"/>
     <PartyRole partyId="compliance" roleTypeId="COMPLIANCE"/>
     <PartyRole partyId="compliance" roleTypeId="ORD_EMPLOYEE"/>
@@ -116,7 +116,7 @@ under the License.
     <PartyRelationship partyRelationshipId="PR10006" partyIdFrom="HG" partyIdTo="compliance" roleTypeIdTo="ORD_EMPLOYEE"/>
 
     <!-- 财务 -->
-    <Party partyId="finance" partyTypeId="PERSON" externalId="finance" partyName="财务01"/>
+    <Party partyId="finance" partyTypeId="PERSON" externalId="finance" partyName="Finance01"/>
     <Person partyId="finance"/>
     <PartyRole partyId="finance" roleTypeId="FINANCE"/>
     <PartyRole partyId="finance" roleTypeId="ORD_EMPLOYEE"/>
@@ -125,7 +125,7 @@ under the License.
     <PartyRelationship partyRelationshipId="PR10007" partyIdFrom="CW" partyIdTo="finance" roleTypeIdTo="ORD_EMPLOYEE"/>
 
     <!-- CEO -->
-    <Party partyId="ceo" partyTypeId="PERSON" externalId="ceo" partyName="首席执行官01"/>
+    <Party partyId="ceo" partyTypeId="PERSON" externalId="ceo" partyName="ceo Jack"/>
     <Person partyId="ceo"/>
     <PartyRole partyId="ceo" roleTypeId="CEO"/>
     <PartyRole partyId="ceo" roleTypeId="ORD_EMPLOYEE"/>
@@ -133,7 +133,7 @@ under the License.
     <UserLoginSecurityGroup groupId="SUPER" userLoginId="ceo" fromDate="2001-01-01 12:00:00.0"/>
 
     <!-- CTO -->
-    <Party partyId="cto" partyTypeId="PERSON" externalId="cto" partyName="首席技术官01"/>
+    <Party partyId="cto" partyTypeId="PERSON" externalId="cto" partyName="cto Tom"/>
     <Person partyId="cto"/>
     <PartyRole partyId="cto" roleTypeId="CTO"/>
     <PartyRole partyId="cto" roleTypeId="ORD_EMPLOYEE"/>
@@ -141,24 +141,24 @@ under the License.
     <UserLoginSecurityGroup groupId="SUPER" userLoginId="cto" fromDate="2001-01-01 12:00:00.0"/>
 
     <!-- CFO -->
-    <Party partyId="cfo" partyTypeId="PERSON" externalId="cfo" partyName="首席财务官01"/>
+    <Party partyId="cfo" partyTypeId="PERSON" externalId="cfo" partyName="cfo Marry"/>
     <Person partyId="cfo"/>
     <PartyRole partyId="cfo" roleTypeId="CFO"/>
     <PartyRole partyId="cfo" roleTypeId="ORD_EMPLOYEE"/>
     <UserLogin userLoginId="cfo" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" passwordHint="" partyId="cfo"/>
     <UserLoginSecurityGroup groupId="SUPER" userLoginId="cfo" fromDate="2001-01-01 12:00:00.0"/>
-    <!-- 供应商 -->
+    <!-- Vendor -->
     <!-- Party -->
-    <Party partyId="9000" partyName="供应商1" partyTypeId="PARTY_GROUP" statusId="APPROVAL_CREATED"/>
-    <Party partyId="9001" partyName="供应商2" partyTypeId="PARTY_GROUP" statusId="APPROVAL_CREATED"/>
-    <Party partyId="9002" partyName="供应商3" partyTypeId="PARTY_GROUP" statusId="APPROVAL_CREATED"/>
-    <Party partyId="9003" partyName="供应商4" partyTypeId="PARTY_GROUP" statusId="APPROVAL_CREATED"/>
-    <Party partyId="9004" partyName="供应商5" partyTypeId="PARTY_GROUP" statusId="APPROVAL_CREATED"/>
-    <Party partyId="9005" partyName="供应商6" partyTypeId="PARTY_GROUP" statusId="APPROVAL_CREATED"/>
-    <Party partyId="9006" partyName="供应商7" partyTypeId="PARTY_GROUP" statusId="APPROVAL_CREATED"/>
-    <Party partyId="9007" partyName="供应商8" partyTypeId="PARTY_GROUP" statusId="APPROVAL_CREATED"/>
-    <Party partyId="9008" partyName="供应商9" partyTypeId="PARTY_GROUP" statusId="APPROVAL_CREATED"/>
-    <Party partyId="9009" partyName="供应商10" partyTypeId="PARTY_GROUP" statusId="APPROVAL_CREATED"/>
+    <Party partyId="9000" partyName="Vendor1" partyTypeId="PARTY_GROUP" statusId="APPROVAL_CREATED"/>
+    <Party partyId="9001" partyName="Vendor2" partyTypeId="PARTY_GROUP" statusId="APPROVAL_CREATED"/>
+    <Party partyId="9002" partyName="Vendor3" partyTypeId="PARTY_GROUP" statusId="APPROVAL_CREATED"/>
+    <Party partyId="9003" partyName="Vendor4" partyTypeId="PARTY_GROUP" statusId="APPROVAL_CREATED"/>
+    <Party partyId="9004" partyName="Vendor5" partyTypeId="PARTY_GROUP" statusId="APPROVAL_CREATED"/>
+    <Party partyId="9005" partyName="Vendor6" partyTypeId="PARTY_GROUP" statusId="APPROVAL_CREATED"/>
+    <Party partyId="9006" partyName="Vendor7" partyTypeId="PARTY_GROUP" statusId="APPROVAL_CREATED"/>
+    <Party partyId="9007" partyName="Vendor8" partyTypeId="PARTY_GROUP" statusId="APPROVAL_CREATED"/>
+    <Party partyId="9008" partyName="Vendor9" partyTypeId="PARTY_GROUP" statusId="APPROVAL_CREATED"/>
+    <Party partyId="9009" partyName="Vendor10" partyTypeId="PARTY_GROUP" statusId="APPROVAL_CREATED"/>
     <!-- PartyRole -->
     <PartyRole partyId="9000" roleTypeId="SUPPLIER"/>
     <PartyRole partyId="9001" roleTypeId="SUPPLIER"/>

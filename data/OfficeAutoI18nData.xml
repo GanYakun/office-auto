@@ -66,6 +66,8 @@ under the License.
     <Internationalization id="I10043" lang="en" property="finAccountName" value="Financial account name"/>
     <Internationalization id="I10044" lang="zh" property="finAccountCode" value="账户代码"/>
     <Internationalization id="I10045" lang="en" property="finAccountCode" value="Account code"/>
+    <Internationalization id="I10046" lang="zh" property="isSimplifiedForm" value="简化表单"/>
+    <Internationalization id="I10047" lang="en" property="isSimplifiedForm" value="Simplified Form"/>
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
     <DBField dbFieldId="CUST_REQ_10001" dbFieldName="statusId" dbFieldTypeId="STATUS" description="当前状态" dbEntityId="CUST_REQ_10000"/>
