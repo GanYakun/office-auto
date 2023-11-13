@@ -569,7 +569,12 @@
 <!--        <LineItem Qualifier="FinAccountLineItem">-->
 <!--            <DataField Values="finAccountName,finAccountCode,currencyUomId,statusId" Importance="High"/>-->
 <!--        </LineItem>-->
-
+        <Action Name="CreateFinAccount" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createFinAccount" SideEffects="true">
+            <Parameter Name="finAccount" Type="FinAccount" Nullable="false" IsCollection="true"/>
+            <Parameter Name="finAccountName" Type="String" Label="${finAccountName}" Nullable="false"/>
+            <Parameter Name="finAccountCode" Type="String" Label="${finAccountCode}" Nullable="false"/>
+            <ReturnType Type="NoteData"/>
+        </Action>
         <NavigationProperty Name="AccountStatusItem" Type="AccountStatusItem" Relations="StatusItem" AutoBinding="true" />
         <NavigationProperty Name="FinAccountType" AutoBinding="true" />
         <NavigationProperty Name="CurrencyUom" AutoBinding="true" />

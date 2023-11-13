@@ -97,4 +97,11 @@ under the License.
         <auto-attributes include="pk" mode="INOUT" optional="true"/>
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
     </service>
+
+    <!--FinAccount-->
+    <service name="banfftech.createFinAccount" default-entity-name="FinAccount" engine="entity-auto" invoke="create" auth="true">
+        <description>Create a FinAccount</description>
+        <auto-attributes include="pk" mode="INOUT" optional="true"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
 </services>

@@ -135,8 +135,6 @@ public class SupplierEvents {
 
         String productId = (String) actionParameters.get("productId");
         Timestamp availableFromDate = UtilDateTime.nowTimestamp();
-
-
         OdataOfbizEntity supplierPartyEntity = CommonUtils.getOdataPartByEntityType(oDataContext, "SupplierParty");
         GenericValue supplierParty = null;
         if (UtilValidate.isEmpty(supplierPartyEntity)) {
@@ -150,6 +148,27 @@ public class SupplierEvents {
                         "availableFromDate", availableFromDate));
 
 
+        return null;
+    }
+
+    public static Object createFinAccount(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
+                                          EdmBindingTarget edmBindingTarget) throws OfbizODataException, GenericServiceException {
+        LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
+        GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
+
+        String finAccountName = (String) actionParameters.get("finAccountName");
+        String finAccountCode = (String) actionParameters.get("finAccountCode");
+
+        OdataOfbizEntity supplierPartyEntity = CommonUtils.getOdataPartByEntityType(oDataContext, "SupplierParty");
+        GenericValue supplierParty = null;
+        if (UtilValidate.isEmpty(supplierPartyEntity)) {
+            return null;
+        }
+        supplierParty = supplierPartyEntity.getGenericValue();
+        dispatcher.runSync("banfftech.createFinAccount",
+                UtilMisc.toMap("userLogin", userLogin, "finAccountName", finAccountName, "finAccountCode",
+                        finAccountCode, "ownerPartyId", supplierParty.getString("partyId"), "finAccountTypeId",
+                        "BANK_ACCOUNT", "statusId", "FNACT_ACTIVE", "currencyUomId", "CNY"));
         return null;
     }
 }

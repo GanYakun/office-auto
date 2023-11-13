@@ -62,6 +62,10 @@ under the License.
     <Internationalization id="I10039" lang="en" property="currencyUomId" value="Currency UOM"/>
     <Internationalization id="I10040" lang="zh" property="minimumOrderQuantity" value="最小订单数量"/>
     <Internationalization id="I10041" lang="en" property="minimumOrderQuantity" value="Min Order Quantity"/>
+    <Internationalization id="I10042" lang="zh" property="finAccountName" value="账户名称"/>
+    <Internationalization id="I10043" lang="en" property="finAccountName" value="Financial account name"/>
+    <Internationalization id="I10044" lang="zh" property="finAccountCode" value="账户代码"/>
+    <Internationalization id="I10045" lang="en" property="finAccountCode" value="Account code"/>
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
     <DBField dbFieldId="CUST_REQ_10001" dbFieldName="statusId" dbFieldTypeId="STATUS" description="当前状态" dbEntityId="CUST_REQ_10000"/>
