@@ -101,7 +101,7 @@ public class SupplierEvents {
 
         String noteName = (String) actionParameters.get("noteName");
         String noteInfo = (String) actionParameters.get("noteInfo");
-        Timestamp noteDateTime = (Timestamp) actionParameters.get("noteDateTime");
+        Timestamp noteDateTime = UtilDateTime.nowTimestamp();
 
         OdataOfbizEntity supplierPartyEntity = CommonUtils.getOdataPartByEntityType(oDataContext, "SupplierParty");
         GenericValue supplierParty = null;
@@ -110,7 +110,7 @@ public class SupplierEvents {
         }
         supplierParty = supplierPartyEntity.getGenericValue();
         Map<String, Object> NoteDatResult = dispatcher.runSync("banfftech.createNoteData",
-                UtilMisc.toMap("userLogin", userLogin, "noteParty", supplierParty.getString("partyId"),
+                UtilMisc.toMap("userLogin", userLogin, "noteParty", userLogin.getString("partyId"),
                         "noteName", noteName, "noteInfo", noteInfo, "noteDateTime", noteDateTime));
 
         dispatcher.runSync("banfftech.createPartyNote",
