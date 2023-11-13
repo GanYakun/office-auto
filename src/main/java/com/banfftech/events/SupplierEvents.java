@@ -17,10 +17,12 @@ import org.apache.olingo.commons.api.edm.EdmBindingTarget;
 
 import java.util.List;
 import java.util.Map;
+import java.sql.Timestamp;
+
 
 public class SupplierEvents {
     public static Object fillPartyClassification(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
-                                       EdmBindingTarget edmBindingTarget) throws OfbizODataException {
+                                                 EdmBindingTarget edmBindingTarget) throws OfbizODataException {
         Delegator delegator = (Delegator) oDataContext.get("delegator");
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
@@ -36,8 +38,8 @@ public class SupplierEvents {
             }
             String partyId = (String) supplierParty.get("partyId");
             List<GenericValue> partyClassifications = delegator.findByAnd("PartyClassification", UtilMisc.toMap("partyId", partyId), null, false);
-            if (UtilValidate.isNotEmpty(partyClassifications)){
-                for (GenericValue partyClassification : partyClassifications){
+            if (UtilValidate.isNotEmpty(partyClassifications)) {
+                for (GenericValue partyClassification : partyClassifications) {
                     dispatcher.runSync("banfftech.deletePartyClassification", UtilMisc.toMap("partyId", partyId, "fromDate", partyClassification.get("fromDate"),
                             "partyClassificationGroupId", partyClassification.get("partyClassificationGroupId"), "userLogin", userLogin));
                 }
@@ -54,7 +56,7 @@ public class SupplierEvents {
     }
 
     public static Object createPersonAndContact(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
-                                                        EdmBindingTarget edmBindingTarget) throws OfbizODataException {
+                                                EdmBindingTarget edmBindingTarget) throws OfbizODataException {
         Delegator delegator = (Delegator) oDataContext.get("delegator");
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
@@ -75,7 +77,7 @@ public class SupplierEvents {
             String phoneMobile = (String) actionParameters.get("phoneMobile");
             String primaryEmail = (String) actionParameters.get("primaryEmail");
             String position = (String) actionParameters.get("position");
-            if (CommonUtils.checkInputRepeat(delegator,"contactNumber","TelecomNumber", null, phoneMobile)){
+            if (CommonUtils.checkInputRepeat(delegator, "contactNumber", "TelecomNumber", null, phoneMobile)) {
                 throw new OfbizODataException("手机号重复！");
             }
             Map<String, Object> result = dispatcher.runSync("banfftech.createPersonAndContact",
@@ -90,5 +92,32 @@ public class SupplierEvents {
         } catch (GenericEntityException | GenericServiceException e) {
             throw new OfbizODataException(e.getMessage());
         }
+    }
+
+    public static Object createNoteData(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
+                                        EdmBindingTarget edmBindingTarget) throws OfbizODataException, GenericServiceException {
+        LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
+        GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
+
+        String noteName = (String) actionParameters.get("noteName");
+        String noteInfo = (String) actionParameters.get("noteInfo");
+        Timestamp noteDateTime = (Timestamp) actionParameters.get("noteDateTime");
+
+        OdataOfbizEntity supplierPartyEntity = CommonUtils.getOdataPartByEntityType(oDataContext, "SupplierParty");
+        GenericValue supplierParty = null;
+        if(UtilValidate.isEmpty(supplierPartyEntity)){
+            return null;
+        }
+        supplierParty = supplierPartyEntity.getGenericValue();
+        Map<String, Object> NoteDatResult = dispatcher.runSync("banfftech.createNoteData",
+                UtilMisc.toMap("userLogin", userLogin, "noteParty", supplierParty.getString("partyId"),
+                        "noteName", noteName, "noteInfo", noteInfo, "noteDateTime", noteDateTime));
+
+        dispatcher.runSync("banfftech.createPartyNote",
+                UtilMisc.toMap("userLogin", userLogin, "partyId", supplierParty.getString("partyId"),
+                        "noteId", NoteDatResult.get("noteId")));
+
+
+        return null;
     }
 }

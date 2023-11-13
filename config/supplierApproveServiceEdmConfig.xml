@@ -312,7 +312,15 @@
     <EntityType Name="NoteData" EntitySetName="NoteData" DraftEntityName="PartyNoteDataAppDraft" AutoSet="true" AutoProperties="true">
         <LineItem Qualifier="NoteDataLineItem">
             <DataField Values="noteId,noteName,noteInfo,noteParty,noteDateTime" Importance="High"/>
+            <DataFieldForAction Label="${create}" Action="CreateNoteData" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
+        <Action Name="CreateNoteData" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createNoteData" SideEffects="true">
+            <Parameter Name="noteData" Type="NoteData" Nullable="false" IsCollection="true"/>
+            <Parameter Name="noteName" Type="String" Label="${noteName}" Nullable="false"/>
+            <Parameter Name="noteInfo" Type="String" Label="${noteInfo}" Nullable="true"/>
+            <Parameter Name="noteDateTime" Type="Edm.DateTimeOffset" Label="${noteDateTime}" Nullable="true"/>
+            <ReturnType Type="NoteData"/>
+        </Action>
     </EntityType>
 
     <EntityType Name="PurchaseAgreement" DraftEntityName="PurchaseAgreementPartyAppDraft" EntitySetName="PurchaseAgreements" AutoSet="true" EntityCondition="agreementTypeId=PURCHASE_AGREEMENT" AutoProperties="true" OfbizEntity="Agreement">
