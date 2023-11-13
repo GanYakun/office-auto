@@ -258,4 +258,85 @@ under the License.
     <DBFieldLabel dbFieldLabelId="PAC10000_05_EN" dbFieldId="PAC10000_05" language="en" value="Mobile"/>
     <DBFieldLabel dbFieldLabelId="PAC10000_06_ZH" dbFieldId="PAC10000_06" language="zh" value="Party ID"/>
     <DBFieldLabel dbFieldLabelId="PAC10000_06_EN" dbFieldId="PAC10000_06" language="en" value="Party ID"/>
+
+    <!-- Entity labels for entity SupplierProduct -->
+    <DBEntity dbEntityId="SP10000" dbEntityName="SupplierProduct" description="Supplier product" isOpen="N" />
+    <DBField dbFieldId="SP10000_01" dbFieldName="productId" dbFieldTypeId="STRING" dbEntityId="SP10000" description="Product ID"/>
+    <DBField dbFieldId="SP10000_02" dbFieldName="partyId" dbFieldTypeId="STRING" dbEntityId="SP10000" description="Party ID"/>
+    <DBField dbFieldId="SP10000_03" dbFieldName="fromDate" dbFieldTypeId="STRING" dbEntityId="SP10000" description="From date"/>
+    <DBFieldLabel dbFieldLabelId="SP10000_01_ZH" dbFieldId="SP10000_01" language="zh" value="产品ID"/>
+    <DBFieldLabel dbFieldLabelId="SP10000_01_EN" dbFieldId="SP10000_01" language="en" value="Product ID"/>
+    <DBFieldLabel dbFieldLabelId="SP10000_02_ZH" dbFieldId="SP10000_02" language="zh" value="供应商ID"/>
+    <DBFieldLabel dbFieldLabelId="SP10000_02_EN" dbFieldId="SP10000_02" language="en" value="Vendor ID"/>
+    <DBFieldLabel dbFieldLabelId="SP10000_03_ZH" dbFieldId="SP10000_03" language="zh" value="开始日期"/>
+    <DBFieldLabel dbFieldLabelId="SP10000_03_EN" dbFieldId="SP10000_03" language="en" value="From date"/>
+
+    <!-- Entity labels for entity Product -->
+    <DBEntity dbEntityId="PRD10000" dbEntityName="Product" description="Product" isOpen="N" />
+    <DBField dbFieldId="PRD10000_01" dbFieldName="productId" dbFieldTypeId="STRING" dbEntityId="PRD10000" description="Product ID"/>
+    <DBField dbFieldId="PRD10000_02" dbFieldName="productName" dbFieldTypeId="STRING" dbEntityId="PRD10000" description="Product name"/>
+    <DBField dbFieldId="PRD10000_03" dbFieldName="productTypeId" dbFieldTypeId="STRING" dbEntityId="PRD10000" description="Product type"/>
+    <DBField dbFieldId="PRD10000_04" dbFieldName="quantityUomId" dbFieldTypeId="STRING" dbEntityId="PRD10000" description="Quantity UOM"/>
+    <DBFieldLabel dbFieldLabelId="PRD10000_01_ZH" dbFieldId="PRD10000_01" language="zh" value="产品ID"/>
+    <DBFieldLabel dbFieldLabelId="PRD10000_01_EN" dbFieldId="PRD10000_01" language="en" value="Product ID"/>
+    <DBFieldLabel dbFieldLabelId="PRD10000_02_ZH" dbFieldId="PRD10000_02" language="zh" value="产品名称"/>
+    <DBFieldLabel dbFieldLabelId="PRD10000_02_EN" dbFieldId="PRD10000_02" language="en" value="Product name"/>
+    <DBFieldLabel dbFieldLabelId="PRD10000_03_ZH" dbFieldId="PRD10000_03" language="zh" value="产品类型"/>
+    <DBFieldLabel dbFieldLabelId="PRD10000_03_EN" dbFieldId="PRD10000_03" language="en" value="Product type"/>
+    <DBFieldLabel dbFieldLabelId="PRD10000_04_ZH" dbFieldId="PRD10000_04" language="zh" value="数量单位"/>
+    <DBFieldLabel dbFieldLabelId="PRD10000_04_EN" dbFieldId="PRD10000_04" language="en" value="Quantity UOM"/>
+
+    <!-- Entity labels for entity FinAccount -->
+    <DBEntity dbEntityId="FA10000" dbEntityName="FinAccount" description="Fin account" isOpen="N" />
+    <DBField dbFieldId="FA10000_01" dbFieldName="finAccountId" dbFieldTypeId="STRING" dbEntityId="FA10000" description="Financial account ID"/>
+    <DBField dbFieldId="FA10000_02" dbFieldName="finAccountTypeId" dbFieldTypeId="STRING" dbEntityId="FA10000" description="Financial account type"/>
+    <DBField dbFieldId="FA10000_03" dbFieldName="finAccountName" dbFieldTypeId="STRING" dbEntityId="FA10000" description="Financial account name"/>
+    <DBField dbFieldId="FA10000_04" dbFieldName="finAccountCode" dbFieldTypeId="STRING" dbEntityId="FA10000" description="Financial account code"/>
+    <DBField dbFieldId="FA10000_05" dbFieldName="currencyUomId" dbFieldTypeId="STRING" dbEntityId="FA10000" description="Currency UOM"/>
+    <DBField dbFieldId="FA10000_06" dbFieldName="statusId" dbFieldTypeId="STRING" dbEntityId="FA10000" description="Status"/>
+    <DBFieldLabel dbFieldLabelId="FA10000_01_ZH" dbFieldId="FA10000_01" language="zh" value="账户ID"/>
+    <DBFieldLabel dbFieldLabelId="FA10000_01_EN" dbFieldId="FA10000_01" language="en" value="Account ID"/>
+    <DBFieldLabel dbFieldLabelId="FA10000_02_ZH" dbFieldId="FA10000_02" language="zh" value="账户类型"/>
+    <DBFieldLabel dbFieldLabelId="FA10000_02_EN" dbFieldId="FA10000_02" language="en" value="Account type"/>
+    <DBFieldLabel dbFieldLabelId="FA10000_03_ZH" dbFieldId="FA10000_03" language="zh" value="账户名称"/>
+    <DBFieldLabel dbFieldLabelId="FA10000_03_EN" dbFieldId="FA10000_03" language="en" value="Account name"/>
+    <DBFieldLabel dbFieldLabelId="FA10000_04_ZH" dbFieldId="FA10000_04" language="zh" value="账户代码"/>
+    <DBFieldLabel dbFieldLabelId="FA10000_04_EN" dbFieldId="FA10000_04" language="en" value="Account code"/>
+    <DBFieldLabel dbFieldLabelId="FA10000_05_ZH" dbFieldId="FA10000_05" language="zh" value="货币单位"/>
+    <DBFieldLabel dbFieldLabelId="FA10000_05_EN" dbFieldId="FA10000_05" language="en" value="Currency"/>
+    <DBFieldLabel dbFieldLabelId="FA10000_06_ZH" dbFieldId="FA10000_06" language="zh" value="状态"/>
+    <DBFieldLabel dbFieldLabelId="FA10000_06_EN" dbFieldId="FA10000_06" language="en" value="Status"/>
+
+    <!-- Entity labels for entity Agreement -->
+    <DBEntity dbEntityId="AG10000" dbEntityName="Agreement" description="Agreement" isOpen="N" />
+    <DBField dbFieldId="AG10000_01" dbFieldName="agreementId" dbFieldTypeId="STRING" dbEntityId="AG10000" description="Agreement ID"/>
+    <DBField dbFieldId="AG10000_02" dbFieldName="productId" dbFieldTypeId="STRING" dbEntityId="AG10000" description="Product"/>
+    <DBField dbFieldId="AG10000_03" dbFieldName="partyIdFrom" dbFieldTypeId="STRING" dbEntityId="AG10000" description="Party from"/>
+    <DBField dbFieldId="AG10000_04" dbFieldName="partyIdTo" dbFieldTypeId="STRING" dbEntityId="AG10000" description="Party to"/>
+    <DBField dbFieldId="AG10000_05" dbFieldName="agreementTypeId" dbFieldTypeId="STRING" dbEntityId="AG10000" description="Agreement type"/>
+    <DBField dbFieldId="AG10000_06" dbFieldName="agreementDate" dbFieldTypeId="STRING" dbEntityId="AG10000" description="Agreement date"/>
+    <DBField dbFieldId="AG10000_07" dbFieldName="fromDate" dbFieldTypeId="STRING" dbEntityId="AG10000" description="From date"/>
+    <DBField dbFieldId="AG10000_08" dbFieldName="thruDate" dbFieldTypeId="STRING" dbEntityId="AG10000" description="Thru date"/>
+    <DBField dbFieldId="AG10000_09" dbFieldName="description" dbFieldTypeId="STRING" dbEntityId="AG10000" description="Description"/>
+    <DBField dbFieldId="AG10000_10" dbFieldName="textData" dbFieldTypeId="STRING" dbEntityId="AG10000" description="Agreement text"/>
+    <DBFieldLabel dbFieldLabelId="AG10000_01_ZH" dbFieldId="AG10000_01" language="zh" value="协议ID"/>
+    <DBFieldLabel dbFieldLabelId="AG10000_01_EN" dbFieldId="AG10000_01" language="en" value="Agreement ID"/>
+    <DBFieldLabel dbFieldLabelId="AG10000_02_ZH" dbFieldId="AG10000_02" language="zh" value="产品"/>
+    <DBFieldLabel dbFieldLabelId="AG10000_02_EN" dbFieldId="AG10000_02" language="en" value="Product"/>
+    <DBFieldLabel dbFieldLabelId="AG10000_03_ZH" dbFieldId="AG10000_03" language="zh" value="甲方"/>
+    <DBFieldLabel dbFieldLabelId="AG10000_03_EN" dbFieldId="AG10000_03" language="en" value="Party from"/>
+    <DBFieldLabel dbFieldLabelId="AG10000_04_ZH" dbFieldId="AG10000_04" language="zh" value="乙方"/>
+    <DBFieldLabel dbFieldLabelId="AG10000_04_EN" dbFieldId="AG10000_04" language="en" value="Party to"/>
+    <DBFieldLabel dbFieldLabelId="AG10000_05_ZH" dbFieldId="AG10000_05" language="zh" value="协议类型"/>
+    <DBFieldLabel dbFieldLabelId="AG10000_05_EN" dbFieldId="AG10000_05" language="en" value="Agreement type"/>
+    <DBFieldLabel dbFieldLabelId="AG10000_06_ZH" dbFieldId="AG10000_06" language="zh" value="协议日期"/>
+    <DBFieldLabel dbFieldLabelId="AG10000_06_EN" dbFieldId="AG10000_06" language="en" value="Agreement date"/>
+    <DBFieldLabel dbFieldLabelId="AG10000_07_ZH" dbFieldId="AG10000_07" language="zh" value="开始日期"/>
+    <DBFieldLabel dbFieldLabelId="AG10000_07_EN" dbFieldId="AG10000_07" language="en" value="From date"/>
+    <DBFieldLabel dbFieldLabelId="AG10000_08_ZH" dbFieldId="AG10000_08" language="zh" value="结束日期"/>
+    <DBFieldLabel dbFieldLabelId="AG10000_08_EN" dbFieldId="AG10000_08" language="en" value="Thru date"/>
+    <DBFieldLabel dbFieldLabelId="AG10000_09_ZH" dbFieldId="AG10000_09" language="zh" value="描述"/>
+    <DBFieldLabel dbFieldLabelId="AG10000_09_EN" dbFieldId="AG10000_09" language="en" value="Description"/>
+    <DBFieldLabel dbFieldLabelId="AG10000_10_ZH" dbFieldId="AG10000_10" language="zh" value="协议文本"/>
+    <DBFieldLabel dbFieldLabelId="AG10000_10_EN" dbFieldId="AG10000_10" language="en" value="Agreement text"/>
 </entity-engine-xml>
