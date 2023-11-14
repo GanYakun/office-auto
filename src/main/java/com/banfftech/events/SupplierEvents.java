@@ -9,6 +9,7 @@ import org.apache.ofbiz.base.util.UtilMisc;
 import org.apache.ofbiz.base.util.UtilValidate;
 import org.apache.ofbiz.entity.Delegator;
 import org.apache.ofbiz.entity.GenericEntityException;
+import org.apache.ofbiz.entity.GenericPK;
 import org.apache.ofbiz.entity.GenericValue;
 import org.apache.ofbiz.entity.util.EntityUtil;
 import org.apache.ofbiz.service.GenericServiceException;
@@ -187,6 +188,7 @@ public class SupplierEvents {
                 UtilMisc.toMap("userLogin", userLogin, "partyId", supplierParty.getString("partyId"),
                         "surveyId", "DD_STD_FORM", "surveyApplTypeId", "DD_FORM"));
 
+        //暂时采用更新SurveyQuestionAnswer的方案
         dispatcher.runSync("banfftech.updateSurveyQuestionAnswer",
                 UtilMisc.toMap("userLogin", userLogin, "surveyQuestionId", "9000",
                         "partyId", supplierParty.getString("partyId"), "booleanResponse", "Y"));
@@ -199,6 +201,87 @@ public class SupplierEvents {
         dispatcher.runSync("banfftech.updateSurveyQuestionAnswer",
                 UtilMisc.toMap("userLogin", userLogin, "surveyQuestionId", "9003",
                         "partyId", supplierParty.getString("partyId"), "booleanResponse", "N"));
+        return null;
+    }
+
+    /**
+     * @Author yyp
+     * @Description 填写公司基本信息
+     * @Date 18:37 2023/11/13
+     * @Edmconfig supplierApproveServiceEdmConfig.xml
+     **/
+    public static Object fillSupplierBaseInfo(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
+                                              EdmBindingTarget edmBindingTarget) throws OfbizODataException, GenericServiceException {
+        LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
+        GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
+        OdataOfbizEntity supplierPartyEntity = CommonUtils.getOdataPartByEntityType(oDataContext, "SupplierParty");
+        GenericValue supplierParty;
+        if (UtilValidate.isEmpty(supplierPartyEntity)) {
+            return null;
+        }
+        supplierParty = supplierPartyEntity.getGenericValue();
+        BigDecimal numEmployees = (BigDecimal) actionParameters.get("numEmployees");
+        BigDecimal annualRevenue = (BigDecimal) actionParameters.get("annualRevenue");
+        String tickerSymbol = (String) actionParameters.get("tickerSymbol");
+        String comments = (String) actionParameters.get("comments");
+
+        dispatcher.runSync("banfftech.updateWorkEffortAndPartyGroupContact",
+                UtilMisc.toMap("userLogin", userLogin, "workEffortId", supplierParty.getString("workEffortId"),
+                        "partyId", supplierParty.getString("partyId"), "numEmployees", numEmployees,
+                        "annualRevenue", annualRevenue, "tickerSymbol", tickerSymbol, "comments", comments));
+        return null;
+    }
+
+    /**
+    * @Author yyp
+    * @Description 修改联系方式
+    * @Date 7:52 2023/11/14
+    * @Edmconfig supplierApproveServiceEdmConfig.xml
+    **/
+    public static Object updateSupplierContactInfo(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
+                                              EdmBindingTarget edmBindingTarget) throws OfbizODataException, GenericServiceException {
+        LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
+        GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
+        OdataOfbizEntity supplierPartyEntity = CommonUtils.getOdataPartByEntityType(oDataContext, "SupplierParty");
+        GenericValue supplierParty;
+        if (UtilValidate.isEmpty(supplierPartyEntity)) {
+            return null;
+        }
+        supplierParty = supplierPartyEntity.getGenericValue();
+        String primaryPhone = (String) actionParameters.get("primaryPhone");
+        String primaryEmail = (String) actionParameters.get("primaryEmail");
+        String address1 = (String) actionParameters.get("address1");
+
+        dispatcher.runSync("banfftech.updateWorkEffortAndPartyGroupContact",
+                UtilMisc.toMap("userLogin", userLogin, "workEffortId", supplierParty.getString("workEffortId"),
+                        "partyId", supplierParty.getString("partyId"), "primaryPhone", primaryPhone,
+                        "primaryEmail", primaryEmail, "address1", address1));
+        return null;
+    }
+
+    /**
+    * @Author yyp
+    * @Description 更新时间信息
+    * @Date 7:55 2023/11/14
+    * @Edmconfig supplierApproveServiceEdmConfig.xml
+    **/
+    public static Object updateSupplierTimeInfo(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
+                                                   EdmBindingTarget edmBindingTarget) throws OfbizODataException, GenericServiceException {
+        LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
+        GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
+        OdataOfbizEntity supplierPartyEntity = CommonUtils.getOdataPartByEntityType(oDataContext, "SupplierParty");
+        GenericValue supplierParty;
+        if (UtilValidate.isEmpty(supplierPartyEntity)) {
+            return null;
+        }
+        supplierParty = supplierPartyEntity.getGenericValue();
+        Timestamp collectionDate = (Timestamp) actionParameters.get("collectionDate");
+        Timestamp firstOrderDate = (Timestamp) actionParameters.get("firstOrderDate");
+
+        dispatcher.runSync("banfftech.updateWorkEffortAndPartyGroupContact",
+                UtilMisc.toMap("userLogin", userLogin, "workEffortId", supplierParty.getString("workEffortId"),
+                        "partyId", supplierParty.getString("partyId"), "collectionDate", collectionDate,
+                        "firstOrderDate", firstOrderDate));
         return null;
     }
 }

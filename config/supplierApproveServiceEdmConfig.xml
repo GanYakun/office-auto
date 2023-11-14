@@ -92,19 +92,19 @@
         </HeaderInfo>
 
         <Action Name="FillSupplierBaseInfo" IsBound="true" EntitySetPath="supplierParty"
-                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.fillSupplierBaseInfo"
-                StickySession="true">
+                OfbizService="com.banfftech.events.SupplierEvents.fillSupplierBaseInfo"
+                StickySession="true" SideEffects="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
-            <Parameter Name="numEmployees" Type="String"/>
-            <Parameter Name="annualRevenue" Type="String"/>
+            <Parameter Name="numEmployees" Type="BigDecimal"/>
+            <Parameter Name="annualRevenue" Type="BigDecimal"/>
             <Parameter Name="tickerSymbol" Type="String"/>
             <Parameter Name="comments" Type="String"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
 
         <Action Name="UpdateSupplierContactInfo" IsBound="true" EntitySetPath="supplierParty"
-                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.fillSupplierBaseInfo"
-                StickySession="true">
+                OfbizService="com.banfftech.events.SupplierEvents.updateSupplierContactInfo"
+                StickySession="true" SideEffects="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
             <Parameter Name="primaryPhone" Type="String"/>
             <Parameter Name="primaryEmail" Type="String"/>
@@ -113,8 +113,8 @@
         </Action>
 
         <Action Name="UpdateSupplierTimeInfo" IsBound="true" EntitySetPath="supplierParty"
-                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.fillSupplierBaseInfo"
-                StickySession="true">
+                OfbizService="com.banfftech.events.SupplierEvents.updateSupplierTimeInfo"
+                StickySession="true" SideEffects="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
             <Parameter Name="collectionDate" Type="Timestamp"/>
             <Parameter Name="firstOrderDate" Type="Timestamp"/>

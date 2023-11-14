@@ -32,7 +32,7 @@ under the License.
     <service name="updatePartyStatusToEnable" engine="java" default-entity-name="Party" location="com.banfftech.services.VendorService"
              invoke="updatePartyStatusToEnable" auth="true">
         <description>update a Party And UserLogin</description>
-        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="pk" mode="IN" />
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
     </service>
 
@@ -47,8 +47,8 @@ under the License.
     <service name="banfftech.updateWorkEffortAndPartyGroupContact" engine="java"
              location="com.banfftech.services.VendorService" default-entity-name="WorkEffortAndPartyGroupContact"
              invoke="updateWorkEffortAndPartyGroupContact">
-        <auto-attributes include="pk" mode="INOUT" />
-        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="nonpk" mode="INOUT" optional="true"/>
     </service>
 
     <service name="banfftech.createSupplierRole" default-entity-name="PartyRole"
