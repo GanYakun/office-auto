@@ -82,7 +82,7 @@ public class SupplierEvents {
             String primaryEmail = (String) actionParameters.get("primaryEmail");
             String position = (String) actionParameters.get("position");
             if (CommonUtils.checkInputRepeat(delegator, "contactNumber", "TelecomNumber", null, phoneMobile)) {
-                throw new OfbizODataException("手机号重复！");
+                throw new OfbizODataException("Phone number is repeat！");
             }
             Map<String, Object> result = dispatcher.runSync("banfftech.createPersonAndContact",
                     UtilMisc.toMap("partyName", partyName, "primaryPhone", primaryPhone, "phoneMobile", phoneMobile,

@@ -110,6 +110,14 @@ under the License.
     <Internationalization id="I10087" lang="zh" property="UpdateSupplierContactInfo" value="更新"/>
     <Internationalization id="I10088" lang="en" property="UpdateSupplierTimeInfo" value="Update Dates"/>
     <Internationalization id="I10089" lang="zh" property="UpdateSupplierTimeInfo" value="更新"/>
+    <Internationalization id="I10090" lang="en" property="StatusItem.description.APPROVAL_CREATED" value="Created"/>
+    <Internationalization id="I10091" lang="zh" property="StatusItem.description.APPROVAL_CREATED" value="待提交"/>
+    <Internationalization id="I10092" lang="en" property="StatusItem.description.APPROVAL_APPROVED" value="Approved"/>
+    <Internationalization id="I10093" lang="zh" property="StatusItem.description.APPROVAL_APPROVED" value="已通过"/>
+    <Internationalization id="I10094" lang="en" property="StatusItem.description.APPROVAL_REJECTED" value="Rejected"/>
+    <Internationalization id="I10095" lang="zh" property="StatusItem.description.APPROVAL_REJECTED" value="已拒绝"/>
+    <Internationalization id="I10096" lang="en" property="StatusItem.description.APPROVAL_SUBMITTED" value="Submitted"/>
+    <Internationalization id="I10097" lang="zh" property="StatusItem.description.APPROVAL_SUBMITTED" value="审批中"/>
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
     <DBField dbFieldId="CUST_REQ_10001" dbFieldName="statusId" dbFieldTypeId="STATUS" description="当前状态" dbEntityId="CUST_REQ_10000"/>

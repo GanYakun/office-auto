@@ -59,13 +59,6 @@ under the License.
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
     </service>
 
-    <!--createPartyRole-->
-    <service name="banfftech.createPartyRole" default-entity-name="PartyRole" engine="entity-auto" invoke="create" auth="true">
-        <description>Update a Party</description>
-        <auto-attributes include="pk" mode="INOUT" optional="false"/>
-        <auto-attributes include="nonpk" mode="IN" optional="true"/>
-    </service>
-
     <!--PartyClassification-->
     <service name="banfftech.createPartyClassification" default-entity-name="PartyClassification" engine="entity-auto" invoke="create" auth="true">
         <description>Update a Party</description>

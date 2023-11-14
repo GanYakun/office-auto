@@ -21,7 +21,7 @@ def generateFields(Map<String, Object> context){
     entityList.each { entity ->
         OdataOfbizEntity odataOfbizEntity = (OdataOfbizEntity) entity;
         GenericValue supplierParty = (GenericValue) entity.getGenericValue();
-        disableEditSupplier = false
+//        disableEditSupplier = false
         criticalityValue = 1L
         String statusId = supplierParty.getString("currentStatusId");
         if (statusId.equals("NOT_PROCESSED") && UtilValidate.isNotEmpty(criticalityValue)){
@@ -30,9 +30,9 @@ def generateFields(Map<String, Object> context){
             criticalityValue = 3L
         }
 
-        if (supplierParty.get("currentStatusId").equals("PROCESSED")){
-            disableEditSupplier = true
-        }
+//        if (supplierParty.get("currentStatusId").equals("PROCESSED")){
+//            disableEditSupplier = true
+//        }
 
         Debug.log("111111100");
         //全国组织机构统一社会信用代码 usccNumber
@@ -42,7 +42,7 @@ def generateFields(Map<String, Object> context){
         entity.addProperty(new Property(null, "usccNumber", ValueType.PRIMITIVE, usccNumber))
         entity.addProperty(new Property(null, "criticalityValue", ValueType.PRIMITIVE, criticalityValue))
         entity.addProperty(new Property(null, "totalAmount", ValueType.PRIMITIVE, totalAmount))
-        entity.addProperty(new Property(null, "disableEditSupplier", ValueType.PRIMITIVE, disableEditSupplier))
+//        entity.addProperty(new Property(null, "disableEditSupplier", ValueType.PRIMITIVE, disableEditSupplier))
 
 
     }

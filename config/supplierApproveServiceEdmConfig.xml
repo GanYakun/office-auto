@@ -24,7 +24,7 @@
             <Text Path="SupplierStatusItem/description" TextArrangement="TextOnly"/>
         </Property>
         <Property Name="createSupplierHidden" Type="Boolean" Hidden="true"/>
-        <Property Name="disableEditSupplier" Type="Boolean" Hidden="true"/>
+<!--        <Property Name="disableEditSupplier" Type="Boolean" Hidden="true"/>-->
         <Property Name="firstOrderDate" Type="Timestamp" IsDateAttribute="true"/>
         <Property Name="collectionDate" Type="Timestamp" IsDateAttribute="true"/>
         <Property Name="totalAmount" Type="BigDecimal" Label="" Scale="3"/>
@@ -84,10 +84,10 @@
         </FieldGroup>
 
         <LineItem>
-            <DataField Values="partyId,currentStatusId,primaryEmail,address1,primaryPhone" Importance="High"/>
+            <DataField Values="partyId,primaryEmail,address1,primaryPhone" Importance="High"/>
         </LineItem>
         <LineItem Qualifier="CreateLineItem">
-            <DataField Values="partyId,currentStatusId,primaryEmail,address1,primaryPhone" Importance="High"/>
+            <DataField Values="partyId,primaryEmail,address1,primaryPhone" Importance="High"/>
             <DataFieldForAction Label="${create}" Action="CreateSupplierParty" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
         <FieldGroup Qualifier="TimeInfo" Label="TimeInfo">
@@ -356,15 +356,13 @@
 
     <EntityType Name="InvoiceType" AutoProperties="true" AutoSet="true" EntitySetName="InvoiceTypes"/>
 
-    <EntityType Name="NoteData" EntitySetName="NoteData" AutoSet="true" AutoProperties="true"
-                Handler="component://officeauto/groovyScripts/partyManage/navigationObj/statusControl.groovy">
+    <EntityType Name="NoteData" EntitySetName="NoteData" AutoSet="true" AutoProperties="true">
         <Property Name="noteParty">
             <Text Path="NoteParty/partyName" TextArrangement="TextOnly"/>
         </Property>
-        <Property Name="actionHidden" Type="Boolean" Hidden="true"/>
         <LineItem Qualifier="NoteDataLineItem">
             <DataField Values="noteName,noteInfo,noteParty,noteDateTime" Importance="High"/>
-            <DataFieldForAction Label="${create}" Action="CreateNoteData" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated" Hidden="actionHidden"/>
+            <DataFieldForAction Label="${create}" Action="CreateNoteData" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
         <LineItem Qualifier="NoteDataLineItemWithoutAction">
             <DataField Values="noteName,noteInfo,noteParty,noteDateTime" Importance="High"/>
@@ -488,13 +486,11 @@
     </EntityType>
 
     <EntityType Name="PersonAndContact" AttrEntityName="PartyAttribute" AutoProperties="true" AutoLabel="true"
-                AutoSet="true" EntitySetName="PersonAndContacts"
-                Handler="component://officeauto/groovyScripts/partyManage/navigationObj/statusControl.groovy">
+                AutoSet="true" EntitySetName="PersonAndContacts">
         <Property Name="position" IsAttribute="true" Type="String"/>
-        <Property Name="actionHidden" Type="Boolean"/>
         <LineItem Qualifier="PartyRelationshipLineItem">
             <DataField Values="partyName,primaryPhone,phoneMobile,primaryEmail,position" Importance="High"/>
-            <DataFieldForAction Label="${create}" Action="CreatePersonAndContact" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated" Hidden="actionHidden"/>
+            <DataFieldForAction Label="${create}" Action="CreatePersonAndContact" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
         <LineItem Qualifier="PartyRelationshipLineItemWithoutAction">
             <DataField Values="partyName,primaryPhone,phoneMobile,primaryEmail,position" Importance="High"/>
@@ -511,19 +507,17 @@
 
     </EntityType>
 
-    <EntityType Name="SupplierProduct" AutoSet="true" EntitySetName="SupplierProducts" AutoProperties="true"
-                Handler="component://officeauto/groovyScripts/partyManage/navigationObj/statusControl.groovy">
+    <EntityType Name="SupplierProduct" AutoSet="true" EntitySetName="SupplierProducts" AutoProperties="true">
         <Property Name="minimumOrderQuantity" DefaultValue="1" Computed="true"/>
         <Property Name="currencyUomId" DefaultValue="CNY" Computed="true"/>
         <Property Name="partyId" Computed="true"/>
         <Property Name="availableFromDate" Computed="true"/>
-        <Property Name="actionHidden" Type="Boolean" Hidden="true"/>
         <NavigationProperty Name="Product"/>
         <NavigationProperty Name="CurrencyUom"/>
         <NavigationProperty Name="Uom" Relations="Product/QuantityUom" Type="Uom" AutoBinding="true"/>
         <LineItem Qualifier="SupplierProductLineItem">
             <DataField Values="Product/productName,Product/quantityUomId" Importance="High" />
-            <DataFieldForAction Label="${create}" Action="CreateSupplierProduct" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated" Hidden="actionHidden"/>
+            <DataFieldForAction Label="${create}" Action="CreateSupplierProduct" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
         <LineItem Qualifier="SupplierProductLineItemWithoutAction">
             <DataField Values="Product/productName,Product/quantityUomId" Importance="High" />
