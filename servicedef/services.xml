@@ -64,5 +64,10 @@ under the License.
         <auto-attributes include="pk" mode="IN" optional="true"/>
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
     </service>
+
+    <service name="banfftech.completeSupplier"
+             location="com.banfftech.services.VendorService" engine="java" invoke="updatePartyStatusToEnable" auth="true">
+        <attribute name="workEffortId" type="String" mode="IN"/>
+    </service>
     
 </services>

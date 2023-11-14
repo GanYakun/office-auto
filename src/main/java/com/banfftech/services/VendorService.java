@@ -20,7 +20,9 @@ public class VendorService {
         Map<String, Object> resultMap = ServiceUtil.returnSuccess();
         GenericValue userLogin = (GenericValue) context.get("userLogin");
         LocalDispatcher dispatcher = dctx.getDispatcher();
-        String partyId = (String) context.get("partyId");
+        Delegator delegator = dispatcher.getDelegator();
+        GenericValue workEffort = EntityQuery.use(delegator).from("WorkEffort").where("workEffortId", context.get("workEffortId")).queryFirst();
+        String partyId = workEffort.getString("partyId");
         dispatcher.runSync("banfftech.updateParty", UtilMisc.toMap("userLogin", userLogin,
                 "partyId", partyId, "statusId", "PARTY_ENABLED"));
         return resultMap;
