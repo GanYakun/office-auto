@@ -17,10 +17,4 @@
         <action service="banfftech.createSupplierUserLogin" mode="sync"/>
     </eca>
 
-    <!-- 审批通过 状态改为可用 -->
-    <eca service="banfftech.updateWorkEffortAndPartyGroupContact" event="return">
-        <condition field-name="currentStatusId" operator="equals" value="WEPR_COMPLETE"/>
-        <action service="banfftech.completeSupplier" mode="sync"/>
-    </eca>
-
 </service-eca>

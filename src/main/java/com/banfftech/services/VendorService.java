@@ -76,6 +76,10 @@ public class VendorService {
         GenericValue WorkEffortAndPartyGroupContact = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("workEffortId", context.get("workEffortId")).queryFirst();
         String partyId = WorkEffortAndPartyGroupContact.getString("partyId");
         context.put("partyId", partyId);
+        if ("APPROVAL_APPROVED".equals(context.get("currentStatusId"))) {
+            //审批通过 将供应商状态改为启用
+            context.put("statusId", "PARTY_ENABLED");
+        }
         CommonUtils.setServiceFieldsAndRun(dctx, context, "banfftech.updatePartyGroupAndContact", userLogin);
         Map<String, Object> resultMap = ServiceUtil.returnSuccess();
         resultMap.put("partyId", partyId);

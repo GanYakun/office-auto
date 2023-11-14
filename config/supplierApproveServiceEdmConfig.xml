@@ -30,7 +30,7 @@
         <Property Name="collectionDate" Type="Timestamp" IsDateAttribute="true"/>
         <Property Name="totalAmount" Type="BigDecimal" Label="" Scale="3"/>
         <Property Name="criticalityValue" Type="numeric" Hidden="true" HiddenFilter="true"/>
-        <Property Name="statusId" Immutable="true" DefaultValue="APPROVAL_CREATED">
+        <Property Name="statusId" Immutable="true" DefaultValue="PARTY_DISABLED">
             <ValueList CollectionPath="SupplierStatusItems" WithFixedValues="true"/>
         </Property>
         <Property Name="usccNumber" Type="String" HiddenFilter="true"/>
