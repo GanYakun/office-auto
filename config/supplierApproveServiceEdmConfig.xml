@@ -212,7 +212,7 @@
         </Action>
     </EntityType>
 
-    <EntityType Name="CoWorkHistory" Properties="workEffortId,partyId,partyName,approvePartyId,currentStatusId,lastModifiedDate" OfbizEntity="WorkEffortAndPartyGroupContact" OfbizType="PartyRole/roleTypeId=SUPPLIER">
+    <EntityType Name="CoWorkHistory" Orderby="-lastModifiedDate" EntitySetName="CoWorkHistories" Properties="workEffortId,partyId,partyName,approvePartyId,currentStatusId,lastModifiedDate" OfbizEntity="WorkEffortAndPartyGroupContact" OfbizType="PartyRole/roleTypeId=SUPPLIER">
         <Property Name="currentStatusId">
             <Text Path="CurrentStatusItem/description" TextArrangement="TextOnly"/>
         </Property>
@@ -355,7 +355,7 @@
 
     <EntityType Name="InvoiceType" AutoProperties="true" AutoSet="true" EntitySetName="InvoiceTypes"/>
 
-    <EntityType Name="NoteData" EntitySetName="NoteData" AutoSet="true" AutoProperties="true">
+    <EntityType Name="NoteData" Orderby="-noteDateTime" EntitySetName="NoteData" AutoSet="true" AutoProperties="true">
         <Property Name="noteParty">
             <Text Path="NoteParty/partyName" TextArrangement="TextOnly"/>
         </Property>
