@@ -21,25 +21,25 @@ under the License.
 <entity-engine-xml>
     <!-- i18n -->
     <Internationalization id="I10000" lang="zh" property="RoleType.description.APPLICANT" value="申请人"/>
-    <Internationalization id="I10001" lang="en" property="RoleType.description.APPLICANT" value=""/>
+    <Internationalization id="I10001" lang="en" property="RoleType.description.APPLICANT" value="Applicant"/>
     <Internationalization id="I10002" lang="zh" property="RoleType.description.MANAGER" value="经理"/>
-    <Internationalization id="I10003" lang="en" property="RoleType.description.MANAGER" value=""/>
+    <Internationalization id="I10003" lang="en" property="RoleType.description.MANAGER" value="Manager"/>
     <Internationalization id="I10004" lang="zh" property="RoleType.description.SUPPLIER" value="供应商"/>
-    <Internationalization id="I10005" lang="en" property="RoleType.description.SUPPLIER" value=""/>
+    <Internationalization id="I10005" lang="en" property="RoleType.description.SUPPLIER" value="Vendor"/>
     <Internationalization id="I10006" lang="zh" property="RoleType.description.END_USER" value="最终客户"/>
-    <Internationalization id="I10007" lang="en" property="RoleType.description.END_USER" value=""/>
+    <Internationalization id="I10007" lang="en" property="RoleType.description.END_USER" value="End user"/>
     <Internationalization id="I10008" lang="zh" property="RoleType.description.LEGAL_AFFAIRS" value="法务"/>
-    <Internationalization id="I10009" lang="en" property="RoleType.description.LEGAL_AFFAIRS" value=""/>
+    <Internationalization id="I10009" lang="en" property="RoleType.description.LEGAL_AFFAIRS" value="Legal"/>
     <Internationalization id="I10010" lang="zh" property="RoleType.description.COMPLIANCE" value="合规"/>
-    <Internationalization id="I10011" lang="en" property="RoleType.description.COMPLIANCE" value=""/>
+    <Internationalization id="I10011" lang="en" property="RoleType.description.COMPLIANCE" value="Compliance"/>
     <Internationalization id="I10012" lang="zh" property="RoleType.description.FINANCE" value="财务"/>
-    <Internationalization id="I10013" lang="en" property="RoleType.description.FINANCE" value=""/>
+    <Internationalization id="I10013" lang="en" property="RoleType.description.FINANCE" value="Finance"/>
     <Internationalization id="I10014" lang="zh" property="RoleType.description.CEO" value="首席执行官"/>
-    <Internationalization id="I10015" lang="en" property="RoleType.description.CEO" value=""/>
+    <Internationalization id="I10015" lang="en" property="RoleType.description.CEO" value="CEO"/>
     <Internationalization id="I10016" lang="zh" property="RoleType.description.CTO" value="首席技术官"/>
-    <Internationalization id="I10017" lang="en" property="RoleType.description.CTO" value=""/>
+    <Internationalization id="I10017" lang="en" property="RoleType.description.CTO" value="CTO"/>
     <Internationalization id="I10018" lang="zh" property="RoleType.description.CFO" value="首席财务官"/>
-    <Internationalization id="I10019" lang="en" property="RoleType.description.CFO" value=""/>
+    <Internationalization id="I10019" lang="en" property="RoleType.description.CFO" value="CFO"/>
     <Internationalization id="I10020" lang="zh" property="partyName" value="名称"/>
     <Internationalization id="I10021" lang="en" property="partyName" value="Party Name"/>
     <Internationalization id="I10022" lang="zh" property="phone" value="电话"/>
@@ -68,6 +68,8 @@ under the License.
     <Internationalization id="I10045" lang="en" property="finAccountCode" value="Account code"/>
     <Internationalization id="I10046" lang="zh" property="StatusItem.description.APPROVAL_CREATED" value="已创建-待提交"/>
     <Internationalization id="I10047" lang="en" property="StatusItem.description.APPROVAL_CREATED" value="Approval created"/>
+    <Internationalization id="I10048" lang="zh" property="isSimplifiedForm" value="简化表单"/>
+    <Internationalization id="I10049" lang="en" property="isSimplifiedForm" value="Simplified Form"/>
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
     <DBField dbFieldId="CUST_REQ_10001" dbFieldName="statusId" dbFieldTypeId="STATUS" description="当前状态" dbEntityId="CUST_REQ_10000"/>
