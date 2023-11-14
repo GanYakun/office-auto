@@ -12,7 +12,7 @@
         <Property Name="nodeId" Type="Edm.Decimal"/>
     </ComplexType>
     <EntityType Name="SupplierParty" OfbizType="PartyRole/roleTypeId=SUPPLIER" EntityCondition="approvePartyId=${company.partyId}" OfbizEntity="WorkEffortAndPartyGroupContact" EntitySetName="SupplierParties" AutoSet="true" AutoProperties="true" AttrDateEntityName="PartyAttributeDate"
-                DraftEntityName="PartySupplierPartyDraft" AutoLabel="true" SearchOption="partyName,primaryEmail,address1"
+                AutoLabel="true" SearchOption="partyName,primaryEmail,address1"
                 Handler="component://officeauto/groovyScripts/partyManage/supplierParty/generateEntityListFields.groovy">
         <LineItem>
             <DataField Values="partyId,currentStatusId,primaryEmail,address1,primaryPhone" Importance="High"/>
@@ -20,14 +20,16 @@
         <Property Name="partyId">
             <Text Path="partyName" TextArrangement="TextFirst"/>
         </Property>
-        <Property Name="currentStatusId" DefaultValue="NOT_PROCESSED"/>
+        <Property Name="currentStatusId" DefaultValue="NOT_PROCESSED">
+            <Text Path="CurrentStatusItem/description" TextArrangement="TextOnly"/>
+        </Property>
         <Property Name="statusId">
             <Text Path="SupplierStatusItem/description" TextArrangement="TextOnly"/>
         </Property>
         <Property Name="createSupplierHidden" Type="Boolean" Hidden="true"/>
         <Property Name="firstOrderDate" Type="Timestamp" IsDateAttribute="true"/>
         <Property Name="collectionDate" Type="Timestamp" IsDateAttribute="true"/>
-        <Property Name="totalAmount" Type="BigDecimal" Label="订单总金额" Scale="3"/>
+        <Property Name="totalAmount" Type="BigDecimal" Label="" Scale="3"/>
         <Property Name="criticalityValue" Type="numeric" Hidden="true" HiddenFilter="true"/>
         <Property Name="statusId" Immutable="true" DefaultValue="APPROVAL_CREATED">
             <ValueList CollectionPath="SupplierStatusItems" WithFixedValues="true"/>
@@ -53,6 +55,7 @@
         <NavigationProperty Name="PurchaseQuote" Type="PurchaseQuote" Relations="Quote" IsCollection="true"/>
         <NavigationProperty Name="AfterSalesService" Type="AfterSalesService" Relations="WorkEffortPartyAssignment(roleTypeId=SUPPLIER)/WorkEffort" IsCollection="true"/>
         <NavigationProperty Name="PartyClassification" IsCollection="false"/>
+        <NavigationProperty Name="CurrentStatusItem"/>
         <NavigationProperty Name="SurveyQuestionAppl" Type="SurveyQuestionAppl" Relations="PartySurveyAppl/SurveyQuestionAppl" IsCollection="true"/>
         <NavigationProperty Name="ChildWorkEffortAndPartyGroupContact" Type="CoWorkHistory" Relations="ChildWorkEffortAndPartyGroupContact" IsCollection="true"/>
         <SelectionFields PropertyPath="statusId,primaryPhone"/>
@@ -86,7 +89,7 @@
             <DataField Values="usccNumber" Importance="High"/>
         </FieldGroup>
 
-        <HeaderInfo TypeName="供应商" TypeNamePlural="供应商列表">
+        <HeaderInfo TypeName="Supplier Party" TypeNamePlural="Supplier Party List">
             <Title Path="partyId"/>
             <Description Path="description"/>
         </HeaderInfo>
@@ -95,10 +98,10 @@
                 OfbizService="com.banfftech.events.SupplierEvents.fillSupplierBaseInfo"
                 StickySession="true" SideEffects="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
-            <Parameter Name="numEmployees" Type="BigDecimal"/>
-            <Parameter Name="annualRevenue" Type="BigDecimal"/>
-            <Parameter Name="tickerSymbol" Type="String"/>
-            <Parameter Name="comments" Type="String"/>
+            <Parameter Name="numEmployees" Type="BigDecimal" Label="${supplierUpdateActionNumEmployees}"/>
+            <Parameter Name="annualRevenue" Type="BigDecimal" Label="${supplierUpdateActionAnnualRevenue}"/>
+            <Parameter Name="tickerSymbol" Type="String" Label="${supplierUpdateActionTickerSymbol}"/>
+            <Parameter Name="comments" Type="String" Label="${supplierUpdateActionComments}"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
 
@@ -106,9 +109,9 @@
                 OfbizService="com.banfftech.events.SupplierEvents.updateSupplierContactInfo"
                 StickySession="true" SideEffects="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
-            <Parameter Name="primaryPhone" Type="String"/>
-            <Parameter Name="primaryEmail" Type="String"/>
-            <Parameter Name="address1" Type="String"/>
+            <Parameter Name="primaryPhone" Type="String" Label="${supplierUpdateActionPrimaryPhone}"/>
+            <Parameter Name="primaryEmail" Type="String" Label="${supplierUpdateActionPrimaryEmail}"/>
+            <Parameter Name="address1" Type="String" Label="${supplierUpdateActionAddress}"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
 
@@ -116,17 +119,17 @@
                 OfbizService="com.banfftech.events.SupplierEvents.updateSupplierTimeInfo"
                 StickySession="true" SideEffects="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
-            <Parameter Name="collectionDate" Type="Timestamp"/>
-            <Parameter Name="firstOrderDate" Type="Timestamp"/>
+            <Parameter Name="collectionDate" Type="Timestamp" Label="${supplierUpdateActionCollectionDate}"/>
+            <Parameter Name="firstOrderDate" Type="Timestamp" Label="${supplierUpdateActionFirstOrderDate}"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
 
         <Action Name="CreateSupplierParty" IsBound="true" OfbizService="com.dpbird.odata.events.ActionEvents.createEntity">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="true"/>
-            <Parameter Name="partyName" Type="String" Label="供应商名称" Nullable="false"/>
-            <Parameter Name="primaryPhone" Type="String" Label="电话" Nullable="true"/>
-            <Parameter Name="address1" Type="String" Label="地址" Nullable="false"/>
-            <Parameter Name="primaryEmail" Type="String" Label="邮箱" Nullable="true"/>
+            <Parameter Name="partyName" Type="String" Label="${supplierActionPartyName}" Nullable="false"/>
+            <Parameter Name="primaryPhone" Type="String" Label="${supplierActionPrimaryPhone}" Nullable="true"/>
+            <Parameter Name="address1" Type="String" Label="${supplierActionAddress1}" Nullable="false"/>
+            <Parameter Name="primaryEmail" Type="String" Label="${supplierActionPrimaryEmail}" Nullable="true"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
 
@@ -182,6 +185,8 @@
             <ReturnType Type="SupplierParty"/>
         </Action>
     </EntityType>
+
+    <EntityType Name="StatusItem" AutoSet="true" AutoProperties="true" EntitySetName="StatusItems"/>
 
     <EntityType Name="CoWorkHistory" Properties="workEffortId,partyId,partyName,approvePartyId,currentStatusId,lastModifiedDate" OfbizEntity="WorkEffortAndPartyGroupContact" OfbizType="PartyRole/roleTypeId=SUPPLIER">
         <Property Name="currentStatusId">
@@ -324,7 +329,7 @@
 
     <EntityType Name="InvoiceType" AutoProperties="true" AutoSet="true" EntitySetName="InvoiceTypes"/>
 
-    <EntityType Name="NoteData" EntitySetName="NoteData" DraftEntityName="PartyNoteDataAppDraft" AutoSet="true" AutoProperties="true">
+    <EntityType Name="NoteData" EntitySetName="NoteData" AutoSet="true" AutoProperties="true">
         <Property Name="noteParty">
             <Text Path="NoteParty/partyName" TextArrangement="TextOnly"/>
         </Property>
@@ -341,7 +346,7 @@
         <NavigationProperty Name="NoteParty" Relations="NoteParty" Type="Party"/>
     </EntityType>
 
-    <EntityType Name="PurchaseAgreement" DraftEntityName="PurchaseAgreementPartyAppDraft" EntitySetName="PurchaseAgreements" AutoSet="true" EntityCondition="agreementTypeId=PURCHASE_AGREEMENT" AutoProperties="true" OfbizEntity="Agreement">
+    <EntityType Name="PurchaseAgreement" EntitySetName="PurchaseAgreements" AutoSet="true" EntityCondition="agreementTypeId=PURCHASE_AGREEMENT" AutoProperties="true" OfbizEntity="Agreement">
         <LineItem Qualifier="PurchaseAgreementLineItem">
             <DataField Values="agreementId,productId,description,agreementDate,fromDate,thruDate" Importance="High"/>
         </LineItem>
@@ -423,7 +428,7 @@
         </Property>
     </EntityType>
 
-    <EntityType Name="CustomerParty" OfbizEntity="PartyGroupAndContact" AutoSet="true" EntitySetName="CustomerParties" EntityCondition="PartyRole/roleTypeId=CUSTOMER" DraftEntityName="PartyCustomerPartyDraft"
+    <EntityType Name="CustomerParty" OfbizEntity="PartyGroupAndContact" AutoSet="true" EntitySetName="CustomerParties" EntityCondition="PartyRole/roleTypeId=CUSTOMER"
                 Properties="partyId,partyName,description,createdDate,createdByUserLogin">
         <Property Name="partyId">
             <Text Path="partyName" TextArrangement="TextOnly"/>
@@ -456,7 +461,7 @@
 
     </EntityType>
 
-    <EntityType Name="SupplierProduct" AutoSet="true" EntitySetName="SupplierProducts" AutoProperties="true" DraftEntityName="PartySupplierProductDraft" >
+    <EntityType Name="SupplierProduct" AutoSet="true" EntitySetName="SupplierProducts" AutoProperties="true">
         <Property Name="minimumOrderQuantity" DefaultValue="1" Computed="true"/>
         <Property Name="currencyUomId" DefaultValue="CNY" Computed="true"/>
         <Property Name="partyId" Computed="true"/>
@@ -496,7 +501,7 @@
     <EntityType Name="Uom" AutoProperties="true" AutoSet="true" EntitySetName="Uoms">
         <Property Name="description" Label="数量单位"/>
     </EntityType>
-    <EntityType Name="Shipment" AutoProperties="true" AutoSet="true" EntitySetName="Shipments" AttrEntityName="ShipmentAttribute"  DraftEntityName="PartyShipmentAppDraft"
+    <EntityType Name="Shipment" AutoProperties="true" AutoSet="true" EntitySetName="Shipments" AttrEntityName="ShipmentAttribute"
                 Handler="component://officeauto/groovyScripts/partyManage/shipment/statusControl.groovy">
         <Property Name="receiveDate" Type="Timestamp" Precision="3" IsAttribute="true"/>
         <Property Name="statusId">

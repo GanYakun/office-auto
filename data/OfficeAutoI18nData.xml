@@ -70,6 +70,36 @@ under the License.
     <Internationalization id="I10047" lang="en" property="StatusItem.description.APPROVAL_CREATED" value="Approval created"/>
     <Internationalization id="I10048" lang="zh" property="isSimplifiedForm" value="简化表单"/>
     <Internationalization id="I10049" lang="en" property="isSimplifiedForm" value="Simplified Form"/>
+    <Internationalization id="I10050" lang="en" property="supplierActionPartyName" value="Supplier Name"/>
+    <Internationalization id="I10051" lang="zh" property="supplierActionPartyName" value="供应商名称"/>
+    <Internationalization id="I10052" lang="en" property="supplierActionPrimaryPhone" value="Primary Phone"/>
+    <Internationalization id="I10053" lang="zh" property="supplierActionPrimaryPhone" value="电话"/>
+    <Internationalization id="I10054" lang="en" property="supplierActionAddress1" value="Address"/>
+    <Internationalization id="I10055" lang="zh" property="supplierActionAddress1" value="地址"/>
+    <Internationalization id="I10056" lang="en" property="supplierActionPrimaryEmail" value="Primary Email"/>
+    <Internationalization id="I10057" lang="zh" property="supplierActionPrimaryEmail" value="邮箱"/>
+    <Internationalization id="I10058" lang="en" property="supplierUpdateActionNumEmployees" value="Employees Number"/>
+    <Internationalization id="I10059" lang="zh" property="supplierUpdateActionNumEmployees" value="员工数量"/>
+    <Internationalization id="I10060" lang="en" property="supplierUpdateActionAnnualRevenue" value="Annual Revenue"/>
+    <Internationalization id="I10061" lang="zh" property="supplierUpdateActionAnnualRevenue" value="年利润"/>
+    <Internationalization id="I10062" lang="en" property="supplierUpdateActionTickerSymbol" value="Ticker Symbol"/>
+    <Internationalization id="I10063" lang="zh" property="supplierUpdateActionTickerSymbol" value="股票代码"/>
+    <Internationalization id="I10064" lang="en" property="supplierUpdateActionComments" value="Comments"/>
+    <Internationalization id="I10065" lang="zh" property="supplierUpdateActionComments" value="备注"/>
+    <Internationalization id="I10066" lang="en" property="supplierUpdateActionCollectionDate" value="Collection Date"/>
+    <Internationalization id="I10067" lang="zh" property="supplierUpdateActionCollectionDate" value="收藏日期"/>
+    <Internationalization id="I10068" lang="en" property="supplierUpdateActionFirstOrderDate" value="First Order Date"/>
+    <Internationalization id="I10069" lang="zh" property="supplierUpdateActionFirstOrderDate" value="首次订单日期"/>
+    <Internationalization id="I10070" lang="en" property="supplierUpdateActionPrimaryPhone" value="Primary Phone"/>
+    <Internationalization id="I10071" lang="zh" property="supplierUpdateActionPrimaryPhone" value="电话"/>
+    <Internationalization id="I10072" lang="en" property="supplierUpdateActionPrimaryEmail" value="Primary Email"/>
+    <Internationalization id="I10073" lang="zh" property="supplierUpdateActionPrimaryEmail" value="邮箱"/>
+    <Internationalization id="I10074" lang="en" property="supplierUpdateActionAddress" value="Address"/>
+    <Internationalization id="I10075" lang="zh" property="supplierUpdateActionAddress" value="地址"/>
+    <Internationalization id="I10076" lang="zh" property="StatusItem.description.NOT_PROCESSED" value="待处理"/>
+    <Internationalization id="I10077" lang="en" property="StatusItem.description.NOT_PROCESSED" value="Not Processed"/>
+    <Internationalization id="I10078" lang="zh" property="StatusItem.description.PROCESSED" value="已处理"/>
+    <Internationalization id="I10079" lang="en" property="StatusItem.description.PROCESSED" value="Processed"/>
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
     <DBField dbFieldId="CUST_REQ_10001" dbFieldName="statusId" dbFieldTypeId="STATUS" description="当前状态" dbEntityId="CUST_REQ_10000"/>
