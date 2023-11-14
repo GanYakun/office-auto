@@ -183,10 +183,15 @@
         </Action>
     </EntityType>
 
-    <EntityType Name="CoWorkHistory" Properties="workEffortId,partyId,approvePartyId,currentStatusId,lastModifiedDate" OfbizEntity="WorkEffortAndPartyGroupContact" OfbizType="PartyRole/roleTypeId=SUPPLIER">
+    <EntityType Name="CoWorkHistory" Properties="workEffortId,partyId,partyName,approvePartyId,currentStatusId,lastModifiedDate" OfbizEntity="WorkEffortAndPartyGroupContact" OfbizType="PartyRole/roleTypeId=SUPPLIER">
+        <Property Name="currentStatusId">
+            <Text Path="CurrentStatusItem/description" TextArrangement="TextOnly"/>
+        </Property>
         <LineItem Qualifier="HistoryRecord">
-            <DataField Values="workEffortId,approvePartyId,currentStatusId,lastModifiedDate" Importance="High"/>
+            <DataField Values="ApproveParty/partyName,currentStatusId,lastModifiedDate" Importance="High"/>
         </LineItem>
+        <NavigationProperty Name="CurrentStatusItem"/>
+        <NavigationProperty Name="ApproveParty"/>
     </EntityType>
     
     <EntityType Name="SurveyQuestionAppl" AutoProperties="true" EntitySetName="SurveyQuestionAppls" AutoSet="true">
@@ -634,6 +639,8 @@
             <Text Path="description" TextArrangement="TextOnly"/>
         </Property>
     </EntityType>
+
+    <EntityType Name="StatusItem" AutoProperties="true" EntitySetName="StatusItems"/>
 
     <EntityType Name="ClassificationEnumeration" OfbizEntity="Enumeration" EntitySetName="ClassificationEnumerations" EntityCondition="enumTypeId=CLASSIFICATION_TYPE" AutoProperties="true">
         <Property Name="enumId">

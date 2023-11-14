@@ -151,6 +151,9 @@
         <relation type="one-nofk" rel-entity-name="StatusItem">
             <key-map field-name="statusId"/>
         </relation>
+        <relation type="one-nofk" title="Current" rel-entity-name="StatusItem">
+            <key-map field-name="currentStatusId" rel-field-name="statusId"/>
+        </relation>
         <relation type="many" rel-entity-name="SupplierProduct">
             <key-map field-name="partyId" rel-field-name="partyId"/>
         </relation>
