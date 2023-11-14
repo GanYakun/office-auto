@@ -12,6 +12,8 @@ import org.apache.ofbiz.entity.GenericEntityException;
 import org.apache.ofbiz.entity.GenericPK;
 import org.apache.ofbiz.entity.GenericValue;
 import org.apache.ofbiz.entity.util.EntityUtil;
+import org.apache.ofbiz.service.DispatchContext;
+import org.apache.ofbiz.service.GeneralServiceException;
 import org.apache.ofbiz.service.GenericServiceException;
 import org.apache.ofbiz.service.LocalDispatcher;
 import org.apache.olingo.commons.api.edm.EdmBindingTarget;
@@ -210,25 +212,20 @@ public class SupplierEvents {
      * @Date 18:37 2023/11/13
      * @Edmconfig supplierApproveServiceEdmConfig.xml
      **/
-    public static Object fillSupplierBaseInfo(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
-                                              EdmBindingTarget edmBindingTarget) throws OfbizODataException, GenericServiceException {
+    public static Object fillSupplierBaseInfo(Map<String, Object> oDataContext, Map<String, Object> actionParameters, EdmBindingTarget edmBindingTarget)
+            throws OfbizODataException, GenericServiceException, GeneralServiceException {
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
+        DispatchContext dctx = dispatcher.getDispatchContext();
+        
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
-        OdataOfbizEntity supplierPartyEntity = CommonUtils.getOdataPartByEntityType(oDataContext, "SupplierParty");
-        GenericValue supplierParty;
-        if (UtilValidate.isEmpty(supplierPartyEntity)) {
-            return null;
-        }
-        supplierParty = supplierPartyEntity.getGenericValue();
-        BigDecimal numEmployees = (BigDecimal) actionParameters.get("numEmployees");
-        BigDecimal annualRevenue = (BigDecimal) actionParameters.get("annualRevenue");
-        String tickerSymbol = (String) actionParameters.get("tickerSymbol");
-        String comments = (String) actionParameters.get("comments");
+        OdataOfbizEntity supplierPartyEntity = (OdataOfbizEntity) actionParameters.get("supplierParty");
+        GenericValue supplierParty = supplierPartyEntity.getGenericValue();
 
-        dispatcher.runSync("banfftech.updateWorkEffortAndPartyGroupContact",
-                UtilMisc.toMap("userLogin", userLogin, "workEffortId", supplierParty.getString("workEffortId"),
-                        "partyId", supplierParty.getString("partyId"), "numEmployees", numEmployees,
-                        "annualRevenue", annualRevenue, "tickerSymbol", tickerSymbol, "comments", comments));
+        actionParameters.put("workEffortId",supplierParty.getString("workEffortId"));
+        actionParameters.put("partyId",supplierParty.getString("partyId"));
+        actionParameters.put("userLogin",userLogin);
+
+        CommonUtils.setServiceFieldsAndRun(dctx, actionParameters, "banfftech.updateWorkEffortAndPartyGroupContact", userLogin);
         return null;
     }
 
