@@ -177,15 +177,20 @@ public class SupplierEvents {
     }
 
     public static Object generateSurveyQuestionAnswer(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
-                                                      EdmBindingTarget edmBindingTarget) throws OfbizODataException, GenericServiceException {
+                                                      EdmBindingTarget edmBindingTarget) throws OfbizODataException, GenericServiceException, GenericEntityException {
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
-        OdataOfbizEntity supplierPartyEntity = CommonUtils.getOdataPartByEntityType(oDataContext, "SupplierParty");
+        OdataOfbizEntity supplierPartyEntity = CommonUtils.getOdataPartByEntityType(oDataContext, "PartyUserLogin");
+        Delegator delegator = (Delegator) oDataContext.get("delegator");
         GenericValue supplierParty = null;
         if (UtilValidate.isEmpty(supplierPartyEntity)) {
             return null;
         }
         supplierParty = supplierPartyEntity.getGenericValue();
+        List<GenericValue> partyRelationships = delegator.findByAnd("PartyRelationship", UtilMisc.toMap("partyIdTo", supplierParty.get("partyId"), "roleTypeIdFrom", "SUPPLIER", "roleTypeIdTo", "CONTACT"), null, false);
+        GenericValue partyRelationship = EntityUtil.getFirst(partyRelationships);
+        List<GenericValue> workEffortAndPartyGroupContacts = delegator.findByAnd("WorkEffortAndPartyGroupContact", UtilMisc.toMap("partyId", partyRelationship.get("partyIdFrom"), "approvePartyId", partyRelationship.get("partyIdFrom")), null, false);
+        GenericValue workEffortAndPartyGroupContact = EntityUtil.getFirst(workEffortAndPartyGroupContacts);
         dispatcher.runSync("banfftech.createPartySurveyAppl",
                 UtilMisc.toMap("userLogin", userLogin, "partyId", supplierParty.getString("partyId"),
                         "surveyId", "DD_STD_FORM", "surveyApplTypeId", "DD_FORM"));
@@ -204,7 +209,7 @@ public class SupplierEvents {
                 UtilMisc.toMap("userLogin", userLogin, "surveyQuestionId", "9003",
                         "partyId", supplierParty.getString("partyId"), "booleanResponse", "N"));
         dispatcher.runSync("banfftech.updateWorkEffortAndPartyGroupContact",
-                UtilMisc.toMap("userLogin", userLogin, "currentStatusId", "PROCESSED", "workEffortId", supplierParty.get("workEffortId"), "partyId", supplierParty.get("partyId")));
+                UtilMisc.toMap("userLogin", userLogin, "currentStatusId", "PROCESSED", "workEffortId", workEffortAndPartyGroupContact.get("workEffortId"), "partyId", partyRelationship.get("partyIdFrom")));
         return null;
     }
 

@@ -11,6 +11,7 @@
         <Property Name="processId" Type="String"/>
         <Property Name="nodeId" Type="Edm.Decimal"/>
     </ComplexType>
+    <ImportEdm Path="component://officeauto/config/launchpadManageEdmConfig.xml"/>
     <EntityType Name="SupplierParty" OfbizType="PartyRole/roleTypeId=SUPPLIER" EntityCondition="approvePartyId=${company.partyId}" OfbizEntity="WorkEffortAndPartyGroupContact" EntitySetName="SupplierParties" AutoSet="true" AutoProperties="true" AttrDateEntityName="PartyAttributeDate"
                 AutoLabel="true" SearchOption="partyName,primaryEmail,address1"
                 Handler="component://officeauto/groovyScripts/partyManage/supplierParty/generateEntityListFields.groovy">
@@ -206,12 +207,10 @@
         </Action>
         <!--生成调查问卷的回答-->
         <Action Name="GenerateSurveyQuestionAnswer" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.generateSurveyQuestionAnswer" SideEffects="true">
-            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <Parameter Name="partyUserLogin" Type="PartyUserLogin" Nullable="false" IsCollection="false"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
     </EntityType>
-
-    <EntityType Name="StatusItem" AutoSet="true" AutoProperties="true" EntitySetName="StatusItems" EntityCondition=""/>
 
     <EntityType Name="CoWorkHistory" Properties="workEffortId,partyId,partyName,approvePartyId,currentStatusId,lastModifiedDate" OfbizEntity="WorkEffortAndPartyGroupContact" OfbizType="PartyRole/roleTypeId=SUPPLIER">
         <Property Name="currentStatusId">
