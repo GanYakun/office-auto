@@ -12,7 +12,7 @@
         <Property Name="nodeId" Type="Edm.Decimal"/>
     </ComplexType>
     <EntityType Name="SupplierParty" OfbizType="PartyRole/roleTypeId=SUPPLIER" OfbizEntity="PartyGroupAndContact" EntitySetName="SupplierParties" AutoSet="true" AutoProperties="true" AttrDateEntityName="PartyAttributeDate"
-                DraftEntityName="PartySupplierPartyDraft" AutoLabel="true" SearchOption="partyName,primaryEmail,address1"
+                DraftEntityName="PartySupplierPartyDraft" EntityCondition="statusId=PARTY_ENABLED" AutoLabel="true" SearchOption="partyName,primaryEmail,address1"
                 Handler="component://officeauto/groovyScripts/partyManage/supplierParty/generateEntityListFields.groovy">
         <Property Name="partyId">
             <Text Path="partyName" TextArrangement="TextFirst"/>
@@ -79,7 +79,7 @@
             <DataField Values="usccNumber" Importance="High"/>
         </FieldGroup>
 
-        <HeaderInfo TypeName="供应商" TypeNamePlural="供应商列表" ImageUrl="logoImageUrl">
+        <HeaderInfo TypeName="Supplier Party" TypeNamePlural="Supplier Party List" ImageUrl="logoImageUrl">
             <Title Path="partyId"/>
             <Description Path="description"/>
         </HeaderInfo>
