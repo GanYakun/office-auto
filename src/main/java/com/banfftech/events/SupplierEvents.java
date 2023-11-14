@@ -203,6 +203,8 @@ public class SupplierEvents {
         dispatcher.runSync("banfftech.updateSurveyQuestionAnswer",
                 UtilMisc.toMap("userLogin", userLogin, "surveyQuestionId", "9003",
                         "partyId", supplierParty.getString("partyId"), "booleanResponse", "N"));
+        dispatcher.runSync("banfftech.updateWorkEffortAndPartyGroupContact",
+                UtilMisc.toMap("userLogin", userLogin, "currentStatusId", "PROCESSED", "workEffortId", supplierParty.get("workEffortId"), "partyId", supplierParty.get("partyId")));
         return null;
     }
 

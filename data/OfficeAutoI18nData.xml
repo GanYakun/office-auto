@@ -86,7 +86,7 @@ under the License.
     <Internationalization id="I10063" lang="zh" property="supplierUpdateActionTickerSymbol" value="股票代码"/>
     <Internationalization id="I10064" lang="en" property="supplierUpdateActionComments" value="Comments"/>
     <Internationalization id="I10065" lang="zh" property="supplierUpdateActionComments" value="备注"/>
-    <Internationalization id="I10066" lang="en" property="supplierUpdateActionCollectionDate" value="Collection Date"/>
+    <Internationalization id="I10066" lang="en" property="supplierUpdateActionCollectionDate" value="On-board date"/>
     <Internationalization id="I10067" lang="zh" property="supplierUpdateActionCollectionDate" value="收藏日期"/>
     <Internationalization id="I10068" lang="en" property="supplierUpdateActionFirstOrderDate" value="First Order Date"/>
     <Internationalization id="I10069" lang="zh" property="supplierUpdateActionFirstOrderDate" value="首次订单日期"/>
@@ -100,6 +100,16 @@ under the License.
     <Internationalization id="I10077" lang="en" property="StatusItem.description.NOT_PROCESSED" value="Not Processed"/>
     <Internationalization id="I10078" lang="zh" property="StatusItem.description.PROCESSED" value="已处理"/>
     <Internationalization id="I10079" lang="en" property="StatusItem.description.PROCESSED" value="Processed"/>
+    <Internationalization id="I10080" lang="en" property="partyClassificationGroupId" value="Resque Level"/>
+    <Internationalization id="I10081" lang="zh" property="partyClassificationGroupId" value="风险等级"/>
+    <Internationalization id="I10082" lang="en" property="response" value="Response"/>
+    <Internationalization id="I10083" lang="zh" property="response" value="回答"/>
+    <Internationalization id="I10084" lang="en" property="UpdateBasicInfo" value="Update Basic Info"/>
+    <Internationalization id="I10085" lang="zh" property="UpdateBasicInfo" value="更新"/>
+    <Internationalization id="I10086" lang="en" property="UpdateSupplierContactInfo" value="Update Contact"/>
+    <Internationalization id="I10087" lang="zh" property="UpdateSupplierContactInfo" value="更新"/>
+    <Internationalization id="I10088" lang="en" property="UpdateSupplierTimeInfo" value="Update Dates"/>
+    <Internationalization id="I10089" lang="zh" property="UpdateSupplierTimeInfo" value="更新"/>
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
     <DBField dbFieldId="CUST_REQ_10001" dbFieldName="statusId" dbFieldTypeId="STATUS" description="当前状态" dbEntityId="CUST_REQ_10000"/>
@@ -123,12 +133,15 @@ under the License.
     <DBField dbFieldId="PT10001" dbFieldName="partyName" dbFieldTypeId="STRING" dbEntityId="PT10000" description="名称"/>
     <DBField dbFieldId="PT10002" dbFieldName="usccNumber" dbFieldTypeId="STRING" dbEntityId="PT10000" description="社会统一码"/>
     <DBField dbFieldId="PT10003" dbFieldName="statusId" dbFieldTypeId="STATUS" dbEntityId="PT10000" description="状态"/>
+    <DBField dbFieldId="PT10004" dbFieldName="partyId" dbFieldTypeId="STATUS" dbEntityId="PT10000" description="名称"/>
     <DBFieldLabel dbFieldLabelId="PT10001" dbFieldId="PT10001" language="zh" value="名称"/>
     <DBFieldLabel dbFieldLabelId="PT10002" dbFieldId="PT10001" language="en" value=""/>
     <DBFieldLabel dbFieldLabelId="PT10003" dbFieldId="PT10002" language="zh" value="社会统一码"/>
     <DBFieldLabel dbFieldLabelId="PT10004" dbFieldId="PT10002" language="en" value=""/>
     <DBFieldLabel dbFieldLabelId="PT10005" dbFieldId="PT10003" language="zh" value="状态"/>
     <DBFieldLabel dbFieldLabelId="PT10006" dbFieldId="PT10003" language="en" value=""/>
+    <DBFieldLabel dbFieldLabelId="PT10007" dbFieldId="PT10004" language="zh" value="名称"/>
+    <DBFieldLabel dbFieldLabelId="PT10008" dbFieldId="PT10004" language="en" value="Name"/>
 
     <!--发票-->
     <DBEntity dbEntityId="IV10000" dbEntityName="Invoice" description="Invoice" isOpen="N" />
@@ -164,6 +177,7 @@ under the License.
     <DBField dbFieldId="WPC10000_13" dbFieldName="approvePartyId" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Task party"/>
     <DBField dbFieldId="WPC10000_14" dbFieldName="currentStatusId" dbFieldTypeId="STATUS" dbEntityId="WPC10000" description="Status"/>
     <DBField dbFieldId="WPC10000_15" dbFieldName="workEffortId" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Task ID"/>
+    <DBField dbFieldId="WPC10000_16" dbFieldName="partyId" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Party ID"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_01_ZH" dbFieldId="WPC10000_01" language="zh" value="Email"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_01_EN" dbFieldId="WPC10000_01" language="en" value="Email"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_02_ZH" dbFieldId="WPC10000_02" language="zh" value="Address"/>
@@ -194,6 +208,8 @@ under the License.
     <DBFieldLabel dbFieldLabelId="WPC10000_14_EN" dbFieldId="WPC10000_14" language="en" value="Status"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_15_ZH" dbFieldId="WPC10000_15" language="zh" value="任务ID"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_15_EN" dbFieldId="WPC10000_15" language="en" value="Task ID"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_16_ZH" dbFieldId="WPC10000_16" language="zh" value="供应商"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_16_EN" dbFieldId="WPC10000_16" language="en" value="Name"/>
 
     <!-- Entity labels for entity SurveyQuestion -->
     <DBEntity dbEntityId="SQ10000" dbEntityName="SurveyQuestion" description="Survey question" isOpen="N" />

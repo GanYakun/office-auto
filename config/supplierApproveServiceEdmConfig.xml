@@ -14,9 +14,6 @@
     <EntityType Name="SupplierParty" OfbizType="PartyRole/roleTypeId=SUPPLIER" EntityCondition="approvePartyId=${company.partyId}" OfbizEntity="WorkEffortAndPartyGroupContact" EntitySetName="SupplierParties" AutoSet="true" AutoProperties="true" AttrDateEntityName="PartyAttributeDate"
                 AutoLabel="true" SearchOption="partyName,primaryEmail,address1"
                 Handler="component://officeauto/groovyScripts/partyManage/supplierParty/generateEntityListFields.groovy">
-        <LineItem>
-            <DataField Values="partyId,currentStatusId,primaryEmail,address1,primaryPhone" Importance="High"/>
-        </LineItem>
         <Property Name="partyId">
             <Text Path="partyName" TextArrangement="TextFirst"/>
         </Property>
@@ -27,6 +24,7 @@
             <Text Path="SupplierStatusItem/description" TextArrangement="TextOnly"/>
         </Property>
         <Property Name="createSupplierHidden" Type="Boolean" Hidden="true"/>
+        <Property Name="disableEditSupplier" Type="Boolean" Hidden="true"/>
         <Property Name="firstOrderDate" Type="Timestamp" IsDateAttribute="true"/>
         <Property Name="collectionDate" Type="Timestamp" IsDateAttribute="true"/>
         <Property Name="totalAmount" Type="BigDecimal" Label="" Scale="3"/>
@@ -58,16 +56,42 @@
         <NavigationProperty Name="CurrentStatusItem"/>
         <NavigationProperty Name="SurveyQuestionAppl" Type="SurveyQuestionAppl" Relations="PartySurveyAppl/SurveyQuestionAppl" IsCollection="true"/>
         <NavigationProperty Name="ChildWorkEffortAndPartyGroupContact" Type="CoWorkHistory" Relations="ChildWorkEffortAndPartyGroupContact" IsCollection="true"/>
-        <SelectionFields PropertyPath="statusId,primaryPhone"/>
+        <SelectionFields PropertyPath="currentStatusId,primaryPhone"/>
 
-<!--        <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">-->
-<!--            <DataField Values="numEmployees,annualRevenue,tickerSymbol,comments" Importance="High"/>-->
-<!--        </FieldGroup>-->
+        <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">
+            <DataField Values="numEmployees,annualRevenue,tickerSymbol,comments" Importance="High"/>
+        </FieldGroup>
+        <FieldGroup Qualifier="PartyGroupFieldGroupWithAction" Label="PartyGroupFieldGroupWithAction">
+            <DataField Values="numEmployees,annualRevenue,tickerSymbol,comments" Importance="High"/>
+            <DataFieldForAction Label="${UpdateBasicInfo}" Action="FillSupplierBaseInfo" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated" Hidden="disableEditSupplier"/>
+        </FieldGroup>
 
+        <FieldGroup Qualifier="ContactInfo" Label="ContactInfo">
+            <DataField Values="primaryPhone,primaryEmail,address1,usccNumber" Importance="High"/>
+        </FieldGroup>
+        <FieldGroup Qualifier="ContactInfoWithAction" Label="ContactInfoWithAction">
+            <DataField Values="primaryPhone,primaryEmail,address1,usccNumber" Importance="High"/>
+            <DataFieldForAction Label="${UpdateSupplierContactInfo}" Action="UpdateSupplierContactInfo" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated" Hidden="disableEditSupplier"/>
+        </FieldGroup>
+
+        <FieldGroup Qualifier="SupplierTimeInfo" Label="SupplierTimeInfo">
+            <DataField Values="collectionDate,firstOrderDate" Importance="High"/>
+        </FieldGroup>
+        <FieldGroup Qualifier="SupplierTimeInfoWithAction" Label="SupplierTimeInfoWithAction">
+            <DataField Values="collectionDate,firstOrderDate" Importance="High"/>
+            <DataFieldForAction Label="${UpdateSupplierTimeInfo}" Action="UpdateSupplierTimeInfo" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated" Hidden="disableEditSupplier"/>
+        </FieldGroup>
+
+        <LineItem>
+            <DataField Values="partyId,currentStatusId,primaryEmail,address1,primaryPhone" Importance="High"/>
+        </LineItem>
+        <LineItem Qualifier="CreateLineItem">
+            <DataField Values="partyId,currentStatusId,primaryEmail,address1,primaryPhone" Importance="High"/>
+            <DataFieldForAction Label="${create}" Action="CreateNoteData" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
+        </LineItem>
         <FieldGroup Qualifier="TimeInfo" Label="TimeInfo">
             <DataField Values="createdDate,lastModifiedDate,firstOrderDate,collectionDate" Importance="High"/>
         </FieldGroup>
-
         <Function Name="GetApproverData_Supplier" OfbizService="com.banfftech.event.ApprovalEvent.getApproverData"
                   IsBound="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
@@ -186,7 +210,7 @@
         </Action>
     </EntityType>
 
-    <EntityType Name="StatusItem" AutoSet="true" AutoProperties="true" EntitySetName="StatusItems"/>
+    <EntityType Name="StatusItem" AutoSet="true" AutoProperties="true" EntitySetName="StatusItems" EntityCondition=""/>
 
     <EntityType Name="CoWorkHistory" Properties="workEffortId,partyId,partyName,approvePartyId,currentStatusId,lastModifiedDate" OfbizEntity="WorkEffortAndPartyGroupContact" OfbizType="PartyRole/roleTypeId=SUPPLIER">
         <Property Name="currentStatusId">
@@ -199,9 +223,11 @@
         <NavigationProperty Name="ApproveParty"/>
     </EntityType>
     
-    <EntityType Name="SurveyQuestionAppl" AutoProperties="true" EntitySetName="SurveyQuestionAppls" AutoSet="true">
+    <EntityType Name="SurveyQuestionAppl" AutoProperties="true" EntitySetName="SurveyQuestionAppls" AutoSet="true"
+                Handler="component://officeauto/groovyScripts/partyManage/surveyQuestionAppl/generateEntityListFields.groovy">
+        <Property Name="response" Type="String" Label="${response}"/>
         <LineItem Qualifier="SurveyQuestionApplLineItem">
-            <DataField Values="surveyQuestionId,SurveyQuestion/question,SurveyQuestionAnswer/booleanResponse,SurveyQuestionAnswer/textResponse" Importance="High"/>
+            <DataField Values="SurveyQuestion/question,response" Importance="High"/>
         </LineItem>
         
         <NavigationProperty Name="SurveyQuestion"/>
@@ -265,7 +291,7 @@
         <Property Name="statusColor" Type="numeric" Hidden="true" HiddenFilter="true"/>
         <Action Name="FillPartyClassification" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.fillPartyClassification">
             <Parameter Name="partyClassification" Type="PartyClassification" Nullable="false" IsCollection="false"/>
-            <Parameter Name="partyClassificationGroupId" Type="String" Label="评级">
+            <Parameter Name="partyClassificationGroupId" Type="String" Label="${partyClassificationGroupId}">
                 <ValueList CollectionPath="PartyClassificationGroups" WithFixedValues="true">
                     <ParameterInOut LocalDataProperty="partyClassificationGroupId" ValueListProperty="partyClassificationGroupId"/>
                 </ValueList>
@@ -329,13 +355,18 @@
 
     <EntityType Name="InvoiceType" AutoProperties="true" AutoSet="true" EntitySetName="InvoiceTypes"/>
 
-    <EntityType Name="NoteData" EntitySetName="NoteData" AutoSet="true" AutoProperties="true">
+    <EntityType Name="NoteData" EntitySetName="NoteData" AutoSet="true" AutoProperties="true"
+                Handler="component://officeauto/groovyScripts/partyManage/navigationObj/statusControl.groovy">
         <Property Name="noteParty">
             <Text Path="NoteParty/partyName" TextArrangement="TextOnly"/>
         </Property>
+        <Property Name="actionHidden" Type="Boolean" Hidden="true"/>
         <LineItem Qualifier="NoteDataLineItem">
-            <DataField Values="noteId,noteName,noteInfo,noteParty,noteDateTime" Importance="High"/>
-            <DataFieldForAction Label="${create}" Action="CreateNoteData" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
+            <DataField Values="noteName,noteInfo,noteParty,noteDateTime" Importance="High"/>
+            <DataFieldForAction Label="${create}" Action="CreateNoteData" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated" Hidden="actionHidden"/>
+        </LineItem>
+        <LineItem Qualifier="NoteDataLineItemWithoutAction">
+            <DataField Values="noteName,noteInfo,noteParty,noteDateTime" Importance="High"/>
         </LineItem>
         <Action Name="CreateNoteData" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createNoteData" SideEffects="true">
             <Parameter Name="noteData" Type="NoteData" Nullable="false" IsCollection="true"/>
@@ -348,7 +379,7 @@
 
     <EntityType Name="PurchaseAgreement" EntitySetName="PurchaseAgreements" AutoSet="true" EntityCondition="agreementTypeId=PURCHASE_AGREEMENT" AutoProperties="true" OfbizEntity="Agreement">
         <LineItem Qualifier="PurchaseAgreementLineItem">
-            <DataField Values="agreementId,productId,description,agreementDate,fromDate,thruDate" Importance="High"/>
+            <DataField Values="productId,description,agreementDate,fromDate,thruDate" Importance="High"/>
         </LineItem>
 
         <SelectionFields PropertyPath="productId,partyIdFrom,partyIdTo"/>
@@ -443,11 +474,16 @@
     </EntityType>
 
     <EntityType Name="PersonAndContact" AttrEntityName="PartyAttribute" AutoProperties="true" AutoLabel="true"
-                AutoSet="true" EntitySetName="PersonAndContacts">
+                AutoSet="true" EntitySetName="PersonAndContacts"
+                Handler="component://officeauto/groovyScripts/partyManage/navigationObj/statusControl.groovy">
         <Property Name="position" IsAttribute="true" Type="String"/>
+        <Property Name="actionHidden" Type="Boolean" Hidden="true"/>
         <LineItem Qualifier="PartyRelationshipLineItem">
             <DataField Values="partyName,primaryPhone,phoneMobile,primaryEmail,position" Importance="High"/>
-            <DataFieldForAction Label="${create}" Action="CreatePersonAndContact" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
+            <DataFieldForAction Label="${create}" Action="CreatePersonAndContact" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated" Hidden="actionHidden"/>
+        </LineItem>
+        <LineItem Qualifier="PartyRelationshipLineItemWithoutAction">
+            <DataField Values="partyName,primaryPhone,phoneMobile,primaryEmail,position" Importance="High"/>
         </LineItem>
         <Action Name="CreatePersonAndContact" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createPersonAndContact">
             <Parameter Name="personAndContact" Type="PersonAndContact" Nullable="false" IsCollection="true"/>
@@ -461,17 +497,22 @@
 
     </EntityType>
 
-    <EntityType Name="SupplierProduct" AutoSet="true" EntitySetName="SupplierProducts" AutoProperties="true">
+    <EntityType Name="SupplierProduct" AutoSet="true" EntitySetName="SupplierProducts" AutoProperties="true"
+                Handler="component://officeauto/groovyScripts/partyManage/navigationObj/statusControl.groovy">
         <Property Name="minimumOrderQuantity" DefaultValue="1" Computed="true"/>
         <Property Name="currencyUomId" DefaultValue="CNY" Computed="true"/>
         <Property Name="partyId" Computed="true"/>
         <Property Name="availableFromDate" Computed="true"/>
+        <Property Name="actionHidden" Type="Boolean" Hidden="true"/>
         <NavigationProperty Name="Product"/>
         <NavigationProperty Name="CurrencyUom"/>
         <NavigationProperty Name="Uom" Relations="Product/QuantityUom" Type="Uom" AutoBinding="true"/>
         <LineItem Qualifier="SupplierProductLineItem">
-            <DataField Values="productId,Product/productName,Product/quantityUomId" Importance="High" />
-            <DataFieldForAction Label="${create}" Action="CreateSupplierProduct" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
+            <DataField Values="Product/productName,Product/quantityUomId" Importance="High" />
+            <DataFieldForAction Label="${create}" Action="CreateSupplierProduct" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated" Hidden="actionHidden"/>
+        </LineItem>
+        <LineItem Qualifier="SupplierProductLineItemWithoutAction">
+            <DataField Values="Product/productName,Product/quantityUomId" Importance="High" />
         </LineItem>
         <Action Name="CreateSupplierProduct" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createSupplierProduct" SideEffects="true">
             <Parameter Name="supplierProduct" Type="SupplierProduct" Nullable="false" IsCollection="true"/>

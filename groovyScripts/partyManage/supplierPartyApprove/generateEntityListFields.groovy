@@ -4,6 +4,7 @@ import org.apache.ofbiz.entity.util.EntityQuery
 import org.apache.ofbiz.service.ServiceUtil
 import org.apache.ofbiz.base.util.UtilValidate;
 import org.apache.olingo.commons.api.data.Entity
+import com.banfftech.common.util.CommonUtils;
 import com.dpbird.odata.edm.OdataOfbizEntity;
 import org.apache.ofbiz.entity.GenericValue;
 import org.apache.ofbiz.base.util.UtilValidate;
@@ -20,13 +21,17 @@ def generateFields(Map<String, Object> context){
     entityList.each { entity ->
         OdataOfbizEntity odataOfbizEntity = (OdataOfbizEntity) entity;
         GenericValue supplierParty = (GenericValue) entity.getGenericValue();
-
+        disableEditSupplier = false
         criticalityValue = 1L
         String statusId = supplierParty.getString("currentStatusId");
         if (statusId.equals("NOT_PROCESSED") && UtilValidate.isNotEmpty(criticalityValue)){
             criticalityValue = 1L
         }else if (statusId.equals("PROCESSED")){
             criticalityValue = 3L
+        }
+
+        if (supplierParty.get("currentStatusId").equals("PROCESSED")){
+            disableEditSupplier = true
         }
 
         Debug.log("111111100");
@@ -37,6 +42,7 @@ def generateFields(Map<String, Object> context){
         entity.addProperty(new Property(null, "usccNumber", ValueType.PRIMITIVE, usccNumber))
         entity.addProperty(new Property(null, "criticalityValue", ValueType.PRIMITIVE, criticalityValue))
         entity.addProperty(new Property(null, "totalAmount", ValueType.PRIMITIVE, totalAmount))
+        entity.addProperty(new Property(null, "disableEditSupplier", ValueType.PRIMITIVE, disableEditSupplier))
 
 
     }
