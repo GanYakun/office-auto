@@ -68,11 +68,12 @@ public class VendorService {
         GenericValue userLogin = (GenericValue) context.get("userLogin");
         LocalDispatcher dispatcher = dctx.getDispatcher();
         Delegator delegator = dispatcher.getDelegator();
-
+        //update WorkEffort
+        CommonUtils.setServiceFieldsAndRun(dctx, context, "banfftech.updateWorkEffort", userLogin);
+        //update Party
         GenericValue WorkEffortAndPartyGroupContact = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("workEffortId", context.get("workEffortId")).queryFirst();
         String partyId = WorkEffortAndPartyGroupContact.getString("partyId");
         context.put("partyId", partyId);
-        //update Party
         CommonUtils.setServiceFieldsAndRun(dctx, context, "banfftech.updatePartyGroupAndContact", userLogin);
         Map<String, Object> resultMap = ServiceUtil.returnSuccess();
         resultMap.put("partyId", partyId);
