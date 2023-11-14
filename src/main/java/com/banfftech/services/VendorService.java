@@ -7,6 +7,7 @@ import org.apache.ofbiz.base.util.UtilMisc;
 import org.apache.ofbiz.entity.Delegator;
 import org.apache.ofbiz.entity.GenericEntityException;
 import org.apache.ofbiz.entity.GenericValue;
+import org.apache.ofbiz.entity.util.EntityQuery;
 import org.apache.ofbiz.service.*;
 
 import java.util.HashMap;
@@ -66,7 +67,11 @@ public class VendorService {
     public static Map<String, Object> updateWorkEffortAndPartyGroupContact(DispatchContext dctx, Map<String, Object> context) throws GeneralServiceException, GenericServiceException, GenericEntityException {
         GenericValue userLogin = (GenericValue) context.get("userLogin");
         LocalDispatcher dispatcher = dctx.getDispatcher();
-        String partyId = (String) context.get("partyId");
+        Delegator delegator = dispatcher.getDelegator();
+
+        GenericValue WorkEffortAndPartyGroupContact = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("workEffortId", context.get("workEffortId")).queryFirst();
+        String partyId = WorkEffortAndPartyGroupContact.getString("partyId");
+        context.put("partyId", partyId);
         //update Party
         CommonUtils.setServiceFieldsAndRun(dctx, context, "banfftech.updatePartyGroupAndContact", userLogin);
         Map<String, Object> resultMap = ServiceUtil.returnSuccess();
