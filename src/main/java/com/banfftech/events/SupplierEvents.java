@@ -262,23 +262,12 @@ public class SupplierEvents {
     * @Date 7:55 2023/11/14
     * @Edmconfig supplierApproveServiceEdmConfig.xml
     **/
-    public static Object updateSupplierTimeInfo(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
-                                                   EdmBindingTarget edmBindingTarget) throws OfbizODataException, GenericServiceException {
-        LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
-        GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
-        OdataOfbizEntity supplierPartyEntity = CommonUtils.getOdataPartByEntityType(oDataContext, "SupplierParty");
-        GenericValue supplierParty;
-        if (UtilValidate.isEmpty(supplierPartyEntity)) {
-            return null;
-        }
-        supplierParty = supplierPartyEntity.getGenericValue();
-        Timestamp collectionDate = (Timestamp) actionParameters.get("collectionDate");
-        Timestamp firstOrderDate = (Timestamp) actionParameters.get("firstOrderDate");
-
-        dispatcher.runSync("banfftech.updateWorkEffortAndPartyGroupContact",
-                UtilMisc.toMap("userLogin", userLogin, "workEffortId", supplierParty.getString("workEffortId"),
-                        "partyId", supplierParty.getString("partyId"), "collectionDate", collectionDate,
-                        "firstOrderDate", firstOrderDate));
-        return null;
+    public static void updateSupplierTimeInfo(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
+                                                   EdmBindingTarget edmBindingTarget) throws GenericEntityException {
+        Delegator delegator = (Delegator) oDataContext.get("delegator");
+        OdataOfbizEntity supplierPartyEntity = (OdataOfbizEntity) actionParameters.get("supplierParty");
+        GenericValue supplierParty = delegator.findOne("Party", UtilMisc.toMap("partyId", supplierPartyEntity.getPropertyValue("partyId")), false);
+        CommonUtils.setObjectAttribute(supplierParty, "PartyAttributeDate", "collectionDate", actionParameters.get("collectionDate"));
+        CommonUtils.setObjectAttribute(supplierParty, "PartyAttributeDate", "firstOrderDate", actionParameters.get("firstOrderDate"));
     }
 }
