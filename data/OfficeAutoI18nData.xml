@@ -219,6 +219,57 @@ under the License.
     <DBFieldLabel dbFieldLabelId="WPC10000_16_ZH" dbFieldId="WPC10000_16" language="zh" value="供应商"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_16_EN" dbFieldId="WPC10000_16" language="en" value="Name"/>
 
+    <!-- Entity labels for view-entity PartyGroupAndContact -->
+    <DBEntity dbEntityId="PGC10000" dbEntityName="PartyGroupAndContact" dbEntityTypeField="PartyRole/roleTypeId" dbEntityTypeId="SUPPLIER" description="Vendor" isOpen="N" />
+    <DBField dbFieldId="PGC10000_01" dbFieldName="primaryEmail" dbFieldTypeId="STRING" dbEntityId="PGC10000" description="Email"/>
+    <DBField dbFieldId="PGC10000_02" dbFieldName="address1" dbFieldTypeId="STRING" dbEntityId="PGC10000" description="Address"/>
+    <DBField dbFieldId="PGC10000_03" dbFieldName="primaryPhone" dbFieldTypeId="STRING" dbEntityId="PGC10000" description="Primary phone"/>
+    <DBField dbFieldId="PGC10000_04" dbFieldName="createdDate" dbFieldTypeId="DATE_TIME" dbEntityId="PGC10000" description="Created date"/>
+    <DBField dbFieldId="PGC10000_05" dbFieldName="lastModifiedDate" dbFieldTypeId="DATE_TIME" dbEntityId="PGC10000" description="Last modified date"/>
+    <DBField dbFieldId="PGC10000_06" dbFieldName="firstOrderDate" dbFieldTypeId="DATE_TIME" dbEntityId="PGC10000" description="First order date"/>
+    <DBField dbFieldId="PGC10000_07" dbFieldName="collectionDate" dbFieldTypeId="DATE_TIME" dbEntityId="PGC10000" description="On-board date"/>
+    <DBField dbFieldId="PGC10000_08" dbFieldName="usccNumber" dbFieldTypeId="STRING" dbEntityId="PGC10000" description="Tax code"/>
+    <DBField dbFieldId="PGC10000_09" dbFieldName="numEmployees" dbFieldTypeId="NUMBER" dbEntityId="PGC10000" description="Employee numbers"/>
+    <DBField dbFieldId="PGC10000_10" dbFieldName="annualRevenue" dbFieldTypeId="NUMBER" dbEntityId="PGC10000" description="Annual revenue"/>
+    <DBField dbFieldId="PGC10000_11" dbFieldName="tickerSymbol" dbFieldTypeId="STRING" dbEntityId="PGC10000" description="Ticker symbol"/>
+    <DBField dbFieldId="PGC10000_12" dbFieldName="comments" dbFieldTypeId="STRING" dbEntityId="PGC10000" description="Comments"/>
+    <DBField dbFieldId="PGC10000_13" dbFieldName="approvePartyId" dbFieldTypeId="STRING" dbEntityId="PGC10000" description="Task party"/>
+    <DBField dbFieldId="PGC10000_14" dbFieldName="currentStatusId" dbFieldTypeId="STATUS" dbEntityId="PGC10000" description="Status"/>
+    <DBField dbFieldId="PGC10000_15" dbFieldName="workEffortId" dbFieldTypeId="STRING" dbEntityId="PGC10000" description="Task ID"/>
+    <DBField dbFieldId="PGC10000_16" dbFieldName="partyId" dbFieldTypeId="STRING" dbEntityId="PGC10000" description="Party ID"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_01_ZH" dbFieldId="PGC10000_01" language="zh" value="Email"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_01_EN" dbFieldId="PGC10000_01" language="en" value="Email"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_02_ZH" dbFieldId="PGC10000_02" language="zh" value="Address"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_02_EN" dbFieldId="PGC10000_02" language="en" value="Address"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_03_ZH" dbFieldId="PGC10000_03" language="zh" value="电话"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_03_EN" dbFieldId="PGC10000_03" language="en" value="Phone"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_04_ZH" dbFieldId="PGC10000_04" language="zh" value="创建日期"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_04_EN" dbFieldId="PGC10000_04" language="en" value="Created date"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_05_ZH" dbFieldId="PGC10000_05" language="zh" value="最后修改日期"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_05_EN" dbFieldId="PGC10000_05" language="en" value="Last modified date"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_06_ZH" dbFieldId="PGC10000_06" language="zh" value="首次下单日期"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_06_EN" dbFieldId="PGC10000_06" language="en" value="First order date"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_07_ZH" dbFieldId="PGC10000_07" language="zh" value="入驻日期"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_07_EN" dbFieldId="PGC10000_07" language="en" value="On-board date"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_08_ZH" dbFieldId="PGC10000_08" language="zh" value="税号"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_08_EN" dbFieldId="PGC10000_08" language="en" value="Tax code"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_09_ZH" dbFieldId="PGC10000_09" language="zh" value="员工人数"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_09_EN" dbFieldId="PGC10000_09" language="en" value="Employee numbers"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_10_ZH" dbFieldId="PGC10000_10" language="zh" value="年收入"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_10_EN" dbFieldId="PGC10000_10" language="en" value="Annual revenue"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_11_ZH" dbFieldId="PGC10000_11" language="zh" value="股票代码"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_11_EN" dbFieldId="PGC10000_11" language="en" value="Ticker symbol"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_12_ZH" dbFieldId="PGC10000_12" language="zh" value="备注"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_12_EN" dbFieldId="PGC10000_12" language="en" value="Comments"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_13_ZH" dbFieldId="PGC10000_13" language="zh" value="任务处理人"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_13_EN" dbFieldId="PGC10000_13" language="en" value="Task party"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_14_ZH" dbFieldId="PGC10000_14" language="zh" value="状态"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_14_EN" dbFieldId="PGC10000_14" language="en" value="Status"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_15_ZH" dbFieldId="PGC10000_15" language="zh" value="任务ID"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_15_EN" dbFieldId="PGC10000_15" language="en" value="Task ID"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_16_ZH" dbFieldId="PGC10000_16" language="zh" value="供应商"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_16_EN" dbFieldId="PGC10000_16" language="en" value="Name"/>
+
     <!-- Entity labels for entity SurveyQuestion -->
     <DBEntity dbEntityId="SQ10000" dbEntityName="SurveyQuestion" description="Survey question" isOpen="N" />
     <DBField dbFieldId="SQ10000_01" dbFieldName="description" dbFieldTypeId="STRING" dbEntityId="SQ10000" description="Description"/>
