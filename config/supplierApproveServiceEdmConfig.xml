@@ -56,6 +56,7 @@
         <NavigationProperty Name="CurrentStatusItem"/>
         <NavigationProperty Name="SurveyQuestionAppl" Type="SurveyQuestionAppl" Relations="PartySurveyAppl/SurveyQuestionAppl" IsCollection="true"/>
         <NavigationProperty Name="ChildWorkEffortAndPartyGroupContact" Type="CoWorkHistory" Relations="ChildWorkEffortAndPartyGroupContact" IsCollection="true"/>
+        <NavigationProperty Name="DataResource" Type="DataResource" Relations="PartyContent/Content/DataResource"/>
         <SelectionFields PropertyPath="currentStatusId,primaryPhone"/>
 
         <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">
@@ -87,7 +88,7 @@
         </LineItem>
         <LineItem Qualifier="CreateLineItem">
             <DataField Values="partyId,currentStatusId,primaryEmail,address1,primaryPhone" Importance="High"/>
-            <DataFieldForAction Label="${create}" Action="CreateNoteData" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
+            <DataFieldForAction Label="${create}" Action="CreateSupplierParty" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
         <FieldGroup Qualifier="TimeInfo" Label="TimeInfo">
             <DataField Values="createdDate,lastModifiedDate,firstOrderDate,collectionDate" Importance="High"/>
@@ -473,11 +474,24 @@
                             Relations="OwnerFinAccount(finAccountTypeId=BANK_ACCOUNT)" />
     </EntityType>
 
+    <EntityType Name="DataResource" EntitySetName="DataResources" AutoProperties="true">
+        <LineItem Qualifier="DataResourceLineItem">
+            <DataField Values="dataResourceName,objectInfo,createdDate,lastModifiedDate" Importance="High"/>
+        </LineItem>
+        <Action Name="bannerUpload" IsBound="true"
+                OfbizService="com.dpbird.odata.processor.OfbizActionProcessor.createMediaDataResource">
+            <Parameter Name="dataResource" Type="DataResource" Nullable="false" IsCollection="false"/>
+            <Parameter Name="mimeTypeId" Type="String" Nullable="true" IsCollection="false"/>
+            <Parameter Name="contentTypeId" Type="String" Nullable="true" IsCollection="false"/>
+            <ReturnType Name="dateResourceId" Type="String"/>
+        </Action>
+    </EntityType>
+
     <EntityType Name="PersonAndContact" AttrEntityName="PartyAttribute" AutoProperties="true" AutoLabel="true"
                 AutoSet="true" EntitySetName="PersonAndContacts"
                 Handler="component://officeauto/groovyScripts/partyManage/navigationObj/statusControl.groovy">
         <Property Name="position" IsAttribute="true" Type="String"/>
-        <Property Name="actionHidden" Type="Boolean" Hidden="true"/>
+        <Property Name="actionHidden" Type="Boolean"/>
         <LineItem Qualifier="PartyRelationshipLineItem">
             <DataField Values="partyName,primaryPhone,phoneMobile,primaryEmail,position" Importance="High"/>
             <DataFieldForAction Label="${create}" Action="CreatePersonAndContact" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated" Hidden="actionHidden"/>
