@@ -118,6 +118,8 @@ under the License.
     <Internationalization id="I10095" lang="zh" property="StatusItem.description.APPROVAL_REJECTED" value="已拒绝"/>
     <Internationalization id="I10096" lang="en" property="StatusItem.description.APPROVAL_SUBMITTED" value="Submitted"/>
     <Internationalization id="I10097" lang="zh" property="StatusItem.description.APPROVAL_SUBMITTED" value="审批中"/>
+    <Internationalization id="I10098" lang="en" property="usccNumber" value="Tax code"/>
+    <Internationalization id="I10099" lang="zh" property="usccNumber" value="社会统一信用代码"/>
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
     <DBField dbFieldId="CUST_REQ_10001" dbFieldName="statusId" dbFieldTypeId="STATUS" description="当前状态" dbEntityId="CUST_REQ_10000"/>

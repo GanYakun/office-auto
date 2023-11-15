@@ -116,4 +116,16 @@ under the License.
         <auto-attributes include="pk" mode="INOUT" optional="true"/>
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
     </service>
+
+    <!--PartyIdentification-->
+    <service name="banfftech.createPartyIdentification" default-entity-name="PartyIdentification" engine="entity-auto" invoke="create" auth="true">
+        <description>Update a PartyIdentification</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+    <service name="banfftech.updatePartyIdentification" default-entity-name="PartyIdentification" engine="entity-auto" invoke="update" auth="true">
+        <description>Update a PartyIdentification</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
 </services>

@@ -138,6 +138,7 @@
             <Parameter Name="annualRevenue" Type="BigDecimal" Label="${supplierUpdateActionAnnualRevenue}"/>
             <Parameter Name="tickerSymbol" Type="String" Label="${supplierUpdateActionTickerSymbol}"/>
             <Parameter Name="comments" Type="String" Label="${supplierUpdateActionComments}"/>
+            <Parameter Name="usccNumber" Type="String" Label="${usccNumber}"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
 

@@ -213,10 +213,11 @@ public class SupplierEvents {
      * @Edmconfig supplierApproveServiceEdmConfig.xml
      **/
     public static Object fillSupplierBaseInfo(Map<String, Object> oDataContext, Map<String, Object> actionParameters, EdmBindingTarget edmBindingTarget)
-            throws OfbizODataException, GenericServiceException, GeneralServiceException {
+            throws OfbizODataException, GenericServiceException, GeneralServiceException, GenericEntityException {
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
         DispatchContext dctx = dispatcher.getDispatchContext();
-        
+        Delegator delegator = (Delegator) oDataContext.get("delegator");
+
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
         OdataOfbizEntity supplierPartyEntity = (OdataOfbizEntity) actionParameters.get("supplierParty");
         GenericValue supplierParty = supplierPartyEntity.getGenericValue();
@@ -224,7 +225,19 @@ public class SupplierEvents {
         actionParameters.put("workEffortId",supplierParty.getString("workEffortId"));
         actionParameters.put("partyId",supplierParty.getString("partyId"));
         actionParameters.put("userLogin",userLogin);
-
+        if(UtilValidate.isNotEmpty(actionParameters.get("usccNumber"))){
+            List<GenericValue> partyIdentifications = delegator.findByAnd("PartyIdentification", UtilMisc.toMap("partyId", supplierParty.getString("partyId")), null, false);
+            if (UtilValidate.isNotEmpty(partyIdentifications)){
+                GenericValue partyIdentification = EntityUtil.getFirst(partyIdentifications);
+                dispatcher.runSync("banfftech.updatePartyIdentification",
+                        UtilMisc.toMap("partyId", partyIdentification.getString("partyId"), "userLogin", userLogin,
+                                "partyIdentificationTypeId", partyIdentification.get("partyIdentificationTypeId"), "idValue", actionParameters.get("usccNumber")));
+            }else{
+                dispatcher.runSync("banfftech.createPartyIdentification",
+                        UtilMisc.toMap("userLogin", userLogin, "partyIdentificationTypeId", "USCC_OF_CHINESE_ORG",
+                                "partyId", supplierParty.get("partyId"), "idValue", actionParameters.get("usccNumber")));
+            }
+        }
         CommonUtils.setServiceFieldsAndRun(dctx, actionParameters, "banfftech.updateWorkEffortAndPartyGroupContact", userLogin);
         return null;
     }

@@ -208,6 +208,8 @@ under the License.
     <SurveyQuestionAnswer surveyQuestionId="9002" partyId="SUPPLIER0001" booleanResponse="N"/>
     <SurveyQuestionAnswer surveyQuestionId="9003" partyId="SUPPLIER0001" booleanResponse="N"/>
 
+    <!-- PartyIdentificationType(社会统一码) -->
+    <PartyIdentificationType partyIdentificationTypeId="USCC_OF_CHINESE_ORG"/>
 <!--    <PartyQuestionAppl partyQuatsionApplId="9000" partyId="SUPPLIER0001" surveyQuestionId="9000" partyQuestionApplTypeId="DD_FORM" requiredField="Y" sequenceNum="1"/>-->
 <!--    <PartyQuestionAppl partyQuatsionApplId="9000" partyId="SUPPLIER0001" surveyQuestionId="9001" partyQuestionApplTypeId="DD_FORM" requiredField="Y" sequenceNum="1"/>-->
 <!--    <PartyQuestionAppl partyQuatsionApplId="9000" partyId="SUPPLIER0001" surveyQuestionId="9002" partyQuestionApplTypeId="DD_FORM" requiredField="Y" sequenceNum="1"/>-->
