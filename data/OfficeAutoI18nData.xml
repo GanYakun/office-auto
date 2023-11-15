@@ -186,6 +186,7 @@ under the License.
     <DBField dbFieldId="WPC10000_14" dbFieldName="currentStatusId" dbFieldTypeId="STATUS" dbEntityId="WPC10000" description="Status"/>
     <DBField dbFieldId="WPC10000_15" dbFieldName="workEffortId" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Task ID"/>
     <DBField dbFieldId="WPC10000_16" dbFieldName="partyId" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Party ID"/>
+    <DBField dbFieldId="WPC10000_17" dbFieldName="partyName" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Name"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_01_ZH" dbFieldId="WPC10000_01" language="zh" value="Email"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_01_EN" dbFieldId="WPC10000_01" language="en" value="Email"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_02_ZH" dbFieldId="WPC10000_02" language="zh" value="Address"/>
@@ -218,6 +219,9 @@ under the License.
     <DBFieldLabel dbFieldLabelId="WPC10000_15_EN" dbFieldId="WPC10000_15" language="en" value="Task ID"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_16_ZH" dbFieldId="WPC10000_16" language="zh" value="供应商"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_16_EN" dbFieldId="WPC10000_16" language="en" value="Name"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_17_ZH" dbFieldId="WPC10000_17" language="zh" value="供应商名称"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_17_EN" dbFieldId="WPC10000_17" language="en" value="Supplier Name"/>
+
 
     <!-- Entity labels for view-entity PartyGroupAndContact -->
     <DBEntity dbEntityId="PGC10000" dbEntityName="PartyGroupAndContact" dbEntityTypeField="PartyRole/roleTypeId" dbEntityTypeId="SUPPLIER" description="Vendor" isOpen="N" />
