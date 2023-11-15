@@ -120,6 +120,16 @@
             <Description Path="description"/>
         </HeaderInfo>
 
+        <!--填写评级-->
+        <Action Name="FillPartyClassification" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.fillPartyClassification">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <Parameter Name="partyClassificationGroupId" Type="String" Label="${partyClassificationGroupId}">
+                <ValueList CollectionPath="PartyClassificationGroups" WithFixedValues="true">
+                    <ParameterInOut LocalDataProperty="partyClassificationGroupId" ValueListProperty="partyClassificationGroupId"/>
+                </ValueList>
+            </Parameter>
+        </Action>
+
         <Action Name="FillSupplierBaseInfo" IsBound="true" EntitySetPath="supplierParty"
                 OfbizService="com.banfftech.events.SupplierEvents.fillSupplierBaseInfo"
                 StickySession="true" SideEffects="true">
@@ -284,20 +294,11 @@
 
     <EntityType Name="PartyClassification" AutoSet="true" AutoProperties="true" EntitySetName="PartyClassIdentifications"
                 Handler="component://officeauto/groovyScripts/partyManage/partyClassification/statusControl.groovy">
-        <FieldGroup Qualifier="PartyClassificationFieldGroup" Label="PartyClassificationFieldGroup">
-            <DataField Values="PartyClassificationGroup/description" Importance="High"/>
-        </FieldGroup>
+<!--        <FieldGroup Qualifier="PartyClassificationFieldGroup" Label="PartyClassificationFieldGroup">-->
+<!--            <DataField Values="PartyClassificationGroup/description" Importance="High"/>-->
+<!--        </FieldGroup>-->
         <NavigationProperty Name="PartyClassificationGroup"/>
         <Property Name="statusColor" Type="numeric" Hidden="true" HiddenFilter="true"/>
-        <Action Name="FillPartyClassification" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.fillPartyClassification">
-            <Parameter Name="partyClassification" Type="PartyClassification" Nullable="false" IsCollection="false"/>
-            <Parameter Name="partyClassificationGroupId" Type="String" Label="${partyClassificationGroupId}">
-                <ValueList CollectionPath="PartyClassificationGroups" WithFixedValues="true">
-                    <ParameterInOut LocalDataProperty="partyClassificationGroupId" ValueListProperty="partyClassificationGroupId"/>
-                </ValueList>
-            </Parameter>
-            <ReturnType Type="PartyClassification"/>
-        </Action>
     </EntityType>
 
     <EntityType Name="PartyClassificationGroup" AutoSet="true" AutoProperties="true" EntitySetName="PartyClassificationGroups">

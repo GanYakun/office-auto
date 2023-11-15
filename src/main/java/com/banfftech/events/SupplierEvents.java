@@ -25,21 +25,14 @@ import java.sql.Timestamp;
 
 
 public class SupplierEvents {
-    public static Object fillPartyClassification(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
+    public static void fillPartyClassification(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
                                                  EdmBindingTarget edmBindingTarget) throws OfbizODataException {
         Delegator delegator = (Delegator) oDataContext.get("delegator");
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
         try {
-            List<OdataParts> odataPartsList = (List<OdataParts>) oDataContext.get("odataParts");
-            int odataPartsListSize = odataPartsList.size();
-            GenericValue supplierParty = null;
-            OdataParts odataPartsOne = odataPartsList.get(odataPartsListSize - 2);
-            OdataOfbizEntity supplierPartyEntity = (OdataOfbizEntity) odataPartsOne.getEntityData();
-            supplierParty = supplierPartyEntity.getGenericValue();
-            if (supplierParty == null) {
-                throw new OfbizODataException("Account is invalid");
-            }
+            OdataOfbizEntity supplierPartyEntity = (OdataOfbizEntity) actionParameters.get("supplierParty");
+            GenericValue supplierParty = supplierPartyEntity.getGenericValue();
             String partyId = (String) supplierParty.get("partyId");
             List<GenericValue> partyClassifications = delegator.findByAnd("PartyClassification", UtilMisc.toMap("partyId", partyId), null, false);
             if (UtilValidate.isNotEmpty(partyClassifications)) {
@@ -51,9 +44,6 @@ public class SupplierEvents {
             String partyClassificationGroupId = (String) actionParameters.get("partyClassificationGroupId");
             dispatcher.runSync("banfftech.createPartyClassification", UtilMisc.toMap("userLogin", userLogin,
                     "partyId", partyId, "partyClassificationGroupId", partyClassificationGroupId, "fromDate", UtilDateTime.nowTimestamp()));
-            List<GenericValue> partyClassificationReturns = delegator.findByAnd("PartyClassification", UtilMisc.toMap("partyId", partyId, "partyClassificationGroupId", partyClassificationGroupId), null, true);
-            GenericValue partyClassificationReturn = EntityUtil.getFirst(partyClassificationReturns);
-            return partyClassificationReturn;
         } catch (GenericEntityException | GenericServiceException e) {
             throw new OfbizODataException(e.getMessage());
         }

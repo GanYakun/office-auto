@@ -143,7 +143,7 @@ under the License.
     <DBField dbFieldId="PT10003" dbFieldName="statusId" dbFieldTypeId="STATUS" dbEntityId="PT10000" description="状态"/>
     <DBField dbFieldId="PT10004" dbFieldName="partyId" dbFieldTypeId="STATUS" dbEntityId="PT10000" description="名称"/>
     <DBFieldLabel dbFieldLabelId="PT10001" dbFieldId="PT10001" language="zh" value="名称"/>
-    <DBFieldLabel dbFieldLabelId="PT10002" dbFieldId="PT10001" language="en" value=""/>
+    <DBFieldLabel dbFieldLabelId="PT10002" dbFieldId="PT10001" language="en" value="Name"/>
     <DBFieldLabel dbFieldLabelId="PT10003" dbFieldId="PT10002" language="zh" value="社会统一码"/>
     <DBFieldLabel dbFieldLabelId="PT10004" dbFieldId="PT10002" language="en" value=""/>
     <DBFieldLabel dbFieldLabelId="PT10005" dbFieldId="PT10003" language="zh" value="状态"/>
