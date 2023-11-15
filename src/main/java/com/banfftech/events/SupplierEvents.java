@@ -180,6 +180,9 @@ public class SupplierEvents {
         List<GenericValue> partyRelationships = delegator.findByAnd("PartyRelationship", UtilMisc.toMap("partyIdTo", supplierParty.get("partyId"), "roleTypeIdFrom", "SUPPLIER", "roleTypeIdTo", "CONTACT"), null, false);
         GenericValue partyRelationship = EntityUtil.getFirst(partyRelationships);
         List<GenericValue> workEffortAndPartyGroupContacts = delegator.findByAnd("WorkEffortAndPartyGroupContact", UtilMisc.toMap("partyId", partyRelationship.get("partyIdFrom"), "approvePartyId", partyRelationship.get("partyIdFrom")), null, false);
+        if (UtilValidate.isEmpty(workEffortAndPartyGroupContacts)){
+            throw new OfbizODataException("You must assign party to approve!");
+        }
         GenericValue workEffortAndPartyGroupContact = EntityUtil.getFirst(workEffortAndPartyGroupContacts);
         dispatcher.runSync("banfftech.createPartySurveyAppl",
                 UtilMisc.toMap("userLogin", userLogin, "partyId", supplierParty.getString("partyId"),

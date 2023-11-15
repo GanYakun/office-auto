@@ -48,7 +48,7 @@
         <NavigationProperty Name="AfterSalesService" Type="AfterSalesService" Relations="WorkEffortPartyAssignment(roleTypeId=SUPPLIER)/WorkEffort" IsCollection="true"/>
         <NavigationProperty Name="PartyClassification" IsCollection="false"/>
         <NavigationProperty Name="SurveyQuestionAppl" Type="SurveyQuestionAppl" Relations="PartySurveyAppl/SurveyQuestionAppl" IsCollection="true"/>
-        <SelectionFields PropertyPath="statusId,primaryPhone"/>
+        <SelectionFields PropertyPath="primaryPhone"/>
 
 <!--        <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">-->
 <!--            <DataField Values="numEmployees,annualRevenue,tickerSymbol,comments" Importance="High"/>-->
@@ -172,11 +172,10 @@
     </EntityType>
 
     <EntityType Name="PurchaseQuote" OfbizEntity="Quote" EntityCondition="quoteTypeId=PURCHASE_QUOTE" EntitySetName="PurchaseQuotes" AutoProperties="true" AutoSet="true"
-                Handler="component://officeauto/groovyScripts/marketingSalesService/quote/generateEntityListFields.groovy">
+    >
         <LineItem>
             <DataField Values="quoteId,quoteName,partyId,custRequestId,salesChannelEnumId" Importance="High"/>
-            <DataField Values="statusId" Criticality="statusColor" Importance="High"/>
-            <Criticality Value="statusColor"/>
+            <DataField Values="statusId" Importance="High"/>
         </LineItem>
 
         <HeaderInfo TypeName="报价" TypeNamePlural="报价列表">
@@ -202,30 +201,17 @@
             <Text Path="SupplierParty/partyName" TextArrangement="TextOnly"/>
             <ValueList CollectionPath="SupplierParties"/>
         </Property>
-        <Property Name="statusColor"  Type="numeric" Hidden="true" HiddenFilter="true"/>
+<!--        <Property Name="statusColor"  Type="numeric" Hidden="true" HiddenFilter="true"/>-->
 
         <NavigationProperty Name="QuoteStatusItem" Type="QuoteStatusItem" Relations="StatusItem"/>
         <NavigationProperty Name="SalesChannelEnumeration"/>
         <NavigationProperty Name="SupplierParty" Type="SupplierParty" Relations="PartyGroupAndContact"/>
     </EntityType>
-    
+
     <EntityType Name="PartyClassification" AutoSet="true" AutoProperties="true" EntitySetName="PartyClassIdentifications"
                 Handler="component://officeauto/groovyScripts/partyManage/partyClassification/statusControl.groovy">
-        <FieldGroup Qualifier="PartyClassificationFieldGroup" Label="PartyClassificationFieldGroup">
-            <DataField Values="PartyClassificationGroup/description" Importance="High"/>
-        </FieldGroup>
         <NavigationProperty Name="PartyClassificationGroup"/>
         <Property Name="statusColor" Type="numeric" Hidden="true" HiddenFilter="true"/>
-
-        <Action Name="FillPartyClassification" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.fillPartyClassification">
-            <Parameter Name="partyClassification" Type="PartyClassification" Nullable="false" IsCollection="true"/>
-            <Parameter Name="partyClassificationGroupId" Type="String" Label="评级">
-                <ValueList CollectionPath="PartyClassificationGroups" WithFixedValues="true">
-                    <ParameterInOut LocalDataProperty="partyClassificationGroupId" ValueListProperty="partyClassificationGroupId"/>
-                </ValueList>
-            </Parameter>
-            <ReturnType Type="PartyClassification"/>
-        </Action>
     </EntityType>
 
     <EntityType Name="PartyClassificationGroup" AutoSet="true" AutoProperties="true" EntitySetName="PartyClassificationGroups">

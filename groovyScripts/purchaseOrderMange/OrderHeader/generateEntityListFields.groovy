@@ -1,4 +1,4 @@
-import com.banfftech.bfdemo.util.BfDemoUtils
+
 import com.dpbird.odata.edm.OdataOfbizEntity
 import org.apache.olingo.commons.api.data.Property
 import org.apache.olingo.commons.api.data.ValueType

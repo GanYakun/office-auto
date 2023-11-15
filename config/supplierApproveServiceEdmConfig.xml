@@ -294,9 +294,6 @@
 
     <EntityType Name="PartyClassification" AutoSet="true" AutoProperties="true" EntitySetName="PartyClassIdentifications"
                 Handler="component://officeauto/groovyScripts/partyManage/partyClassification/statusControl.groovy">
-<!--        <FieldGroup Qualifier="PartyClassificationFieldGroup" Label="PartyClassificationFieldGroup">-->
-<!--            <DataField Values="PartyClassificationGroup/description" Importance="High"/>-->
-<!--        </FieldGroup>-->
         <NavigationProperty Name="PartyClassificationGroup"/>
         <Property Name="statusColor" Type="numeric" Hidden="true" HiddenFilter="true"/>
     </EntityType>
