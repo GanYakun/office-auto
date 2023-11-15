@@ -282,7 +282,7 @@
 
         <SelectionFields PropertyPath="productId,partyIdFrom,partyIdTo"/>
 
-        <HeaderInfo TypeName="合同" TypeNamePlural="合同列表">
+        <HeaderInfo TypeName="Agreement" TypeNamePlural="Agreement List">
             <Title Path="agreementId"/>
             <Description Path="description"/>
         </HeaderInfo>
