@@ -639,14 +639,20 @@
             <Parameter Name="finAccount" Type="FinAccount" Nullable="false" IsCollection="true"/>
             <Parameter Name="finAccountName" Type="String" Label="${finAccountName}" Nullable="false"/>
             <Parameter Name="finAccountCode" Type="String" Label="${finAccountCode}" Nullable="false"/>
-            <Parameter Name="currencyUomId" Type="String" Label="${currencyUomId}" Nullable="false"/>
+            <Parameter Name="currencyUomId" Type="String" Label="${currencyUomId}" Nullable="false">
+                <ValueList CollectionPath="CurrencyUnm" WithFixedValues="true">
+                    <ParameterInOut ValueListProperty="uomId" LocalDataProperty="currencyUomId"/>
+                </ValueList>
+            </Parameter>
             <ReturnType Type="NoteData"/>
         </Action>
         <NavigationProperty Name="AccountStatusItem" Type="AccountStatusItem" Relations="StatusItem" AutoBinding="true" />
         <NavigationProperty Name="FinAccountType" AutoBinding="true" />
-        <NavigationProperty Name="CurrencyUom" AutoBinding="true" />
+        <NavigationProperty Name="CurrencyUom" Type="CurrencyUom" Relations="CurrencyUom"/>
         <NavigationProperty Name="OwnerParty"/>
     </EntityType>
+
+    <EntityType Name="CurrencyUom" OfbizEntity="Uom" EntityCondition="uomTypeId=CURRENCY_MEASURE" EntitySetName="CurrencyUnm" AutoProperties="true"/>
 
     <EntityType Name="FinAccountType" EntitySetName="FinAccountTypes" AutoSet="true" AutoProperties="true" />
     <EntityType Name="Party" EntitySetName="Parties" AutoSet="true" AutoProperties="true">
