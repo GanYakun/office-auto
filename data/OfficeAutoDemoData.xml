@@ -173,6 +173,7 @@ under the License.
     <PartyRole partyId="9009" roleTypeId="SUPPLIER"/>
     <!-- StatusValidChange -->
     <StatusValidChange statusId="APPROVAL_APPROVED" statusIdTo="PARTY_ENABLED"/>
+    <StatusValidChange statusId="PARTY_DISABLED" statusIdTo="PARTY_ENABLED"/>
 
     <!-- 风险评级数据 -->
     <!-- PartyClassificationType(评级类型) -->
