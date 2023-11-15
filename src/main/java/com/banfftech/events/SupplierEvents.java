@@ -185,7 +185,7 @@ public class SupplierEvents {
         }
         GenericValue workEffortAndPartyGroupContact = EntityUtil.getFirst(workEffortAndPartyGroupContacts);
         dispatcher.runSync("banfftech.createPartySurveyAppl",
-                UtilMisc.toMap("userLogin", userLogin, "partyId", supplierParty.getString("partyId"),
+                UtilMisc.toMap("userLogin", userLogin, "partyId", partyRelationship.get("partyIdFrom"),
                         "surveyId", "DD_STD_FORM", "surveyApplTypeId", "DD_FORM"));
 
         //暂时采用更新SurveyQuestionAnswer的方案
