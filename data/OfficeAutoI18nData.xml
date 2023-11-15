@@ -100,7 +100,7 @@ under the License.
     <Internationalization id="I10077" lang="en" property="StatusItem.description.NOT_PROCESSED" value="Not Processed"/>
     <Internationalization id="I10078" lang="zh" property="StatusItem.description.PROCESSED" value="已处理"/>
     <Internationalization id="I10079" lang="en" property="StatusItem.description.PROCESSED" value="Processed"/>
-    <Internationalization id="I10080" lang="en" property="partyClassificationGroupId" value="Resque Level"/>
+    <Internationalization id="I10080" lang="en" property="partyClassificationGroupId" value="Risk Level"/>
     <Internationalization id="I10081" lang="zh" property="partyClassificationGroupId" value="风险等级"/>
     <Internationalization id="I10082" lang="en" property="response" value="Response"/>
     <Internationalization id="I10083" lang="zh" property="response" value="回答"/>
