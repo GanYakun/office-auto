@@ -626,7 +626,7 @@
         </Property>
         <Property Name="statusId">
             <Text Path="AccountStatusItem/description" TextArrangement="TextOnly" />
-            <ValueList CollectionPath="FinacctStatusItems" WithFixedValues="true" />
+            <ValueList CollectionPath="AccountStatusItems" WithFixedValues="true" />
         </Property>
         <Property Name="ownerPartyId">
             <Text Path="OwnerParty/partyName" TextArrangement="TextOnly"/>
