@@ -462,32 +462,32 @@
         </Property>
         <NavigationProperty Name="CarrierParty" AutoBinding="true" IsCollection="false"/>
     </EntityType>
-    <EntityType Name="SupplierStatusItem" AutoSet="true" EntitySetName="SupplierStatusItems" AutoProperties="true">
+    <EntityType Name="SupplierStatusItem" OfbizEntity="StatusItem" AutoSet="true" EntitySetName="SupplierStatusItems" AutoProperties="true">
         <Property Name="statusId">
             <Text Path="description" TextArrangement="TextOnly"/>
         </Property>
     </EntityType>
-    <EntityType Name="ShipmentStatusItem" AutoSet="true" EntitySetName="ShipmentStatusItems" AutoProperties="true">
+    <EntityType Name="ShipmentStatusItem" OfbizEntity="StatusItem" AutoSet="true" EntitySetName="ShipmentStatusItems" AutoProperties="true">
         <Property Name="statusId">
             <Text Path="description" TextArrangement="TextOnly"/>
         </Property>
     </EntityType>
-    <EntityType Name="AccountStatusItem" AutoSet="true" EntitySetName="AccountStatusItems" AutoProperties="true">
+    <EntityType Name="AccountStatusItem" OfbizEntity="StatusItem" AutoSet="true" EntitySetName="AccountStatusItems" AutoProperties="true">
         <Property Name="statusId">
             <Text Path="description" TextArrangement="TextOnly"/>
         </Property>
     </EntityType>
-    <EntityType Name="OrderStatusItem" AutoSet="true" EntitySetName="OrderStatusItems" AutoProperties="true">
+    <EntityType Name="OrderStatusItem" OfbizEntity="StatusItem" AutoSet="true" EntitySetName="OrderStatusItems" AutoProperties="true">
         <Property Name="statusId">
             <Text Path="description" TextArrangement="TextOnly"/>
         </Property>
     </EntityType>
-    <EntityType Name="InvoiceStatusItem" AutoSet="true" EntitySetName="InvoiceStatusItems" AutoProperties="true">
+    <EntityType Name="InvoiceStatusItem" OfbizEntity="StatusItem" AutoSet="true" EntitySetName="InvoiceStatusItems" AutoProperties="true">
         <Property Name="statusId">
             <Text Path="description" TextArrangement="TextOnly"/>
         </Property>
     </EntityType>
-    <EntityType Name="QuoteStatusItem" AutoSet="true" EntitySetName="QuoteStatusItems" AutoProperties="true">
+    <EntityType Name="QuoteStatusItem" OfbizEntity="StatusItem" AutoSet="true" EntitySetName="QuoteStatusItems" AutoProperties="true">
         <Property Name="statusId">
             <Text Path="description" TextArrangement="TextOnly"/>
         </Property>
