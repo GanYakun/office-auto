@@ -191,16 +191,16 @@ public class SupplierEvents {
         //暂时采用更新SurveyQuestionAnswer的方案
         dispatcher.runSync("banfftech.updateSurveyQuestionAnswer",
                 UtilMisc.toMap("userLogin", userLogin, "surveyQuestionId", "9000",
-                        "partyId", supplierParty.getString("partyId"), "booleanResponse", "Y"));
+                        "partyId", partyRelationship.get("partyIdFrom"), "booleanResponse", "Y"));
         dispatcher.runSync("banfftech.updateSurveyQuestionAnswer",
                 UtilMisc.toMap("userLogin", userLogin, "surveyQuestionId", "9001",
-                        "partyId", supplierParty.getString("partyId"), "booleanResponse", "Y"));
+                        "partyId", partyRelationship.get("partyIdFrom"), "booleanResponse", "Y"));
         dispatcher.runSync("banfftech.updateSurveyQuestionAnswer",
                 UtilMisc.toMap("userLogin", userLogin, "surveyQuestionId", "9002",
-                        "partyId", supplierParty.getString("partyId"), "booleanResponse", "N"));
+                        "partyId", partyRelationship.get("partyIdFrom"), "booleanResponse", "N"));
         dispatcher.runSync("banfftech.updateSurveyQuestionAnswer",
                 UtilMisc.toMap("userLogin", userLogin, "surveyQuestionId", "9003",
-                        "partyId", supplierParty.getString("partyId"), "booleanResponse", "N"));
+                        "partyId", partyRelationship.get("partyIdFrom"), "booleanResponse", "N"));
         dispatcher.runSync("banfftech.updateWorkEffortAndPartyGroupContact",
                 UtilMisc.toMap("userLogin", userLogin, "currentStatusId", "PROCESSED", "workEffortId", workEffortAndPartyGroupContact.get("workEffortId"), "partyId", partyRelationship.get("partyIdFrom")));
         return null;
