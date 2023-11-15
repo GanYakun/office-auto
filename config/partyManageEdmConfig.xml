@@ -21,7 +21,7 @@
         <Property Name="createSupplierHidden" Type="Boolean" Hidden="true"/>
         <Property Name="firstOrderDate" Type="Timestamp" IsDateAttribute="true"/>
         <Property Name="collectionDate" Type="Timestamp" IsDateAttribute="true"/>
-        <Property Name="totalAmount" Type="BigDecimal" Label="订单总金额" Scale="3"/>
+        <Property Name="totalAmount" Type="BigDecimal" Label="Total Amount" Scale="3"/>
         <Property Name="criticalityValue" Type="numeric" Hidden="true" HiddenFilter="true"/>
         <Property Name="statusId" Immutable="true" DefaultValue="APPROVAL_CREATED">
             <ValueList CollectionPath="SupplierStatusItems" WithFixedValues="true"/>
@@ -394,7 +394,7 @@
         <Property Name="minimumOrderQuantity" DefaultValue="1" Computed="true"/>
         <Property Name="currencyUomId" DefaultValue="CNY" Computed="true"/>
         <Property Name="partyId" Computed="true"/>
-        <Property Name="productId" Label="产品ID"/>
+        <Property Name="productId" Label="Product ID"/>
         <Property Name="availableFromDate" Computed="true"/>
         <NavigationProperty Name="Product"/>
         <NavigationProperty Name="CurrencyUom"/>
@@ -408,23 +408,23 @@
         <Property Name="productTypeId" >
             <Text Path="ProductType/description" TextArrangement="TextOnly"/>
         </Property>
-        <Property Name="quantityUomId" Immutable="true" Label="计量单位">
+        <Property Name="quantityUomId" Immutable="true" Label="Quantity Uom">
             <Text Path="QuantityUom/description" TextArrangement="TextOnly"/>
         </Property>
-        <Property Name="productName" Label="产品名称" Immutable="true"/>
+        <Property Name="productName" Immutable="true" Label="Product Name"/>
         <NavigationProperty Name="ProductType"/>
         <NavigationProperty Name="QuantityUom"/>
     </EntityType>
     <EntityType Name="RawMaterialProduct" EntitySetName="RawMaterialProducts" AutoSet="true" OfbizEntity="Product"
                 EntityCondition="productTypeId=RAW_MATERIAL" AutoProperties="true">
-        <Property Name="productId" Label="产品ID">
+        <Property Name="productId">
             <Text Path="productName" TextArrangement="TextOnly"/>
         </Property>
         <NavigationProperty Name="QuantityUom" AutoBinding="true"/>
     </EntityType>
     <EntityType Name="ProductType" AutoSet="true" EntitySetName="ProductTypes" AutoProperties="true"/>
     <EntityType Name="Uom" AutoProperties="true" AutoSet="true" EntitySetName="Uoms">
-        <Property Name="description" Label="数量单位"/>
+        <Property Name="description"/>
     </EntityType>
     <EntityType Name="Shipment" AutoProperties="true" AutoSet="true" EntitySetName="Shipments" AttrEntityName="ShipmentAttribute"  DraftEntityName="PartyShipmentAppDraft"
                 Handler="component://officeauto/groovyScripts/partyManage/shipment/statusControl.groovy">
@@ -545,7 +545,7 @@
     </EntityType>
 
     <EntityType Name="Enumeration" EntitySetName="OrderSalesEnumerations" EntityCondition="enumTypeId=ORDER_NEW_SALES_CHANNEL" AutoProperties="true">
-        <ValueList CollectionPath="OrderSalesEnumerations" WithFixedValues="true" Label="选择销售渠道"/>
+        <ValueList CollectionPath="OrderSalesEnumerations" WithFixedValues="true" Label="Select Channel"/>
         <Property Name="enumId">
             <Text Path="description" TextArrangement="TextOnly"/>
         </Property>

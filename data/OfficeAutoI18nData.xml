@@ -159,13 +159,13 @@ under the License.
     <DBField dbFieldId="IV10003" dbFieldName="invoiceDate" dbFieldTypeId="DATE_TIME" dbEntityId="IV10000" description="开据时间"/>
     <DBField dbFieldId="IV10004" dbFieldName="description" dbFieldTypeId="DATE_TIME" dbEntityId="IV10000" description="开据时间"/>
     <DBFieldLabel dbFieldLabelId="IV10000" dbFieldId="IV10000" language="zh" value="发票ID"/>
-    <DBFieldLabel dbFieldLabelId="IV10001" dbFieldId="IV10000" language="en" value=""/>
+    <DBFieldLabel dbFieldLabelId="IV10001" dbFieldId="IV10000" language="en" value="Invoice ID"/>
     <DBFieldLabel dbFieldLabelId="IV10002" dbFieldId="IV10001" language="zh" value="状态"/>
-    <DBFieldLabel dbFieldLabelId="IV10003" dbFieldId="IV10001" language="en" value=""/>
+    <DBFieldLabel dbFieldLabelId="IV10003" dbFieldId="IV10001" language="en" value="Status"/>
     <DBFieldLabel dbFieldLabelId="IV10004" dbFieldId="IV10002" language="zh" value="开据方"/>
-    <DBFieldLabel dbFieldLabelId="IV10005" dbFieldId="IV10002" language="en" value=""/>
+    <DBFieldLabel dbFieldLabelId="IV10005" dbFieldId="IV10002" language="en" value="Invoice Party"/>
     <DBFieldLabel dbFieldLabelId="IV10006" dbFieldId="IV10003" language="zh" value="开据时间"/>
-    <DBFieldLabel dbFieldLabelId="IV10007" dbFieldId="IV10003" language="en" value=""/>
+    <DBFieldLabel dbFieldLabelId="IV10007" dbFieldId="IV10003" language="en" value="Invoice Date"/>
 
     <!--供应商-->
     <!-- Entity labels for view-entity WorkEffortAndPartyGroupContact -->
