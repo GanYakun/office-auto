@@ -1,10 +1,14 @@
 <ofbiz-edm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:noNamespaceSchemaLocation="https://dev.odatalab.com/dtds/edmconfig.xsd" ImportGlobal="false">
     <ImportEdm Path="component://bfcommon/config/approvalManageEdmConfig.xml"/>
+    <ImportEdm Path="component://officeauto/config/launchpadManageEdmConfig.xml"/>
+    <ImportEdm Path="component://officeauto/config/supplierApproveServiceEdmConfig.xml"/>
     <!--=====================================     主对象EntityType definition     =====================================-->
 
     <ExtendEntityType Name="Approval">
-
+        <!-- 关联供应商数据 -->
+        <NavigationProperty Name="SupplierParty" Relations="TopWorkEffort/WorkFlowMember/WorkEffortAndPartyGroupContact"
+                            Type="SupplierParty" IsCollection="false"/>
     </ExtendEntityType>
 
 </ofbiz-edm>

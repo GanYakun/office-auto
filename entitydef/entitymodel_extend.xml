@@ -188,4 +188,12 @@
 			<key-map field-name="surveyQuestionId"/>
 		</relation>
 	</extend-entity>
+
+	<extend-entity entity-name="WorkFlowMember">
+		<relation type="one-nofk" rel-entity-name="WorkEffortAndPartyGroupContact">
+			<key-map field-name="memberEntityId" rel-field-name="workEffortId"/>
+		</relation>
+	</extend-entity>
+
+
 </entitymodel>
