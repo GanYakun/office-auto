@@ -25,10 +25,9 @@
             <Text Path="SupplierStatusItem/description" TextArrangement="TextOnly"/>
         </Property>
         <Property Name="createSupplierHidden" Type="Boolean" Hidden="true"/>
-<!--        <Property Name="disableEditSupplier" Type="Boolean" Hidden="true"/>-->
         <Property Name="firstOrderDate" Type="Timestamp" IsDateAttribute="true"/>
         <Property Name="collectionDate" Type="Timestamp" IsDateAttribute="true"/>
-        <Property Name="totalAmount" Type="BigDecimal" Label="" Scale="3"/>
+        <Property Name="totalAmount" Type="BigDecimal" Scale="3"/>
         <Property Name="criticalityValue" Type="numeric" Hidden="true" HiddenFilter="true"/>
         <Property Name="statusId" Immutable="true" DefaultValue="PARTY_DISABLED">
             <ValueList CollectionPath="SupplierStatusItems" WithFixedValues="true"/>
@@ -60,6 +59,7 @@
         <NavigationProperty Name="DataResource" Type="DataResource" Relations="PartyContent/Content/DataResource"/>
         <SelectionFields PropertyPath="currentStatusId,primaryPhone"/>
 
+        <!--Annotation-->
         <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">
             <DataField Values="numEmployees,annualRevenue,tickerSymbol,comments" Importance="High"/>
         </FieldGroup>
@@ -91,9 +91,21 @@
             <DataField Values="partyId,primaryEmail,address1,primaryPhone" Importance="High"/>
             <DataFieldForAction Label="${create}" Action="CreateSupplierParty" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
+
         <FieldGroup Qualifier="TimeInfo" Label="TimeInfo">
             <DataField Values="createdDate,lastModifiedDate,firstOrderDate,collectionDate" Importance="High"/>
         </FieldGroup>
+
+        <FieldGroup Qualifier="IdentificationCode" Label="IdentificationCode">
+            <DataField Values="usccNumber" Importance="High"/>
+        </FieldGroup>
+
+        <HeaderInfo TypeName="Supplier Party" TypeNamePlural="Supplier Party List">
+            <Title Path="partyId"/>
+            <Description Path="description"/>
+        </HeaderInfo>
+
+        <!--审批流Action-->
         <Function Name="GetApproverData_Supplier" OfbizService="com.banfftech.event.ApprovalEvent.getApproverData"
                   IsBound="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
@@ -111,15 +123,6 @@
             <ReturnType Type="ActiveData" Nullable="true"/>
         </Action>
 
-        <FieldGroup Qualifier="IdentificationCode" Label="IdentificationCode">
-            <DataField Values="usccNumber" Importance="High"/>
-        </FieldGroup>
-
-        <HeaderInfo TypeName="Supplier Party" TypeNamePlural="Supplier Party List">
-            <Title Path="partyId"/>
-            <Description Path="description"/>
-        </HeaderInfo>
-
         <!--填写评级-->
         <Action Name="FillPartyClassification" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.fillPartyClassification">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
@@ -130,6 +133,7 @@
             </Parameter>
         </Action>
 
+        <!--填写基本信息-->
         <Action Name="FillSupplierBaseInfo" IsBound="true" EntitySetPath="supplierParty"
                 OfbizService="com.banfftech.events.SupplierEvents.fillSupplierBaseInfo"
                 StickySession="true" SideEffects="true">
@@ -142,6 +146,7 @@
             <ReturnType Type="SupplierParty"/>
         </Action>
 
+        <!--更新联系人信息-->
         <Action Name="UpdateSupplierContactInfo" IsBound="true" EntitySetPath="supplierParty"
                 OfbizService="com.banfftech.events.SupplierEvents.updateSupplierContactInfo"
                 StickySession="true" SideEffects="true">
@@ -152,6 +157,7 @@
             <ReturnType Type="SupplierParty"/>
         </Action>
 
+        <!--更新时间信息-->
         <Action Name="UpdateSupplierTimeInfo" IsBound="true" EntitySetPath="supplierParty"
                 OfbizService="com.banfftech.events.SupplierEvents.updateSupplierTimeInfo"
                 StickySession="true" SideEffects="true">
@@ -161,6 +167,7 @@
             <ReturnType Type="SupplierParty"/>
         </Action>
 
+        <!--创建Supplier-->
         <Action Name="CreateSupplierParty" IsBound="true" OfbizService="com.dpbird.odata.events.ActionEvents.createEntity">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="true"/>
             <Parameter Name="partyName" Type="String" Label="${supplierActionPartyName}" Nullable="false"/>
@@ -216,6 +223,7 @@
             <Parameter Name="target" Type="String" IsCollection="false"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
+
         <!--生成调查问卷的回答-->
         <Action Name="GenerateSurveyQuestionAnswer" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.generateSurveyQuestionAnswer" SideEffects="true">
             <Parameter Name="partyUserLogin" Type="PartyUserLogin" Nullable="false" IsCollection="false"/>
@@ -227,34 +235,36 @@
         <Property Name="currentStatusId">
             <Text Path="CurrentStatusItem/description" TextArrangement="TextOnly"/>
         </Property>
+
         <LineItem Qualifier="HistoryRecord">
             <DataField Values="ApproveParty/partyName,currentStatusId,lastModifiedDate" Importance="High"/>
         </LineItem>
+
         <NavigationProperty Name="CurrentStatusItem"/>
         <NavigationProperty Name="ApproveParty"/>
     </EntityType>
-    
+
+    <!--======================================DDForm问卷相关对象========================================-->
+    <!--SurveyQuestionAppl-->
     <EntityType Name="SurveyQuestionAppl" AutoProperties="true" EntitySetName="SurveyQuestionAppls" AutoSet="true"
                 Handler="component://officeauto/groovyScripts/partyManage/surveyQuestionAppl/generateEntityListFields.groovy">
         <Property Name="response" Type="String" Label="${response}"/>
         <LineItem Qualifier="SurveyQuestionApplLineItem">
             <DataField Values="SurveyQuestion/question,response" Importance="High"/>
         </LineItem>
-        
         <NavigationProperty Name="SurveyQuestion"/>
         <NavigationProperty Name="Survey"/>
         <NavigationProperty Name="SurveyQuestionAnswer" Type="SurveyQuestionAnswer" Relations="SurveyQuestion/SurveyQuestionAnswer" IsCollection="false"/>
     </EntityType>
+    <!--SurveyQuestion-->
+    <EntityType Name="SurveyQuestion" AutoSet="true" EntitySetName="SurveyQuestions" AutoProperties="true"/>
+    <!--Survey-->
+    <EntityType Name="Survey" AutoSet="true" EntitySetName="Surveys" AutoProperties="true"/>
+    <!--SurveyQuestionAnswer-->
+    <EntityType Name="SurveyQuestionAnswer" AutoSet="true" EntitySetName="SurveyQuestionAnswers" AutoProperties="true"/>
 
-    <EntityType Name="SurveyQuestion" AutoSet="true" EntitySetName="SurveyQuestions" AutoProperties="true">
-    </EntityType>
-
-    <EntityType Name="Survey" AutoSet="true" EntitySetName="Surveys" AutoProperties="true">
-    </EntityType>
-
-    <EntityType Name="SurveyQuestionAnswer" AutoSet="true" EntitySetName="SurveyQuestionAnswers" AutoProperties="true">
-    </EntityType>
-
+    <!--================================PurchaseQuote（报价）=======================================-->
+    <!--PurchaseQuote（采购报价）-->
     <EntityType Name="PurchaseQuote" OfbizEntity="Quote" EntityCondition="quoteTypeId=PURCHASE_QUOTE" EntitySetName="PurchaseQuotes" AutoProperties="true" AutoSet="true"
                 Handler="component://officeauto/groovyScripts/marketingSalesService/quote/generateEntityListFields.groovy">
         <LineItem>
@@ -272,10 +282,9 @@
             <DataField Values="partyId,salesChannelEnumId,custRequestId" Importance="High"/>
         </FieldGroup>
 
-        <Property Name="partyId" ExcludeFromNavigationContext="true"/>
-
         <SelectionFields PropertyPath="quoteId,partyId,statusId"/>
 
+        <Property Name="partyId" ExcludeFromNavigationContext="true"/>
         <Property Name="salesChannelEnumId">
             <Text Path="SalesChannelEnumeration/description" TextArrangement="TextOnly"/>
         </Property>
@@ -293,15 +302,18 @@
         <NavigationProperty Name="SupplierParty" Type="SupplierParty" Relations="PartyGroupAndContact"/>
     </EntityType>
 
+    <!--==================================评级相关对象==============================================-->
+    <!--PartyClassification（评级主对象）-->
     <EntityType Name="PartyClassification" AutoSet="true" AutoProperties="true" EntitySetName="PartyClassIdentifications"
                 Handler="component://officeauto/groovyScripts/partyManage/partyClassification/statusControl.groovy">
         <NavigationProperty Name="PartyClassificationGroup"/>
+
         <Property Name="statusColor" Type="numeric" Hidden="true" HiddenFilter="true"/>
     </EntityType>
-
+    <!--PartyClassificationGroup（评级组）-->
     <EntityType Name="PartyClassificationGroup" AutoSet="true" AutoProperties="true" EntitySetName="PartyClassificationGroups">
         <NavigationProperty Name="PartyClassificationType"/>
-        <NavigationProperty Name="ClassificationEnumeration" Type="ClassificationEnumeration" Relations="Enumeration"/>
+
         <Property Name="partyClassificationTypeId">
             <Text Path="PartyClassificationType/description" TextArrangement="TextOnly"/>
         </Property>
@@ -309,7 +321,15 @@
             <Text Path="description" TextArrangement="TextOnly"/>
         </Property>
     </EntityType>
+    <!--PartyClassificationType（评级类型）-->
+    <EntityType Name="PartyClassificationType" EntityCondition="partyClassificationTypeId in (VALUE_RATING,RISQUE_RATING)" AutoSet="true" AutoProperties="true" EntitySetName="PartyClassificationTypes">
+        <Property Name="partyClassificationTypeId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
 
+    <!--==================================售后服务相关对象==============================================-->
+    <!--AfterSalesService（售后服务）-->
     <EntityType Name="AfterSalesService" OfbizEntity="WorkEffort" EntityCondition="workEffortTypeId=AFTER_SALES" AutoProperties="true" EntitySetName="AfterSalesServices">
         <LineItem Qualifier="AfterSalesServiceLine">
             <DataField Values="workEffortId,workEffortName,actualCompletionDate,fixedAssetId,description" Importance="High"/>
@@ -319,15 +339,11 @@
             <Text Path="FixedAsset/fixedAssetName" TextArrangement="TextOnly"/>
         </Property>
     </EntityType>
-
+    <!--FixedAsset（设备）-->
     <EntityType Name="FixedAsset" EntitySetName="FixedAssets" AutoProperties="true" AutoSet="true"/>
 
-    <EntityType Name="PartyClassificationType" EntityCondition="partyClassificationTypeId in (VALUE_RATING,RISQUE_RATING)" AutoSet="true" AutoProperties="true" EntitySetName="PartyClassificationTypes">
-        <Property Name="partyClassificationTypeId">
-            <Text Path="description" TextArrangement="TextOnly"/>
-        </Property>
-    </EntityType>
-
+    <!--==================================采购发票==============================================-->
+    <!--Invoice（发票）-->
     <EntityType Name="Invoice" EntitySetName="Invoices" AutoSet="true" AutoProperties="true"
                 Handler="component://officeauto/groovyScripts/invoiceManage/invoiceHeader/generateEntityListFields.groovy">
         <Property Name="statusColor"  Type="numeric" Hidden="true" HiddenFilter="true"/>
@@ -351,9 +367,10 @@
         <NavigationProperty Name="Party" AutoBinding="true" />
         <NavigationProperty Name="FromParty" AutoBinding="true"/>
     </EntityType>
-
+    <!--InvoiceType（发票类型）-->
     <EntityType Name="InvoiceType" AutoProperties="true" AutoSet="true" EntitySetName="InvoiceTypes"/>
 
+    <!--==================================笔记备注==============================================-->
     <EntityType Name="NoteData" Orderby="-noteDateTime" EntitySetName="NoteData" AutoSet="true" AutoProperties="true">
         <Property Name="noteParty">
             <Text Path="NoteParty/partyName" TextArrangement="TextOnly"/>
@@ -374,22 +391,20 @@
         <NavigationProperty Name="NoteParty" Relations="NoteParty" Type="Party"/>
     </EntityType>
 
+    <!--==================================采购合同相关对象==============================================-->
+    <!--PurchaseAgreement（采购合同）-->
     <EntityType Name="PurchaseAgreement" EntitySetName="PurchaseAgreements" AutoSet="true" EntityCondition="agreementTypeId=PURCHASE_AGREEMENT" AutoProperties="true" OfbizEntity="Agreement">
         <LineItem Qualifier="PurchaseAgreementLineItem">
             <DataField Values="productId,description,agreementDate,fromDate,thruDate" Importance="High"/>
         </LineItem>
-
         <SelectionFields PropertyPath="productId,partyIdFrom,partyIdTo"/>
-
         <HeaderInfo TypeName="合同">
             <Title Path="agreementId"/>
             <Description Path="description"/>
         </HeaderInfo>
-
         <FieldGroup Qualifier="BaseInfo" Label="BaseInfo">
             <DataField Values="productId,partyIdFrom" Importance="High"/>
         </FieldGroup>
-
         <FieldGroup Qualifier="AgreementTime" Label="AgreementTime">
             <DataField Values="agreementDate,fromDate,thruDate" Importance="High"/>
         </FieldGroup>
@@ -398,12 +413,10 @@
             <Text Path="Company/partyName" TextArrangement="TextOnly"/>
             <ValueList CollectionPath="Companies" ParameterDisplayOnly="PartyAndContact/primaryPhone"/>
         </Property>
-
         <Property Name="partyIdTo">
             <Text Path="Supplier/partyName" TextArrangement="TextOnly"/>
             <ValueList CollectionPath="Suppliers" ParameterDisplayOnly="PartyAndContact/primaryPhone"/>
         </Property>
-
         <Property Name="productId">
             <Text Path="Product/productName" TextArrangement="TextOnly"/>
         </Property>
@@ -413,7 +426,26 @@
         <NavigationProperty Name="Company" Type="Company" Relations="FromPartyGroupAndContact"/>
         <NavigationProperty Name="AgreementTerm"/>
     </EntityType>
+    <!--AgreementTerm（合同条款）-->
+    <EntityType Name="AgreementTerm" EntitySetName="AgreementTerms" AutoSet="true" AutoProperties="true">
+        <LineItem Qualifier="AgreementTermLineItem">
+            <DataField Values="agreementTermId,agreementItemSeqId,termTypeId,termValue,termDays,maxQuantity,minQuantity,description,fromDate,thruDate" Importance="High"/>
+        </LineItem>
 
+        <Property Name="termTypeId">
+            <Text Path="TermType/description" TextArrangement="TextOnly"/>
+        </Property>
+
+        <NavigationProperty Name="TermType"/>
+    </EntityType>
+    <!--TermType（条款类型）-->
+    <EntityType Name="TermType" AutoProperties="true" AutoSet="true" EntitySetName="TermTypes">
+        <Property Name="termTypeId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+
+    <!--==================================采购订单相关对象==============================================-->
     <EntityType Name="PurchaseOrder" OfbizEntity="OrderHeader" EntityCondition="orderTypeId=PURCHASE_ORDER" AutoProperties="true" AutoSet="true" EntitySetName="PurchaseOrders"
                 Handler="component://officeauto/groovyScripts/purchaseOrderMange/OrderHeader/generateEntityListFields.groovy">
         <NavigationProperty Name="OrderStatusItem" Type="OrderStatusItem" Relations="StatusItem"/>
@@ -432,44 +464,7 @@
         </Property>
     </EntityType>
 
-    <EntityType Name="AgreementTerm" EntitySetName="AgreementTerms" AutoSet="true" AutoProperties="true">
-        <LineItem Qualifier="AgreementTermLineItem">
-            <DataField Values="agreementTermId,agreementItemSeqId,termTypeId,termValue,termDays,maxQuantity,minQuantity,description,fromDate,thruDate" Importance="High"/>
-        </LineItem>
-
-        <Property Name="termTypeId">
-            <Text Path="TermType/description" TextArrangement="TextOnly"/>
-        </Property>
-
-        <NavigationProperty Name="TermType"/>
-    </EntityType>
-
-    <EntityType Name="TermType" AutoProperties="true" AutoSet="true" EntitySetName="TermTypes">
-        <Property Name="termTypeId">
-            <Text Path="description" TextArrangement="TextOnly"/>
-        </Property>
-    </EntityType>
-
-    <EntityType Name="Company" OfbizEntity="PartyGroupAndContact" AutoProperties="true" EntityCondition="PartyRole/roleTypeId=INTERNAL_ORGANIZATIO" EntitySetName="Companies" AutoSet="true">
-        <Property Name="partyId">
-            <Text Path="partyName" TextArrangement="TextOnly"/>
-        </Property>
-    </EntityType>
-
-    <EntityType Name="CustomerParty" OfbizEntity="PartyGroupAndContact" AutoSet="true" EntitySetName="CustomerParties" EntityCondition="PartyRole/roleTypeId=CUSTOMER"
-                Properties="partyId,partyName,description,createdDate,createdByUserLogin">
-        <Property Name="partyId">
-            <Text Path="partyName" TextArrangement="TextOnly"/>
-        </Property>
-
-        <Property Name="criticalityValue" Type="numeric" Hidden="true" HiddenFilter="true"/>
-        <Property Name="usccNumber" Type="String" HiddenFilter="true"/>
-        <NavigationProperty Name="ToShipment"/>
-        <NavigationProperty Name="FromShipment"/>
-        <NavigationProperty Name="OwnerFinAccount" Type="FinAccount" IsCollection="true"
-                            Relations="OwnerFinAccount(finAccountTypeId=BANK_ACCOUNT)" />
-    </EntityType>
-
+    <!--==================================DataResource==============================================-->
     <EntityType Name="DataResource" EntitySetName="DataResources" AutoProperties="true">
         <LineItem Qualifier="DataResourceLineItem">
             <DataField Values="dataResourceName,objectInfo,createdDate,lastModifiedDate" Importance="High"/>
@@ -483,28 +478,8 @@
         </Action>
     </EntityType>
 
-    <EntityType Name="PersonAndContact" AttrEntityName="PartyAttribute" AutoProperties="true" AutoLabel="true"
-                AutoSet="true" EntitySetName="PersonAndContacts">
-        <Property Name="position" IsAttribute="true" Type="String"/>
-        <LineItem Qualifier="PartyRelationshipLineItem">
-            <DataField Values="partyName,primaryPhone,phoneMobile,primaryEmail,position" Importance="High"/>
-            <DataFieldForAction Label="${create}" Action="CreatePersonAndContact" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
-        </LineItem>
-        <LineItem Qualifier="PartyRelationshipLineItemWithoutAction">
-            <DataField Values="partyName,primaryPhone,phoneMobile,primaryEmail,position" Importance="High"/>
-        </LineItem>
-        <Action Name="CreatePersonAndContact" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createPersonAndContact">
-            <Parameter Name="personAndContact" Type="PersonAndContact" Nullable="false" IsCollection="true"/>
-            <Parameter Name="partyName" Type="String" Label="${partyName}" Nullable="false"/>
-            <Parameter Name="primaryPhone" Type="String" Label="${phone}" Nullable="true"/>
-            <Parameter Name="phoneMobile" Type="String" Label="${mobile}" Nullable="false"/>
-            <Parameter Name="primaryEmail" Type="String" Label="${email}" Nullable="true"/>
-            <Parameter Name="position" Type="String" Label="${position}" Nullable="true"/>
-            <ReturnType Type="PersonAndContact"/>
-        </Action>
-
-    </EntityType>
-
+    <!--==================================供应商相关对象==============================================-->
+    <!--SupplierProduct（供应商）-->
     <EntityType Name="SupplierProduct" AutoSet="true" EntitySetName="SupplierProducts" AutoProperties="true">
         <Property Name="minimumOrderQuantity" DefaultValue="1" Computed="true"/>
         <Property Name="currencyUomId" DefaultValue="CNY" Computed="true"/>
@@ -526,6 +501,7 @@
             <ReturnType Type="SupplierProduct"/>
         </Action>
     </EntityType>
+    <!--Product（产品）-->
     <EntityType Name="Product" EntitySetName="Products" AutoSet="true" AutoProperties="true" OfbizType="productTypeId=FINISHED_GOOD">
         <Property Name="productTypeId" >
             <Text Path="ProductType/description" TextArrangement="TextOnly"/>
@@ -537,6 +513,7 @@
         <NavigationProperty Name="ProductType"/>
         <NavigationProperty Name="QuantityUom"/>
     </EntityType>
+    <!--RawMaterialProduct（原料）-->
     <EntityType Name="RawMaterialProduct" EntitySetName="RawMaterialProducts" AutoSet="true" OfbizEntity="Product"
                 EntityCondition="productTypeId=RAW_MATERIAL" AutoProperties="true">
         <Property Name="productId" Label="产品ID">
@@ -544,10 +521,11 @@
         </Property>
         <NavigationProperty Name="QuantityUom" AutoBinding="true"/>
     </EntityType>
+    <!--ProductType（产品类型）-->
     <EntityType Name="ProductType" AutoSet="true" EntitySetName="ProductTypes" AutoProperties="true"/>
-    <EntityType Name="Uom" AutoProperties="true" AutoSet="true" EntitySetName="Uoms">
-        <Property Name="description" Label="数量单位"/>
-    </EntityType>
+
+    <!--==================================货运相关对象==============================================-->
+    <!--Shipment（货运）-->
     <EntityType Name="Shipment" AutoProperties="true" AutoSet="true" EntitySetName="Shipments" AttrEntityName="ShipmentAttribute"
                 Handler="component://officeauto/groovyScripts/partyManage/shipment/statusControl.groovy">
         <Property Name="receiveDate" Type="Timestamp" Precision="3" IsAttribute="true"/>
@@ -564,57 +542,31 @@
             <DataField Importance="High" Values="statusId" Criticality="shipmentStatus"/>
             <Criticality Value="shipmentStatus"/>
         </LineItem>
+
         <NavigationProperty Name="ShipmentItem"/>
         <NavigationProperty Name="SupplierParty" Relations="FromPartyGroupAndContact" Type="SupplierParty" ReadOnly="true" IsCollection="false"/>
         <NavigationProperty Name="CustomerParty" Relations="ToPartyGroupAndContact" Type="CustomerParty" ReadOnly="true" IsCollection="false"/>
         <NavigationProperty Name="ShipmentStatusItem" Type="ShipmentStatusItem" Relations="StatusItem"/>
         <NavigationProperty Name="CurrencyUom" AutoBinding="true"/>
         <NavigationProperty Name="ShipmentRouteSegment" AutoBinding="true"/>
-
     </EntityType>
+    <!--ShipmentItem（货运项）-->
     <EntityType Name="ShipmentItem" AutoProperties="true" AutoSet="true" EntitySetName="ShipmentItems">
         <Property Name="productId">
             <Text Path="Product/productName" TextArrangement="TextOnly"/>
         </Property>
         <NavigationProperty Name="Product"/>
     </EntityType>
+    <!--ShipmentRouteSegment（货运节点）-->
     <EntityType Name="ShipmentRouteSegment" AutoProperties="true" AutoSet="true" EntitySetName="ShipmentRouteSegments">
         <Property Name="carrierPartyId">
             <Text Path="CarrierParty/partyName" TextArrangement="TextOnly"/>
         </Property>
         <NavigationProperty Name="CarrierParty" AutoBinding="true" IsCollection="false"/>
     </EntityType>
-    <EntityType Name="SupplierStatusItem" OfbizEntity="StatusItem" AutoSet="true" EntitySetName="SupplierStatusItems" AutoProperties="true">
-        <Property Name="statusId">
-            <Text Path="description" TextArrangement="TextOnly"/>
-        </Property>
-    </EntityType>
-    <EntityType Name="ShipmentStatusItem" OfbizEntity="StatusItem" AutoSet="true" EntitySetName="ShipmentStatusItems" AutoProperties="true">
-        <Property Name="statusId">
-            <Text Path="description" TextArrangement="TextOnly"/>
-        </Property>
-    </EntityType>
-    <EntityType Name="AccountStatusItem" OfbizEntity="StatusItem" AutoSet="true" EntitySetName="AccountStatusItems" AutoProperties="true">
-        <Property Name="statusId">
-            <Text Path="description" TextArrangement="TextOnly"/>
-        </Property>
-    </EntityType>
-    <EntityType Name="OrderStatusItem" OfbizEntity="StatusItem" AutoSet="true" EntitySetName="OrderStatusItems" AutoProperties="true">
-        <Property Name="statusId">
-            <Text Path="description" TextArrangement="TextOnly"/>
-        </Property>
-    </EntityType>
-    <EntityType Name="InvoiceStatusItem" OfbizEntity="StatusItem" AutoSet="true" EntitySetName="InvoiceStatusItems" AutoProperties="true">
-        <Property Name="statusId">
-            <Text Path="description" TextArrangement="TextOnly"/>
-        </Property>
-    </EntityType>
-    <EntityType Name="QuoteStatusItem" OfbizEntity="StatusItem" AutoSet="true" EntitySetName="QuoteStatusItems" AutoProperties="true">
-        <Property Name="statusId">
-            <Text Path="description" TextArrangement="TextOnly"/>
-        </Property>
-    </EntityType>
 
+    <!--==================================账户相关对象==============================================-->
+    <!--FinAccount（账户）-->
     <EntityType Name="FinAccount" AutoSet="true" EntitySetName="FinAccounts" AutoProperties="true" AttrEntityName="FinAccountAttribute" DraftEntityName="FinAccountAppDraft" >
         <Property Name="accountName" IsAttribute="true" Type="String"/>
         <Property Name="currencyUomId" >
@@ -633,9 +585,6 @@
             <Text Path="OwnerParty/partyName" TextArrangement="TextOnly"/>
         </Property>
 
-<!--        <LineItem Qualifier="FinAccountLineItem">-->
-<!--            <DataField Values="finAccountName,finAccountCode,currencyUomId,statusId" Importance="High"/>-->
-<!--        </LineItem>-->
         <Action Name="CreateFinAccount" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createFinAccount" SideEffects="true">
             <Parameter Name="finAccount" Type="FinAccount" Nullable="false" IsCollection="true"/>
             <Parameter Name="finAccountName" Type="String" Label="${finAccountName}" Nullable="false"/>
@@ -652,13 +601,108 @@
         <NavigationProperty Name="CurrencyUom" Type="CurrencyUom" Relations="CurrencyUom"/>
         <NavigationProperty Name="OwnerParty"/>
     </EntityType>
-
-    <EntityType Name="CurrencyUom" OfbizEntity="Uom" EntityCondition="uomTypeId=CURRENCY_MEASURE" EntitySetName="CurrencyUnm" AutoProperties="true"/>
-
+    <!--FinAccountType（账户类型）-->
     <EntityType Name="FinAccountType" EntitySetName="FinAccountTypes" AutoSet="true" AutoProperties="true" />
-    <EntityType Name="Party" EntitySetName="Parties" AutoSet="true" AutoProperties="true">
+
+    <!--==================================Party相关对象==============================================-->
+    <!--Party-->
+    <EntityType Name="Party" EntitySetName="Parties" AutoSet="true" AutoProperties="true"/>
+    <!--Company（公司）-->
+    <EntityType Name="Company" OfbizEntity="PartyGroupAndContact" AutoProperties="true" EntityCondition="PartyRole/roleTypeId=INTERNAL_ORGANIZATIO" EntitySetName="Companies" AutoSet="true">
+        <Property Name="partyId">
+            <Text Path="partyName" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <!--CustomerParty（客户）-->
+    <EntityType Name="CustomerParty" OfbizEntity="PartyGroupAndContact" AutoSet="true" EntitySetName="CustomerParties" EntityCondition="PartyRole/roleTypeId=CUSTOMER"
+                Properties="partyId,partyName,description,createdDate,createdByUserLogin">
+        <Property Name="partyId">
+            <Text Path="partyName" TextArrangement="TextOnly"/>
+        </Property>
+
+        <Property Name="criticalityValue" Type="numeric" Hidden="true" HiddenFilter="true"/>
+        <Property Name="usccNumber" Type="String" HiddenFilter="true"/>
+        <NavigationProperty Name="ToShipment"/>
+        <NavigationProperty Name="FromShipment"/>
+        <NavigationProperty Name="OwnerFinAccount" Type="FinAccount" IsCollection="true"
+                            Relations="OwnerFinAccount(finAccountTypeId=BANK_ACCOUNT)" />
+    </EntityType>
+    <!--PersonAndContact（联系人）-->
+    <EntityType Name="PersonAndContact" AttrEntityName="PartyAttribute" AutoProperties="true" AutoLabel="true"
+                AutoSet="true" EntitySetName="PersonAndContacts">
+        <Property Name="position" IsAttribute="true" Type="String"/>
+
+        <LineItem Qualifier="PartyRelationshipLineItem">
+            <DataField Values="partyName,primaryPhone,phoneMobile,primaryEmail,position" Importance="High"/>
+            <DataFieldForAction Label="${create}" Action="CreatePersonAndContact" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
+        </LineItem>
+        <LineItem Qualifier="PartyRelationshipLineItemWithoutAction">
+            <DataField Values="partyName,primaryPhone,phoneMobile,primaryEmail,position" Importance="High"/>
+        </LineItem>
+
+        <Action Name="CreatePersonAndContact" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createPersonAndContact">
+            <Parameter Name="personAndContact" Type="PersonAndContact" Nullable="false" IsCollection="true"/>
+            <Parameter Name="partyName" Type="String" Label="${partyName}" Nullable="false"/>
+            <Parameter Name="primaryPhone" Type="String" Label="${phone}" Nullable="true"/>
+            <Parameter Name="phoneMobile" Type="String" Label="${mobile}" Nullable="false"/>
+            <Parameter Name="primaryEmail" Type="String" Label="${email}" Nullable="true"/>
+            <Parameter Name="position" Type="String" Label="${position}" Nullable="true"/>
+            <ReturnType Type="PersonAndContact"/>
+        </Action>
     </EntityType>
 
+    <!--==================================不同对象状态==============================================-->
+    <!--StatusItem（只展示TextOnly时使用）-->
+    <EntityType Name="StatusItem" AutoProperties="true" EntitySetName="StatusItems">
+        <Property Name="statusId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <!--SupplierStatusItem（供应商状态）-->
+    <EntityType Name="SupplierStatusItem" OfbizEntity="StatusItem" AutoSet="true" EntitySetName="SupplierStatusItems" AutoProperties="true">
+        <Property Name="statusId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <!--ShipmentStatusItem（货运状态）-->
+    <EntityType Name="ShipmentStatusItem" OfbizEntity="StatusItem" AutoSet="true" EntitySetName="ShipmentStatusItems" AutoProperties="true">
+        <Property Name="statusId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <!--AccountStatusItem（账户状态）-->
+    <EntityType Name="AccountStatusItem" OfbizEntity="StatusItem" AutoSet="true" EntitySetName="AccountStatusItems" AutoProperties="true">
+        <Property Name="statusId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <!--OrderStatusItem（订单状态）-->
+    <EntityType Name="OrderStatusItem" OfbizEntity="StatusItem" AutoSet="true" EntitySetName="OrderStatusItems" AutoProperties="true">
+        <Property Name="statusId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <!--InvoiceStatusItem（发票状态）-->
+    <EntityType Name="InvoiceStatusItem" OfbizEntity="StatusItem" AutoSet="true" EntitySetName="InvoiceStatusItems" AutoProperties="true">
+        <Property Name="statusId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <!--QuoteStatusItem（报价状态）-->
+    <EntityType Name="QuoteStatusItem" OfbizEntity="StatusItem" AutoSet="true" EntitySetName="QuoteStatusItems" AutoProperties="true">
+        <Property Name="statusId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+
+    <!--==================================单位相关对象==============================================-->
+    <!--UomType（单位类型）-->
+    <EntityType Name="UomType" AutoSet="true" EntitySetName="UomTypes" AutoProperties="true" >
+        <Property Name="uomTypeId" >
+            <Text Path="description" TextArrangement="TextOnly" />
+        </Property>
+    </EntityType>
+    <!--Uom（单位）-->
     <EntityType Name="Uom" AutoProperties="true" AutoSet="true" EntitySetName="Unm" >
         <Property Name="uomId">
             <Text Path="description" TextArrangement="TextLast" />
@@ -671,7 +715,7 @@
 
         <NavigationProperty Name="UomType" AutoBinding="true" />
     </EntityType>
-
+    <!--CurrencyUom（货币单位）-->
     <EntityType Name="CurrencyUom" OfbizEntity="Uom" AutoProperties="true" EntitySetName="CurrencyUnm" OfbizType="uomTypeId=CURRENCY_MEASURE">
         <Property Name="uomId">
             <Text Path="description" TextArrangement="TextLast" />
@@ -685,25 +729,11 @@
         <NavigationProperty Name="UomType" AutoBinding="true" />
     </EntityType>
 
-    <EntityType Name="UomType" AutoSet="true" EntitySetName="UomTypes" AutoProperties="true" >
-        <Property Name="uomTypeId" >
-            <Text Path="description" TextArrangement="TextOnly" />
-        </Property>
-    </EntityType>
-
+    <!--==================================枚举类型对象==============================================-->
     <EntityType Name="Enumeration" EntitySetName="OrderSalesEnumerations" EntityCondition="enumTypeId=ORDER_NEW_SALES_CHANNEL" AutoProperties="true">
         <ValueList CollectionPath="OrderSalesEnumerations" WithFixedValues="true" Label="选择销售渠道"/>
         <Property Name="enumId">
             <Text Path="description" TextArrangement="TextOnly"/>
         </Property>
     </EntityType>
-
-    <EntityType Name="StatusItem" AutoProperties="true" EntitySetName="StatusItems"/>
-
-    <EntityType Name="ClassificationEnumeration" OfbizEntity="Enumeration" EntitySetName="ClassificationEnumerations" EntityCondition="enumTypeId=CLASSIFICATION_TYPE" AutoProperties="true">
-        <Property Name="enumId">
-            <Text Path="description" TextArrangement="TextOnly"/>
-        </Property>
-    </EntityType>
-
 </ofbiz-edm>
