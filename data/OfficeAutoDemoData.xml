@@ -208,6 +208,15 @@ under the License.
     <SurveyQuestionAnswer surveyQuestionId="9002" partyId="SUPPLIER0001" booleanResponse="N"/>
     <SurveyQuestionAnswer surveyQuestionId="9003" partyId="SUPPLIER0001" booleanResponse="N"/>
 
+    <UomType uomTypeId="QUANTITY_MEASURE" description="Quantity"/>
+    <Uom uomId="SET" uomTypeId="QUANTITY_MEASURE" description="Set"/>
+    <Uom uomId="PAIR" uomTypeId="QUANTITY_MEASURE" description="Pair"/>
+    <Product productId="9000" productTypeId="FINISHED_GOOD" productName="ASUS desktop computer A380" quantityUomId="SET"/>
+    <Product productId="9001" productTypeId="FINISHED_GOOD" productName="ASUS Tx series note book" quantityUomId="SET"/>
+    <Product productId="9002" productTypeId="FINISHED_GOOD" productName="ASUS keyboard" quantityUomId="SET"/>
+    <Product productId="9003" productTypeId="FINISHED_GOOD" productName="ASUS earphone" quantityUomId="PAIR"/>
+    <Product productId="9004" productTypeId="FINISHED_GOOD" productName="ASUS display screen" quantityUomId="SET"/>
+    <Product productId="9005" productTypeId="FINISHED_GOOD" productName="ASUS wireless mouse" quantityUomId="SET"/>
     <!-- PartyIdentificationType(社会统一码) -->
     <PartyIdentificationType partyIdentificationTypeId="USCC_OF_CHINESE_ORG"/>
 <!--    <PartyQuestionAppl partyQuatsionApplId="9000" partyId="SUPPLIER0001" surveyQuestionId="9000" partyQuestionApplTypeId="DD_FORM" requiredField="Y" sequenceNum="1"/>-->
