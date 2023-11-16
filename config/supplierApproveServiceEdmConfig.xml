@@ -12,6 +12,8 @@
         <Property Name="nodeId" Type="Edm.Decimal"/>
     </ComplexType>
     <ImportEdm Path="component://officeauto/config/launchpadManageEdmConfig.xml"/>
+
+    <!--======================================SupplierParty（主对象）========================================-->
     <EntityType Name="SupplierParty" OfbizType="PartyRole/roleTypeId=SUPPLIER" EntityCondition="approvePartyId=${company.partyId}" OfbizEntity="WorkEffortAndPartyGroupContact" EntitySetName="SupplierParties" AutoSet="true" AutoProperties="true" AttrDateEntityName="PartyAttributeDate"
                 AutoLabel="true" SearchOption="partyName,primaryEmail,address1"
                 Handler="component://officeauto/groovyScripts/partyManage/supplierParty/generateEntityListFields.groovy">
@@ -231,6 +233,7 @@
         </Action>
     </EntityType>
 
+    <!--======================================CoWorkHistory（审批历史）========================================-->
     <EntityType Name="CoWorkHistory" Orderby="-lastModifiedDate" EntitySetName="CoWorkHistories" Properties="workEffortId,partyId,partyName,approvePartyId,currentStatusId,lastModifiedDate" OfbizEntity="WorkEffortAndPartyGroupContact" OfbizType="PartyRole/roleTypeId=SUPPLIER">
         <Property Name="currentStatusId">
             <Text Path="CurrentStatusItem/description" TextArrangement="TextOnly"/>
