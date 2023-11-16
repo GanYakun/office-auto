@@ -159,7 +159,8 @@ under the License.
     <DBField dbFieldId="IV10001" dbFieldName="statusId" dbFieldTypeId="STATUS" dbEntityId="IV10000" description="状态"/>
     <DBField dbFieldId="IV10002" dbFieldName="partyIdFrom" dbFieldTypeId="STRING" dbEntityId="IV10000" description="开据方"/>
     <DBField dbFieldId="IV10003" dbFieldName="invoiceDate" dbFieldTypeId="DATE_TIME" dbEntityId="IV10000" description="开据时间"/>
-    <DBField dbFieldId="IV10004" dbFieldName="description" dbFieldTypeId="DATE_TIME" dbEntityId="IV10000" description="开据时间"/>
+    <DBField dbFieldId="IV10004" dbFieldName="description" dbFieldTypeId="STRING" dbEntityId="IV10000" description="描述"/>
+    <DBField dbFieldId="IV10005" dbFieldName="orderId" dbFieldTypeId="STRING" dbEntityId="IV10000" description="订单ID"/>
     <DBFieldLabel dbFieldLabelId="IV10000" dbFieldId="IV10000" language="zh" value="发票ID"/>
     <DBFieldLabel dbFieldLabelId="IV10001" dbFieldId="IV10000" language="en" value="Invoice ID"/>
     <DBFieldLabel dbFieldLabelId="IV10002" dbFieldId="IV10001" language="zh" value="状态"/>
@@ -168,6 +169,28 @@ under the License.
     <DBFieldLabel dbFieldLabelId="IV10005" dbFieldId="IV10002" language="en" value="Invoice Party"/>
     <DBFieldLabel dbFieldLabelId="IV10006" dbFieldId="IV10003" language="zh" value="开据时间"/>
     <DBFieldLabel dbFieldLabelId="IV10007" dbFieldId="IV10003" language="en" value="Invoice Date"/>
+    <DBFieldLabel dbFieldLabelId="IV10008" dbFieldId="IV10004" language="zh" value="描述"/>
+    <DBFieldLabel dbFieldLabelId="IV10009" dbFieldId="IV10004" language="en" value="Description"/>
+    <DBFieldLabel dbFieldLabelId="IV10010" dbFieldId="IV10005" language="zh" value="订单ID"/>
+    <DBFieldLabel dbFieldLabelId="IV10011" dbFieldId="IV10005" language="en" value="Order ID"/>
+
+    <!--售后服务-->
+    <DBEntity dbEntityId="ASS10000" dbEntityName="WorkEffort" dbEntityTypeId="AFTER_SALES" dbEntityTypeField="workEffortTypeId" description="AfterSalesService" isOpen="N" />
+    <DBField dbFieldId="ASS0000" dbFieldName="workEffortId" dbFieldTypeId="STRING" dbEntityId="ASS10000" description="售后服务ID"/>
+    <DBField dbFieldId="ASS0001" dbFieldName="workEffortName" dbFieldTypeId="STATUS" dbEntityId="ASS10000" description="售后服务名称"/>
+    <DBField dbFieldId="ASS0002" dbFieldName="actualCompletionDate" dbFieldTypeId="DATE_TIME" dbEntityId="ASS10000" description="完成时间"/>
+    <DBField dbFieldId="ASS0003" dbFieldName="fixedAssetId" dbFieldTypeId="STRING" dbEntityId="ASS10000" description="设备ID"/>
+    <DBField dbFieldId="ASS0004" dbFieldName="description" dbFieldTypeId="STRING" dbEntityId="ASS10000" description="描述"/>
+    <DBFieldLabel dbFieldLabelId="ASS0000" dbFieldId="ASS0000" language="zh" value="售后服务ID"/>
+    <DBFieldLabel dbFieldLabelId="ASS0001" dbFieldId="ASS0000" language="en" value="Service ID"/>
+    <DBFieldLabel dbFieldLabelId="ASS0002" dbFieldId="ASS0001" language="zh" value="售后服务名称"/>
+    <DBFieldLabel dbFieldLabelId="ASS0003" dbFieldId="ASS0001" language="en" value="Service Name"/>
+    <DBFieldLabel dbFieldLabelId="ASS0004" dbFieldId="ASS0002" language="zh" value="完成时间"/>
+    <DBFieldLabel dbFieldLabelId="ASS0005" dbFieldId="ASS0002" language="en" value="Completion Date"/>
+    <DBFieldLabel dbFieldLabelId="ASS0006" dbFieldId="ASS0003" language="zh" value="设备ID"/>
+    <DBFieldLabel dbFieldLabelId="ASS0007" dbFieldId="ASS0003" language="en" value="Fixed Asset ID"/>
+    <DBFieldLabel dbFieldLabelId="ASS0008" dbFieldId="ASS0004" language="zh" value="描述"/>
+    <DBFieldLabel dbFieldLabelId="ASS0009" dbFieldId="ASS0004" language="en" value="Description"/>
 
     <!--供应商-->
     <!-- Entity labels for view-entity WorkEffortAndPartyGroupContact -->

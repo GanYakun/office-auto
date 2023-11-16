@@ -225,7 +225,7 @@
         </Property>
     </EntityType>
 
-    <EntityType Name="AfterSalesService" OfbizEntity="WorkEffort" EntityCondition="workEffortTypeId=AFTER_SALES" AutoProperties="true" EntitySetName="AfterSalesServices">
+    <EntityType Name="AfterSalesService" OfbizType="workEffortTypeId=AFTER_SALES" OfbizEntity="WorkEffort" EntityCondition="workEffortTypeId=AFTER_SALES" AutoProperties="true" EntitySetName="AfterSalesServices">
         <LineItem Qualifier="AfterSalesServiceLine">
             <DataField Values="workEffortId,workEffortName,actualCompletionDate,fixedAssetId,description" Importance="High"/>
         </LineItem>
