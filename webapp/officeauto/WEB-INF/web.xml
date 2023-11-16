@@ -59,7 +59,7 @@ under the License.
     <filter>
         <display-name>ContextFilter</display-name>
         <filter-name>ContextFilter</filter-name>
-        <filter-class>org.apache.ofbiz.webapp.control.ContextFilter</filter-class>
+        <filter-class>com.dpbird.odata.LrepContextFilter</filter-class>
     </filter>
     <filter>
         <display-name>SameSiteFilter</display-name>
@@ -70,7 +70,7 @@ under the License.
     <filter-mapping><filter-name>ContextFilter</filter-name><url-pattern>/*</url-pattern></filter-mapping>
     <filter-mapping><filter-name>SameSiteFilter</filter-name><url-pattern>/*</url-pattern></filter-mapping>
 
-    <listener><listener-class>org.apache.ofbiz.webapp.control.ControlEventListener</listener-class></listener>
+    <listener><listener-class>com.dpbird.odata.OdataControlEventListener</listener-class></listener>
     <listener><listener-class>org.apache.ofbiz.webapp.control.LoginEventListener</listener-class></listener>
     <!-- NOTE: not all app servers support mounting implementations of the HttpSessionActivationListener interface -->
     <!-- <listener><listener-class>org.apache.ofbiz.webapp.control.ControlActivationEventListener</listener-class></listener> -->
@@ -79,7 +79,7 @@ under the License.
         <description>Main Control Servlet</description>
         <display-name>ControlServlet</display-name>
         <servlet-name>ControlServlet</servlet-name>
-        <servlet-class>org.apache.ofbiz.webapp.control.ControlServlet</servlet-class>
+        <servlet-class>com.dpbird.odata.OdataControlServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping><servlet-name>ControlServlet</servlet-name><url-pattern>/control/*</url-pattern></servlet-mapping>
