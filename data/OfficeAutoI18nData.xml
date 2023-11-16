@@ -192,6 +192,57 @@ under the License.
     <DBFieldLabel dbFieldLabelId="ASS0008" dbFieldId="ASS0004" language="zh" value="描述"/>
     <DBFieldLabel dbFieldLabelId="ASS0009" dbFieldId="ASS0004" language="en" value="Description"/>
 
+    <!--货运-->
+    <DBEntity dbEntityId="SPT10000" dbEntityName="Shipment" description="Shipment" isOpen="N" />
+    <DBField dbFieldId="SPT0000" dbFieldName="shipmentId" dbFieldTypeId="STRING" dbEntityId="SPT10000" description="货运ID"/>
+    <DBField dbFieldId="SPT0001" dbFieldName="primaryOrderId" dbFieldTypeId="STATUS" dbEntityId="SPT10000" description="订单ID"/>
+    <DBField dbFieldId="SPT0002" dbFieldName="estimatedShipDate" dbFieldTypeId="DATE_TIME" dbEntityId="SPT10000" description="预计货运时间"/>
+    <DBField dbFieldId="SPT0003" dbFieldName="statusId" dbFieldTypeId="STRING" dbEntityId="SPT10000" description="状态"/>
+    <DBFieldLabel dbFieldLabelId="SPT0000" dbFieldId="SPT0000" language="zh" value="货运ID"/>
+    <DBFieldLabel dbFieldLabelId="SPT0001" dbFieldId="SPT0000" language="en" value="Shipment ID"/>
+    <DBFieldLabel dbFieldLabelId="SPT0002" dbFieldId="SPT0001" language="zh" value="订单ID"/>
+    <DBFieldLabel dbFieldLabelId="SPT0003" dbFieldId="SPT0001" language="en" value="Primary Order ID"/>
+    <DBFieldLabel dbFieldLabelId="SPT0004" dbFieldId="SPT0002" language="zh" value="预计货运时间"/>
+    <DBFieldLabel dbFieldLabelId="SPT0005" dbFieldId="SPT0002" language="en" value="Estimated Ship Date"/>
+    <DBFieldLabel dbFieldLabelId="SPT0006" dbFieldId="SPT0003" language="zh" value="状态"/>
+    <DBFieldLabel dbFieldLabelId="SPT0007" dbFieldId="SPT0003" language="en" value="Status"/>
+
+    <!--ShipmentRouteSegment-->
+    <DBEntity dbEntityId="SRS10000" dbEntityName="ShipmentRouteSegment" description="ShipmentRouteSegment" isOpen="N" />
+    <DBField dbFieldId="SRS0000" dbFieldName="carrierPartyId" dbFieldTypeId="STRING" dbEntityId="SRS10000" description="货运公司"/>
+    <DBField dbFieldId="SRS0001" dbFieldName="actualArrivalDate" dbFieldTypeId="DATE_TIME" dbEntityId="SRS10000" description="到达日期"/>
+    <DBFieldLabel dbFieldLabelId="SRS0000" dbFieldId="SRS0000" language="zh" value="货运公司"/>
+    <DBFieldLabel dbFieldLabelId="SRS0001" dbFieldId="SRS0000" language="en" value="Carrier Party"/>
+    <DBFieldLabel dbFieldLabelId="SRS0002" dbFieldId="SRS0001" language="zh" value="到达日期"/>
+    <DBFieldLabel dbFieldLabelId="SRS0003" dbFieldId="SRS0001" language="en" value="Actual Arrival Date"/>
+
+    <!--ShipmentItem-->
+    <DBEntity dbEntityId="SPI10000" dbEntityName="ShipmentItem" description="ShipmentItem" isOpen="N" />
+    <DBField dbFieldId="SPI0000" dbFieldName="productId" dbFieldTypeId="STRING" dbEntityId="SPI10000" description="产品ID"/>
+    <DBFieldLabel dbFieldLabelId="SPI0000" dbFieldId="SPI0000" language="zh" value="产品ID"/>
+    <DBFieldLabel dbFieldLabelId="SPI0001" dbFieldId="SPI0000" language="en" value="Product ID"/>
+
+    <!--采购订单-->
+    <DBEntity dbEntityId="OHD10000" dbEntityName="OrderHeader" dbEntityTypeId="PURCHASE_ORDER" description="OrderHeader" isOpen="N" />
+    <DBField dbFieldId="OHD0000" dbFieldName="orderId" dbFieldTypeId="STRING" dbEntityId="OHD10000" description="订单ID"/>
+    <DBField dbFieldId="OHD0001" dbFieldName="orderName" dbFieldTypeId="STATUS" dbEntityId="OHD10000" description="订单名称"/>
+    <DBField dbFieldId="OHD0002" dbFieldName="orderDate" dbFieldTypeId="DATE_TIME" dbEntityId="OHD10000" description="订单日期"/>
+    <DBField dbFieldId="OHD0003" dbFieldName="grandTotal" dbFieldTypeId="STRING" dbEntityId="OHD10000" description="总计"/>
+    <DBField dbFieldId="OHD0004" dbFieldName="statusId" dbFieldTypeId="STRING" dbEntityId="OHD10000" description="状态"/>
+    <DBField dbFieldId="OHD0005" dbFieldName="salesChannelEnumId" dbFieldTypeId="STRING" dbEntityId="OHD10000" description="采购渠道"/>
+    <DBFieldLabel dbFieldLabelId="OHD0000" dbFieldId="OHD0000" language="zh" value="订单ID"/>
+    <DBFieldLabel dbFieldLabelId="OHD0001" dbFieldId="OHD0000" language="en" value="Order ID"/>
+    <DBFieldLabel dbFieldLabelId="OHD0002" dbFieldId="OHD0001" language="zh" value="订单名称"/>
+    <DBFieldLabel dbFieldLabelId="OHD0003" dbFieldId="OHD0001" language="en" value="Order name"/>
+    <DBFieldLabel dbFieldLabelId="OHD0004" dbFieldId="OHD0002" language="zh" value="订单日期"/>
+    <DBFieldLabel dbFieldLabelId="OHD0005" dbFieldId="OHD0002" language="en" value="Order date"/>
+    <DBFieldLabel dbFieldLabelId="OHD0006" dbFieldId="OHD0003" language="zh" value="总计"/>
+    <DBFieldLabel dbFieldLabelId="OHD0008" dbFieldId="OHD0003" language="en" value="Grand total"/>
+    <DBFieldLabel dbFieldLabelId="OHD0009" dbFieldId="OHD0004" language="zh" value="状态"/>
+    <DBFieldLabel dbFieldLabelId="OHD0010" dbFieldId="OHD0004" language="en" value="Status"/>
+    <DBFieldLabel dbFieldLabelId="OHD0011" dbFieldId="OHD0005" language="zh" value="采购渠道"/>
+    <DBFieldLabel dbFieldLabelId="OHD0012" dbFieldId="OHD0005" language="en" value="Purchase channel"/>
+
     <!--供应商-->
     <!-- Entity labels for view-entity WorkEffortAndPartyGroupContact -->
     <DBEntity dbEntityId="WPC10000" dbEntityName="WorkEffortAndPartyGroupContact" dbEntityTypeField="PartyRole/roleTypeId" dbEntityTypeId="SUPPLIER" description="Vendor" isOpen="N" />

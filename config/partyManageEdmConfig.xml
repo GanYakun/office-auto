@@ -315,7 +315,7 @@
         <NavigationProperty Name="AgreementTerm"/>
     </EntityType>
 
-    <EntityType Name="PurchaseOrder" OfbizEntity="OrderHeader" EntityCondition="orderTypeId=PURCHASE_ORDER" AutoProperties="true" AutoSet="true" EntitySetName="PurchaseOrders"
+    <EntityType Name="PurchaseOrder" OfbizType="orderTypeId=PURCHASE_ORDER" OfbizEntity="OrderHeader" EntityCondition="orderTypeId=PURCHASE_ORDER" AutoProperties="true" AutoSet="true" EntitySetName="PurchaseOrders"
                 Handler="component://officeauto/groovyScripts/purchaseOrderMange/OrderHeader/generateEntityListFields.groovy">
         <NavigationProperty Name="OrderStatusItem" Type="OrderStatusItem" Relations="StatusItem"/>
         <NavigationProperty Name="SalesChannelEnumeration"/>
@@ -438,7 +438,7 @@
         </Property>
 
         <LineItem Qualifier="ShipmentLineItem">
-            <DataField Values="shipmentId,ShipmentItem/productId,ShipmentRouteSegment/carrierPartyId,primaryOrderId,estimatedShipDate,ShipmentRouteSegment/actualArrivalDate,SupplierParty/address1,CustomerParty/address1" Importance="High"/>
+            <DataField Values="shipmentId,ShipmentItem/productId,ShipmentRouteSegment/carrierPartyId,primaryOrderId,estimatedShipDate,ShipmentRouteSegment/actualArrivalDate,SupplierParty/address1" Importance="High"/>
             <DataField Importance="High" Values="statusId" Criticality="shipmentStatus"/>
             <Criticality Value="shipmentStatus"/>
         </LineItem>
