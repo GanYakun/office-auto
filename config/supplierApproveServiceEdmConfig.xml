@@ -60,6 +60,17 @@
         <NavigationProperty Name="ChildWorkEffortAndPartyGroupContact" Type="CoWorkHistory" Relations="ChildWorkEffortAndPartyGroupContact" IsCollection="true"/>
         <NavigationProperty Name="DataResource" Type="DataResource" Relations="PartyContent/Content/DataResource"/>
         <NavigationProperty Name="PostalAddress" Type="PostalAddress" Relations="PartyContactMechPurpose/PostalAddress" IsCollection="true"/>
+
+        <!-- 财务报表 -->
+        <NavigationProperty Name="FinancialStatements" Type="ContentAndMediaDataResource"
+                            Relations="WorkEffortContent(workEffortContentTypeId=FINANCIAL_STATEMENTS)/ContentAndMediaDataResource" IsCollection="true"/>
+        <!-- 保密协议 -->
+        <NavigationProperty Name="ConfidentialityAgreement" Type="ContentAndMediaDataResource"
+                            Relations="WorkEffortContent(workEffortContentTypeId=CONFIDENTIALITY_AGREEMENT)/ContentAndMediaDataResource" IsCollection="true"/>
+        <!-- 其他文件 -->
+        <NavigationProperty Name="OtherFiles" Type="ContentAndMediaDataResource"
+                            Relations="WorkEffortContent(workEffortContentTypeId=OTHER_FILES)/ContentAndMediaDataResource" IsCollection="true"/>
+
         <SelectionFields PropertyPath="currentStatusId,primaryPhone"/>
 
         <!--Annotation-->
@@ -280,6 +291,20 @@
         <Property Name="contactMechPurposeTypeId">
             <Text Path="description" TextArrangement="TextOnly"/>
         </Property>
+    </EntityType>
+
+    <!-- 文件 -->
+    <EntityType Name="ContentAndMediaDataResource" Orderby="-createdDate" EntitySetName="ContentAndMediaDataResources"
+                Properties="contentId,contentName,createdDate,otherData,mimeTypeId">
+        <LineItem Qualifier="FileList">
+            <DataField Values="contentName,createdDate,otherData" Importance="High"/>
+            <DataFieldForAction Label="${upload}" Action="UploadAction" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
+        </LineItem>
+        <Property Name="otherData" FileNamePath="contentName"/>
+        <Action Name="UploadAction" IsBound="true" OfbizService="com.banfftech.events.UploadEvent.uploadFile" >
+            <Parameter Name="contentAndMediaDataResource" Type="ContentAndMediaDataResource" Nullable="false" IsCollection="true"/>
+            <Parameter Name="file" Type="Stream" Nullable="false" IsCollection="false"/>
+        </Action>
     </EntityType>
 
     <!--======================================DDForm问卷相关对象========================================-->
