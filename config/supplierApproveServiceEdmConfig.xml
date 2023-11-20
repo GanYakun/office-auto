@@ -61,6 +61,7 @@
         <NavigationProperty Name="ChildWorkEffortAndPartyGroupContact" Type="CoWorkHistory" Relations="ChildWorkEffortAndPartyGroupContact" IsCollection="true"/>
         <NavigationProperty Name="PostalAddress" Type="PostalAddress" Relations="PartyContactMechPurpose/PostalAddress" IsCollection="true"/>
         <NavigationProperty Name="ProductCategory" Type="ProductCategory" Relations="ProductCategoryRole/ProductCategory" IsCollection="false"/>
+        <NavigationProperty Name="Department" Type="Department" Relations="ToPartyRelationship(roleTypeIdFrom=DEPARTMENT)/FromParty" IsCollection="true"/>
 
         <!-- 财务报表 -->
         <NavigationProperty Name="FinancialStatements" Type="PartyMediaResource"
@@ -188,13 +189,9 @@
         <Action Name="CreateSupplierParty" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createSupplierParty">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="true"/>
             <Parameter Name="partyName" Type="String" Label="${supplierActionPartyName}" Nullable="false"/>
+            <Parameter Name="isGovernment" Type="Boolean" Label="${isGovernment}" Nullable="false"/>
             <Parameter Name="primaryPhone" Type="String" Label="${supplierActionPrimaryPhone}" Nullable="true"/>
             <Parameter Name="primaryEmail" Type="String" Label="${supplierActionPrimaryEmail}" Nullable="true"/>
-            <Parameter Name="partyId" Type="String" Label="${department}" Nullable="false">
-                <ValueList CollectionPath="Departments" ParameterDisplayOnly="primaryPhone,primaryEmail">
-                    <ParameterInOut LocalDataProperty="partyId" ValueListProperty="partyId"/>
-                </ValueList>
-            </Parameter>
             <Parameter Name="productCategoryId" Type="String" Label="${partyCategoryId}" Nullable="false">
                 <ValueList WithFixedValues="true" CollectionPath="ProductCategories">
                     <ParameterInOut ValueListProperty="productCategoryId" LocalDataProperty="productCategoryId"/>
@@ -711,6 +708,30 @@
         <Property Name="partyId">
             <Text Path="partyName" TextArrangement="TextOnly"/>
         </Property>
+
+        <LineItem Qualifier="DepartmentLineItem">
+            <DataField Values="partyName," Importance="High"/>
+            <DataFieldForAction Label="${selectDepartment}" Action="SelectDepartment" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
+            <DataFieldForAction Label="${removeDepartment}" Action="RemoveDepartment" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
+        </LineItem>
+
+        <!--选择可以查看该供应商的部门-->
+        <Action Name="SelectDepartment" IsBound="true" EntitySetPath="department"
+                OfbizService="com.banfftech.events.SupplierEvents.selectDepartment"
+                StickySession="true" SideEffects="true">
+            <Parameter Name="department" Type="Department" Nullable="false" IsCollection="true"/>
+            <Parameter Name="partyId" Type="String" Nullable="false" IsCollection="true" Label="${selectDepartment}">
+                <ValueList CollectionPath="Departments" ParameterDisplayOnly="primaryPhone,primaryEmail">
+                    <ParameterInOut LocalDataProperty="partyId" ValueListProperty="partyId"/>
+                </ValueList>
+            </Parameter>
+        </Action>
+        <!--移除可以查看该供应商的部门-->
+        <Action Name="RemoveDepartment" IsBound="true" EntitySetPath="department"
+                OfbizService="com.banfftech.events.SupplierEvents.removeDepartment"
+                StickySession="true">
+            <Parameter Name="department" Type="Department" Nullable="false" IsCollection="false"/>
+        </Action>
     </EntityType>
     <!--CustomerParty（客户）-->
     <EntityType Name="CustomerParty" OfbizEntity="PartyGroupAndContact" AutoSet="true" EntitySetName="CustomerParties" EntityCondition="PartyRole/roleTypeId=CUSTOMER"

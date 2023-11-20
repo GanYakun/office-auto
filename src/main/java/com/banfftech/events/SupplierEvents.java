@@ -317,13 +317,66 @@ public class SupplierEvents {
                 UtilMisc.toMap("userLogin", userLogin, "partyName", actionParameters.get("partyName"), "currentStatusId", "NOT_PROCESSED",
                         "primaryPhone", actionParameters.get("primaryPhone"), "primaryEmail", actionParameters.get("primaryEmail")));
 
+        if ((Boolean) actionParameters.get("isGovernment")){
+            dispatcher.runSync("banfftech.createPartyRole", UtilMisc.toMap("userLogin", userLogin, "partyId", resultMap.get("partyId"), "roleTypeId", "GOVERNMENT_SUPPLIER"));
+        }
+
         dispatcher.runSync("banfftech.createProductCategoryRole",
                 UtilMisc.toMap("userLogin", userLogin, "partyId", resultMap.get("partyId"), "roleTypeId", "SUPPLIER",
                         "productCategoryId", actionParameters.get("productCategoryId"), "fromDate", UtilDateTime.nowTimestamp()));
 
-        dispatcher.runSync("banfftech.createPartyRelationship",
-                UtilMisc.toMap("userLogin", userLogin, "roleTypeIdFrom", "DEPARTMENT", "partyIdFrom", actionParameters.get("partyId"),
-                        "roleTypeIdTo", "SUPPLIER", "partyIdTo", resultMap.get("partyId")));
+    }
 
+    public static void selectDepartment(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
+                                           EdmBindingTarget edmBindingTarget) throws GenericEntityException, OfbizODataException, GenericServiceException {
+
+        GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
+        LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
+        Delegator delegator = dispatcher.getDelegator();
+        List<OdataParts> odataPartsList = (List<OdataParts>) oDataContext.get("odataParts");
+        int odataPartsListSize = odataPartsList.size();
+        GenericValue supplierParty = null;
+        OdataParts odataPartsOne = odataPartsList.get(odataPartsListSize - 2);
+        OdataOfbizEntity supplierPartyEntity = (OdataOfbizEntity) odataPartsOne.getEntityData();
+        supplierParty = supplierPartyEntity.getGenericValue();
+        if (supplierParty == null) {
+            throw new OfbizODataException("Account is invalid");
+        }
+        String supplierPartyId = (String) supplierParty.get("partyId");
+        List<String> partyIds = (List<String>) actionParameters.get("partyId");
+        for (String partyId : partyIds){
+            if(CommonUtils.checkInputRepeat(delegator, "partyIdFrom", "PartyRelationship", UtilMisc.toMap("partyIdTo", supplierPartyId, "roleTypeIdFrom", "DEPARTMENT"), partyId)){
+                throw new OfbizODataException("请勿选择重复部门！");
+            }
+            dispatcher.runSync("banfftech.createPartyRelationship",
+                    UtilMisc.toMap("userLogin", userLogin, "roleTypeIdFrom", "DEPARTMENT", "partyIdFrom", partyId,
+                            "roleTypeIdTo", "SUPPLIER", "partyIdTo", supplierPartyId));
+        }
+    }
+
+    public static void removeDepartment(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
+                                           EdmBindingTarget edmBindingTarget) throws GenericEntityException, OfbizODataException, GenericServiceException {
+
+        GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
+        LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
+        Delegator delegator = dispatcher.getDelegator();
+        OdataOfbizEntity departmentEntity = (OdataOfbizEntity) actionParameters.get("department");
+        GenericValue department = departmentEntity.getGenericValue();
+        List<OdataParts> odataPartsList = (List<OdataParts>) oDataContext.get("odataParts");
+        int odataPartsListSize = odataPartsList.size();
+        GenericValue supplierParty = null;
+        OdataParts odataPartsOne = odataPartsList.get(odataPartsListSize - 2);
+        OdataOfbizEntity supplierPartyEntity = (OdataOfbizEntity) odataPartsOne.getEntityData();
+        supplierParty = supplierPartyEntity.getGenericValue();
+        if (supplierParty == null) {
+            throw new OfbizODataException("Account is invalid");
+        }
+        String supplierPartyId = (String) supplierParty.get("partyId");
+        List<GenericValue> partyRelationships = delegator.findByAnd("PartyRelationship",
+                UtilMisc.toMap("partyIdFrom", department.get("partyId"), "roleTypeIdFrom", "DEPARTMENT",
+                        "partyIdTo", supplierPartyId, "roleTypeIdTo", "SUPPLIER"), null, true);
+        GenericValue partyRelationship = EntityUtil.getFirst(partyRelationships);
+        dispatcher.runSync("banfftech.deletePartyRelationship",
+                UtilMisc.toMap("userLogin", userLogin, "partyRelationshipId", partyRelationship.get("partyRelationshipId")));
     }
 }

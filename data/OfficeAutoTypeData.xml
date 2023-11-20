@@ -32,6 +32,7 @@ under the License.
     <RoleType description="首席执行官" roleTypeId="CEO" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
     <RoleType description="首席技术官" roleTypeId="CTO" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
     <RoleType description="首席财务官" roleTypeId="CFO" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
+    <RoleType description="Government Department" roleTypeId="GOVERNMENT_SUPPLIER" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
 
     <CustRequestType description="采购请求" custRequestTypeId="PURCHASE_REQ"/>
 

@@ -128,4 +128,10 @@ under the License.
         <auto-attributes include="pk" mode="IN" optional="false"/>
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
     </service>
+
+    <!--PartyRelationship-->
+    <service name="banfftech.deletePartyRelationship" default-entity-name="PartyRelationship" engine="entity-auto" invoke="delete" auth="true">
+        <description>Update a PartyRelationship</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+    </service>
 </services>
