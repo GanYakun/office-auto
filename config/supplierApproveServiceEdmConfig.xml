@@ -1,16 +1,4 @@
 <ofbiz-edm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://dev.odatalab.com/dtds/edmconfig.xsd" ImportGlobal="false">
-
-    <!-- 返回用户自选参数 -->
-    <ComplexType Name="ApproverData">
-        <Property Name="nodeId" Type="Edm.Decimal"/>
-        <Property Name="nodeName" Type="String"/>
-        <Property Name="selectList" Type="String"/>
-    </ComplexType>
-    <!-- 用户返回当前正在进行的节点 -->
-    <ComplexType Name="ActiveData">
-        <Property Name="processId" Type="String"/>
-        <Property Name="nodeId" Type="Edm.Decimal"/>
-    </ComplexType>
     <ImportEdm Path="component://officeauto/config/launchpadManageEdmConfig.xml"/>
 
     <!--======================================SupplierParty（主对象）========================================-->
@@ -33,6 +21,10 @@
         <Property Name="criticalityValue" Type="numeric" Hidden="true" HiddenFilter="true"/>
         <Property Name="statusId" Immutable="true" DefaultValue="PARTY_DISABLED">
             <ValueList CollectionPath="SupplierStatusItems" WithFixedValues="true"/>
+        </Property>
+        <Property Name="priority">
+            <Text Path="PriorityEnumeration/description" TextArrangement="TextOnly"/>
+            <ValueList CollectionPath="PriorityEnumerations" WithFixedValues="true" Label="${selectPriority}"/>
         </Property>
         <Property Name="usccNumber" Type="String" HiddenFilter="true"/>
         <RelAlias Name="PersonAndContact" Relations="FromPartyRelationship(roleTypeIdTo=CONTACT and roleTypeIdFrom=SUPPLIER)/ToPersonAndContact"/>
@@ -60,6 +52,7 @@
         <NavigationProperty Name="SurveyQuestionAppl" Type="SurveyQuestionAppl" Relations="PartySurveyAppl/SurveyQuestionAppl" IsCollection="true"/>
         <NavigationProperty Name="ChildWorkEffortAndPartyGroupContact" Type="CoWorkHistory" Relations="ChildWorkEffortAndPartyGroupContact" IsCollection="true"/>
         <NavigationProperty Name="PostalAddress" Type="PostalAddress" Relations="PartyContactMechPurpose/PostalAddress" IsCollection="true"/>
+        <NavigationProperty Name="PriorityEnumeration"/>
 
         <!-- 财务报表 -->
         <NavigationProperty Name="FinancialStatements" Type="PartyMediaResource"
@@ -75,10 +68,10 @@
 
         <!--Annotation-->
         <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">
-            <DataField Values="numEmployees,annualRevenue,tickerSymbol,comments" Importance="High"/>
+            <DataField Values="numEmployees,annualRevenue,tickerSymbol,comments,priority" Importance="High"/>
         </FieldGroup>
         <FieldGroup Qualifier="PartyGroupFieldGroupWithAction" Label="PartyGroupFieldGroupWithAction">
-            <DataField Values="numEmployees,annualRevenue,tickerSymbol,comments" Importance="High"/>
+            <DataField Values="numEmployees,annualRevenue,tickerSymbol,comments,priority" Importance="High"/>
             <DataFieldForAction Label="${UpdateBasicInfo}" Action="FillSupplierBaseInfo" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated" Hidden="disableEditSupplier"/>
         </FieldGroup>
 
@@ -119,24 +112,6 @@
             <Description Path="description"/>
         </HeaderInfo>
 
-        <!--审批流Action-->
-        <Function Name="GetApproverData_Supplier" OfbizService="com.banfftech.event.ApprovalEvent.getApproverData"
-                  IsBound="true">
-            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
-            <ReturnType Type="ApproverData" IsCollection="true"/>
-        </Function>
-        <Action Name="SubmitApproval_Supplier" IsBound="true" OfbizService="com.banfftech.event.ApprovalEvent.submitApproval">
-            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
-            <Parameter Name="approverData" Type="String" Nullable="true" IsCollection="false"/>
-        </Action>
-        <Action Name="CancelApproval_Supplier" IsBound="true" OfbizService="com.banfftech.event.ApprovalEvent.cancelApproval">
-            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
-        </Action>
-        <Action Name="ViewApproval_Supplier" IsBound="true" OfbizService="com.banfftech.event.ApprovalEvent.viewApproval">
-            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
-            <ReturnType Type="ActiveData" Nullable="true"/>
-        </Action>
-
         <!--填写评级-->
         <Action Name="FillPartyClassification" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.fillPartyClassification">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
@@ -157,6 +132,11 @@
             <Parameter Name="tickerSymbol" Type="String" Label="${supplierUpdateActionTickerSymbol}"/>
             <Parameter Name="comments" Type="String" Label="${supplierUpdateActionComments}"/>
             <Parameter Name="usccNumber" Type="String" Label="${usccNumber}"/>
+            <Parameter Name="priority" Type="String" Label="${Priority}">
+                <ValueList CollectionPath="PriorityEnumerations" WithFixedValues="true" Label="${selectPriority}">
+                    <ParameterInOut LocalDataProperty="priority" ValueListProperty="enumId"/>
+                </ValueList>
+            </Parameter>
             <ReturnType Type="SupplierParty"/>
         </Action>
 
@@ -227,6 +207,11 @@
             <Parameter Name="target" Type="String" IsCollection="false"/>
             <Parameter Name="noteInfo" Type="String" Label="${noteInfo}"/>
             <ReturnType Type="SupplierParty"/>
+        </Action>
+
+        <Action Name="CompleteCoWork" IsBound="true" EntitySetPath="supplierParty"
+                OfbizService="com.banfftech.events.SupplierApproveEvents.completeCOWork" SideEffects="true">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
         </Action>
 
         <Action Name="ChangeSupplierStatusToEnable" IsBound="true" EntitySetPath="supplierParty"
@@ -796,6 +781,12 @@
     <!--==================================枚举类型对象==============================================-->
     <EntityType Name="Enumeration" EntitySetName="OrderSalesEnumerations" EntityCondition="enumTypeId=ORDER_NEW_SALES_CHANNEL" AutoProperties="true">
         <ValueList CollectionPath="OrderSalesEnumerations" WithFixedValues="true" Label="选择销售渠道"/>
+        <Property Name="enumId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+
+    <EntityType Name="PriorityEnumeration" EntitySetName="PriorityEnumerations" OfbizEntity="Enumeration" EntityCondition="enumTypeId=PRIORITY" AutoProperties="true">
         <Property Name="enumId">
             <Text Path="description" TextArrangement="TextOnly"/>
         </Property>

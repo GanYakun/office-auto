@@ -122,6 +122,14 @@ under the License.
     <Internationalization id="I10099" lang="zh" property="usccNumber" value="社会统一信用代码"/>
     <Internationalization id="I10100" lang="en" property="upload" value="Upload"/>
     <Internationalization id="I10101" lang="zh" property="upload" value="上传"/>
+    <Internationalization id="I10102" lang="en" property="Enumeration.description.PRIORITY_HIGH" value="High"/>
+    <Internationalization id="I10103" lang="zh" property="Enumeration.description.PRIORITY_HIGH" value="高"/>
+    <Internationalization id="I10104" lang="en" property="Enumeration.description.PRIORITY_MEDIUM" value="Medium"/>
+    <Internationalization id="I10105" lang="zh" property="Enumeration.description.PRIORITY_MEDIUM" value="中"/>
+    <Internationalization id="I10106" lang="en" property="Enumeration.description.PRIORITY_LOW" value="Low"/>
+    <Internationalization id="I10107" lang="zh" property="Enumeration.description.PRIORITY_LOW" value="低"/>
+    <Internationalization id="I10108" lang="en" property="selectPriority" value="Priority"/>
+    <Internationalization id="I10109" lang="zh" property="selectPriority" value="优先级"/>
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
     <DBField dbFieldId="CUST_REQ_10001" dbFieldName="statusId" dbFieldTypeId="STATUS" description="当前状态" dbEntityId="CUST_REQ_10000"/>
@@ -265,6 +273,7 @@ under the License.
     <DBField dbFieldId="WPC10000_15" dbFieldName="workEffortId" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Task ID"/>
     <DBField dbFieldId="WPC10000_16" dbFieldName="partyId" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Party ID"/>
     <DBField dbFieldId="WPC10000_17" dbFieldName="partyName" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Name"/>
+    <DBField dbFieldId="WPC10000_18" dbFieldName="priority" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Priority"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_01_ZH" dbFieldId="WPC10000_01" language="zh" value="Email"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_01_EN" dbFieldId="WPC10000_01" language="en" value="Email"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_02_ZH" dbFieldId="WPC10000_02" language="zh" value="Address"/>
@@ -299,6 +308,8 @@ under the License.
     <DBFieldLabel dbFieldLabelId="WPC10000_16_EN" dbFieldId="WPC10000_16" language="en" value="Name"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_17_ZH" dbFieldId="WPC10000_17" language="zh" value="供应商名称"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_17_EN" dbFieldId="WPC10000_17" language="en" value="Supplier Name"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_18_ZH" dbFieldId="WPC10000_18" language="zh" value="优先级"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_18_EN" dbFieldId="WPC10000_18" language="en" value="Priority"/>
 
 
     <!-- Entity labels for view-entity PartyGroupAndContact -->

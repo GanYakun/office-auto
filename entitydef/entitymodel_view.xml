@@ -208,6 +208,9 @@
         <relation type="many" rel-entity-name="PartyMediaResource">
             <key-map field-name="partyId"/>
         </relation>
+        <relation type="one-nofk" title="Priority" rel-entity-name="Enumeration">
+            <key-map field-name="priority" rel-field-name="enumId"/>
+        </relation>
     </view-entity>
 
     <view-entity entity-name="PartyMediaResource"
