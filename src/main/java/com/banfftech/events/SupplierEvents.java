@@ -139,8 +139,6 @@ public class SupplierEvents {
                 UtilMisc.toMap("userLogin", userLogin, "partyId", supplierParty.getString("partyId"),
                         "productId", productId, "minimumOrderQuantity", 10, "currencyUomId", "CNY",
                         "availableFromDate", availableFromDate));
-
-
         return null;
     }
 
@@ -282,5 +280,30 @@ public class SupplierEvents {
         GenericValue supplierParty = delegator.findOne("Party", UtilMisc.toMap("partyId", supplierPartyEntity.getPropertyValue("partyId")), false);
         CommonUtils.setObjectAttribute(supplierParty, "PartyAttributeDate", "collectionDate", actionParameters.get("collectionDate"));
         CommonUtils.setObjectAttribute(supplierParty, "PartyAttributeDate", "firstOrderDate", actionParameters.get("firstOrderDate"));
+    }
+
+    public static void createPostalAddress(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
+                                              EdmBindingTarget edmBindingTarget) throws GenericEntityException, OfbizODataException, GenericServiceException {
+
+        GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
+        LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
+        List<OdataParts> odataPartsList = (List<OdataParts>) oDataContext.get("odataParts");
+        int odataPartsListSize = odataPartsList.size();
+        GenericValue supplierParty = null;
+        OdataParts odataPartsOne = odataPartsList.get(odataPartsListSize - 2);
+        OdataOfbizEntity supplierPartyEntity = (OdataOfbizEntity) odataPartsOne.getEntityData();
+        supplierParty = supplierPartyEntity.getGenericValue();
+        if (supplierParty == null) {
+            throw new OfbizODataException("Account is invalid");
+        }
+        String partyId = (String) supplierParty.get("partyId");
+        Map<String, Object> resultMap = dispatcher.runSync("banfftech.createContactMech",
+                UtilMisc.toMap("userLogin", userLogin));
+        String contactMechId = (String) resultMap.get("contactMechId");
+        dispatcher.runSync("banfftech.createPostalAddress",
+                UtilMisc.toMap("contactMechId", contactMechId, "userLogin", userLogin, "address1", actionParameters.get("address1")));
+        dispatcher.runSync("banfftech.createPartyContactMechPurpose",
+                UtilMisc.toMap("userLogin", userLogin, "partyId", partyId, "contactMechId", contactMechId,
+                        "contactMechPurposeTypeId", actionParameters.get("contactMechPurposeTypeId"), "fromDate", UtilDateTime.nowTimestamp()));
     }
 }

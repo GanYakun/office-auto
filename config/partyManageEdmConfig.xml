@@ -50,30 +50,11 @@
         <NavigationProperty Name="SurveyQuestionAppl" Type="SurveyQuestionAppl" Relations="PartySurveyAppl/SurveyQuestionAppl" IsCollection="true"/>
         <SelectionFields PropertyPath="primaryPhone"/>
 
-<!--        <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">-->
-<!--            <DataField Values="numEmployees,annualRevenue,tickerSymbol,comments" Importance="High"/>-->
-<!--        </FieldGroup>-->
 
         <FieldGroup Qualifier="TimeInfo" Label="TimeInfo">
             <DataField Values="createdDate,lastModifiedDate,firstOrderDate,collectionDate" Importance="High"/>
         </FieldGroup>
 
-<!--        <Function Name="GetApproverData_Supplier" OfbizService="com.banfftech.event.ApprovalEvent.getApproverData"-->
-<!--                  IsBound="true">-->
-<!--            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>-->
-<!--            <ReturnType Type="ApproverData" IsCollection="true"/>-->
-<!--        </Function>-->
-<!--        <Action Name="SubmitApproval_Supplier" IsBound="true" OfbizService="com.banfftech.event.ApprovalEvent.submitApproval">-->
-<!--            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>-->
-<!--            <Parameter Name="approverData" Type="String" Nullable="true" IsCollection="false"/>-->
-<!--        </Action>-->
-<!--        <Action Name="CancelApproval_Supplier" IsBound="true" OfbizService="com.banfftech.event.ApprovalEvent.cancelApproval">-->
-<!--            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>-->
-<!--        </Action>-->
-<!--        <Action Name="ViewApproval_Supplier" IsBound="true" OfbizService="com.banfftech.event.ApprovalEvent.viewApproval">-->
-<!--            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>-->
-<!--            <ReturnType Type="ActiveData" Nullable="true"/>-->
-<!--        </Action>-->
 
         <FieldGroup Qualifier="IdentificationCode" Label="IdentificationCode">
             <DataField Values="usccNumber" Importance="High"/>
@@ -84,63 +65,6 @@
             <Description Path="description"/>
         </HeaderInfo>
 
-<!--        <Action Name="FillSupplierBaseInfo" IsBound="true" EntitySetPath="supplierParty"-->
-<!--                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.fillSupplierBaseInfo"-->
-<!--                StickySession="true">-->
-<!--            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>-->
-<!--            <Parameter Name="numEmployees" Type="String"/>-->
-<!--            <Parameter Name="annualRevenue" Type="String"/>-->
-<!--            <Parameter Name="tickerSymbol" Type="String"/>-->
-<!--            <Parameter Name="comments" Type="String"/>-->
-<!--            <ReturnType Type="SupplierParty"/>-->
-<!--        </Action>-->
-
-<!--        <Action Name="UpdateSupplierContactInfo" IsBound="true" EntitySetPath="supplierParty"-->
-<!--                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.fillSupplierBaseInfo"-->
-<!--                StickySession="true">-->
-<!--            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>-->
-<!--            <Parameter Name="primaryPhone" Type="String"/>-->
-<!--            <Parameter Name="primaryEmail" Type="String"/>-->
-<!--            <Parameter Name="address1" Type="String"/>-->
-<!--            <ReturnType Type="SupplierParty"/>-->
-<!--        </Action>-->
-
-<!--        <Action Name="UpdateSupplierTimeInfo" IsBound="true" EntitySetPath="supplierParty"-->
-<!--                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.fillSupplierBaseInfo"-->
-<!--                StickySession="true">-->
-<!--            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>-->
-<!--            <Parameter Name="collectionDate" Type="Timestamp"/>-->
-<!--            <Parameter Name="firstOrderDate" Type="Timestamp"/>-->
-<!--            <ReturnType Type="SupplierParty"/>-->
-<!--        </Action>-->
-
-<!--        <Action Name="ReturnToApplication" IsBound="true" EntitySetPath="supplierParty"-->
-<!--                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.changeSupplierStatusToEnable"-->
-<!--                StickySession="true">-->
-<!--            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>-->
-<!--            <ReturnType Type="SupplierParty"/>-->
-<!--        </Action>-->
-
-<!--        <Action Name="ReturnToApplication" IsBound="true" EntitySetPath="supplierParty"-->
-<!--                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.changeSupplierStatusToEnable"-->
-<!--                StickySession="true">-->
-<!--            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>-->
-<!--            <ReturnType Type="SupplierParty"/>-->
-<!--        </Action>-->
-
-<!--        <Action Name="ReturnToSupplier" IsBound="true" EntitySetPath="supplierParty"-->
-<!--                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.changeSupplierStatusToEnable"-->
-<!--                StickySession="true">-->
-<!--            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>-->
-<!--            <ReturnType Type="SupplierParty"/>-->
-<!--        </Action>-->
-
-<!--        <Action Name="ReturnToCompliance" IsBound="true" EntitySetPath="supplierParty"-->
-<!--                OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.changeSupplierStatusToEnable"-->
-<!--                StickySession="true">-->
-<!--            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>-->
-<!--            <ReturnType Type="SupplierParty"/>-->
-<!--        </Action>-->
 
         <Action Name="ChangeSupplierStatusToEnable" IsBound="true" EntitySetPath="supplierParty"
                 OfbizService="com.banfftech.bfdemo.events.ShipmentEvents.changeSupplierStatusToEnable"
@@ -171,8 +95,7 @@
     <EntityType Name="SurveyQuestionAnswer" AutoSet="true" EntitySetName="SurveyQuestionAnswers" AutoProperties="true">
     </EntityType>
 
-    <EntityType Name="PurchaseQuote" OfbizEntity="Quote" EntityCondition="quoteTypeId=PURCHASE_QUOTE" EntitySetName="PurchaseQuotes" AutoProperties="true" AutoSet="true"
-    >
+    <EntityType Name="PurchaseQuote" OfbizEntity="Quote" EntityCondition="quoteTypeId=PURCHASE_QUOTE" EntitySetName="PurchaseQuotes" AutoProperties="true" AutoSet="true">
         <LineItem>
             <DataField Values="quoteId,quoteName,partyId,custRequestId,salesChannelEnumId" Importance="High"/>
             <DataField Values="statusId" Importance="High"/>
@@ -201,7 +124,6 @@
             <Text Path="SupplierParty/partyName" TextArrangement="TextOnly"/>
             <ValueList CollectionPath="SupplierParties"/>
         </Property>
-<!--        <Property Name="statusColor"  Type="numeric" Hidden="true" HiddenFilter="true"/>-->
 
         <NavigationProperty Name="QuoteStatusItem" Type="QuoteStatusItem" Relations="StatusItem"/>
         <NavigationProperty Name="SalesChannelEnumeration"/>
@@ -376,17 +298,7 @@
         <Property Name="position" IsAttribute="true" Type="String"/>
         <LineItem Qualifier="PartyRelationshipLineItem">
             <DataField Values="partyName,primaryPhone,phoneMobile,primaryEmail,position" Importance="High"/>
-<!--            <DataFieldForAction Label="创建" Action="CreatePersonAndContact" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>-->
         </LineItem>
-<!--        <Action Name="CreatePersonAndContact" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createPersonAndContact">-->
-<!--            <Parameter Name="personAndContact" Type="PersonAndContact" Nullable="false" IsCollection="true"/>-->
-<!--            <Parameter Name="partyName" Type="String" Label="联系人名称"/>-->
-<!--            <Parameter Name="primaryPhone" Type="String" Label="其他联系方式"/>-->
-<!--            <Parameter Name="phoneMobile" Type="String" Label="手机"/>-->
-<!--            <Parameter Name="primaryEmail" Type="String" Label="邮箱"/>-->
-<!--            <Parameter Name="position" Type="String" Label="职位"/>-->
-<!--            <ReturnType Type="PersonAndContact"/>-->
-<!--        </Action>-->
 
     </EntityType>
 
@@ -511,9 +423,6 @@
             <Text Path="OwnerParty/partyName" TextArrangement="TextOnly"/>
         </Property>
 
-<!--        <LineItem Qualifier="FinAccountLineItem">-->
-<!--            <DataField Values="finAccountName,finAccountCode,currencyUomId,statusId" Importance="High"/>-->
-<!--        </LineItem>-->
 
         <NavigationProperty Name="AccountStatusItem" Type="AccountStatusItem" Relations="StatusItem" AutoBinding="true" />
         <NavigationProperty Name="FinAccountType" AutoBinding="true" />
