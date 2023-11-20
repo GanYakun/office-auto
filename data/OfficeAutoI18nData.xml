@@ -130,6 +130,12 @@ under the License.
     <Internationalization id="I10107" lang="zh" property="Enumeration.description.PRIORITY_LOW" value="低"/>
     <Internationalization id="I10108" lang="en" property="selectPriority" value="Priority"/>
     <Internationalization id="I10109" lang="zh" property="selectPriority" value="优先级"/>
+    <Internationalization id="I10110" lang="en" property="StatusItem.description.COWORK_CREATED" value="Created"/>
+    <Internationalization id="I10111" lang="zh" property="StatusItem.description.COWORK_CREATED" value="已创建"/>
+    <Internationalization id="I10112" lang="en" property="StatusItem.description.REQUIRE_CHANGES" value="Require Changes"/>
+    <Internationalization id="I10113" lang="zh" property="StatusItem.description.REQUIRE_CHANGES" value="需要更改"/>
+    <Internationalization id="I10114" lang="en" property="StatusItem.description.REGISTERED" value="Registered"/>
+    <Internationalization id="I10115" lang="zh" property="StatusItem.description.REGISTERED" value="已注册"/>
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
     <DBField dbFieldId="CUST_REQ_10001" dbFieldName="statusId" dbFieldTypeId="STATUS" description="当前状态" dbEntityId="CUST_REQ_10000"/>

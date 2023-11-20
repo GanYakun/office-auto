@@ -204,5 +204,10 @@
 		</relation>
 	</extend-entity>
 
+	<extend-entity entity-name="PostalAddress">
+		<field name="areaCode" type="very-short"/>
+		<field name="contactNumber" type="short-varchar"/>
+		<field name="email" type="short-varchar"/>
+	</extend-entity>
 
 </entitymodel>
