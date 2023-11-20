@@ -121,4 +121,11 @@ under the License.
         <auto-attributes include="pk" mode="IN" optional="false"/>
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
     </service>
+
+    <!--ProductCategoryRole-->
+    <service name="banfftech.createProductCategoryRole" default-entity-name="ProductCategoryRole" engine="entity-auto" invoke="create" auth="true">
+        <description>Update a ProductCategoryRole</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
 </services>

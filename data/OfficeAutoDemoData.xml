@@ -208,6 +208,7 @@ under the License.
     <SurveyQuestionAnswer surveyQuestionId="9002" partyId="SUPPLIER0001" booleanResponse="N"/>
     <SurveyQuestionAnswer surveyQuestionId="9003" partyId="SUPPLIER0001" booleanResponse="N"/>
 
+    <!--产品Demo数据-->
     <UomType uomTypeId="QUANTITY_MEASURE" description="Quantity"/>
     <Uom uomId="SET" uomTypeId="QUANTITY_MEASURE" description="Set"/>
     <Uom uomId="PAIR" uomTypeId="QUANTITY_MEASURE" description="Pair"/>
@@ -217,6 +218,20 @@ under the License.
     <Product productId="9003" productTypeId="FINISHED_GOOD" productName="ASUS earphone" quantityUomId="PAIR"/>
     <Product productId="9004" productTypeId="FINISHED_GOOD" productName="ASUS display screen" quantityUomId="SET"/>
     <Product productId="9005" productTypeId="FINISHED_GOOD" productName="ASUS wireless mouse" quantityUomId="SET"/>
+
+    <!--供应商分类类型-->
+    <ProductCategoryType productCategoryTypeId="SUPPLIER_CATEGORY" description="Supplier Category"/>
+    <!--供应商分类-->
+    <ProductCategory productCategoryId="GENERAL_GOODS_SERVICE" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="General Goods Service Supply" description="General Goods Service Supply"/>
+    <ProductCategory productCategoryId="OFFICE_SUPPLY" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Office Supply" description="Office Supply"/>
+    <ProductCategory productCategoryId="FOOD_BEVERAGE" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Food And Beverage Supply" description="Food And Beverage Supply"/>
+    <ProductCategory productCategoryId="CLEAN_SERVICE" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Clean Service Supply" description="Clean Service Supply"/>
+    <ProductCategory productCategoryId="SECURITY_SERVICE" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Security Service Supply" description="Security Service Supply"/>
+    <ProductCategory productCategoryId="ESTATE_AGENCY" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Real Estate Agency Supply" description="Real Estate Agency Supply"/>
+    <ProductCategory productCategoryId="IT_SERVICE" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="IT Service Supply" description="IT Service Supply"/>
+    <ProductCategory productCategoryId="DATA_SERVICE" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Data Service Supply" description="Data Service Supply"/>
+    <ProductCategory productCategoryId="IP_CREATION_SERVICE" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="IP Service Supply" description="IP Service Supply"/>
+
     <!-- PartyIdentificationType(社会统一码) -->
     <PartyIdentificationType partyIdentificationTypeId="USCC_OF_CHINESE_ORG"/>
 <!--    <PartyQuestionAppl partyQuatsionApplId="9000" partyId="SUPPLIER0001" surveyQuestionId="9000" partyQuestionApplTypeId="DD_FORM" requiredField="Y" sequenceNum="1"/>-->
