@@ -35,6 +35,7 @@ public class SupplierApproveEvents {
         }
         String partyId = (String) boundEntity.getPropertyValue("partyId");
         String workEffortId = (String) boundEntity.getPropertyValue("workEffortId");
+        String priority = (String) boundEntity.getPropertyValue("priority");
         String workEffortParentId = (String) boundEntity.getPropertyValue("workEffortParentId");
         if (UtilValidate.isEmpty(workEffortParentId)) {
             //首次提交 创建ParentWorkEffort分配给采购
@@ -42,7 +43,8 @@ public class SupplierApproveEvents {
             workEffortParentId = delegator.getNextSeqId("WorkEffort");
             createParentWorkMap.put("workEffortId", workEffortParentId);
             createParentWorkMap.put("workEffortTypeId", "COWORK");
-            createParentWorkMap.put("currentStatusId", "APPROVAL_CREATED");
+            createParentWorkMap.put("priority", priority);
+            createParentWorkMap.put("currentStatusId", "COWORK_CREATED");
             createParentWorkMap.put("partyId", partyId);
             createParentWorkMap.put("userLogin", userLogin);
             CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), createParentWorkMap, "banfftech.createWorkEffort", userLogin);
@@ -79,12 +81,23 @@ public class SupplierApproveEvents {
         if (UtilValidate.isEmpty(boundEntity)) {
             throw new OfbizODataException("Parameter error");
         }
-        String transferTarget = getTransferTarget(delegator, target, boundEntity.getGenericValue());
+        GenericValue boundGenericValue = boundEntity.getGenericValue();
+        String partyId = boundGenericValue.getString("partyId");
+        String workEffortId = boundGenericValue.getString("workEffortId");
+        String workEffortParentId = boundGenericValue.getString("workEffortParentId");
+        if (UtilValidate.isNotEmpty(workEffortParentId)) {
+            //申请人传递给vendor
+            workEffortId = workEffortParentId;
+            boundGenericValue = EntityQuery.use(delegator).from("WorkEffort").where("workEffortId", workEffortParentId).queryFirst();
+        } else {
+            //cowork状态改为待修改
+            dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortId,
+                    "currentStatusId", "REQUIRE_CHANGES", "userLogin", userLogin));
+        }
+        String transferTarget = getTransferTarget(delegator, target, boundGenericValue);
         if (UtilValidate.isEmpty(transferTarget)) {
             throw new OfbizODataException("No department found");
         }
-        String partyId = (String) boundEntity.getPropertyValue("partyId");
-        String workEffortId = (String) boundEntity.getPropertyValue("workEffortId");
         GenericValue supplierTask = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact")
                 .where("approvePartyId", transferTarget, "workEffortParentId", workEffortId).queryFirst();
         if (UtilValidate.isEmpty(supplierTask)) {
@@ -127,6 +140,26 @@ public class SupplierApproveEvents {
             return parentWorkEffort.getString("partyId");
         }
         return null;
+    }
+
+
+    /**
+     * 完成注册
+     */
+    public static void completeCOWork(Map<String, Object> oDataContext, Map<String, Object> actionParameters, EdmBindingTarget edmBindingTarget)
+            throws GenericServiceException {
+        Delegator delegator = (Delegator) oDataContext.get("delegator");
+        LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
+        GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
+        OdataOfbizEntity supplierParty = (OdataOfbizEntity) actionParameters.get("supplierParty");
+        String workEffortId = (String) supplierParty.getPropertyValue("workEffortId");
+        String partyId = (String) supplierParty.getPropertyValue("partyId");
+        //完成workEffort
+        dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortId,
+                "currentStatusId", "REGISTERED", "userLogin", userLogin));
+        //启用supplier
+        dispatcher.runSync("banfftech.updateParty", UtilMisc.toMap("partyId", partyId,
+                "statusId", "PARTY_ENABLED", "userLogin", userLogin));
     }
 
 }

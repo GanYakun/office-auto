@@ -153,6 +153,9 @@
 
 	<extend-entity entity-name="WorkEffort">
 		<field name="partyId" type="id"/>
+		<relation type="one" title="Priority" rel-entity-name="Enumeration">
+			<key-map field-name="priority" rel-field-name="enumId"/>
+		</relation>
 	</extend-entity>
 
 	<extend-entity entity-name="Invoice">
@@ -201,5 +204,10 @@
 		</relation>
 	</extend-entity>
 
+	<extend-entity entity-name="PostalAddress">
+		<field name="areaCode" type="very-short"/>
+		<field name="contactNumber" type="short-varchar"/>
+		<field name="email" type="short-varchar"/>
+	</extend-entity>
 
 </entitymodel>

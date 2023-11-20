@@ -211,24 +211,46 @@
         <relation type="many" rel-entity-name="PartyMediaResource">
             <key-map field-name="partyId"/>
         </relation>
+        <relation type="one-nofk" title="Priority" rel-entity-name="Enumeration">
+            <key-map field-name="priority" rel-field-name="enumId"/>
+        </relation>
     </view-entity>
 
     <view-entity entity-name="PartyMediaResource"
                  package-name="com.banfftech.common"
                  never-cache="true">
         <member-entity entity-alias="PTCT" entity-name="PartyContent"/>
-        <member-entity entity-alias="MEDIA" entity-name="ContentAndMediaDataResource" />
+        <member-entity entity-alias="CO" entity-name="Content"/>
+        <member-entity entity-alias="DR" entity-name="DataResource"/>
+        <member-entity entity-alias="IDR" entity-name="ImageDataResource"/>
+        <member-entity entity-alias="VDR" entity-name="VideoDataResource"/>
+        <member-entity entity-alias="ADR" entity-name="AudioDataResource"/>
+        <member-entity entity-alias="ODR" entity-name="OtherDataResource"/>
         <alias-all entity-alias="PTCT" group-by="true"/>
-        <alias name="imageData" entity-alias="MEDIA"/>
-        <alias name="audioData" entity-alias="MEDIA"/>
-        <alias name="videoData" entity-alias="MEDIA"/>
-        <alias name="otherData" entity-alias="MEDIA"/>
-        <alias name="mimeTypeId" entity-alias="MEDIA"/>
-        <alias name="contentName" entity-alias="MEDIA"/>
-        <alias name="createdDate" entity-alias="MEDIA"/>
-        <alias name="description" entity-alias="MEDIA"/>
-        <view-link entity-alias="PTCT" rel-entity-alias="MEDIA">
+        <alias name="contentName" entity-alias="CO" field="contentName" group-by="true"/>
+        <alias name="createdDate" entity-alias="CO" field="createdDate" group-by="true"/>
+        <alias name="mimeTypeId" entity-alias="DR" field="mimeTypeId" group-by="true"/>
+        <alias name="imageData" entity-alias="IDR" field="imageData" group-by="true"/>
+        <alias name="videoData" entity-alias="VDR" field="videoData" group-by="true"/>
+        <alias name="audioData" entity-alias="ADR" field="audioData" group-by="true"/>
+        <alias name="otherData" entity-alias="ODR" field="dataResourceContent" group-by="true"/>
+        <view-link entity-alias="PTCT" rel-entity-alias="CO">
             <key-map field-name="contentId"/>
+        </view-link>
+        <view-link entity-alias="CO" rel-entity-alias="DR">
+            <key-map field-name="dataResourceId"/>
+        </view-link>
+        <view-link entity-alias="DR" rel-entity-alias="IDR" rel-optional="true">
+            <key-map field-name="dataResourceId"/>
+        </view-link>
+        <view-link entity-alias="DR" rel-entity-alias="VDR" rel-optional="true">
+            <key-map field-name="dataResourceId"/>
+        </view-link>
+        <view-link entity-alias="DR" rel-entity-alias="ADR" rel-optional="true">
+            <key-map field-name="dataResourceId"/>
+        </view-link>
+        <view-link entity-alias="DR" rel-entity-alias="ODR" rel-optional="true">
+            <key-map field-name="dataResourceId"/>
         </view-link>
     </view-entity>
 
