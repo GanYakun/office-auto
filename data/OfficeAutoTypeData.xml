@@ -47,7 +47,7 @@ under the License.
 
 <!--    <PartyQuestionApplType description="Due Diligence Form" partyQuestionApplTypeId="DD_FORM" hasTable="N"/>-->
     <!-- 财务报表,保密协议,其他文件 -->
-    <WorkEffortContentType workEffortContentTypeId="FINANCIAL_STATEMENTS"/>
-    <WorkEffortContentType workEffortContentTypeId="CONFIDENTIALITY_AGREEMENT"/>
-    <WorkEffortContentType workEffortContentTypeId="OTHER_FILES"/>
+    <PartyContentType partyContentTypeId="FINANCIAL_STATEMENTS"/>
+    <PartyContentType partyContentTypeId="CONFIDENTIALITY_AGREEMENT"/>
+    <PartyContentType partyContentTypeId="OTHER_FILES"/>
 </entity-engine-xml>

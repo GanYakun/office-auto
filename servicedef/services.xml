@@ -65,4 +65,18 @@ under the License.
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
     </service>
 
+    <service name="banfftech.createPartyMediaResource" default-entity-name="PartyMediaResource"
+             location="com.banfftech.services.VendorService" engine="java" invoke="createPartyMediaResource" auth="true">
+        <description>Create a PartyMediaResource</description>
+        <auto-attributes include="pk" mode="INOUT" optional="true"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+
+    <service name="banfftech.updatePartyMediaResource" default-entity-name="PartyMediaResource"
+             location="com.banfftech.services.VendorService" engine="java" invoke="updatePartyMediaResource" auth="true">
+        <description>Update a PartyMediaResource</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+
 </services>

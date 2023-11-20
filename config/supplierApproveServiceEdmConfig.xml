@@ -60,14 +60,14 @@
         <NavigationProperty Name="ChildWorkEffortAndPartyGroupContact" Type="CoWorkHistory" Relations="ChildWorkEffortAndPartyGroupContact" IsCollection="true"/>
         <NavigationProperty Name="DataResource" Type="DataResource" Relations="PartyContent/Content/DataResource"/>
         <!-- 财务报表 -->
-        <NavigationProperty Name="FinancialStatements" Type="ContentAndMediaDataResource"
-                            Relations="WorkEffortContent(workEffortContentTypeId=FINANCIAL_STATEMENTS)/ContentAndMediaDataResource" IsCollection="true"/>
+        <NavigationProperty Name="FinancialStatements" Type="PartyMediaResource"
+                            Relations="PartyMediaResource(partyContentTypeId=FINANCIAL_STATEMENTS)" IsCollection="true"/>
         <!-- 保密协议 -->
-        <NavigationProperty Name="ConfidentialityAgreement" Type="ContentAndMediaDataResource"
-                            Relations="WorkEffortContent(workEffortContentTypeId=CONFIDENTIALITY_AGREEMENT)/ContentAndMediaDataResource" IsCollection="true"/>
+        <NavigationProperty Name="ConfidentialityAgreement" Type="PartyMediaResource"
+                            Relations="PartyMediaResource(partyContentTypeId=CONFIDENTIALITY_AGREEMENT)" IsCollection="true"/>
         <!-- 其他文件 -->
-        <NavigationProperty Name="OtherFiles" Type="ContentAndMediaDataResource"
-                            Relations="WorkEffortContent(workEffortContentTypeId=OTHER_FILES)/ContentAndMediaDataResource" IsCollection="true"/>
+        <NavigationProperty Name="OtherFiles" Type="PartyMediaResource"
+                            Relations="PartyMediaResource(partyContentTypeId=OTHER_FILES)" IsCollection="true"/>
         <SelectionFields PropertyPath="currentStatusId,primaryPhone"/>
 
         <!--Annotation-->
@@ -257,15 +257,15 @@
     </EntityType>
 
     <!-- 文件 -->
-    <EntityType Name="ContentAndMediaDataResource" Orderby="-createdDate" EntitySetName="ContentAndMediaDataResources"
-                Properties="contentId,contentName,createdDate,otherData,mimeTypeId">
+    <EntityType Name="PartyMediaResource" Orderby="-createdDate" EntitySetName="PartyMediaResources"
+                Properties="partyContentId,partyId,contentId,contentName,createdDate,otherData,mimeTypeId">
         <LineItem Qualifier="FileList">
             <DataField Values="contentName,createdDate,otherData" Importance="High"/>
             <DataFieldForAction Label="${upload}" Action="UploadAction" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
         <Property Name="otherData" FileNamePath="contentName"/>
         <Action Name="UploadAction" IsBound="true" OfbizService="com.banfftech.events.UploadEvent.uploadFile" >
-            <Parameter Name="contentAndMediaDataResource" Type="ContentAndMediaDataResource" Nullable="false" IsCollection="true"/>
+            <Parameter Name="partyMediaResource" Type="PartyMediaResource" Nullable="false" IsCollection="true"/>
             <Parameter Name="file" Type="Stream" Nullable="false" IsCollection="false"/>
         </Action>
     </EntityType>

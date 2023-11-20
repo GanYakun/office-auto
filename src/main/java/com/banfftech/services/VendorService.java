@@ -3,6 +3,7 @@ package com.banfftech.services;
 
 import com.banfftech.common.util.CommonUtils;
 import com.dpbird.odata.OfbizODataException;
+import org.apache.ofbiz.base.util.Debug;
 import org.apache.ofbiz.base.util.UtilMisc;
 import org.apache.ofbiz.entity.Delegator;
 import org.apache.ofbiz.entity.GenericEntityException;
@@ -106,6 +107,21 @@ public class VendorService {
         dispatcher.runSync("banfftech.createUserLogin", UtilMisc.toMap("userLogin", userLogin, "enabled", "Y",
                 "partyId", partyId, "currentPassword", code));
         return resultMap;
+    }
+
+    public static Map<String, Object> createPartyMediaResource(DispatchContext dctx, Map<String, Object> context) throws GeneralServiceException, GenericServiceException {
+        GenericValue userLogin = (GenericValue) context.get("userLogin");
+        Map<String, Object> createResult = CommonUtils.setServiceFieldsAndRun(dctx, context, "banfftech.createContentAndMediaDataResource", userLogin);
+        context.putAll(createResult);
+        return CommonUtils.setServiceFieldsAndRun(dctx, context, "banfftech.createPartyContent", userLogin);
+    }
+
+    public static Map<String, Object> updatePartyMediaResource(DispatchContext dctx, Map<String, Object> context) throws GeneralServiceException, GenericServiceException {
+        GenericValue userLogin = (GenericValue) context.get("userLogin");
+        LocalDispatcher dispatcher = dctx.getDispatcher();
+        CommonUtils.setServiceFieldsAndRun(dctx, context, "banfftech.updatePartyContent", userLogin);
+        CommonUtils.setServiceFieldsAndRun(dctx, context, "banfftech.updateContentAndMediaDataResource", userLogin);
+        return ServiceUtil.returnSuccess();
     }
 
 }
