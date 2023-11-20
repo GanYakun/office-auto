@@ -205,6 +205,28 @@
         <relation type="many" rel-entity-name="WorkEffortContent">
             <key-map field-name="workEffortId"/>
         </relation>
+        <relation type="many" rel-entity-name="PartyMediaResource">
+            <key-map field-name="partyId"/>
+        </relation>
+    </view-entity>
+
+    <view-entity entity-name="PartyMediaResource"
+                 package-name="com.banfftech.common"
+                 never-cache="true">
+        <member-entity entity-alias="PTCT" entity-name="PartyContent"/>
+        <member-entity entity-alias="MEDIA" entity-name="ContentAndMediaDataResource" />
+        <alias-all entity-alias="PTCT" group-by="true"/>
+        <alias name="imageData" entity-alias="MEDIA"/>
+        <alias name="audioData" entity-alias="MEDIA"/>
+        <alias name="videoData" entity-alias="MEDIA"/>
+        <alias name="otherData" entity-alias="MEDIA"/>
+        <alias name="mimeTypeId" entity-alias="MEDIA"/>
+        <alias name="contentName" entity-alias="MEDIA"/>
+        <alias name="createdDate" entity-alias="MEDIA"/>
+        <alias name="description" entity-alias="MEDIA"/>
+        <view-link entity-alias="PTCT" rel-entity-alias="MEDIA">
+            <key-map field-name="contentId"/>
+        </view-link>
     </view-entity>
 
 </entitymodel>
