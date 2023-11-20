@@ -41,6 +41,7 @@ under the License.
              location="com.banfftech.services.VendorService" default-entity-name="WorkEffortAndPartyGroupContact"
              invoke="createWorkEffortAndPartyGroupContact">
         <auto-attributes include="pk" mode="INOUT" optional="true"/>
+        <attribute name="partyId" type="String" mode="OUT" optional="false"/>
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
     </service>
 

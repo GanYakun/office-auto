@@ -306,4 +306,24 @@ public class SupplierEvents {
                 UtilMisc.toMap("userLogin", userLogin, "partyId", partyId, "contactMechId", contactMechId,
                         "contactMechPurposeTypeId", actionParameters.get("contactMechPurposeTypeId"), "fromDate", UtilDateTime.nowTimestamp()));
     }
+
+    public static void createSupplierParty(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
+                                           EdmBindingTarget edmBindingTarget) throws GenericEntityException, OfbizODataException, GenericServiceException {
+
+        GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
+        LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
+
+        Map<String, Object> resultMap = dispatcher.runSync("banfftech.createWorkEffortAndPartyGroupContact",
+                UtilMisc.toMap("userLogin", userLogin, "partyName", actionParameters.get("partyName"), "currentStatusId", "NOT_PROCESSED",
+                        "primaryPhone", actionParameters.get("primaryPhone"), "primaryEmail", actionParameters.get("primaryEmail")));
+
+        dispatcher.runSync("banfftech.createProductCategoryRole",
+                UtilMisc.toMap("userLogin", userLogin, "partyId", resultMap.get("partyId"), "roleTypeId", "SUPPLIER",
+                        "productCategoryId", actionParameters.get("productCategoryId"), "fromDate", UtilDateTime.nowTimestamp()));
+
+        dispatcher.runSync("banfftech.createPartyRelationship",
+                UtilMisc.toMap("userLogin", userLogin, "roleTypeIdFrom", "DEPARTMENT", "partyIdFrom", actionParameters.get("partyId"),
+                        "roleTypeIdTo", "SUPPLIER", "partyIdTo", resultMap.get("partyId")));
+
+    }
 }

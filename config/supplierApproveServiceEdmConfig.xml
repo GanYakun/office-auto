@@ -60,6 +60,7 @@
         <NavigationProperty Name="SurveyQuestionAppl" Type="SurveyQuestionAppl" Relations="PartySurveyAppl/SurveyQuestionAppl" IsCollection="true"/>
         <NavigationProperty Name="ChildWorkEffortAndPartyGroupContact" Type="CoWorkHistory" Relations="ChildWorkEffortAndPartyGroupContact" IsCollection="true"/>
         <NavigationProperty Name="PostalAddress" Type="PostalAddress" Relations="PartyContactMechPurpose/PostalAddress" IsCollection="true"/>
+        <NavigationProperty Name="ProductCategory" Type="ProductCategory" Relations="ProductCategoryRole/ProductCategory" IsCollection="false"/>
 
         <!-- 财务报表 -->
         <NavigationProperty Name="FinancialStatements" Type="PartyMediaResource"
@@ -182,12 +183,21 @@
         </Action>
 
         <!--创建Supplier-->
-        <Action Name="CreateSupplierParty" IsBound="true" OfbizService="com.dpbird.odata.events.ActionEvents.createEntity">
+        <Action Name="CreateSupplierParty" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createSupplierParty">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="true"/>
             <Parameter Name="partyName" Type="String" Label="${supplierActionPartyName}" Nullable="false"/>
             <Parameter Name="primaryPhone" Type="String" Label="${supplierActionPrimaryPhone}" Nullable="true"/>
             <Parameter Name="primaryEmail" Type="String" Label="${supplierActionPrimaryEmail}" Nullable="true"/>
-            <ReturnType Type="SupplierParty"/>
+            <Parameter Name="partyId" Type="String" Label="${department}" Nullable="false">
+                <ValueList CollectionPath="Departments" ParameterDisplayOnly="primaryPhone,primaryEmail">
+                    <ParameterInOut LocalDataProperty="partyId" ValueListProperty="partyId"/>
+                </ValueList>
+            </Parameter>
+            <Parameter Name="productCategoryId" Type="String" Label="${partyCategoryId}" Nullable="false">
+                <ValueList WithFixedValues="true" CollectionPath="ProductCategories">
+                    <ParameterInOut ValueListProperty="productCategoryId" LocalDataProperty="productCategoryId"/>
+                </ValueList>
+            </Parameter>
         </Action>
 
         <!--推送给采购部门的Action-->
@@ -600,7 +610,7 @@
     <!--ProductType（产品类型）-->
     <EntityType Name="ProductType" AutoSet="true" EntitySetName="ProductTypes" AutoProperties="true"/>
     <!--ProductCategory（产品种类）-->
-    <EntityType Name="ProductCategory" AutoSet="true" EntitySetName="ProductCategories" AutoProperties="true">
+    <EntityType Name="ProductCategory" AutoSet="true" EntityCondition="productCategoryTypeId=SUPPLIER_CATEGORY" EntitySetName="ProductCategories" AutoProperties="true">
         <Property Name="productCategoryId">
             <Text Path="categoryName" TextArrangement="TextOnly"/>
         </Property>
@@ -691,6 +701,11 @@
     <EntityType Name="Party" EntitySetName="Parties" AutoSet="true" AutoProperties="true"/>
     <!--Company（公司）-->
     <EntityType Name="Company" OfbizEntity="PartyGroupAndContact" AutoProperties="true" EntityCondition="PartyRole/roleTypeId=INTERNAL_ORGANIZATIO" EntitySetName="Companies" AutoSet="true">
+        <Property Name="partyId">
+            <Text Path="partyName" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <EntityType Name="Department" OfbizEntity="PartyGroupAndContact" AutoProperties="true" EntityCondition="PartyRole/roleTypeId=DEPARTMENT" EntitySetName="Departments" AutoSet="true">
         <Property Name="partyId">
             <Text Path="partyName" TextArrangement="TextOnly"/>
         </Property>

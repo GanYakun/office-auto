@@ -12,7 +12,7 @@
     <eca service="banfftech.createWorkEffortAndPartyGroupContact" event="return">
         <action service="banfftech.createSupplierRole" mode="sync"/>
     </eca>
-    <!-- 创建WorkEffortAndPartyGroupContact后添加角色 -->
+    <!-- 创建PersonAndContact后添加用户 -->
     <eca service="banfftech.createPersonAndContact" event="return">
         <action service="banfftech.createSupplierUserLogin" mode="sync"/>
     </eca>

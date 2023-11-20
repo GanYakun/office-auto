@@ -70,13 +70,6 @@ under the License.
         <auto-attributes include="pk" mode="IN" optional="false"/>
     </service>
 
-    <!--PartyRelationship-->
-    <service name="banfftech.createPartyRelationship" default-entity-name="PartyRelationship" engine="entity-auto" invoke="create" auth="true">
-        <description>create a PartyRelationship</description>
-        <auto-attributes include="pk" mode="INOUT" optional="true"/>
-        <auto-attributes include="nonpk" mode="IN" optional="true"/>
-    </service>
-
     <!--PartyNote-->
     <service name="banfftech.createPartyNote" default-entity-name="PartyNote" engine="entity-auto" invoke="create" auth="true">
         <description>create a PartyNote</description>
