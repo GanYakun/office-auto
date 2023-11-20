@@ -75,6 +75,9 @@
         <SelectionFields PropertyPath="currentStatusId,primaryPhone"/>
 
         <!--Annotation-->
+        <FieldGroup Label="PartyBaseInfo" Qualifier="PartyBaseInfo">
+            <DataField Values="tickerSymbol,ProductCategory/categoryName,usccNumber" Importance="High"/>
+        </FieldGroup>
         <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">
             <DataField Values="numEmployees,annualRevenue,tickerSymbol,comments" Importance="High"/>
         </FieldGroup>
@@ -84,10 +87,10 @@
         </FieldGroup>
 
         <FieldGroup Qualifier="ContactInfo" Label="ContactInfo">
-            <DataField Values="primaryPhone,primaryEmail,address1,usccNumber" Importance="High"/>
+            <DataField Values="primaryPhone,primaryEmail,usccNumber" Importance="High"/>
         </FieldGroup>
         <FieldGroup Qualifier="ContactInfoWithAction" Label="ContactInfoWithAction">
-            <DataField Values="primaryPhone,primaryEmail,address1,usccNumber" Importance="High"/>
+            <DataField Values="primaryPhone,primaryEmail,usccNumber" Importance="High"/>
             <DataFieldForAction Label="${UpdateSupplierContactInfo}" Action="UpdateSupplierContactInfo" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated" Hidden="disableEditSupplier"/>
         </FieldGroup>
 
@@ -168,7 +171,6 @@
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
             <Parameter Name="primaryPhone" Type="String" Label="${supplierUpdateActionPrimaryPhone}"/>
             <Parameter Name="primaryEmail" Type="String" Label="${supplierUpdateActionPrimaryEmail}"/>
-            <Parameter Name="address1" Type="String" Label="${supplierUpdateActionAddress}"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
 

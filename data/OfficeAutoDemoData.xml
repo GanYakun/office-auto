@@ -231,6 +231,7 @@ under the License.
     <ProductCategory productCategoryId="IT_SERVICE" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="IT Service Supply" description="IT Service Supply"/>
     <ProductCategory productCategoryId="DATA_SERVICE" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Data Service Supply" description="Data Service Supply"/>
     <ProductCategory productCategoryId="IP_CREATION_SERVICE" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="IP Service Supply" description="IP Service Supply"/>
+    <ProductCategory productCategoryId="HR_SERVICE" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="HR Service Supply" description="HR Service Supply"/>
 
     <!-- PartyIdentificationType(社会统一码) -->
     <PartyIdentificationType partyIdentificationTypeId="USCC_OF_CHINESE_ORG"/>
