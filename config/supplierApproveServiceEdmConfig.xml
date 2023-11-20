@@ -53,7 +53,7 @@
         <NavigationProperty Name="ChildWorkEffortAndPartyGroupContact" Type="CoWorkHistory" Relations="ChildWorkEffortAndPartyGroupContact" IsCollection="true"/>
         <NavigationProperty Name="PostalAddress" Type="PostalAddress" Relations="PartyContactMechPurpose/PostalAddress" IsCollection="true"/>
         <NavigationProperty Name="PriorityEnumeration"/>
-
+        <NavigationProperty Name="ProductCategory" Type="ProductCategory" Relations="ProductCategoryRole/ProductCategory" IsCollection="false"/>
         <!-- 财务报表 -->
         <NavigationProperty Name="FinancialStatements" Type="PartyMediaResource"
                             Relations="PartyMediaResource(partyContentTypeId=FINANCIAL_STATEMENTS)" IsCollection="true"/>
@@ -67,6 +67,9 @@
         <SelectionFields PropertyPath="currentStatusId,primaryPhone"/>
 
         <!--Annotation-->
+        <FieldGroup Label="PartyBaseInfo" Qualifier="PartyBaseInfo">
+            <DataField Values="tickerSymbol,ProductCategory/categoryName,usccNumber" Importance="High"/>
+        </FieldGroup>
         <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">
             <DataField Values="numEmployees,annualRevenue,tickerSymbol,comments,priority" Importance="High"/>
         </FieldGroup>
@@ -76,10 +79,10 @@
         </FieldGroup>
 
         <FieldGroup Qualifier="ContactInfo" Label="ContactInfo">
-            <DataField Values="primaryPhone,primaryEmail,address1,usccNumber" Importance="High"/>
+            <DataField Values="primaryPhone,primaryEmail,usccNumber" Importance="High"/>
         </FieldGroup>
         <FieldGroup Qualifier="ContactInfoWithAction" Label="ContactInfoWithAction">
-            <DataField Values="primaryPhone,primaryEmail,address1,usccNumber" Importance="High"/>
+            <DataField Values="primaryPhone,primaryEmail,usccNumber" Importance="High"/>
             <DataFieldForAction Label="${UpdateSupplierContactInfo}" Action="UpdateSupplierContactInfo" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated" Hidden="disableEditSupplier"/>
         </FieldGroup>
 
@@ -147,7 +150,6 @@
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
             <Parameter Name="primaryPhone" Type="String" Label="${supplierUpdateActionPrimaryPhone}"/>
             <Parameter Name="primaryEmail" Type="String" Label="${supplierUpdateActionPrimaryEmail}"/>
-            <Parameter Name="address1" Type="String" Label="${supplierUpdateActionAddress}"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
 
@@ -162,12 +164,21 @@
         </Action>
 
         <!--创建Supplier-->
-        <Action Name="CreateSupplierParty" IsBound="true" OfbizService="com.dpbird.odata.events.ActionEvents.createEntity">
+        <Action Name="CreateSupplierParty" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createSupplierParty">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="true"/>
             <Parameter Name="partyName" Type="String" Label="${supplierActionPartyName}" Nullable="false"/>
             <Parameter Name="primaryPhone" Type="String" Label="${supplierActionPrimaryPhone}" Nullable="true"/>
             <Parameter Name="primaryEmail" Type="String" Label="${supplierActionPrimaryEmail}" Nullable="true"/>
-            <ReturnType Type="SupplierParty"/>
+            <Parameter Name="partyId" Type="String" Label="${department}" Nullable="false">
+                <ValueList CollectionPath="Departments" ParameterDisplayOnly="primaryPhone,primaryEmail">
+                    <ParameterInOut LocalDataProperty="partyId" ValueListProperty="partyId"/>
+                </ValueList>
+            </Parameter>
+            <Parameter Name="productCategoryId" Type="String" Label="${partyCategoryId}" Nullable="false">
+                <ValueList WithFixedValues="true" CollectionPath="ProductCategories">
+                    <ParameterInOut ValueListProperty="productCategoryId" LocalDataProperty="productCategoryId"/>
+                </ValueList>
+            </Parameter>
         </Action>
 
         <!--推送给采购部门的Action-->
@@ -535,32 +546,44 @@
         <NavigationProperty Name="ProductType"/>
         <NavigationProperty Name="QuantityUom"/>
         <LineItem Qualifier="SupplierProductLineItem">
-            <DataField Values="productName,quantityUomId" Importance="High" />
+            <DataField Values="productName,quantityUomId,primaryProductCategoryId" Importance="High" />
             <DataFieldForAction Label="${create}" Action="CreateSupplierProduct" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
         <LineItem Qualifier="SupplierProductLineItemWithoutAction">
-            <DataField Values="productName,quantityUomId" Importance="High" />
+            <DataField Values="productName,quantityUomId,primaryProductCategoryId" Importance="High" />
         </LineItem>
         <Action Name="CreateSupplierProduct" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createSupplierProduct" SideEffects="true">
             <Parameter Name="product" Type="Product" Nullable="false" IsCollection="true"/>
             <Parameter Name="productId" Type="String" Label="${productId}" Nullable="false"/>
+            <Parameter Name="primaryProductCategoryId" Type="String" Label="${primaryProductCategoryId}" Nullable="false">
+                <ValueList CollectionPath="ProductCategories" WithFixedValues="true">
+                    <ParameterInOut ValueListProperty="productCategoryId" LocalDataProperty="primaryProductCategoryId"/>
+                </ValueList>
+            </Parameter>
             <ReturnType Type="Product"/>
         </Action>
+        <NavigationProperty Name="PrimaryProductCategory"/>
     </EntityType>
     <!--Service(服务)-->
     <EntityType Name="Service" OfbizEntity="Product" AutoProperties="true" EntityCondition="productTypeId=SERVICE" EntitySetName="Services">
         <LineItem Qualifier="SupplierProductLineItem">
-            <DataField Values="productName" Importance="High" />
+            <DataField Values="productName,primaryProductCategoryId" Importance="High" />
             <DataFieldForAction Label="${create}" Action="CreateSupplierService" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
         <LineItem Qualifier="SupplierProductLineItemWithoutAction">
-            <DataField Values="productName" Importance="High" />
+            <DataField Values="productName,primaryProductCategoryId" Importance="High" />
         </LineItem>
         <Action Name="CreateSupplierService" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createSupplierProduct" SideEffects="true">
             <Parameter Name="service" Type="Service" Nullable="false" IsCollection="true"/>
             <Parameter Name="productId" Type="String" Label="${productId}" Nullable="false"/>
+            <Parameter Name="primaryProductCategoryId" Type="String" Label="${primaryProductCategoryId}" Nullable="false">
+                <ValueList CollectionPath="ProductCategories" WithFixedValues="true">
+                    <ParameterInOut ValueListProperty="productCategoryId" LocalDataProperty="primaryProductCategoryId"/>
+                </ValueList>
+            </Parameter>
             <ReturnType Type="Service"/>
         </Action>
+        <NavigationProperty Name="PrimaryProductCategory"/>
     </EntityType>
     <!--RawMaterialProduct（原料）-->
     <EntityType Name="RawMaterialProduct" EntitySetName="RawMaterialProducts" AutoSet="true" OfbizEntity="Product"
@@ -572,6 +595,12 @@
     </EntityType>
     <!--ProductType（产品类型）-->
     <EntityType Name="ProductType" AutoSet="true" EntitySetName="ProductTypes" AutoProperties="true"/>
+    <!--ProductCategory（产品种类）-->
+    <EntityType Name="ProductCategory" AutoSet="true" EntityCondition="productCategoryTypeId=SUPPLIER_CATEGORY" EntitySetName="ProductCategories" AutoProperties="true">
+        <Property Name="productCategoryId">
+            <Text Path="categoryName" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
 
     <!--==================================货运相关对象==============================================-->
     <!--Shipment（货运）-->
@@ -658,6 +687,11 @@
     <EntityType Name="Party" EntitySetName="Parties" AutoSet="true" AutoProperties="true"/>
     <!--Company（公司）-->
     <EntityType Name="Company" OfbizEntity="PartyGroupAndContact" AutoProperties="true" EntityCondition="PartyRole/roleTypeId=INTERNAL_ORGANIZATIO" EntitySetName="Companies" AutoSet="true">
+        <Property Name="partyId">
+            <Text Path="partyName" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <EntityType Name="Department" OfbizEntity="PartyGroupAndContact" AutoProperties="true" EntityCondition="PartyRole/roleTypeId=DEPARTMENT" EntitySetName="Departments" AutoSet="true">
         <Property Name="partyId">
             <Text Path="partyName" TextArrangement="TextOnly"/>
         </Property>

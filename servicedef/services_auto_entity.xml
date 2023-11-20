@@ -70,13 +70,6 @@ under the License.
         <auto-attributes include="pk" mode="IN" optional="false"/>
     </service>
 
-    <!--PartyRelationship-->
-    <service name="banfftech.createPartyRelationship" default-entity-name="PartyRelationship" engine="entity-auto" invoke="create" auth="true">
-        <description>create a PartyRelationship</description>
-        <auto-attributes include="pk" mode="INOUT" optional="true"/>
-        <auto-attributes include="nonpk" mode="IN" optional="true"/>
-    </service>
-
     <!--PartyNote-->
     <service name="banfftech.createPartyNote" default-entity-name="PartyNote" engine="entity-auto" invoke="create" auth="true">
         <description>create a PartyNote</description>
@@ -125,6 +118,13 @@ under the License.
     </service>
     <service name="banfftech.updatePartyIdentification" default-entity-name="PartyIdentification" engine="entity-auto" invoke="update" auth="true">
         <description>Update a PartyIdentification</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+
+    <!--ProductCategoryRole-->
+    <service name="banfftech.createProductCategoryRole" default-entity-name="ProductCategoryRole" engine="entity-auto" invoke="create" auth="true">
+        <description>Update a ProductCategoryRole</description>
         <auto-attributes include="pk" mode="IN" optional="false"/>
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
     </service>
