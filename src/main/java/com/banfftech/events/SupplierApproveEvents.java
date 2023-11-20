@@ -89,6 +89,10 @@ public class SupplierApproveEvents {
             //申请人传递给vendor
             workEffortId = workEffortParentId;
             boundGenericValue = EntityQuery.use(delegator).from("WorkEffort").where("workEffortId", workEffortParentId).queryFirst();
+        } else {
+            //cowork状态改为待修改
+            dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortId,
+                    "currentStatusId", "REQUIRE_CHANGES", "userLogin", userLogin));
         }
         String transferTarget = getTransferTarget(delegator, target, boundGenericValue);
         if (UtilValidate.isEmpty(transferTarget)) {
@@ -109,10 +113,6 @@ public class SupplierApproveEvents {
             CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), UtilMisc.toMap("workEffortId", supplierTask.getString("workEffortId"),
                     "currentStatusId", "NOT_PROCESSED", "comments", comments, "userLogin", userLogin), "banfftech.updateWorkEffort", userLogin);
         }
-        //cowork状态改为待修改
-        dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortId,
-                "currentStatusId", "REQUIRE_CHANGES", "userLogin", userLogin));
-
         // create NoteData for the Party
         if (UtilValidate.isEmpty(noteInfo)) {
             noteInfo = "Procurement to " + target + " note";
