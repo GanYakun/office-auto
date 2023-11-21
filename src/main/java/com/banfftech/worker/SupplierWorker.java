@@ -60,4 +60,46 @@ public class SupplierWorker {
 
         return isNoFormListCountry;
     }
+
+    /**
+     * 返回供应商填写ddForm情况
+     * @param supplierParty 供应商
+     * @param delegator
+     * @return ddFormDealStatus
+     */
+    public static String getDDFormDealStatus (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
+        String ddFormDealStatus = "NOT_SEND_VENDOR";
+        Boolean isSent = ddFormIsSent(delegator, supplierParty);
+        Boolean isSubmit = ddFormIsSubmitted(delegator, supplierParty);
+        if (isSent && !isSubmit){
+            ddFormDealStatus = "NOT_SUBMIT_VENDOR";
+        }else if (isSent && isSubmit){
+            ddFormDealStatus = "SUBMITTED_VENDOR";
+        }
+        return ddFormDealStatus;
+    }
+
+    private static Boolean ddFormIsSent(Delegator delegator, GenericValue supplierParty) throws GenericEntityException {
+        Boolean isSent = false;
+        List<GenericValue> supplierWorkEfforts = delegator.findByAnd("WorkEffortAndPartyGroupContact",
+                UtilMisc.toMap("partyId", supplierParty.get("partyId"), "approvePartyId", supplierParty.get("partyId")), null, true);
+        if (UtilValidate.isNotEmpty(supplierWorkEfforts)){
+            isSent = true;
+        }
+        return isSent;
+    }
+
+    private static Boolean ddFormIsSubmitted(Delegator delegator, GenericValue supplierParty) throws GenericEntityException {
+        Boolean isSubmit = false;
+        List<GenericValue> supplierWorkEfforts = delegator.findByAnd("WorkEffortAndPartyGroupContact",
+                UtilMisc.toMap("partyId", supplierParty.get("partyId"), "approvePartyId", supplierParty.get("partyId")), null, true);
+        if (UtilValidate.isEmpty(supplierWorkEfforts)){
+            return false;
+        }
+        GenericValue supplierWorkEffort = EntityUtil.getFirst(supplierWorkEfforts);
+        if (supplierWorkEffort.get("currentStatusId").equals("PROCESSED")){
+            isSubmit = true;
+        }
+        return isSubmit;
+    }
 }

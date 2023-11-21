@@ -22,9 +22,10 @@ def generateFields(Map<String, Object> context){
     Delegator delegator = context.get("delegator");
     entityList.each { entity ->
         String ddFormType;
+        String ddFormDealStatus;
         GenericValue supplierParty = (GenericValue) entity.getGenericValue();
         ddFormType = SupplierWorker.getDDFormType(supplierParty, delegator);
-        entity.addProperty(new Property(null, "ddFormType", ValueType.PRIMITIVE, ddFormType))
+        ddFormDealStatus = SupplierWorker.getDDFormDealStatus(supplierParty, delegator);
         criticalityValue = 2L
         String statusId = supplierParty.getString("statusId");
         if (statusId.equals("PROCESSED") && UtilValidate.isNotEmpty(criticalityValue)){
@@ -32,6 +33,10 @@ def generateFields(Map<String, Object> context){
         }else if (statusId.equals("NOT_PROCESSED")){
             criticalityValue = 1L
         }
+        entity.addProperty(new Property(null, "ddFormType", ValueType.PRIMITIVE, ddFormType))
+        entity.addProperty(new Property(null, "ddFormDealStatus", ValueType.PRIMITIVE, ddFormDealStatus))
+        entity.addProperty(new Property(null, "criticalityValue", ValueType.PRIMITIVE, criticalityValue))
+
     }
     return entityList;
 }
