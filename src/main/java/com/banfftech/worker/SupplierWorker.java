@@ -25,6 +25,9 @@ public class SupplierWorker {
 
         List<GenericValue> productCategoryRoles = delegator.findByAnd("ProductCategoryRole",
                 UtilMisc.toMap("partyId", supplierParty.get("partyId")), null, false);
+        if (UtilValidate.isEmpty(productCategoryRoles)){
+            return null;
+        }
         GenericValue productCategoryRole = EntityUtil.getFirst(productCategoryRoles);
         GenericValue productCategory = delegator.findOne("ProductCategory",
                 UtilMisc.toMap("productCategoryId", productCategoryRole.get("productCategoryId")), true);
