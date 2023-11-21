@@ -16,12 +16,13 @@
         </Property>
         <Property Name="ddFormType" Type="String"/>
         <Property Name="ddFormDealStatus" Type="String"/>
-        <Property Name="cycleTime" Type="Timestamp"/>
+        <Property Name="cycleTime" Type="String"/>
         <Property Name="createSupplierHidden" Type="Boolean" Hidden="true"/>
         <Property Name="firstOrderDate" Type="Timestamp" IsDateAttribute="true"/>
         <Property Name="collectionDate" Type="Timestamp" IsDateAttribute="true"/>
         <Property Name="totalAmount" Type="BigDecimal" Scale="3"/>
         <Property Name="criticalityValue" Type="numeric" Hidden="true" HiddenFilter="true"/>
+        <Property Name="ddFormTypeCritical" Type="numeric" Hidden="true" HiddenFilter="true"/>
         <Property Name="statusId" Immutable="true" DefaultValue="PARTY_DISABLED">
             <ValueList CollectionPath="SupplierStatusItems" WithFixedValues="true"/>
         </Property>
@@ -73,8 +74,9 @@
 
         <!--Annotation-->
         <FieldGroup Label="PartyBaseInfo" Qualifier="PartyBaseInfo">
-            <DataField Values="tickerSymbol,ProductCategory/categoryName,ddFormType,ddFormDealStatus,usccNumber" Importance="High"/>
+            <DataField Values="tickerSymbol,ProductCategory/categoryName,ddFormDealStatus,cycleTime,usccNumber" Importance="High"/>
         </FieldGroup>
+        <DataPoint Title="ddFormType" Value="ddFormType" Criticality="ddFormTypeCritical" Qualifier="DDFormType"/>
         <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">
             <DataField Values="numEmployees,annualRevenue,tickerSymbol,comments,priority" Importance="High"/>
         </FieldGroup>

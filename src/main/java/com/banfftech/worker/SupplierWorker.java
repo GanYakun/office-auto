@@ -1,5 +1,6 @@
 package com.banfftech.worker;
 
+import org.apache.commons.net.ntp.TimeStamp;
 import org.apache.ofbiz.base.util.UtilMisc;
 import org.apache.ofbiz.base.util.UtilValidate;
 import org.apache.ofbiz.entity.Delegator;
@@ -8,6 +9,7 @@ import org.apache.ofbiz.entity.GenericValue;
 import org.apache.ofbiz.entity.util.EntityUtil;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -68,13 +70,13 @@ public class SupplierWorker {
      * @return ddFormDealStatus
      */
     public static String getDDFormDealStatus (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-        String ddFormDealStatus = "NOT_SEND_VENDOR";
+        String ddFormDealStatus = "Not Send To Vendor";
         Boolean isSent = ddFormIsSent(delegator, supplierParty);
         Boolean isSubmit = ddFormIsSubmitted(delegator, supplierParty);
         if (isSent && !isSubmit){
-            ddFormDealStatus = "NOT_SUBMIT_VENDOR";
+            ddFormDealStatus = "Not Submit To Vendor";
         }else if (isSent && isSubmit){
-            ddFormDealStatus = "SUBMITTED_VENDOR";
+            ddFormDealStatus = "Submitted To Vendor";
         }
         return ddFormDealStatus;
     }
@@ -101,5 +103,32 @@ public class SupplierWorker {
             isSubmit = true;
         }
         return isSubmit;
+    }
+
+    /**
+     * 计算表单填写周期
+     * @param supplierParty 供应商
+     * @param delegator
+     * @return cycleTime
+     */
+    public static String calculateCycleTime (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
+        String cycleTime = "0";
+        List<GenericValue> supplierWorkEfforts = delegator.findByAnd("WorkEffortAndPartyGroupContact",
+                UtilMisc.toMap("partyId", supplierParty.get("partyId"), "approvePartyId", supplierParty.get("partyId")), null, true);
+        if (UtilValidate.isEmpty(supplierWorkEfforts)){
+            return "0";
+        }
+        GenericValue supplierWorkEffort = EntityUtil.getFirst(supplierWorkEfforts);
+        Timestamp submitTime = supplierWorkEffort.getTimestamp("createdDate");
+        Timestamp completeDDFormTime = supplierWorkEffort.getTimestamp("lastModifiedDate");
+        //计算时间差，并转化为~h~min的时间格式
+        long submitTimeSecond = submitTime.getTime();
+        long completeDDFormTimeSecond = completeDDFormTime.getTime();
+        long cycleTimeSecond = completeDDFormTimeSecond - submitTimeSecond;
+        double cycleTimeFloat = (double) cycleTimeSecond / (3600*1000);
+        double hours = Math.floor(cycleTimeFloat);
+        double minutes = (cycleTimeFloat - hours)*60;
+        cycleTime = (int) hours + "h" + (int) minutes + "min";
+        return cycleTime;
     }
 }
