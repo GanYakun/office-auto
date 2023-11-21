@@ -250,13 +250,13 @@ under the License.
 <!--    <Enumeration enumId="NOT_SUBMIT_VENDOR" enumTypeId="DD_FROM_DEAL_ENUM" description="Not submit to vendor"/>-->
 <!--    <Enumeration enumId="SUBMITTED_VENDOR" enumTypeId="DD_FROM_DEAL_ENUM" description="submitted to vendor"/>-->
 
-<!--    &lt;!&ndash;供应商填写调查问卷类型枚举值&ndash;&gt;-->
-<!--    &lt;!&ndash;EnumerationType&ndash;&gt;-->
-<!--    <EnumerationType enumTypeId="DD_FROM_TYPE_ENUM" description="DDForm Type"/>-->
-<!--    &lt;!&ndash;Enumeration&ndash;&gt;-->
-<!--    <Enumeration enumId="NOT_DD" enumTypeId="DD_FROM_TYPE_ENUM" description="No DD"/>-->
-<!--    <Enumeration enumId="SIMPLIFIED_DD" enumTypeId="DD_FROM_TYPE_ENUM" description="Simplified DD"/>-->
-<!--    <Enumeration enumId="STANDARD_DD" enumTypeId="DD_FROM_TYPE_ENUM" description="Standard DD"/>-->
+    <!--供应商填写调查问卷类型枚举值-->
+    <!--EnumerationType-->
+    <EnumerationType enumTypeId="DD_FROM_TYPE_ENUM" description="DDForm Type"/>
+    <!--Enumeration-->
+    <Enumeration enumId="NOT_DD" enumTypeId="DD_FROM_TYPE_ENUM" description="No DD"/>
+    <Enumeration enumId="SIMPLIFIED_DD" enumTypeId="DD_FROM_TYPE_ENUM" description="Simplified DD"/>
+    <Enumeration enumId="STANDARD_DD" enumTypeId="DD_FROM_TYPE_ENUM" description="Standard DD"/>
 
     <!-- PartyIdentificationType(社会统一码) -->
     <PartyIdentificationType partyIdentificationTypeId="USCC_OF_CHINESE_ORG"/>
@@ -264,4 +264,18 @@ under the License.
 <!--    <PartyQuestionAppl partyQuatsionApplId="9000" partyId="SUPPLIER0001" surveyQuestionId="9001" partyQuestionApplTypeId="DD_FORM" requiredField="Y" sequenceNum="1"/>-->
 <!--    <PartyQuestionAppl partyQuatsionApplId="9000" partyId="SUPPLIER0001" surveyQuestionId="9002" partyQuestionApplTypeId="DD_FORM" requiredField="Y" sequenceNum="1"/>-->
 <!--    <PartyQuestionAppl partyQuatsionApplId="9000" partyId="SUPPLIER0001" surveyQuestionId="9003" partyQuestionApplTypeId="DD_FORM" requiredField="Y" sequenceNum="1"/>-->
+
+    <UILabApp description="01" permissionId="01" uiLabAppId="10000" uiLabAppName="Applicant"/>
+    <UILabApp description="02" permissionId="02" uiLabAppId="10001" uiLabAppName="Compliance"/>
+    <UILabApp description="00" permissionId="00" uiLabAppId="10002" uiLabAppName="Approval"/>
+    <UILabApp description="03" permissionId="03" uiLabAppId="10003" uiLabAppName="procurement"/>
+    <UILabApp description="04" permissionId="04" uiLabAppId="10004" uiLabAppName="vondors"/>
+    <RoleTypeUILabApp roleTypeId="APPLICANT" roleTypeUILabAppId="10000" uiLabAppId="10000"/>
+    <RoleTypeUILabApp roleTypeId="COMPLIANCE" roleTypeUILabAppId="10001" uiLabAppId="10001"/>
+    <RoleTypeUILabApp roleTypeId="CEO" roleTypeUILabAppId="10002" uiLabAppId="10002"/>
+    <RoleTypeUILabApp roleTypeId="CFO" roleTypeUILabAppId="10003" uiLabAppId="10002"/>
+    <RoleTypeUILabApp roleTypeId="CTO" roleTypeUILabAppId="10004" uiLabAppId="10002"/>
+    <RoleTypeUILabApp roleTypeId="PROCUREMENT" roleTypeUILabAppId="10005" uiLabAppId="10003"/>
+    <RoleTypeUILabApp roleTypeId="CONTACT" roleTypeUILabAppId="10006" uiLabAppId="10004"/>
+
 </entity-engine-xml>

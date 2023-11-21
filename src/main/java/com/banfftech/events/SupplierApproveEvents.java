@@ -1,9 +1,11 @@
 package com.banfftech.events;
 
 import com.banfftech.common.util.CommonUtils;
+import com.banfftech.services.UtilEmail;
 import com.dpbird.odata.OfbizODataException;
 import com.dpbird.odata.Util;
 import com.dpbird.odata.edm.OdataOfbizEntity;
+import org.apache.ofbiz.base.util.Debug;
 import org.apache.ofbiz.base.util.UtilDateTime;
 import org.apache.ofbiz.base.util.UtilMisc;
 import org.apache.ofbiz.base.util.UtilValidate;
@@ -21,6 +23,7 @@ import org.apache.olingo.server.api.OData;
 import org.apache.olingo.server.api.ODataResponse;
 import org.apache.olingo.server.api.serializer.SerializerException;
 
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -98,6 +101,7 @@ public class SupplierApproveEvents {
         String target = (String) actionParameters.get("target");
         String comments = (String) actionParameters.get("comments"); // 也许不需要comments了
         String noteInfo = (String) actionParameters.get("noteInfo");
+        String ddFormType = (String) actionParameters.get("ddFormType");
         OdataOfbizEntity boundEntity = Util.getBoundEntity(actionParameters);
         if (UtilValidate.isEmpty(boundEntity)) {
             throw new OfbizODataException("Parameter error");
@@ -111,6 +115,10 @@ public class SupplierApproveEvents {
             //传递给applicant 改为需要修改
             dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortParentId,
                     "currentStatusId", "REQUIRE_CHANGES", "userLogin", userLogin));
+        }
+        if (UtilValidate.isNotEmpty(ddFormType)) {
+            GenericValue party = delegator.findOne("Party", UtilMisc.toMap("partyId", partyId), false);
+            CommonUtils.setObjectAttribute(party,"ddFormType", ddFormType);
         }
         String transferTarget = getTransferTarget(delegator, target, parentWorkEffort);
         if (UtilValidate.isEmpty(transferTarget)) {
@@ -185,6 +193,17 @@ public class SupplierApproveEvents {
         //启用supplier
         dispatcher.runSync("banfftech.updateParty", UtilMisc.toMap("partyId", partyId,
                 "statusId", "PARTY_ENABLED", "userLogin", userLogin));
+        //发送邮件
+        String content = "We are pleased to inform you that the supplier registration application for [SupplierXXX], submitted by [ApplicantXXX], has been successfully processed and completed.\n" +
+                "The supplier account is now active, and we appreciate your prompt attention to this matter. This successful registration marks an important step towards establishing a partnership with [SupplierXXX].\n" +
+                "If you have any further questions or require additional information, please do not hesitate to contact us at [XXXXXXX@banff-tech.com].\n" +
+                "Thank you for your cooperation, and we look forward to the potential collaboration with [SupplierXXX].\n" +
+                "Best regards";
+        try {
+            UtilEmail.sendEmail("longxi.jin@banff-tech.com", "Supplier registration completed", content);
+        } catch (MessagingException e) {
+            Debug.log("邮件发送失败: " + e.getMessage());
+        }
     }
 
 }

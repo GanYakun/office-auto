@@ -1,5 +1,3 @@
-package com.banfftech.events
-
 import com.dpbird.odata.Util
 import org.apache.ofbiz.base.util.Debug
 import org.apache.ofbiz.entity.util.EntityQuery
@@ -24,18 +22,12 @@ def generateFields(Map<String, Object> context){
     Delegator delegator = context.get("delegator");
     entityList.each { entity ->
         GenericValue partyUserLogin = (GenericValue) entity.getGenericValue();
-        int type = 0;
+        String type = null;
         GenericValue relationship = EntityQuery.use(delegator).from("PartyRelationship").where("partyIdTo", partyUserLogin.getString("partyId")).queryFirst();
         if (UtilValidate.isNotEmpty(relationship)) {
             String companyId = relationship.getString("partyIdFrom");
             GenericValue party = EntityQuery.use(delegator).from("Party").where(UtilMisc.toMap("partyId", companyId)).queryFirst();
-            String ddFormType = SupplierWorker.getDDFormType(party, delegator);
-            if ("Simplified DD".equals(ddFormType)) {
-                type = 1;
-            }
-            if ("Standard DD".equals(ddFormType)) {
-                type = 2;
-            }
+            type = CommonUtils.getObjectAttribute(party, "ddFormType")
         }
         entity.addProperty(new Property(null, "ddFormType", ValueType.PRIMITIVE, type))
     }
