@@ -16,7 +16,7 @@
         </Property>
         <Property Name="ddFormType" Type="String"/>
         <Property Name="ddFormIsComplete" Type="Boolean"/>
-        <Property Name="ddFormCompleteTime" Type="Timestamp"/>
+        <Property Name="cycleTime" Type="Timestamp"/>
         <Property Name="createSupplierHidden" Type="Boolean" Hidden="true"/>
         <Property Name="firstOrderDate" Type="Timestamp" IsDateAttribute="true"/>
         <Property Name="collectionDate" Type="Timestamp" IsDateAttribute="true"/>
@@ -262,7 +262,7 @@
         <NavigationProperty Name="PostalAddress"/>
         <NavigationProperty Name="ContactMechPurposeType"/>
     </EntityType>
-
+    <!--PostalAddress-->
     <EntityType Name="PostalAddress" AutoProperties="true" EntitySetName="PostalAddresses">
         <LineItem Qualifier="PostalAddressLineItem">
             <DataField Values="PartyContactMechPurpose/contactMechPurposeTypeId,countryGeoId,cityGeoId,stateProvinceGeoId,address1,contactNumber,email" Importance="High"/>
@@ -301,25 +301,25 @@
             <Parameter Name="email" Type="String" Label="${email}" Nullable="false"/>
         </Action>
     </EntityType>
-
+    <!--ContactMechPurposeType-->
     <EntityType Name="ContactMechPurposeType" AutoProperties="true" EntitySetName="ContactMechPurposeTypes">
         <Property Name="contactMechPurposeTypeId">
             <Text Path="description" TextArrangement="TextOnly"/>
         </Property>
     </EntityType>
-    
+    <!--Country（国家）-->
     <EntityType Name="Country" OfbizEntity="Geo" EntityCondition="geoId in (FRA,USA,GBR,ARE,DEU,CHN,JPN,ITA,CHE)" AutoProperties="true" EntitySetName="Countries">
         <Property Name="geoId">
             <Text Path="geoName" TextArrangement="TextOnly"/>
         </Property>
     </EntityType>
-
+    <!--Province（省份）-->
     <EntityType Name="Province" OfbizEntity="GeoAssocAndGeoTo" EntityCondition="geoTypeId in (MUNICIPALITY,REGION,PROVINCE)" AutoProperties="true" EntitySetName="Provinces">
         <Property Name="geoId">
             <Text Path="geoName" TextArrangement="TextOnly"/>
         </Property>
     </EntityType>
-
+    <!--City（城市）-->
     <EntityType Name="City" OfbizEntity="GeoAssocAndGeoTo" EntityCondition="geoTypeId=CITY" AutoProperties="true" EntitySetName="Cities">
         <Property Name="geoId">
             <Text Path="geoName" TextArrangement="TextOnly"/>
