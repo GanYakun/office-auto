@@ -173,8 +173,6 @@
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="true"/>
             <Parameter Name="partyName" Type="String" Label="${supplierActionPartyName}" Nullable="false"/>
             <Parameter Name="isGovernment" Type="Boolean" Label="${isGovernment}" Nullable="false"/>
-            <Parameter Name="primaryPhone" Type="String" Label="${supplierActionPrimaryPhone}" Nullable="true"/>
-            <Parameter Name="primaryEmail" Type="String" Label="${supplierActionPrimaryEmail}" Nullable="true"/>
             <Parameter Name="productCategoryId" Type="String" Label="${partyCategoryId}" Nullable="false">
                 <ValueList WithFixedValues="true" CollectionPath="ProductCategories">
                     <ParameterInOut ValueListProperty="productCategoryId" LocalDataProperty="productCategoryId"/>

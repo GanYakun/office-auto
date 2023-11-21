@@ -47,7 +47,7 @@ public class SupplierWorker {
         List<GenericValue> partyRoles = delegator.findByAnd("PartyRole",
                 UtilMisc.toMap("partyId", partyId), null, true);
         for (GenericValue partyRole : partyRoles){
-            if (partyRole.get("roleTypeId").equals("GOVERNMENT")){
+            if (partyRole.get("roleTypeId").equals("GOVERNMENT_SUPPLIER")){
                 isGovernment = true;
                 break;
             }
