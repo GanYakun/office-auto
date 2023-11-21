@@ -2,7 +2,9 @@
     <ImportEdm Path="component://officeauto/config/launchpadManageEdmConfig.xml"/>
 
     <!--======================================SupplierParty（主对象）========================================-->
-    <EntityType Name="SupplierParty" OfbizType="PartyRole/roleTypeId=SUPPLIER" EntityCondition="approvePartyId=${company.partyId}" OfbizEntity="WorkEffortAndPartyGroupContact" EntitySetName="SupplierParties" AutoSet="true" AutoProperties="true" AttrDateEntityName="PartyAttributeDate"
+    <EntityType Name="SupplierParty" OfbizType="PartyRole/roleTypeId=SUPPLIER" EntityCondition="approvePartyId=${company.partyId}"
+                OfbizEntity="WorkEffortAndPartyGroupContact" EntitySetName="SupplierParties" AutoSet="true" AutoProperties="true"
+                AttrDateEntityName="PartyAttributeDate" AttrEntityName="PartyAttribute"
                 AutoLabel="true" SearchOption="partyName,primaryEmail,address1"
                 Handler="component://officeauto/groovyScripts/partyManage/supplierPartyApprove/generateEntityListFields.groovy">
         <Property Name="partyId">
@@ -36,6 +38,20 @@
         <Property Name="contactPhoneMobile" RelAlias="PersonAndContact" Field="phoneMobile" Computed="true"/>
         <Property Name="contactPhonePrimary" RelAlias="PersonAndContact" Field="primaryPhone" Computed="true"/>
         <Property Name="contactEmailPrimary" RelAlias="PersonAndContact" Field="primaryEmail" Computed="true"/>
+        <!-- Semantic Field -->
+        <!-- 合规建议 -->
+        <Property Name="complianceNote" Type="String" IsAttribute="true" Label="${complianceNote}"/>
+        <!-- 财务报表数量 -->
+        <Property Name="fsCount" Type="Edm.Int64" Label="${fsCount}"/>
+        <Property Name="fsCountCriticality" Type="Edm.Int64"/>
+        <!-- 保密协议数量 -->
+        <Property Name="caCount" Type="Edm.Int64" Label="${caCount}"/>
+        <Property Name="caCountCriticality" Type="Edm.Int64"/>
+        <!-- 其他文件数量 -->
+        <Property Name="ofCount" Type="Edm.Int64" Label="${ofCount}"/>
+        <Property Name="ofCountCriticality" Type="Edm.Int64"/>
+        <Property Name="ddFromName" Type="String"/>
+        <Property Name="ddFromUrl" Type="String"/>
 
         <NavigationProperty Name="Product" Type="Product" Relations="SupplierProduct/Product" IsCollection="true"/>
         <NavigationProperty Name="Service" Type="Service" Relations="SupplierProduct/Product" IsCollection="true"/>
@@ -83,6 +99,11 @@
         <FieldGroup Qualifier="PartyGroupFieldGroupWithAction" Label="PartyGroupFieldGroupWithAction">
             <DataField Values="numEmployees,annualRevenue,tickerSymbol,comments,priority" Importance="High"/>
             <DataFieldForAction Label="${UpdateBasicInfo}" Action="FillSupplierBaseInfo" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated" Hidden="disableEditSupplier"/>
+        </FieldGroup>
+        <FieldGroup Qualifier="FileCountGroup" Label="FileCountGroup">
+            <DataField Values="fsCount" Importance="High" Criticality="fsCountCriticality"/>
+            <DataField Values="caCount" Importance="High" Criticality="caCountCriticality"/>
+            <DataField Values="ofCount" Importance="High" Criticality="ofCountCriticality"/>
         </FieldGroup>
 
         <FieldGroup Qualifier="ContactInfo" Label="ContactInfo">
