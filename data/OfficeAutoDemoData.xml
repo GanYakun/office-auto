@@ -222,11 +222,13 @@ under the License.
     <!--供应商分类类型-->
     <ProductCategoryType productCategoryTypeId="SUPPLIER_CATEGORY" description="Supplier Category"/>
     <ProductCategoryType productCategoryTypeId="SUPPLIER_PARENT_CATEGORY" description="Supplier Parent Category"/>
-    <!--供应商分类-->
+
+    <!--ProductCategory-->
+    <!--供应商分类父类-->
     <ProductCategory productCategoryId="NEGLIGIBLE_RISK" primaryParentCategoryId=""  productCategoryTypeId="SUPPLIER_PARENT_CATEGORY" categoryName="Negligible Risk" description="Negligible Risk"/>
     <ProductCategory productCategoryId="LOW_RISK" primaryParentCategoryId="" productCategoryTypeId="SUPPLIER_PARENT_CATEGORY" categoryName="Low Risk" description="Low Risk"/>
     <ProductCategory productCategoryId="HIGH-VALUE_HIGH-RISK" primaryParentCategoryId="" productCategoryTypeId="SUPPLIER_PARENT_CATEGORY" categoryName="High Value or High Risk" description="High Value or High Risk"/>
-
+    <!--供应商分类-->
     <ProductCategory productCategoryId="GENERAL_GOODS_SERVICE" primaryParentCategoryId="NEGLIGIBLE_RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="General Goods Service Supply" description="General Goods Service Supply"/>
     <ProductCategory productCategoryId="OFFICE_SUPPLY" primaryParentCategoryId="NEGLIGIBLE_RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Office Supply" description="Office Supply"/>
     <ProductCategory productCategoryId="FOOD_BEVERAGE" primaryParentCategoryId="NEGLIGIBLE_RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Food And Beverage Supply" description="Food And Beverage Supply"/>
@@ -239,6 +241,14 @@ under the License.
     <ProductCategory productCategoryId="DATA_SERVICE" primaryParentCategoryId="HIGH-VALUE_HIGH-RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Data Service Supply" description="Data Service Supply"/>
     <ProductCategory productCategoryId="IP_CREATION_SERVICE" primaryParentCategoryId="HIGH-VALUE_HIGH-RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="IP Service Supply" description="IP Service Supply"/>
     <ProductCategory productCategoryId="HR_SERVICE" primaryParentCategoryId="HIGH-VALUE_HIGH-RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="HR Service Supply" description="HR Service Supply"/>
+
+    <!--调查问卷完成情况枚举值-->
+    <!--EnumerationType-->
+    <EnumerationType enumTypeId="DD_FROM_DEAL_ENUM" description="DDForm Deal Status"/>
+    <!--Enumeration-->
+    <Enumeration enumId="NOT_SEND_VENDOR" enumTypeId="DD_FROM_DEAL_ENUM" description="Not send to vendor"/>
+    <Enumeration enumId="NOT_SUBMIT_VENDOR" enumTypeId="DD_FROM_DEAL_ENUM" description="Not submit to vendor"/>
+    <Enumeration enumId="SUBMITTED_VENDOR" enumTypeId="DD_FROM_DEAL_ENUM" description="submitted to vendor"/>
 
     <!-- PartyIdentificationType(社会统一码) -->
     <PartyIdentificationType partyIdentificationTypeId="USCC_OF_CHINESE_ORG"/>

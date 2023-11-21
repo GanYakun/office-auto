@@ -17,7 +17,7 @@
             <Text Path="SupplierStatusItem/description" TextArrangement="TextOnly"/>
         </Property>
         <Property Name="ddFormType" Type="String"/>
-        <Property Name="ddFormIsComplete" Type="Boolean"/>
+        <Property Name="ddFormDealStatus" Type="String"/>
         <Property Name="cycleTime" Type="Timestamp"/>
         <Property Name="createSupplierHidden" Type="Boolean" Hidden="true"/>
         <Property Name="firstOrderDate" Type="Timestamp" IsDateAttribute="true"/>
@@ -88,7 +88,7 @@
 
         <!--Annotation-->
         <FieldGroup Label="PartyBaseInfo" Qualifier="PartyBaseInfo">
-            <DataField Values="tickerSymbol,ProductCategory/categoryName,ddFormType,usccNumber" Importance="High"/>
+            <DataField Values="tickerSymbol,ProductCategory/categoryName,ddFormType,ddFormDealStatus,usccNumber" Importance="High"/>
         </FieldGroup>
         <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">
             <DataField Values="numEmployees,annualRevenue,tickerSymbol,comments,priority" Importance="High"/>
