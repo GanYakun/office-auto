@@ -30,6 +30,7 @@ public class SupplierApproveEvents {
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
         OdataOfbizEntity boundEntity = Util.getBoundEntity(actionParameters);
+        String source = (String) actionParameters.get("source");
         if (UtilValidate.isEmpty(boundEntity)) {
             throw new OfbizODataException("Parameter error");
         }
@@ -50,6 +51,9 @@ public class SupplierApproveEvents {
             CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), createParentWorkMap, "banfftech.createWorkEffort", userLogin);
             dispatcher.runSync("banfftech.createWorkEffortPartyAssignment",
                     UtilMisc.toMap("userLogin", userLogin, "workEffortId", workEffortParentId, "partyId", "CG"));
+        } else if ("applicant".equals(source)) {
+            dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortParentId,
+                    "currentStatusId", "COWORK_CREATED", "userLogin", userLogin));
         }
         //当前的改为已处理
         Map<String, Object> updateWorkMap = UtilMisc.toMap("workEffortId", workEffortId, "currentStatusId", "PROCESSED", "workEffortParentId", workEffortParentId);
@@ -83,28 +87,25 @@ public class SupplierApproveEvents {
         }
         GenericValue boundGenericValue = boundEntity.getGenericValue();
         String partyId = boundGenericValue.getString("partyId");
-        String workEffortId = boundGenericValue.getString("workEffortId");
-        String workEffortParentId = boundGenericValue.getString("workEffortParentId");
-        if (UtilValidate.isNotEmpty(workEffortParentId)) {
-            //申请人传递给vendor
-            workEffortId = workEffortParentId;
-            boundGenericValue = EntityQuery.use(delegator).from("WorkEffort").where("workEffortId", workEffortParentId).queryFirst();
-        } else {
-            //cowork状态改为待修改
-            dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortId,
+        GenericValue parentWorkEffort = UtilValidate.isNotEmpty(boundGenericValue.getString("workEffortParentId")) ?
+                boundGenericValue.getRelatedOne("ParentWorkEffort", false) : boundGenericValue;
+        String workEffortParentId = parentWorkEffort.getString("workEffortId");
+        if ("applicant".equals(target)) {
+            //传递给applicant 改为需要修改
+            dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortParentId,
                     "currentStatusId", "REQUIRE_CHANGES", "userLogin", userLogin));
         }
-        String transferTarget = getTransferTarget(delegator, target, boundGenericValue);
+        String transferTarget = getTransferTarget(delegator, target, parentWorkEffort);
         if (UtilValidate.isEmpty(transferTarget)) {
             throw new OfbizODataException("No department found");
         }
         GenericValue supplierTask = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact")
-                .where("approvePartyId", transferTarget, "workEffortParentId", workEffortId).queryFirst();
+                .where("approvePartyId", transferTarget, "workEffortParentId", workEffortParentId).queryFirst();
         if (UtilValidate.isEmpty(supplierTask)) {
             //首次传递
             String nextWorkEffortId = delegator.getNextSeqId("WorkEffort");
             Map<String, Object> createWorkMap = UtilMisc.toMap("partyId", partyId, "workEffortId", nextWorkEffortId, "comments", comments,
-                    "workEffortTypeId", "COWORK_TASK", "currentStatusId", "NOT_PROCESSED", "workEffortParentId", workEffortId);
+                    "workEffortTypeId", "COWORK_TASK", "currentStatusId", "NOT_PROCESSED", "workEffortParentId", workEffortParentId);
             CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), createWorkMap, "banfftech.createWorkEffort", userLogin);
             dispatcher.runSync("banfftech.createWorkEffortPartyAssignment",
                     UtilMisc.toMap("userLogin", userLogin, "workEffortId", nextWorkEffortId, "partyId", transferTarget));
@@ -140,6 +141,13 @@ public class SupplierApproveEvents {
             return parentWorkEffort.getString("partyId");
         }
         return null;
+    }
+
+    private static GenericValue getParentWorkEffort(Delegator delegator, GenericValue genericValue) throws GenericEntityException {
+        String workEffortParentId = genericValue.getString("workEffortParentId");
+        return UtilValidate.isNotEmpty(workEffortParentId) ?
+                genericValue.getRelatedOne("ParentWorkEffort", false) : genericValue;
+
     }
 
 
