@@ -16,14 +16,21 @@
         <Property Name="statusId">
             <Text Path="SupplierStatusItem/description" TextArrangement="TextOnly"/>
         </Property>
+        <!--供应商填写的ddForm类型-->
         <Property Name="ddFormType" Type="String"/>
+        <!--供应商填写ddForm进度情况-->
         <Property Name="ddFormDealStatus" Type="String"/>
+        <!--供应商完成ddForm时间-->
         <Property Name="cycleTime" Type="String"/>
         <Property Name="createSupplierHidden" Type="Boolean" Hidden="true"/>
+        <!--首次订单时间-->
         <Property Name="firstOrderDate" Type="Timestamp" IsDateAttribute="true"/>
+        <!--供应商收藏时间-->
         <Property Name="collectionDate" Type="Timestamp" IsDateAttribute="true"/>
         <Property Name="totalAmount" Type="BigDecimal" Scale="3"/>
+        <!--WorkEffort提交状态颜色显示-->
         <Property Name="criticalityValue" Type="numeric" Hidden="true" HiddenFilter="true"/>
+        <!--供应商填写的ddForm类型的颜色显示-->
         <Property Name="ddFormTypeCritical" Type="numeric" Hidden="true" HiddenFilter="true"/>
         <Property Name="statusId" Immutable="true" DefaultValue="PARTY_DISABLED">
             <ValueList CollectionPath="SupplierStatusItems" WithFixedValues="true"/>
