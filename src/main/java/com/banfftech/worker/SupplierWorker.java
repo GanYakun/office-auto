@@ -112,11 +112,11 @@ public class SupplierWorker {
      * @return cycleTime
      */
     public static String calculateCycleTime (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-        String cycleTime = "0";
+        String cycleTime = "0h0min";
         List<GenericValue> supplierWorkEfforts = delegator.findByAnd("WorkEffortAndPartyGroupContact",
                 UtilMisc.toMap("partyId", supplierParty.get("partyId"), "approvePartyId", supplierParty.get("partyId")), null, true);
         if (UtilValidate.isEmpty(supplierWorkEfforts)){
-            return "0";
+            return "0h0min";
         }
         GenericValue supplierWorkEffort = EntityUtil.getFirst(supplierWorkEfforts);
         Timestamp submitTime = supplierWorkEffort.getTimestamp("createdDate");
