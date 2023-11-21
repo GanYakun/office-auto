@@ -49,6 +49,7 @@
         <!-- 其他文件数量 -->
         <Property Name="ofCount" Type="Edm.Int64" Label="${ofCount}"/>
         <Property Name="ofCountCriticality" Type="Edm.Int64"/>
+        <Property Name="ddFromName" Type="String"/>
         <Property Name="ddFromUrl" Type="String"/>
 
         <NavigationProperty Name="Product" Type="Product" Relations="SupplierProduct/Product" IsCollection="true"/>

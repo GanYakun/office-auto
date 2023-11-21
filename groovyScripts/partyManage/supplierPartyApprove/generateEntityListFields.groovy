@@ -37,6 +37,30 @@ def generateFields(Map<String, Object> context){
         entity.addProperty(new Property(null, "ddFormDealStatus", ValueType.PRIMITIVE, ddFormDealStatus))
         entity.addProperty(new Property(null, "criticalityValue", ValueType.PRIMITIVE, criticalityValue))
 
+
+        //文件数量
+        List<GenericValue> fsList = supplierParty.getRelated("PartyMediaResource", UtilMisc.toMap("partyContentTypeId", "FINANCIAL_STATEMENTS"), null, false);
+        List<GenericValue> caList = supplierParty.getRelated("PartyMediaResource", UtilMisc.toMap("partyContentTypeId", "CONFIDENTIALITY_AGREEMENT"), null, false);
+        List<GenericValue> tfList = supplierParty.getRelated("PartyMediaResource", UtilMisc.toMap("partyContentTypeId", "OTHER_FILES"), null, false);
+        entity.addProperty(new Property(null, "fsCount", ValueType.PRIMITIVE, fsList.size()))
+        entity.addProperty(new Property(null, "caCount", ValueType.PRIMITIVE, caList.size()))
+        entity.addProperty(new Property(null, "ofCount", ValueType.PRIMITIVE, tfList.size()))
+        entity.addProperty(new Property(null, "fsCountCriticality", ValueType.PRIMITIVE, fsList.size() < 1 ? 1 : 3))
+        entity.addProperty(new Property(null, "caCountCriticality", ValueType.PRIMITIVE, caList.size() < 1 ? 1 : 3))
+        entity.addProperty(new Property(null, "ofCountCriticality", ValueType.PRIMITIVE, tfList.size() < 1 ? 1 : 3))
+        //DDFormPDF访问地址
+        String url = null;
+        String name = null;
+        if ("Simplified DD".equals(ddFormType)) {
+            url = "https://dpbird.oss-cn-hangzhou.aliyuncs.com/scy/SimplifiedForm.pdf"
+            name = "Business Partner Due Diligence Form – Simplified Form"
+        };
+        if ("Standard DD".equals(ddFormType)) {
+            url = "https://dpbird.oss-cn-hangzhou.aliyuncs.com/scy/StandardForm.pdf"
+            name = "Business Partner Due Diligence Form – Standard Form"
+        };
+        entity.addProperty(new Property(null, "ddFromUrl", ValueType.PRIMITIVE, url));
+        entity.addProperty(new Property(null, "ddFromName", ValueType.PRIMITIVE, name));
     }
     return entityList;
 }

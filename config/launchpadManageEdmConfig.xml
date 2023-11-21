@@ -1,7 +1,9 @@
 <ofbiz-edm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://dev.odatalab.com/dtds/edmconfig.xsd" ImportGlobal="false">
 
     <!--  userLogin  -->
-    <EntityType Name="PartyUserLogin" AutoProperties="true">
+    <EntityType Name="PartyUserLogin" AutoProperties="true"
+                Handler="component://officeauto/groovyScripts/launchpadManage/generateEntityListFields.groovy">
+        <Property Name="ddFormType" Type="Edm.Int64"/>
         <NavigationProperty Name="Person" Type="Person" Relations="Party/Person"/>
         <NavigationProperty Name="PartyRole" Type="PartyRole" Relations="Party/PartyRole" IsCollection="true"/>
         <NavigationProperty Name="PartyGroup" Type="PartyGroup" Relations="Party/PartyGroup"/>
