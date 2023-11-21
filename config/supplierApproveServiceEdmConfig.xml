@@ -187,7 +187,7 @@
                 OfbizService="com.banfftech.events.SupplierApproveEvents.toProcurement"
                 StickySession="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
-            <Parameter Name="target" Type="String" IsCollection="false"/>
+            <Parameter Name="source" Type="String" IsCollection="false"/>
             <Parameter Name="noteInfo" Type="String" Label="${noteInfo}"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
