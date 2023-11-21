@@ -301,7 +301,9 @@ public class SupplierEvents {
                 UtilMisc.toMap("userLogin", userLogin));
         String contactMechId = (String) resultMap.get("contactMechId");
         dispatcher.runSync("banfftech.createPostalAddress",
-                UtilMisc.toMap("contactMechId", contactMechId, "userLogin", userLogin, "address1", actionParameters.get("address1")));
+                UtilMisc.toMap("contactMechId", contactMechId, "userLogin", userLogin, "address1", actionParameters.get("address1"),
+                        "countryGeoId", actionParameters.get("countryGeoId"), "cityGeoId", actionParameters.get("cityGeoId"),
+                        "stateProvinceGeoId", actionParameters.get("stateProvinceGeoId"), "contactNumber", actionParameters.get("contactNumber"), "email", actionParameters.get("email")));
         dispatcher.runSync("banfftech.createPartyContactMechPurpose",
                 UtilMisc.toMap("userLogin", userLogin, "partyId", partyId, "contactMechId", contactMechId,
                         "contactMechPurposeTypeId", actionParameters.get("contactMechPurposeTypeId"), "fromDate", UtilDateTime.nowTimestamp()));
