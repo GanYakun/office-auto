@@ -3,7 +3,7 @@
     <!--  userLogin  -->
     <EntityType Name="PartyUserLogin" AutoProperties="true"
                 Handler="component://officeauto/groovyScripts/launchpadManage/generateEntityListFields.groovy">
-        <Property Name="ddFormType" Type="Edm.Int64"/>
+        <Property Name="ddFormType" Type="String"/>
         <NavigationProperty Name="Person" Type="Person" Relations="Party/Person"/>
         <NavigationProperty Name="PartyRole" Type="PartyRole" Relations="Party/PartyRole" IsCollection="true"/>
         <NavigationProperty Name="PartyGroup" Type="PartyGroup" Relations="Party/PartyGroup"/>

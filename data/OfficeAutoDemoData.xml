@@ -250,13 +250,13 @@ under the License.
 <!--    <Enumeration enumId="NOT_SUBMIT_VENDOR" enumTypeId="DD_FROM_DEAL_ENUM" description="Not submit to vendor"/>-->
 <!--    <Enumeration enumId="SUBMITTED_VENDOR" enumTypeId="DD_FROM_DEAL_ENUM" description="submitted to vendor"/>-->
 
-<!--    &lt;!&ndash;供应商填写调查问卷类型枚举值&ndash;&gt;-->
-<!--    &lt;!&ndash;EnumerationType&ndash;&gt;-->
-<!--    <EnumerationType enumTypeId="DD_FROM_TYPE_ENUM" description="DDForm Type"/>-->
-<!--    &lt;!&ndash;Enumeration&ndash;&gt;-->
-<!--    <Enumeration enumId="NOT_DD" enumTypeId="DD_FROM_TYPE_ENUM" description="No DD"/>-->
-<!--    <Enumeration enumId="SIMPLIFIED_DD" enumTypeId="DD_FROM_TYPE_ENUM" description="Simplified DD"/>-->
-<!--    <Enumeration enumId="STANDARD_DD" enumTypeId="DD_FROM_TYPE_ENUM" description="Standard DD"/>-->
+    <!--供应商填写调查问卷类型枚举值-->
+    <!--EnumerationType-->
+    <EnumerationType enumTypeId="DD_FROM_TYPE_ENUM" description="DDForm Type"/>
+    <!--Enumeration-->
+    <Enumeration enumId="NOT_DD" enumTypeId="DD_FROM_TYPE_ENUM" description="No DD"/>
+    <Enumeration enumId="SIMPLIFIED_DD" enumTypeId="DD_FROM_TYPE_ENUM" description="Simplified DD"/>
+    <Enumeration enumId="STANDARD_DD" enumTypeId="DD_FROM_TYPE_ENUM" description="Standard DD"/>
 
     <!-- PartyIdentificationType(社会统一码) -->
     <PartyIdentificationType partyIdentificationTypeId="USCC_OF_CHINESE_ORG"/>

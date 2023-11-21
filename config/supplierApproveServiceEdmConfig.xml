@@ -228,7 +228,11 @@
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
             <Parameter Name="target" Type="String" IsCollection="false"/>
             <Parameter Name="noteInfo" Type="String" Label="${noteInfo}"/>
-            <Parameter Name="isSimplifiedForm" Type="Boolean" Label="${isSimplifiedForm}"/>
+            <Parameter Name="ddFormType" Type="String" Label="${ddFormType}">
+                <ValueList WithFixedValues="true" CollectionPath="DDFormEnumerations">
+                    <ParameterInOut LocalDataProperty="ddFormType" ValueListProperty="enumId"/>
+                </ValueList>
+            </Parameter>
             <Parameter Name="email" Type="String" Label="${email}"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
@@ -905,6 +909,12 @@
     </EntityType>
 
     <EntityType Name="PriorityEnumeration" EntitySetName="PriorityEnumerations" OfbizEntity="Enumeration" EntityCondition="enumTypeId=PRIORITY" AutoProperties="true">
+        <Property Name="enumId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+
+    <EntityType Name="DDFormEnumeration" EntitySetName="DDFormEnumerations" OfbizEntity="Enumeration" EntityCondition="enumTypeId=DD_FROM_TYPE_ENUM" AutoProperties="true">
         <Property Name="enumId">
             <Text Path="description" TextArrangement="TextOnly"/>
         </Property>
