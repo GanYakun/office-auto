@@ -27,7 +27,10 @@ def generateFields(Map<String, Object> context){
         if (UtilValidate.isNotEmpty(relationship)) {
             String companyId = relationship.getString("partyIdFrom");
             GenericValue party = EntityQuery.use(delegator).from("Party").where(UtilMisc.toMap("partyId", companyId)).queryFirst();
-            type = CommonUtils.getObjectAttribute(party, "ddFormType")
+            GenericValue typeAttr = CommonUtils.getObjectAttributeGv(party, "ddFormType")
+            if (UtilValidate.isNotEmpty(typeAttr)) {
+                type = typeAttr.getString("attrValue");
+            }
         }
         entity.addProperty(new Property(null, "ddFormType", ValueType.PRIMITIVE, type))
     }
