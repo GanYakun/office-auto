@@ -221,17 +221,24 @@ under the License.
 
     <!--供应商分类类型-->
     <ProductCategoryType productCategoryTypeId="SUPPLIER_CATEGORY" description="Supplier Category"/>
+    <ProductCategoryType productCategoryTypeId="SUPPLIER_PARENT_CATEGORY" description="Supplier Parent Category"/>
     <!--供应商分类-->
-    <ProductCategory productCategoryId="GENERAL_GOODS_SERVICE" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="General Goods Service Supply" description="General Goods Service Supply"/>
-    <ProductCategory productCategoryId="OFFICE_SUPPLY" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Office Supply" description="Office Supply"/>
-    <ProductCategory productCategoryId="FOOD_BEVERAGE" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Food And Beverage Supply" description="Food And Beverage Supply"/>
-    <ProductCategory productCategoryId="CLEAN_SERVICE" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Clean Service Supply" description="Clean Service Supply"/>
-    <ProductCategory productCategoryId="SECURITY_SERVICE" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Security Service Supply" description="Security Service Supply"/>
-    <ProductCategory productCategoryId="ESTATE_AGENCY" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Real Estate Agency Supply" description="Real Estate Agency Supply"/>
-    <ProductCategory productCategoryId="IT_SERVICE" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="IT Service Supply" description="IT Service Supply"/>
-    <ProductCategory productCategoryId="DATA_SERVICE" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Data Service Supply" description="Data Service Supply"/>
-    <ProductCategory productCategoryId="IP_CREATION_SERVICE" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="IP Service Supply" description="IP Service Supply"/>
-    <ProductCategory productCategoryId="HR_SERVICE" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="HR Service Supply" description="HR Service Supply"/>
+    <ProductCategory productCategoryId="NEGLIGIBLE_RISK" primaryParentCategoryId=""  productCategoryTypeId="SUPPLIER_PARENT_CATEGORY" categoryName="Negligible Risk" description="Negligible Risk"/>
+    <ProductCategory productCategoryId="LOW_RISK" primaryParentCategoryId="" productCategoryTypeId="SUPPLIER_PARENT_CATEGORY" categoryName="Low Risk" description="Low Risk"/>
+    <ProductCategory productCategoryId="HIGH-VALUE_HIGH-RISK" primaryParentCategoryId="" productCategoryTypeId="SUPPLIER_PARENT_CATEGORY" categoryName="High Value or High Risk" description="High Value or High Risk"/>
+
+    <ProductCategory productCategoryId="GENERAL_GOODS_SERVICE" primaryParentCategoryId="NEGLIGIBLE_RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="General Goods Service Supply" description="General Goods Service Supply"/>
+    <ProductCategory productCategoryId="OFFICE_SUPPLY" primaryParentCategoryId="NEGLIGIBLE_RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Office Supply" description="Office Supply"/>
+    <ProductCategory productCategoryId="FOOD_BEVERAGE" primaryParentCategoryId="NEGLIGIBLE_RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Food And Beverage Supply" description="Food And Beverage Supply"/>
+    <ProductCategory productCategoryId="CLEAN_SERVICE" primaryParentCategoryId="NEGLIGIBLE_RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Clean Service Supply" description="Clean Service Supply"/>
+    <ProductCategory productCategoryId="SECURITY_SERVICE" primaryParentCategoryId="NEGLIGIBLE_RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Security Service Supply" description="Security Service Supply"/>
+    <ProductCategory productCategoryId="POSTAGE_SERVICE" primaryParentCategoryId="NEGLIGIBLE_RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Postage Service Supply" description="Postage Service Supply"/>
+    <ProductCategory productCategoryId="COURIER_SERVICE" primaryParentCategoryId="NEGLIGIBLE_RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Courier Service Supply" description="Courier Service Supply"/>
+    <ProductCategory productCategoryId="ESTATE_AGENCY" primaryParentCategoryId="LOW_RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Real Estate Agency Supply" description="Real Estate Agency Supply"/>
+    <ProductCategory productCategoryId="IT_SERVICE" primaryParentCategoryId="HIGH-VALUE_HIGH-RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="IT Service Supply" description="IT Service Supply"/>
+    <ProductCategory productCategoryId="DATA_SERVICE" primaryParentCategoryId="HIGH-VALUE_HIGH-RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Data Service Supply" description="Data Service Supply"/>
+    <ProductCategory productCategoryId="IP_CREATION_SERVICE" primaryParentCategoryId="HIGH-VALUE_HIGH-RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="IP Service Supply" description="IP Service Supply"/>
+    <ProductCategory productCategoryId="HR_SERVICE" primaryParentCategoryId="HIGH-VALUE_HIGH-RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="HR Service Supply" description="HR Service Supply"/>
 
     <!-- PartyIdentificationType(社会统一码) -->
     <PartyIdentificationType partyIdentificationTypeId="USCC_OF_CHINESE_ORG"/>

@@ -301,7 +301,9 @@ public class SupplierEvents {
                 UtilMisc.toMap("userLogin", userLogin));
         String contactMechId = (String) resultMap.get("contactMechId");
         dispatcher.runSync("banfftech.createPostalAddress",
-                UtilMisc.toMap("contactMechId", contactMechId, "userLogin", userLogin, "address1", actionParameters.get("address1")));
+                UtilMisc.toMap("contactMechId", contactMechId, "userLogin", userLogin, "address1", actionParameters.get("address1"),
+                        "countryGeoId", actionParameters.get("countryGeoId"), "cityGeoId", actionParameters.get("cityGeoId"),
+                        "stateProvinceGeoId", actionParameters.get("stateProvinceGeoId"), "contactNumber", actionParameters.get("contactNumber"), "email", actionParameters.get("email")));
         dispatcher.runSync("banfftech.createPartyContactMechPurpose",
                 UtilMisc.toMap("userLogin", userLogin, "partyId", partyId, "contactMechId", contactMechId,
                         "contactMechPurposeTypeId", actionParameters.get("contactMechPurposeTypeId"), "fromDate", UtilDateTime.nowTimestamp()));
@@ -316,7 +318,7 @@ public class SupplierEvents {
         Map<String, Object> resultMap = dispatcher.runSync("banfftech.createWorkEffortAndPartyGroupContact",
                 UtilMisc.toMap("userLogin", userLogin, "partyName", actionParameters.get("partyName"), "currentStatusId", "NOT_PROCESSED",
                         "primaryPhone", actionParameters.get("primaryPhone"), "primaryEmail", actionParameters.get("primaryEmail")));
-
+        Delegator delegator = dispatcher.getDelegator();
         if ((Boolean) actionParameters.get("isGovernment")){
             dispatcher.runSync("banfftech.createPartyRole", UtilMisc.toMap("userLogin", userLogin, "partyId", resultMap.get("partyId"), "roleTypeId", "GOVERNMENT_SUPPLIER"));
         }
@@ -324,6 +326,10 @@ public class SupplierEvents {
         dispatcher.runSync("banfftech.createProductCategoryRole",
                 UtilMisc.toMap("userLogin", userLogin, "partyId", resultMap.get("partyId"), "roleTypeId", "SUPPLIER",
                         "productCategoryId", actionParameters.get("productCategoryId"), "fromDate", UtilDateTime.nowTimestamp()));
+        String departmentPartyId = CommonUtils.getPartyCompany(userLogin.getString("partyId"), delegator);
+        dispatcher.runSync("banfftech.createPartyRelationship",
+                UtilMisc.toMap("userLogin", userLogin, "roleTypeIdFrom", "DEPARTMENT", "partyIdFrom", departmentPartyId,
+                        "roleTypeIdTo", "SUPPLIER", "partyIdTo", resultMap.get("partyId")));
 
     }
 

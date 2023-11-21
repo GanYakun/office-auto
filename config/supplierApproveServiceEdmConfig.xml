@@ -6,7 +6,7 @@
                 OfbizEntity="WorkEffortAndPartyGroupContact" EntitySetName="SupplierParties" AutoSet="true" AutoProperties="true"
                 AttrDateEntityName="PartyAttributeDate" AttrEntityName="PartyAttribute"
                 AutoLabel="true" SearchOption="partyName,primaryEmail,address1"
-                Handler="component://officeauto/groovyScripts/partyManage/supplierParty/generateEntityListFields.groovy">
+                Handler="component://officeauto/groovyScripts/partyManage/supplierPartyApprove/generateEntityListFields.groovy">
         <Property Name="partyId">
             <Text Path="partyName" TextArrangement="TextFirst"/>
         </Property>
@@ -16,6 +16,9 @@
         <Property Name="statusId">
             <Text Path="SupplierStatusItem/description" TextArrangement="TextOnly"/>
         </Property>
+        <Property Name="ddFormType" Type="String"/>
+        <Property Name="ddFormIsComplete" Type="Boolean"/>
+        <Property Name="cycleTime" Type="Timestamp"/>
         <Property Name="createSupplierHidden" Type="Boolean" Hidden="true"/>
         <Property Name="firstOrderDate" Type="Timestamp" IsDateAttribute="true"/>
         <Property Name="collectionDate" Type="Timestamp" IsDateAttribute="true"/>
@@ -85,7 +88,7 @@
 
         <!--Annotation-->
         <FieldGroup Label="PartyBaseInfo" Qualifier="PartyBaseInfo">
-            <DataField Values="tickerSymbol,ProductCategory/categoryName,usccNumber" Importance="High"/>
+            <DataField Values="tickerSymbol,ProductCategory/categoryName,ddFormType,usccNumber" Importance="High"/>
         </FieldGroup>
         <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">
             <DataField Values="numEmployees,annualRevenue,tickerSymbol,comments,priority" Importance="High"/>
@@ -190,8 +193,6 @@
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="true"/>
             <Parameter Name="partyName" Type="String" Label="${supplierActionPartyName}" Nullable="false"/>
             <Parameter Name="isGovernment" Type="Boolean" Label="${isGovernment}" Nullable="false"/>
-            <Parameter Name="primaryPhone" Type="String" Label="${supplierActionPrimaryPhone}" Nullable="true"/>
-            <Parameter Name="primaryEmail" Type="String" Label="${supplierActionPrimaryEmail}" Nullable="true"/>
             <Parameter Name="productCategoryId" Type="String" Label="${partyCategoryId}" Nullable="false">
                 <ValueList WithFixedValues="true" CollectionPath="ProductCategories">
                     <ParameterInOut ValueListProperty="productCategoryId" LocalDataProperty="productCategoryId"/>
@@ -281,10 +282,10 @@
         <NavigationProperty Name="PostalAddress"/>
         <NavigationProperty Name="ContactMechPurposeType"/>
     </EntityType>
-
+    <!--PostalAddress-->
     <EntityType Name="PostalAddress" AutoProperties="true" EntitySetName="PostalAddresses">
         <LineItem Qualifier="PostalAddressLineItem">
-            <DataField Values="PartyContactMechPurpose/contactMechPurposeTypeId,address1" Importance="High"/>
+            <DataField Values="PartyContactMechPurpose/contactMechPurposeTypeId,countryGeoId,cityGeoId,stateProvinceGeoId,address1,contactNumber,email" Importance="High"/>
             <DataFieldForAction Label="${create}" Action="CreatePostalAddress" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
 
@@ -292,18 +293,56 @@
 
         <Action Name="CreatePostalAddress" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createPostalAddress">
             <Parameter Name="postalAddress" Type="PostalAddress" Nullable="false" IsCollection="true"/>
-            <Parameter Name="address1" Type="String" Label="${address1}" Nullable="false"/>
             <Parameter Name="contactMechPurposeTypeId" Type="String" Label="${contactMechPurposeTypeId}" Nullable="true">
                 <ValueList WithFixedValues="true" CollectionPath="ContactMechPurposeTypes">
                     <ParameterInOut LocalDataProperty="contactMechPurposeTypeId" ValueListProperty="contactMechPurposeTypeId"/>
                 </ValueList>
             </Parameter>
+            <Parameter Name="countryGeoId" Type="String" Label="${countryGeoId}" Nullable="false">
+                <ValueList CollectionPath="Countries" WithFixedValues="true">
+                    <ParameterOut ValueListProperty="geoId" LocalDataProperty="countryGeoId"/>
+                </ValueList>
+            </Parameter>
+            <Parameter Name="stateProvinceGeoId" Type="String" Label="${stateProvinceGeoId}" Nullable="false">
+                <ValueList CollectionPath="Provinces" WithFixedValues="true">
+                    <ParameterIn LocalDataProperty="countryGeoId" ValueListProperty="geoIdFrom"/>
+                    <ParameterOut LocalDataProperty="stateProvinceGeoId" ValueListProperty="geoId"/>
+                </ValueList>
+            </Parameter>
+            <Parameter Name="cityGeoId" Type="String" Label="${cityGeoId}" Nullable="false">
+                <ValueList CollectionPath="Cities" WithFixedValues="true">
+                    <ParameterIn LocalDataProperty="stateProvinceGeoId" ValueListProperty="geoIdFrom"/>
+                    <ParameterOut LocalDataProperty="cityGeoId" ValueListProperty="geoId"/>
+                </ValueList>
+            </Parameter>
+
+            <Parameter Name="address1" Type="String" Label="${address1}" Nullable="false"/>
+            <Parameter Name="contactNumber" Type="String" Label="${contactNumber}" Nullable="false"/>
+            <Parameter Name="email" Type="String" Label="${email}" Nullable="false"/>
         </Action>
     </EntityType>
-
+    <!--ContactMechPurposeType-->
     <EntityType Name="ContactMechPurposeType" AutoProperties="true" EntitySetName="ContactMechPurposeTypes">
         <Property Name="contactMechPurposeTypeId">
             <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <!--Country（国家）-->
+    <EntityType Name="Country" OfbizEntity="Geo" EntityCondition="geoId in (FRA,USA,GBR,ARE,DEU,CHN,JPN,ITA,CHE)" AutoProperties="true" EntitySetName="Countries">
+        <Property Name="geoId">
+            <Text Path="geoName" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <!--Province（省份）-->
+    <EntityType Name="Province" OfbizEntity="GeoAssocAndGeoTo" EntityCondition="geoTypeId in (MUNICIPALITY,REGION,PROVINCE)" AutoProperties="true" EntitySetName="Provinces">
+        <Property Name="geoId">
+            <Text Path="geoName" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <!--City（城市）-->
+    <EntityType Name="City" OfbizEntity="GeoAssocAndGeoTo" EntityCondition="geoTypeId=CITY" AutoProperties="true" EntitySetName="Cities">
+        <Property Name="geoId">
+            <Text Path="geoName" TextArrangement="TextOnly"/>
         </Property>
     </EntityType>
 
