@@ -136,6 +136,14 @@ under the License.
     <Internationalization id="I10113" lang="zh" property="StatusItem.description.REQUIRE_CHANGES" value="需要更改"/>
     <Internationalization id="I10114" lang="en" property="StatusItem.description.REGISTERED" value="Registered"/>
     <Internationalization id="I10115" lang="zh" property="StatusItem.description.REGISTERED" value="已注册"/>
+    <Internationalization id="I10116" lang="en" property="fsCount" value="Number of financial statements"/>
+    <Internationalization id="I10117" lang="zh" property="fsCount" value="财务报表数量"/>
+    <Internationalization id="I10118" lang="en" property="caCount" value="Number of confidentiality agreements"/>
+    <Internationalization id="I10119" lang="zh" property="caCount" value="保密协议数量"/>
+    <Internationalization id="I10120" lang="en" property="ofCount" value="Number of other files"/>
+    <Internationalization id="I10121" lang="zh" property="ofCount" value="其他文件数量"/>
+    <Internationalization id="I10122" lang="en" property="complianceNote" value=""/>
+    <Internationalization id="I10123" lang="zh" property="complianceNote" value=""/>
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
     <DBField dbFieldId="CUST_REQ_10001" dbFieldName="statusId" dbFieldTypeId="STATUS" description="当前状态" dbEntityId="CUST_REQ_10000"/>

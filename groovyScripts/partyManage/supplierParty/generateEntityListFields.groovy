@@ -41,7 +41,16 @@ def generateFields(Map<String, Object> context){
         entity.addProperty(new Property(null, "criticalityValue", ValueType.PRIMITIVE, criticalityValue))
         entity.addProperty(new Property(null, "totalAmount", ValueType.PRIMITIVE, totalAmount))
 
-
+        //文件数量
+        List<GenericValue> fsList = supplierParty.getRelated("PartyMediaResource", UtilMisc.toMap("partyContentTypeId", "FINANCIAL_STATEMENTS"), null, false);
+        List<GenericValue> caList = supplierParty.getRelated("PartyMediaResource", UtilMisc.toMap("partyContentTypeId", "CONFIDENTIALITY_AGREEMENT"), null, false);
+        List<GenericValue> tfList = supplierParty.getRelated("PartyMediaResource", UtilMisc.toMap("partyContentTypeId", "OTHER_FILES"), null, false);
+        entity.addProperty(new Property(null, "fsCount", ValueType.PRIMITIVE, fsList.size()))
+        entity.addProperty(new Property(null, "caCount", ValueType.PRIMITIVE, caList.size()))
+        entity.addProperty(new Property(null, "ofCount", ValueType.PRIMITIVE, tfList.size()))
+        entity.addProperty(new Property(null, "fsCountCriticality", ValueType.PRIMITIVE, fsList.size() < 1 ? 1 : 3))
+        entity.addProperty(new Property(null, "caCountCriticality", ValueType.PRIMITIVE, caList.size() < 1 ? 1 : 3))
+        entity.addProperty(new Property(null, "ofCountCriticality", ValueType.PRIMITIVE, tfList.size() < 1 ? 1 : 3))
     }
     return entityList;
 }
