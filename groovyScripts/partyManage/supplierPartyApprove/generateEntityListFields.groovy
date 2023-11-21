@@ -26,11 +26,13 @@ module = "generateFields.groovy";
 def generateFields(Map<String, Object> context){
     List<Entity> entityList = context.parameters.entityList;
     Delegator delegator = context.get("delegator");
-    Map<String, Object> ddFormTypeMap = UtilMisc.toMap("No DD", 1L, "Simplified DD", 2L, "Standard DD", 5L);
+    Map<String, Object> ddFormTypeMap = UtilMisc.toMap("No DD", 1L, "Simplified DD", 2L, "Standard DD", 3L);
+    Map<String, Object> ddFormDealMap = UtilMisc.toMap("Not Send To Vendor", 1L, "Not Submit", 2L, "Submitted", 3L);
     entityList.each { entity ->
         String ddFormType;
         String ddFormDealStatus;
         ddFormTypeCritical = 0L;
+        ddFormDealCritical = 0L;
         GenericValue supplierParty = (GenericValue) entity.getGenericValue();
         ddFormType = SupplierWorker.getDDFormType(supplierParty, delegator);
         ddFormDealStatus = SupplierWorker.getDDFormDealStatus(supplierParty, delegator);
@@ -43,11 +45,13 @@ def generateFields(Map<String, Object> context){
             criticalityValue = 1L
         }
         ddFormTypeCritical = CriticalValueWorker.getCriticalValue(ddFormTypeMap, ddFormType);
+        ddFormDealCritical = CriticalValueWorker.getCriticalValue(ddFormDealMap, ddFormDealStatus);
         entity.addProperty(new Property(null, "ddFormType", ValueType.PRIMITIVE, ddFormType))
         entity.addProperty(new Property(null, "ddFormDealStatus", ValueType.PRIMITIVE, ddFormDealStatus))
         entity.addProperty(new Property(null, "criticalityValue", ValueType.PRIMITIVE, criticalityValue))
         entity.addProperty(new Property(null, "ddFormTypeCritical", ValueType.PRIMITIVE, ddFormTypeCritical))
         entity.addProperty(new Property(null, "cycleTime", ValueType.PRIMITIVE, cycleTime))
+        entity.addProperty(new Property(null, "ddFormDealCritical", ValueType.PRIMITIVE, ddFormDealCritical))
 
 
         //文件数量
