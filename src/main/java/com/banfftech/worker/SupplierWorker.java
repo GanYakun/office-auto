@@ -74,9 +74,9 @@ public class SupplierWorker {
         Boolean isSent = ddFormIsSent(delegator, supplierParty);
         Boolean isSubmit = ddFormIsSubmitted(delegator, supplierParty);
         if (isSent && !isSubmit){
-            ddFormDealStatus = "Not Submit To Vendor";
+            ddFormDealStatus = "Not Submit";
         }else if (isSent && isSubmit){
-            ddFormDealStatus = "Submitted To Vendor";
+            ddFormDealStatus = "Submitted";
         }
         return ddFormDealStatus;
     }
