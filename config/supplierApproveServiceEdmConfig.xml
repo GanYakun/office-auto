@@ -61,8 +61,12 @@
         <!-- 其他文件数量 -->
         <Property Name="ofCount" Type="Edm.Int64" Label="${ofCount}"/>
         <Property Name="ofCountCriticality" Type="Edm.Int64"/>
+        <!-- PDF Form fileName -->
         <Property Name="ddFromName" Type="String"/>
+        <!-- PDF Form fileUrl -->
         <Property Name="ddFromUrl" Type="String"/>
+        <!-- Work scope -->
+        <Property Name="workScope" Type="String" Label="${workScope}"/>
 
         <NavigationProperty Name="Product" Type="Product" Relations="SupplierProduct/Product" IsCollection="true"/>
         <NavigationProperty Name="Service" Type="Service" Relations="SupplierProduct/Product" IsCollection="true"/>
@@ -72,6 +76,7 @@
         <NavigationProperty Name="OwnerFinAccount" Type="FinAccount" IsCollection="true"
                             Relations="OwnerFinAccount(finAccountTypeId=BANK_ACCOUNT)" />
         <NavigationProperty Name="PersonAndContact" Relations="FromPartyRelationship(roleTypeIdTo=CONTACT and roleTypeIdFrom=SUPPLIER)/ToPersonAndContact" Type="PersonAndContact" IsCollection="true"/>
+        <NavigationProperty Name="BeneficialPerson" Relations="FromPartyRelationship(roleTypeIdTo=BENEFICIAL_PERSON and roleTypeIdFrom=SUPPLIER)/ToPersonAndContact" Type="PersonAndContact" IsCollection="true"/>
         <NavigationProperty Name="PurchaseAgreement" Type="PurchaseAgreement" Relations="ToAgreement"/>
         <NavigationProperty Name="NoteData" Type="NoteData" Relations="PartyNote/NoteData" IsCollection="true"/>
         <NavigationProperty Name="PurchaseOrder" Type="PurchaseOrder" Relations="OrderRole(roleTypeId=BILL_FROM_VENDOR)/OrderHeader" IsCollection="true"/>
@@ -106,6 +111,9 @@
         <DataPoint Title="ddFormType" Value="ddFormType" Criticality="ddFormTypeCritical" Qualifier="DDFormType"/>
         <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">
             <DataField Values="ProductCategory/categoryName,usccNumber,numEmployees,annualRevenue,tickerSymbol,comments,priority" Importance="High"/>
+        </FieldGroup>
+        <FieldGroup Qualifier="WorkScope" Label="WorkScope">
+            <DataField Values="workScope" Importance="High"/>
         </FieldGroup>
         <FieldGroup Qualifier="PartyGroupFieldGroupWithAction" Label="PartyGroupFieldGroupWithAction">
             <DataField Values="ProductCategory/categoryName,usccNumber,numEmployees,annualRevenue,tickerSymbol,comments,priority" Importance="High"/>
@@ -814,8 +822,9 @@
     <!--PersonAndContact（联系人）-->
     <EntityType Name="PersonAndContact" AttrEntityName="PartyAttribute" AutoProperties="true" AutoLabel="true"
                 AutoSet="true" EntitySetName="PersonAndContacts">
+        <RelAlias Name="ToPartyRelationship" Relations="ToPartyRelationship(roleTypeIdTo=BENEFICIAL_PERSON)"/>
         <Property Name="position" IsAttribute="true" Type="String"/>
-
+        <Property Name="amount" RelAlias="ToPartyRelationship" Field="amount" Scale="2"/>
         <LineItem Qualifier="PartyRelationshipLineItem">
             <DataField Values="partyName,primaryPhone,phoneMobile,primaryEmail,position" Importance="High"/>
             <DataFieldForAction Label="${create}" Action="CreatePersonAndContact" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
@@ -823,7 +832,14 @@
         <LineItem Qualifier="PartyRelationshipLineItemWithoutAction">
             <DataField Values="partyName,primaryPhone,phoneMobile,primaryEmail,position" Importance="High"/>
         </LineItem>
-
+        <LineItem Qualifier="BeneficialPersonLineItem">
+            <DataField Values="partyName,primaryPhone,phoneMobile,primaryEmail,amount" Importance="High"/>
+        </LineItem>
+        <LineItem Qualifier="BeneficialPersonLineItem_Action">
+            <DataField Values="partyName,primaryPhone,phoneMobile,primaryEmail,amount" Importance="High"/>
+            <DataFieldForAction Label="${create}" Action="CreateBeneficialPerson" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
+        </LineItem>
+        <!-- 创建联系人 -->
         <Action Name="CreatePersonAndContact" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createPersonAndContact">
             <Parameter Name="personAndContact" Type="PersonAndContact" Nullable="false" IsCollection="true"/>
             <Parameter Name="partyName" Type="String" Label="${partyName}" Nullable="false"/>
@@ -832,6 +848,15 @@
             <Parameter Name="primaryEmail" Type="String" Label="${email}" Nullable="true"/>
             <Parameter Name="position" Type="String" Label="${position}" Nullable="true"/>
             <ReturnType Type="PersonAndContact"/>
+        </Action>
+        <!-- 创建供应商最终受益人 -->
+        <Action Name="CreateBeneficialPerson" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createBeneficialPerson">
+            <Parameter Name="personAndContact" Type="PersonAndContact" Nullable="false" IsCollection="true"/>
+            <Parameter Name="partyName" Type="String" Label="${partyName}" Nullable="false"/>
+            <Parameter Name="primaryPhone" Type="String" Label="${phone}" Nullable="true"/>
+            <Parameter Name="phoneMobile" Type="String" Label="${mobile}" Nullable="false"/>
+            <Parameter Name="primaryEmail" Type="String" Label="${email}" Nullable="true"/>
+            <Parameter Name="amount" Type="BigDecimal" Scale="2" Label="${sharesHeld}" Nullable="true"/>
         </Action>
     </EntityType>
 

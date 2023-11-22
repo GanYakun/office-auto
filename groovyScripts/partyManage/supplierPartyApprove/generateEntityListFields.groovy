@@ -80,6 +80,11 @@ def generateFields(Map<String, Object> context){
         };
         entity.addProperty(new Property(null, "ddFromUrl", ValueType.PRIMITIVE, url));
         entity.addProperty(new Property(null, "ddFromName", ValueType.PRIMITIVE, name));
+
+        //WorkScope
+        GenericValue surveyQuestionAnswer = EntityQuery.use(delegator).from("SurveyQuestionAnswer").where(UtilMisc.toMap("surveyQuestionId", "9004")).queryFirst();
+        String workScope = surveyQuestionAnswer.getString("textResponse");
+        entity.addProperty(new Property(null, "workScope", ValueType.PRIMITIVE, workScope));
     }
     return entityList;
 }

@@ -146,6 +146,8 @@ under the License.
     <Internationalization id="I10123" lang="zh" property="complianceNote" value=""/>
     <Internationalization id="I10124" lang="en" property="ddFormType" value="Form types"/>
     <Internationalization id="I10125" lang="zh" property="ddFormType" value="表单类型"/>
+    <Internationalization id="I10126" lang="en" property="sharesHeld" value="Shares Held"/>
+    <Internationalization id="I10127" lang="zh" property="sharesHeld" value="持有股份"/>
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
     <DBField dbFieldId="CUST_REQ_10001" dbFieldName="statusId" dbFieldTypeId="STATUS" description="当前状态" dbEntityId="CUST_REQ_10000"/>

@@ -197,16 +197,22 @@ under the License.
     <SurveyQuestion surveyQuestionId="9003" surveyQuestionCategoryId="DD_STD_QUESTIONS" surveyQuestionTypeId="BOOLEAN"
                     question="To the best of your knowledge, currently or during the last during the last five (5) years, have any of the Business Partner’s owners, officers, directors or senior management been identified on any official, governmental or regulatory body’s list as a politically exposed person?"/>
 
+    <SurveyQuestionType surveyQuestionTypeId="TEXT_LONG" description="Long Text (single-line)"/>
+    <SurveyQuestion surveyQuestionId="9004" surveyQuestionCategoryId="DD_STD_QUESTIONS" surveyQuestionTypeId="TEXT_LONG"
+                    question="Summary of the anticipated scope of work (including estimated value, term of engagement)"/>
+
     <Survey surveyId="DD_STD_FORM" surveyName="Due Diligence Standard Form"/>
     <SurveyQuestionAppl surveyId="DD_STD_FORM" surveyQuestionId="9000" sequenceNum="1" requiredField="Y" fromDate="2023-08-18 11:45:31.928"/>
     <SurveyQuestionAppl surveyId="DD_STD_FORM" surveyQuestionId="9001" sequenceNum="2" requiredField="Y" fromDate="2023-08-18 11:45:31.928"/>
     <SurveyQuestionAppl surveyId="DD_STD_FORM" surveyQuestionId="9002" sequenceNum="3" requiredField="Y" fromDate="2023-08-18 11:45:31.928"/>
     <SurveyQuestionAppl surveyId="DD_STD_FORM" surveyQuestionId="9003" sequenceNum="4" requiredField="Y" fromDate="2023-08-18 11:45:31.928"/>
+    <SurveyQuestionAppl surveyId="DD_STD_FORM" surveyQuestionId="9004" sequenceNum="5" requiredField="Y" fromDate="2023-08-18 11:45:31.928"/>
     <PartySurveyAppl partyId="SUPPLIER0001" surveyId="DD_STD_FORM" surveyApplTypeId="DD_FORM"/>
     <SurveyQuestionAnswer surveyQuestionId="9000" partyId="SUPPLIER0001" booleanResponse="Y"/>
     <SurveyQuestionAnswer surveyQuestionId="9001" partyId="SUPPLIER0001" booleanResponse="Y"/>
     <SurveyQuestionAnswer surveyQuestionId="9002" partyId="SUPPLIER0001" booleanResponse="N"/>
     <SurveyQuestionAnswer surveyQuestionId="9003" partyId="SUPPLIER0001" booleanResponse="N"/>
+    <SurveyQuestionAnswer surveyQuestionId="9004" partyId="SUPPLIER0001" textResponse="Asus From a professional private brand to an international 3C brand marketing the world, ASUS has always adhered to uncompromising quality and innovation. In the Chinese name to Chinese master for the hope, and the English name inspiration from the Greek mythology of the PEGASUS, which symbolizes the holy, perfect and pure image, representing ASUS never slack, the pursuit of excellence of the spirit."/>
 
     <!--产品Demo数据-->
     <UomType uomTypeId="QUANTITY_MEASURE" description="Quantity"/>
