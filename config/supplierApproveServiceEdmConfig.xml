@@ -101,7 +101,7 @@
 
         <!--Annotation-->
         <FieldGroup Label="PartyBaseInfo" Qualifier="PartyBaseInfo">
-            <DataField Values="tickerSymbol,ProductCategory/categoryName,ddFormDealStatus,cycleTime,usccNumber" Importance="High"/>
+            <DataField Values="tickerSymbol,ProductCategory/categoryName,cycleTime,usccNumber" Importance="High"/>
         </FieldGroup>
         <DataPoint Title="ddFormType" Value="ddFormType" Criticality="ddFormTypeCritical" Qualifier="DDFormType"/>
         <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">
