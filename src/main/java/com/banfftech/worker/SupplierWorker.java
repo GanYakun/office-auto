@@ -116,19 +116,19 @@ public class SupplierWorker {
         List<GenericValue> supplierWorkEfforts = delegator.findByAnd("WorkEffortAndPartyGroupContact",
                 UtilMisc.toMap("partyId", supplierParty.get("partyId"), "approvePartyId", supplierParty.get("partyId")), null, true);
         if (UtilValidate.isEmpty(supplierWorkEfforts)){
-            return "0h0min";
+            return "0 days";
         }
         GenericValue supplierWorkEffort = EntityUtil.getFirst(supplierWorkEfforts);
         Timestamp submitTime = supplierWorkEffort.getTimestamp("createdDate");
         Timestamp completeDDFormTime = supplierWorkEffort.getTimestamp("lastModifiedDate");
-        //计算时间差，并转化为~h~min的时间格式
+        //计算时间差，并转化为~days的时间格式
         long submitTimeSecond = submitTime.getTime();
         long completeDDFormTimeSecond = completeDDFormTime.getTime();
         long cycleTimeSecond = completeDDFormTimeSecond - submitTimeSecond;
-        double cycleTimeFloat = (double) cycleTimeSecond / (3600*1000);
-        double hours = Math.floor(cycleTimeFloat);
-        double minutes = (cycleTimeFloat - hours)*60;
-        cycleTime = (int) hours + "h" + (int) minutes + "min";
+        double cycleTimeFloat = (double) cycleTimeSecond / (3600*1000*24);
+        double days = Math.floor(cycleTimeFloat);
+//        double hours = (cycleTimeFloat - days)*24;
+        cycleTime = (int) days + " days";
         return cycleTime;
     }
 
