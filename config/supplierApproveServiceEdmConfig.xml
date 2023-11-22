@@ -105,10 +105,10 @@
         </FieldGroup>
         <DataPoint Title="ddFormType" Value="ddFormType" Criticality="ddFormTypeCritical" Qualifier="DDFormType"/>
         <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">
-            <DataField Values="numEmployees,annualRevenue,tickerSymbol,comments,priority" Importance="High"/>
+            <DataField Values="ProductCategory/categoryName,usccNumber,numEmployees,annualRevenue,tickerSymbol,comments,priority" Importance="High"/>
         </FieldGroup>
         <FieldGroup Qualifier="PartyGroupFieldGroupWithAction" Label="PartyGroupFieldGroupWithAction">
-            <DataField Values="numEmployees,annualRevenue,tickerSymbol,comments,priority" Importance="High"/>
+            <DataField Values="ProductCategory/categoryName,usccNumber,numEmployees,annualRevenue,tickerSymbol,comments,priority" Importance="High"/>
             <DataFieldForAction Label="${UpdateBasicInfo}" Action="FillSupplierBaseInfo" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated" Hidden="disableEditSupplier"/>
         </FieldGroup>
 <!--        <FieldGroup Qualifier="FileCountGroup" Label="FileCountGroup">-->
@@ -126,10 +126,10 @@
         </FieldGroup>
 
         <FieldGroup Qualifier="SupplierTimeInfo" Label="SupplierTimeInfo">
-            <DataField Values="collectionDate,firstOrderDate" Importance="High"/>
+            <DataField Values="createdDate,lastModifiedDate,collectionDate,firstOrderDate" Importance="High"/>
         </FieldGroup>
         <FieldGroup Qualifier="SupplierTimeInfoWithAction" Label="SupplierTimeInfoWithAction">
-            <DataField Values="collectionDate,firstOrderDate" Importance="High"/>
+            <DataField Values="createdDate,lastModifiedDate,collectionDate,firstOrderDate" Importance="High"/>
             <DataFieldForAction Label="${UpdateSupplierTimeInfo}" Action="UpdateSupplierTimeInfo" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated" Hidden="disableEditSupplier"/>
         </FieldGroup>
 
