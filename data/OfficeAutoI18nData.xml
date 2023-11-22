@@ -154,6 +154,8 @@ under the License.
     <Internationalization id="I10131" lang="en" property="removeDepartment" value="Remove"/>
     <Internationalization id="I10132" lang="zh" property="selectDepartmentParam" value="选择部门"/>
     <Internationalization id="I10133" lang="en" property="selectDepartmentParam" value="Select Department"/>
+    <Internationalization id="I10126" lang="en" property="sharesHeld" value="Shares Held"/>
+    <Internationalization id="I10127" lang="zh" property="sharesHeld" value="持有股份"/>
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
     <DBField dbFieldId="CUST_REQ_10001" dbFieldName="statusId" dbFieldTypeId="STATUS" description="当前状态" dbEntityId="CUST_REQ_10000"/>
