@@ -141,14 +141,6 @@
             <DataFieldForAction Label="${create}" Action="CreateSupplierParty" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
 
-        <FieldGroup Qualifier="TimeInfo" Label="TimeInfo">
-            <DataField Values="createdDate,lastModifiedDate,firstOrderDate,collectionDate" Importance="High"/>
-        </FieldGroup>
-
-        <FieldGroup Qualifier="IdentificationCode" Label="IdentificationCode">
-            <DataField Values="usccNumber" Importance="High"/>
-        </FieldGroup>
-
         <HeaderInfo TypeName="Supplier Party" TypeNamePlural="Supplier Party List">
             <Title Path="partyId"/>
             <Description Path="description"/>
