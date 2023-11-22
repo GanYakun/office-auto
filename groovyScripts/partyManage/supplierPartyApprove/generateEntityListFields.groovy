@@ -78,7 +78,7 @@ def generateFields(Map<String, Object> context){
                     url = "https://dpbird.oss-cn-hangzhou.aliyuncs.com/scy/SimplifiedForm.pdf"
                     name = "Business Partner Due Diligence Form – Simplified Form"
                 };
-                if ("STANDARD_DD".equals(ddFormType)) {
+                if ("STANDARD_DD".equals(attrValue)) {
                     url = "https://dpbird.oss-cn-hangzhou.aliyuncs.com/scy/StandardForm.pdf"
                     name = "Business Partner Due Diligence Form – Standard Form"
                 };
