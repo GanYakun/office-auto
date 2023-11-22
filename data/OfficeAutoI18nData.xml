@@ -142,8 +142,8 @@ under the License.
     <Internationalization id="I10119" lang="zh" property="caStatus" value="保密协议上传情况"/>
     <Internationalization id="I10120" lang="en" property="ofStatus" value="Upload status of other files"/>
     <Internationalization id="I10121" lang="zh" property="ofStatus" value="其他文件上传情况"/>
-    <Internationalization id="I10122" lang="en" property="complianceNote" value=""/>
-    <Internationalization id="I10123" lang="zh" property="complianceNote" value=""/>
+    <Internationalization id="I10122" lang="en" property="complianceNote" value="suggestion"/>
+    <Internationalization id="I10123" lang="zh" property="complianceNote" value="建议"/>
     <Internationalization id="I10124" lang="en" property="ddFormType" value="Form types"/>
     <Internationalization id="I10125" lang="zh" property="ddFormType" value="表单类型"/>
     <Internationalization id="I10126" lang="en" property="cycleTime" value="Cycle Time"/>
