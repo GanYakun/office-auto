@@ -59,13 +59,15 @@ public class SupplierWorker {
 
     private static Boolean isNoFormListCountry (GenericValue supplierParty){
         Boolean isNoFormListCountry = false;
-        String tickerSymbol = supplierParty.getString("tickerSymbol");
-        if (tickerSymbol.contains("US")){
-            isNoFormListCountry = true;
-        }else if (tickerSymbol.contains("UK")){
-            isNoFormListCountry = true;
-        }else if (tickerSymbol.contains("UAE")){
-            isNoFormListCountry = true;
+        if (UtilValidate.isNotEmpty(supplierParty.get("tickerSymbol"))){
+            String tickerSymbol = supplierParty.getString("tickerSymbol");
+            if (tickerSymbol.contains("US")){
+                isNoFormListCountry = true;
+            }else if (tickerSymbol.contains("UK")){
+                isNoFormListCountry = true;
+            }else if (tickerSymbol.contains("UAE")){
+                isNoFormListCountry = true;
+            }
         }
         return isNoFormListCountry;
     }
