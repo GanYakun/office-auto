@@ -835,7 +835,7 @@
                 AutoSet="true" EntitySetName="PersonAndContacts">
         <RelAlias Name="ToPartyRelationship" Relations="ToPartyRelationship(roleTypeIdTo=BENEFICIAL_PERSON)"/>
         <Property Name="position" IsAttribute="true" Type="String"/>
-        <Property Name="amount" RelAlias="ToPartyRelationship" Field="amount" Scale="2"/>
+        <Property Name="amount" RelAlias="ToPartyRelationship" Field="amount"/>
         <LineItem Qualifier="PartyRelationshipLineItem">
             <DataField Values="partyName,primaryPhone,phoneMobile,primaryEmail,position" Importance="High"/>
             <DataFieldForAction Label="${create}" Action="CreatePersonAndContact" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
