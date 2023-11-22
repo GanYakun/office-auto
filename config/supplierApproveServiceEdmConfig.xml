@@ -21,7 +21,7 @@
         <!--供应商填写ddForm进度情况-->
         <Property Name="ddFormDealStatus" Type="String"/>
         <!--供应商完成ddForm时间-->
-        <Property Name="cycleTime" Type="String"/>
+        <Property Name="cycleTime" Type="String" Label="${cycleTime}"/>
         <Property Name="createSupplierHidden" Type="Boolean" Hidden="true"/>
         <!--首次订单时间-->
         <Property Name="firstOrderDate" Type="Timestamp" IsDateAttribute="true"/>
@@ -103,7 +103,7 @@
         <FieldGroup Label="PartyBaseInfo" Qualifier="PartyBaseInfo">
             <DataField Values="tickerSymbol,ProductCategory/categoryName,cycleTime,usccNumber" Importance="High"/>
         </FieldGroup>
-        <DataPoint Title="ddFormType" Value="ddFormType" Criticality="ddFormTypeCritical" Qualifier="DDFormType"/>
+        <DataPoint Title="${ddFormType}" Value="ddFormType" Criticality="ddFormTypeCritical" Qualifier="DDFormType"/>
         <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">
             <DataField Values="ProductCategory/categoryName,usccNumber,numEmployees,annualRevenue,tickerSymbol,comments,priority" Importance="High"/>
         </FieldGroup>
@@ -299,7 +299,20 @@
             <DataFieldForAction Label="${create}" Action="CreatePostalAddress" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
 
+        <Property Name="countryGeoId">
+            <Text Path="CountryGeo/geoName" TextArrangement="TextOnly"/>
+        </Property>
+        <Property Name="cityGeoId">
+            <Text Path="CityGeo/geoName" TextArrangement="TextOnly"/>
+        </Property>
+        <Property Name="stateProvinceGeoId">
+            <Text Path="StateProvinceGeo/geoName" TextArrangement="TextOnly"/>
+        </Property>
+
         <NavigationProperty Name="PartyContactMechPurpose"/>
+        <NavigationProperty Name="CountryGeo"/>
+        <NavigationProperty Name="StateProvinceGeo"/>
+        <NavigationProperty Name="CityGeo"/>
 
         <Action Name="CreatePostalAddress" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createPostalAddress">
             <Parameter Name="postalAddress" Type="PostalAddress" Nullable="false" IsCollection="true"/>
@@ -351,6 +364,12 @@
     </EntityType>
     <!--City（城市）-->
     <EntityType Name="City" OfbizEntity="GeoAssocAndGeoTo" EntityCondition="geoTypeId=CITY" AutoProperties="true" EntitySetName="Cities">
+        <Property Name="geoId">
+            <Text Path="geoName" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <!--Geo（TextOnly通用）-->
+    <EntityType Name="Geo" AutoProperties="true" EntitySetName="Geos">
         <Property Name="geoId">
             <Text Path="geoName" TextArrangement="TextOnly"/>
         </Property>
@@ -634,7 +653,7 @@
         <NavigationProperty Name="PrimaryProductCategory"/>
     </EntityType>
     <!--Service(服务)-->
-    <EntityType Name="Service" OfbizEntity="Product" AutoProperties="true" EntityCondition="productTypeId=SERVICE" EntitySetName="Services">
+    <EntityType Name="Service" OfbizEntity="Product" OfbizType="productTypeId=SERVICE" AutoProperties="true" EntityCondition="productTypeId=SERVICE" EntitySetName="Services">
         <LineItem Qualifier="SupplierProductLineItem">
             <DataField Values="productName,primaryProductCategoryId" Importance="High" />
             <DataFieldForAction Label="${create}" Action="CreateSupplierService" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
@@ -760,7 +779,7 @@
             <Text Path="partyName" TextArrangement="TextOnly"/>
         </Property>
     </EntityType>
-    <EntityType Name="Department" OfbizEntity="PartyGroupAndContact" AutoProperties="true" EntityCondition="PartyRole/roleTypeId=DEPARTMENT" EntitySetName="Departments" AutoSet="true">
+    <EntityType Name="Department" OfbizEntity="PartyGroupAndContact" AutoProperties="true" EntityCondition="PartyRole/roleTypeId=DEPARTMENT" OfbizType="PartyRole/roleTypeId=DEPARTMENT" EntitySetName="Departments" AutoSet="true">
         <Property Name="partyId">
             <Text Path="partyName" TextArrangement="TextOnly"/>
         </Property>
@@ -776,8 +795,8 @@
                 OfbizService="com.banfftech.events.SupplierEvents.selectDepartment"
                 StickySession="true" SideEffects="true">
             <Parameter Name="department" Type="Department" Nullable="false" IsCollection="true"/>
-            <Parameter Name="partyId" Type="String" Nullable="false" IsCollection="true" Label="${selectDepartment}">
-                <ValueList CollectionPath="Departments" ParameterDisplayOnly="primaryPhone,primaryEmail">
+            <Parameter Name="partyId" Type="String" Nullable="false" IsCollection="true" Label="${selectDepartmentParam}">
+                <ValueList CollectionPath="Departments">
                     <ParameterInOut LocalDataProperty="partyId" ValueListProperty="partyId"/>
                 </ValueList>
             </Parameter>

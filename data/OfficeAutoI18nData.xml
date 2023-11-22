@@ -146,6 +146,14 @@ under the License.
     <Internationalization id="I10123" lang="zh" property="complianceNote" value=""/>
     <Internationalization id="I10124" lang="en" property="ddFormType" value="Form types"/>
     <Internationalization id="I10125" lang="zh" property="ddFormType" value="表单类型"/>
+    <Internationalization id="I10126" lang="en" property="cycleTime" value="Cycle Time"/>
+    <Internationalization id="I10127" lang="zh" property="cycleTime" value="表单填写周期"/>
+    <Internationalization id="I10128" lang="zh" property="selectDepartment" value="选择部门"/>
+    <Internationalization id="I10129" lang="en" property="selectDepartment" value="Select"/>
+    <Internationalization id="I10130" lang="zh" property="removeDepartment" value="移除部门"/>
+    <Internationalization id="I10131" lang="en" property="removeDepartment" value="Remove"/>
+    <Internationalization id="I10132" lang="zh" property="selectDepartmentParam" value="选择部门"/>
+    <Internationalization id="I10133" lang="en" property="selectDepartmentParam" value="Select Department"/>
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
     <DBField dbFieldId="CUST_REQ_10001" dbFieldName="statusId" dbFieldTypeId="STATUS" description="当前状态" dbEntityId="CUST_REQ_10000"/>
@@ -379,6 +387,15 @@ under the License.
     <DBFieldLabel dbFieldLabelId="PGC10000_16_ZH" dbFieldId="PGC10000_16" language="zh" value="供应商"/>
     <DBFieldLabel dbFieldLabelId="PGC10000_16_EN" dbFieldId="PGC10000_16" language="en" value="Name"/>
 
+    <!-- Entity labels for view-entity Department -->
+    <DBEntity dbEntityId="DPT10000" dbEntityName="PartyGroupAndContact" dbEntityTypeField="PartyRole/roleTypeId" dbEntityTypeId="DEPARTMENT" description="Vendor" isOpen="N" />
+    <DBField dbFieldId="DPT10000_01" dbFieldName="partyName" dbFieldTypeId="STRING" dbEntityId="DPT10000" description="Name"/>
+    <DBField dbFieldId="DPT10000_02" dbFieldName="partyId" dbFieldTypeId="STRING" dbEntityId="DPT10000" description="Name"/>
+    <DBFieldLabel dbFieldLabelId="DPT10000_01_ZH" dbFieldId="DPT10000_01" language="zh" value="部门"/>
+    <DBFieldLabel dbFieldLabelId="DPT10000_01_EN" dbFieldId="DPT10000_01" language="en" value="Department Name"/>
+    <DBFieldLabel dbFieldLabelId="DPT10000_02_ZH" dbFieldId="DPT10000_02" language="zh" value="部门"/>
+    <DBFieldLabel dbFieldLabelId="DPT10000_02_EN" dbFieldId="DPT10000_02" language="en" value="Department Name"/>
+
     <!-- Entity labels for entity SurveyQuestion -->
     <DBEntity dbEntityId="SQ10000" dbEntityName="SurveyQuestion" description="Survey question" isOpen="N" />
     <DBField dbFieldId="SQ10000_01" dbFieldName="description" dbFieldTypeId="STRING" dbEntityId="SQ10000" description="Description"/>
@@ -460,6 +477,27 @@ under the License.
     <DBFieldLabel dbFieldLabelId="ND10000_06_ZH" dbFieldId="ND10000_06" language="zh" value="备注ID"/>
     <DBFieldLabel dbFieldLabelId="ND10000_06_EN" dbFieldId="ND10000_06" language="en" value="Note ID"/>
 
+    <!-- Entity labels for entity PostalAddress -->
+    <DBEntity dbEntityId="PO10000" dbEntityName="PostalAddress" description="Postal Address" isOpen="N" />
+    <DBField dbFieldId="PO10000_01" dbFieldName="countryGeoId" dbFieldTypeId="STRING" dbEntityId="PO10000" description="Note name"/>
+    <DBField dbFieldId="PO10000_02" dbFieldName="cityGeoId" dbFieldTypeId="STRING" dbEntityId="PO10000" description="Note info"/>
+    <DBField dbFieldId="PO10000_03" dbFieldName="stateProvinceGeoId" dbFieldTypeId="STRING" dbEntityId="PO10000" description="Note date time"/>
+    <DBField dbFieldId="PO10000_04" dbFieldName="address1" dbFieldTypeId="STRING" dbEntityId="PO10000" description="Note party"/>
+    <DBField dbFieldId="PO10000_06" dbFieldName="contactNumber" dbFieldTypeId="STRING" dbEntityId="PO10000" description="Note ID"/>
+    <DBField dbFieldId="PO10000_07" dbFieldName="email" dbFieldTypeId="STRING" dbEntityId="PO10000" description="Note ID"/>
+    <DBFieldLabel dbFieldLabelId="PO10000_01_ZH" dbFieldId="PO10000_01" language="zh" value="国家"/>
+    <DBFieldLabel dbFieldLabelId="PO10000_01_EN" dbFieldId="PO10000_01" language="en" value="Country"/>
+    <DBFieldLabel dbFieldLabelId="PO10000_02_ZH" dbFieldId="PO10000_02" language="zh" value="城市"/>
+    <DBFieldLabel dbFieldLabelId="PO10000_02_EN" dbFieldId="PO10000_02" language="en" value="City"/>
+    <DBFieldLabel dbFieldLabelId="PO10000_03_ZH" dbFieldId="PO10000_03" language="zh" value="省份"/>
+    <DBFieldLabel dbFieldLabelId="PO10000_03_EN" dbFieldId="PO10000_03" language="en" value="Province"/>
+    <DBFieldLabel dbFieldLabelId="PO10000_04_ZH" dbFieldId="PO10000_04" language="zh" value="地址"/>
+    <DBFieldLabel dbFieldLabelId="PO10000_04_EN" dbFieldId="PO10000_04" language="en" value="Address"/>
+    <DBFieldLabel dbFieldLabelId="PO10000_06_ZH" dbFieldId="PO10000_06" language="zh" value="电话"/>
+    <DBFieldLabel dbFieldLabelId="PO10000_06_EN" dbFieldId="PO10000_06" language="en" value="Number"/>
+    <DBFieldLabel dbFieldLabelId="PO10000_07_ZH" dbFieldId="PO10000_07" language="zh" value="邮箱"/>
+    <DBFieldLabel dbFieldLabelId="PO10000_07_EN" dbFieldId="PO10000_07" language="en" value="Email"/>
+
     <!-- Entity labels for entity PersonAndContact -->
     <DBEntity dbEntityId="PAC10000" dbEntityName="PersonAndContact" description="Person and contact" isOpen="N" />
     <DBField dbFieldId="PAC10000_01" dbFieldName="partyName" dbFieldTypeId="STRING" dbEntityId="PAC10000" description="Name"/>
@@ -499,6 +537,7 @@ under the License.
     <DBField dbFieldId="PRD10000_02" dbFieldName="productName" dbFieldTypeId="STRING" dbEntityId="PRD10000" description="Product name"/>
     <DBField dbFieldId="PRD10000_03" dbFieldName="productTypeId" dbFieldTypeId="STRING" dbEntityId="PRD10000" description="Product type"/>
     <DBField dbFieldId="PRD10000_04" dbFieldName="quantityUomId" dbFieldTypeId="STRING" dbEntityId="PRD10000" description="Quantity UOM"/>
+    <DBField dbFieldId="PRD10000_05" dbFieldName="primaryProductCategoryId" dbFieldTypeId="STRING" dbEntityId="PRD10000" description="Primary Product Category"/>
     <DBFieldLabel dbFieldLabelId="PRD10000_01_ZH" dbFieldId="PRD10000_01" language="zh" value="产品ID"/>
     <DBFieldLabel dbFieldLabelId="PRD10000_01_EN" dbFieldId="PRD10000_01" language="en" value="Product ID"/>
     <DBFieldLabel dbFieldLabelId="PRD10000_02_ZH" dbFieldId="PRD10000_02" language="zh" value="产品名称"/>
@@ -507,6 +546,33 @@ under the License.
     <DBFieldLabel dbFieldLabelId="PRD10000_03_EN" dbFieldId="PRD10000_03" language="en" value="Product type"/>
     <DBFieldLabel dbFieldLabelId="PRD10000_04_ZH" dbFieldId="PRD10000_04" language="zh" value="数量单位"/>
     <DBFieldLabel dbFieldLabelId="PRD10000_04_EN" dbFieldId="PRD10000_04" language="en" value="Quantity UOM"/>
+    <DBFieldLabel dbFieldLabelId="PRD10000_05_ZH" dbFieldId="PRD10000_05" language="zh" value="产品财务分类"/>
+    <DBFieldLabel dbFieldLabelId="PRD10000_05_EN" dbFieldId="PRD10000_05" language="en" value="Financial Category"/>
+
+    <!-- Entity labels for entity Service -->
+    <DBEntity dbEntityId="SRV10000" dbEntityName="Product" dbEntityTypeId="SERVICE" description="Product" isOpen="N" />
+    <DBField dbFieldId="SRV10000_01" dbFieldName="productId" dbFieldTypeId="STRING" dbEntityId="SRV10000" description="Product ID"/>
+    <DBField dbFieldId="SRV10000_02" dbFieldName="productName" dbFieldTypeId="STRING" dbEntityId="SRV10000" description="Product name"/>
+    <DBField dbFieldId="SRV10000_03" dbFieldName="productTypeId" dbFieldTypeId="STRING" dbEntityId="SRV10000" description="Product type"/>
+    <DBField dbFieldId="SRV10000_04" dbFieldName="quantityUomId" dbFieldTypeId="STRING" dbEntityId="SRV10000" description="Quantity UOM"/>
+    <DBField dbFieldId="SRV10000_05" dbFieldName="primaryProductCategoryId" dbFieldTypeId="STRING" dbEntityId="SRV10000" description="Primary Product Category"/>
+    <DBFieldLabel dbFieldLabelId="SRV10000_01_ZH" dbFieldId="SRV10000_01" language="zh" value="产品ID"/>
+    <DBFieldLabel dbFieldLabelId="SRV10000_01_EN" dbFieldId="SRV10000_01" language="en" value="Service ID"/>
+    <DBFieldLabel dbFieldLabelId="SRV10000_02_ZH" dbFieldId="SRV10000_02" language="zh" value="产品名称"/>
+    <DBFieldLabel dbFieldLabelId="SRV10000_02_EN" dbFieldId="SRV10000_02" language="en" value="Service name"/>
+    <DBFieldLabel dbFieldLabelId="SRV10000_03_ZH" dbFieldId="SRV10000_03" language="zh" value="产品类型"/>
+    <DBFieldLabel dbFieldLabelId="SRV10000_03_EN" dbFieldId="SRV10000_03" language="en" value="Service type"/>
+    <DBFieldLabel dbFieldLabelId="SRV10000_04_ZH" dbFieldId="SRV10000_04" language="zh" value="数量单位"/>
+    <DBFieldLabel dbFieldLabelId="SRV10000_04_EN" dbFieldId="SRV10000_04" language="en" value="Quantity UOM"/>
+    <DBFieldLabel dbFieldLabelId="SRV10000_05_ZH" dbFieldId="SRV10000_05" language="zh" value="产品财务分类"/>
+    <DBFieldLabel dbFieldLabelId="SRV10000_05_EN" dbFieldId="SRV10000_05" language="en" value="Financial Category"/>
+
+    <!-- Entity labels for entity ProductCategory -->
+    <DBEntity dbEntityId="PRC10000" dbEntityName="ProductCategory" description="Product" isOpen="N" />
+    <DBField dbFieldId="PRC10000_01" dbFieldName="categoryName" dbFieldTypeId="STRING" dbEntityId="PRC10000" description="Category Name"/>
+    <DBFieldLabel dbFieldLabelId="PRC10000_01_ZH" dbFieldId="PRC10000_01" language="zh" value="分类名称"/>
+    <DBFieldLabel dbFieldLabelId="PRC10000_01_EN" dbFieldId="PRC10000_01" language="en" value="Category Name"/>
+
 
     <!-- Entity labels for entity FinAccount -->
     <DBEntity dbEntityId="FA10000" dbEntityName="FinAccount" description="Fin account" isOpen="N" />
