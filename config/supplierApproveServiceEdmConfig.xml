@@ -52,15 +52,15 @@
         <!-- Semantic Field -->
         <!-- 合规建议 -->
         <Property Name="complianceNote" Type="String" IsAttribute="true" Label="${complianceNote}"/>
-        <!-- 财务报表数量 -->
-        <Property Name="fsCount" Type="Edm.Int64" Label="${fsCount}"/>
-        <Property Name="fsCountCriticality" Type="Edm.Int64"/>
-        <!-- 保密协议数量 -->
-        <Property Name="caCount" Type="Edm.Int64" Label="${caCount}"/>
-        <Property Name="caCountCriticality" Type="Edm.Int64"/>
-        <!-- 其他文件数量 -->
-        <Property Name="ofCount" Type="Edm.Int64" Label="${ofCount}"/>
-        <Property Name="ofCountCriticality" Type="Edm.Int64"/>
+        <!-- 财务报表 -->
+        <Property Name="fsStatus" Type="String" Label="${fsStatus}"/>
+        <Property Name="fsStatusCriticality" Type="Edm.Int64"/>
+        <!-- 保密协议 -->
+        <Property Name="caStatus" Type="String" Label="${caStatus}"/>
+        <Property Name="caStatusCriticality" Type="Edm.Int64"/>
+        <!-- 其他文件 -->
+        <Property Name="ofStatus" Type="String" Label="${ofStatus}"/>
+        <Property Name="ofStatusCriticality" Type="Edm.Int64"/>
         <!-- PDF Form fileName -->
         <Property Name="ddFromName" Type="String"/>
         <!-- PDF Form fileUrl -->
