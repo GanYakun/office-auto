@@ -23,7 +23,7 @@ public class SupplierWorker {
     public static String getDDFormType (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
         String ddFormType = null;
         Boolean isGovernment = isGovernment((String) supplierParty.get("partyId"), delegator);
-        Boolean isNoFormListCountry = isNoFormListCountry();
+        Boolean isNoFormListCountry = isNoFormListCountry(supplierParty);
 
         List<GenericValue> productCategoryRoles = delegator.findByAnd("ProductCategoryRole",
                 UtilMisc.toMap("partyId", supplierParty.get("partyId")), null, false);
@@ -57,9 +57,16 @@ public class SupplierWorker {
         return isGovernment;
     }
 
-    private static Boolean isNoFormListCountry (){
+    private static Boolean isNoFormListCountry (GenericValue supplierParty){
         Boolean isNoFormListCountry = false;
-
+        String tickerSymbol = supplierParty.getString("tickerSymbol");
+        if (tickerSymbol.contains("US")){
+            isNoFormListCountry = true;
+        }else if (tickerSymbol.contains("UK")){
+            isNoFormListCountry = true;
+        }else if (tickerSymbol.contains("UAE")){
+            isNoFormListCountry = true;
+        }
         return isNoFormListCountry;
     }
 
