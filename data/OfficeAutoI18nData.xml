@@ -398,6 +398,12 @@ under the License.
     <DBFieldLabel dbFieldLabelId="DPT10000_02_ZH" dbFieldId="DPT10000_02" language="zh" value="部门"/>
     <DBFieldLabel dbFieldLabelId="DPT10000_02_EN" dbFieldId="DPT10000_02" language="en" value="Department Name"/>
 
+    <!-- Entity labels for view-entity PartyContactMechPurpose -->
+    <DBEntity dbEntityId="PCMP10000" dbEntityName="PartyContactMechPurpose" description="Party ContactMech Purpose" isOpen="N" />
+    <DBField dbFieldId="PCMP10000_01" dbFieldName="contactMechPurposeTypeId" dbFieldTypeId="STRING" dbEntityId="PCMP10000" description="Purpose"/>
+    <DBFieldLabel dbFieldLabelId="PCMP10000_01_ZH" dbFieldId="PCMP10000_01" language="zh" value="目的"/>
+    <DBFieldLabel dbFieldLabelId="PCMP10000_01_EN" dbFieldId="PCMP10000_01" language="en" value="Purpose"/>
+
     <!-- Entity labels for entity SurveyQuestion -->
     <DBEntity dbEntityId="SQ10000" dbEntityName="SurveyQuestion" description="Survey question" isOpen="N" />
     <DBField dbFieldId="SQ10000_01" dbFieldName="description" dbFieldTypeId="STRING" dbEntityId="SQ10000" description="Description"/>
