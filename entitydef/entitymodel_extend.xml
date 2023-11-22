@@ -205,6 +205,13 @@
 		</relation>
 	</extend-entity>
 
+	<extend-entity entity-name="ContactMechPurposeType">
+		<field name="parentTypeId" type="id"/>
+		<relation type="one-nofk" title="Parent" rel-entity-name="ContactMechPurposeType">
+			<key-map field-name="parentTypeId" rel-field-name="contactMechPurposeTypeId"/>
+		</relation>
+	</extend-entity>
+
 	<extend-entity entity-name="PostalAddress">
 		<field name="areaCode" type="very-short"/>
 		<field name="contactNumber" type="short-varchar"/>

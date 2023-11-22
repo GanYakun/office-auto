@@ -353,7 +353,7 @@
         </Action>
     </EntityType>
     <!--ContactMechPurposeType-->
-    <EntityType Name="ContactMechPurposeType" AutoProperties="true" EntitySetName="ContactMechPurposeTypes">
+    <EntityType Name="ContactMechPurposeType" EntityCondition="parentTypeId=LOCATION" AutoProperties="true" EntitySetName="ContactMechPurposeTypes">
         <Property Name="contactMechPurposeTypeId">
             <Text Path="description" TextArrangement="TextOnly"/>
         </Property>
