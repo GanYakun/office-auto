@@ -6,6 +6,7 @@ import org.apache.ofbiz.base.util.UtilValidate;
 import org.apache.olingo.commons.api.data.Entity
 import com.dpbird.odata.edm.OdataOfbizEntity;
 import org.apache.ofbiz.entity.GenericValue;
+import com.banfftech.worker.SupplierWorker;
 import org.apache.ofbiz.base.util.UtilValidate;
 import org.apache.ofbiz.base.util.UtilMisc;
 import org.apache.olingo.commons.api.data.Property;
@@ -25,6 +26,8 @@ def generateFields(Map<String, Object> context){
         int addTotal = random.nextInt(300000);
         totalAmount = totalAmount.add(BigDecimal.valueOf(addTotal));
         criticalityValue = 1L
+        riskCritical = 0L
+        riskCritical = SupplierWorker.getClassificationCriticalValue(supplierParty, delegator);
         String statusId = supplierParty.getString("statusId");
         if (statusId.equals("PARTY_ENABLED") && UtilValidate.isNotEmpty(criticalityValue)){
             criticalityValue = 3L
@@ -40,6 +43,7 @@ def generateFields(Map<String, Object> context){
         entity.addProperty(new Property(null, "usccNumber", ValueType.PRIMITIVE, usccNumber))
         entity.addProperty(new Property(null, "criticalityValue", ValueType.PRIMITIVE, criticalityValue))
         entity.addProperty(new Property(null, "totalAmount", ValueType.PRIMITIVE, totalAmount))
+        entity.addProperty(new Property(null, "riskCritical", ValueType.PRIMITIVE, riskCritical))
 
 
     }

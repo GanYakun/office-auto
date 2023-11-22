@@ -23,6 +23,8 @@
         <Property Name="collectionDate" Type="Timestamp" IsDateAttribute="true"/>
         <Property Name="totalAmount" Type="BigDecimal" Label="Total Amount" Scale="3"/>
         <Property Name="criticalityValue" Type="numeric" Hidden="true" HiddenFilter="true"/>
+         <!--风险评级颜色显示值-->
+        <Property Name="riskCritical" Type="numeric" Hidden="true" HiddenFilter="true"/>
         <Property Name="statusId" Immutable="true" DefaultValue="APPROVAL_CREATED">
             <ValueList CollectionPath="SupplierStatusItems" WithFixedValues="true"/>
         </Property>
