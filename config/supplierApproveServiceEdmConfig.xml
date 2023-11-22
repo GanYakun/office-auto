@@ -34,6 +34,8 @@
         <Property Name="ddFormTypeCritical" Type="numeric" Hidden="true" HiddenFilter="true"/>
         <!--供应商填写ddForm进度颜色显示-->
         <Property Name="ddFormDealCritical" Type="numeric" Hidden="true" HiddenFilter="true"/>
+        <!--供应商风险评级颜色显示-->
+        <Property Name="riskCritical" Type="numeric" Hidden="true" HiddenFilter="true"/>
         <Property Name="statusId" Immutable="true" DefaultValue="PARTY_DISABLED">
             <ValueList CollectionPath="SupplierStatusItems" WithFixedValues="true"/>
         </Property>

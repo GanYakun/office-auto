@@ -33,9 +33,11 @@ def generateFields(Map<String, Object> context){
         String ddFormDealStatus;
         ddFormTypeCritical = 0L;
         ddFormDealCritical = 0L;
+        riskCritical = 0L;
         GenericValue supplierParty = (GenericValue) entity.getGenericValue();
         ddFormType = SupplierWorker.getDDFormType(supplierParty, delegator);
         ddFormDealStatus = SupplierWorker.getDDFormDealStatus(supplierParty, delegator);
+        riskCritical = SupplierWorker.getClassificationCriticalValue(supplierParty, delegator);
         String cycleTime = SupplierWorker.calculateCycleTime(supplierParty, delegator);
         criticalityValue = 2L
         String statusId = supplierParty.getString("statusId");
@@ -52,6 +54,7 @@ def generateFields(Map<String, Object> context){
         entity.addProperty(new Property(null, "ddFormTypeCritical", ValueType.PRIMITIVE, ddFormTypeCritical))
         entity.addProperty(new Property(null, "cycleTime", ValueType.PRIMITIVE, cycleTime))
         entity.addProperty(new Property(null, "ddFormDealCritical", ValueType.PRIMITIVE, ddFormDealCritical))
+        entity.addProperty(new Property(null, "riskCritical", ValueType.PRIMITIVE, riskCritical))
 
 
         //文件数量

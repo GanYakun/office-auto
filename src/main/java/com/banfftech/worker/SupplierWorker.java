@@ -131,4 +131,25 @@ public class SupplierWorker {
         cycleTime = (int) hours + "h" + (int) minutes + "min";
         return cycleTime;
     }
+
+    /**
+     * 返回供应商风险评级颜色显示值
+     * @param supplierParty 供应商
+     * @param delegator
+     * @return criticalValue
+     */
+    public static Long getClassificationCriticalValue (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
+        Long criticalValue = 0L;
+        Map<String, Object> statusMap = UtilMisc.toMap("High Level",1L,"Low Level",3L,"Middle Level",5L);
+        List<GenericValue> partyClassifications = delegator.findByAnd("PartyClassification",
+                UtilMisc.toMap("partyId", supplierParty.get("partyId")), null, true);
+        if (UtilValidate.isNotEmpty(partyClassifications)){
+            GenericValue partyClassification = EntityUtil.getFirst(partyClassifications);
+            GenericValue partyClassificationGroup = delegator.findOne("PartyClassificationGroup",
+                    UtilMisc.toMap("partyClassificationGroupId", partyClassification.get("partyClassificationGroupId")), true);
+            String description = partyClassificationGroup.getString("description");
+            criticalValue = (Long) statusMap.get(description);
+        }
+        return criticalValue;
+    }
 }
