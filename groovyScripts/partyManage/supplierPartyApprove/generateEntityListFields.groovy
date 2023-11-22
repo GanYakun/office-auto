@@ -61,29 +61,37 @@ def generateFields(Map<String, Object> context){
         List<GenericValue> fsList = supplierParty.getRelated("PartyMediaResource", UtilMisc.toMap("partyContentTypeId", "FINANCIAL_STATEMENTS"), null, false);
         List<GenericValue> caList = supplierParty.getRelated("PartyMediaResource", UtilMisc.toMap("partyContentTypeId", "CONFIDENTIALITY_AGREEMENT"), null, false);
         List<GenericValue> tfList = supplierParty.getRelated("PartyMediaResource", UtilMisc.toMap("partyContentTypeId", "OTHER_FILES"), null, false);
-        entity.addProperty(new Property(null, "fsCount", ValueType.PRIMITIVE, fsList.size()))
-        entity.addProperty(new Property(null, "caCount", ValueType.PRIMITIVE, caList.size()))
-        entity.addProperty(new Property(null, "ofCount", ValueType.PRIMITIVE, tfList.size()))
-        entity.addProperty(new Property(null, "fsCountCriticality", ValueType.PRIMITIVE, fsList.size() < 1 ? 1 : 3))
-        entity.addProperty(new Property(null, "caCountCriticality", ValueType.PRIMITIVE, caList.size() < 1 ? 1 : 3))
-        entity.addProperty(new Property(null, "ofCountCriticality", ValueType.PRIMITIVE, tfList.size() < 1 ? 1 : 3))
+        entity.addProperty(new Property(null, "fsStatus", ValueType.PRIMITIVE, fsList.size() < 1 ? "Not uploaded" : "Uploaded"))
+        entity.addProperty(new Property(null, "caStatus", ValueType.PRIMITIVE, caList.size() < 1 ? "Not uploaded" : "Uploaded"))
+        entity.addProperty(new Property(null, "ofStatus", ValueType.PRIMITIVE, tfList.size() < 1 ? "Not uploaded" : "Uploaded"))
+        entity.addProperty(new Property(null, "fsStatusCriticality", ValueType.PRIMITIVE, fsList.size() < 1 ? 1 : 3))
+        entity.addProperty(new Property(null, "caStatusCriticality", ValueType.PRIMITIVE, caList.size() < 1 ? 1 : 3))
+        entity.addProperty(new Property(null, "ofStatusCriticality", ValueType.PRIMITIVE, tfList.size() < 1 ? 1 : 3))
         //DDFormPDF访问地址
         String url = null;
         String name = null;
-        if ("Simplified DD".equals(ddFormType)) {
-            url = "https://dpbird.oss-cn-hangzhou.aliyuncs.com/scy/SimplifiedForm.pdf"
-            name = "Business Partner Due Diligence Form – Simplified Form"
-        };
-        if ("Standard DD".equals(ddFormType)) {
-            url = "https://dpbird.oss-cn-hangzhou.aliyuncs.com/scy/StandardForm.pdf"
-            name = "Business Partner Due Diligence Form – Standard Form"
-        };
+        if ("Submitted".equals(ddFormDealStatus)) {
+            GenericValue genericValue = EntityQuery.use(delegator).from("PartyAttribute").where("partyId", supplierParty.getString("partyId"), "attrName", "ddFormType").queryFirst();
+            if (UtilValidate.isNotEmpty(genericValue)) {
+                String attrValue = genericValue.getString("attrValue");
+                if ("SIMPLIFIED_DD".equals(attrValue)) {
+                    url = "https://dpbird.oss-cn-hangzhou.aliyuncs.com/scy/SimplifiedForm.pdf"
+                    name = "Business Partner Due Diligence Form – Simplified Form"
+                };
+                if ("STANDARD_DD".equals(ddFormType)) {
+                    url = "https://dpbird.oss-cn-hangzhou.aliyuncs.com/scy/StandardForm.pdf"
+                    name = "Business Partner Due Diligence Form – Standard Form"
+                };
+            }
+        }
         entity.addProperty(new Property(null, "ddFromUrl", ValueType.PRIMITIVE, url));
         entity.addProperty(new Property(null, "ddFromName", ValueType.PRIMITIVE, name));
-
         //WorkScope
-        GenericValue surveyQuestionAnswer = EntityQuery.use(delegator).from("SurveyQuestionAnswer").where(UtilMisc.toMap("surveyQuestionId", "9004")).queryFirst();
-        String workScope = surveyQuestionAnswer.getString("textResponse");
+        String workScope = null;
+        GenericValue surveyQuestionAnswer = EntityQuery.use(delegator).from("SurveyQuestionAnswer").where(UtilMisc.toMap("partyId", supplierParty.getString("partyId"), "surveyQuestionId", "9004")).queryFirst();
+        if (UtilValidate.isNotEmpty(surveyQuestionAnswer)) {
+            workScope = surveyQuestionAnswer.getString("textResponse");
+        }
         entity.addProperty(new Property(null, "workScope", ValueType.PRIMITIVE, workScope));
     }
     return entityList;
