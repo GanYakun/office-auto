@@ -162,7 +162,7 @@
                 StickySession="true" SideEffects="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
             <Parameter Name="numEmployees" Type="BigDecimal" Label="${supplierUpdateActionNumEmployees}"/>
-            <Parameter Name="annualRevenue" Type="BigDecimal" Label="${supplierUpdateActionAnnualRevenue}"/>
+            <Parameter Name="annualRevenue" Type="BigDecimal" Scale="2" Label="${supplierUpdateActionAnnualRevenue}"/>
             <Parameter Name="tickerSymbol" Type="String" Label="${supplierUpdateActionTickerSymbol}"/>
             <Parameter Name="comments" Type="String" Label="${supplierUpdateActionComments}"/>
             <Parameter Name="usccNumber" Type="String" Label="${usccNumber}"/>
@@ -338,13 +338,13 @@
         </Property>
     </EntityType>
     <!--Country（国家）-->
-    <EntityType Name="Country" OfbizEntity="Geo" EntityCondition="geoId in (FRA,USA,GBR,ARE,DEU,CHN,JPN,ITA,CHE)" AutoProperties="true" EntitySetName="Countries">
+    <EntityType Name="Country" OfbizEntity="Geo" EntityCondition="geoId in (FRA,USA,GBR,ARE,DEU,JPN,ITA,CHE,17)" AutoProperties="true" EntitySetName="Countries">
         <Property Name="geoId">
             <Text Path="geoName" TextArrangement="TextOnly"/>
         </Property>
     </EntityType>
     <!--Province（省份）-->
-    <EntityType Name="Province" OfbizEntity="GeoAssocAndGeoTo" EntityCondition="geoTypeId in (MUNICIPALITY,REGION,PROVINCE)" AutoProperties="true" EntitySetName="Provinces">
+    <EntityType Name="Province" OfbizEntity="GeoAssocAndGeoTo" EntityCondition="geoTypeId=MUNICIPALITY" AutoProperties="true" EntitySetName="Provinces">
         <Property Name="geoId">
             <Text Path="geoName" TextArrangement="TextOnly"/>
         </Property>
