@@ -109,11 +109,11 @@
             <DataField Values="numEmployees,annualRevenue,tickerSymbol,comments,priority" Importance="High"/>
             <DataFieldForAction Label="${UpdateBasicInfo}" Action="FillSupplierBaseInfo" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated" Hidden="disableEditSupplier"/>
         </FieldGroup>
-        <FieldGroup Qualifier="FileCountGroup" Label="FileCountGroup">
-            <DataField Values="fsCount" Importance="High" Criticality="fsCountCriticality"/>
-            <DataField Values="caCount" Importance="High" Criticality="caCountCriticality"/>
-            <DataField Values="ofCount" Importance="High" Criticality="ofCountCriticality"/>
-        </FieldGroup>
+<!--        <FieldGroup Qualifier="FileCountGroup" Label="FileCountGroup">-->
+<!--            <DataField Values="fsCount" Importance="High" Criticality="fsCountCriticality"/>-->
+<!--            <DataField Values="caCount" Importance="High" Criticality="caCountCriticality"/>-->
+<!--            <DataField Values="ofCount" Importance="High" Criticality="ofCountCriticality"/>-->
+<!--        </FieldGroup>-->
 
         <FieldGroup Qualifier="ContactInfo" Label="ContactInfo">
             <DataField Values="primaryPhone,primaryEmail,usccNumber" Importance="High"/>
@@ -364,12 +364,14 @@
 
     <!-- 文件 -->
     <EntityType Name="PartyMediaResource" Orderby="-createdDate" EntitySetName="PartyMediaResources"
-                Properties="partyContentId,partyId,contentId,contentName,createdDate,otherData,mimeTypeId">
-        <LineItem Qualifier="FileList">
-            <DataField Values="contentName,createdDate,otherData" Importance="High"/>
-            <DataFieldForAction Label="${upload}" Action="UploadAction" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
-        </LineItem>
+                Properties="partyContentId,partyId,contentId,contentName,createdDate,otherData,mimeTypeId"
+                Handler="component://officeauto/groovyScripts/partyManage/partyMedia/generateEntityListFields.groovy">
+<!--        <LineItem Qualifier="FileList">-->
+<!--            <DataField Values="contentName,createdDate,otherData" Importance="High"/>-->
+<!--            <DataFieldForAction Label="${upload}" Action="UploadAction" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>-->
+<!--        </LineItem>-->
         <Property Name="otherData" FileNamePath="contentName"/>
+        <Property Name="fileUrl" Type="String"/>
         <Action Name="UploadAction" IsBound="true" OfbizService="com.banfftech.events.UploadEvent.uploadFile" >
             <Parameter Name="partyMediaResource" Type="PartyMediaResource" Nullable="false" IsCollection="true"/>
             <Parameter Name="file" Type="Stream" Nullable="false" IsCollection="false"/>
