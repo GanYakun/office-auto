@@ -70,7 +70,7 @@ under the License.
     <Internationalization id="I10047" lang="en" property="StatusItem.description.APPROVAL_CREATED" value="Approval created"/>
     <Internationalization id="I10048" lang="zh" property="isSimplifiedForm" value="简化表单"/>
     <Internationalization id="I10049" lang="en" property="isSimplifiedForm" value="Simplified Form"/>
-    <Internationalization id="I10050" lang="en" property="supplierActionPartyName" value="Supplier Name"/>
+    <Internationalization id="I10050" lang="en" property="supplierActionPartyName" value="Vendor name"/>
     <Internationalization id="I10051" lang="zh" property="supplierActionPartyName" value="供应商名称"/>
     <Internationalization id="I10052" lang="en" property="supplierActionPrimaryPhone" value="Primary Phone"/>
     <Internationalization id="I10053" lang="zh" property="supplierActionPrimaryPhone" value="电话"/>
@@ -150,7 +150,7 @@ under the License.
     <Internationalization id="I10127" lang="zh" property="cycleTime" value="表单填写周期"/>
     <Internationalization id="I10128" lang="zh" property="selectDepartment" value="选择部门"/>
     <Internationalization id="I10129" lang="en" property="selectDepartment" value="Select"/>
-    <Internationalization id="I10130" lang="en" property="partyCategoryId" value="Supplier category"/>
+    <Internationalization id="I10130" lang="en" property="partyCategoryId" value="Category"/>
     <Internationalization id="I10131" lang="zh" property="partyCategoryId" value="供应商类型"/>
     <Internationalization id="I10132" lang="en" property="contactMechPurposeTypeId" value="Purpose"/>
     <Internationalization id="I10133" lang="zh" property="contactMechPurposeTypeId" value="目的"/>
@@ -379,7 +379,7 @@ under the License.
     <DBFieldLabel dbFieldLabelId="WPC10000_16_ZH" dbFieldId="WPC10000_16" language="zh" value="供应商"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_16_EN" dbFieldId="WPC10000_16" language="en" value="Name"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_17_ZH" dbFieldId="WPC10000_17" language="zh" value="供应商名称"/>
-    <DBFieldLabel dbFieldLabelId="WPC10000_17_EN" dbFieldId="WPC10000_17" language="en" value="Supplier Name"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_17_EN" dbFieldId="WPC10000_17" language="en" value="Vendor name"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_18_ZH" dbFieldId="WPC10000_18" language="zh" value="优先级"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_18_EN" dbFieldId="WPC10000_18" language="en" value="Priority"/>
 

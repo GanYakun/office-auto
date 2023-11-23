@@ -374,10 +374,13 @@ public class SupplierEvents {
 
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
-
+        String priority = "PRIORITY_MEDIUM";
+        if (UtilValidate.isNotEmpty(actionParameters.get("priority"))){
+            priority = (String) actionParameters.get("priority");
+        }
         Map<String, Object> resultMap = dispatcher.runSync("banfftech.createWorkEffortAndPartyGroupContact",
                 UtilMisc.toMap("userLogin", userLogin, "partyName", actionParameters.get("partyName"), "currentStatusId", "NOT_PROCESSED",
-                        "primaryPhone", actionParameters.get("primaryPhone"), "primaryEmail", actionParameters.get("primaryEmail"), "priority", actionParameters.get("priority")));
+                        "primaryPhone", actionParameters.get("primaryPhone"), "primaryEmail", actionParameters.get("primaryEmail"), "priority", priority));
         Delegator delegator = dispatcher.getDelegator();
         if ((Boolean) actionParameters.get("isGovernment")){
             dispatcher.runSync("banfftech.createPartyRole", UtilMisc.toMap("userLogin", userLogin, "partyId", resultMap.get("partyId"), "roleTypeId", "GOVERNMENT_SUPPLIER"));
