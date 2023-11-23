@@ -60,32 +60,29 @@ def generateFields(Map<String, Object> context){
         //文件数量
         List<GenericValue> fsList = supplierParty.getRelated("PartyMediaResource", UtilMisc.toMap("partyContentTypeId", "FINANCIAL_STATEMENTS"), null, false);
         List<GenericValue> caList = supplierParty.getRelated("PartyMediaResource", UtilMisc.toMap("partyContentTypeId", "CONFIDENTIALITY_AGREEMENT"), null, false);
-        List<GenericValue> tfList = supplierParty.getRelated("PartyMediaResource", UtilMisc.toMap("partyContentTypeId", "OTHER_FILES"), null, false);
+        List<GenericValue> cpList = supplierParty.getRelated("PartyMediaResource", UtilMisc.toMap("partyContentTypeId", "COMPLIANCE_REPORT"), null, false);
         entity.addProperty(new Property(null, "fsStatus", ValueType.PRIMITIVE, fsList.size() < 1 ? "Not uploaded" : "Uploaded"))
         entity.addProperty(new Property(null, "caStatus", ValueType.PRIMITIVE, caList.size() < 1 ? "Not uploaded" : "Uploaded"))
-        entity.addProperty(new Property(null, "ofStatus", ValueType.PRIMITIVE, tfList.size() < 1 ? "Not uploaded" : "Uploaded"))
+        entity.addProperty(new Property(null, "cpStatus", ValueType.PRIMITIVE, cpList.size() < 1 ? "Not uploaded" : "Uploaded"))
         entity.addProperty(new Property(null, "fsStatusCriticality", ValueType.PRIMITIVE, fsList.size() < 1 ? 1 : 3))
         entity.addProperty(new Property(null, "caStatusCriticality", ValueType.PRIMITIVE, caList.size() < 1 ? 1 : 3))
-        entity.addProperty(new Property(null, "ofStatusCriticality", ValueType.PRIMITIVE, tfList.size() < 1 ? 1 : 3))
+        entity.addProperty(new Property(null, "cpStatusCriticality", ValueType.PRIMITIVE, cpList.size() < 1 ? 1 : 3))
         //DDFormPDF访问地址
         String url = null;
-        String name = null;
         if ("Submitted".equals(ddFormDealStatus)) {
             GenericValue genericValue = EntityQuery.use(delegator).from("PartyAttribute").where("partyId", supplierParty.getString("partyId"), "attrName", "ddFormType").queryFirst();
             if (UtilValidate.isNotEmpty(genericValue)) {
                 String attrValue = genericValue.getString("attrValue");
                 if ("SIMPLIFIED_DD".equals(attrValue)) {
                     url = "https://dpbird.oss-cn-hangzhou.aliyuncs.com/scy/SimplifiedForm.pdf"
-                    name = "Business Partner Due Diligence Form – Simplified Form"
                 };
                 if ("STANDARD_DD".equals(attrValue)) {
                     url = "https://dpbird.oss-cn-hangzhou.aliyuncs.com/scy/StandardForm.pdf"
-                    name = "Business Partner Due Diligence Form – Standard Form"
                 };
             }
         }
         entity.addProperty(new Property(null, "ddFromUrl", ValueType.PRIMITIVE, url));
-        entity.addProperty(new Property(null, "ddFromName", ValueType.PRIMITIVE, name));
+        entity.addProperty(new Property(null, "ddFromName", ValueType.PRIMITIVE, "Download DDForm"));
         //WorkScope
         String workScope = null;
         GenericValue surveyQuestionAnswer = EntityQuery.use(delegator).from("SurveyQuestionAnswer").where(UtilMisc.toMap("partyId", supplierParty.getString("partyId"), "surveyQuestionId", "9004")).queryFirst();
@@ -93,6 +90,16 @@ def generateFields(Map<String, Object> context){
             workScope = surveyQuestionAnswer.getString("textResponse");
         }
         entity.addProperty(new Property(null, "workScope", ValueType.PRIMITIVE, workScope));
+
+        //DDForm Bool Field
+        entity.addProperty(new Property(null, "agent", ValueType.PRIMITIVE, true));
+        entity.addProperty(new Property(null, "jvPartner", ValueType.PRIMITIVE, true));
+        entity.addProperty(new Property(null, "subContractor", ValueType.PRIMITIVE, false));
+        entity.addProperty(new Property(null, "consultantAdvisor", ValueType.PRIMITIVE, true));
+        entity.addProperty(new Property(null, "supplierVendor", ValueType.PRIMITIVE, true));
+        entity.addProperty(new Property(null, "distributor", ValueType.PRIMITIVE, false));
+        entity.addProperty(new Property(null, "investmentTarget", ValueType.PRIMITIVE, false));
+        entity.addProperty(new Property(null, "otherSpecify", ValueType.PRIMITIVE, false));
     }
     return entityList;
 }

@@ -11,6 +11,7 @@ import org.apache.ofbiz.entity.Delegator;
 import org.apache.ofbiz.entity.GenericEntityException;
 import org.apache.ofbiz.entity.GenericPK;
 import org.apache.ofbiz.entity.GenericValue;
+import org.apache.ofbiz.entity.util.EntityQuery;
 import org.apache.ofbiz.entity.util.EntityUtil;
 import org.apache.ofbiz.service.DispatchContext;
 import org.apache.ofbiz.service.GeneralServiceException;
@@ -32,8 +33,11 @@ public class SupplierEvents {
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
         try {
             OdataOfbizEntity supplierPartyEntity = (OdataOfbizEntity) actionParameters.get("supplierParty");
+            String adverseResults = (String) actionParameters.get("adverseResults");
+            Boolean additionalProtection = (Boolean) actionParameters.get("additionalProtection");
             GenericValue supplierParty = supplierPartyEntity.getGenericValue();
             String partyId = (String) supplierParty.get("partyId");
+            GenericValue party = EntityQuery.use(delegator).from("Party").where("partyId", partyId).queryOne();
             List<GenericValue> partyClassifications = delegator.findByAnd("PartyClassification", UtilMisc.toMap("partyId", partyId), null, false);
             if (UtilValidate.isNotEmpty(partyClassifications)) {
                 for (GenericValue partyClassification : partyClassifications) {
@@ -44,6 +48,12 @@ public class SupplierEvents {
             String partyClassificationGroupId = (String) actionParameters.get("partyClassificationGroupId");
             dispatcher.runSync("banfftech.createPartyClassification", UtilMisc.toMap("userLogin", userLogin,
                     "partyId", partyId, "partyClassificationGroupId", partyClassificationGroupId, "fromDate", UtilDateTime.nowTimestamp()));
+            if (UtilValidate.isNotEmpty(adverseResults)) {
+                CommonUtils.setObjectAttribute(party, "adverseResults", adverseResults);
+            }
+            if (UtilValidate.isNotEmpty(additionalProtection)) {
+                CommonUtils.setObjectAttributeBoolean(party, "additionalProtection", additionalProtection);
+            }
         } catch (GenericEntityException | GenericServiceException e) {
             throw new OfbizODataException(e.getMessage());
         }
