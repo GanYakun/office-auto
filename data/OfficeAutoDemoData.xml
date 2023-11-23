@@ -180,7 +180,7 @@ under the License.
     <PartyClassificationType partyClassificationTypeId="RISQUE_RATING" hasTable="N" description="Risque Rating"/>
 
     <PartyClassificationGroup partyClassificationGroupId="HIGH_LEVEL" partyClassificationTypeId="RISQUE_RATING" description="High"/>
-    <PartyClassificationGroup partyClassificationGroupId="MIDDLE_LEVEL" partyClassificationTypeId="RISQUE_RATING" description="Middle"/>
+    <PartyClassificationGroup partyClassificationGroupId="MIDDLE_LEVEL" partyClassificationTypeId="RISQUE_RATING" description="Medium"/>
     <PartyClassificationGroup partyClassificationGroupId="LOW_LEVEL" partyClassificationTypeId="RISQUE_RATING" description="Low"/>
 
     <SurveyQuestionCategory surveyQuestionCategoryId="DD_QUESTIONS" description="Due Diligence Questions"/>
