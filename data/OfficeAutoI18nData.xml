@@ -144,21 +144,13 @@ under the License.
     <Internationalization id="I10121" lang="zh" property="cpStatus" value="合规报告"/>
     <Internationalization id="I10122" lang="en" property="complianceNote" value="suggestion"/>
     <Internationalization id="I10123" lang="zh" property="complianceNote" value="建议"/>
-    <Internationalization id="I10124" lang="en" property="ddFormType" value="Form types"/>
+    <Internationalization id="I10124" lang="en" property="ddFormType" value="DD type"/>
     <Internationalization id="I10125" lang="zh" property="ddFormType" value="表单类型"/>
-    <Internationalization id="I10126" lang="en" property="cycleTime" value="Cycle Time"/>
+    <Internationalization id="I10126" lang="en" property="cycleTime" value="Cycle time"/>
     <Internationalization id="I10127" lang="zh" property="cycleTime" value="表单填写周期"/>
     <Internationalization id="I10128" lang="zh" property="selectDepartment" value="选择部门"/>
     <Internationalization id="I10129" lang="en" property="selectDepartment" value="Select"/>
-    <Internationalization id="I10130" lang="zh" property="removeDepartment" value="移除部门"/>
-    <Internationalization id="I10131" lang="en" property="removeDepartment" value="Remove"/>
-    <Internationalization id="I10132" lang="zh" property="selectDepartmentParam" value="选择部门"/>
-    <Internationalization id="I10133" lang="en" property="selectDepartmentParam" value="Select Department"/>
-    <Internationalization id="I10126" lang="en" property="sharesHeld" value="Shares Held"/>
-    <Internationalization id="I10127" lang="zh" property="sharesHeld" value="持有股份"/>
-    <Internationalization id="I10128" lang="en" property="isGovernment" value="Is Government"/>
-    <Internationalization id="I10129" lang="zh" property="isGovernment" value="是否是政府部门"/>
-    <Internationalization id="I10130" lang="en" property="partyCategoryId" value="Supplier Category"/>
+    <Internationalization id="I10130" lang="en" property="partyCategoryId" value="Supplier category"/>
     <Internationalization id="I10131" lang="zh" property="partyCategoryId" value="供应商类型"/>
     <Internationalization id="I10132" lang="en" property="contactMechPurposeTypeId" value="Purpose"/>
     <Internationalization id="I10133" lang="zh" property="contactMechPurposeTypeId" value="目的"/>
@@ -174,12 +166,31 @@ under the License.
     <Internationalization id="I10143" lang="zh" property="contactNumber" value="电话"/>
     <Internationalization id="I10144" lang="en" property="email" value="Email"/>
     <Internationalization id="I10145" lang="zh" property="email" value="邮箱"/>
+    <Internationalization id="I10146" lang="en" property="primaryProductCategoryId" value="Financial category"/>
+    <Internationalization id="I10147" lang="zh" property="primaryProductCategoryId" value="财务分类"/>
+    <Internationalization id="I10148" lang="en" property="websiteAddress" value="Website address"/>
+    <Internationalization id="I10149" lang="zh" property="websiteAddress" value="网址"/>
+    <Internationalization id="I10150" lang="en" property="firstName" value="First name"/>
+    <Internationalization id="I10151" lang="zh" property="firstName" value="姓"/>
+    <Internationalization id="I10152" lang="en" property="firstName" value="Last name"/>
+    <Internationalization id="I10153" lang="zh" property="firstName" value="名"/>
+    <Internationalization id="I10154" lang="en" property="nationality" value="Nationality"/>
+    <Internationalization id="I10155" lang="zh" property="nationality" value="国籍"/>
+    <Internationalization id="I10156" lang="en" property="copyIdentificationAttached" value="Copy of supporting identification attached"/>
+    <Internationalization id="I10157" lang="zh" property="copyIdentificationAttached" value=""/>
+    <Internationalization id="I10158" lang="zh" property="removeDepartment" value="移除部门"/>
+    <Internationalization id="I10159" lang="en" property="removeDepartment" value="Remove"/>
+    <Internationalization id="I10160" lang="zh" property="selectDepartmentParam" value="选择部门"/>
+    <Internationalization id="I10161" lang="en" property="selectDepartmentParam" value="Select department"/>
+    <Internationalization id="I10162" lang="en" property="sharesHeld" value="Shares Held"/>
+    <Internationalization id="I10163" lang="zh" property="sharesHeld" value="持有股份"/>
+    <Internationalization id="I10164" lang="en" property="isGovernment" value="Is government"/>
+    <Internationalization id="I10165" lang="zh" property="isGovernment" value="是否是政府部门"/>
+
     <Internationalization id="adverseResults_en" lang="en" property="adverseResults" value="Confirmation of due diligence screening and reporting of any adverse outcomes"/>
     <Internationalization id="adverseResults_zh" lang="zh" property="adverseResults" value="尽职调查筛选的确认和任何不良结果的报告"/>
     <Internationalization id="additionalProtection_en" lang="en" property="additionalProtection" value="Any additional contractual protections or enhanced due diligence recommended?"/>
     <Internationalization id="additionalProtection_zh" lang="zh" property="additionalProtection" value="是否有任何额外的合同保护或加强尽职调查建议?"/>
-
-
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
     <DBField dbFieldId="CUST_REQ_10001" dbFieldName="statusId" dbFieldTypeId="STATUS" description="当前状态" dbEntityId="CUST_REQ_10000"/>
@@ -538,6 +549,10 @@ under the License.
     <DBField dbFieldId="PAC10000_04" dbFieldName="primaryPhone" dbFieldTypeId="STRING" dbEntityId="PAC10000" description="Telephone"/>
     <DBField dbFieldId="PAC10000_05" dbFieldName="phoneMobile" dbFieldTypeId="STRING" dbEntityId="PAC10000" description="Mobile"/>
     <DBField dbFieldId="PAC10000_06" dbFieldName="partyId" dbFieldTypeId="STRING" dbEntityId="PAC10000" description="Party ID"/>
+    <DBField dbFieldId="PAC10000_07" dbFieldName="firstName" dbFieldTypeId="STRING" dbEntityId="PAC10000" description="First Name"/>
+    <DBField dbFieldId="PAC10000_08" dbFieldName="lastName" dbFieldTypeId="STRING" dbEntityId="PAC10000" description="Last Name"/>
+    <DBField dbFieldId="PAC10000_09" dbFieldName="nationality" dbFieldTypeId="STRING" dbEntityId="PAC10000" description="Nationality"/>
+    <DBField dbFieldId="PAC10000_10" dbFieldName="copyIdentificationAttached" dbFieldTypeId="STRING" dbEntityId="PAC10000" description="Copy of supporting identification attached"/>
     <DBFieldLabel dbFieldLabelId="PAC10000_01_ZH" dbFieldId="PAC10000_01" language="zh" value="名字"/>
     <DBFieldLabel dbFieldLabelId="PAC10000_01_EN" dbFieldId="PAC10000_01" language="en" value="Name"/>
     <DBFieldLabel dbFieldLabelId="PAC10000_02_ZH" dbFieldId="PAC10000_02" language="zh" value="职位"/>
@@ -550,6 +565,14 @@ under the License.
     <DBFieldLabel dbFieldLabelId="PAC10000_05_EN" dbFieldId="PAC10000_05" language="en" value="Mobile"/>
     <DBFieldLabel dbFieldLabelId="PAC10000_06_ZH" dbFieldId="PAC10000_06" language="zh" value="Party ID"/>
     <DBFieldLabel dbFieldLabelId="PAC10000_06_EN" dbFieldId="PAC10000_06" language="en" value="Party ID"/>
+    <DBFieldLabel dbFieldLabelId="PAC10000_07_ZH" dbFieldId="PAC10000_07" language="en" value="First Name"/>
+    <DBFieldLabel dbFieldLabelId="PAC10000_07_EN" dbFieldId="PAC10000_07" language="zh" value="姓"/>
+    <DBFieldLabel dbFieldLabelId="PAC10000_08_ZH" dbFieldId="PAC10000_08" language="en" value="Last Name"/>
+    <DBFieldLabel dbFieldLabelId="PAC10000_08_EN" dbFieldId="PAC10000_08" language="zh" value="名"/>
+    <DBFieldLabel dbFieldLabelId="PAC10000_09_ZH" dbFieldId="PAC10000_09" language="en" value="Nationality"/>
+    <DBFieldLabel dbFieldLabelId="PAC10000_09_EN" dbFieldId="PAC10000_09" language="zh" value="国籍"/>
+    <DBFieldLabel dbFieldLabelId="PAC10000_10_ZH" dbFieldId="PAC10000_10" language="en" value="Copy of supporting identification attached"/>
+    <DBFieldLabel dbFieldLabelId="PAC10000_10_EN" dbFieldId="PAC10000_10" language="zh" value="是否有身份复印件"/>
 
     <!-- Entity labels for entity SupplierProduct -->
     <DBEntity dbEntityId="SP10000" dbEntityName="SupplierProduct" description="Supplier product" isOpen="N" />
@@ -604,6 +627,12 @@ under the License.
     <DBField dbFieldId="PRC10000_01" dbFieldName="categoryName" dbFieldTypeId="STRING" dbEntityId="PRC10000" description="Category Name"/>
     <DBFieldLabel dbFieldLabelId="PRC10000_01_ZH" dbFieldId="PRC10000_01" language="zh" value="分类名称"/>
     <DBFieldLabel dbFieldLabelId="PRC10000_01_EN" dbFieldId="PRC10000_01" language="en" value="Category Name"/>
+
+    <!-- Entity labels for entity PartyClassificationGroup -->
+    <DBEntity dbEntityId="PCFG10000" dbEntityName="PartyClassificationGroup" description="Party Classification Group" isOpen="N" />
+    <DBField dbFieldId="PCFG10000_01" dbFieldName="description" dbFieldTypeId="STRING" dbEntityId="PCFG10000" description="Category Name"/>
+    <DBFieldLabel dbFieldLabelId="PCFG10000_01_ZH" dbFieldId="PCFG10000_01" language="zh" value="分类名称"/>
+    <DBFieldLabel dbFieldLabelId="PCFG10000_01_EN" dbFieldId="PCFG10000_01" language="en" value="Risk rating"/>
 
 
     <!-- Entity labels for entity FinAccount -->

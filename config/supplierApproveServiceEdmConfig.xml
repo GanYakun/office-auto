@@ -165,10 +165,16 @@
         </FieldGroup>
 
         <LineItem>
-            <DataField Values="partyId,primaryEmail,address1,primaryPhone" Importance="High"/>
+            <DataField Values="partyId" Importance="High"/>
+            <DataField Values="ddFormDealStatus" Criticality="ddFormDealCritical" Importance="High"/>
+            <DataField Values="ddFormType" Criticality="ddFormTypeCritical" Importance="High"/>
+            <DataField Values="PartyClassification/PartyClassificationGroup/description" Criticality="riskCritical" Importance="High"/>
         </LineItem>
         <LineItem Qualifier="CreateLineItem">
-            <DataField Values="partyId,primaryEmail,address1,primaryPhone" Importance="High"/>
+            <DataField Values="partyId" Importance="High"/>
+            <DataField Values="ddFormDealStatus" Criticality="ddFormDealCritical" Importance="High"/>
+            <DataField Values="ddFormType" Criticality="ddFormTypeCritical" Importance="High"/>
+            <DataField Values="PartyClassification/PartyClassificationGroup/description" Criticality="riskCritical" Importance="High"/>
             <DataFieldForAction Label="${create}" Action="CreateSupplierParty" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
 
@@ -373,6 +379,7 @@
             </Parameter>
 
             <Parameter Name="address1" Type="String" Label="${address1}" Nullable="false"/>
+            <Parameter Name="address2" Type="String" Label="${websiteAddress}" Nullable="false"/>
             <Parameter Name="contactNumber" Type="String" Label="${contactNumber}" Nullable="false"/>
             <Parameter Name="email" Type="String" Label="${email}" Nullable="false"/>
         </Action>
@@ -860,25 +867,30 @@
                 AutoSet="true" EntitySetName="PersonAndContacts">
         <RelAlias Name="ToPartyRelationship" Relations="ToPartyRelationship(roleTypeIdTo=BENEFICIAL_PERSON)"/>
         <Property Name="position" IsAttribute="true" Type="String"/>
+        <!--国籍-->
+        <Property Name="nationality" Type="String" IsAttribute="true"/>
+        <!--附证明文件文本-->
+        <Property Name="copyIdentificationAttached" Type="String" IsAttribute="true"/>
         <Property Name="amount" RelAlias="ToPartyRelationship" Field="amount"/>
         <LineItem Qualifier="PartyRelationshipLineItem">
-            <DataField Values="partyName,primaryPhone,phoneMobile,primaryEmail,position" Importance="High"/>
+            <DataField Values="firstName,lastName,primaryPhone,phoneMobile,primaryEmail,position" Importance="High"/>
             <DataFieldForAction Label="${create}" Action="CreatePersonAndContact" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
         <LineItem Qualifier="PartyRelationshipLineItemWithoutAction">
             <DataField Values="partyName,primaryPhone,phoneMobile,primaryEmail,position" Importance="High"/>
         </LineItem>
         <LineItem Qualifier="BeneficialPersonLineItem">
-            <DataField Values="partyName,primaryPhone,phoneMobile,primaryEmail,amount" Importance="High"/>
+            <DataField Values="firstName,lastName,primaryPhone,phoneMobile,primaryEmail,amount,nationality,copyIdentificationAttached" Importance="High"/>
         </LineItem>
         <LineItem Qualifier="BeneficialPersonLineItem_Action">
-            <DataField Values="partyName,primaryPhone,phoneMobile,primaryEmail,amount" Importance="High"/>
+            <DataField Values="firstName,lastName,primaryPhone,phoneMobile,primaryEmail,amount,nationality,copyIdentificationAttached" Importance="High"/>
             <DataFieldForAction Label="${create}" Action="CreateBeneficialPerson" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
         <!-- 创建联系人 -->
         <Action Name="CreatePersonAndContact" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createPersonAndContact">
             <Parameter Name="personAndContact" Type="PersonAndContact" Nullable="false" IsCollection="true"/>
-            <Parameter Name="partyName" Type="String" Label="${partyName}" Nullable="false"/>
+            <Parameter Name="firstName" Type="String" Label="${firstName}" Nullable="false"/>
+            <Parameter Name="lastName" Type="String" Label="${lastName}" Nullable="false"/>
             <Parameter Name="primaryPhone" Type="String" Label="${phone}" Nullable="true"/>
             <Parameter Name="phoneMobile" Type="String" Label="${mobile}" Nullable="false"/>
             <Parameter Name="primaryEmail" Type="String" Label="${email}" Nullable="true"/>
@@ -888,11 +900,14 @@
         <!-- 创建供应商最终受益人 -->
         <Action Name="CreateBeneficialPerson" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createBeneficialPerson">
             <Parameter Name="personAndContact" Type="PersonAndContact" Nullable="false" IsCollection="true"/>
-            <Parameter Name="partyName" Type="String" Label="${partyName}" Nullable="false"/>
+            <Parameter Name="firstName" Type="String" Label="${firstName}" Nullable="false"/>
+            <Parameter Name="lastName" Type="String" Label="${lastName}" Nullable="false"/>
             <Parameter Name="primaryPhone" Type="String" Label="${phone}" Nullable="true"/>
             <Parameter Name="phoneMobile" Type="String" Label="${mobile}" Nullable="false"/>
             <Parameter Name="primaryEmail" Type="String" Label="${email}" Nullable="true"/>
             <Parameter Name="amount" Type="BigDecimal" Scale="2" Label="${sharesHeld}" Nullable="true"/>
+            <Parameter Name="nationality" Type="String" Label="${nationality}" Nullable="true"/>
+            <Parameter Name="copyIdentificationAttached" Type="String" Label="${copyIdentificationAttached}" Nullable="true"/>
         </Action>
     </EntityType>
 

@@ -11,7 +11,7 @@ import java.util.Map;
 
 module = "partyManage.shipment.statusControl.groovy";
 def generateFields(Map<String, Object> context) {
-    Map<String, Integer> statusMap = UtilMisc.toMap("High Level",1,"Low Level",3,"Middle Level",5);
+    Map<String, Integer> statusMap = UtilMisc.toMap("High",1,"Low",3,"Middle",5);
     List<Entity> entityList = context.parameters.get("entityList");
     statusColor = 0L;
     String description = null;
