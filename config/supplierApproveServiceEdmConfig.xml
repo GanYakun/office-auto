@@ -342,11 +342,11 @@
     <!--PostalAddress-->
     <EntityType Name="PostalAddress" AutoProperties="true" EntitySetName="PostalAddresses">
         <LineItem Qualifier="PostalAddressLineItem">
-            <DataField Values="PartyContactMechPurpose/contactMechPurposeTypeId,countryGeoId,cityGeoId,stateProvinceGeoId,address1,contactNumber,email" Importance="High"/>
+            <DataField Values="PartyContactMechPurpose/contactMechPurposeTypeId,countryGeoId,cityGeoId,stateProvinceGeoId,address1,contactNumber,email,address2" Importance="High"/>
             <DataFieldForAction Label="${create}" Action="CreatePostalAddress" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
         <LineItem Qualifier="PostalAddressLineItem_NOAction">
-            <DataField Values="PartyContactMechPurpose/contactMechPurposeTypeId,countryGeoId,cityGeoId,stateProvinceGeoId,address1,contactNumber,email" Importance="High"/>
+            <DataField Values="PartyContactMechPurpose/contactMechPurposeTypeId,countryGeoId,cityGeoId,stateProvinceGeoId,address1,contactNumber,email,address2" Importance="High"/>
         </LineItem>
 
         <Property Name="countryGeoId">

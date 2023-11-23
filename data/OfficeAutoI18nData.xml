@@ -539,6 +539,7 @@ under the License.
     <DBField dbFieldId="PO10000_04" dbFieldName="address1" dbFieldTypeId="STRING" dbEntityId="PO10000" description="Note party"/>
     <DBField dbFieldId="PO10000_06" dbFieldName="contactNumber" dbFieldTypeId="STRING" dbEntityId="PO10000" description="Note ID"/>
     <DBField dbFieldId="PO10000_07" dbFieldName="email" dbFieldTypeId="STRING" dbEntityId="PO10000" description="Note ID"/>
+    <DBField dbFieldId="PO10000_08" dbFieldName="address2" dbFieldTypeId="STRING" dbEntityId="PO10000" description="Address2"/>
     <DBFieldLabel dbFieldLabelId="PO10000_01_ZH" dbFieldId="PO10000_01" language="zh" value="国家"/>
     <DBFieldLabel dbFieldLabelId="PO10000_01_EN" dbFieldId="PO10000_01" language="en" value="Country"/>
     <DBFieldLabel dbFieldLabelId="PO10000_02_ZH" dbFieldId="PO10000_02" language="zh" value="城市"/>
@@ -551,6 +552,8 @@ under the License.
     <DBFieldLabel dbFieldLabelId="PO10000_06_EN" dbFieldId="PO10000_06" language="en" value="Number"/>
     <DBFieldLabel dbFieldLabelId="PO10000_07_ZH" dbFieldId="PO10000_07" language="zh" value="邮箱"/>
     <DBFieldLabel dbFieldLabelId="PO10000_07_EN" dbFieldId="PO10000_07" language="en" value="Email"/>
+    <DBFieldLabel dbFieldLabelId="PO10000_08_ZH" dbFieldId="PO10000_08" language="zh" value="网址"/>
+    <DBFieldLabel dbFieldLabelId="PO10000_08_EN" dbFieldId="PO10000_08" language="en" value="Website address"/>
 
     <!-- Entity labels for entity PersonAndContact -->
     <DBEntity dbEntityId="PAC10000" dbEntityName="PersonAndContact" description="Person and contact" isOpen="N" />
