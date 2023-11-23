@@ -129,14 +129,15 @@
             <DataField Values="tickerSymbol,ProductCategory/categoryName,cycleTime,usccNumber" Importance="High"/>
         </FieldGroup>
         <DataPoint Title="${ddFormType}" Value="ddFormType" Qualifier="DDFormType"/>
+        <DataPoint Title="${SupplierCategory}" Value="ProductCategory/categoryName" Qualifier="SupplierCategory"/>
         <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">
-            <DataField Values="ProductCategory/categoryName,usccNumber,numEmployees,isGovernment,annualRevenue,tickerSymbol,comments" Importance="High"/>
+            <DataField Values="usccNumber,numEmployees,isGovernment,annualRevenue,tickerSymbol,comments" Importance="High"/>
         </FieldGroup>
         <FieldGroup Qualifier="WorkScope" Label="WorkScope">
             <DataField Values="workScope" Importance="High"/>
         </FieldGroup>
         <FieldGroup Qualifier="PartyGroupFieldGroupWithAction" Label="PartyGroupFieldGroupWithAction">
-            <DataField Values="ProductCategory/categoryName,usccNumber,numEmployees,isGovernment,annualRevenue,tickerSymbol,comments,priority" Importance="High"/>
+            <DataField Values="usccNumber,numEmployees,isGovernment,annualRevenue,tickerSymbol,comments,priority" Importance="High"/>
             <DataFieldForAction Label="${UpdateBasicInfo}" Action="FillSupplierBaseInfo" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated" Hidden="disableEditSupplier"/>
         </FieldGroup>
 <!--        <FieldGroup Qualifier="FileCountGroup" Label="FileCountGroup">-->
