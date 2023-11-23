@@ -179,9 +179,9 @@ under the License.
     <!-- PartyClassificationType(评级类型) -->
     <PartyClassificationType partyClassificationTypeId="RISQUE_RATING" hasTable="N" description="Risque Rating"/>
 
-    <PartyClassificationGroup partyClassificationGroupId="HIGH_LEVEL" partyClassificationTypeId="RISQUE_RATING" description="High Level"/>
-    <PartyClassificationGroup partyClassificationGroupId="MIDDLE_LEVEL" partyClassificationTypeId="RISQUE_RATING" description="Middle Level"/>
-    <PartyClassificationGroup partyClassificationGroupId="LOW_LEVEL" partyClassificationTypeId="RISQUE_RATING" description="Low Level"/>
+    <PartyClassificationGroup partyClassificationGroupId="HIGH_LEVEL" partyClassificationTypeId="RISQUE_RATING" description="High"/>
+    <PartyClassificationGroup partyClassificationGroupId="MIDDLE_LEVEL" partyClassificationTypeId="RISQUE_RATING" description="Middle"/>
+    <PartyClassificationGroup partyClassificationGroupId="LOW_LEVEL" partyClassificationTypeId="RISQUE_RATING" description="Low"/>
 
     <SurveyQuestionCategory surveyQuestionCategoryId="DD_QUESTIONS" description="Due Diligence Questions"/>
     <SurveyQuestionCategory surveyQuestionCategoryId="DD_STD_QUESTIONS" parentCategoryId="DD_QUESTIONS" description="Due Diligence Standard Questions"/>

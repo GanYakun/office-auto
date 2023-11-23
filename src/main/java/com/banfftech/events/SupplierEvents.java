@@ -66,7 +66,8 @@ public class SupplierEvents {
             }
             String partyId = (String) supplierParty.get("partyId");
 
-            String partyName = (String) actionParameters.get("partyName");
+            String fistName = (String) actionParameters.get("fistName");
+            String lastName = (String) actionParameters.get("lastName");
             String primaryPhone = (String) actionParameters.get("primaryPhone");
             String phoneMobile = (String) actionParameters.get("phoneMobile");
             String primaryEmail = (String) actionParameters.get("primaryEmail");
@@ -75,7 +76,7 @@ public class SupplierEvents {
                 throw new OfbizODataException("Phone number is repeat！");
             }
             Map<String, Object> result = dispatcher.runSync("banfftech.createPersonAndContact",
-                    UtilMisc.toMap("partyName", partyName, "primaryPhone", primaryPhone, "phoneMobile", phoneMobile,
+                    UtilMisc.toMap("fistName", fistName, "lastName", lastName, "primaryPhone", primaryPhone, "phoneMobile", phoneMobile,
                             "primaryEmail", primaryEmail, "userLogin", userLogin));
             String contactPartyId = (String) result.get("partyId");
             dispatcher.runSync("banfftech.createPartyRole", UtilMisc.toMap("userLogin", userLogin, "partyId", contactPartyId, "roleTypeId", "CONTACT"));
@@ -106,21 +107,26 @@ public class SupplierEvents {
             }
             String partyId = (String) supplierParty.get("partyId");
 
-            String partyName = (String) actionParameters.get("partyName");
+            String firstName = (String) actionParameters.get("firstName");
+            String lastName = (String) actionParameters.get("lastName");
             String primaryPhone = (String) actionParameters.get("primaryPhone");
             String phoneMobile = (String) actionParameters.get("phoneMobile");
             String primaryEmail = (String) actionParameters.get("primaryEmail");
             String position = (String) actionParameters.get("position");
+            String nationality = (String) actionParameters.get("nationality");
+            String copyIdentificationAttached = (String) actionParameters.get("copyIdentificationAttached");
             BigDecimal amount = (BigDecimal) actionParameters.get("amount");
             if (CommonUtils.checkInputRepeat(delegator, "contactNumber", "TelecomNumber", null, phoneMobile)) {
                 throw new OfbizODataException("Phone number is repeat！");
             }
             Map<String, Object> result = dispatcher.runSync("banfftech.createPersonAndContact",
-                    UtilMisc.toMap("partyName", partyName, "primaryPhone", primaryPhone, "phoneMobile", phoneMobile,
+                    UtilMisc.toMap("firstName", firstName, "lastName", lastName, "primaryPhone", primaryPhone, "phoneMobile", phoneMobile,
                             "primaryEmail", primaryEmail, "userLogin", userLogin));
             String contactPartyId = (String) result.get("partyId");
             dispatcher.runSync("banfftech.createPartyRole", UtilMisc.toMap("userLogin", userLogin, "partyId", contactPartyId, "roleTypeId", "BENEFICIAL_PERSON"));
             dispatcher.runSync("banfftech.createPartyAttribute", UtilMisc.toMap("userLogin", userLogin, "partyId", contactPartyId, "attrName", "position", "attrValue", position));
+            dispatcher.runSync("banfftech.createPartyAttribute", UtilMisc.toMap("userLogin", userLogin, "partyId", contactPartyId, "attrName", "nationality", "attrValue", nationality));
+            dispatcher.runSync("banfftech.createPartyAttribute", UtilMisc.toMap("userLogin", userLogin, "partyId", contactPartyId, "attrName", "copyIdentificationAttached", "attrValue", copyIdentificationAttached));
             dispatcher.runSync("banfftech.createPartyRelationship", UtilMisc.toMap("partyIdFrom", partyId, "roleTypeIdFrom", "SUPPLIER",
                     "partyIdTo", contactPartyId, "roleTypeIdTo", "BENEFICIAL_PERSON", "fromDate", UtilDateTime.nowTimestamp(), "amount", amount, "userLogin", userLogin));
         } catch (GenericEntityException | GenericServiceException e) {

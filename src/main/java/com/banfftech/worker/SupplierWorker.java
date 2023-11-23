@@ -149,7 +149,7 @@ public class SupplierWorker {
      */
     public static Long getClassificationCriticalValue (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
         Long criticalValue = 0L;
-        Map<String, Object> statusMap = UtilMisc.toMap("High Level",1L,"Low Level",3L,"Middle Level",5L);
+        Map<String, Object> statusMap = UtilMisc.toMap("High",1L,"Low",3L,"Middle",5L);
         List<GenericValue> partyClassifications = delegator.findByAnd("PartyClassification",
                 UtilMisc.toMap("partyId", supplierParty.get("partyId")), null, true);
         if (UtilValidate.isNotEmpty(partyClassifications)){
