@@ -143,11 +143,15 @@
 
         <LineItem>
             <DataField Values="partyId" Importance="High"/>
-            <DataField Values="ddFormDealStatus" Criticality="" Importance="High"/>
-            <DataField Values="ddFormDealStatus" Criticality="" Importance="High"/>
+            <DataField Values="ddFormDealStatus" Criticality="ddFormDealCritical" Importance="High"/>
+            <DataField Values="ddFormType" Criticality="ddFormTypeCritical" Importance="High"/>
+            <DataField Values="PartyClassification/PartyClassificationGroup/description" Criticality="riskCritical" Importance="High"/>
         </LineItem>
         <LineItem Qualifier="CreateLineItem">
-            <DataField Values="partyId,primaryEmail,address1,primaryPhone" Importance="High"/>
+            <DataField Values="partyId" Importance="High"/>
+            <DataField Values="ddFormDealStatus" Criticality="ddFormDealCritical" Importance="High"/>
+            <DataField Values="ddFormType" Criticality="ddFormTypeCritical" Importance="High"/>
+            <DataField Values="PartyClassification/PartyClassificationGroup/description" Criticality="riskCritical" Importance="High"/>
             <DataFieldForAction Label="${create}" Action="CreateSupplierParty" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
 
