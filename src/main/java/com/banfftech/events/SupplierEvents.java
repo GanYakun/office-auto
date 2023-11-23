@@ -231,9 +231,14 @@ public class SupplierEvents {
             return null;
         }
         supplierParty = supplierPartyEntity.getGenericValue();
-//        List<GenericValue> partyRelationships = delegator.findByAnd("PartyRelationship", UtilMisc.toMap("partyIdTo", supplierParty.get("partyId"), "roleTypeIdFrom", "SUPPLIER", "roleTypeIdTo", "CONTACT"), null, false);
-//        GenericValue partyRelationship = EntityUtil.getFirst(partyRelationships);
-        String supplierPartyId = supplierParty.getString("partyId");
+        List<GenericValue> partyRelationships = delegator.findByAnd("PartyRelationship", UtilMisc.toMap("partyIdTo", supplierParty.get("partyId"), "roleTypeIdFrom", "SUPPLIER", "roleTypeIdTo", "CONTACT"), null, false);
+        GenericValue partyRelationship = EntityUtil.getFirst(partyRelationships);
+        String supplierPartyId = null;
+        if (UtilValidate.isNotEmpty(partyRelationship)) {
+            supplierPartyId = partyRelationship.getString("partyIdFrom");
+        } else {
+            supplierPartyId = supplierParty.getString("partyId");
+        }
         List<GenericValue> workEffortAndPartyGroupContacts = delegator.findByAnd("WorkEffortAndPartyGroupContact", UtilMisc.toMap("partyId", supplierPartyId, "approvePartyId", supplierPartyId), null, false);
         if (UtilValidate.isEmpty(workEffortAndPartyGroupContacts)){
             throw new OfbizODataException("You must assign party to approve!");
