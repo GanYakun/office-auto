@@ -231,35 +231,36 @@ public class SupplierEvents {
             return null;
         }
         supplierParty = supplierPartyEntity.getGenericValue();
-        List<GenericValue> partyRelationships = delegator.findByAnd("PartyRelationship", UtilMisc.toMap("partyIdTo", supplierParty.get("partyId"), "roleTypeIdFrom", "SUPPLIER", "roleTypeIdTo", "CONTACT"), null, false);
-        GenericValue partyRelationship = EntityUtil.getFirst(partyRelationships);
-        List<GenericValue> workEffortAndPartyGroupContacts = delegator.findByAnd("WorkEffortAndPartyGroupContact", UtilMisc.toMap("partyId", partyRelationship.get("partyIdFrom"), "approvePartyId", partyRelationship.get("partyIdFrom")), null, false);
+//        List<GenericValue> partyRelationships = delegator.findByAnd("PartyRelationship", UtilMisc.toMap("partyIdTo", supplierParty.get("partyId"), "roleTypeIdFrom", "SUPPLIER", "roleTypeIdTo", "CONTACT"), null, false);
+//        GenericValue partyRelationship = EntityUtil.getFirst(partyRelationships);
+        String supplierPartyId = supplierParty.getString("partyId");
+        List<GenericValue> workEffortAndPartyGroupContacts = delegator.findByAnd("WorkEffortAndPartyGroupContact", UtilMisc.toMap("partyId", supplierPartyId, "approvePartyId", supplierPartyId), null, false);
         if (UtilValidate.isEmpty(workEffortAndPartyGroupContacts)){
             throw new OfbizODataException("You must assign party to approve!");
         }
         GenericValue workEffortAndPartyGroupContact = EntityUtil.getFirst(workEffortAndPartyGroupContacts);
         dispatcher.runSync("banfftech.createPartySurveyAppl",
-                UtilMisc.toMap("userLogin", userLogin, "partyId", partyRelationship.get("partyIdFrom"),
+                UtilMisc.toMap("userLogin", userLogin, "partyId", supplierPartyId,
                         "surveyId", "DD_STD_FORM", "surveyApplTypeId", "DD_FORM"));
 
         //暂时采用更新SurveyQuestionAnswer的方案
         dispatcher.runSync("banfftech.updateSurveyQuestionAnswer",
                 UtilMisc.toMap("userLogin", userLogin, "surveyQuestionId", "9000",
-                        "partyId", partyRelationship.get("partyIdFrom"), "booleanResponse", "Y"));
+                        "partyId", supplierPartyId, "booleanResponse", "Y"));
         dispatcher.runSync("banfftech.updateSurveyQuestionAnswer",
                 UtilMisc.toMap("userLogin", userLogin, "surveyQuestionId", "9001",
-                        "partyId", partyRelationship.get("partyIdFrom"), "booleanResponse", "Y"));
+                        "partyId", supplierPartyId, "booleanResponse", "Y"));
         dispatcher.runSync("banfftech.updateSurveyQuestionAnswer",
                 UtilMisc.toMap("userLogin", userLogin, "surveyQuestionId", "9002",
-                        "partyId", partyRelationship.get("partyIdFrom"), "booleanResponse", "N"));
+                        "partyId", supplierPartyId, "booleanResponse", "N"));
         dispatcher.runSync("banfftech.updateSurveyQuestionAnswer",
                 UtilMisc.toMap("userLogin", userLogin, "surveyQuestionId", "9003",
-                        "partyId", partyRelationship.get("partyIdFrom"), "booleanResponse", "N"));
+                        "partyId", supplierPartyId, "booleanResponse", "N"));
         dispatcher.runSync("banfftech.updateSurveyQuestionAnswer",
                 UtilMisc.toMap("userLogin", userLogin, "surveyQuestionId", "9004",
-                        "partyId", partyRelationship.get("partyIdFrom")));
+                        "partyId", supplierPartyId));
         dispatcher.runSync("banfftech.updateWorkEffortAndPartyGroupContact",
-                UtilMisc.toMap("userLogin", userLogin, "currentStatusId", "PROCESSED", "workEffortId", workEffortAndPartyGroupContact.get("workEffortId"), "partyId", partyRelationship.get("partyIdFrom")));
+                UtilMisc.toMap("userLogin", userLogin, "currentStatusId", "PROCESSED", "workEffortId", workEffortAndPartyGroupContact.get("workEffortId"), "partyId", supplierPartyId));
         return null;
     }
 

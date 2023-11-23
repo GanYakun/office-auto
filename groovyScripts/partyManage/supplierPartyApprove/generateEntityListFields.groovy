@@ -58,7 +58,6 @@ def generateFields(Map<String, Object> context){
         entity.addProperty(new Property(null, "riskCritical", ValueType.PRIMITIVE, riskCritical))
         entity.addProperty(new Property(null, "ddResponseTime", ValueType.PRIMITIVE, ddResponseTime))
 
-
         //文件数量
         List<GenericValue> fsList = supplierParty.getRelated("PartyMediaResource", UtilMisc.toMap("partyContentTypeId", "FINANCIAL_STATEMENTS"), null, false);
         List<GenericValue> caList = supplierParty.getRelated("PartyMediaResource", UtilMisc.toMap("partyContentTypeId", "CONFIDENTIALITY_AGREEMENT"), null, false);
@@ -71,20 +70,23 @@ def generateFields(Map<String, Object> context){
         entity.addProperty(new Property(null, "cpStatusCriticality", ValueType.PRIMITIVE, cpList.size() < 1 ? 1 : 3))
         //DDFormPDF访问地址
         String url = null;
+        String formName = null;
         if ("Submitted".equals(ddFormDealStatus)) {
             GenericValue genericValue = EntityQuery.use(delegator).from("PartyAttribute").where("partyId", supplierParty.getString("partyId"), "attrName", "ddFormType").queryFirst();
             if (UtilValidate.isNotEmpty(genericValue)) {
                 String attrValue = genericValue.getString("attrValue");
                 if ("SIMPLIFIED_DD".equals(attrValue)) {
+                    formName = "Download DDForm";
                     url = "https://dpbird.oss-cn-hangzhou.aliyuncs.com/scy/SimplifiedForm.pdf"
                 };
                 if ("STANDARD_DD".equals(attrValue)) {
                     url = "https://dpbird.oss-cn-hangzhou.aliyuncs.com/scy/StandardForm.pdf"
+                    formName = "Download DDForm";
                 };
             }
         }
         entity.addProperty(new Property(null, "ddFromUrl", ValueType.PRIMITIVE, url));
-        entity.addProperty(new Property(null, "ddFromName", ValueType.PRIMITIVE, "Download DDForm"));
+        entity.addProperty(new Property(null, "ddFromName", ValueType.PRIMITIVE, formName));
         //WorkScope
         String workScope = null;
         GenericValue surveyQuestionAnswer = EntityQuery.use(delegator).from("SurveyQuestionAnswer").where(UtilMisc.toMap("partyId", supplierParty.getString("partyId"), "surveyQuestionId", "9004")).queryFirst();
