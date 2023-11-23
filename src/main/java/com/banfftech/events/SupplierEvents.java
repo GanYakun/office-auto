@@ -381,8 +381,8 @@ public class SupplierEvents {
         Delegator delegator = dispatcher.getDelegator();
         if ((Boolean) actionParameters.get("isGovernment")){
             dispatcher.runSync("banfftech.createPartyRole", UtilMisc.toMap("userLogin", userLogin, "partyId", resultMap.get("partyId"), "roleTypeId", "GOVERNMENT_SUPPLIER"));
-            dispatcher.runSync("banfftech.createPartyAttribute", UtilMisc.toMap("userLogin", userLogin, "partyId", resultMap.get("partyId"), "attrName", "isGovernment", "attrValue", (Boolean) actionParameters.get("isGovernment") ? "Y" : "N"));
         }
+        dispatcher.runSync("banfftech.createPartyAttribute", UtilMisc.toMap("userLogin", userLogin, "partyId", resultMap.get("partyId"), "attrName", "isGovernment", "attrValue", (Boolean) actionParameters.get("isGovernment") ? "Y" : "N"));
 
         dispatcher.runSync("banfftech.createProductCategoryRole",
                 UtilMisc.toMap("userLogin", userLogin, "partyId", resultMap.get("partyId"), "roleTypeId", "SUPPLIER",

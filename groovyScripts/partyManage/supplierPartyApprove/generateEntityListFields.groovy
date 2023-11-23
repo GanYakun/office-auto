@@ -94,7 +94,9 @@ def generateFields(Map<String, Object> context){
             workScope = surveyQuestionAnswer.getString("textResponse");
         }
         entity.addProperty(new Property(null, "workScope", ValueType.PRIMITIVE, workScope));
-
+        GenericValue partyIdentification = EntityQuery.use(delegator).from("PartyIdentification")
+                .where(UtilMisc.toMap("partyIdentificationTypeId", "USCC_OF_CHINESE_ORG", "partyId", supplierParty.getString("partyId"))).queryFirst();
+        String usccNumber = partyIdentification == null ? null : partyIdentification.getString("idValue")
         //DDForm Bool Field
         entity.addProperty(new Property(null, "agent", ValueType.PRIMITIVE, true));
         entity.addProperty(new Property(null, "jvPartner", ValueType.PRIMITIVE, true));
@@ -104,6 +106,7 @@ def generateFields(Map<String, Object> context){
         entity.addProperty(new Property(null, "distributor", ValueType.PRIMITIVE, false));
         entity.addProperty(new Property(null, "investmentTarget", ValueType.PRIMITIVE, false));
         entity.addProperty(new Property(null, "otherSpecify", ValueType.PRIMITIVE, false));
+        entity.addProperty(new Property(null, "usccNumber", ValueType.PRIMITIVE, usccNumber));
     }
     return entityList;
 }
