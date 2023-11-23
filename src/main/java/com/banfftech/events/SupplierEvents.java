@@ -76,7 +76,7 @@ public class SupplierEvents {
             }
             String partyId = (String) supplierParty.get("partyId");
 
-            String fistName = (String) actionParameters.get("fistName");
+            String firstName = (String) actionParameters.get("fistName");
             String lastName = (String) actionParameters.get("lastName");
             String primaryPhone = (String) actionParameters.get("primaryPhone");
             String phoneMobile = (String) actionParameters.get("phoneMobile");
@@ -86,7 +86,7 @@ public class SupplierEvents {
                 throw new OfbizODataException("Phone number is repeat！");
             }
             Map<String, Object> result = dispatcher.runSync("banfftech.createPersonAndContact",
-                    UtilMisc.toMap("fistName", fistName, "lastName", lastName, "primaryPhone", primaryPhone, "phoneMobile", phoneMobile,
+                    UtilMisc.toMap("firstName", firstName, "lastName", lastName, "primaryPhone", primaryPhone, "phoneMobile", phoneMobile,
                             "primaryEmail", primaryEmail, "userLogin", userLogin));
             String contactPartyId = (String) result.get("partyId");
             dispatcher.runSync("banfftech.createPartyRole", UtilMisc.toMap("userLogin", userLogin, "partyId", contactPartyId, "roleTypeId", "CONTACT"));
