@@ -340,6 +340,9 @@
             <DataField Values="PartyContactMechPurpose/contactMechPurposeTypeId,countryGeoId,cityGeoId,stateProvinceGeoId,address1,contactNumber,email" Importance="High"/>
             <DataFieldForAction Label="${create}" Action="CreatePostalAddress" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
+        <LineItem Qualifier="PostalAddressLineItem_NOAction">
+            <DataField Values="PartyContactMechPurpose/contactMechPurposeTypeId,countryGeoId,cityGeoId,stateProvinceGeoId,address1,contactNumber,email" Importance="High"/>
+        </LineItem>
 
         <Property Name="countryGeoId">
             <Text Path="CountryGeo/geoName" TextArrangement="TextOnly"/>

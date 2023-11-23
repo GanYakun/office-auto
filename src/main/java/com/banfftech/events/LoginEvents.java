@@ -83,16 +83,19 @@ public class LoginEvents {
     private static GenericValue getOrganization(Delegator delegator, GenericValue userLogin) throws GenericEntityException {
         if (UtilValidate.isNotEmpty(userLogin) && UtilValidate.isNotEmpty(userLogin.getString("partyId"))) {
             String partyId = userLogin.getString("partyId");
-//            GenericValue partyRole = EntityQuery.use(delegator).from("PartyRole")
-//                    .where("partyId", partyId, "roleTypeId", "CONTACT").queryOne();
+            GenericValue contactPartyRole = EntityQuery.use(delegator).from("PartyRole")
+                    .where("partyId", partyId, "roleTypeId", "CONTACT").queryOne();
             GenericValue partyRole = EntityQuery.use(delegator).from("PartyRole")
                     .where("partyId", partyId, "roleTypeId", "SUPPLIER").queryOne();
             String partyCompany;
             if (UtilValidate.isNotEmpty(partyRole)) {
-                //获取供应商
-//                GenericValue relationship = EntityQuery.use(delegator).from("PartyRelationship")
-//                        .where("partyIdTo", partyId, "roleTypeIdFrom", "SUPPLIER").queryFirst();
+                //供应商登录
                 partyCompany = partyId;
+            } else if (UtilValidate.isNotEmpty(contactPartyRole)) {
+                //获取供应商
+                GenericValue relationship = EntityQuery.use(delegator).from("PartyRelationship")
+                        .where("partyIdTo", partyId, "roleTypeIdFrom", "SUPPLIER").queryFirst();
+                partyCompany = relationship.getString("partyIdFrom");
             } else {
                 //获取部门
                 partyCompany = CommonUtils.getPartyCompany(partyId, delegator);
