@@ -76,7 +76,7 @@ public class SupplierEvents {
             }
             String partyId = (String) supplierParty.get("partyId");
 
-            String firstName = (String) actionParameters.get("fistName");
+            String firstName = (String) actionParameters.get("firstName");
             String lastName = (String) actionParameters.get("lastName");
             String primaryPhone = (String) actionParameters.get("primaryPhone");
             String phoneMobile = (String) actionParameters.get("phoneMobile");
@@ -362,7 +362,7 @@ public class SupplierEvents {
         String contactMechId = (String) resultMap.get("contactMechId");
         dispatcher.runSync("banfftech.createPostalAddress",
                 UtilMisc.toMap("contactMechId", contactMechId, "userLogin", userLogin, "address1", actionParameters.get("address1"),
-                        "countryGeoId", actionParameters.get("countryGeoId"), "cityGeoId", actionParameters.get("cityGeoId"),
+                        "countryGeoId", actionParameters.get("countryGeoId"), "cityGeoId", actionParameters.get("cityGeoId"), "address2", actionParameters.get("address2"),
                         "stateProvinceGeoId", actionParameters.get("stateProvinceGeoId"), "contactNumber", actionParameters.get("contactNumber"), "email", actionParameters.get("email")));
         dispatcher.runSync("banfftech.createPartyContactMechPurpose",
                 UtilMisc.toMap("userLogin", userLogin, "partyId", partyId, "contactMechId", contactMechId,
