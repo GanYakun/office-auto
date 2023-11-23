@@ -58,15 +58,29 @@
         <!-- 保密协议 -->
         <Property Name="caStatus" Type="String" Label="${caStatus}"/>
         <Property Name="caStatusCriticality" Type="Edm.Int64"/>
-        <!-- 其他文件 -->
-        <Property Name="ofStatus" Type="String" Label="${ofStatus}"/>
-        <Property Name="ofStatusCriticality" Type="Edm.Int64"/>
+        <!-- 合规报告 -->
+        <Property Name="cpStatus" Type="String" Label="${cpStatus}"/>
+        <Property Name="cpStatusCriticality" Type="Edm.Int64"/>
         <!-- PDF Form fileName -->
         <Property Name="ddFromName" Type="String"/>
         <!-- PDF Form fileUrl -->
         <Property Name="ddFromUrl" Type="String"/>
         <!-- Work scope -->
         <Property Name="workScope" Type="String" Label="${workScope}"/>
+
+        <!-- DDForm Bool Field -->
+        <Property Name="agent" Type="Boolean" Label="Agent"/>
+        <Property Name="jvPartner" Type="Boolean" Label="JV Partner"/>
+        <Property Name="subContractor" Type="Boolean" Label="Sub-contractor"/>
+        <Property Name="consultantAdvisor" Type="Boolean" Label="Consultant/Advisor"/>
+        <Property Name="supplierVendor" Type="Boolean" Label="Supplier/Vendor"/>
+        <Property Name="distributor" Type="Boolean" Label="Distributor"/>
+        <Property Name="investmentTarget" Type="Boolean" Label="Investment Target"/>
+        <Property Name="otherSpecify" Type="Boolean" Label="Other (specify)"/>
+        <!-- 合规回复参数 -->
+        <Property Name="adverseResults" Type="String" Label="${adverseResults}" IsAttribute="true"/>
+        <Property Name="additionalProtection" Type="Boolean" Label="${additionalProtection}" IsAttribute="true"/>
+
 
         <NavigationProperty Name="Product" Type="Product" Relations="SupplierProduct/Product" IsCollection="true"/>
         <NavigationProperty Name="Service" Type="Service" Relations="SupplierProduct/Product" IsCollection="true"/>
@@ -98,6 +112,9 @@
         <!-- 保密协议 -->
         <NavigationProperty Name="ConfidentialityAgreement" Type="PartyMediaResource"
                             Relations="PartyMediaResource(partyContentTypeId=CONFIDENTIALITY_AGREEMENT)" IsCollection="true"/>
+        <!-- 合规报告 -->
+        <NavigationProperty Name="ComplianceReport" Type="PartyMediaResource"
+                            Relations="PartyMediaResource(partyContentTypeId=COMPLIANCE_REPORT)" IsCollection="true"/>
         <!-- 其他文件 -->
         <NavigationProperty Name="OtherFiles" Type="PartyMediaResource"
                             Relations="PartyMediaResource(partyContentTypeId=OTHER_FILES)" IsCollection="true"/>
@@ -140,6 +157,12 @@
             <DataField Values="createdDate,lastModifiedDate,collectionDate,firstOrderDate" Importance="High"/>
             <DataFieldForAction Label="${UpdateSupplierTimeInfo}" Action="UpdateSupplierTimeInfo" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated" Hidden="disableEditSupplier"/>
         </FieldGroup>
+        <FieldGroup Qualifier="DDFormBoolFields" Label="DDFormBoolFields">
+            <DataField Values="agent,jvPartner,subContractor,consultantAdvisor,supplierVendor,distributor,investmentTarget,otherSpecify" Importance="High"/>
+        </FieldGroup>
+        <FieldGroup Qualifier="ComplianceResult" Label="ComplianceResult">
+            <DataField Values="adverseResults,additionalProtection" Importance="High"/>
+        </FieldGroup>
 
         <LineItem>
             <DataField Values="partyId,primaryEmail,address1,primaryPhone" Importance="High"/>
@@ -162,6 +185,8 @@
                     <ParameterInOut LocalDataProperty="partyClassificationGroupId" ValueListProperty="partyClassificationGroupId"/>
                 </ValueList>
             </Parameter>
+            <Parameter Name="adverseResults" Type="String" Nullable="false" IsCollection="false" Label="${adverseResults}"/>
+            <Parameter Name="additionalProtection" Type="Boolean" Nullable="false" IsCollection="false" Label="${additionalProtection}"/>
         </Action>
 
         <!--填写基本信息-->

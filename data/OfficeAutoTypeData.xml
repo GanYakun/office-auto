@@ -54,6 +54,7 @@ under the License.
     <!-- 财务报表,保密协议,其他文件 -->
     <PartyContentType partyContentTypeId="FINANCIAL_STATEMENTS"/>
     <PartyContentType partyContentTypeId="CONFIDENTIALITY_AGREEMENT"/>
+    <PartyContentType partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContentType partyContentTypeId="OTHER_FILES"/>
 
     <EnumerationType description="Priority" enumTypeId="PRIORITY" hasTable="N" />

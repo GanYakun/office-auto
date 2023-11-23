@@ -38,8 +38,14 @@ public class UploadEvent {
             throw new OfbizODataException("Parameter error");
         }
         String segmentValue = ListUtil.getLast(odataParts).getUriResource().getSegmentValue();
-        String contentType = segmentValue.equals("FinancialStatements") ? "FINANCIAL_STATEMENTS" :
-                segmentValue.equals("ConfidentialityAgreement") ? "CONFIDENTIALITY_AGREEMENT" : "OTHER_FILES";
+        String contentType = "OTHER_FILES";
+        if (segmentValue.equals("FinancialStatements")) {
+            contentType = "FINANCIAL_STATEMENTS";
+        } else if (segmentValue.equals("ConfidentialityAgreement")) {
+            contentType = "CONFIDENTIALITY_AGREEMENT";
+        } else if (segmentValue.equals("ComplianceReport")) {
+            contentType = "COMPLIANCE_REPORT";
+        }
         Map<String, Object> serviceParam = new HashMap<>();
         serviceParam.put("otherData", parameterContext.getFile());
         serviceParam.put("contentName", parameterContext.getFileName());
