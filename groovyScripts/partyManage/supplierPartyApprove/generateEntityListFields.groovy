@@ -26,8 +26,8 @@ module = "generateFields.groovy";
 def generateFields(Map<String, Object> context){
     List<Entity> entityList = context.parameters.entityList;
     Delegator delegator = context.get("delegator");
-    Map<String, Object> ddFormTypeMap = UtilMisc.toMap("No DD", 1L, "Simplified DD", 2L, "Standard DD", 3L);
-    Map<String, Object> ddFormDealMap = UtilMisc.toMap("Not Send To Vendor", 1L, "Not Submit", 2L, "Submitted", 3L);
+    Map<String, Object> ddFormTypeMap = UtilMisc.toMap("No DD", 1L, "Simplified", 2L, "Standard", 3L);
+    Map<String, Object> ddFormDealMap = UtilMisc.toMap("Not Request", 1L, "Request", 2L, "Submitted", 3L);
     entityList.each { entity ->
         String ddFormType;
         String ddFormDealStatus;
@@ -39,6 +39,7 @@ def generateFields(Map<String, Object> context){
         ddFormDealStatus = SupplierWorker.getDDFormDealStatus(supplierParty, delegator);
         riskCritical = SupplierWorker.getClassificationCriticalValue(supplierParty, delegator);
         String cycleTime = SupplierWorker.calculateCycleTime(supplierParty, delegator);
+        String ddResponseTime = SupplierWorker.calculateResponseTime(supplierParty, delegator);
         criticalityValue = 2L
         String statusId = supplierParty.getString("statusId");
         if (statusId.equals("PROCESSED") && UtilValidate.isNotEmpty(criticalityValue)){
@@ -55,6 +56,7 @@ def generateFields(Map<String, Object> context){
         entity.addProperty(new Property(null, "cycleTime", ValueType.PRIMITIVE, cycleTime))
         entity.addProperty(new Property(null, "ddFormDealCritical", ValueType.PRIMITIVE, ddFormDealCritical))
         entity.addProperty(new Property(null, "riskCritical", ValueType.PRIMITIVE, riskCritical))
+        entity.addProperty(new Property(null, "ddResponseTime", ValueType.PRIMITIVE, ddResponseTime))
 
 
         //文件数量

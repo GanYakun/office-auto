@@ -261,8 +261,8 @@ under the License.
     <EnumerationType enumTypeId="DD_FROM_TYPE_ENUM" description="DDForm Type"/>
     <!--Enumeration-->
     <Enumeration enumId="NOT_DD" enumTypeId="DD_FROM_TYPE_ENUM" description="No DD"/>
-    <Enumeration enumId="SIMPLIFIED_DD" enumTypeId="DD_FROM_TYPE_ENUM" description="Simplified DD"/>
-    <Enumeration enumId="STANDARD_DD" enumTypeId="DD_FROM_TYPE_ENUM" description="Standard DD"/>
+    <Enumeration enumId="SIMPLIFIED_DD" enumTypeId="DD_FROM_TYPE_ENUM" description="Simplified"/>
+    <Enumeration enumId="STANDARD_DD" enumTypeId="DD_FROM_TYPE_ENUM" description="Standard"/>
 
     <!-- PartyIdentificationType(社会统一码) -->
     <PartyIdentificationType partyIdentificationTypeId="USCC_OF_CHINESE_ORG"/>

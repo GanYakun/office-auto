@@ -22,6 +22,8 @@
         <Property Name="ddFormDealStatus" Type="String" Label="${ddFormDealStatus}"/>
         <!--供应商完成ddForm时间-->
         <Property Name="cycleTime" Type="String" Label="${cycleTime}"/>
+        <!--供应商ddForm响应时间-->
+        <Property Name="ddResponseTime" Type="String" Label="${ddResponseTime}"/>
         <Property Name="createSupplierHidden" Type="Boolean" Hidden="true"/>
         <!--首次订单时间-->
         <Property Name="firstOrderDate" Type="Timestamp" IsDateAttribute="true"/>
@@ -125,15 +127,15 @@
         <FieldGroup Label="PartyBaseInfo" Qualifier="PartyBaseInfo">
             <DataField Values="tickerSymbol,ProductCategory/categoryName,cycleTime,usccNumber" Importance="High"/>
         </FieldGroup>
-        <DataPoint Title="${ddFormType}" Value="ddFormType" Criticality="ddFormTypeCritical" Qualifier="DDFormType"/>
+        <DataPoint Title="${ddFormType}" Value="ddFormType" Qualifier="DDFormType"/>
         <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">
-            <DataField Values="ProductCategory/categoryName,usccNumber,numEmployees,annualRevenue,tickerSymbol,comments,priority" Importance="High"/>
+            <DataField Values="ProductCategory/categoryName,usccNumber,numEmployees,isGovernment,annualRevenue,tickerSymbol,comments,priority" Importance="High"/>
         </FieldGroup>
         <FieldGroup Qualifier="WorkScope" Label="WorkScope">
             <DataField Values="workScope" Importance="High"/>
         </FieldGroup>
         <FieldGroup Qualifier="PartyGroupFieldGroupWithAction" Label="PartyGroupFieldGroupWithAction">
-            <DataField Values="ProductCategory/categoryName,usccNumber,numEmployees,annualRevenue,tickerSymbol,comments,priority" Importance="High"/>
+            <DataField Values="ProductCategory/categoryName,usccNumber,numEmployees,isGovernment,annualRevenue,tickerSymbol,comments,priority" Importance="High"/>
             <DataFieldForAction Label="${UpdateBasicInfo}" Action="FillSupplierBaseInfo" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated" Hidden="disableEditSupplier"/>
         </FieldGroup>
 <!--        <FieldGroup Qualifier="FileCountGroup" Label="FileCountGroup">-->
@@ -165,15 +167,15 @@
         </FieldGroup>
 
         <LineItem>
-            <DataField Values="partyId" Importance="High"/>
+            <DataField Values="partyId,cycleTime" Importance="High"/>
             <DataField Values="ddFormDealStatus" Criticality="ddFormDealCritical" Importance="High"/>
-            <DataField Values="ddFormType" Criticality="ddFormTypeCritical" Importance="High"/>
+            <DataField Values="ddFormType,ddResponseTime" Importance="High"/>
             <DataField Values="PartyClassification/PartyClassificationGroup/description" Criticality="riskCritical" Importance="High"/>
         </LineItem>
         <LineItem Qualifier="CreateLineItem">
-            <DataField Values="partyId" Importance="High"/>
+            <DataField Values="partyId,cycleTime" Importance="High"/>
             <DataField Values="ddFormDealStatus" Criticality="ddFormDealCritical" Importance="High"/>
-            <DataField Values="ddFormType" Criticality="ddFormTypeCritical" Importance="High"/>
+            <DataField Values="ddFormType,ddResponseTime" Importance="High"/>
             <DataField Values="PartyClassification/PartyClassificationGroup/description" Criticality="riskCritical" Importance="High"/>
             <DataFieldForAction Label="${create}" Action="CreateSupplierParty" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>

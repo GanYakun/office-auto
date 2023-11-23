@@ -37,9 +37,9 @@ public class SupplierWorker {
         if (isGovernment || isNoFormListCountry || productCategory.get("primaryParentCategoryId").equals("NEGLIGIBLE_RISK")){
             ddFormType = "No DD";
         }else if (productCategory.get("primaryParentCategoryId").equals("LOW_RISK")){
-            ddFormType = "Simplified DD";
+            ddFormType = "Simplified";
         }else if (productCategory.get("primaryParentCategoryId").equals("HIGH-VALUE_HIGH-RISK")){
-            ddFormType = "Standard DD";
+            ddFormType = "Standard";
         }
         return ddFormType;
     }
@@ -79,11 +79,11 @@ public class SupplierWorker {
      * @return ddFormDealStatus
      */
     public static String getDDFormDealStatus (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-        String ddFormDealStatus = "Not Send To Vendor";
+        String ddFormDealStatus = "Not Request";
         Boolean isSent = ddFormIsSent(delegator, supplierParty);
         Boolean isSubmit = ddFormIsSubmitted(delegator, supplierParty);
         if (isSent && !isSubmit){
-            ddFormDealStatus = "Not Submit";
+            ddFormDealStatus = "Request";
         }else if (isSent && isSubmit){
             ddFormDealStatus = "Submitted";
         }
@@ -121,7 +121,7 @@ public class SupplierWorker {
      * @return cycleTime
      */
     public static String calculateCycleTime (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-        String cycleTime = "0h0min";
+        String cycleTime = "0 days";
         List<GenericValue> supplierWorkEfforts = delegator.findByAnd("WorkEffortAndPartyGroupContact",
                 UtilMisc.toMap("partyId", supplierParty.get("partyId"), "approvePartyId", supplierParty.get("partyId")), null, true);
         if (UtilValidate.isEmpty(supplierWorkEfforts)){
@@ -139,6 +139,17 @@ public class SupplierWorker {
 //        double hours = (cycleTimeFloat - days)*24;
         cycleTime = (int) days + " days";
         return cycleTime;
+    }
+
+    /**
+     * 计算表单填写周期
+     * @param supplierParty 供应商
+     * @param delegator
+     * @return responseTime
+     */
+    public static String calculateResponseTime (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
+        String responseTime = "0 days";
+        return responseTime;
     }
 
     /**

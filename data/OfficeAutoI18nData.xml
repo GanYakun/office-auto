@@ -192,6 +192,8 @@ under the License.
     <Internationalization id="adverseResults_zh" lang="zh" property="adverseResults" value="尽职调查筛选的确认和任何不良结果的报告"/>
     <Internationalization id="additionalProtection_en" lang="en" property="additionalProtection" value="Any additional contractual protections or enhanced due diligence recommended?"/>
     <Internationalization id="additionalProtection_zh" lang="zh" property="additionalProtection" value="是否有任何额外的合同保护或加强尽职调查建议?"/>
+    <Internationalization id="ddResponseTime_en" lang="en" property="ddResponseTime" value="DD response time"/>
+    <Internationalization id="ddResponseTime_zh" lang="zh" property="ddResponseTime" value=""/>
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
     <DBField dbFieldId="CUST_REQ_10001" dbFieldName="statusId" dbFieldTypeId="STATUS" description="当前状态" dbEntityId="CUST_REQ_10000"/>
