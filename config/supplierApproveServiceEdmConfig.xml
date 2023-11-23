@@ -868,10 +868,10 @@
         <RelAlias Name="ToPartyRelationship" Relations="ToPartyRelationship(roleTypeIdTo=BENEFICIAL_PERSON)"/>
         <Property Name="position" IsAttribute="true" Type="String"/>
         <!--国籍-->
-        <Property Name="nationality" Type="String" IsAttribute="true"/>
+        <Property Name="nationality" Type="String" IsAttribute="true" Label="${nationality}"/>
         <!--附证明文件文本-->
-        <Property Name="copyIdentificationAttached" Type="String" IsAttribute="true"/>
-        <Property Name="amount" RelAlias="ToPartyRelationship" Field="amount"/>
+        <Property Name="copyIdentificationAttached" Type="String" IsAttribute="true" Label="${copyIdentificationAttached}"/>
+        <Property Name="amount" RelAlias="ToPartyRelationship" Field="amount" Label="${partyRelationshipAmount}"/>
         <LineItem Qualifier="PartyRelationshipLineItem">
             <DataField Values="firstName,lastName,primaryPhone,phoneMobile,primaryEmail,position" Importance="High"/>
             <DataFieldForAction Label="${create}" Action="CreatePersonAndContact" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
@@ -905,7 +905,7 @@
             <Parameter Name="primaryPhone" Type="String" Label="${phone}" Nullable="true"/>
             <Parameter Name="phoneMobile" Type="String" Label="${mobile}" Nullable="false"/>
             <Parameter Name="primaryEmail" Type="String" Label="${email}" Nullable="true"/>
-            <Parameter Name="amount" Type="BigDecimal" Scale="2" Label="${sharesHeld}" Nullable="true"/>
+            <Parameter Name="amount" Type="BigDecimal" Scale="2" Label="${partyRelationshipAmount}" Nullable="true"/>
             <Parameter Name="nationality" Type="String" Label="${nationality}" Nullable="true"/>
             <Parameter Name="copyIdentificationAttached" Type="String" Label="${copyIdentificationAttached}" Nullable="true"/>
         </Action>

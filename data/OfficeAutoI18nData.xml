@@ -142,8 +142,8 @@ under the License.
     <Internationalization id="I10119" lang="zh" property="caStatus" value="保密协议"/>
     <Internationalization id="I10120" lang="en" property="cpStatus" value="Compliance Report"/>
     <Internationalization id="I10121" lang="zh" property="cpStatus" value="合规报告"/>
-    <Internationalization id="I10122" lang="en" property="complianceNote" value="suggestion"/>
-    <Internationalization id="I10123" lang="zh" property="complianceNote" value="建议"/>
+    <Internationalization id="I10122" lang="en" property="complianceNote" value=""/>
+    <Internationalization id="I10123" lang="zh" property="complianceNote" value=""/>
     <Internationalization id="I10124" lang="en" property="ddFormType" value="DD type"/>
     <Internationalization id="I10125" lang="zh" property="ddFormType" value="表单类型"/>
     <Internationalization id="I10126" lang="en" property="cycleTime" value="Cycle time"/>
@@ -191,6 +191,15 @@ under the License.
     <Internationalization id="adverseResults_zh" lang="zh" property="adverseResults" value="尽职调查筛选的确认和任何不良结果的报告"/>
     <Internationalization id="additionalProtection_en" lang="en" property="additionalProtection" value="Any additional contractual protections or enhanced due diligence recommended?"/>
     <Internationalization id="additionalProtection_zh" lang="zh" property="additionalProtection" value="是否有任何额外的合同保护或加强尽职调查建议?"/>
+    <Internationalization id="nationality_en" lang="en" property="nationality" value="Nationality"/>
+    <Internationalization id="nationality_zh" lang="zh" property="nationality" value="国籍"/>
+    <Internationalization id="copyIdentificationAttached_en" lang="en" property="copyIdentificationAttached" value="Copy of supporting identification attached"/>
+    <Internationalization id="copyIdentificationAttached_zh" lang="zh" property="copyIdentificationAttached" value="随附证明文件复印件"/>
+    <Internationalization id="partyRelationshipAmount_en" lang="en" property="partyRelationshipAmount" value="Ownership"/>
+    <Internationalization id="partyRelationshipAmount_zh" lang="zh" property="partyRelationshipAmount" value="所有权"/>
+    <Internationalization id="workScope_en" lang="en" property="workScope" value=""/>
+    <Internationalization id="workScope_zh" lang="zh" property="workScope" value=""/>
+
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
     <DBField dbFieldId="CUST_REQ_10001" dbFieldName="statusId" dbFieldTypeId="STATUS" description="当前状态" dbEntityId="CUST_REQ_10000"/>
