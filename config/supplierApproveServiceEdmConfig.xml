@@ -241,6 +241,11 @@
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="true"/>
             <Parameter Name="partyName" Type="String" Label="${supplierActionPartyName}" Nullable="false"/>
             <Parameter Name="isGovernment" Type="Boolean" Label="${isGovernment}" Nullable="false"/>
+            <Parameter Name="priority" Type="String" Label="${Priority}">
+                <ValueList CollectionPath="PriorityEnumerations" WithFixedValues="true" Label="${selectPriority}">
+                    <ParameterInOut LocalDataProperty="priority" ValueListProperty="enumId"/>
+                </ValueList>
+            </Parameter>
             <Parameter Name="productCategoryId" Type="String" Label="${partyCategoryId}" Nullable="false">
                 <ValueList WithFixedValues="true" CollectionPath="ProductCategories">
                     <ParameterInOut ValueListProperty="productCategoryId" LocalDataProperty="productCategoryId"/>
@@ -258,7 +263,7 @@
             <ReturnType Type="SupplierParty"/>
         </Action>
         <!--推送到申请人的Action-->
-        <Action Name="ReturnToApplication" IsBound="true" EntitySetPath="supplierParty"
+        <Action Name="ReturnToApplication" IsBound="true" EntitySetPath="supplierParty" SideEffects="true"
                 OfbizService="com.banfftech.events.SupplierApproveEvents.procurementReturn"
                 StickySession="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
@@ -267,7 +272,7 @@
             <ReturnType Type="SupplierParty"/>
         </Action>
         <!--推送到供应商的Action-->
-        <Action Name="ReturnToSupplier" IsBound="true" EntitySetPath="supplierParty"
+        <Action Name="ReturnToSupplier" IsBound="true" EntitySetPath="supplierParty" SideEffects="true"
                 OfbizService="com.banfftech.events.SupplierApproveEvents.procurementReturn"
                 StickySession="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
@@ -282,7 +287,7 @@
             <ReturnType Type="SupplierParty"/>
         </Action>
         <!--推送到合规部门的Action-->
-        <Action Name="ReturnToCompliance" IsBound="true" EntitySetPath="supplierParty"
+        <Action Name="ReturnToCompliance" IsBound="true" EntitySetPath="supplierParty" SideEffects="true"
                 OfbizService="com.banfftech.events.SupplierApproveEvents.procurementReturn"
                 StickySession="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>

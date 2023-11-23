@@ -377,7 +377,7 @@ public class SupplierEvents {
 
         Map<String, Object> resultMap = dispatcher.runSync("banfftech.createWorkEffortAndPartyGroupContact",
                 UtilMisc.toMap("userLogin", userLogin, "partyName", actionParameters.get("partyName"), "currentStatusId", "NOT_PROCESSED",
-                        "primaryPhone", actionParameters.get("primaryPhone"), "primaryEmail", actionParameters.get("primaryEmail")));
+                        "primaryPhone", actionParameters.get("primaryPhone"), "primaryEmail", actionParameters.get("primaryEmail"), "priority", actionParameters.get("priority")));
         Delegator delegator = dispatcher.getDelegator();
         if ((Boolean) actionParameters.get("isGovernment")){
             dispatcher.runSync("banfftech.createPartyRole", UtilMisc.toMap("userLogin", userLogin, "partyId", resultMap.get("partyId"), "roleTypeId", "GOVERNMENT_SUPPLIER"));
@@ -393,7 +393,7 @@ public class SupplierEvents {
                         "roleTypeIdTo", "SUPPLIER", "partyIdTo", resultMap.get("partyId")));
         String code = CommonUtils.getEncryptedPassword(delegator, "ofbiz");
         dispatcher.runSync("banfftech.createUserLogin",
-                UtilMisc.toMap("userLogin", userLogin, "partyId", resultMap.get("partyId"), "userLoginId", resultMap.get("partyId"), "currentPassword", code));
+                UtilMisc.toMap("userLogin", userLogin, "partyId", resultMap.get("partyId"), "userLoginId", "supplier"+resultMap.get("partyId"), "currentPassword", code));
 
     }
 
