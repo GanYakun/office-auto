@@ -186,6 +186,8 @@ under the License.
     <Internationalization id="I10155" lang="zh" property="nationality" value="国籍"/>
     <Internationalization id="I10156" lang="en" property="copyIdentificationAttached" value="Copy of supporting identification attached"/>
     <Internationalization id="I10157" lang="zh" property="copyIdentificationAttached" value=""/>
+    <Internationalization id="I10158" lang="en" property="ddFormDealStatus" value="DD Status"/>
+    <Internationalization id="I10159" lang="zh" property="ddFormDealStatus" value=""/>
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
     <DBField dbFieldId="CUST_REQ_10001" dbFieldName="statusId" dbFieldTypeId="STATUS" description="当前状态" dbEntityId="CUST_REQ_10000"/>

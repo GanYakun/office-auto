@@ -17,9 +17,9 @@
             <Text Path="SupplierStatusItem/description" TextArrangement="TextOnly"/>
         </Property>
         <!--供应商填写的ddForm类型-->
-        <Property Name="ddFormType" Type="String"/>
+        <Property Name="ddFormType" Type="String" Label="${ddFormType}"/>
         <!--供应商填写ddForm进度情况-->
-        <Property Name="ddFormDealStatus" Type="String"/>
+        <Property Name="ddFormDealStatus" Type="String" Label="${ddFormDealStatus}"/>
         <!--供应商完成ddForm时间-->
         <Property Name="cycleTime" Type="String" Label="${cycleTime}"/>
         <Property Name="createSupplierHidden" Type="Boolean" Hidden="true"/>
@@ -102,7 +102,7 @@
         <NavigationProperty Name="OtherFiles" Type="PartyMediaResource"
                             Relations="PartyMediaResource(partyContentTypeId=OTHER_FILES)" IsCollection="true"/>
 
-        <SelectionFields PropertyPath="currentStatusId,primaryPhone"/>
+        <SelectionFields PropertyPath="partyName"/>
 
         <!--Annotation-->
         <FieldGroup Label="PartyBaseInfo" Qualifier="PartyBaseInfo">
