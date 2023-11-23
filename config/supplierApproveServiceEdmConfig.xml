@@ -16,6 +16,7 @@
         <Property Name="statusId">
             <Text Path="SupplierStatusItem/description" TextArrangement="TextOnly"/>
         </Property>
+        <Property Name="isGovernment" Type="Boolean" IsAttribute="true" Label="${isGovernment}"/>
         <!--供应商填写的ddForm类型-->
         <Property Name="ddFormType" Type="String" Label="${ddFormType}"/>
         <!--供应商填写ddForm进度情况-->
@@ -129,7 +130,7 @@
         </FieldGroup>
         <DataPoint Title="${ddFormType}" Value="ddFormType" Qualifier="DDFormType"/>
         <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">
-            <DataField Values="ProductCategory/categoryName,usccNumber,numEmployees,isGovernment,annualRevenue,tickerSymbol,comments,priority" Importance="High"/>
+            <DataField Values="ProductCategory/categoryName,usccNumber,numEmployees,isGovernment,annualRevenue,tickerSymbol,comments" Importance="High"/>
         </FieldGroup>
         <FieldGroup Qualifier="WorkScope" Label="WorkScope">
             <DataField Values="workScope" Importance="High"/>
@@ -672,6 +673,9 @@
         <Property Name="quantityUomId" Immutable="true">
             <Text Path="QuantityUom/description" TextArrangement="TextOnly"/>
         </Property>
+        <Property Name="primaryProductCategoryId">
+            <Text Path="PrimaryProductCategory/categoryName" TextArrangement="TextOnly"/>
+        </Property>
         <Property Name="productName" Immutable="true"/>
         <NavigationProperty Name="ProductType"/>
         <NavigationProperty Name="QuantityUom"/>
@@ -685,11 +689,11 @@
         <Action Name="CreateSupplierProduct" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createSupplierProduct" SideEffects="true">
             <Parameter Name="product" Type="Product" Nullable="false" IsCollection="true"/>
             <Parameter Name="productId" Type="String" Label="${productId}" Nullable="false"/>
-            <Parameter Name="primaryProductCategoryId" Type="String" Label="${primaryProductCategoryId}" Nullable="false">
-                <ValueList CollectionPath="ProductCategories" WithFixedValues="true">
-                    <ParameterInOut ValueListProperty="productCategoryId" LocalDataProperty="primaryProductCategoryId"/>
-                </ValueList>
-            </Parameter>
+<!--            <Parameter Name="primaryProductCategoryId" Type="String" Label="${primaryProductCategoryId}" Nullable="false">-->
+<!--                <ValueList CollectionPath="ProductCategories" WithFixedValues="true">-->
+<!--                    <ParameterInOut ValueListProperty="productCategoryId" LocalDataProperty="primaryProductCategoryId"/>-->
+<!--                </ValueList>-->
+<!--            </Parameter>-->
             <ReturnType Type="Product"/>
         </Action>
         <NavigationProperty Name="PrimaryProductCategory"/>
@@ -703,14 +707,17 @@
         <LineItem Qualifier="SupplierProductLineItemWithoutAction">
             <DataField Values="productName,primaryProductCategoryId" Importance="High" />
         </LineItem>
+        <Property Name="primaryProductCategoryId">
+            <Text Path="PrimaryProductCategory/categoryName" TextArrangement="TextOnly"/>
+        </Property>
         <Action Name="CreateSupplierService" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createSupplierProduct" SideEffects="true">
             <Parameter Name="service" Type="Service" Nullable="false" IsCollection="true"/>
             <Parameter Name="productId" Type="String" Label="${productId}" Nullable="false"/>
-            <Parameter Name="primaryProductCategoryId" Type="String" Label="${primaryProductCategoryId}" Nullable="false">
-                <ValueList CollectionPath="ProductCategories" WithFixedValues="true">
-                    <ParameterInOut ValueListProperty="productCategoryId" LocalDataProperty="primaryProductCategoryId"/>
-                </ValueList>
-            </Parameter>
+<!--            <Parameter Name="primaryProductCategoryId" Type="String" Label="${primaryProductCategoryId}" Nullable="false">-->
+<!--                <ValueList CollectionPath="ProductCategories" WithFixedValues="true">-->
+<!--                    <ParameterInOut ValueListProperty="productCategoryId" LocalDataProperty="primaryProductCategoryId"/>-->
+<!--                </ValueList>-->
+<!--            </Parameter>-->
             <ReturnType Type="Service"/>
         </Action>
         <NavigationProperty Name="PrimaryProductCategory"/>
@@ -872,7 +879,7 @@
         <!--国籍-->
         <Property Name="nationality" Type="String" IsAttribute="true" Label="${nationality}"/>
         <!--附证明文件文本-->
-        <Property Name="copyIdentificationAttached" Type="String" IsAttribute="true" Label="${copyIdentificationAttached}"/>
+        <Property Name="copyIdentificationAttached" Type="Boolean" IsAttribute="true" Label="${copyIdentificationAttached}"/>
         <Property Name="amount" RelAlias="ToPartyRelationship" Field="amount" Label="${partyRelationshipAmount}"/>
         <LineItem Qualifier="PartyRelationshipLineItem">
             <DataField Values="firstName,lastName,primaryPhone,phoneMobile,primaryEmail,position" Importance="High"/>
@@ -909,7 +916,7 @@
             <Parameter Name="primaryEmail" Type="String" Label="${email}" Nullable="true"/>
             <Parameter Name="amount" Type="BigDecimal" Scale="2" Label="${partyRelationshipAmount}" Nullable="true"/>
             <Parameter Name="nationality" Type="String" Label="${nationality}" Nullable="true"/>
-            <Parameter Name="copyIdentificationAttached" Type="String" Label="${copyIdentificationAttached}" Nullable="true"/>
+            <Parameter Name="copyIdentificationAttached" Type="Boolean" Label="${copyIdentificationAttached}" Nullable="true"/>
         </Action>
     </EntityType>
 

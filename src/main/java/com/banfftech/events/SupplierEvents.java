@@ -124,7 +124,7 @@ public class SupplierEvents {
             String primaryEmail = (String) actionParameters.get("primaryEmail");
             String position = (String) actionParameters.get("position");
             String nationality = (String) actionParameters.get("nationality");
-            String copyIdentificationAttached = (String) actionParameters.get("copyIdentificationAttached");
+            Boolean copyIdentificationAttached = (Boolean) actionParameters.get("copyIdentificationAttached");
             BigDecimal amount = (BigDecimal) actionParameters.get("amount");
             if (CommonUtils.checkInputRepeat(delegator, "contactNumber", "TelecomNumber", null, phoneMobile)) {
                 throw new OfbizODataException("Phone number is repeat！");
@@ -136,7 +136,7 @@ public class SupplierEvents {
             dispatcher.runSync("banfftech.createPartyRole", UtilMisc.toMap("userLogin", userLogin, "partyId", contactPartyId, "roleTypeId", "BENEFICIAL_PERSON"));
             dispatcher.runSync("banfftech.createPartyAttribute", UtilMisc.toMap("userLogin", userLogin, "partyId", contactPartyId, "attrName", "position", "attrValue", position));
             dispatcher.runSync("banfftech.createPartyAttribute", UtilMisc.toMap("userLogin", userLogin, "partyId", contactPartyId, "attrName", "nationality", "attrValue", nationality));
-            dispatcher.runSync("banfftech.createPartyAttribute", UtilMisc.toMap("userLogin", userLogin, "partyId", contactPartyId, "attrName", "copyIdentificationAttached", "attrValue", copyIdentificationAttached));
+            dispatcher.runSync("banfftech.createPartyAttribute", UtilMisc.toMap("userLogin", userLogin, "partyId", contactPartyId, "attrName", "copyIdentificationAttached", "attrValue", copyIdentificationAttached ? "Y" :"N"));
             dispatcher.runSync("banfftech.createPartyRelationship", UtilMisc.toMap("partyIdFrom", partyId, "roleTypeIdFrom", "SUPPLIER",
                     "partyIdTo", contactPartyId, "roleTypeIdTo", "BENEFICIAL_PERSON", "fromDate", UtilDateTime.nowTimestamp(), "amount", amount, "userLogin", userLogin));
         } catch (GenericEntityException | GenericServiceException e) {
@@ -380,6 +380,7 @@ public class SupplierEvents {
         Delegator delegator = dispatcher.getDelegator();
         if ((Boolean) actionParameters.get("isGovernment")){
             dispatcher.runSync("banfftech.createPartyRole", UtilMisc.toMap("userLogin", userLogin, "partyId", resultMap.get("partyId"), "roleTypeId", "GOVERNMENT_SUPPLIER"));
+            dispatcher.runSync("banfftech.createPartyAttribute", UtilMisc.toMap("userLogin", userLogin, "partyId", resultMap.get("partyId"), "attrName", "isGovernment", "attrValue", (Boolean) actionParameters.get("isGovernment") ? "Y" : "N"));
         }
 
         dispatcher.runSync("banfftech.createProductCategoryRole",
@@ -389,6 +390,9 @@ public class SupplierEvents {
         dispatcher.runSync("banfftech.createPartyRelationship",
                 UtilMisc.toMap("userLogin", userLogin, "roleTypeIdFrom", "DEPARTMENT", "partyIdFrom", departmentPartyId,
                         "roleTypeIdTo", "SUPPLIER", "partyIdTo", resultMap.get("partyId")));
+        String code = CommonUtils.getEncryptedPassword(delegator, "ofbiz");
+        dispatcher.runSync("banfftech.createUserLogin",
+                UtilMisc.toMap("userLogin", userLogin, "partyId", resultMap.get("partyId"), "userLoginId", resultMap.get("partyId"), "currentPassword", code));
 
     }
 
