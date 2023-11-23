@@ -623,6 +623,12 @@ under the License.
     <DBFieldLabel dbFieldLabelId="PRC10000_01_ZH" dbFieldId="PRC10000_01" language="zh" value="分类名称"/>
     <DBFieldLabel dbFieldLabelId="PRC10000_01_EN" dbFieldId="PRC10000_01" language="en" value="Category Name"/>
 
+    <!-- Entity labels for entity PartyClassificationGroup -->
+    <DBEntity dbEntityId="PCFG10000" dbEntityName="PartyClassificationGroup" description="Party Classification Group" isOpen="N" />
+    <DBField dbFieldId="PCFG10000_01" dbFieldName="description" dbFieldTypeId="STRING" dbEntityId="PCFG10000" description="Category Name"/>
+    <DBFieldLabel dbFieldLabelId="PCFG10000_01_ZH" dbFieldId="PCFG10000_01" language="zh" value="分类名称"/>
+    <DBFieldLabel dbFieldLabelId="PCFG10000_01_EN" dbFieldId="PCFG10000_01" language="en" value="Risk rating"/>
+
 
     <!-- Entity labels for entity FinAccount -->
     <DBEntity dbEntityId="FA10000" dbEntityName="FinAccount" description="Fin account" isOpen="N" />
