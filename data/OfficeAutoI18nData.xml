@@ -178,6 +178,8 @@ under the License.
     <Internationalization id="I10155" lang="zh" property="nationality" value="国籍"/>
     <Internationalization id="I10156" lang="en" property="copyIdentificationAttached" value="Copy of supporting identification attached"/>
     <Internationalization id="I10157" lang="zh" property="copyIdentificationAttached" value=""/>
+    <Internationalization id="ddFormDealStatus_en" lang="en" property="ddFormDealStatus" value="DD Status"/>
+    <Internationalization id="ddFormDealStatus_zh" lang="zh" property="ddFormDealStatus" value=""/>
     <Internationalization id="I10158" lang="zh" property="removeDepartment" value="移除部门"/>
     <Internationalization id="I10159" lang="en" property="removeDepartment" value="Remove"/>
     <Internationalization id="I10160" lang="zh" property="selectDepartmentParam" value="选择部门"/>
@@ -186,7 +188,6 @@ under the License.
     <Internationalization id="I10163" lang="zh" property="sharesHeld" value="持有股份"/>
     <Internationalization id="I10164" lang="en" property="isGovernment" value="Is government"/>
     <Internationalization id="I10165" lang="zh" property="isGovernment" value="是否是政府部门"/>
-
     <Internationalization id="adverseResults_en" lang="en" property="adverseResults" value="Confirmation of due diligence screening and reporting of any adverse outcomes"/>
     <Internationalization id="adverseResults_zh" lang="zh" property="adverseResults" value="尽职调查筛选的确认和任何不良结果的报告"/>
     <Internationalization id="additionalProtection_en" lang="en" property="additionalProtection" value="Any additional contractual protections or enhanced due diligence recommended?"/>
