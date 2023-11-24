@@ -82,7 +82,7 @@
         <Property Name="otherSpecify" Type="Boolean" Label="Other (specify)"/>
         <!-- 合规回复参数 -->
         <Property Name="adverseResults" Type="String" Label="${adverseResults}" IsAttribute="true"/>
-        <Property Name="additionalProtection" Type="Boolean" Label="${additionalProtection}" IsAttribute="true"/>
+        <Property Name="additionalProtection" Type="String" Label="${additionalProtection}" IsAttribute="true"/>
 
 
         <NavigationProperty Name="Product" Type="Product" Relations="SupplierProduct/Product" IsCollection="true"/>
@@ -196,7 +196,7 @@
                 </ValueList>
             </Parameter>
             <Parameter Name="adverseResults" Type="String" Nullable="false" IsCollection="false" Label="${adverseResults}"/>
-            <Parameter Name="additionalProtection" Type="Boolean" Nullable="false" IsCollection="false" Label="${additionalProtection}"/>
+            <Parameter Name="additionalProtection" Type="String" Nullable="false" IsCollection="false" Label="${additionalProtection}"/>
         </Action>
 
         <!--填写基本信息-->

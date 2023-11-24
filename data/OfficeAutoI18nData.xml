@@ -78,17 +78,17 @@ under the License.
     <Internationalization id="I10055" lang="zh" property="supplierActionAddress1" value="地址"/>
     <Internationalization id="I10056" lang="en" property="supplierActionPrimaryEmail" value="Primary Email"/>
     <Internationalization id="I10057" lang="zh" property="supplierActionPrimaryEmail" value="邮箱"/>
-    <Internationalization id="I10058" lang="en" property="supplierUpdateActionNumEmployees" value="Employees Number"/>
+    <Internationalization id="I10058" lang="en" property="supplierUpdateActionNumEmployees" value="Employees"/>
     <Internationalization id="I10059" lang="zh" property="supplierUpdateActionNumEmployees" value="员工数量"/>
-    <Internationalization id="I10060" lang="en" property="supplierUpdateActionAnnualRevenue" value="Annual Revenue"/>
+    <Internationalization id="I10060" lang="en" property="supplierUpdateActionAnnualRevenue" value="Annual revenue"/>
     <Internationalization id="I10061" lang="zh" property="supplierUpdateActionAnnualRevenue" value="年利润"/>
-    <Internationalization id="I10062" lang="en" property="supplierUpdateActionTickerSymbol" value="Ticker Symbol"/>
+    <Internationalization id="I10062" lang="en" property="supplierUpdateActionTickerSymbol" value="Ticker symbol"/>
     <Internationalization id="I10063" lang="zh" property="supplierUpdateActionTickerSymbol" value="股票代码"/>
     <Internationalization id="I10064" lang="en" property="supplierUpdateActionComments" value="Comments"/>
     <Internationalization id="I10065" lang="zh" property="supplierUpdateActionComments" value="备注"/>
     <Internationalization id="I10066" lang="en" property="supplierUpdateActionCollectionDate" value="On-board date"/>
     <Internationalization id="I10067" lang="zh" property="supplierUpdateActionCollectionDate" value="收藏日期"/>
-    <Internationalization id="I10068" lang="en" property="supplierUpdateActionFirstOrderDate" value="First Order Date"/>
+    <Internationalization id="I10068" lang="en" property="supplierUpdateActionFirstOrderDate" value="First order date"/>
     <Internationalization id="I10069" lang="zh" property="supplierUpdateActionFirstOrderDate" value="首次订单日期"/>
     <Internationalization id="I10070" lang="en" property="supplierUpdateActionPrimaryPhone" value="Primary Phone"/>
     <Internationalization id="I10071" lang="zh" property="supplierUpdateActionPrimaryPhone" value="电话"/>
@@ -172,8 +172,8 @@ under the License.
     <Internationalization id="I10149" lang="zh" property="websiteAddress" value="网址"/>
     <Internationalization id="I10150" lang="en" property="firstName" value="First name"/>
     <Internationalization id="I10151" lang="zh" property="firstName" value="姓"/>
-    <Internationalization id="I10152" lang="en" property="firstName" value="Last name"/>
-    <Internationalization id="I10153" lang="zh" property="firstName" value="名"/>
+    <Internationalization id="I10152" lang="en" property="lastName" value="Last name"/>
+    <Internationalization id="I10153" lang="zh" property="lastName" value="名"/>
     <Internationalization id="I10154" lang="en" property="nationality" value="Nationality"/>
     <Internationalization id="I10155" lang="zh" property="nationality" value="国籍"/>
     <Internationalization id="I10156" lang="en" property="copyIdentificationAttached" value="Copy of supporting identification attached"/>
@@ -338,7 +338,7 @@ under the License.
     <DBField dbFieldId="WPC10000_06" dbFieldName="firstOrderDate" dbFieldTypeId="DATE_TIME" dbEntityId="WPC10000" description="First order date"/>
     <DBField dbFieldId="WPC10000_07" dbFieldName="collectionDate" dbFieldTypeId="DATE_TIME" dbEntityId="WPC10000" description="On-board date"/>
     <DBField dbFieldId="WPC10000_08" dbFieldName="usccNumber" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Tax code"/>
-    <DBField dbFieldId="WPC10000_09" dbFieldName="numEmployees" dbFieldTypeId="NUMBER" dbEntityId="WPC10000" description="Employee numbers"/>
+    <DBField dbFieldId="WPC10000_09" dbFieldName="numEmployees" dbFieldTypeId="NUMBER" dbEntityId="WPC10000" description="Employees"/>
     <DBField dbFieldId="WPC10000_10" dbFieldName="annualRevenue" dbFieldTypeId="NUMBER" dbEntityId="WPC10000" description="Annual revenue"/>
     <DBField dbFieldId="WPC10000_11" dbFieldName="tickerSymbol" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Ticker symbol"/>
     <DBField dbFieldId="WPC10000_12" dbFieldName="comments" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Comments"/>
@@ -365,7 +365,7 @@ under the License.
     <DBFieldLabel dbFieldLabelId="WPC10000_08_ZH" dbFieldId="WPC10000_08" language="zh" value="税号"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_08_EN" dbFieldId="WPC10000_08" language="en" value="Tax code"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_09_ZH" dbFieldId="WPC10000_09" language="zh" value="员工人数"/>
-    <DBFieldLabel dbFieldLabelId="WPC10000_09_EN" dbFieldId="WPC10000_09" language="en" value="Employee numbers"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_09_EN" dbFieldId="WPC10000_09" language="en" value="Employees"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_10_ZH" dbFieldId="WPC10000_10" language="zh" value="年收入"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_10_EN" dbFieldId="WPC10000_10" language="en" value="Annual revenue"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_11_ZH" dbFieldId="WPC10000_11" language="zh" value="股票代码"/>
@@ -396,7 +396,7 @@ under the License.
     <DBField dbFieldId="PGC10000_06" dbFieldName="firstOrderDate" dbFieldTypeId="DATE_TIME" dbEntityId="PGC10000" description="First order date"/>
     <DBField dbFieldId="PGC10000_07" dbFieldName="collectionDate" dbFieldTypeId="DATE_TIME" dbEntityId="PGC10000" description="On-board date"/>
     <DBField dbFieldId="PGC10000_08" dbFieldName="usccNumber" dbFieldTypeId="STRING" dbEntityId="PGC10000" description="Tax code"/>
-    <DBField dbFieldId="PGC10000_09" dbFieldName="numEmployees" dbFieldTypeId="NUMBER" dbEntityId="PGC10000" description="Employee numbers"/>
+    <DBField dbFieldId="PGC10000_09" dbFieldName="numEmployees" dbFieldTypeId="NUMBER" dbEntityId="PGC10000" description="Employees"/>
     <DBField dbFieldId="PGC10000_10" dbFieldName="annualRevenue" dbFieldTypeId="NUMBER" dbEntityId="PGC10000" description="Annual revenue"/>
     <DBField dbFieldId="PGC10000_11" dbFieldName="tickerSymbol" dbFieldTypeId="STRING" dbEntityId="PGC10000" description="Ticker symbol"/>
     <DBField dbFieldId="PGC10000_12" dbFieldName="comments" dbFieldTypeId="STRING" dbEntityId="PGC10000" description="Comments"/>
@@ -421,7 +421,7 @@ under the License.
     <DBFieldLabel dbFieldLabelId="PGC10000_08_ZH" dbFieldId="PGC10000_08" language="zh" value="税号"/>
     <DBFieldLabel dbFieldLabelId="PGC10000_08_EN" dbFieldId="PGC10000_08" language="en" value="Tax code"/>
     <DBFieldLabel dbFieldLabelId="PGC10000_09_ZH" dbFieldId="PGC10000_09" language="zh" value="员工人数"/>
-    <DBFieldLabel dbFieldLabelId="PGC10000_09_EN" dbFieldId="PGC10000_09" language="en" value="Employee numbers"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_09_EN" dbFieldId="PGC10000_09" language="en" value="Employees"/>
     <DBFieldLabel dbFieldLabelId="PGC10000_10_ZH" dbFieldId="PGC10000_10" language="zh" value="年收入"/>
     <DBFieldLabel dbFieldLabelId="PGC10000_10_EN" dbFieldId="PGC10000_10" language="en" value="Annual revenue"/>
     <DBFieldLabel dbFieldLabelId="PGC10000_11_ZH" dbFieldId="PGC10000_11" language="zh" value="股票代码"/>
@@ -442,9 +442,9 @@ under the License.
     <DBField dbFieldId="DPT10000_01" dbFieldName="partyName" dbFieldTypeId="STRING" dbEntityId="DPT10000" description="Name"/>
     <DBField dbFieldId="DPT10000_02" dbFieldName="partyId" dbFieldTypeId="STRING" dbEntityId="DPT10000" description="Name"/>
     <DBFieldLabel dbFieldLabelId="DPT10000_01_ZH" dbFieldId="DPT10000_01" language="zh" value="部门"/>
-    <DBFieldLabel dbFieldLabelId="DPT10000_01_EN" dbFieldId="DPT10000_01" language="en" value="Department Name"/>
+    <DBFieldLabel dbFieldLabelId="DPT10000_01_EN" dbFieldId="DPT10000_01" language="en" value="Department name"/>
     <DBFieldLabel dbFieldLabelId="DPT10000_02_ZH" dbFieldId="DPT10000_02" language="zh" value="部门"/>
-    <DBFieldLabel dbFieldLabelId="DPT10000_02_EN" dbFieldId="DPT10000_02" language="en" value="Department Name"/>
+    <DBFieldLabel dbFieldLabelId="DPT10000_02_EN" dbFieldId="DPT10000_02" language="en" value="Department name"/>
 
     <!-- Entity labels for view-entity PartyContactMechPurpose -->
     <DBEntity dbEntityId="PCMP10000" dbEntityName="PartyContactMechPurpose" description="Party ContactMech Purpose" isOpen="N" />
@@ -618,7 +618,7 @@ under the License.
     <DBFieldLabel dbFieldLabelId="PRD10000_04_ZH" dbFieldId="PRD10000_04" language="zh" value="数量单位"/>
     <DBFieldLabel dbFieldLabelId="PRD10000_04_EN" dbFieldId="PRD10000_04" language="en" value="Quantity UOM"/>
     <DBFieldLabel dbFieldLabelId="PRD10000_05_ZH" dbFieldId="PRD10000_05" language="zh" value="产品财务分类"/>
-    <DBFieldLabel dbFieldLabelId="PRD10000_05_EN" dbFieldId="PRD10000_05" language="en" value="Financial Category"/>
+    <DBFieldLabel dbFieldLabelId="PRD10000_05_EN" dbFieldId="PRD10000_05" language="en" value="Financial category"/>
 
     <!-- Entity labels for entity Service -->
     <DBEntity dbEntityId="SRV10000" dbEntityName="Product" dbEntityTypeId="SERVICE" description="Product" isOpen="N" />
@@ -636,7 +636,7 @@ under the License.
     <DBFieldLabel dbFieldLabelId="SRV10000_04_ZH" dbFieldId="SRV10000_04" language="zh" value="数量单位"/>
     <DBFieldLabel dbFieldLabelId="SRV10000_04_EN" dbFieldId="SRV10000_04" language="en" value="Quantity UOM"/>
     <DBFieldLabel dbFieldLabelId="SRV10000_05_ZH" dbFieldId="SRV10000_05" language="zh" value="产品财务分类"/>
-    <DBFieldLabel dbFieldLabelId="SRV10000_05_EN" dbFieldId="SRV10000_05" language="en" value="Financial Category"/>
+    <DBFieldLabel dbFieldLabelId="SRV10000_05_EN" dbFieldId="SRV10000_05" language="en" value="Financial category"/>
 
     <!-- Entity labels for entity ProductCategory -->
     <DBEntity dbEntityId="PRC10000" dbEntityName="ProductCategory" description="Product" isOpen="N" />
