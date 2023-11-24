@@ -895,7 +895,7 @@
             <DataFieldForAction Label="${create}" Action="CreatePersonAndContact" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
         <LineItem Qualifier="PartyRelationshipLineItemWithoutAction">
-            <DataField Values="partyName,primaryPhone,phoneMobile,primaryEmail,position" Importance="High"/>
+            <DataField Values="firstName,lastName,primaryPhone,phoneMobile,primaryEmail,position" Importance="High"/>
         </LineItem>
         <LineItem Qualifier="BeneficialPersonLineItem">
             <DataField Values="firstName,lastName,primaryPhone,phoneMobile,primaryEmail,amount,nationality,copyIdentificationAttached" Importance="High"/>
