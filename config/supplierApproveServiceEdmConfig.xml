@@ -21,6 +21,7 @@
         <Property Name="ddFormType" Type="String" Label="${ddFormType}"/>
         <!--供应商填写ddForm进度情况-->
         <Property Name="ddFormDealStatus" Type="String" Label="${ddFormDealStatus}"/>
+        <Property Name="ddFormStatusHistory" Type="String" IsAttribute="true"/>
         <!--供应商完成ddForm时间-->
         <Property Name="cycleTime" Type="String" Label="${cycleTime}"/>
         <!--供应商ddForm响应时间-->

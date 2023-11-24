@@ -27,7 +27,7 @@ def generateFields(Map<String, Object> context){
     List<Entity> entityList = context.parameters.entityList;
     Delegator delegator = context.get("delegator");
     Map<String, Object> ddFormTypeMap = UtilMisc.toMap("No DD", 1L, "Simplified", 2L, "Standard", 3L);
-    Map<String, Object> ddFormDealMap = UtilMisc.toMap("Not Request", 1L, "Request", 2L, "Submitted", 3L);
+    Map<String, Object> ddFormDealMap = UtilMisc.toMap("Not Request", 1L, "Request", 2L, "Submitted", 3L, "Require Changes", 1L);
     entityList.each { entity ->
         String ddFormType;
         String ddFormDealStatus;

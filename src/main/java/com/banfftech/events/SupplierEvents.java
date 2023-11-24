@@ -231,18 +231,17 @@ public class SupplierEvents {
             return null;
         }
         supplierParty = supplierPartyEntity.getGenericValue();
+
+        //查询登录人所属供应商
         List<GenericValue> partyRelationships = delegator.findByAnd("PartyRelationship", UtilMisc.toMap("partyIdTo", supplierParty.get("partyId"), "roleTypeIdFrom", "SUPPLIER", "roleTypeIdTo", "CONTACT"), null, false);
         GenericValue partyRelationship = EntityUtil.getFirst(partyRelationships);
-        String supplierPartyId = null;
-        if (UtilValidate.isNotEmpty(partyRelationship)) {
-            supplierPartyId = partyRelationship.getString("partyIdFrom");
-        } else {
-            supplierPartyId = supplierParty.getString("partyId");
-        }
+        String supplierPartyId = UtilValidate.isEmpty(partyRelationship) ?
+                supplierParty.getString("partyId") : partyRelationship.getString("partyIdFrom");
         List<GenericValue> workEffortAndPartyGroupContacts = delegator.findByAnd("WorkEffortAndPartyGroupContact", UtilMisc.toMap("partyId", supplierPartyId, "approvePartyId", supplierPartyId), null, false);
         if (UtilValidate.isEmpty(workEffortAndPartyGroupContacts)){
             throw new OfbizODataException("You must assign party to approve!");
         }
+
         GenericValue workEffortAndPartyGroupContact = EntityUtil.getFirst(workEffortAndPartyGroupContacts);
         dispatcher.runSync("banfftech.createPartySurveyAppl",
                 UtilMisc.toMap("userLogin", userLogin, "partyId", supplierPartyId,
@@ -265,8 +264,24 @@ public class SupplierEvents {
                 UtilMisc.toMap("userLogin", userLogin, "surveyQuestionId", "9004",
                         "partyId", supplierPartyId));
         dispatcher.runSync("banfftech.updateWorkEffortAndPartyGroupContact",
-                UtilMisc.toMap("userLogin", userLogin, "currentStatusId", "PROCESSED", "workEffortId", workEffortAndPartyGroupContact.get("workEffortId"), "partyId", supplierPartyId));
+                UtilMisc.toMap("userLogin", userLogin, "currentStatusId", "PROCESSED",
+                        "workEffortId", workEffortAndPartyGroupContact.get("workEffortId"),
+                        "partyId", supplierPartyId));
+        //第一次提交后创建attribute字段作为ddForm已提交状态记录
+        ddFormFirstSubmitRecord(delegator, dispatcher, userLogin, supplierPartyId);
         return null;
+    }
+
+    private static void ddFormFirstSubmitRecord(Delegator delegator, LocalDispatcher dispatcher, GenericValue userLogin,String supplierPartyId)
+            throws GenericEntityException, GenericServiceException {
+
+        GenericValue ddFormStatusHistory = delegator.findOne("PartyAttribute",
+                UtilMisc.toMap("partyId", supplierPartyId, "attrName", "ddFormStatusHistory"), true);
+        if (UtilValidate.isEmpty(ddFormStatusHistory)){
+            dispatcher.runSync("banfftech.createPartyAttribute",
+                    UtilMisc.toMap("userLogin", userLogin, "partyId", supplierPartyId,
+                            "attrName", "ddFormStatusHistory", "attrValue", "Submitted"));
+        }
     }
 
     /**
