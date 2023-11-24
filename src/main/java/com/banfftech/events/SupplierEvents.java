@@ -424,7 +424,7 @@ public class SupplierEvents {
         List<String> partyIds = (List<String>) actionParameters.get("partyId");
         for (String partyId : partyIds){
             if(CommonUtils.checkInputRepeat(delegator, "partyIdFrom", "PartyRelationship", UtilMisc.toMap("partyIdTo", supplierPartyId, "roleTypeIdFrom", "DEPARTMENT"), partyId)){
-                throw new OfbizODataException("请勿选择重复部门！");
+                throw new OfbizODataException("Don't select repeat department！");
             }
             dispatcher.runSync("banfftech.createPartyRelationship",
                     UtilMisc.toMap("userLogin", userLogin, "roleTypeIdFrom", "DEPARTMENT", "partyIdFrom", partyId,

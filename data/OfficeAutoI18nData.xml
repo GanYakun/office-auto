@@ -565,8 +565,8 @@ under the License.
     <DBField dbFieldId="PAC10000_04" dbFieldName="primaryPhone" dbFieldTypeId="STRING" dbEntityId="PAC10000" description="Telephone"/>
     <DBField dbFieldId="PAC10000_05" dbFieldName="phoneMobile" dbFieldTypeId="STRING" dbEntityId="PAC10000" description="Mobile"/>
     <DBField dbFieldId="PAC10000_06" dbFieldName="partyId" dbFieldTypeId="STRING" dbEntityId="PAC10000" description="Party ID"/>
-    <DBField dbFieldId="PAC10000_07" dbFieldName="firstName" dbFieldTypeId="STRING" dbEntityId="PAC10000" description="First Name"/>
-    <DBField dbFieldId="PAC10000_08" dbFieldName="lastName" dbFieldTypeId="STRING" dbEntityId="PAC10000" description="Last Name"/>
+    <DBField dbFieldId="PAC10000_07" dbFieldName="firstName" dbFieldTypeId="STRING" dbEntityId="PAC10000" description="First name"/>
+    <DBField dbFieldId="PAC10000_08" dbFieldName="lastName" dbFieldTypeId="STRING" dbEntityId="PAC10000" description="Last name"/>
     <DBField dbFieldId="PAC10000_09" dbFieldName="nationality" dbFieldTypeId="STRING" dbEntityId="PAC10000" description="Nationality"/>
     <DBField dbFieldId="PAC10000_10" dbFieldName="copyIdentificationAttached" dbFieldTypeId="STRING" dbEntityId="PAC10000" description="Copy of supporting identification attached"/>
     <DBFieldLabel dbFieldLabelId="PAC10000_01_ZH" dbFieldId="PAC10000_01" language="zh" value="名字"/>
@@ -581,9 +581,9 @@ under the License.
     <DBFieldLabel dbFieldLabelId="PAC10000_05_EN" dbFieldId="PAC10000_05" language="en" value="Mobile"/>
     <DBFieldLabel dbFieldLabelId="PAC10000_06_ZH" dbFieldId="PAC10000_06" language="zh" value="Party ID"/>
     <DBFieldLabel dbFieldLabelId="PAC10000_06_EN" dbFieldId="PAC10000_06" language="en" value="Party ID"/>
-    <DBFieldLabel dbFieldLabelId="PAC10000_07_ZH" dbFieldId="PAC10000_07" language="en" value="First Name"/>
+    <DBFieldLabel dbFieldLabelId="PAC10000_07_ZH" dbFieldId="PAC10000_07" language="en" value="First name"/>
     <DBFieldLabel dbFieldLabelId="PAC10000_07_EN" dbFieldId="PAC10000_07" language="zh" value="姓"/>
-    <DBFieldLabel dbFieldLabelId="PAC10000_08_ZH" dbFieldId="PAC10000_08" language="en" value="Last Name"/>
+    <DBFieldLabel dbFieldLabelId="PAC10000_08_ZH" dbFieldId="PAC10000_08" language="en" value="Last name"/>
     <DBFieldLabel dbFieldLabelId="PAC10000_08_EN" dbFieldId="PAC10000_08" language="zh" value="名"/>
     <DBFieldLabel dbFieldLabelId="PAC10000_09_ZH" dbFieldId="PAC10000_09" language="en" value="Nationality"/>
     <DBFieldLabel dbFieldLabelId="PAC10000_09_EN" dbFieldId="PAC10000_09" language="zh" value="国籍"/>
