@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Map;
 
 public class SupplierWorker {
+    public static final Map<String, Object> DDType = UtilMisc.toMap("No DD", "NOT_DD",
+            "Simplified", "SIMPLIFIED_DD", "Standard", "STANDARD_DD");
     /**
      * 判断供应商填写的ddForm类型
      * @param supplierParty 供应商
@@ -83,12 +85,15 @@ public class SupplierWorker {
         Boolean isSent = ddFormIsSent(delegator, supplierParty);
         Boolean isSubmit = ddFormIsSubmitted(delegator, supplierParty);
         Boolean isRequireChanges = ddFormRequireChanges(delegator, supplierParty);
-        if (isSent && !isSubmit && !isRequireChanges){
+        Boolean isWrongType = ddFormIsWrongType(delegator, supplierParty);
+        if (isSent && !isSubmit && !isRequireChanges && !isWrongType){
             ddFormDealStatus = "Request";
-        }else if (isSubmit && !isRequireChanges){
+        }else if (isSubmit && !isRequireChanges && !isWrongType){
             ddFormDealStatus = "Submitted";
-        }else if (isRequireChanges){
+        }else if(!isWrongType && isRequireChanges){
             ddFormDealStatus = "Require Changes";
+        }else if (isWrongType){
+            ddFormDealStatus = "Wrong Types";
         }
         return ddFormDealStatus;
     }
@@ -115,6 +120,27 @@ public class SupplierWorker {
             isSubmit = true;
         }
         return isSubmit;
+    }
+
+    private static Boolean ddFormIsWrongType(Delegator delegator, GenericValue supplierParty) throws GenericEntityException{
+        Boolean isWrongType = false;
+        GenericValue partyAttribute = delegator.findOne("PartyAttribute",
+                UtilMisc.toMap("partyId", supplierParty.get("partyId"), "attrName", "ddFormType"), true);
+        List<GenericValue> supplierWorkEfforts = delegator.findByAnd("WorkEffortAndPartyGroupContact",
+                UtilMisc.toMap("partyId", supplierParty.get("partyId"), "approvePartyId", supplierParty.get("partyId")), null, true);
+        if (UtilValidate.isEmpty(supplierWorkEfforts)){
+            return false;
+        }
+        GenericValue supplierWorkEffort = EntityUtil.getFirst(supplierWorkEfforts);
+        if (UtilValidate.isEmpty(partyAttribute)){
+            return false;
+        }
+        String selectDDType = partyAttribute.getString("attrValue");
+        String recommendDDType = getDDFormType(supplierParty, delegator);
+        if (!selectDDType.equals(DDType.get(recommendDDType)) && supplierWorkEffort.get("currentStatusId").equals("NOT_PROCESSED")){
+            isWrongType = true;
+        }
+        return isWrongType;
     }
 
     private static Boolean ddFormRequireChanges(Delegator delegator, GenericValue supplierParty) throws GenericEntityException {
