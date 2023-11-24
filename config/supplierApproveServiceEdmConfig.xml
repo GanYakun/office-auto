@@ -316,6 +316,11 @@
             <Parameter Name="partyUserLogin" Type="PartyUserLogin" Nullable="false" IsCollection="false"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
+
+        <Action Name="ImportProducts" IsBound="true" OfbizService="com.banfftech.events.UploadEvent.importProduct">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <Parameter Name="file" Type="Stream" Nullable="false" IsCollection="false"/>
+        </Action>
     </EntityType>
 
     <!--======================================CoWorkHistory（审批历史）========================================-->

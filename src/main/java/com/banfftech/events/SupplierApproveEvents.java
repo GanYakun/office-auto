@@ -168,14 +168,6 @@ public class SupplierApproveEvents {
         return null;
     }
 
-    private static GenericValue getParentWorkEffort(Delegator delegator, GenericValue genericValue) throws GenericEntityException {
-        String workEffortParentId = genericValue.getString("workEffortParentId");
-        return UtilValidate.isNotEmpty(workEffortParentId) ?
-                genericValue.getRelatedOne("ParentWorkEffort", false) : genericValue;
-
-    }
-
-
     /**
      * 完成注册
      */

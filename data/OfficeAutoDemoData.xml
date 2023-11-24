@@ -241,6 +241,7 @@ under the License.
     <UomType uomTypeId="QUANTITY_MEASURE" description="Quantity"/>
     <Uom uomId="SET" uomTypeId="QUANTITY_MEASURE" description="Set"/>
     <Uom uomId="PAIR" uomTypeId="QUANTITY_MEASURE" description="Pair"/>
+    <Uom uomId="_NA_" uomTypeId="QUANTITY_MEASURE" description="_NA_"/>
     <Product productId="9000" productTypeId="FINISHED_GOOD" productName="ASUS desktop computer A380" primaryProductCategoryId="GENERAL_GOODS_SERVICE" quantityUomId="SET"/>
     <Product productId="9001" productTypeId="FINISHED_GOOD" productName="ASUS Tx series note book" primaryProductCategoryId="GENERAL_GOODS_SERVICE" quantityUomId="SET"/>
     <Product productId="9002" productTypeId="FINISHED_GOOD" productName="ASUS keyboard" primaryProductCategoryId="GENERAL_GOODS_SERVICE" quantityUomId="SET"/>
@@ -291,6 +292,8 @@ under the License.
     <RoleTypeUILabApp roleTypeId="CTO" roleTypeUILabAppId="10004" uiLabAppId="10002"/>
     <RoleTypeUILabApp roleTypeId="PROCUREMENT" roleTypeUILabAppId="10005" uiLabAppId="10003"/>
     <RoleTypeUILabApp roleTypeId="CONTACT" roleTypeUILabAppId="10006" uiLabAppId="10004"/>
+    <RoleTypeUILabApp roleTypeId="SUPPLIER" roleTypeUILabAppId="10007" uiLabAppId="10004"/>
+    <RoleTypeUILabApp roleTypeId="PROCUREMENT" roleTypeUILabAppId="1000" uiLabAppId="10000"/>
 
     <!-- ContactMechPurposeType(联系目的类型) -->
     <ContactMechPurposeType contactMechPurposeTypeId="LOCATION" description="Location"/>
