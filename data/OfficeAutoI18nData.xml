@@ -208,6 +208,8 @@ under the License.
     <Internationalization id="BusinessLocation_zh" lang="zh" property="BusinessLocation" value=""/>
     <Internationalization id="WorkScopeAnswer_en" lang="en" property="WorkScopeAnswer" value=""/>
     <Internationalization id="WorkScopeAnswer_zh" lang="zh" property="WorkScopeAnswer" value=""/>
+    <Internationalization id="complianceComments_en" lang="en" property="complianceComments" value="Comments"/>
+    <Internationalization id="complianceComments_zh" lang="zh" property="complianceComments" value="Comments"/>
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
     <DBField dbFieldId="CUST_REQ_10001" dbFieldName="statusId" dbFieldTypeId="STATUS" description="当前状态" dbEntityId="CUST_REQ_10000"/>
