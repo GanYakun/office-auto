@@ -19,6 +19,7 @@ import org.apache.ofbiz.service.GenericServiceException;
 import org.apache.ofbiz.service.LocalDispatcher;
 import org.apache.olingo.commons.api.edm.EdmBindingTarget;
 
+import javax.mail.MessagingException;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
@@ -471,5 +472,19 @@ public class SupplierEvents {
         GenericValue partyRelationship = EntityUtil.getFirst(partyRelationships);
         dispatcher.runSync("banfftech.deletePartyRelationship",
                 UtilMisc.toMap("userLogin", userLogin, "partyRelationshipId", partyRelationship.get("partyRelationshipId")));
+    }
+
+    /**
+     * 完成文件上传
+     */
+    public static void finishDomUpload(Map<String, Object> oDataContext, Map<String, Object> actionParameters, EdmBindingTarget edmBindingTarget)
+            throws GenericServiceException {
+        LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
+        GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
+        OdataOfbizEntity supplierPartyEntity = (OdataOfbizEntity) actionParameters.get("supplierParty");
+        GenericValue supplierParty = supplierPartyEntity.getGenericValue();
+        dispatcher.runSync("banfftech.createPartyAttributeDate",
+                UtilMisc.toMap("userLogin", userLogin, "partyId", supplierParty.get("partyId"),
+                        "attrName", "finishDomUploadDate", "attrValue", UtilDateTime.nowTimestamp()));
     }
 }

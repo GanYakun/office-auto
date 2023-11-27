@@ -81,21 +81,20 @@ public class SupplierWorker {
      * @return ddFormDealStatus
      */
     public static String getDDFormDealStatus (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-        String ddFormDealStatus = "Not Request";
         Boolean isSent = ddFormIsSent(delegator, supplierParty);
         Boolean isSubmit = ddFormIsSubmitted(delegator, supplierParty);
         Boolean isRequireChanges = ddFormRequireChanges(delegator, supplierParty);
         Boolean isWrongType = ddFormIsWrongType(delegator, supplierParty);
-        if (isSent && !isSubmit && !isRequireChanges && !isWrongType){
-            ddFormDealStatus = "Request";
-        }else if (isSubmit && !isRequireChanges && !isWrongType){
-            ddFormDealStatus = "Submitted";
-        }else if(!isWrongType && isRequireChanges){
-            ddFormDealStatus = "Require Changes";
-        }else if (isWrongType){
-            ddFormDealStatus = "Wrong Types";
+        if (isWrongType){
+            return "Wrong Types";
+        }else if (isRequireChanges){
+            return "Require Changes";
+        }else if (isSubmit){
+            return "Submitted";
+        }else if (isSent){
+            return "Request";
         }
-        return ddFormDealStatus;
+        return "Not Request";
     }
 
     private static Boolean ddFormIsSent(Delegator delegator, GenericValue supplierParty) throws GenericEntityException {
@@ -168,12 +167,17 @@ public class SupplierWorker {
     public static String calculateCycleTime (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
         String cycleTime = "0 days";
         List<GenericValue> supplierWorkEfforts = delegator.findByAnd("WorkEffortAndPartyGroupContact",
-                UtilMisc.toMap("partyId", supplierParty.get("partyId"), "approvePartyId", supplierParty.get("partyId")), null, true);
+                UtilMisc.toMap("partyId", supplierParty.get("partyId"), "workEffortTypeId", "COWORK", "currentStatusId", "REGISTERED"), null, true);
         if (UtilValidate.isEmpty(supplierWorkEfforts)){
             return "0 days";
         }
+        GenericValue partyAttributeDate = delegator.findOne("PartyAttributeDate",
+                UtilMisc.toMap("partyId", supplierParty.get("partyId"), "attrName", "finishDomUploadDate"), true);
+        if (UtilValidate.isEmpty(partyAttributeDate)){
+            return "0 days";
+        }
         GenericValue supplierWorkEffort = EntityUtil.getFirst(supplierWorkEfforts);
-        Timestamp submitTime = supplierWorkEffort.getTimestamp("createdDate");
+        Timestamp submitTime = partyAttributeDate.getTimestamp("attrValue");
         Timestamp completeDDFormTime = supplierWorkEffort.getTimestamp("lastModifiedDate");
         //计算时间差，并转化为~days的时间格式
         long submitTimeSecond = submitTime.getTime();
