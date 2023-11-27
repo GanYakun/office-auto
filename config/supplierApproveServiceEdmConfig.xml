@@ -33,6 +33,8 @@
         <Property Name="collectionDate" Type="Timestamp" IsDateAttribute="true"/>
         <!--文件上传完成时间-->
         <Property Name="finishDomUploadDate" Type="Timestamp" IsDateAttribute="true"/>
+        <!--记录是否已完成文件上传-->
+        <Property Name="isFinishedDomUpload" Type="Boolean" IsAttribute="true"/>
         <Property Name="totalAmount" Type="BigDecimal" Scale="3"/>
         <!--WorkEffort提交状态颜色显示-->
         <Property Name="criticalityValue" Type="numeric" Hidden="true" HiddenFilter="true"/>

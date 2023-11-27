@@ -486,5 +486,8 @@ public class SupplierEvents {
         dispatcher.runSync("banfftech.createPartyAttributeDate",
                 UtilMisc.toMap("userLogin", userLogin, "partyId", supplierParty.get("partyId"),
                         "attrName", "finishDomUploadDate", "attrValue", UtilDateTime.nowTimestamp()));
+        dispatcher.runSync("banfftech.createPartyAttribute",
+                UtilMisc.toMap("userLogin", userLogin, "partyId", supplierParty.get("partyId"),
+                        "attrName", "isFinishedDomUpload", "attrValue", "Y"));
     }
 }
