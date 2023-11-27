@@ -51,6 +51,12 @@
             <Text Path="PriorityEnumeration/description" TextArrangement="TextOnly"/>
             <ValueList CollectionPath="PriorityEnumerations" WithFixedValues="true" Label="${selectPriority}"/>
         </Property>
+        <Property Name="employeesSection">
+            <Text Path="EmployeesEnumeration/description" TextArrangement="TextOnly"/>
+        </Property>
+        <Property Name="tickerSymbol">
+            <Text Path="ListRegionEnumeration/description" TextArrangement="TextOnly"/>
+        </Property>
         <Property Name="usccNumber" Type="String" HiddenFilter="true"/>
         <RelAlias Name="PersonAndContact" Relations="FromPartyRelationship(roleTypeIdTo=CONTACT and roleTypeIdFrom=SUPPLIER)/ToPersonAndContact"/>
         <Property Name="contactName" RelAlias="PersonAndContact" Field="partyName" Computed="true"/>
@@ -113,6 +119,8 @@
         <NavigationProperty Name="PriorityEnumeration"/>
         <NavigationProperty Name="ProductCategory" Type="ProductCategory" Relations="ProductCategoryRole/ProductCategory" IsCollection="false"/>
         <NavigationProperty Name="Department" Type="Department" Relations="ToPartyRelationship(roleTypeIdFrom=DEPARTMENT)/FromParty" IsCollection="true"/>
+        <NavigationProperty Name="EmployeesEnumeration" Type="EmployeesEnumeration" Relations="EmployeesEnumeration"/>
+        <NavigationProperty Name="ListRegionEnumeration" Type="ListRegionEnumeration" Relations="ListRegionEnumeration"/>
 
         <!-- 财务报表 -->
         <NavigationProperty Name="FinancialStatements" Type="PartyMediaResource"
@@ -136,13 +144,13 @@
         <DataPoint Title="${ddFormType}" Value="ddFormType" Qualifier="DDFormType"/>
         <DataPoint Title="${SupplierCategory}" Value="ProductCategory/categoryName" Qualifier="SupplierCategory"/>
         <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">
-            <DataField Values="usccNumber,numEmployees,isGovernment,annualRevenue,tickerSymbol,comments" Importance="High"/>
+            <DataField Values="usccNumber,employeesSection,isGovernment,annualRevenue,tickerSymbol,comments" Importance="High"/>
         </FieldGroup>
         <FieldGroup Qualifier="WorkScope" Label="WorkScope">
             <DataField Values="workScope" Importance="High"/>
         </FieldGroup>
         <FieldGroup Qualifier="PartyGroupFieldGroupWithAction" Label="PartyGroupFieldGroupWithAction">
-            <DataField Values="usccNumber,numEmployees,isGovernment,annualRevenue,tickerSymbol,comments,priority" Importance="High"/>
+            <DataField Values="usccNumber,employeesSection,isGovernment,annualRevenue,tickerSymbol,comments,priority" Importance="High"/>
             <DataFieldForAction Label="${UpdateBasicInfo}" Action="FillSupplierBaseInfo" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated" Hidden="disableEditSupplier"/>
         </FieldGroup>
 <!--        <FieldGroup Qualifier="FileCountGroup" Label="FileCountGroup">-->
@@ -209,9 +217,17 @@
                 OfbizService="com.banfftech.events.SupplierEvents.fillSupplierBaseInfo"
                 StickySession="true" SideEffects="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
-            <Parameter Name="numEmployees" Type="BigDecimal" Label="${supplierUpdateActionNumEmployees}"/>
+            <Parameter Name="employeesSection" Type="String" Label="${supplierUpdateActionNumEmployees}">
+                <ValueList CollectionPath="EmployeesEnumerations" WithFixedValues="true">
+                    <ParameterInOut LocalDataProperty="employeesSection" ValueListProperty="enumId"/>
+                </ValueList>
+            </Parameter>
             <Parameter Name="annualRevenue" Type="BigDecimal" Scale="2" Label="${supplierUpdateActionAnnualRevenue}"/>
-            <Parameter Name="tickerSymbol" Type="String" Label="${supplierUpdateActionTickerSymbol}"/>
+            <Parameter Name="tickerSymbol" Type="String" Label="${supplierUpdateActionTickerSymbol}">
+                <ValueList WithFixedValues="true" CollectionPath="ListRegionEnumerations">
+                    <ParameterInOut LocalDataProperty="tickerSymbol" ValueListProperty="enumId"/>
+                </ValueList>
+            </Parameter>
             <Parameter Name="comments" Type="String" Label="${supplierUpdateActionComments}"/>
             <Parameter Name="usccNumber" Type="String" Label="${usccNumber}"/>
             <Parameter Name="priority" Type="String" Label="${Priority}">
@@ -1039,6 +1055,18 @@
     </EntityType>
 
     <EntityType Name="DDFormEnumeration" EntitySetName="DDFormEnumerations" OfbizEntity="Enumeration" EntityCondition="enumTypeId=DD_FROM_TYPE_ENUM" AutoProperties="true">
+        <Property Name="enumId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+
+    <EntityType Name="EmployeesEnumeration" EntitySetName="EmployeesEnumerations" OfbizEntity="Enumeration" EntityCondition="enumTypeId=EMPLOYEES_ENUM" AutoProperties="true">
+        <Property Name="enumId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+
+    <EntityType Name="ListRegionEnumeration" EntitySetName="ListRegionEnumerations" OfbizEntity="Enumeration" EntityCondition="enumTypeId=LIST_REGION_ENUM" AutoProperties="true">
         <Property Name="enumId">
             <Text Path="description" TextArrangement="TextOnly"/>
         </Property>

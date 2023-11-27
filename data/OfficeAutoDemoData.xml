@@ -273,6 +273,26 @@ under the License.
     <Enumeration enumId="SIMPLIFIED_DD" enumTypeId="DD_FROM_TYPE_ENUM" description="Simplified"/>
     <Enumeration enumId="STANDARD_DD" enumTypeId="DD_FROM_TYPE_ENUM" description="Standard"/>
 
+    <!--公司人数范围枚举值-->
+    <!--EnumerationType-->
+    <EnumerationType enumTypeId="EMPLOYEES_ENUM" description="Employees Enumeration"/>
+    <!--Enumeration-->
+    <Enumeration enumId="EMP_LT1000" enumTypeId="EMPLOYEES_ENUM" description="Less than 1000"/>
+    <Enumeration enumId="EMP_GE1000_LT5000" enumTypeId="EMPLOYEES_ENUM" description="Between 1000~5000"/>
+    <Enumeration enumId="EMP_GE5000_LT10000" enumTypeId="EMPLOYEES_ENUM" description="Between 5000~10000"/>
+    <Enumeration enumId="EMP_GE10000" enumTypeId="EMPLOYEES_ENUM" description="Greater than 10000"/>
+
+    <!--上市地区枚举值-->
+    <!--EnumerationType-->
+    <EnumerationType enumTypeId="LIST_REGION_ENUM" description="List Region Enumeration"/>
+    <!--Enumeration-->
+    <Enumeration enumId="LIST_CHINA" enumTypeId="LIST_REGION_ENUM" description="List in China"/>
+    <Enumeration enumId="LIST_EU" enumTypeId="LIST_REGION_ENUM" description="List in Europe"/>
+    <Enumeration enumId="LIST_UK" enumTypeId="LIST_REGION_ENUM" description="List in UK"/>
+    <Enumeration enumId="LIST_US" enumTypeId="LIST_REGION_ENUM" description="List in US"/>
+    <Enumeration enumId="LIST_UAE" enumTypeId="LIST_REGION_ENUM" description="List in UAE"/>
+
+
     <!-- PartyIdentificationType(社会统一码) -->
     <PartyIdentificationType partyIdentificationTypeId="USCC_OF_CHINESE_ORG"/>
 <!--    <PartyQuestionAppl partyQuatsionApplId="9000" partyId="SUPPLIER0001" surveyQuestionId="9000" partyQuestionApplTypeId="DD_FORM" requiredField="Y" sequenceNum="1"/>-->

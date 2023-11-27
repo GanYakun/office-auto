@@ -218,4 +218,10 @@
 		<field name="email" type="short-varchar"/>
 	</extend-entity>
 
+	<extend-entity entity-name="PartyAttribute">
+		<relation type="one-nofk" title="Employees" rel-entity-name="Enumeration">
+			<key-map field-name="attrValue" rel-field-name="enumId"/>
+		</relation>
+	</extend-entity>
+
 </entitymodel>

@@ -82,7 +82,7 @@ under the License.
     <Internationalization id="I10059" lang="zh" property="supplierUpdateActionNumEmployees" value="员工数量"/>
     <Internationalization id="I10060" lang="en" property="supplierUpdateActionAnnualRevenue" value="Annual revenue"/>
     <Internationalization id="I10061" lang="zh" property="supplierUpdateActionAnnualRevenue" value="年利润"/>
-    <Internationalization id="I10062" lang="en" property="supplierUpdateActionTickerSymbol" value="Ticker symbol"/>
+    <Internationalization id="I10062" lang="en" property="supplierUpdateActionTickerSymbol" value="List region"/>
     <Internationalization id="I10063" lang="zh" property="supplierUpdateActionTickerSymbol" value="股票代码"/>
     <Internationalization id="I10064" lang="en" property="supplierUpdateActionComments" value="Comments"/>
     <Internationalization id="I10065" lang="zh" property="supplierUpdateActionComments" value="备注"/>
@@ -338,9 +338,9 @@ under the License.
     <DBField dbFieldId="WPC10000_06" dbFieldName="firstOrderDate" dbFieldTypeId="DATE_TIME" dbEntityId="WPC10000" description="First order date"/>
     <DBField dbFieldId="WPC10000_07" dbFieldName="collectionDate" dbFieldTypeId="DATE_TIME" dbEntityId="WPC10000" description="On-board date"/>
     <DBField dbFieldId="WPC10000_08" dbFieldName="usccNumber" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Tax code"/>
-    <DBField dbFieldId="WPC10000_09" dbFieldName="numEmployees" dbFieldTypeId="NUMBER" dbEntityId="WPC10000" description="Employees"/>
+    <DBField dbFieldId="WPC10000_09" dbFieldName="employeesSection" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Employees"/>
     <DBField dbFieldId="WPC10000_10" dbFieldName="annualRevenue" dbFieldTypeId="NUMBER" dbEntityId="WPC10000" description="Annual revenue"/>
-    <DBField dbFieldId="WPC10000_11" dbFieldName="tickerSymbol" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Ticker symbol"/>
+    <DBField dbFieldId="WPC10000_11" dbFieldName="tickerSymbol" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="List region"/>
     <DBField dbFieldId="WPC10000_12" dbFieldName="comments" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Comments"/>
     <DBField dbFieldId="WPC10000_13" dbFieldName="approvePartyId" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Task party"/>
     <DBField dbFieldId="WPC10000_14" dbFieldName="currentStatusId" dbFieldTypeId="STATUS" dbEntityId="WPC10000" description="Status"/>
@@ -396,9 +396,9 @@ under the License.
     <DBField dbFieldId="PGC10000_06" dbFieldName="firstOrderDate" dbFieldTypeId="DATE_TIME" dbEntityId="PGC10000" description="First order date"/>
     <DBField dbFieldId="PGC10000_07" dbFieldName="collectionDate" dbFieldTypeId="DATE_TIME" dbEntityId="PGC10000" description="On-board date"/>
     <DBField dbFieldId="PGC10000_08" dbFieldName="usccNumber" dbFieldTypeId="STRING" dbEntityId="PGC10000" description="Tax code"/>
-    <DBField dbFieldId="PGC10000_09" dbFieldName="numEmployees" dbFieldTypeId="NUMBER" dbEntityId="PGC10000" description="Employees"/>
+    <DBField dbFieldId="PGC10000_09" dbFieldName="employeesSection" dbFieldTypeId="STRING" dbEntityId="PGC10000" description="Employees"/>
     <DBField dbFieldId="PGC10000_10" dbFieldName="annualRevenue" dbFieldTypeId="NUMBER" dbEntityId="PGC10000" description="Annual revenue"/>
-    <DBField dbFieldId="PGC10000_11" dbFieldName="tickerSymbol" dbFieldTypeId="STRING" dbEntityId="PGC10000" description="Ticker symbol"/>
+    <DBField dbFieldId="PGC10000_11" dbFieldName="tickerSymbol" dbFieldTypeId="STRING" dbEntityId="PGC10000" description="List region"/>
     <DBField dbFieldId="PGC10000_12" dbFieldName="comments" dbFieldTypeId="STRING" dbEntityId="PGC10000" description="Comments"/>
     <DBField dbFieldId="PGC10000_13" dbFieldName="approvePartyId" dbFieldTypeId="STRING" dbEntityId="PGC10000" description="Task party"/>
     <DBField dbFieldId="PGC10000_14" dbFieldName="currentStatusId" dbFieldTypeId="STATUS" dbEntityId="PGC10000" description="Status"/>
