@@ -224,4 +224,8 @@
 		</relation>
 	</extend-entity>
 
+	<extend-entity entity-name="PartyGroup">
+		<field name="employeesSection" type="long-varchar"/>
+	</extend-entity>
+
 </entitymodel>
