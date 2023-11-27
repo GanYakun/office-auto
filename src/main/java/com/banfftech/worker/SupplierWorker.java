@@ -165,29 +165,39 @@ public class SupplierWorker {
      * @return cycleTime
      */
     public static String calculateCycleTime (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-        String cycleTime = "0 days";
+
         List<GenericValue> supplierWorkEfforts = delegator.findByAnd("WorkEffortAndPartyGroupContact",
                 UtilMisc.toMap("partyId", supplierParty.get("partyId"), "workEffortTypeId", "COWORK", "currentStatusId", "REGISTERED"), null, true);
         if (UtilValidate.isEmpty(supplierWorkEfforts)){
             return "0 days";
         }
+        GenericValue supplierWorkEffort = EntityUtil.getFirst(supplierWorkEfforts);
+        return getDaysDifference(getFinishUploadDate(supplierParty, delegator), supplierWorkEffort.getTimestamp("lastModifiedDate"));
+
+    }
+
+    private static Timestamp getFinishUploadDate (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
         GenericValue partyAttributeDate = delegator.findOne("PartyAttributeDate",
                 UtilMisc.toMap("partyId", supplierParty.get("partyId"), "attrName", "finishDomUploadDate"), true);
         if (UtilValidate.isEmpty(partyAttributeDate)){
+            return null;
+        }
+        return partyAttributeDate.getTimestamp("attrValue");
+    }
+
+    //计算时间差，并转化为~days的时间格式
+    private static String getDaysDifference (Timestamp startDate, Timestamp completionDate){
+        String daysDifference = "0 days";
+        if (UtilValidate.isEmpty(startDate) || UtilValidate.isEmpty(completionDate)){
             return "0 days";
         }
-        GenericValue supplierWorkEffort = EntityUtil.getFirst(supplierWorkEfforts);
-        Timestamp submitTime = partyAttributeDate.getTimestamp("attrValue");
-        Timestamp completeDDFormTime = supplierWorkEffort.getTimestamp("lastModifiedDate");
-        //计算时间差，并转化为~days的时间格式
-        long submitTimeSecond = submitTime.getTime();
-        long completeDDFormTimeSecond = completeDDFormTime.getTime();
-        long cycleTimeSecond = completeDDFormTimeSecond - submitTimeSecond;
-        double cycleTimeFloat = (double) cycleTimeSecond / (3600*1000*24);
-        double days = Math.floor(cycleTimeFloat);
-//        double hours = (cycleTimeFloat - days)*24;
-        cycleTime = (int) days + " days";
-        return cycleTime;
+        long startDateSeconds = startDate.getTime();
+        long completionDateSeconds = completionDate.getTime();
+        long differenceSeconds = completionDateSeconds - startDateSeconds;
+        double differenceDaysFloat = (double) differenceSeconds / (3600*1000*24);
+        double days = Math.floor(differenceDaysFloat);
+        daysDifference = (int) days + " days";
+        return daysDifference;
     }
 
     /**
@@ -197,8 +207,14 @@ public class SupplierWorker {
      * @return responseTime
      */
     public static String calculateResponseTime (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-        String responseTime = "0 days";
-        return responseTime;
+
+        List<GenericValue> supplierWorkEfforts = delegator.findByAnd("WorkEffortAndPartyGroupContact",
+                UtilMisc.toMap("partyId", supplierParty.get("partyId"), "approvePartyId", supplierParty.get("partyId")), null, true);
+        if (UtilValidate.isEmpty(supplierWorkEfforts)){
+           return "0 days";
+        }
+        GenericValue supplierWorkEffort = EntityUtil.getFirst(supplierWorkEfforts);
+        return getDaysDifference(supplierWorkEffort.getTimestamp("createdDate"), getFinishUploadDate(supplierParty, delegator));
     }
 
     /**
