@@ -94,6 +94,7 @@
         <!-- 合规回复参数 -->
         <Property Name="adverseResults" Type="String" Label="${adverseResults}" IsAttribute="true"/>
         <Property Name="additionalProtection" Type="String" Label="${additionalProtection}" IsAttribute="true"/>
+        <Property Name="complianceComments" Type="String" Label="${complianceComments}" IsAttribute="true"/>
 
 
         <NavigationProperty Name="Product" Type="Product" Relations="SupplierProduct/Product" IsCollection="true"/>
@@ -210,6 +211,7 @@
             </Parameter>
             <Parameter Name="adverseResults" Type="String" Nullable="false" IsCollection="false" Label="${adverseResults}"/>
             <Parameter Name="additionalProtection" Type="String" Nullable="false" IsCollection="false" Label="${additionalProtection}"/>
+            <Parameter Name="complianceComments" Type="String" Nullable="false" IsCollection="false" Label="${complianceComments}"/>
         </Action>
 
         <!--填写基本信息-->

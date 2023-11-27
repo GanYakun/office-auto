@@ -36,6 +36,7 @@ public class SupplierEvents {
             OdataOfbizEntity supplierPartyEntity = (OdataOfbizEntity) actionParameters.get("supplierParty");
             String adverseResults = (String) actionParameters.get("adverseResults");
             String additionalProtection = (String) actionParameters.get("additionalProtection");
+            String complianceComments = (String) actionParameters.get("complianceComments");
             GenericValue supplierParty = supplierPartyEntity.getGenericValue();
             String partyId = (String) supplierParty.get("partyId");
             GenericValue party = EntityQuery.use(delegator).from("Party").where("partyId", partyId).queryOne();
@@ -54,6 +55,9 @@ public class SupplierEvents {
             }
             if (UtilValidate.isNotEmpty(additionalProtection)) {
                 CommonUtils.setObjectAttribute(party, "additionalProtection", additionalProtection);
+            }
+            if (UtilValidate.isNotEmpty(complianceComments)) {
+                CommonUtils.setObjectAttribute(party, "complianceComments", complianceComments);
             }
         } catch (GenericEntityException | GenericServiceException e) {
             throw new OfbizODataException(e.getMessage());
