@@ -204,6 +204,10 @@ under the License.
     <Internationalization id="workScope_zh" lang="zh" property="workScope" value=""/>
     <Internationalization id="SupplierCategory_en" lang="en" property="SupplierCategory" value="Category"/>
     <Internationalization id="SupplierCategory_zh" lang="zh" property="SupplierCategory" value="Category"/>
+    <Internationalization id="BusinessLocation_en" lang="en" property="BusinessLocation" value=""/>
+    <Internationalization id="BusinessLocation_zh" lang="zh" property="BusinessLocation" value=""/>
+    <Internationalization id="WorkScopeAnswer_en" lang="en" property="WorkScopeAnswer" value=""/>
+    <Internationalization id="WorkScopeAnswer_zh" lang="zh" property="WorkScopeAnswer" value=""/>
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
     <DBField dbFieldId="CUST_REQ_10001" dbFieldName="statusId" dbFieldTypeId="STATUS" description="当前状态" dbEntityId="CUST_REQ_10000"/>

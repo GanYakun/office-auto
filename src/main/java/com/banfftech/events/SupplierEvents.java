@@ -419,6 +419,41 @@ public class SupplierEvents {
         dispatcher.runSync("banfftech.createUserLogin",
                 UtilMisc.toMap("userLogin", userLogin, "partyId", resultMap.get("partyId"), "userLoginId", "supplier"+resultMap.get("partyId"), "currentPassword", code));
 
+        //create DD Form
+        String partyId = (String) resultMap.get("partyId");
+        String countryIncorporationId = delegator.getNextSeqId("GeoPoint");
+        delegator.create("GeoPoint", UtilMisc.toMap("geoPointId", countryIncorporationId, "latitude", "_NA_", "longitude", "_NA_"));
+        delegator.create("PartyGeoPoint", UtilMisc.toMap("partyGeoPointId",delegator.getNextSeqId("PartyGeoPoint"),
+                "partyId",partyId, "partyGeoPointTypeId", "COUNTRY_INCORPORATION","geoPointId", countryIncorporationId));
+
+        String businessLocationId = delegator.getNextSeqId("GeoPoint");
+        delegator.create("GeoPoint", UtilMisc.toMap("geoPointId", businessLocationId, "latitude", "_NA_", "longitude", "_NA_"));
+        delegator.create("PartyGeoPoint", UtilMisc.toMap("partyGeoPointId",delegator.getNextSeqId("PartyGeoPoint"),
+                "partyId",partyId, "partyGeoPointTypeId", "BUSINESS_LOCATION","geoPointId", businessLocationId));
+        delegator.create("PartyIdentification", UtilMisc.toMap("partyId",partyId, "partyIdentificationTypeId", "REGISTRATION_NUMBER"));
+
+        //SurveyQuestion
+        dispatcher.runSync("banfftech.createPartySurveyAppl",
+                UtilMisc.toMap("userLogin", userLogin, "partyId", partyId, "surveyId", "DD_STD_FORM", "surveyApplTypeId", "DD_FORM"));
+        dispatcher.runSync("banfftech.createSurveyQuestionAnswer",
+                UtilMisc.toMap("userLogin", userLogin, "surveyQuestionAnswerId", delegator.getNextSeqId("SurveyQuestionAnswer"), "surveyQuestionId", "9000", "partyId", partyId, "booleanResponse", "Y"));
+        dispatcher.runSync("banfftech.createSurveyQuestionAnswer",
+                UtilMisc.toMap("userLogin", userLogin, "surveyQuestionAnswerId", delegator.getNextSeqId("SurveyQuestionAnswer"), "surveyQuestionId", "9001", "partyId", partyId, "booleanResponse", "Y"));
+        dispatcher.runSync("banfftech.createSurveyQuestionAnswer",
+                UtilMisc.toMap("userLogin", userLogin, "surveyQuestionAnswerId", delegator.getNextSeqId("SurveyQuestionAnswer"), "surveyQuestionId", "9002", "partyId", partyId, "booleanResponse", "N"));
+        dispatcher.runSync("banfftech.createSurveyQuestionAnswer",
+                UtilMisc.toMap("userLogin", userLogin, "surveyQuestionAnswerId", delegator.getNextSeqId("SurveyQuestionAnswer"), "surveyQuestionId", "9003", "partyId", partyId, "booleanResponse", "N"));
+        dispatcher.runSync("banfftech.createSurveyQuestionAnswer",
+                UtilMisc.toMap("userLogin", userLogin, "surveyQuestionAnswerId", delegator.getNextSeqId("SurveyQuestionAnswer"), "surveyQuestionId", "9004", "partyId", partyId));
+
+        //crate first ContactPerson
+        Map<String, Object> result = dispatcher.runSync("banfftech.createPersonAndContact", UtilMisc.toMap("userLogin", userLogin));
+        String contactPartyId = (String) result.get("partyId");
+        dispatcher.runSync("banfftech.createPartyRole", UtilMisc.toMap("userLogin", userLogin, "partyId", contactPartyId, "roleTypeId", "CONTACT"));
+        dispatcher.runSync("banfftech.createPartyAttribute", UtilMisc.toMap("userLogin", userLogin, "partyId", contactPartyId, "attrName", "position"));
+        dispatcher.runSync("banfftech.createPartyRelationship", UtilMisc.toMap("partyIdFrom", partyId, "roleTypeIdFrom", "SUPPLIER",
+                "partyIdTo", contactPartyId, "roleTypeIdTo", "CONTACT", "fromDate", UtilDateTime.nowTimestamp(), "userLogin", userLogin));
+
     }
 
     public static void selectDepartment(Map<String, Object> oDataContext, Map<String, Object> actionParameters,

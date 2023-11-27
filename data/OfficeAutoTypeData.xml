@@ -34,6 +34,7 @@ under the License.
     <RoleType description="首席财务官" roleTypeId="CFO" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
     <RoleType description="Government Department" roleTypeId="GOVERNMENT_SUPPLIER" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
     <RoleType description="Beneficial Person" roleTypeId="BENEFICIAL_PERSON" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
+    <RoleType description="Senior Staff" roleTypeId="SENIOR_STAFF" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
 
     <CustRequestType description="采购请求" custRequestTypeId="PURCHASE_REQ"/>
 
@@ -55,10 +56,20 @@ under the License.
     <PartyContentType partyContentTypeId="FINANCIAL_STATEMENTS"/>
     <PartyContentType partyContentTypeId="CONFIDENTIALITY_AGREEMENT"/>
     <PartyContentType partyContentTypeId="COMPLIANCE_REPORT"/>
+    <PartyContentType partyContentTypeId="COMMERCIAL_LICENSE"/>
+    <PartyContentType partyContentTypeId="VAT_CERTIFICATE"/>
+    <PartyContentType partyContentTypeId="POA"/>
+    <PartyContentType partyContentTypeId="TAX_CODE"/>
+    <PartyContentType partyContentTypeId="IDENTIFICATION"/>
     <PartyContentType partyContentTypeId="OTHER_FILES"/>
 
     <EnumerationType description="Priority" enumTypeId="PRIORITY" hasTable="N" />
     <Enumeration description="High" enumCode="PRIORITY_HIGH" enumId="PRIORITY_HIGH" enumTypeId="PRIORITY" sequenceId="01"/>
     <Enumeration description="Medium" enumCode="PRIORITY_MEDIUM" enumId="PRIORITY_MEDIUM" enumTypeId="PRIORITY" sequenceId="02"/>
     <Enumeration description="Low" enumCode="PRIORITY_LOW" enumId="PRIORITY_LOW" enumTypeId="PRIORITY" sequenceId="03"/>
+
+    <PartyGeoPointType partyGeoPointTypeId="COUNTRY_INCORPORATION" description="Country of Incorporation" />
+    <PartyGeoPointType partyGeoPointTypeId="BUSINESS_LOCATION" description="Business location" />
+
+    <PartyIdentificationType partyIdentificationTypeId="REGISTRATION_NUMBER"/>
 </entity-engine-xml>

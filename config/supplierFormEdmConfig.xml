@@ -1,0 +1,132 @@
+<ofbiz-edm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://dev.odatalab.com/dtds/edmconfig.xsd" ImportGlobal="false">
+    <ImportEdm Path="component://officeauto/config/launchpadManageEdmConfig.xml"/>
+
+    <!--======================================SupplierParty（主对象）========================================-->
+    <EntityType Name="SupplierParty" EntityCondition="partyId=${company.partyId}"
+                OfbizEntity="PartyGroupAndContact" EntitySetName="SupplierParties" AttrDateEntityName="PartyGroupAttributeDate" AttrEntityName="PartyGroupAttribute"
+                AutoProperties="true" DraftEntityName="SupplierPartyFormDraft" AutoDraft="true">
+        <SelectionFields PropertyPath="partyName"/>
+        <HeaderInfo>
+            <Title Path="partyId"/>
+            <Description Path="partyName"/>
+        </HeaderInfo>
+        <RelAlias Name="CountryIncorporation" Relations="PartyGeoPoint(partyGeoPointTypeId=COUNTRY_INCORPORATION)/GeoPoint"/>
+        <RelAlias Name="BusinessLocation" Relations="PartyGeoPoint(partyGeoPointTypeId=BUSINESS_LOCATION)/GeoPoint"/>
+        <RelAlias Name="PartyIdentification" Relations="PartyIdentification( partyIdentificationTypeId=REGISTRATION_NUMBER)"/>
+        <RelAlias Name="WorkScopeAnswer" Relations="SurveyQuestionAnswer(surveyQuestionId=9004)"/>
+        <RelAlias Name="SurveyQuestionAnswer0" Relations="SurveyQuestionAnswer(surveyQuestionId=9000)"/>
+        <RelAlias Name="SurveyQuestionAnswer1" Relations="SurveyQuestionAnswer(surveyQuestionId=9001)"/>
+        <RelAlias Name="SurveyQuestionAnswer2" Relations="SurveyQuestionAnswer(surveyQuestionId=9002)"/>
+        <RelAlias Name="SurveyQuestionAnswer3" Relations="SurveyQuestionAnswer(surveyQuestionId=9003)"/>
+        <RelAlias Name="ContactPerson" Relations="FromPartyRelationship(roleTypeIdTo=CONTACT and roleTypeIdFrom=SUPPLIER)/ToPersonAndContact"/>
+        <RelAlias Name="ContactPersonPosition" Relations="FromPartyRelationship(roleTypeIdTo=CONTACT and roleTypeIdFrom=SUPPLIER)/ToPersonAndContact/PartyAttribute(attrName=position)"/>
+
+        <Property Name="partyName" Label="1.Full Name of Company or Individual Party"/>
+        <Property Name="address1" Label="2.Registered Address"/>
+        <Property Name="address2" Label="5.Website Address (if any)"/>
+        <Property Name="dateIncorporation" IsDateAttribute="true" Type="Timestamp" Label="3(a).Date of Incorporation/Date of Birth"/>
+        <Property Name="countryIncorporation" Type="String" RelAlias="CountryIncorporation" Field="information" Label="3(b).Country of Incorporation/Country of Birth"/>
+        <Property Name="businessLocation" Type="String" RelAlias="BusinessLocation" Field="information" Label="${BusinessLocation}"/>
+        <Property Name="registrationNumber" Type="String" RelAlias="PartyIdentification" Field="idValue" Label="4.Business Registration Number/Passport number"/>
+        <Property Name="workScope" Type="String" RelAlias="WorkScopeAnswer" Field="textResponse" Label="${WorkScopeAnswer}"/>
+        <Property Name="answer0" Type="Boolean" RelAlias="SurveyQuestionAnswer0" Field="booleanResponse" Label="Does the Business Partner conduct any business in, with, or involving (directly or indirectly) individuals or entities in or from Cuba, Iran, North Korea, Syria, Russia, Belarus or the Crimea region (each, a “Sanctioned Country”)?"/>
+        <Property Name="answer1" Type="Boolean" RelAlias="SurveyQuestionAnswer1" Field="booleanResponse" Label="Does the Business Partner have any physical or legal presence (including offices, branches, and operations) in any Sanctioned Country?"/>
+        <Property Name="answer2" Type="Boolean" RelAlias="SurveyQuestionAnswer2" Field="booleanResponse" Label="Is the Business Partner or any direct or indirect owner of the Business Partner currently listed, or has been listed in the last five (5) years, on any government watchlist, export or trade control list or sanctioned"/>
+        <Property Name="answer3" Type="Boolean" RelAlias="SurveyQuestionAnswer3" Field="booleanResponse" Label="To the best of your knowledge, currently or during the last during the last five (5) years, have any of the Business Partner’s owners, officers, directors or senior management been identified on any official, governmental or regulatory body’s list as a politically exposed person?"/>
+        <Property Name="contactPersonName" Type="String" RelAlias="ContactPerson" Field="partyName" Label="6(a).Point of Contact Name"/>
+        <Property Name="contactPersonPosition" Type="String" RelAlias="ContactPersonPosition" Field="attrValue" Label="6(b).Point of Contact Position"/>
+        <Property Name="contactPhone" Type="String" RelAlias="ContactPerson" Field="primaryPhone" Label="7(a).Business Phone"/>
+        <Property Name="contactEmail" Type="String" RelAlias="ContactPerson" Field="primaryEmail" Label="7(b).Email"/>
+        <Property Name="agent" IsAttribute="true" Type="Boolean" Label="Agent"/>
+        <Property Name="jvPartner" IsAttribute="true" Type="Boolean" Label="JV Partner"/>
+        <Property Name="subContractor" IsAttribute="true" Type="Boolean" Label="Sub-contractor"/>
+        <Property Name="consultant" IsAttribute="true" Type="Boolean" Label="Consultant/Advisor"/>
+        <Property Name="supplier" IsAttribute="true" Type="Boolean" Label="Supplier/Vendor"/>
+        <Property Name="distributor" IsAttribute="true" Type="Boolean" Label="Distributor"/>
+        <Property Name="investmentTarget" IsAttribute="true" Type="Boolean" Label="Investment Target"/>
+        <Property Name="otherAttr" IsAttribute="true" Type="Boolean" Label="Other (specify)"/>
+
+
+        <LineItem>
+            <DataField Values="partyName" Importance="High"/>
+        </LineItem>
+        <!-- 1.供应商全称 -->
+        <FieldGroup Label="FullName" Qualifier="FullName">
+            <DataField Values="partyName" Importance="High"/>
+        </FieldGroup>
+        <!-- 2.注册地 -->
+        <FieldGroup Label="RegisteredAddress" Qualifier="RegisteredAddress">
+            <DataField Values="address1" Importance="High"/>
+        </FieldGroup>
+        <!-- 3a-3b.成立日期, 注册国 -->
+        <FieldGroup Label="DateIncorporation" Qualifier="DateIncorporation">
+            <DataField Values="dateIncorporation,countryIncorporation" Importance="High"/>
+        </FieldGroup>
+        <!-- 4.商登记号 -->
+        <FieldGroup Label="RegistrationNumber" Qualifier="RegistrationNumber">
+            <DataField Values="registrationNumber" Importance="High"/>
+        </FieldGroup>
+        <!-- 5.网站地址 -->
+        <FieldGroup Label="WebsiteAddress" Qualifier="WebsiteAddress">
+            <DataField Values="address2" Importance="High"/>
+        </FieldGroup>
+        <!-- 6.a-b 7a-b联系人 -->
+        <FieldGroup Label="ContactPerson" Qualifier="ContactPerson">
+            <DataField Values="contactPersonName,contactPersonPosition,contactPhone,contactEmail" Importance="High"/>
+        </FieldGroup>
+        <!-- 8.PartyRole -->
+        <FieldGroup Label="BusinessRelationship" Qualifier="BusinessRelationship">
+            <DataField Values="agent,jvPartner,subContractor,consultant,supplier,distributor,investmentTarget,otherAttr" Importance="High"/>
+        </FieldGroup>
+        <!-- 9.工作范围 -->
+        <FieldGroup Label="WorkScope" Qualifier="WorkScope">
+            <DataField Values="workScope" Importance="High"/>
+        </FieldGroup>
+        <!-- 10.营业地点 -->
+        <FieldGroup Label="BusinessLocation" Qualifier="BusinessLocation">
+            <DataField Values="businessLocation" Importance="High"/>
+        </FieldGroup>
+        <!-- 11.更名记录 PartyNameHistory/LineItem-->
+        <!-- 最终受益人 -->
+        <!-- 董事/高级职员姓名 -->
+        <FieldGroup Label="ComplianceCertifications" Qualifier="ComplianceCertifications">
+            <DataField Values="answer0,answer1,answer2,answer3" Importance="High"/>
+        </FieldGroup>
+        <NavigationProperty Name="PartyNameHistory"/>
+<!--        <NavigationProperty Name="BeneficialPerson" Type="RelationshipAndToParty" IsCollection="true"-->
+<!--                            Relations="FromRelationshipAndToParty(roleTypeIdTo=BENEFICIAL_PERSON and roleTypeIdFrom=SUPPLIER)"/>-->
+<!--        <NavigationProperty Name="SeniorStaff" Type="RelationshipAndToParty" IsCollection="true"-->
+<!--                            Relations="FromRelationshipAndToParty(roleTypeIdTo=SENIOR_STAFF and roleTypeIdFrom=SUPPLIER)"/>-->
+    </EntityType>
+
+    <EntityType Name="PartyGeoPoint" AutoProperties="true" EntitySetName="PartyGeoPoints">
+
+    </EntityType>
+
+    <EntityType Name="PartyIdentification" AutoProperties="true" EntitySetName="PartyIdentifications">
+
+    </EntityType>
+
+    <EntityType Name="PersonAndContact" AutoProperties="true" DraftEntityName="SupplierContactDraft" EntitySetName="PersonAndContacts">
+
+    </EntityType>
+
+    <EntityType Name="PartyNameHistory" AutoProperties="true" DraftEntityName="PartyNameHistoryDraft" EntitySetName="PartyNameHistories">
+        <LineItem Qualifier="HistoryList">
+            <DataField Values="groupName,changeDate" Importance="High"/>
+        </LineItem>
+    </EntityType>
+
+    <EntityType Name="RelationshipAndToParty" AutoProperties="true" DraftEntityName="RelationshipAndToPartyDraft"
+                EntitySetName="RelationshipAndToParties" AttrEntityName="PartyAttribute">
+        <Property Name="nationality" Label="${nationality}" Type="String" IsAttribute="true"/>
+        <Property Name="copyIdentificationAttached" Type="Boolean" IsAttribute="true" Label="${copyIdentificationAttached}"/>
+        <Property Name="amount" Label="${partyRelationshipAmount}"/>
+        <LineItem Qualifier="RelPersons">
+            <DataField Values="partyName,nationality,amount,copyIdentificationAttached" Importance="High"/>
+        </LineItem>
+    </EntityType>
+
+
+
+</ofbiz-edm>

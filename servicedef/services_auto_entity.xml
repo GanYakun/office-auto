@@ -134,4 +134,48 @@ under the License.
         <description>Update a PartyRelationship</description>
         <auto-attributes include="pk" mode="IN" optional="false"/>
     </service>
+
+    <service name="banfftech.createPartyGroupAttributeDate" default-entity-name="PartyGroupAttributeDate" engine="entity-auto" invoke="create" auth="true">
+        <description>Create a PartyGroupAttributeDate</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+    <service name="banfftech.updatePartyGroupAttributeDate" default-entity-name="PartyGroupAttributeDate" engine="entity-auto" invoke="update" auth="true">
+        <description>Update a PartyGroupAttributeDate</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+    <service name="banfftech.deletePartyGroupAttributeDate" default-entity-name="PartyGroupAttributeDate" engine="entity-auto" invoke="delete" auth="true">
+        <description>Delete a PartyGroupAttributeDate</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+    </service>
+    <service name="banfftech.createPartyGroupAttribute" default-entity-name="PartyGroupAttribute" engine="entity-auto" invoke="create" auth="true">
+        <description>Create a PartyGroupAttribute</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+    <service name="banfftech.updatePartyGroupAttribute" default-entity-name="PartyGroupAttribute" engine="entity-auto" invoke="update" auth="true">
+        <description>Update a PartyGroupAttribute</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+    <service name="banfftech.deletePartyGroupAttribute" default-entity-name="PartyGroupAttribute" engine="entity-auto" invoke="delete" auth="true">
+        <description>Delete a PartyGroupAttribute</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+    </service>
+
+    <service name="banfftech.createGeoPoint" default-entity-name="GeoPoint" engine="entity-auto" invoke="create" auth="true">
+        <description>Create a GeoPoint</description>
+        <auto-attributes include="pk" mode="IN" optional="true"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+    <service name="banfftech.updateGeoPoint" default-entity-name="GeoPoint" engine="entity-auto" invoke="update" auth="true">
+        <description>Update a GeoPoint</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+    <service name="banfftech.deleteGeoPoint" default-entity-name="GeoPoint" engine="entity-auto" invoke="delete" auth="true">
+        <description>Delete a GeoPoint</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+    </service>
 </services>
