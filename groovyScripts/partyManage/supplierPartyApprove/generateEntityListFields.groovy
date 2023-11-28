@@ -95,7 +95,7 @@ def generateFields(Map<String, Object> context){
         }
         entity.addProperty(new Property(null, "workScope", ValueType.PRIMITIVE, workScope));
         GenericValue partyIdentification = EntityQuery.use(delegator).from("PartyIdentification")
-                .where(UtilMisc.toMap("partyIdentificationTypeId", "USCC_OF_CHINESE_ORG", "partyId", supplierParty.getString("partyId"))).queryFirst();
+                .where(UtilMisc.toMap("partyIdentificationTypeId", "REGISTRATION_NUMBER", "partyId", supplierParty.getString("partyId"))).queryFirst();
         String usccNumber = partyIdentification == null ? null : partyIdentification.getString("idValue")
         //DDForm Bool Field
         entity.addProperty(new Property(null, "agent", ValueType.PRIMITIVE, true));

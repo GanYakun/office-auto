@@ -225,61 +225,16 @@ public class SupplierEvents {
         return null;
     }
 
-    public static Object generateSurveyQuestionAnswer(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
-                                                      EdmBindingTarget edmBindingTarget) throws OfbizODataException, GenericServiceException, GenericEntityException {
-        LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
-        GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
-        OdataOfbizEntity supplierPartyEntity = CommonUtils.getOdataPartByEntityType(oDataContext, "PartyUserLogin");
-        Delegator delegator = (Delegator) oDataContext.get("delegator");
-        GenericValue supplierParty = null;
-        if (UtilValidate.isEmpty(supplierPartyEntity)) {
-            return null;
-        }
-        supplierParty = supplierPartyEntity.getGenericValue();
-
-        //查询登录人所属供应商
-        List<GenericValue> partyRelationships = delegator.findByAnd("PartyRelationship", UtilMisc.toMap("partyIdTo", supplierParty.get("partyId"), "roleTypeIdFrom", "SUPPLIER", "roleTypeIdTo", "CONTACT"), null, false);
-        GenericValue partyRelationship = EntityUtil.getFirst(partyRelationships);
-        String supplierPartyId = UtilValidate.isEmpty(partyRelationship) ?
-                supplierParty.getString("partyId") : partyRelationship.getString("partyIdFrom");
-        List<GenericValue> workEffortAndPartyGroupContacts = delegator.findByAnd("WorkEffortAndPartyGroupContact", UtilMisc.toMap("partyId", supplierPartyId, "approvePartyId", supplierPartyId), null, false);
-        if (UtilValidate.isEmpty(workEffortAndPartyGroupContacts)){
-            throw new OfbizODataException("You must assign party to approve!");
-        }
-
-        GenericValue workEffortAndPartyGroupContact = EntityUtil.getFirst(workEffortAndPartyGroupContacts);
-        dispatcher.runSync("banfftech.createPartySurveyAppl",
-                UtilMisc.toMap("userLogin", userLogin, "partyId", supplierPartyId,
-                        "surveyId", "DD_STD_FORM", "surveyApplTypeId", "DD_FORM"));
-
-        //暂时采用更新SurveyQuestionAnswer的方案
-        dispatcher.runSync("banfftech.updateSurveyQuestionAnswer",
-                UtilMisc.toMap("userLogin", userLogin, "surveyQuestionId", "9000",
-                        "partyId", supplierPartyId, "booleanResponse", "Y"));
-        dispatcher.runSync("banfftech.updateSurveyQuestionAnswer",
-                UtilMisc.toMap("userLogin", userLogin, "surveyQuestionId", "9001",
-                        "partyId", supplierPartyId, "booleanResponse", "Y"));
-        dispatcher.runSync("banfftech.updateSurveyQuestionAnswer",
-                UtilMisc.toMap("userLogin", userLogin, "surveyQuestionId", "9002",
-                        "partyId", supplierPartyId, "booleanResponse", "N"));
-        dispatcher.runSync("banfftech.updateSurveyQuestionAnswer",
-                UtilMisc.toMap("userLogin", userLogin, "surveyQuestionId", "9003",
-                        "partyId", supplierPartyId, "booleanResponse", "N"));
-        dispatcher.runSync("banfftech.updateSurveyQuestionAnswer",
-                UtilMisc.toMap("userLogin", userLogin, "surveyQuestionId", "9004",
-                        "partyId", supplierPartyId));
-        dispatcher.runSync("banfftech.updateWorkEffortAndPartyGroupContact",
-                UtilMisc.toMap("userLogin", userLogin, "currentStatusId", "PROCESSED",
-                        "workEffortId", workEffortAndPartyGroupContact.get("workEffortId"),
-                        "partyId", supplierPartyId));
-        //第一次提交后创建attribute字段作为ddForm已提交状态记录
-        ddFormFirstSubmitRecord(delegator, dispatcher, userLogin, supplierPartyId);
-        //判断此供应商是否存在问题,若回答有问题，则将供应商状态改为On Hold
-        isQuestionableSupplier(delegator, dispatcher, userLogin, supplierPartyId);
-        return null;
-    }
-
-    private static void isQuestionableSupplier(Delegator delegator, LocalDispatcher dispatcher, GenericValue userLogin,String supplierPartyId)
+    /**
+     * 判断供应商是否有问题
+     * @param delegator
+     * @param dispatcher
+     * @param userLogin
+     * @param supplierPartyId 供应商ID
+     * @throws GenericEntityException
+     * @throws GenericServiceException
+     */
+    public static void isQuestionableSupplier(Delegator delegator, LocalDispatcher dispatcher, GenericValue userLogin,String supplierPartyId)
             throws GenericEntityException, GenericServiceException {
         Boolean flag = false;
         List<GenericValue> surveyQuestions = delegator.findByAnd("SurveyQuestion", UtilMisc.toMap("surveyQuestionTypeId", "BOOLEAN"), null, true);
@@ -287,7 +242,8 @@ public class SupplierEvents {
             int surveyQuestionsLength = surveyQuestions.size();
             for (int i = 0; i < surveyQuestionsLength; i++){
                 GenericValue surveyQuestion = surveyQuestions.get(i);
-                GenericValue surveyQuestionAnswer = delegator.findOne("SurveyQuestionAnswer", UtilMisc.toMap("surveyQuestionId", surveyQuestion.get("surveyQuestionId"), "partyId", supplierPartyId), true);
+                List<GenericValue> surveyQuestionAnswers = delegator.findByAnd("SurveyQuestionAnswer", UtilMisc.toMap("surveyQuestionId", surveyQuestion.get("surveyQuestionId"), "partyId", supplierPartyId), null, true);
+                GenericValue surveyQuestionAnswer = EntityUtil.getFirst(surveyQuestionAnswers);
                 if (surveyQuestionAnswer.get("booleanResponse").equals("N")){
                     break;
                 }
@@ -300,7 +256,6 @@ public class SupplierEvents {
                         UtilMisc.toMap("userLogin", userLogin, "partyId", supplierPartyId, "statusId", "PARTY_ON_HOLD"));
             }
         }
-        
     }
 
     //ddForm首次提交记录
