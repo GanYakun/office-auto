@@ -88,4 +88,16 @@ under the License.
         <attribute mode="IN" name="attrValue" type="String" optional="true"/>
     </service>
 
+    <service name="banfftech.isQuestionableSupplier"
+             location="com.banfftech.services.VendorService" engine="java" invoke="isQuestionableSupplier" auth="true">
+        <description>判断供应商是否有问题</description>
+        <attribute mode="IN" name="supplierPartyId" type="String" optional="false"/>
+    </service>
+
+    <service name="banfftech.ddFormFirstSubmitRecord"
+             location="com.banfftech.services.VendorService" engine="java" invoke="ddFormFirstSubmitRecord" auth="true">
+        <description>ddForm首次提交记录</description>
+        <attribute mode="IN" name="supplierPartyId" type="String" optional="false"/>
+    </service>
+
 </services>

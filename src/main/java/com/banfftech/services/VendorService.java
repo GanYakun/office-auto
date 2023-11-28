@@ -5,13 +5,18 @@ import com.banfftech.common.util.CommonUtils;
 import com.dpbird.odata.OfbizODataException;
 import org.apache.ofbiz.base.util.Debug;
 import org.apache.ofbiz.base.util.UtilMisc;
+import org.apache.ofbiz.base.util.UtilValidate;
 import org.apache.ofbiz.entity.Delegator;
 import org.apache.ofbiz.entity.GenericEntityException;
 import org.apache.ofbiz.entity.GenericValue;
+import org.apache.ofbiz.entity.condition.EntityCondition;
+import org.apache.ofbiz.entity.condition.EntityOperator;
 import org.apache.ofbiz.entity.util.EntityQuery;
+import org.apache.ofbiz.entity.util.EntityUtil;
 import org.apache.ofbiz.service.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -137,4 +142,45 @@ public class VendorService {
         return ServiceUtil.returnSuccess();
     }
 
+    /**
+     * 判断供应商是否有问题
+     * @throws GenericEntityException
+     * @throws GenericServiceException
+     */
+    public static void isQuestionableSupplier(DispatchContext dctx, Map<String, Object> context)
+            throws GenericEntityException, GenericServiceException {
+        LocalDispatcher dispatcher = dctx.getDispatcher();
+        Delegator delegator = dispatcher.getDelegator();
+        String supplierPartyId = (String) context.get("supplierPartyId");
+        GenericValue userLogin = (GenericValue) context.get("userLogin");
+        List<GenericValue> surveyQuestions = delegator.findByAnd("SurveyQuestion", UtilMisc.toMap("surveyQuestionTypeId", "BOOLEAN"), null, true);
+        if (UtilValidate.isNotEmpty(surveyQuestions)){
+            List<String> surveyQuestionIds = EntityUtil.getFieldListFromEntityList(surveyQuestions, "surveyQuestionId", false);
+            EntityCondition condition1 = EntityCondition.makeCondition("surveyQuestionId", EntityOperator.IN, surveyQuestionIds);
+            EntityCondition condition2 = EntityCondition.makeCondition("partyId", supplierPartyId);
+            EntityCondition condition = EntityCondition.makeCondition(condition1, condition2);
+            List<GenericValue> surveyQuestionAnswers = EntityQuery.use(delegator).from("SurveyQuestionAnswer").where(condition).queryList();
+            List<String> boolAnswer = EntityUtil.getFieldListFromEntityList(surveyQuestionAnswers, "booleanResponse", false);
+            if (boolAnswer.contains("Y")){
+                dispatcher.runSync("banfftech.updateParty", UtilMisc.toMap("partyId", supplierPartyId, "userLogin", userLogin, "statusId", "PARTY_ON_HOLD"));
+            }
+        }
+    }
+
+    //ddForm首次提交记录
+    public static void ddFormFirstSubmitRecord(DispatchContext dctx, Map<String, Object> context)
+            throws GenericEntityException, GenericServiceException {
+
+        String supplierPartyId = (String) context.get("supplierPartyId");
+        GenericValue userLogin = (GenericValue) context.get("userLogin");
+        LocalDispatcher dispatcher = dctx.getDispatcher();
+        Delegator delegator = dispatcher.getDelegator();
+        GenericValue ddFormStatusHistory = delegator.findOne("PartyAttribute",
+                UtilMisc.toMap("partyId", supplierPartyId, "attrName", "ddFormStatusHistory"), true);
+        if (UtilValidate.isEmpty(ddFormStatusHistory)){
+            dispatcher.runSync("banfftech.createPartyAttribute",
+                    UtilMisc.toMap("userLogin", userLogin, "partyId", supplierPartyId,
+                            "attrName", "ddFormStatusHistory", "attrValue", "Submitted"));
+        }
+    }
 }

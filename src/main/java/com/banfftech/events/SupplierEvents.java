@@ -11,6 +11,8 @@ import org.apache.ofbiz.entity.Delegator;
 import org.apache.ofbiz.entity.GenericEntityException;
 import org.apache.ofbiz.entity.GenericPK;
 import org.apache.ofbiz.entity.GenericValue;
+import org.apache.ofbiz.entity.condition.EntityCondition;
+import org.apache.ofbiz.entity.condition.EntityOperator;
 import org.apache.ofbiz.entity.util.EntityQuery;
 import org.apache.ofbiz.entity.util.EntityUtil;
 import org.apache.ofbiz.service.DispatchContext;
@@ -223,52 +225,6 @@ public class SupplierEvents {
                         finAccountCode, "ownerPartyId", supplierParty.getString("partyId"), "finAccountTypeId",
                         "BANK_ACCOUNT", "statusId", "FNACT_ACTIVE", "currencyUomId", currencyUomId));
         return null;
-    }
-
-    /**
-     * 判断供应商是否有问题
-     * @param delegator
-     * @param dispatcher
-     * @param userLogin
-     * @param supplierPartyId 供应商ID
-     * @throws GenericEntityException
-     * @throws GenericServiceException
-     */
-    public static void isQuestionableSupplier(Delegator delegator, LocalDispatcher dispatcher, GenericValue userLogin,String supplierPartyId)
-            throws GenericEntityException, GenericServiceException {
-        Boolean flag = false;
-        List<GenericValue> surveyQuestions = delegator.findByAnd("SurveyQuestion", UtilMisc.toMap("surveyQuestionTypeId", "BOOLEAN"), null, true);
-        if (UtilValidate.isNotEmpty(surveyQuestions)){
-            int surveyQuestionsLength = surveyQuestions.size();
-            for (int i = 0; i < surveyQuestionsLength; i++){
-                GenericValue surveyQuestion = surveyQuestions.get(i);
-                List<GenericValue> surveyQuestionAnswers = delegator.findByAnd("SurveyQuestionAnswer", UtilMisc.toMap("surveyQuestionId", surveyQuestion.get("surveyQuestionId"), "partyId", supplierPartyId), null, true);
-                GenericValue surveyQuestionAnswer = EntityUtil.getFirst(surveyQuestionAnswers);
-                if (surveyQuestionAnswer.get("booleanResponse").equals("N")){
-                    break;
-                }
-                if (i == surveyQuestionsLength-1){
-                    flag = true;
-                }
-            }
-            if (flag){
-                dispatcher.runSync("banfftech.updateParty",
-                        UtilMisc.toMap("userLogin", userLogin, "partyId", supplierPartyId, "statusId", "PARTY_ON_HOLD"));
-            }
-        }
-    }
-
-    //ddForm首次提交记录
-    private static void ddFormFirstSubmitRecord(Delegator delegator, LocalDispatcher dispatcher, GenericValue userLogin,String supplierPartyId)
-            throws GenericEntityException, GenericServiceException {
-
-        GenericValue ddFormStatusHistory = delegator.findOne("PartyAttribute",
-                UtilMisc.toMap("partyId", supplierPartyId, "attrName", "ddFormStatusHistory"), true);
-        if (UtilValidate.isEmpty(ddFormStatusHistory)){
-            dispatcher.runSync("banfftech.createPartyAttribute",
-                    UtilMisc.toMap("userLogin", userLogin, "partyId", supplierPartyId,
-                            "attrName", "ddFormStatusHistory", "attrValue", "Submitted"));
-        }
     }
 
     /**
