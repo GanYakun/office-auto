@@ -147,7 +147,7 @@ public class VendorService {
      * @throws GenericEntityException
      * @throws GenericServiceException
      */
-    public static void isQuestionableSupplier(DispatchContext dctx, Map<String, Object> context)
+    public static Map<String, Object> isQuestionableSupplier(DispatchContext dctx, Map<String, Object> context)
             throws GenericEntityException, GenericServiceException {
         LocalDispatcher dispatcher = dctx.getDispatcher();
         Delegator delegator = dispatcher.getDelegator();
@@ -165,10 +165,11 @@ public class VendorService {
                 dispatcher.runSync("banfftech.updateParty", UtilMisc.toMap("partyId", supplierPartyId, "userLogin", userLogin, "statusId", "PARTY_ON_HOLD"));
             }
         }
+        return ServiceUtil.returnSuccess();
     }
 
     //ddForm首次提交记录
-    public static void ddFormFirstSubmitRecord(DispatchContext dctx, Map<String, Object> context)
+    public static Map<String, Object> ddFormFirstSubmitRecord(DispatchContext dctx, Map<String, Object> context)
             throws GenericEntityException, GenericServiceException {
 
         String supplierPartyId = (String) context.get("supplierPartyId");
@@ -182,5 +183,6 @@ public class VendorService {
                     UtilMisc.toMap("userLogin", userLogin, "partyId", supplierPartyId,
                             "attrName", "ddFormStatusHistory", "attrValue", "Submitted"));
         }
+        return ServiceUtil.returnSuccess();
     }
 }
