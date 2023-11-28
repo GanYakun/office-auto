@@ -236,6 +236,8 @@
         <alias name="contentName" entity-alias="CO" field="contentName" group-by="true"/>
         <alias name="createdDate" entity-alias="CO" field="createdDate" group-by="true"/>
         <alias name="mimeTypeId" entity-alias="DR" field="mimeTypeId" group-by="true"/>
+        <alias name="dataResourceId" entity-alias="DR" field="dataResourceId" group-by="true" prim-key="false"/>
+        <alias name="dataResourceName" entity-alias="DR" field="dataResourceName" group-by="true"/>
         <alias name="imageData" entity-alias="IDR" field="imageData" group-by="true"/>
         <alias name="videoData" entity-alias="VDR" field="videoData" group-by="true"/>
         <alias name="audioData" entity-alias="ADR" field="audioData" group-by="true"/>

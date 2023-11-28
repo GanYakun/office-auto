@@ -35,6 +35,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SupplierApproveEvents {
+    private static final String MODULE = SupplierApproveEvents.class.getName();
 
     /**
      * 传递给采购
@@ -86,7 +87,19 @@ public class SupplierApproveEvents {
         //保存合规建议
         if ("compliance".equals(source)) {
             GenericValue party = delegator.findOne("Party", UtilMisc.toMap("partyId", partyId), false);
-            CommonUtils.setObjectAttribute(party,"complianceNote", noteInfo);
+            CommonUtils.setObjectAttribute(party, "complianceNote", noteInfo);
+        }
+        try {
+            //发送邮件
+            GenericValue procurement = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", "procurement").queryFirst();
+            String email = procurement.getString("primaryEmail");
+            if (UtilValidate.isNotEmpty(email)) {
+                UtilEmail.sendEmail(email, "Submit to procurement", "Submit to procurement: " + UtilDateTime.nowTimestamp());
+            } else {
+                Debug.logWarning("No email address", MODULE);
+            }
+        } catch (MessagingException e) {
+            throw new OfbizODataException("Sending email exception : " + e.getMessage());
         }
     }
 
@@ -102,6 +115,7 @@ public class SupplierApproveEvents {
         String comments = (String) actionParameters.get("comments"); // 也许不需要comments了
         String noteInfo = (String) actionParameters.get("noteInfo");
         String ddFormType = (String) actionParameters.get("ddFormType");
+        String email = (String) actionParameters.get("email");
         OdataOfbizEntity boundEntity = Util.getBoundEntity(actionParameters);
         if (UtilValidate.isEmpty(boundEntity)) {
             throw new OfbizODataException("Parameter error");
@@ -118,7 +132,7 @@ public class SupplierApproveEvents {
         }
         if (UtilValidate.isNotEmpty(ddFormType)) {
             GenericValue party = delegator.findOne("Party", UtilMisc.toMap("partyId", partyId), false);
-            CommonUtils.setObjectAttribute(party,"ddFormType", ddFormType);
+            CommonUtils.setObjectAttribute(party, "ddFormType", ddFormType);
         }
         String transferTarget = getTransferTarget(delegator, target, parentWorkEffort);
         if (UtilValidate.isEmpty(transferTarget)) {
@@ -148,6 +162,21 @@ public class SupplierApproveEvents {
         Map<String, Object> noteDataResult = CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), noteMap, "banfftech.createNoteData", userLogin);
         // create PartyNote
         CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), UtilMisc.toMap("noteId", noteDataResult.get("noteId"), "partyId", partyId, "userLogin", userLogin), "banfftech.createPartyNote", userLogin);
+
+        try {
+            //发送邮件
+            if (UtilValidate.isEmpty(email)) {
+                GenericValue targetGV = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", target).queryFirst();
+                email = targetGV.getString("primaryEmail");
+            }
+            if (UtilValidate.isNotEmpty(email)) {
+                UtilEmail.sendEmail(email, "Submit to " + target, "Submit to " + target + UtilDateTime.nowTimestamp());
+            } else {
+                Debug.logWarning("No email address", MODULE);
+            }
+        } catch (MessagingException e) {
+            throw new OfbizODataException("Sending email exception : " + e.getMessage());
+        }
     }
 
     private static String getTransferTarget(Delegator delegator, String target, GenericValue parentWorkEffort) throws GenericEntityException {
@@ -197,5 +226,6 @@ public class SupplierApproveEvents {
             Debug.log("邮件发送失败: " + e.getMessage());
         }
     }
+
 
 }

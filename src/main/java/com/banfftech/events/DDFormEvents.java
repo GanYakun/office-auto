@@ -1,11 +1,14 @@
 package com.banfftech.events;
 
+import com.banfftech.services.UtilEmail;
 import com.dpbird.odata.OfbizODataException;
 import com.dpbird.odata.edm.OdataOfbizEntity;
 import com.dpbird.odata.handler.annotation.DraftAction;
 import com.dpbird.odata.handler.annotation.DraftEventContext;
 import com.dpbird.odata.handler.annotation.EdmEntity;
 import com.dpbird.odata.handler.annotation.EdmService;
+import org.apache.ofbiz.base.util.Debug;
+import org.apache.ofbiz.base.util.UtilDateTime;
 import org.apache.ofbiz.base.util.UtilMisc;
 import org.apache.ofbiz.base.util.UtilValidate;
 import org.apache.ofbiz.entity.Delegator;
@@ -14,6 +17,8 @@ import org.apache.ofbiz.entity.GenericValue;
 import org.apache.ofbiz.entity.util.EntityQuery;
 import org.apache.ofbiz.service.GenericServiceException;
 import org.apache.ofbiz.service.LocalDispatcher;
+
+import javax.mail.MessagingException;
 
 @EdmService(edmApp = "supplierForm")
 public class DDFormEvents {
@@ -33,7 +38,13 @@ public class DDFormEvents {
                 dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortTask.getString("workEffortId"),
                         "currentStatusId", "PROCESSED", "userLogin", userLogin));
             }
-        } catch (GenericServiceException | GenericEntityException e) {
+            //发送邮件给procurement
+            GenericValue procurement = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", "procurement").queryFirst();
+            String email = procurement.getString("primaryEmail");
+            if (UtilValidate.isNotEmpty(email)) {
+                UtilEmail.sendEmail(email, "Submit to procurement", "Submit to procurement: " + UtilDateTime.nowTimestamp());
+            }
+        } catch (GenericServiceException | MessagingException | GenericEntityException e) {
             throw new OfbizODataException(e.getMessage());
         }
     }

@@ -23,6 +23,7 @@ import org.apache.olingo.commons.api.edm.EdmBindingTarget;
 
 import javax.mail.MessagingException;
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.sql.Timestamp;
@@ -405,6 +406,41 @@ public class SupplierEvents {
         dispatcher.runSync("banfftech.createPartyRelationship", UtilMisc.toMap("partyIdFrom", partyId, "roleTypeIdFrom", "SUPPLIER",
                 "partyIdTo", contactPartyId, "roleTypeIdTo", "CONTACT", "fromDate", UtilDateTime.nowTimestamp(), "userLogin", userLogin));
 
+        //create PartyMediaResource
+        Map<String, Object> serviceParam = new HashMap<>();
+        serviceParam.put("partyId", partyId);
+        serviceParam.put("userLogin", userLogin);
+        serviceParam.put("contentName", "Financial Report");
+        serviceParam.put("partyContentTypeId", "FINANCIAL_STATEMENTS");
+        dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
+
+        serviceParam.put("contentName", "NDA");
+        serviceParam.put("partyContentTypeId", "CONFIDENTIALITY_AGREEMENT");
+        dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
+
+        serviceParam.put("contentName", "Compliance Report");
+        serviceParam.put("partyContentTypeId", "COMPLIANCE_REPORT");
+        dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
+
+        serviceParam.put("contentName", "Commercial License");
+        serviceParam.put("partyContentTypeId", "COMMERCIAL_LICENSE");
+        dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
+
+        serviceParam.put("contentName", "VAT Certificate");
+        serviceParam.put("partyContentTypeId", "VAT_CERTIFICATE");
+        dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
+
+        serviceParam.put("contentName", "PoA (Power of Atterney)");
+        serviceParam.put("partyContentTypeId", "POA");
+        dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
+
+        serviceParam.put("contentName", "Qualification Certificate:e.g.lso");
+        serviceParam.put("partyContentTypeId", "TAX_CODE");
+        dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
+
+        serviceParam.put("contentName", "Other Files");
+        serviceParam.put("partyContentTypeId", "OTHER_FILES");
+        dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
     }
 
     /**

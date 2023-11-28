@@ -42,31 +42,18 @@ public class UploadEvent {
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
         ParameterContext parameterContext = (ParameterContext) actionParameters.get("file");
-        List<OdataParts> odataParts = UtilGenerics.checkList(oDataContext.get("odataParts"));
-        OdataOfbizEntity supplierEntity = CommonUtils.getOdataPartByEntityType(oDataContext, "SupplierParty");
-        if (UtilValidate.isEmpty(supplierEntity)) {
-            throw new OfbizODataException("Parameter error");
-        }
-        String segmentValue = ListUtil.getLast(odataParts).getUriResource().getSegmentValue();
-        String contentType = "OTHER_FILES";
-        if (segmentValue.equals("FinancialStatements")) {
-            contentType = "FINANCIAL_STATEMENTS";
-        } else if (segmentValue.equals("ConfidentialityAgreement")) {
-            contentType = "CONFIDENTIALITY_AGREEMENT";
-        } else if (segmentValue.equals("ComplianceReport")) {
-            contentType = "COMPLIANCE_REPORT";
-        }
+        OdataOfbizEntity partyMediaResource = (OdataOfbizEntity) actionParameters.get("partyMediaResource");
         Map<String, Object> serviceParam = new HashMap<>();
-        serviceParam.put("otherData", parameterContext.getFile());
-        serviceParam.put("contentName", parameterContext.getFileName());
-        serviceParam.put("mimeTypeId", parameterContext.getFileMimeType());
-        serviceParam.put("createdDate", UtilDateTime.nowTimestamp());
+        serviceParam.put("contentId", partyMediaResource.getPropertyValue("contentId"));
+        serviceParam.put("dataResourceId", partyMediaResource.getPropertyValue("dataResourceId"));
+        serviceParam.put("partyContentId", partyMediaResource.getPropertyValue("partyContentId"));
         serviceParam.put("fromDate", UtilDateTime.nowTimestamp());
-        serviceParam.put("partyContentTypeId", contentType);
-        serviceParam.put("partyId", supplierEntity.getPropertyValue("partyId"));
+        serviceParam.put("otherData", parameterContext.getFile());
+        serviceParam.put("dataResourceName", parameterContext.getFileName());
+        serviceParam.put("mimeTypeId", parameterContext.getFileMimeType());
         serviceParam.put("userLogin", userLogin);
         //创建文件
-        Map<String, Object> createResult = dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
+        Map<String, Object> createResult = dispatcher.runSync("banfftech.updatePartyMediaResource", serviceParam);
         Debug.logInfo("Upload Result: " + createResult, module);
     }
 

@@ -67,15 +67,23 @@ under the License.
     <SurveyApplType surveyApplTypeId="DD_FORM" description="Due Diligence Form"/>
 
 <!--    <PartyQuestionApplType description="Due Diligence Form" partyQuestionApplTypeId="DD_FORM" hasTable="N"/>-->
-    <!-- 财务报表,保密协议,其他文件 -->
+    <!-- 财务报表 -->
     <PartyContentType partyContentTypeId="FINANCIAL_STATEMENTS"/>
+    <!-- 保密协议 -->
     <PartyContentType partyContentTypeId="CONFIDENTIALITY_AGREEMENT"/>
+    <!-- 合规报告 -->
     <PartyContentType partyContentTypeId="COMPLIANCE_REPORT"/>
+    <!-- 商业许可证 -->
     <PartyContentType partyContentTypeId="COMMERCIAL_LICENSE"/>
+    <!-- 增值税证书 -->
     <PartyContentType partyContentTypeId="VAT_CERTIFICATE"/>
+    <!-- POA -->
     <PartyContentType partyContentTypeId="POA"/>
+    <!-- 税号 -->
     <PartyContentType partyContentTypeId="TAX_CODE"/>
+    <!-- 证件号 -->
     <PartyContentType partyContentTypeId="IDENTIFICATION"/>
+    <!-- 其他文件 -->
     <PartyContentType partyContentTypeId="OTHER_FILES"/>
 
     <EnumerationType description="Priority" enumTypeId="PRIORITY" hasTable="N" />

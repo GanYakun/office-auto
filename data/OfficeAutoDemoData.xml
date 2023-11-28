@@ -63,6 +63,9 @@ under the License.
     <UserLogin userLoginId="applicant" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" passwordHint="" partyId="applicant"/>
     <UserLoginSecurityGroup groupId="SUPER" userLoginId="applicant" fromDate="2001-01-01 12:00:00.0"/>
     <PartyRelationship partyRelationshipId="PR10008" partyIdFrom="IT" partyIdTo="applicant" roleTypeIdTo="ORD_EMPLOYEE"/>
+    <ContactMech contactMechId="applicant_email" infoString="canyang.sun@banff-tech.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <PartyContactMechPurpose partyId="applicant" contactMechId="applicant_email" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+
 
     <!-- 采购 -->
     <Party partyId="procurement" partyTypeId="PERSON" externalId="procurement" partyName="Procurement01"/>
@@ -73,6 +76,9 @@ under the License.
     <UserLogin userLoginId="procurement" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" passwordHint="" partyId="procurement"/>
     <UserLoginSecurityGroup groupId="SUPER" userLoginId="procurement" fromDate="2001-01-01 12:00:00.0"/>
     <PartyRelationship partyRelationshipId="PR_procurement" partyIdFrom="CG" partyIdTo="procurement" roleTypeIdTo="ORD_EMPLOYEE"/>
+    <ContactMech contactMechId="procurement_email" infoString="canyang.sun@banff-tech.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <PartyContactMechPurpose partyId="procurement" contactMechId="procurement_email" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+
 
     <!-- 经理 -->
     <Party partyId="manager" partyTypeId="PERSON" externalId="manager" partyName="Manager01"/>
@@ -115,6 +121,9 @@ under the License.
     <UserLogin userLoginId="compliance" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" passwordHint="" partyId="compliance"/>
     <UserLoginSecurityGroup groupId="SUPER" userLoginId="compliance" fromDate="2001-01-01 12:00:00.0"/>
     <PartyRelationship partyRelationshipId="PR10006" partyIdFrom="HG" partyIdTo="compliance" roleTypeIdTo="ORD_EMPLOYEE"/>
+    <ContactMech contactMechId="compliance_email" infoString="canyang.sun@banff-tech.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <PartyContactMechPurpose partyId="compliance" contactMechId="compliance_email" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+
 
     <!-- 财务 -->
     <Party partyId="finance" partyTypeId="PERSON" externalId="finance" partyName="Finance01"/>
