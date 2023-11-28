@@ -41,6 +41,18 @@ under the License.
             <key-map field-name="partyId"/>
         </relation>
     </entity>
+
+    <entity entity-name="PartyGroupAttribute" package-name="com.banfftech.bfdemo">
+        <field name="partyId" type="id"></field>
+        <field name="attrName" type="id-long"></field>
+        <field name="attrValue" type="value"></field>
+        <field name="attrDescription" type="description"></field>
+        <prim-key field="partyId"/>
+        <prim-key field="attrName"/>
+        <relation type="one" fk-name="PARTY_GROUP_STR_ATTR" rel-entity-name="PartyGroup">
+            <key-map field-name="partyId"/>
+        </relation>
+    </entity>
     
     <entity entity-name="PartySurveyAppl" package-name="com.banfftech.officeauto">
         <field name="partySurveyApplId" type="id"></field>
@@ -51,6 +63,7 @@ under the License.
     </entity>
 
     <entity entity-name="SurveyQuestionAnswer" package-name="com.banfftech.officeauto">
+        <field name="surveyQuestionAnswerId" type="id"></field>
         <field name="surveyQuestionId" type="id"></field>
         <field name="partyId" type="id"></field>
         <field name="booleanResponse" type="indicator"></field>
@@ -61,7 +74,13 @@ under the License.
         <field name="surveyOptionSeqId" type="id"></field>
         <field name="answeredDate" type="date-time"></field>
         <field name="lastModifiedDate" type="date-time"></field>
-        <prim-key field="surveyQuestionId"/>
+        <prim-key field="surveyQuestionAnswerId"/>
+        <relation type="one" fk-name="SQA_PRT" rel-entity-name="Party">
+            <key-map field-name="partyId"/>
+        </relation>
+        <relation type="one" fk-name="SQA_SQ" rel-entity-name="SurveyQuestion">
+            <key-map field-name="surveyQuestionId"/>
+        </relation>
     </entity>
     
 <!--    <entity entity-name="PartyQuestionApplType" package-name="com.banfftech.officeauto">-->
