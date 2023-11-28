@@ -94,5 +94,7 @@ under the License.
     <PartyGeoPointType partyGeoPointTypeId="COUNTRY_INCORPORATION" description="Country of Incorporation" />
     <PartyGeoPointType partyGeoPointTypeId="BUSINESS_LOCATION" description="Business location" />
 
+    <PartyGeoType partyGeoTypeId="LISTED_COUNTRY" description="Listed Country"/>
+
     <PartyIdentificationType partyIdentificationTypeId="REGISTRATION_NUMBER"/>
 </entity-engine-xml>

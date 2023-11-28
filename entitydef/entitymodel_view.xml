@@ -217,8 +217,8 @@
         <relation type="one-nofk" title="Employees" rel-entity-name="Enumeration">
             <key-map field-name="employeesSection" rel-field-name="enumId"/>
         </relation>
-        <relation type="one-nofk" title="ListRegion" rel-entity-name="Enumeration">
-            <key-map field-name="tickerSymbol" rel-field-name="enumId"/>
+        <relation type="many" rel-entity-name="PartyGeo">
+            <key-map field-name="partyId" rel-field-name="partyId"/>
         </relation>
     </view-entity>
 
