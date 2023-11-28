@@ -1062,7 +1062,7 @@
         </Property>
     </EntityType>
 
-    <EntityType Name="EmployeesEnumeration" EntitySetName="EmployeesEnumerations" OfbizEntity="Enumeration" EntityCondition="enumTypeId=EMPLOYEES_ENUM" AutoProperties="true">
+    <EntityType Name="EmployeesEnumeration" Orderby="sequenceId" EntitySetName="EmployeesEnumerations" OfbizEntity="Enumeration" EntityCondition="enumTypeId=EMPLOYEES_ENUM" AutoProperties="true">
         <Property Name="enumId">
             <Text Path="description" TextArrangement="TextOnly"/>
         </Property>

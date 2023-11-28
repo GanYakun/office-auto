@@ -277,10 +277,10 @@ under the License.
     <!--EnumerationType-->
     <EnumerationType enumTypeId="EMPLOYEES_ENUM" description="Employees Enumeration"/>
     <!--Enumeration-->
-    <Enumeration enumId="EMP_LT1000" enumTypeId="EMPLOYEES_ENUM" description="Less than 1000"/>
-    <Enumeration enumId="EMP_GE1000_LT5000" enumTypeId="EMPLOYEES_ENUM" description="Between 1000~5000"/>
-    <Enumeration enumId="EMP_GE5000_LT10000" enumTypeId="EMPLOYEES_ENUM" description="Between 5000~10000"/>
-    <Enumeration enumId="EMP_GE10000" enumTypeId="EMPLOYEES_ENUM" description="Greater than 10000"/>
+    <Enumeration enumId="EMP_LT1000" enumTypeId="EMPLOYEES_ENUM" sequenceId="01" description="Less than 1000"/>
+    <Enumeration enumId="EMP_GE1000_LT5000" enumTypeId="EMPLOYEES_ENUM" sequenceId="02" description="Between 1000~5000"/>
+    <Enumeration enumId="EMP_GE5000_LT10000" enumTypeId="EMPLOYEES_ENUM" sequenceId="03" description="Between 5000~10000"/>
+    <Enumeration enumId="EMP_GE10000" enumTypeId="EMPLOYEES_ENUM" sequenceId="04" description="Greater than 10000"/>
 
     <!--上市地区枚举值-->
     <!--EnumerationType-->
