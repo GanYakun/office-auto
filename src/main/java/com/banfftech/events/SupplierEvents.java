@@ -494,4 +494,16 @@ public class SupplierEvents {
                 UtilMisc.toMap("userLogin", userLogin, "partyId", supplierParty.get("partyId"),
                         "attrName", "isFinishedDomUpload", "attrValue", "Y"));
     }
+
+    /**
+     * 完成文件上传
+     */
+    public static void disableSupplier(Map<String, Object> oDataContext, Map<String, Object> actionParameters, EdmBindingTarget edmBindingTarget)
+            throws GenericServiceException {
+        LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
+        GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
+        OdataOfbizEntity supplierPartyEntity = (OdataOfbizEntity) actionParameters.get("supplierParty");
+        GenericValue supplierParty = supplierPartyEntity.getGenericValue();
+        dispatcher.runSync("banfftech.updatePartyGroupAndContact", UtilMisc.toMap("userLogin", userLogin, "partyId", supplierParty.get("partyId"), "statusId", "PARTY_DISABLED"));
+    }
 }
