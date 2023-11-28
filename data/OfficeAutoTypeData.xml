@@ -48,7 +48,9 @@ under the License.
     <StatusItem statusId="COWORK_CREATED" statusTypeId="COWORK_STATUS" description="已创建"/>
     <StatusItem statusId="REQUIRE_CHANGES" statusTypeId="COWORK_STATUS" description="需要更改"/>
     <StatusItem statusId="REGISTERED" statusTypeId="COWORK_STATUS" description="已注册"/>
+    <StatusItem statusId="PARTY_ON_HOLD" statusTypeId="PARTY_STATUS" description="On Hold" statusCode="HOLD"/>
 
+    <StatusValidChange statusId="PARTY_ENABLED" statusIdTo="PARTY_ON_HOLD"/>
     <SurveyApplType surveyApplTypeId="DD_FORM" description="Due Diligence Form"/>
 
 <!--    <PartyQuestionApplType description="Due Diligence Form" partyQuestionApplTypeId="DD_FORM" hasTable="N"/>-->

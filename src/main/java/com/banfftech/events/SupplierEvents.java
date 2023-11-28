@@ -280,8 +280,26 @@ public class SupplierEvents {
     }
 
     private static void isQuestionableSupplier(Delegator delegator, LocalDispatcher dispatcher, GenericValue userLogin,String supplierPartyId)
-            throws GenericEntityException {
-        List<GenericValue> SurveyQuestionAnswers = delegator.findByAnd("SurveyQuestionAnswer", UtilMisc.toMap("partyId", supplierPartyId), null, true);
+            throws GenericEntityException, GenericServiceException {
+        Boolean flag = false;
+        List<GenericValue> surveyQuestions = delegator.findByAnd("SurveyQuestion", UtilMisc.toMap("surveyQuestionTypeId", "BOOLEAN"), null, true);
+        if (UtilValidate.isNotEmpty(surveyQuestions)){
+            int surveyQuestionsLength = surveyQuestions.size();
+            for (int i = 0; i < surveyQuestionsLength; i++){
+                GenericValue surveyQuestion = surveyQuestions.get(i);
+                GenericValue surveyQuestionAnswer = delegator.findOne("SurveyQuestionAnswer", UtilMisc.toMap("surveyQuestionId", surveyQuestion.get("surveyQuestionId"), "partyId", supplierPartyId), true);
+                if (surveyQuestionAnswer.get("booleanResponse").equals("N")){
+                    break;
+                }
+                if (i == surveyQuestionsLength-1){
+                    flag = true;
+                }
+            }
+            if (flag){
+                dispatcher.runSync("banfftech.updateParty",
+                        UtilMisc.toMap("userLogin", userLogin, "partyId", supplierPartyId, "statusId", "PARTY_ON_HOLD"));
+            }
+        }
         
     }
 
