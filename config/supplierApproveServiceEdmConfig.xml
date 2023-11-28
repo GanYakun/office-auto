@@ -720,6 +720,9 @@
         <Property Name="primaryProductCategoryId">
             <Text Path="PrimaryProductCategory/categoryName" TextArrangement="TextOnly"/>
         </Property>
+        <Property Name="productId">
+            <Text Path="productName" TextArrangement="TextOnly"/>
+        </Property>
         <Property Name="productName" Immutable="true"/>
         <NavigationProperty Name="ProductType"/>
         <NavigationProperty Name="QuantityUom"/>
@@ -753,6 +756,9 @@
         </LineItem>
         <Property Name="primaryProductCategoryId">
             <Text Path="PrimaryProductCategory/categoryName" TextArrangement="TextOnly"/>
+        </Property>
+        <Property Name="productId">
+            <Text Path="productName" TextArrangement="TextOnly"/>
         </Property>
         <Action Name="CreateSupplierService" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createSupplierProduct" SideEffects="true">
             <Parameter Name="service" Type="Service" Nullable="false" IsCollection="true"/>
