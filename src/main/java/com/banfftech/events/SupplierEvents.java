@@ -274,9 +274,18 @@ public class SupplierEvents {
                         "partyId", supplierPartyId));
         //第一次提交后创建attribute字段作为ddForm已提交状态记录
         ddFormFirstSubmitRecord(delegator, dispatcher, userLogin, supplierPartyId);
+        //判断此供应商是否存在问题,若回答有问题，则将供应商状态改为On Hold
+        isQuestionableSupplier(delegator, dispatcher, userLogin, supplierPartyId);
         return null;
     }
 
+    private static void isQuestionableSupplier(Delegator delegator, LocalDispatcher dispatcher, GenericValue userLogin,String supplierPartyId)
+            throws GenericEntityException {
+        List<GenericValue> SurveyQuestionAnswers = delegator.findByAnd("SurveyQuestionAnswer", UtilMisc.toMap("partyId", supplierPartyId), null, true);
+        
+    }
+
+    //ddForm首次提交记录
     private static void ddFormFirstSubmitRecord(Delegator delegator, LocalDispatcher dispatcher, GenericValue userLogin,String supplierPartyId)
             throws GenericEntityException, GenericServiceException {
 
@@ -367,6 +376,15 @@ public class SupplierEvents {
         CommonUtils.setObjectAttribute(supplierParty, "PartyAttributeDate", "firstOrderDate", actionParameters.get("firstOrderDate"));
     }
 
+    /**
+     * 创建地址列表
+     * @param oDataContext
+     * @param actionParameters
+     * @param edmBindingTarget
+     * @throws GenericEntityException
+     * @throws OfbizODataException
+     * @throws GenericServiceException
+     */
     public static void createPostalAddress(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
                                               EdmBindingTarget edmBindingTarget) throws GenericEntityException, OfbizODataException, GenericServiceException {
 
@@ -460,6 +478,15 @@ public class SupplierEvents {
 
     }
 
+    /**
+     * 选择权限部门
+     * @param oDataContext
+     * @param actionParameters
+     * @param edmBindingTarget
+     * @throws GenericEntityException
+     * @throws OfbizODataException
+     * @throws GenericServiceException
+     */
     public static void selectDepartment(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
                                            EdmBindingTarget edmBindingTarget) throws GenericEntityException, OfbizODataException, GenericServiceException {
 
@@ -487,6 +514,15 @@ public class SupplierEvents {
         }
     }
 
+    /**
+     * 移除权限部门
+     * @param oDataContext
+     * @param actionParameters
+     * @param edmBindingTarget
+     * @throws GenericEntityException
+     * @throws OfbizODataException
+     * @throws GenericServiceException
+     */
     public static void removeDepartment(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
                                            EdmBindingTarget edmBindingTarget) throws GenericEntityException, OfbizODataException, GenericServiceException {
 
