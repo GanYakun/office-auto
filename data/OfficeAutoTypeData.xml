@@ -51,6 +51,9 @@ under the License.
     <StatusItem statusId="PARTY_ON_HOLD" statusTypeId="PARTY_STATUS" description="On Hold" statusCode="HOLD"/>
 
     <StatusValidChange statusId="PARTY_ENABLED" statusIdTo="PARTY_ON_HOLD"/>
+    <StatusValidChange statusId="PARTY_ON_HOLD" statusIdTo="PARTY_ENABLED"/>
+    <StatusValidChange statusId="PARTY_ON_HOLD" statusIdTo="PARTY_DISABLED"/>
+    <StatusValidChange statusId="PARTY_DISABLED" statusIdTo="PARTY_ON_HOLD"/>
     <SurveyApplType surveyApplTypeId="DD_FORM" description="Due Diligence Form"/>
 
 <!--    <PartyQuestionApplType description="Due Diligence Form" partyQuestionApplTypeId="DD_FORM" hasTable="N"/>-->

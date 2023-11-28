@@ -496,7 +496,7 @@ public class SupplierEvents {
     }
 
     /**
-     * 完成文件上传
+     * 禁用供应商
      */
     public static void disableSupplier(Map<String, Object> oDataContext, Map<String, Object> actionParameters, EdmBindingTarget edmBindingTarget)
             throws GenericServiceException {
@@ -504,6 +504,37 @@ public class SupplierEvents {
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
         OdataOfbizEntity supplierPartyEntity = (OdataOfbizEntity) actionParameters.get("supplierParty");
         GenericValue supplierParty = supplierPartyEntity.getGenericValue();
-        dispatcher.runSync("banfftech.updatePartyGroupAndContact", UtilMisc.toMap("userLogin", userLogin, "partyId", supplierParty.get("partyId"), "statusId", "PARTY_DISABLED"));
+        changeSupplierStatus(userLogin, dispatcher, supplierParty, "PARTY_DISABLED");
     }
+
+    /**
+     * 启用供应商
+     */
+    public static void enableSupplier(Map<String, Object> oDataContext, Map<String, Object> actionParameters, EdmBindingTarget edmBindingTarget)
+            throws GenericServiceException {
+        LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
+        GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
+        OdataOfbizEntity supplierPartyEntity = (OdataOfbizEntity) actionParameters.get("supplierParty");
+        GenericValue supplierParty = supplierPartyEntity.getGenericValue();
+        changeSupplierStatus(userLogin, dispatcher, supplierParty, "PARTY_ENABLED");
+    }
+
+    /**
+     * on-hold供应商
+     */
+    public static void onHoldSupplier(Map<String, Object> oDataContext, Map<String, Object> actionParameters, EdmBindingTarget edmBindingTarget)
+            throws GenericServiceException {
+        LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
+        GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
+        OdataOfbizEntity supplierPartyEntity = (OdataOfbizEntity) actionParameters.get("supplierParty");
+        GenericValue supplierParty = supplierPartyEntity.getGenericValue();
+        changeSupplierStatus(userLogin, dispatcher, supplierParty, "PARTY_ON_HOLD");
+    }
+
+    private static void changeSupplierStatus(GenericValue userLogin, LocalDispatcher dispatcher, GenericValue supplierParty, String statusId) throws GenericServiceException {
+        dispatcher.runSync("banfftech.updatePartyGroupAndContact",
+                UtilMisc.toMap("userLogin", userLogin, "partyId", supplierParty.get("partyId"), "statusId", statusId));
+
+    }
+
 }
