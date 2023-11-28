@@ -35,6 +35,16 @@ under the License.
     <RoleType description="Government Department" roleTypeId="GOVERNMENT_SUPPLIER" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
     <RoleType description="Beneficial Person" roleTypeId="BENEFICIAL_PERSON" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
     <RoleType description="Senior Staff" roleTypeId="SENIOR_STAFF" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
+    <!--DDForm Business Relationship to Company-->
+    <RoleType description="Business Relationship to Company" roleTypeId="BUSINESS_RELATIONSHIP" />
+    <RoleType description="Agent" roleTypeId="AGENT" parentTypeId="BUSINESS_RELATIONSHIP" />
+    <RoleType description="JV Partner" roleTypeId="JV_PARTNER" parentTypeId="BUSINESS_RELATIONSHIP" />
+    <RoleType description="Sub-contractor" roleTypeId="SUB_CONTRACTOR" parentTypeId="BUSINESS_RELATIONSHIP" />
+    <RoleType description="Consultant/Advisor" roleTypeId="CONSULTANT_ADVISOR" parentTypeId="BUSINESS_RELATIONSHIP" />
+    <RoleType description="Supplier/Vendor" roleTypeId="SUPPLIER_VENDOR" parentTypeId="BUSINESS_RELATIONSHIP" />
+    <RoleType description="Distributor" roleTypeId="DISTRIBUTOR" parentTypeId="BUSINESS_RELATIONSHIP" />
+    <RoleType description="Investment Target" roleTypeId="INVESTMENT_TARGET" parentTypeId="BUSINESS_RELATIONSHIP" />
+    <RoleType description="Other (specify)" roleTypeId="OTHER_SPECIFY" parentTypeId="BUSINESS_RELATIONSHIP" />
 
     <CustRequestType description="采购请求" custRequestTypeId="PURCHASE_REQ"/>
 

@@ -76,7 +76,8 @@
         </FieldGroup>
         <!-- 8.PartyRole -->
         <FieldGroup Label="BusinessRelationship" Qualifier="BusinessRelationship">
-            <DataField Values="agent,jvPartner,subContractor,consultant,supplier,distributor,investmentTarget,otherAttr" Importance="High"/>
+<!--            <DataField Values="agent,jvPartner,subContractor,consultant,supplier,distributor,investmentTarget,otherAttr" Importance="High"/>-->
+            <DataField Values="BusinessRelationship/roleTypeId" Importance="High"/>
         </FieldGroup>
         <!-- 9.工作范围 -->
         <FieldGroup Label="WorkScope" Qualifier="WorkScope">
@@ -93,6 +94,7 @@
             <DataField Values="answer0,answer1,answer2,answer3" Importance="High"/>
         </FieldGroup>
         <NavigationProperty Name="PartyNameHistory"/>
+        <NavigationProperty Name="BusinessRelationship" Relations="PartyRoleType(parentTypeId=BUSINESS_RELATIONSHIP)" IsCollection="true" Type="BusinessRelationship"/>
         <NavigationProperty Name="BeneficialPerson" Type="RelationshipAndToParty" IsCollection="true"
                             Relations="FromRelationshipAndToParty(roleTypeIdTo=BENEFICIAL_PERSON and roleTypeIdFrom=SUPPLIER)"/>
         <NavigationProperty Name="SeniorStaff" Type="RelationshipAndToParty" IsCollection="true"
@@ -107,6 +109,19 @@
 
     </EntityType>
 
+    <EntityType Name="RoleType" AutoProperties="true" EntitySetName="RoleTypes" EntityCondition="parentTypeId=BUSINESS_RELATIONSHIP">
+        <Property Name="roleTypeId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <EntityType Name="BusinessRelationship" OfbizEntity="PartyRoleType" AutoProperties="true"
+                DraftEntityName="BusinessRelationshipDraft" EntitySetName="BusinessRelationships">
+        <Property Name="roleTypeId" Label="${BusinessRelationshipRoles}">
+            <Text Path="description" TextArrangement="TextOnly"/>
+            <ValueList CollectionPath="RoleTypes" WithFixedValues="true" Label="${RoleTypes}"/>
+        </Property>
+            <NavigationProperty Name="RoleType"/>
+    </EntityType>
     <EntityType Name="PersonAndContact" AutoProperties="true" DraftEntityName="SupplierContactDraft" EntitySetName="PersonAndContacts">
 
     </EntityType>
