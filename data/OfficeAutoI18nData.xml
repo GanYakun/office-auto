@@ -82,7 +82,7 @@ under the License.
     <Internationalization id="I10059" lang="zh" property="supplierUpdateActionNumEmployees" value="员工数量"/>
     <Internationalization id="I10060" lang="en" property="supplierUpdateActionAnnualRevenue" value="Annual revenue"/>
     <Internationalization id="I10061" lang="zh" property="supplierUpdateActionAnnualRevenue" value="年利润"/>
-    <Internationalization id="I10062" lang="en" property="supplierUpdateActionTickerSymbol" value="List region"/>
+    <Internationalization id="I10062" lang="en" property="supplierUpdateActionTickerSymbol" value="Listed country"/>
     <Internationalization id="I10063" lang="zh" property="supplierUpdateActionTickerSymbol" value="股票代码"/>
     <Internationalization id="I10064" lang="en" property="supplierUpdateActionComments" value="Comments"/>
     <Internationalization id="I10065" lang="zh" property="supplierUpdateActionComments" value="备注"/>
@@ -350,7 +350,7 @@ under the License.
     <DBField dbFieldId="WPC10000_08" dbFieldName="usccNumber" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Tax code"/>
     <DBField dbFieldId="WPC10000_09" dbFieldName="employeesSection" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Employees"/>
     <DBField dbFieldId="WPC10000_10" dbFieldName="annualRevenue" dbFieldTypeId="NUMBER" dbEntityId="WPC10000" description="Annual revenue"/>
-    <DBField dbFieldId="WPC10000_11" dbFieldName="tickerSymbol" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="List region"/>
+    <DBField dbFieldId="WPC10000_11" dbFieldName="tickerSymbol" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Listed country"/>
     <DBField dbFieldId="WPC10000_12" dbFieldName="comments" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Comments"/>
     <DBField dbFieldId="WPC10000_13" dbFieldName="approvePartyId" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Task party"/>
     <DBField dbFieldId="WPC10000_14" dbFieldName="currentStatusId" dbFieldTypeId="STATUS" dbEntityId="WPC10000" description="Status"/>
@@ -379,7 +379,7 @@ under the License.
     <DBFieldLabel dbFieldLabelId="WPC10000_10_ZH" dbFieldId="WPC10000_10" language="zh" value="年收入"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_10_EN" dbFieldId="WPC10000_10" language="en" value="Annual revenue"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_11_ZH" dbFieldId="WPC10000_11" language="zh" value="股票代码"/>
-    <DBFieldLabel dbFieldLabelId="WPC10000_11_EN" dbFieldId="WPC10000_11" language="en" value="Ticker symbol"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_11_EN" dbFieldId="WPC10000_11" language="en" value="Listed country"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_12_ZH" dbFieldId="WPC10000_12" language="zh" value="备注"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_12_EN" dbFieldId="WPC10000_12" language="en" value="Comments"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_13_ZH" dbFieldId="WPC10000_13" language="zh" value="任务处理人"/>
@@ -408,7 +408,7 @@ under the License.
     <DBField dbFieldId="PGC10000_08" dbFieldName="usccNumber" dbFieldTypeId="STRING" dbEntityId="PGC10000" description="Tax code"/>
     <DBField dbFieldId="PGC10000_09" dbFieldName="employeesSection" dbFieldTypeId="STRING" dbEntityId="PGC10000" description="Employees"/>
     <DBField dbFieldId="PGC10000_10" dbFieldName="annualRevenue" dbFieldTypeId="NUMBER" dbEntityId="PGC10000" description="Annual revenue"/>
-    <DBField dbFieldId="PGC10000_11" dbFieldName="tickerSymbol" dbFieldTypeId="STRING" dbEntityId="PGC10000" description="List region"/>
+    <DBField dbFieldId="PGC10000_11" dbFieldName="tickerSymbol" dbFieldTypeId="STRING" dbEntityId="PGC10000" description="Listed country"/>
     <DBField dbFieldId="PGC10000_12" dbFieldName="comments" dbFieldTypeId="STRING" dbEntityId="PGC10000" description="Comments"/>
     <DBField dbFieldId="PGC10000_13" dbFieldName="approvePartyId" dbFieldTypeId="STRING" dbEntityId="PGC10000" description="Task party"/>
     <DBField dbFieldId="PGC10000_14" dbFieldName="currentStatusId" dbFieldTypeId="STATUS" dbEntityId="PGC10000" description="Status"/>
@@ -435,7 +435,7 @@ under the License.
     <DBFieldLabel dbFieldLabelId="PGC10000_10_ZH" dbFieldId="PGC10000_10" language="zh" value="年收入"/>
     <DBFieldLabel dbFieldLabelId="PGC10000_10_EN" dbFieldId="PGC10000_10" language="en" value="Annual revenue"/>
     <DBFieldLabel dbFieldLabelId="PGC10000_11_ZH" dbFieldId="PGC10000_11" language="zh" value="股票代码"/>
-    <DBFieldLabel dbFieldLabelId="PGC10000_11_EN" dbFieldId="PGC10000_11" language="en" value="Ticker symbol"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_11_EN" dbFieldId="PGC10000_11" language="en" value="Listed country"/>
     <DBFieldLabel dbFieldLabelId="PGC10000_12_ZH" dbFieldId="PGC10000_12" language="zh" value="备注"/>
     <DBFieldLabel dbFieldLabelId="PGC10000_12_EN" dbFieldId="PGC10000_12" language="en" value="Comments"/>
     <DBFieldLabel dbFieldLabelId="PGC10000_13_ZH" dbFieldId="PGC10000_13" language="zh" value="任务处理人"/>
@@ -659,6 +659,12 @@ under the License.
     <DBField dbFieldId="PCFG10000_01" dbFieldName="description" dbFieldTypeId="STRING" dbEntityId="PCFG10000" description="Category Name"/>
     <DBFieldLabel dbFieldLabelId="PCFG10000_01_ZH" dbFieldId="PCFG10000_01" language="zh" value="分类名称"/>
     <DBFieldLabel dbFieldLabelId="PCFG10000_01_EN" dbFieldId="PCFG10000_01" language="en" value="Risk level"/>
+
+    <!-- Entity labels for entity Geo -->
+    <DBEntity dbEntityId="GEO10000" dbEntityName="Geo" dbEntityTypeId="COUNTRY" description="Geo" isOpen="N" />
+    <DBField dbFieldId="GEO10000_01" dbFieldName="geoId" dbFieldTypeId="STRING" dbEntityId="GEO10000" description="Geo Id"/>
+    <DBFieldLabel dbFieldLabelId="GEO10000_01_ZH" dbFieldId="GEO10000_01" language="zh" value="上市国家"/>
+    <DBFieldLabel dbFieldLabelId="GEO10000_01_EN" dbFieldId="GEO10000_01" language="en" value="Listed country"/>
 
 
     <!-- Entity labels for entity FinAccount -->

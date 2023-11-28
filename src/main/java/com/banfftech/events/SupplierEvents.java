@@ -246,6 +246,7 @@ public class SupplierEvents {
         actionParameters.put("workEffortId",supplierParty.getString("workEffortId"));
         actionParameters.put("partyId",supplierParty.getString("partyId"));
         actionParameters.put("userLogin",userLogin);
+        //创建或者更新usccNumber
         if(UtilValidate.isNotEmpty(actionParameters.get("usccNumber"))){
             List<GenericValue> partyIdentifications = delegator.findByAnd("PartyIdentification", UtilMisc.toMap("partyId", supplierParty.getString("partyId")), null, false);
             if (UtilValidate.isNotEmpty(partyIdentifications)){
@@ -257,6 +258,22 @@ public class SupplierEvents {
                 dispatcher.runSync("banfftech.createPartyIdentification",
                         UtilMisc.toMap("userLogin", userLogin, "partyIdentificationTypeId", "USCC_OF_CHINESE_ORG",
                                 "partyId", supplierParty.get("partyId"), "idValue", actionParameters.get("usccNumber")));
+            }
+        }
+        //创建或者更新PartyGeo
+        if (UtilValidate.isNotEmpty(actionParameters.get("geoId"))){
+            List<String> geoIds = (List<String>) actionParameters.get("geoId");
+            List<GenericValue> partyGeos = delegator.findByAnd("PartyGeo", UtilMisc.toMap("partyId", supplierParty.get("partyId")), null, true);
+            if (UtilValidate.isNotEmpty(partyGeos)){
+                for (GenericValue partyGeo : partyGeos){
+                    dispatcher.runSync("banfftech.deletePartyGeo",
+                            UtilMisc.toMap("userLogin", userLogin, "partyGeoId", partyGeo.get("partyGeoId")));
+                }
+            }
+            for (String geoId : geoIds){
+                dispatcher.runSync("banfftech.createPartyGeo",
+                        UtilMisc.toMap("userLogin", userLogin, "geoId", geoId,
+                                "partyId", supplierParty.get("partyId"), "partyGeoTypeId", "LISTED_COUNTRY"));
             }
         }
         CommonUtils.setServiceFieldsAndRun(dctx, actionParameters, "banfftech.updateWorkEffortAndPartyGroupContact", userLogin);

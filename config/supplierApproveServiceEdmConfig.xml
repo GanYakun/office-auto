@@ -122,6 +122,7 @@
         <NavigationProperty Name="Department" Type="Department" Relations="ToPartyRelationship(roleTypeIdFrom=DEPARTMENT)/FromParty" IsCollection="true"/>
         <NavigationProperty Name="EmployeesEnumeration" Type="EmployeesEnumeration" Relations="EmployeesEnumeration"/>
         <NavigationProperty Name="ListRegionEnumeration" Type="ListRegionEnumeration" Relations="ListRegionEnumeration"/>
+        <NavigationProperty Name="ListedCountry" Type="ListedCountry" Relations="PartyGeo(partyGeoTypeId=LISTED_COUNTRY)/Geo" IsCollection="true"/>
 
         <!-- 财务报表 -->
         <NavigationProperty Name="FinancialStatements" Type="PartyMediaResource"
@@ -145,13 +146,13 @@
         <DataPoint Title="${ddFormType}" Value="ddFormType" Qualifier="DDFormType"/>
         <DataPoint Title="${SupplierCategory}" Value="ProductCategory/categoryName" Qualifier="SupplierCategory"/>
         <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">
-            <DataField Values="usccNumber,employeesSection,isGovernment,annualRevenue,tickerSymbol,comments" Importance="High"/>
+            <DataField Values="usccNumber,employeesSection,isGovernment,annualRevenue,ListedCountry/geoId,comments" Importance="High"/>
         </FieldGroup>
         <FieldGroup Qualifier="WorkScope" Label="WorkScope">
             <DataField Values="workScope" Importance="High"/>
         </FieldGroup>
         <FieldGroup Qualifier="PartyGroupFieldGroupWithAction" Label="PartyGroupFieldGroupWithAction">
-            <DataField Values="usccNumber,employeesSection,isGovernment,annualRevenue,tickerSymbol,comments,priority" Importance="High"/>
+            <DataField Values="usccNumber,employeesSection,isGovernment,annualRevenue,ListedCountry/geoId,comments,priority" Importance="High"/>
             <DataFieldForAction Label="${UpdateBasicInfo}" Action="FillSupplierBaseInfo" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated" Hidden="disableEditSupplier"/>
         </FieldGroup>
 <!--        <FieldGroup Qualifier="FileCountGroup" Label="FileCountGroup">-->
@@ -225,9 +226,9 @@
                 </ValueList>
             </Parameter>
             <Parameter Name="annualRevenue" Type="BigDecimal" Scale="2" Label="${supplierUpdateActionAnnualRevenue}"/>
-            <Parameter Name="tickerSymbol" Type="String" Label="${supplierUpdateActionTickerSymbol}">
-                <ValueList WithFixedValues="true" CollectionPath="ListRegionEnumerations">
-                    <ParameterInOut LocalDataProperty="tickerSymbol" ValueListProperty="enumId"/>
+            <Parameter Name="geoId" IsCollection="true" Type="String" Label="${supplierUpdateActionTickerSymbol}">
+                <ValueList WithFixedValues="true" CollectionPath="ListedCountries">
+                    <ParameterInOut LocalDataProperty="geoId" ValueListProperty="geoId"/>
                 </ValueList>
             </Parameter>
             <Parameter Name="comments" Type="String" Label="${supplierUpdateActionComments}"/>
@@ -439,6 +440,11 @@
     </EntityType>
     <!--Country（国家）-->
     <EntityType Name="Country" OfbizEntity="Geo" EntityCondition="geoId in (FRA,USA,GBR,ARE,DEU,JPN,ITA,CHE,17)" AutoProperties="true" EntitySetName="Countries">
+        <Property Name="geoId">
+            <Text Path="geoName" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <EntityType Name="ListedCountry" OfbizType="geoTypeId=COUNTRY" OfbizEntity="Geo" EntityCondition="geoId in (USA,UK,UAE,Europe,CHN)" AutoProperties="true" EntitySetName="ListedCountries">
         <Property Name="geoId">
             <Text Path="geoName" TextArrangement="TextOnly"/>
         </Property>
