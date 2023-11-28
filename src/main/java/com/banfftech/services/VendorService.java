@@ -142,17 +142,12 @@ public class VendorService {
         return ServiceUtil.returnSuccess();
     }
 
-    /**
-     * 判断供应商是否有问题
-     * @throws GenericEntityException
-     * @throws GenericServiceException
-     */
-    public static Map<String, Object> isQuestionableSupplier(DispatchContext dctx, Map<String, Object> context)
-            throws GenericEntityException, GenericServiceException {
+    public static Map<String, Object> ddFormCommit(DispatchContext dctx, Map<String, Object> context)
+            throws GenericEntityException {
         LocalDispatcher dispatcher = dctx.getDispatcher();
         Delegator delegator = dispatcher.getDelegator();
         String supplierPartyId = (String) context.get("supplierPartyId");
-        GenericValue userLogin = (GenericValue) context.get("userLogin");
+        GenericValue supplier = EntityQuery.use(delegator).from("Party").where("partyId", supplierPartyId).queryFirst();
         List<GenericValue> surveyQuestions = delegator.findByAnd("SurveyQuestion", UtilMisc.toMap("surveyQuestionTypeId", "BOOLEAN"), null, true);
         if (UtilValidate.isNotEmpty(surveyQuestions)){
             List<String> surveyQuestionIds = EntityUtil.getFieldListFromEntityList(surveyQuestions, "surveyQuestionId", false);
@@ -161,28 +156,9 @@ public class VendorService {
             EntityCondition condition = EntityCondition.makeCondition(condition1, condition2);
             List<GenericValue> surveyQuestionAnswers = EntityQuery.use(delegator).from("SurveyQuestionAnswer").where(condition).queryList();
             List<String> boolAnswer = EntityUtil.getFieldListFromEntityList(surveyQuestionAnswers, "booleanResponse", false);
-            if (boolAnswer.contains("Y")){
-                dispatcher.runSync("banfftech.updateParty", UtilMisc.toMap("partyId", supplierPartyId, "userLogin", userLogin, "statusId", "PARTY_ON_HOLD"));
-            }
+            CommonUtils.setObjectAttributeBoolean(supplier, "complianceCheckWarning", boolAnswer.contains("Y"));
         }
-        return ServiceUtil.returnSuccess();
-    }
-
-    //ddForm首次提交记录
-    public static Map<String, Object> ddFormFirstSubmitRecord(DispatchContext dctx, Map<String, Object> context)
-            throws GenericEntityException, GenericServiceException {
-
-        String supplierPartyId = (String) context.get("supplierPartyId");
-        GenericValue userLogin = (GenericValue) context.get("userLogin");
-        LocalDispatcher dispatcher = dctx.getDispatcher();
-        Delegator delegator = dispatcher.getDelegator();
-        GenericValue ddFormStatusHistory = delegator.findOne("PartyAttribute",
-                UtilMisc.toMap("partyId", supplierPartyId, "attrName", "ddFormStatusHistory"), true);
-        if (UtilValidate.isEmpty(ddFormStatusHistory)){
-            dispatcher.runSync("banfftech.createPartyAttribute",
-                    UtilMisc.toMap("userLogin", userLogin, "partyId", supplierPartyId,
-                            "attrName", "ddFormStatusHistory", "attrValue", "Submitted"));
-        }
+        CommonUtils.setObjectAttribute(supplier, "ddFormStatusHistory", "Submitted");
         return ServiceUtil.returnSuccess();
     }
 }
