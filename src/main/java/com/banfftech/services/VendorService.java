@@ -124,4 +124,17 @@ public class VendorService {
         return ServiceUtil.returnSuccess();
     }
 
+    public static Map<String, Object> copyRelationshipAttr(DispatchContext dctx, Map<String, Object> context) throws GenericEntityException {
+        GenericValue userLogin = (GenericValue) context.get("userLogin");
+        LocalDispatcher dispatcher = dctx.getDispatcher();
+        Delegator delegator = dispatcher.getDelegator();
+        String partyRelationshipId = (String) context.get("partyRelationshipId");
+        String attrName = (String) context.get("attrName");
+        String attrValue = (String) context.get("attrValue");
+        GenericValue partyRelationship = EntityQuery.use(delegator).from("PartyRelationship").where(UtilMisc.toMap("partyRelationshipId", partyRelationshipId)).queryOne();
+        GenericValue toParty = partyRelationship.getRelatedOne("ToParty", false);
+        CommonUtils.setObjectAttribute(toParty, attrName, attrValue);
+        return ServiceUtil.returnSuccess();
+    }
+
 }

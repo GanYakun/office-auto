@@ -53,7 +53,19 @@ under the License.
             <key-map field-name="partyId"/>
         </relation>
     </entity>
-    
+
+    <entity entity-name="PartyRelationshipAttribute" package-name="com.banfftech.officeauto">
+        <field name="partyRelationshipId" type="id"></field>
+        <field name="attrName" type="id-long"></field>
+        <field name="attrValue" type="value"></field>
+        <field name="attrDescription" type="description"></field>
+        <prim-key field="partyRelationshipId"/>
+        <prim-key field="attrName"/>
+        <relation type="one" fk-name="PTRSP_STR_ATTR" rel-entity-name="PartyRelationship">
+            <key-map field-name="partyRelationshipId"/>
+        </relation>
+    </entity>
+
     <entity entity-name="PartySurveyAppl" package-name="com.banfftech.officeauto">
         <field name="partySurveyApplId" type="id"></field>
         <field name="partyId" type="id"></field>

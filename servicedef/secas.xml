@@ -17,4 +17,14 @@
         <action service="banfftech.createSupplierUserLogin" mode="sync"/>
     </eca>
 
+
+    <eca service="banfftech.createPartyRelationshipAttribute" event="return">
+        <condition field-name="attrName" operator="equals" value="nationality"/>
+        <action service="banfftech.createSupplierUserLogin" mode="sync"/>
+    </eca>
+    <eca service="banfftech.createPartyRelationshipAttribute" event="return">
+        <condition field-name="attrName" operator="equals" value="copyIdentificationAttached"/>
+        <action service="banfftech.createSupplierUserLogin" mode="sync"/>
+    </eca>
+
 </service-eca>

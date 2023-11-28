@@ -93,10 +93,10 @@
             <DataField Values="answer0,answer1,answer2,answer3" Importance="High"/>
         </FieldGroup>
         <NavigationProperty Name="PartyNameHistory"/>
-<!--        <NavigationProperty Name="BeneficialPerson" Type="RelationshipAndToParty" IsCollection="true"-->
-<!--                            Relations="FromRelationshipAndToParty(roleTypeIdTo=BENEFICIAL_PERSON and roleTypeIdFrom=SUPPLIER)"/>-->
-<!--        <NavigationProperty Name="SeniorStaff" Type="RelationshipAndToParty" IsCollection="true"-->
-<!--                            Relations="FromRelationshipAndToParty(roleTypeIdTo=SENIOR_STAFF and roleTypeIdFrom=SUPPLIER)"/>-->
+        <NavigationProperty Name="BeneficialPerson" Type="RelationshipAndToParty" IsCollection="true"
+                            Relations="FromRelationshipAndToParty(roleTypeIdTo=BENEFICIAL_PERSON and roleTypeIdFrom=SUPPLIER)"/>
+        <NavigationProperty Name="SeniorStaff" Type="RelationshipAndToParty" IsCollection="true"
+                            Relations="FromRelationshipAndToParty(roleTypeIdTo=SENIOR_STAFF and roleTypeIdFrom=SUPPLIER)"/>
     </EntityType>
 
     <EntityType Name="PartyGeoPoint" AutoProperties="true" EntitySetName="PartyGeoPoints">
@@ -118,12 +118,17 @@
     </EntityType>
 
     <EntityType Name="RelationshipAndToParty" AutoProperties="true" DraftEntityName="RelationshipAndToPartyDraft"
-                EntitySetName="RelationshipAndToParties" AttrEntityName="PartyAttribute">
+                EntitySetName="RelationshipAndToParties" AttrEntityName="PartyRelationshipAttribute">
         <Property Name="nationality" Label="${nationality}" Type="String" IsAttribute="true"/>
         <Property Name="copyIdentificationAttached" Type="Boolean" IsAttribute="true" Label="${copyIdentificationAttached}"/>
+        <Property Name="positionTitle" Label="${position}"/>
         <Property Name="amount" Label="${partyRelationshipAmount}"/>
-        <LineItem Qualifier="RelPersons">
-            <DataField Values="partyName,nationality,amount,copyIdentificationAttached" Importance="High"/>
+        <Property Name="partyName" Label="${nameOfDirector}"/>
+<!--        <LineItem Qualifier="BeneficialPerson">-->
+<!--            <DataField Values="partyName,nationality,amount,copyIdentificationAttached" Importance="High"/>-->
+<!--        </LineItem>-->
+        <LineItem Qualifier="SeniorStaff">
+            <DataField Values="partyName,nationality,positionTitle,copyIdentificationAttached" Importance="High"/>
         </LineItem>
     </EntityType>
 
