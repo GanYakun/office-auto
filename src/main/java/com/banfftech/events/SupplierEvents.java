@@ -476,13 +476,13 @@ public class SupplierEvents {
         dispatcher.runSync("banfftech.createPartySurveyAppl",
                 UtilMisc.toMap("userLogin", userLogin, "partyId", partyId, "surveyId", "DD_STD_FORM", "surveyApplTypeId", "DD_FORM"));
         dispatcher.runSync("banfftech.createSurveyQuestionAnswer",
-                UtilMisc.toMap("userLogin", userLogin, "surveyQuestionAnswerId", delegator.getNextSeqId("SurveyQuestionAnswer"), "surveyQuestionId", "9000", "partyId", partyId, "booleanResponse", "Y"));
+                UtilMisc.toMap("userLogin", userLogin, "surveyQuestionAnswerId", delegator.getNextSeqId("SurveyQuestionAnswer"), "surveyQuestionId", "9000", "partyId", partyId));
         dispatcher.runSync("banfftech.createSurveyQuestionAnswer",
-                UtilMisc.toMap("userLogin", userLogin, "surveyQuestionAnswerId", delegator.getNextSeqId("SurveyQuestionAnswer"), "surveyQuestionId", "9001", "partyId", partyId, "booleanResponse", "Y"));
+                UtilMisc.toMap("userLogin", userLogin, "surveyQuestionAnswerId", delegator.getNextSeqId("SurveyQuestionAnswer"), "surveyQuestionId", "9001", "partyId", partyId));
         dispatcher.runSync("banfftech.createSurveyQuestionAnswer",
-                UtilMisc.toMap("userLogin", userLogin, "surveyQuestionAnswerId", delegator.getNextSeqId("SurveyQuestionAnswer"), "surveyQuestionId", "9002", "partyId", partyId, "booleanResponse", "N"));
+                UtilMisc.toMap("userLogin", userLogin, "surveyQuestionAnswerId", delegator.getNextSeqId("SurveyQuestionAnswer"), "surveyQuestionId", "9002", "partyId", partyId));
         dispatcher.runSync("banfftech.createSurveyQuestionAnswer",
-                UtilMisc.toMap("userLogin", userLogin, "surveyQuestionAnswerId", delegator.getNextSeqId("SurveyQuestionAnswer"), "surveyQuestionId", "9003", "partyId", partyId, "booleanResponse", "N"));
+                UtilMisc.toMap("userLogin", userLogin, "surveyQuestionAnswerId", delegator.getNextSeqId("SurveyQuestionAnswer"), "surveyQuestionId", "9003", "partyId", partyId));
         dispatcher.runSync("banfftech.createSurveyQuestionAnswer",
                 UtilMisc.toMap("userLogin", userLogin, "surveyQuestionAnswerId", delegator.getNextSeqId("SurveyQuestionAnswer"), "surveyQuestionId", "9004", "partyId", partyId));
 

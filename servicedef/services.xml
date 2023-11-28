@@ -80,4 +80,12 @@ under the License.
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
     </service>
 
+    <service name="banfftech.copyRelationshipAttr"
+             location="com.banfftech.services.VendorService" engine="java" invoke="copyRelationshipAttr" auth="true">
+        <description>Update a PartyMediaResource</description>
+        <attribute mode="IN" name="partyRelationshipId" type="String"/>
+        <attribute mode="IN" name="attrName" type="String"/>
+        <attribute mode="IN" name="attrValue" type="String" optional="true"/>
+    </service>
+
 </services>
