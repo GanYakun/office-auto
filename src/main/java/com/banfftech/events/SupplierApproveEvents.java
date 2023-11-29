@@ -173,7 +173,8 @@ public class SupplierApproveEvents {
         }
         if ("applicant".equals(target)) {
             //获取申请人的部门
-            GenericValue createUser = delegator.findOne("UserLogin", UtilMisc.toMap("userLoginId", parentWorkEffort.getString("createdByUserLogin")), false);
+            GenericValue firstTask = EntityQuery.use(delegator).from("WorkEffort").where("partyId", parentWorkEffort.getString("partyId")).orderBy("createdDate").queryFirst();
+            GenericValue createUser = delegator.findOne("UserLogin", UtilMisc.toMap("userLoginId", firstTask.getString("createdByUserLogin")), false);
             return CommonUtils.getPartyCompany(createUser.getString("partyId"), delegator);
         }
         if ("supplier".equals(target)) {
@@ -219,27 +220,6 @@ public class SupplierApproveEvents {
         }
     }
 
-    public static String getTargetEmail(Delegator delegator, String target, GenericValue parentWorkEffort, String defaultEmail) throws GenericEntityException {
-        if ("procurement".equals(target)) {
-            GenericValue procurement = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", "procurement").queryFirst();
-            return procurement.getString("primaryEmail");
-        }
-        if ("compliance".equals(target)) {
-            GenericValue procurement = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", "compliance").queryFirst();
-            return procurement.getString("primaryEmail");
-        }
-        if ("applicant".equals(target)) {
-            //获取申请人的账号
-            GenericValue createUser = delegator.findOne("UserLogin", UtilMisc.toMap("userLoginId", parentWorkEffort.getString("createdByUserLogin")), false);
-            GenericValue applicantParty = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", createUser.getString("partyId")).queryFirst();
-            return applicantParty.getString("primaryEmail");
-        }
-        if ("supplier".equals(target)) {
-            return defaultEmail;
-        }
-        return null;
-    }
-
 
     public static void sendEmailToTarget(Delegator delegator, String target, HttpServletRequest httpServletRequest, OdataOfbizEntity entity,
                                            GenericValue parentWorkEffort, String defaultEmail) throws GenericEntityException, UnsupportedEncodingException {
@@ -268,7 +248,8 @@ public class SupplierApproveEvents {
             targetEmail = procurement.getString("primaryEmail");
         }
         if ("applicant".equals(target)) {
-            GenericValue createUser = delegator.findOne("UserLogin", UtilMisc.toMap("userLoginId", parentWorkEffort.getString("createdByUserLogin")), false);
+            GenericValue firstTask = EntityQuery.use(delegator).from("WorkEffort").where("partyId", supplierPartyId).orderBy("createdDate").queryFirst();
+            GenericValue createUser = delegator.findOne("UserLogin", UtilMisc.toMap("userLoginId", firstTask.getString("createdByUserLogin")), false);
             String createCompany = CommonUtils.getPartyCompany(createUser.getString("partyId"), delegator);
             GenericValue coWork = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", supplierPartyId, "approvePartyId", createCompany, "workEffortTypeId", "COWORK_TASK").queryFirst();
             String coWorkId = coWork.getString("workEffortId");
