@@ -279,7 +279,7 @@ public class SupplierApproveEvents {
         }
         if ("supplier".equals(target)) {
             odataId = odataId.replaceAll("'[^']*'", "'" + supplierPartyId + "'");
-            currentUrl += "o3/#Supplier-DDForm&/" + URLEncoder.encode(odataId, "UTF-8");
+            currentUrl += "/o3/#Supplier-DDForm&/" + URLEncoder.encode(odataId, "UTF-8");
         }
         //发送邮件
         String content = "Vendor Onboarding Progress Update Notification\n" +
