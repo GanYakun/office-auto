@@ -223,6 +223,9 @@
         <relation type="many" rel-entity-name="SurveyQuestionAndAnswer">
             <key-map field-name="partyId" rel-field-name="partyId"/>
         </relation>
+        <relation type="many" rel-entity-name="PartyAttribute">
+            <key-map field-name="partyId" rel-field-name="partyId"/>
+        </relation>
     </view-entity>
 
     <view-entity entity-name="PartyMediaResource"
