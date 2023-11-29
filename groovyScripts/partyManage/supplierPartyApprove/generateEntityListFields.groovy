@@ -103,14 +103,15 @@ def generateFields(Map<String, Object> context){
                 .where(UtilMisc.toMap("partyIdentificationTypeId", "REGISTRATION_NUMBER", "partyId", supplierParty.getString("partyId"))).queryFirst();
         String usccNumber = partyIdentification == null ? null : partyIdentification.getString("idValue")
         //DDForm Bool Field
-        entity.addProperty(new Property(null, "agent", ValueType.PRIMITIVE, true));
-        entity.addProperty(new Property(null, "jvPartner", ValueType.PRIMITIVE, true));
-        entity.addProperty(new Property(null, "subContractor", ValueType.PRIMITIVE, false));
-        entity.addProperty(new Property(null, "consultantAdvisor", ValueType.PRIMITIVE, true));
-        entity.addProperty(new Property(null, "supplierVendor", ValueType.PRIMITIVE, true));
-        entity.addProperty(new Property(null, "distributor", ValueType.PRIMITIVE, false));
-        entity.addProperty(new Property(null, "investmentTarget", ValueType.PRIMITIVE, false));
-        entity.addProperty(new Property(null, "otherSpecify", ValueType.PRIMITIVE, false));
+        List<String> roles = EntityQuery.use(delegator).from("PartyRole").where("partyId", supplierParty.getString("partyId")).getFieldList("roleTypeId");
+        entity.addProperty(new Property(null, "agent", ValueType.PRIMITIVE, roles.contains("AGENT")));
+        entity.addProperty(new Property(null, "jvPartner", ValueType.PRIMITIVE, roles.contains("JV_PARTNER")));
+        entity.addProperty(new Property(null, "subContractor", ValueType.PRIMITIVE, roles.contains("SUB_CONTRACTOR")));
+        entity.addProperty(new Property(null, "consultantAdvisor", ValueType.PRIMITIVE, roles.contains("CONSULTANT_ADVISOR")));
+        entity.addProperty(new Property(null, "supplierVendor", ValueType.PRIMITIVE, roles.contains("SUPPLIER_VENDOR")));
+        entity.addProperty(new Property(null, "distributor", ValueType.PRIMITIVE, roles.contains("DISTRIBUTOR")));
+        entity.addProperty(new Property(null, "investmentTarget", ValueType.PRIMITIVE, roles.contains("INVESTMENT_TARGET")));
+        entity.addProperty(new Property(null, "otherSpecify", ValueType.PRIMITIVE, roles.contains("OTHER_SPECIFY")));
         entity.addProperty(new Property(null, "usccNumber", ValueType.PRIMITIVE, usccNumber));
         entity.addProperty(new Property(null, "checkWarningCritical", ValueType.PRIMITIVE, checkWarningCritical));
     }

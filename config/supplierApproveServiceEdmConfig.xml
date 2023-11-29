@@ -116,7 +116,6 @@
         <NavigationProperty Name="AfterSalesService" Type="AfterSalesService" Relations="WorkEffortPartyAssignment(roleTypeId=SUPPLIER)/WorkEffort" IsCollection="true"/>
         <NavigationProperty Name="PartyClassification" IsCollection="false"/>
         <NavigationProperty Name="CurrentStatusItem"/>
-        <NavigationProperty Name="SurveyQuestionAppl" Type="SurveyQuestionAppl" Relations="PartySurveyAppl/SurveyQuestionAppl" IsCollection="true"/>
         <NavigationProperty Name="ChildWorkEffortAndPartyGroupContact" Type="CoWorkHistory" Relations="ChildWorkEffortAndPartyGroupContact" IsCollection="true"/>
         <NavigationProperty Name="PostalAddress" Type="PostalAddress" Relations="PartyContactMechPurpose/PostalAddress" IsCollection="true"/>
         <NavigationProperty Name="PriorityEnumeration"/>
@@ -125,6 +124,7 @@
         <NavigationProperty Name="EmployeesEnumeration" Type="EmployeesEnumeration" Relations="EmployeesEnumeration"/>
         <NavigationProperty Name="ListRegionEnumeration" Type="ListRegionEnumeration" Relations="ListRegionEnumeration"/>
         <NavigationProperty Name="ListedCountry" Type="ListedCountry" Relations="PartyGeo(partyGeoTypeId=LISTED_COUNTRY)/Geo" IsCollection="true"/>
+        <NavigationProperty Name="SurveyQuestionAndAnswer"/>
 
         <!-- 财务报表 -->
         <NavigationProperty Name="FinancialStatements" Type="PartyMediaResource"
@@ -489,24 +489,15 @@
         </Action>
     </EntityType>
 
-    <!--======================================DDForm问卷相关对象========================================-->
-    <!--SurveyQuestionAppl-->
-    <EntityType Name="SurveyQuestionAppl" AutoProperties="true" EntitySetName="SurveyQuestionAppls" AutoSet="true"
+    <!-- 问卷和答案 -->
+    <EntityType Name="SurveyQuestionAndAnswer" AutoProperties="true" EntitySetName="SurveyQuestionAndAnswers"
                 Handler="component://officeauto/groovyScripts/partyManage/surveyQuestionAppl/generateEntityListFields.groovy">
         <Property Name="response" Type="String" Label="${response}"/>
+        <Property Name="question" Type="String" Label="${question}"/>
         <LineItem Qualifier="SurveyQuestionApplLineItem">
-            <DataField Values="SurveyQuestion/question,response" Importance="High"/>
+            <DataField Values="question,response" Importance="High"/>
         </LineItem>
-        <NavigationProperty Name="SurveyQuestion"/>
-        <NavigationProperty Name="Survey"/>
-        <NavigationProperty Name="SurveyQuestionAnswer" Type="SurveyQuestionAnswer" Relations="SurveyQuestion/SurveyQuestionAnswer" IsCollection="false"/>
     </EntityType>
-    <!--SurveyQuestion-->
-    <EntityType Name="SurveyQuestion" AutoSet="true" EntitySetName="SurveyQuestions" AutoProperties="true"/>
-    <!--Survey-->
-    <EntityType Name="Survey" AutoSet="true" EntitySetName="Surveys" AutoProperties="true"/>
-    <!--SurveyQuestionAnswer-->
-    <EntityType Name="SurveyQuestionAnswer" AutoSet="true" EntitySetName="SurveyQuestionAnswers" AutoProperties="true"/>
 
     <!--================================PurchaseQuote（报价）=======================================-->
     <!--PurchaseQuote（采购报价）-->

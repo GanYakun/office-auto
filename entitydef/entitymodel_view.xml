@@ -220,6 +220,9 @@
         <relation type="many" rel-entity-name="PartyGeo">
             <key-map field-name="partyId" rel-field-name="partyId"/>
         </relation>
+        <relation type="many" rel-entity-name="SurveyQuestionAndAnswer">
+            <key-map field-name="partyId" rel-field-name="partyId"/>
+        </relation>
     </view-entity>
 
     <view-entity entity-name="PartyMediaResource"
@@ -259,6 +262,19 @@
         </view-link>
         <view-link entity-alias="DR" rel-entity-alias="ODR" rel-optional="true">
             <key-map field-name="dataResourceId"/>
+        </view-link>
+    </view-entity>
+
+
+    <view-entity entity-name="SurveyQuestionAndAnswer"
+                 package-name="com.banfftech.common"
+                 never-cache="true">
+        <member-entity entity-alias="SQANW" entity-name="SurveyQuestionAnswer"/>
+        <member-entity entity-alias="SQ" entity-name="SurveyQuestion"/>
+        <alias-all entity-alias="SQ" group-by="true"/>
+        <alias-all entity-alias="SQANW" group-by="true"/>
+        <view-link entity-alias="SQANW" rel-entity-alias="SQ">
+            <key-map field-name="surveyQuestionId"/>
         </view-link>
     </view-entity>
 
