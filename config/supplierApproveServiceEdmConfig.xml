@@ -95,6 +95,8 @@
         <Property Name="adverseResults" Type="String" Label="${adverseResults}" IsAttribute="true"/>
         <Property Name="additionalProtection" Type="String" Label="${additionalProtection}" IsAttribute="true"/>
         <Property Name="complianceComments" Type="String" Label="${complianceComments}" IsAttribute="true"/>
+        <Property Name="complianceCheckWarning" Type="Boolean" Label="${complianceCheckWarning}" IsAttribute="true"/>
+        <Property Name="checkWarningCritical" Type="numeric"/>
 
 
         <NavigationProperty Name="Product" Type="Product" Relations="SupplierProduct/Product" IsCollection="true"/>
@@ -147,6 +149,7 @@
         </FieldGroup>
         <DataPoint Title="${ddFormType}" Value="ddFormType" Qualifier="DDFormType"/>
         <DataPoint Title="${SupplierCategory}" Value="ProductCategory/categoryName" Qualifier="SupplierCategory"/>
+        <DataPoint Title="${complianceCheckWarning}" Value="complianceCheckWarning" Qualifier="complianceCheckWarning" Criticality="checkWarningCritical"/>
         <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">
             <DataField Values="usccNumber,employeesSection,isGovernment,annualRevenue,ListedCountry/geoId,comments" Importance="High"/>
         </FieldGroup>

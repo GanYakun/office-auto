@@ -33,6 +33,7 @@ def generateFields(Map<String, Object> context){
         String ddFormDealStatus;
         ddFormTypeCritical = 0L;
         ddFormDealCritical = 0L;
+        checkWarningCritical = 0L;
         riskCritical = 0L;
         GenericValue supplierParty = (GenericValue) entity.getGenericValue();
         ddFormType = SupplierWorker.getDDFormType(supplierParty, delegator);
@@ -46,6 +47,10 @@ def generateFields(Map<String, Object> context){
             criticalityValue = 4L
         }else if (statusId.equals("NOT_PROCESSED")){
             criticalityValue = 1L
+        }
+
+        if (SupplierWorker.isCheckWarning(supplierParty, delegator)){
+            checkWarningCritical = 1L
         }
         ddFormTypeCritical = CriticalValueWorker.getCriticalValue(ddFormTypeMap, ddFormType);
         ddFormDealCritical = CriticalValueWorker.getCriticalValue(ddFormDealMap, ddFormDealStatus);
@@ -107,6 +112,7 @@ def generateFields(Map<String, Object> context){
         entity.addProperty(new Property(null, "investmentTarget", ValueType.PRIMITIVE, false));
         entity.addProperty(new Property(null, "otherSpecify", ValueType.PRIMITIVE, false));
         entity.addProperty(new Property(null, "usccNumber", ValueType.PRIMITIVE, usccNumber));
+        entity.addProperty(new Property(null, "checkWarningCritical", ValueType.PRIMITIVE, checkWarningCritical));
     }
     return entityList;
 }

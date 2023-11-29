@@ -237,4 +237,14 @@ public class SupplierWorker {
         }
         return criticalValue;
     }
+
+    public static Boolean isCheckWarning (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
+        GenericValue checkAttributeEntity = delegator.findOne("PartyAttribute", UtilMisc.toMap("partyId", supplierParty.get("partyId"), "attrName", "complianceCheckWarning"), true);
+        if (UtilValidate.isNotEmpty(checkAttributeEntity)){
+            return true;
+        }else {
+            return false;
+        }
+
+    }
 }
