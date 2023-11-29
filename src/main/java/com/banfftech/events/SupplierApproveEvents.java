@@ -244,6 +244,9 @@ public class SupplierApproveEvents {
         String targetEmail = defaultEmail;
         if ("procurement".equals(target)) {
             GenericValue coWork = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", supplierPartyId, "approvePartyId", "CG", "workEffortTypeId", "COWORK").queryFirst();
+            if (UtilValidate.isEmpty(coWork)) {
+                return;
+            }
             String coWorkId = coWork.getString("workEffortId");
             odataId = odataId.replaceAll("'[^']*'", "'" + coWorkId + "'");
             currentUrl += "supplierapprove-managebyprocurement/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");

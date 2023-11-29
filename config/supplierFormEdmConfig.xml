@@ -127,6 +127,7 @@
     </EntityType>
 
     <EntityType Name="PartyNameHistory" AutoProperties="true" DraftEntityName="PartyNameHistoryDraft" EntitySetName="PartyNameHistories">
+        <Property Name="partyNameHistoryId" Computed="true"/>
         <LineItem Qualifier="HistoryList">
             <DataField Values="groupName,changeDate" Importance="High"/>
         </LineItem>
@@ -134,6 +135,7 @@
 
     <EntityType Name="RelationshipAndToParty" AutoProperties="true" DraftEntityName="RelationshipAndToPartyDraft"
                 EntitySetName="RelationshipAndToParties" AttrEntityName="PartyRelationshipAttribute">
+        <Property Name="partyRelationshipId" Computed="true"/>
         <Property Name="nationality" Label="${nationality}" Type="String" IsAttribute="true"/>
         <Property Name="copyIdentificationAttached" Type="Boolean" IsAttribute="true" Label="${copyIdentificationAttached}"/>
         <Property Name="positionTitle" Label="${position}"/>
