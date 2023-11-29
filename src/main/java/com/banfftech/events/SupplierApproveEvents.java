@@ -239,26 +239,38 @@ public class SupplierApproveEvents {
                                            GenericValue parentWorkEffort, String defaultEmail) throws GenericEntityException, UnsupportedEncodingException {
         //获取app访问地址和邮件
         String currentUrl = httpServletRequest.getRequestURL().toString().replace(httpServletRequest.getRequestURI(), "") + "/menu6/";
-        String odataId = URLEncoder.encode(entity.getId().toString(), "UTF-8");
+        Object supplierPartyId = entity.getPropertyValue("partyId");
+        String odataId = entity.getId().toString();
         String targetEmail = defaultEmail;
         if ("procurement".equals(target)) {
-            currentUrl += "supplierapprove-managebyprocurement/SupplierPartiesObjectPage?queryEntity=" + odataId;
+            GenericValue coWork = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", supplierPartyId, "approvePartyId", "CG", "workEffortTypeId", "COWORK").queryFirst();
+            String coWorkId = coWork.getString("workEffortId");
+            odataId = odataId.replaceAll("'[^']*'", "'" + coWorkId + "'");
+            currentUrl += "supplierapprove-managebyprocurement/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
             GenericValue procurement = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", "procurement").queryFirst();
             targetEmail = procurement.getString("primaryEmail");
         }
         if ("compliance".equals(target)) {
-            currentUrl += "supplierapprove-managebycompliance/SupplierPartiesObjectPage?queryEntity=" + odataId;
+            GenericValue coWork = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", supplierPartyId, "approvePartyId", "HG", "workEffortTypeId", "COWORK_TASK").queryFirst();
+            String coWorkId = coWork.getString("workEffortId");
+            odataId = odataId.replaceAll("'[^']*'", "'" + coWorkId + "'");
+            currentUrl += "supplierapprove-managebycompliance/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
             GenericValue procurement = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", "compliance").queryFirst();
             targetEmail = procurement.getString("primaryEmail");
         }
         if ("applicant".equals(target)) {
-            currentUrl += "supplierapprove-managebyapplication/SupplierPartiesObjectPage?queryEntity=" + odataId;
             GenericValue createUser = delegator.findOne("UserLogin", UtilMisc.toMap("userLoginId", parentWorkEffort.getString("createdByUserLogin")), false);
+            String createCompany = CommonUtils.getPartyCompany(createUser.getString("partyId"), delegator);
+            GenericValue coWork = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", supplierPartyId, "approvePartyId", createCompany, "workEffortTypeId", "COWORK_TASK").queryFirst();
+            String coWorkId = coWork.getString("workEffortId");
+            odataId = odataId.replaceAll("'[^']*'", "'" + coWorkId + "'");
             GenericValue applicantParty = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", createUser.getString("partyId")).queryFirst();
+            currentUrl += "supplierapprove-managebyapplication/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
             targetEmail =  applicantParty.getString("primaryEmail");
         }
         if ("supplier".equals(target)) {
-            currentUrl += "supplier-dd-form/SupplierPartiesObjectPage?queryEntity=" + odataId;
+            odataId = odataId.replaceAll("'[^']*'", "'" + supplierPartyId + "'");
+            currentUrl += "supplier-dd-form/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
         }
         //发送邮件
         String content = "Vendor Onboarding Progress Update Notification\n" +
