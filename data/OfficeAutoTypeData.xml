@@ -91,6 +91,37 @@ under the License.
     <Enumeration description="Medium" enumCode="PRIORITY_MEDIUM" enumId="PRIORITY_MEDIUM" enumTypeId="PRIORITY" sequenceId="02"/>
     <Enumeration description="Low" enumCode="PRIORITY_LOW" enumId="PRIORITY_LOW" enumTypeId="PRIORITY" sequenceId="03"/>
 
+    <!--供应商填写调查问卷类型枚举值-->
+    <!--EnumerationType-->
+    <EnumerationType enumTypeId="DD_FROM_TYPE_ENUM" description="DDForm Type"/>
+    <!--Enumeration-->
+    <Enumeration enumId="NOT_DD" enumTypeId="DD_FROM_TYPE_ENUM" description="No DD"/>
+    <Enumeration enumId="SIMPLIFIED_DD" enumTypeId="DD_FROM_TYPE_ENUM" description="Simplified"/>
+    <Enumeration enumId="STANDARD_DD" enumTypeId="DD_FROM_TYPE_ENUM" description="Standard"/>
+
+    <!--公司人数范围枚举值-->
+    <!--EnumerationType-->
+    <EnumerationType enumTypeId="EMPLOYEES_ENUM" description="Employees Enumeration"/>
+    <!--Enumeration-->
+    <Enumeration enumId="EMP_LT1000" enumTypeId="EMPLOYEES_ENUM" sequenceId="01" description="Less than 1000"/>
+    <Enumeration enumId="EMP_GE1000_LT5000" enumTypeId="EMPLOYEES_ENUM" sequenceId="02" description="Between 1000~5000"/>
+    <Enumeration enumId="EMP_GE5000_LT10000" enumTypeId="EMPLOYEES_ENUM" sequenceId="03" description="Between 5000~10000"/>
+    <Enumeration enumId="EMP_GE10000" enumTypeId="EMPLOYEES_ENUM" sequenceId="04" description="Greater than 10000"/>
+
+    <!--上市地区枚举值-->
+    <!--EnumerationType-->
+    <EnumerationType enumTypeId="LIST_REGION_ENUM" description="List Region Enumeration"/>
+    <!--Enumeration-->
+    <Enumeration enumId="LIST_CHINA" enumTypeId="LIST_REGION_ENUM" description="List in China"/>
+    <Enumeration enumId="LIST_EU" enumTypeId="LIST_REGION_ENUM" description="List in Europe"/>
+    <Enumeration enumId="LIST_UK" enumTypeId="LIST_REGION_ENUM" description="List in UK"/>
+    <Enumeration enumId="LIST_US" enumTypeId="LIST_REGION_ENUM" description="List in US"/>
+    <Enumeration enumId="LIST_UAE" enumTypeId="LIST_REGION_ENUM" description="List in UAE"/>
+
+
+    <!-- PartyIdentificationType(社会统一码) -->
+    <PartyIdentificationType partyIdentificationTypeId="USCC_OF_CHINESE_ORG"/>
+
     <PartyGeoPointType partyGeoPointTypeId="COUNTRY_INCORPORATION" description="Country of Incorporation" />
     <PartyGeoPointType partyGeoPointTypeId="BUSINESS_LOCATION" description="Business location" />
 

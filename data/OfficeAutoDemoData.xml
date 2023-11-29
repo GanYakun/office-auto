@@ -157,31 +157,112 @@ under the License.
     <PartyRole partyId="cfo" roleTypeId="ORD_EMPLOYEE"/>
     <UserLogin userLoginId="cfo" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" passwordHint="" partyId="cfo"/>
     <UserLoginSecurityGroup groupId="SUPER" userLoginId="cfo" fromDate="2001-01-01 12:00:00.0"/>
+
+    <!--供应商分类类型-->
+    <ProductCategoryType productCategoryTypeId="SUPPLIER_CATEGORY" description="Supplier Category"/>
+    <ProductCategoryType productCategoryTypeId="SUPPLIER_PARENT_CATEGORY" description="Supplier Parent Category"/>
+
+    <!--ProductCategory-->
+    <!--供应商分类父类-->
+    <ProductCategory productCategoryId="NEGLIGIBLE_RISK" primaryParentCategoryId=""  productCategoryTypeId="SUPPLIER_PARENT_CATEGORY" categoryName="Negligible Risk" description="Negligible Risk"/>
+    <ProductCategory productCategoryId="LOW_RISK" primaryParentCategoryId="" productCategoryTypeId="SUPPLIER_PARENT_CATEGORY" categoryName="Low Risk" description="Low Risk"/>
+    <ProductCategory productCategoryId="HIGH-VALUE_HIGH-RISK" primaryParentCategoryId="" productCategoryTypeId="SUPPLIER_PARENT_CATEGORY" categoryName="High Value or High Risk" description="High Value or High Risk"/>
+    <!--供应商分类-->
+    <ProductCategory productCategoryId="GENERAL_GOODS_SERVICE" primaryParentCategoryId="NEGLIGIBLE_RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="General Goods Service Supply" description="General Goods Service Supply"/>
+    <ProductCategory productCategoryId="OFFICE_SUPPLY" primaryParentCategoryId="NEGLIGIBLE_RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Office Supply" description="Office Supply"/>
+    <ProductCategory productCategoryId="FOOD_BEVERAGE" primaryParentCategoryId="NEGLIGIBLE_RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Food And Beverage Supply" description="Food And Beverage Supply"/>
+    <ProductCategory productCategoryId="CLEAN_SERVICE" primaryParentCategoryId="NEGLIGIBLE_RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Clean Service Supply" description="Clean Service Supply"/>
+    <ProductCategory productCategoryId="SECURITY_SERVICE" primaryParentCategoryId="NEGLIGIBLE_RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Security Service Supply" description="Security Service Supply"/>
+    <ProductCategory productCategoryId="POSTAGE_SERVICE" primaryParentCategoryId="NEGLIGIBLE_RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Postage Service Supply" description="Postage Service Supply"/>
+    <ProductCategory productCategoryId="COURIER_SERVICE" primaryParentCategoryId="NEGLIGIBLE_RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Courier Service Supply" description="Courier Service Supply"/>
+    <ProductCategory productCategoryId="ESTATE_AGENCY" primaryParentCategoryId="LOW_RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Real Estate Agency Supply" description="Real Estate Agency Supply"/>
+    <ProductCategory productCategoryId="IT_SERVICE" primaryParentCategoryId="HIGH-VALUE_HIGH-RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="IT Service Supply" description="IT Service Supply"/>
+    <ProductCategory productCategoryId="DATA_SERVICE" primaryParentCategoryId="HIGH-VALUE_HIGH-RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Data Service Supply" description="Data Service Supply"/>
+    <ProductCategory productCategoryId="IP_CREATION_SERVICE" primaryParentCategoryId="HIGH-VALUE_HIGH-RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="IP Service Supply" description="IP Service Supply"/>
+    <ProductCategory productCategoryId="HR_SERVICE" primaryParentCategoryId="HIGH-VALUE_HIGH-RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="HR Service Supply" description="HR Service Supply"/>
+
     <!-- Vendor -->
     <!-- Party -->
-<!--    <Party partyId="9000" partyName="Huawei Technologies Co Ltd" partyTypeId="PARTY_GROUP" statusId=""/>-->
-<!--    <Party partyId="9001" partyName="ASUS" partyTypeId="PARTY_GROUP" statusId=""/>-->
-<!--    <Party partyId="9002" partyName="Unilever" partyTypeId="PARTY_GROUP" statusId=""/>-->
-<!--    <Party partyId="9003" partyName="Vendor4" partyTypeId="PARTY_GROUP" statusId=""/>-->
-<!--    <Party partyId="9004" partyName="Vendor5" partyTypeId="PARTY_GROUP" statusId=""/>-->
+    <Party partyId="9000" partyName="Huawei Technologies Co Ltd" partyTypeId="PARTY_GROUP" statusId=""/>
+    <Party partyId="9001" partyName="ASUS" partyTypeId="PARTY_GROUP" statusId=""/>
+    <Party partyId="9002" partyName="Unilever" partyTypeId="PARTY_GROUP" statusId=""/>
+    <Party partyId="9003" partyName="NARI Technology Development Limited" partyTypeId="PARTY_GROUP" statusId=""/>
+    <Party partyId="9004" partyName="Tongcheng Travel Holdings Limited" partyTypeId="PARTY_GROUP" statusId=""/>
 <!--    <Party partyId="9005" partyName="Vendor6" partyTypeId="PARTY_GROUP" statusId=""/>-->
 <!--    <Party partyId="9006" partyName="Vendor7" partyTypeId="PARTY_GROUP" statusId=""/>-->
 <!--    <Party partyId="9007" partyName="Vendor8" partyTypeId="PARTY_GROUP" statusId=""/>-->
 <!--    <Party partyId="9008" partyName="Vendor9" partyTypeId="PARTY_GROUP" statusId=""/>-->
 <!--    <Party partyId="9009" partyName="Vendor10" partyTypeId="PARTY_GROUP" statusId=""/>-->
-    <!-- PartyRole -->
-<!--    <PartyRole partyId="9000" roleTypeId="SUPPLIER"/>-->
-<!--    <PartyRole partyId="9001" roleTypeId="SUPPLIER"/>-->
-<!--    <PartyRole partyId="9002" roleTypeId="SUPPLIER"/>-->
-<!--    <PartyRole partyId="9003" roleTypeId="SUPPLIER"/>-->
-<!--    <PartyRole partyId="9004" roleTypeId="SUPPLIER"/>-->
+    <!-- PartyRole-->
+    <PartyRole partyId="9000" roleTypeId="SUPPLIER"/>
+    <PartyRole partyId="9001" roleTypeId="SUPPLIER"/>
+    <PartyRole partyId="9002" roleTypeId="SUPPLIER"/>
+    <PartyRole partyId="9003" roleTypeId="SUPPLIER"/>
+    <PartyRole partyId="9003" roleTypeId="GOVERNMENT_SUPPLIER"/>
+    <PartyRole partyId="9004" roleTypeId="SUPPLIER"/>
 <!--    <PartyRole partyId="9005" roleTypeId="SUPPLIER"/>-->
 <!--    <PartyRole partyId="9006" roleTypeId="SUPPLIER"/>-->
 <!--    <PartyRole partyId="9007" roleTypeId="SUPPLIER"/>-->
 <!--    <PartyRole partyId="9008" roleTypeId="SUPPLIER"/>-->
 <!--    <PartyRole partyId="9009" roleTypeId="SUPPLIER"/>-->
-    <!-- PartyGroup -->
-<!--    <PartyGroup partyId="" groupName="" numEmployees=""/>-->
+    <!--PartyGroup-->
+    <PartyGroup partyId="9000" groupName="Huawei Technologies Co Ltd" numEmployees="EMP_GE10000"/>
+    <PartyGroup partyId="9001" groupName="ASUS" numEmployees="EMP_GE10000"/>
+    <PartyGroup partyId="9002" groupName="Unilever" numEmployees="EMP_GE10000"/>
+    <PartyGroup partyId="9003" groupName="NARI Technology Development Limited" numEmployees="EMP_GE10000"/>
+    <PartyGroup partyId="9004" groupName="ZhiHengJiaCheng Real Estate Economy Company" numEmployees="EMP_GE1000_LT5000"/>
+
+    <WorkEffort workEffortId="8001" workEffortTypeId="COWORK" currentStatusId="COWORK_CREATED" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9000" createdDate="2023-11-29 10:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-29 10:43:22.660"/>
+    <WorkEffort workEffortId="8010" workEffortTypeId="COWORK" currentStatusId="COWORK_CREATED" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-12-02 12:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-03 12:22:22.660"/>
+    <WorkEffort workEffortId="8003" workEffortTypeId="COWORK" currentStatusId="COWORK_CREATED" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-29 10:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-30 19:43:22.660"/>
+    <WorkEffort workEffortId="8006" workEffortTypeId="COWORK" currentStatusId="COWORK_CREATED" workEffortParentId="" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-12-01 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-02 11:22:22.660"/>
+    <WorkEffort workEffortId="8000" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8001" priority="PRIORITY_HIGH" partyId="9000" createdDate="2023-11-28 10:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-11-29 10:43:22.660"/>
+    <WorkEffort workEffortId="8012" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8001" priority="PRIORITY_HIGH" partyId="9000" createdDate="2023-11-29 10:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-29 10:43:22.660"/>
+    <WorkEffort workEffortId="8002" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8003" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-28 10:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-11-29 10:43:22.660"/>
+    <WorkEffort workEffortId="8004" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8003" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-29 18:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-30 19:43:22.660"/>
+    <WorkEffort workEffortId="8005" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8006" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-11-30 18:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 11:22:22.660"/>
+    <WorkEffort workEffortId="8007" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8006" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-12-02 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-03 11:22:22.660"/>
+    <WorkEffort workEffortId="8008" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9003" createdDate="2023-12-02 12:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-02 12:22:22.660"/>
+    <WorkEffort workEffortId="8009" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8010" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-12-02 12:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-02 12:22:22.660"/>
+    <WorkEffort workEffortId="8011" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8010" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-12-03 12:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-03 12:22:22.660"/>
+
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9000" partyId="IT" workEffortId="8000"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9001" partyId="CG" workEffortId="8001"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9002" partyId="IT" workEffortId="8002"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9003" partyId="CG" workEffortId="8003"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9004" partyId="9001" workEffortId="8004"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9005" partyId="IT" workEffortId="8005"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9006" partyId="CG" workEffortId="8006"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9007" partyId="9002" workEffortId="8007"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9008" partyId="IT" workEffortId="8008"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9009" partyId="IT" workEffortId="8009"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9010" partyId="CG" workEffortId="8010"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9011" partyId="9004" workEffortId="8011"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9012" partyId="9000" workEffortId="8012"/>
+
+    <PartyAttribute partyId="9001" attrName="ddFormType" attrValue="STANDARD_DD"/>
+    <PartyAttribute partyId="9002" attrName="ddFormType" attrValue="STANDARD_DD"/>
+    <PartyAttribute partyId="9004" attrName="ddFormType" attrValue="STANDARD_DD"/>
+    <PartyAttribute partyId="9001" attrName="ddFormStatusHistory" attrValue="Submitted"/>
+    <PartyAttribute partyId="9002" attrName="ddFormStatusHistory" attrValue="Submitted"/>
+    <PartyAttribute partyId="9004" attrName="ddFormStatusHistory" attrValue="Submitted"/>
+    <PartyAttribute partyId="9001" attrName="isGovernment" attrValue="N"/>
+    <PartyAttribute partyId="9002" attrName="isGovernment" attrValue="N"/>
+    <PartyAttribute partyId="9003" attrName="isGovernment" attrValue="Y"/>
+    <PartyAttribute partyId="9004" attrName="isGovernment" attrValue="N"/>
+
+
+    <PartyIdentification partyId="9000" partyIdentificationTypeId="REGISTRATION_NUMBER" idValue="91520900MA6J6CBN9Q"/>
+    <PartyIdentification partyId="9001" partyIdentificationTypeId="REGISTRATION_NUMBER" idValue="913205056725028046"/>
+    <PartyIdentification partyId="9002" partyIdentificationTypeId="REGISTRATION_NUMBER" idValue="91340000607408459K"/>
+    <PartyIdentification partyId="9003" partyIdentificationTypeId="REGISTRATION_NUMBER" idValue="91320191726079387X"/>
+    <PartyIdentification partyId="9004" partyIdentificationTypeId="REGISTRATION_NUMBER" idValue="913101047354169127"/>
+
+    <ProductCategoryRole partyId="9000" productCategoryId="IT_SERVICE" roleTypeId="SUPPLIER" fromDate="2023-05-13 15:10:00.0"/>
+    <ProductCategoryRole partyId="9001" productCategoryId="IT_SERVICE" roleTypeId="SUPPLIER" fromDate="2023-05-13 15:10:00.0"/>
+    <ProductCategoryRole partyId="9002" productCategoryId="HR_SERVICE" roleTypeId="SUPPLIER" fromDate="2023-05-13 15:10:00.0"/>
+    <ProductCategoryRole partyId="9003" productCategoryId="OFFICE_SUPPLY" roleTypeId="SUPPLIER" fromDate="2023-05-13 15:10:00.0"/>
+    <ProductCategoryRole partyId="9004" productCategoryId="ESTATE_AGENCY" roleTypeId="SUPPLIER" fromDate="2023-05-13 15:10:00.0"/>
 
     <!-- StatusValidChange -->
     <StatusValidChange statusId="APPROVAL_APPROVED" statusIdTo="PARTY_ENABLED"/>
@@ -226,29 +307,6 @@ under the License.
 <!--    <SurveyQuestionAnswer surveyQuestionAnswerId="9003" surveyQuestionId="9003" partyId="SUPPLIER0001" booleanResponse="N"/>-->
 <!--    <SurveyQuestionAnswer surveyQuestionAnswerId="9004" surveyQuestionId="9004" partyId="SUPPLIER0001" textResponse="Asus From a professional private brand to an international 3C brand marketing the world, ASUS has always adhered to uncompromising quality and innovation. In the Chinese name to Chinese master for the hope, and the English name inspiration from the Greek mythology of the PEGASUS, which symbolizes the holy, perfect and pure image, representing ASUS never slack, the pursuit of excellence of the spirit."/>-->
 
-    <!--供应商分类类型-->
-    <ProductCategoryType productCategoryTypeId="SUPPLIER_CATEGORY" description="Supplier Category"/>
-    <ProductCategoryType productCategoryTypeId="SUPPLIER_PARENT_CATEGORY" description="Supplier Parent Category"/>
-
-    <!--ProductCategory-->
-    <!--供应商分类父类-->
-    <ProductCategory productCategoryId="NEGLIGIBLE_RISK" primaryParentCategoryId=""  productCategoryTypeId="SUPPLIER_PARENT_CATEGORY" categoryName="Negligible Risk" description="Negligible Risk"/>
-    <ProductCategory productCategoryId="LOW_RISK" primaryParentCategoryId="" productCategoryTypeId="SUPPLIER_PARENT_CATEGORY" categoryName="Low Risk" description="Low Risk"/>
-    <ProductCategory productCategoryId="HIGH-VALUE_HIGH-RISK" primaryParentCategoryId="" productCategoryTypeId="SUPPLIER_PARENT_CATEGORY" categoryName="High Value or High Risk" description="High Value or High Risk"/>
-    <!--供应商分类-->
-    <ProductCategory productCategoryId="GENERAL_GOODS_SERVICE" primaryParentCategoryId="NEGLIGIBLE_RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="General Goods Service Supply" description="General Goods Service Supply"/>
-    <ProductCategory productCategoryId="OFFICE_SUPPLY" primaryParentCategoryId="NEGLIGIBLE_RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Office Supply" description="Office Supply"/>
-    <ProductCategory productCategoryId="FOOD_BEVERAGE" primaryParentCategoryId="NEGLIGIBLE_RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Food And Beverage Supply" description="Food And Beverage Supply"/>
-    <ProductCategory productCategoryId="CLEAN_SERVICE" primaryParentCategoryId="NEGLIGIBLE_RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Clean Service Supply" description="Clean Service Supply"/>
-    <ProductCategory productCategoryId="SECURITY_SERVICE" primaryParentCategoryId="NEGLIGIBLE_RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Security Service Supply" description="Security Service Supply"/>
-    <ProductCategory productCategoryId="POSTAGE_SERVICE" primaryParentCategoryId="NEGLIGIBLE_RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Postage Service Supply" description="Postage Service Supply"/>
-    <ProductCategory productCategoryId="COURIER_SERVICE" primaryParentCategoryId="NEGLIGIBLE_RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Courier Service Supply" description="Courier Service Supply"/>
-    <ProductCategory productCategoryId="ESTATE_AGENCY" primaryParentCategoryId="LOW_RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Real Estate Agency Supply" description="Real Estate Agency Supply"/>
-    <ProductCategory productCategoryId="IT_SERVICE" primaryParentCategoryId="HIGH-VALUE_HIGH-RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="IT Service Supply" description="IT Service Supply"/>
-    <ProductCategory productCategoryId="DATA_SERVICE" primaryParentCategoryId="HIGH-VALUE_HIGH-RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="Data Service Supply" description="Data Service Supply"/>
-    <ProductCategory productCategoryId="IP_CREATION_SERVICE" primaryParentCategoryId="HIGH-VALUE_HIGH-RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="IP Service Supply" description="IP Service Supply"/>
-    <ProductCategory productCategoryId="HR_SERVICE" primaryParentCategoryId="HIGH-VALUE_HIGH-RISK" productCategoryTypeId="SUPPLIER_CATEGORY" categoryName="HR Service Supply" description="HR Service Supply"/>
-
     <!--产品Demo数据-->
     <UomType uomTypeId="QUANTITY_MEASURE" description="Quantity"/>
     <Uom uomId="SET" uomTypeId="QUANTITY_MEASURE" description="Set"/>
@@ -277,36 +335,7 @@ under the License.
 <!--    <Enumeration enumId="NOT_SUBMIT_VENDOR" enumTypeId="DD_FROM_DEAL_ENUM" description="Not submit to vendor"/>-->
 <!--    <Enumeration enumId="SUBMITTED_VENDOR" enumTypeId="DD_FROM_DEAL_ENUM" description="submitted to vendor"/>-->
 
-    <!--供应商填写调查问卷类型枚举值-->
-    <!--EnumerationType-->
-    <EnumerationType enumTypeId="DD_FROM_TYPE_ENUM" description="DDForm Type"/>
-    <!--Enumeration-->
-    <Enumeration enumId="NOT_DD" enumTypeId="DD_FROM_TYPE_ENUM" description="No DD"/>
-    <Enumeration enumId="SIMPLIFIED_DD" enumTypeId="DD_FROM_TYPE_ENUM" description="Simplified"/>
-    <Enumeration enumId="STANDARD_DD" enumTypeId="DD_FROM_TYPE_ENUM" description="Standard"/>
 
-    <!--公司人数范围枚举值-->
-    <!--EnumerationType-->
-    <EnumerationType enumTypeId="EMPLOYEES_ENUM" description="Employees Enumeration"/>
-    <!--Enumeration-->
-    <Enumeration enumId="EMP_LT1000" enumTypeId="EMPLOYEES_ENUM" sequenceId="01" description="Less than 1000"/>
-    <Enumeration enumId="EMP_GE1000_LT5000" enumTypeId="EMPLOYEES_ENUM" sequenceId="02" description="Between 1000~5000"/>
-    <Enumeration enumId="EMP_GE5000_LT10000" enumTypeId="EMPLOYEES_ENUM" sequenceId="03" description="Between 5000~10000"/>
-    <Enumeration enumId="EMP_GE10000" enumTypeId="EMPLOYEES_ENUM" sequenceId="04" description="Greater than 10000"/>
-
-    <!--上市地区枚举值-->
-    <!--EnumerationType-->
-    <EnumerationType enumTypeId="LIST_REGION_ENUM" description="List Region Enumeration"/>
-    <!--Enumeration-->
-    <Enumeration enumId="LIST_CHINA" enumTypeId="LIST_REGION_ENUM" description="List in China"/>
-    <Enumeration enumId="LIST_EU" enumTypeId="LIST_REGION_ENUM" description="List in Europe"/>
-    <Enumeration enumId="LIST_UK" enumTypeId="LIST_REGION_ENUM" description="List in UK"/>
-    <Enumeration enumId="LIST_US" enumTypeId="LIST_REGION_ENUM" description="List in US"/>
-    <Enumeration enumId="LIST_UAE" enumTypeId="LIST_REGION_ENUM" description="List in UAE"/>
-
-
-    <!-- PartyIdentificationType(社会统一码) -->
-    <PartyIdentificationType partyIdentificationTypeId="USCC_OF_CHINESE_ORG"/>
 <!--    <PartyQuestionAppl partyQuatsionApplId="9000" partyId="SUPPLIER0001" surveyQuestionId="9000" partyQuestionApplTypeId="DD_FORM" requiredField="Y" sequenceNum="1"/>-->
 <!--    <PartyQuestionAppl partyQuatsionApplId="9000" partyId="SUPPLIER0001" surveyQuestionId="9001" partyQuestionApplTypeId="DD_FORM" requiredField="Y" sequenceNum="1"/>-->
 <!--    <PartyQuestionAppl partyQuatsionApplId="9000" partyId="SUPPLIER0001" surveyQuestionId="9002" partyQuestionApplTypeId="DD_FORM" requiredField="Y" sequenceNum="1"/>-->
