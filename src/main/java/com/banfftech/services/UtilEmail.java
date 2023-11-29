@@ -48,7 +48,7 @@ public class UtilEmail {
         message.setContent(content, "text/html;charset=UTF-8");
         message.setSentDate(new Date());
         message.saveChanges();
-        Debug.log("准备发送");
+        Debug.log("准备发送到: " + emailUrl);
         Transport.send(message);
     }
 }

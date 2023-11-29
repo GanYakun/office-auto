@@ -428,6 +428,7 @@ public class SupplierEvents {
         serviceParam.put("partyId", partyId);
         serviceParam.put("userLogin", userLogin);
         serviceParam.put("contentName", "Financial Report");
+        serviceParam.put("fromDate", UtilDateTime.nowTimestamp());
         serviceParam.put("partyContentTypeId", "FINANCIAL_STATEMENTS");
         dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
 

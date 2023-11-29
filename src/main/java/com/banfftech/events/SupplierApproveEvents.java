@@ -41,9 +41,10 @@ public class SupplierApproveEvents {
      * 传递给采购
      */
     public static void toProcurement(Map<String, Object> oDataContext, Map<String, Object> actionParameters, EdmBindingTarget edmBindingTarget)
-            throws GenericEntityException, OfbizODataException, GeneralServiceException, GenericServiceException {
+            throws GenericEntityException, OfbizODataException, GeneralServiceException, GenericServiceException, UnsupportedEncodingException {
         Delegator delegator = (Delegator) oDataContext.get("delegator");
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
+        HttpServletRequest httpServletRequest = (HttpServletRequest) oDataContext.get("httpServletRequest");
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
         OdataOfbizEntity boundEntity = Util.getBoundEntity(actionParameters);
         String source = (String) actionParameters.get("source");
@@ -89,27 +90,18 @@ public class SupplierApproveEvents {
             GenericValue party = delegator.findOne("Party", UtilMisc.toMap("partyId", partyId), false);
             CommonUtils.setObjectAttribute(party, "complianceNote", noteInfo);
         }
-        try {
-            //发送邮件
-            GenericValue procurement = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", "procurement").queryFirst();
-            String email = procurement.getString("primaryEmail");
-            if (UtilValidate.isNotEmpty(email)) {
-                UtilEmail.sendEmail(email, "Submit to procurement", "Submit to procurement: " + UtilDateTime.nowTimestamp());
-            } else {
-                Debug.logWarning("No email address", MODULE);
-            }
-        } catch (MessagingException e) {
-            throw new OfbizODataException("Sending email exception : " + e.getMessage());
-        }
+        //发送邮件
+        sendEmailToTarget(delegator, "procurement", httpServletRequest, boundEntity, null, null);
     }
 
     /**
      * 采购传递给其他部门
      */
     public static void procurementReturn(Map<String, Object> oDataContext, Map<String, Object> actionParameters, EdmBindingTarget edmBindingTarget)
-            throws GenericEntityException, OfbizODataException, GeneralServiceException, GenericServiceException {
+            throws GenericEntityException, OfbizODataException, GeneralServiceException, GenericServiceException, UnsupportedEncodingException {
         Delegator delegator = (Delegator) oDataContext.get("delegator");
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
+        HttpServletRequest httpServletRequest = (HttpServletRequest) oDataContext.get("httpServletRequest");
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
         String target = (String) actionParameters.get("target");
         String comments = (String) actionParameters.get("comments"); // 也许不需要comments了
@@ -162,21 +154,8 @@ public class SupplierApproveEvents {
         Map<String, Object> noteDataResult = CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), noteMap, "banfftech.createNoteData", userLogin);
         // create PartyNote
         CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), UtilMisc.toMap("noteId", noteDataResult.get("noteId"), "partyId", partyId, "userLogin", userLogin), "banfftech.createPartyNote", userLogin);
-
-        try {
-            //发送邮件
-            if (UtilValidate.isEmpty(email)) {
-                GenericValue targetGV = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", target).queryFirst();
-                email = targetGV.getString("primaryEmail");
-            }
-            if (UtilValidate.isNotEmpty(email)) {
-                UtilEmail.sendEmail(email, "Submit to " + target, "Submit to " + target + UtilDateTime.nowTimestamp());
-            } else {
-                Debug.logWarning("No email address", MODULE);
-            }
-        } catch (MessagingException e) {
-            throw new OfbizODataException("Sending email exception : " + e.getMessage());
-        }
+        //发送邮件
+        sendEmailToTarget(delegator, target, httpServletRequest, boundEntity, parentWorkEffort, email);
     }
 
     private static String getTransferTarget(Delegator delegator, String target, GenericValue parentWorkEffort) throws GenericEntityException {
@@ -221,10 +200,86 @@ public class SupplierApproveEvents {
                 "Thank you for your cooperation, and we look forward to the potential collaboration with [SupplierXXX].\n" +
                 "Best regards";
         try {
-            UtilEmail.sendEmail("longxi.jin@banff-tech.com", "Supplier registration completed", content);
+            GenericValue createUser = delegator.findOne("UserLogin", UtilMisc.toMap("userLoginId", supplierParty.getPropertyValue("createdByUserLogin")), false);
+            GenericValue applicantParty = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", createUser.getString("partyId")).queryFirst();
+            String email = applicantParty.getString("primaryEmail");
+            if (UtilValidate.isNotEmpty(email)) {
+                UtilEmail.sendEmail("longxi.jin@banff-tech.com", "Supplier registration completed", content);
+            } else {
+                Debug.logWarning("No email address", MODULE);
+            }
+        } catch (MessagingException | GenericEntityException e) {
+            Debug.log("邮件发送失败: " + e.getMessage());
+        }
+    }
+
+    public static String getTargetEmail(Delegator delegator, String target, GenericValue parentWorkEffort, String defaultEmail) throws GenericEntityException {
+        if ("procurement".equals(target)) {
+            GenericValue procurement = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", "procurement").queryFirst();
+            return procurement.getString("primaryEmail");
+        }
+        if ("compliance".equals(target)) {
+            GenericValue procurement = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", "compliance").queryFirst();
+            return procurement.getString("primaryEmail");
+        }
+        if ("applicant".equals(target)) {
+            //获取申请人的账号
+            GenericValue createUser = delegator.findOne("UserLogin", UtilMisc.toMap("userLoginId", parentWorkEffort.getString("createdByUserLogin")), false);
+            GenericValue applicantParty = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", createUser.getString("partyId")).queryFirst();
+            return applicantParty.getString("primaryEmail");
+        }
+        if ("supplier".equals(target)) {
+            return defaultEmail;
+        }
+        return null;
+    }
+
+
+    public static void sendEmailToTarget(Delegator delegator, String target, HttpServletRequest httpServletRequest, OdataOfbizEntity entity,
+                                           GenericValue parentWorkEffort, String defaultEmail) throws GenericEntityException, UnsupportedEncodingException {
+        //获取app访问地址和邮件
+        String currentUrl = httpServletRequest.getRequestURL().toString().replace(httpServletRequest.getRequestURI(), "") + "/menu6/";
+        String odataId = URLEncoder.encode(entity.getId().toString(), "UTF-8");
+        String targetEmail = defaultEmail;
+        if ("procurement".equals(target)) {
+            currentUrl += "supplierapprove-managebyprocurement/SupplierPartiesObjectPage?queryEntity=" + odataId;
+            GenericValue procurement = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", "procurement").queryFirst();
+            targetEmail = procurement.getString("primaryEmail");
+        }
+        if ("compliance".equals(target)) {
+            currentUrl += "supplierapprove-managebycompliance/SupplierPartiesObjectPage?queryEntity=" + odataId;
+            GenericValue procurement = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", "compliance").queryFirst();
+            targetEmail = procurement.getString("primaryEmail");
+        }
+        if ("applicant".equals(target)) {
+            currentUrl += "supplierapprove-managebyapplication/SupplierPartiesObjectPage?queryEntity=" + odataId;
+            GenericValue createUser = delegator.findOne("UserLogin", UtilMisc.toMap("userLoginId", parentWorkEffort.getString("createdByUserLogin")), false);
+            GenericValue applicantParty = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", createUser.getString("partyId")).queryFirst();
+            targetEmail =  applicantParty.getString("primaryEmail");
+        }
+        if ("supplier".equals(target)) {
+            currentUrl += "supplier-dd-form/SupplierPartiesObjectPage?queryEntity=" + odataId;
+        }
+        //发送邮件
+        String content = "Vendor Onboarding Progress Update Notification\n" +
+                "<br><br>" +
+                "Details:\n" + currentUrl +
+                "<br><br>" +
+                "Kindly attend to this matter promptly and update the task status accordingly. Should you have any questions or require further assistance, feel free to reach out.\n" +
+                "<br><br>" +
+                "Thank you,\n" +
+                "<br><br>" +
+                "[FormXXX]";
+        try {
+            if (UtilValidate.isNotEmpty(targetEmail)) {
+                UtilEmail.sendEmail(targetEmail, "Vendor On-boarding", content);
+            } else {
+                Debug.logWarning("No email address", MODULE);
+            }
         } catch (MessagingException e) {
             Debug.log("邮件发送失败: " + e.getMessage());
         }
+
     }
 
 
