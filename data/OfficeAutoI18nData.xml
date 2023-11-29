@@ -214,6 +214,8 @@ under the License.
     <Internationalization id="nameOfDirector_zh" lang="zh" property="nameOfDirector" value="董事/高级职员姓名"/>
     <Internationalization id="BusinessRelationshipRoles_en" lang="en" property="BusinessRelationshipRoles" value=""/>
     <Internationalization id="BusinessRelationshipRoles_zh" lang="zh" property="BusinessRelationshipRoles" value=""/>
+    <Internationalization id="complianceCheckWarning_en" lang="en" property="complianceCheckWarning" value="Warning"/>
+    <Internationalization id="complianceCheckWarning_zh" lang="zh" property="complianceCheckWarning" value="Warning"/>
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
     <DBField dbFieldId="CUST_REQ_10001" dbFieldName="statusId" dbFieldTypeId="STATUS" description="当前状态" dbEntityId="CUST_REQ_10000"/>

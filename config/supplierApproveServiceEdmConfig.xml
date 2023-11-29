@@ -406,7 +406,7 @@
         <NavigationProperty Name="StateProvinceGeo"/>
         <NavigationProperty Name="CityGeo"/>
 
-        <Action Name="CreatePostalAddress" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createPostalAddress">
+        <Action Name="CreatePostalAddress" IsBound="true" SideEffects="true" OfbizService="com.banfftech.events.SupplierEvents.createPostalAddress">
             <Parameter Name="postalAddress" Type="PostalAddress" Nullable="false" IsCollection="true"/>
             <Parameter Name="contactMechPurposeTypeId" Type="String" Label="${contactMechPurposeTypeId}" Nullable="true">
                 <ValueList WithFixedValues="true" CollectionPath="ContactMechPurposeTypes">
@@ -449,7 +449,7 @@
             <Text Path="geoName" TextArrangement="TextOnly"/>
         </Property>
     </EntityType>
-    <EntityType Name="ListedCountry" OfbizType="geoTypeId=COUNTRY" OfbizEntity="Geo" EntityCondition="geoId in (USA,UK,UAE,Europe,CHN)" AutoProperties="true" EntitySetName="ListedCountries">
+    <EntityType Name="ListedCountry" OfbizType="geoTypeId=COUNTRY" OfbizEntity="Geo" EntityCondition="geoId in (USA,UK,ARE,Europe,CHN)" AutoProperties="true" EntitySetName="ListedCountries">
         <Property Name="geoId">
             <Text Path="geoName" TextArrangement="TextOnly"/>
         </Property>
