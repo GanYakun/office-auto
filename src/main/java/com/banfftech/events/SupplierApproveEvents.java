@@ -32,6 +32,7 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SupplierApproveEvents {
@@ -68,6 +69,11 @@ public class SupplierApproveEvents {
             CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), createParentWorkMap, "banfftech.createWorkEffort", userLogin);
             dispatcher.runSync("banfftech.createWorkEffortPartyAssignment",
                     UtilMisc.toMap("userLogin", userLogin, "workEffortId", workEffortParentId, "partyId", "CG"));
+            List<GenericValue> coWorkTask = EntityQuery.use(delegator).from("WorkEffort").where("partyId", partyId, "workEffortTypeId", "COWORK_TASK").queryList();
+            for (GenericValue task : coWorkTask) {
+                dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", task.getString("workEffortId"),
+                        "workEffortParentId", workEffortParentId, "userLogin", userLogin));
+            }
         } else if ("applicant".equals(source)) {
             dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortParentId,
                     "currentStatusId", "COWORK_CREATED", "userLogin", userLogin));
@@ -136,7 +142,7 @@ public class SupplierApproveEvents {
             //首次传递
             String nextWorkEffortId = delegator.getNextSeqId("WorkEffort");
             Map<String, Object> createWorkMap = UtilMisc.toMap("partyId", partyId, "workEffortId", nextWorkEffortId, "comments", comments,
-                    "workEffortTypeId", "COWORK_TASK", "currentStatusId", "NOT_PROCESSED", "workEffortParentId", workEffortParentId);
+                    "workEffortTypeId", "COWORK_TASK", "currentStatusId", "NOT_PROCESSED", "workEffortParentId", workEffortParentId, "priority", parentWorkEffort.getString("priority"));
             CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), createWorkMap, "banfftech.createWorkEffort", userLogin);
             dispatcher.runSync("banfftech.createWorkEffortPartyAssignment",
                     UtilMisc.toMap("userLogin", userLogin, "workEffortId", nextWorkEffortId, "partyId", transferTarget));
@@ -238,7 +244,7 @@ public class SupplierApproveEvents {
     public static void sendEmailToTarget(Delegator delegator, String target, HttpServletRequest httpServletRequest, OdataOfbizEntity entity,
                                            GenericValue parentWorkEffort, String defaultEmail) throws GenericEntityException, UnsupportedEncodingException {
         //获取app访问地址和邮件
-        String currentUrl = httpServletRequest.getRequestURL().toString().replace(httpServletRequest.getRequestURI(), "") + "/menu6/";
+        String currentUrl = httpServletRequest.getRequestURL().toString().replace(httpServletRequest.getRequestURI(), "");
         Object supplierPartyId = entity.getPropertyValue("partyId");
         String odataId = entity.getId().toString();
         String targetEmail = defaultEmail;
@@ -249,7 +255,7 @@ public class SupplierApproveEvents {
             }
             String coWorkId = coWork.getString("workEffortId");
             odataId = odataId.replaceAll("'[^']*'", "'" + coWorkId + "'");
-            currentUrl += "supplierapprove-managebyprocurement/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
+            currentUrl += "/menu6/supplierapprove-managebyprocurement/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
             GenericValue procurement = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", "procurement").queryFirst();
             targetEmail = procurement.getString("primaryEmail");
         }
@@ -257,7 +263,7 @@ public class SupplierApproveEvents {
             GenericValue coWork = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", supplierPartyId, "approvePartyId", "HG", "workEffortTypeId", "COWORK_TASK").queryFirst();
             String coWorkId = coWork.getString("workEffortId");
             odataId = odataId.replaceAll("'[^']*'", "'" + coWorkId + "'");
-            currentUrl += "supplierapprove-managebycompliance/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
+            currentUrl += "/menu6/supplierapprove-managebycompliance/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
             GenericValue procurement = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", "compliance").queryFirst();
             targetEmail = procurement.getString("primaryEmail");
         }
@@ -268,12 +274,12 @@ public class SupplierApproveEvents {
             String coWorkId = coWork.getString("workEffortId");
             odataId = odataId.replaceAll("'[^']*'", "'" + coWorkId + "'");
             GenericValue applicantParty = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", createUser.getString("partyId")).queryFirst();
-            currentUrl += "supplierapprove-managebyapplication/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
+            currentUrl += "/menu6/supplierapprove-managebyapplication/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
             targetEmail =  applicantParty.getString("primaryEmail");
         }
         if ("supplier".equals(target)) {
             odataId = odataId.replaceAll("'[^']*'", "'" + supplierPartyId + "'");
-            currentUrl += "supplier-dd-form/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
+            currentUrl += "o3/#Supplier-DDForm&/" + URLEncoder.encode(odataId, "UTF-8");
         }
         //发送邮件
         String content = "Vendor Onboarding Progress Update Notification\n" +

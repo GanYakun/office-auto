@@ -125,24 +125,12 @@
         <NavigationProperty Name="ListRegionEnumeration" Type="ListRegionEnumeration" Relations="ListRegionEnumeration"/>
         <NavigationProperty Name="ListedCountry" Type="ListedCountry" Relations="PartyGeo(partyGeoTypeId=LISTED_COUNTRY)/Geo" IsCollection="true"/>
         <NavigationProperty Name="SurveyQuestionAndAnswer"/>
-
-        <!-- 财务报表 -->
-        <NavigationProperty Name="FinancialStatements" Type="PartyMediaResource"
-                            Relations="PartyMediaResource(partyContentTypeId=FINANCIAL_STATEMENTS)" IsCollection="true"/>
-        <!-- 保密协议 -->
-        <NavigationProperty Name="ConfidentialityAgreement" Type="PartyMediaResource"
-                            Relations="PartyMediaResource(partyContentTypeId=CONFIDENTIALITY_AGREEMENT)" IsCollection="true"/>
+        <!-- 文件列表 -->
+        <NavigationProperty Name="FileList" Type="PartyMediaResource" Relations="PartyMediaResource" IsCollection="true"/>
         <!-- 合规报告 -->
         <NavigationProperty Name="ComplianceReport" Type="PartyMediaResource"
                             Relations="PartyMediaResource(partyContentTypeId=COMPLIANCE_REPORT)" IsCollection="true"/>
-        <!-- 其他文件 -->
-        <NavigationProperty Name="OtherFiles" Type="PartyMediaResource"
-                            Relations="PartyMediaResource(partyContentTypeId=OTHER_FILES)" IsCollection="true"/>
-        <!-- 其他文件 -->
-        <NavigationProperty Name="FileList" Type="PartyMediaResource" Relations="PartyMediaResource" IsCollection="true"/>
-
         <SelectionFields PropertyPath="partyName"/>
-
         <!--Annotation-->
         <FieldGroup Label="PartyBaseInfo" Qualifier="PartyBaseInfo">
             <DataField Values="tickerSymbol,ProductCategory/categoryName,cycleTime,usccNumber" Importance="High"/>

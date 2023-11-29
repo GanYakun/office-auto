@@ -30,9 +30,13 @@
         <Property Name="registrationNumber" Type="String" RelAlias="PartyIdentification" Field="idValue" Label="4.Business Registration Number/Passport number"/>
         <Property Name="workScope" Type="String" RelAlias="WorkScopeAnswer" Field="textResponse" Label="${WorkScopeAnswer}"/>
         <Property Name="answer0" Type="Boolean" RelAlias="SurveyQuestionAnswer0" Field="booleanResponse" Label="Does the Business Partner conduct any business in, with, or involving (directly or indirectly) individuals or entities in or from Cuba, Iran, North Korea, Syria, Russia, Belarus or the Crimea region (each, a “Sanctioned Country”)?"/>
+        <Property Name="answerText0" Type="String" RelAlias="SurveyQuestionAnswer0" Field="textResponse" Label="Comments"/>
         <Property Name="answer1" Type="Boolean" RelAlias="SurveyQuestionAnswer1" Field="booleanResponse" Label="Does the Business Partner have any physical or legal presence (including offices, branches, and operations) in any Sanctioned Country?"/>
+        <Property Name="answerText1" Type="String" RelAlias="SurveyQuestionAnswer1" Field="textResponse" Label="Comments"/>
         <Property Name="answer2" Type="Boolean" RelAlias="SurveyQuestionAnswer2" Field="booleanResponse" Label="Is the Business Partner or any direct or indirect owner of the Business Partner currently listed, or has been listed in the last five (5) years, on any government watchlist, export or trade control list or sanctioned"/>
+        <Property Name="answerText2" Type="String" RelAlias="SurveyQuestionAnswer2" Field="textResponse" Label="Comments"/>
         <Property Name="answer3" Type="Boolean" RelAlias="SurveyQuestionAnswer3" Field="booleanResponse" Label="To the best of your knowledge, currently or during the last during the last five (5) years, have any of the Business Partner’s owners, officers, directors or senior management been identified on any official, governmental or regulatory body’s list as a politically exposed person?"/>
+        <Property Name="answerText3" Type="String" RelAlias="SurveyQuestionAnswer3" Field="textResponse" Label="Comments"/>
         <Property Name="contactPersonName" Type="String" RelAlias="ContactPerson" Field="partyName" Label="6(a).Point of Contact Name"/>
         <Property Name="contactPersonPosition" Type="String" RelAlias="ContactPersonPosition" Field="attrValue" Label="6(b).Point of Contact Position"/>
         <Property Name="contactPhone" Type="String" RelAlias="ContactPerson" Field="primaryPhone" Label="7(a).Business Phone"/>
@@ -90,15 +94,32 @@
         <!-- 11.更名记录 PartyNameHistory/LineItem-->
         <!-- 最终受益人 -->
         <!-- 董事/高级职员姓名 -->
-        <FieldGroup Label="ComplianceCertifications" Qualifier="ComplianceCertifications">
-            <DataField Values="answer0,answer1,answer2,answer3" Importance="High"/>
-        </FieldGroup>
+<!--        <FieldGroup Label="ComplianceCertifications0" Qualifier="ComplianceCertifications0">-->
+<!--            <DataField Values="answer0,answerText0" Importance="High"/>-->
+<!--        </FieldGroup>-->
+<!--        <FieldGroup Label="ComplianceCertifications1" Qualifier="ComplianceCertifications1">-->
+<!--            <DataField Values="answer1,answerText1" Importance="High"/>-->
+<!--        </FieldGroup>-->
+<!--        <FieldGroup Label="ComplianceCertifications2" Qualifier="ComplianceCertifications2">-->
+<!--            <DataField Values="answer2,answerText2" Importance="High"/>-->
+<!--        </FieldGroup>-->
+<!--        <FieldGroup Label="ComplianceCertifications3" Qualifier="ComplianceCertifications3">-->
+<!--            <DataField Values="answer3,answerText3" Importance="High"/>-->
+<!--        </FieldGroup>-->
+
         <NavigationProperty Name="PartyNameHistory"/>
         <NavigationProperty Name="BusinessRelationship" Relations="PartyRoleType(parentTypeId=BUSINESS_RELATIONSHIP)" IsCollection="true" Type="BusinessRelationship"/>
         <NavigationProperty Name="BeneficialPerson" Type="RelationshipAndToParty" IsCollection="true"
                             Relations="FromRelationshipAndToParty(roleTypeIdTo=BENEFICIAL_PERSON and roleTypeIdFrom=SUPPLIER)"/>
         <NavigationProperty Name="SeniorStaff" Type="RelationshipAndToParty" IsCollection="true"
                             Relations="FromRelationshipAndToParty(roleTypeIdTo=SENIOR_STAFF and roleTypeIdFrom=SUPPLIER)"/>
+
+        <!--Submit to procurement-->
+        <Action Name="SubmitToProcurement" IsBound="true" EntitySetPath="supplierParty"
+                OfbizService="com.banfftech.events.DDFormEvents.submitDDForm">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <Parameter Name="noteInfo" Type="String" Label="${noteInfo}"/>
+        </Action>
     </EntityType>
 
     <EntityType Name="PartyGeoPoint" AutoProperties="true" EntitySetName="PartyGeoPoints">
