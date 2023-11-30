@@ -25,7 +25,7 @@ public class SupplierWorker {
     public static String getDDFormType (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
         String ddFormType = null;
         Boolean isGovernment = isGovernment((String) supplierParty.get("partyId"), delegator);
-        Boolean isNoFormListCountry = isNoFormListCountry(supplierParty);
+        Boolean isNoFormListCountry = isNoFormListCountry(supplierParty, delegator);
 
         List<GenericValue> productCategoryRoles = delegator.findByAnd("ProductCategoryRole",
                 UtilMisc.toMap("partyId", supplierParty.get("partyId")), null, false);
@@ -59,18 +59,21 @@ public class SupplierWorker {
         return isGovernment;
     }
 
-    private static Boolean isNoFormListCountry (GenericValue supplierParty){
+    private static Boolean isNoFormListCountry (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
         Boolean isNoFormListCountry = false;
-        if (UtilValidate.isNotEmpty(supplierParty.get("tickerSymbol"))){
-            String tickerSymbol = supplierParty.getString("tickerSymbol");
-            if (tickerSymbol.contains("US")){
-                isNoFormListCountry = true;
-            }else if (tickerSymbol.contains("UK")){
-                isNoFormListCountry = true;
-            }else if (tickerSymbol.contains("UAE")){
-                isNoFormListCountry = true;
+        List<GenericValue> partyGeos = delegator.findByAnd("PartyGeo", UtilMisc.toMap("partyId", supplierParty.get("partyId")), null, true);
+            if (UtilValidate.isNotEmpty(partyGeos)){
+                List<String> geoIds = EntityUtil.getFieldListFromEntityList(partyGeos, "geoId", false);
+                if (geoIds.contains("USA")){
+                    isNoFormListCountry = true;
+                }else if (geoIds.contains("UK")){
+                    isNoFormListCountry = true;
+                }else if (geoIds.contains("UAE")){
+                    isNoFormListCountry = true;
+                }else if (geoIds.contains("Europe")){
+                    isNoFormListCountry = true;
+                }
             }
-        }
         return isNoFormListCountry;
     }
 
