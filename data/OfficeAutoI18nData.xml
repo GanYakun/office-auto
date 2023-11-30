@@ -218,6 +218,13 @@ under the License.
     <Internationalization id="complianceCheckWarning_zh" lang="zh" property="complianceCheckWarning" value="Warning"/>
     <Internationalization id="question_en" lang="en" property="question" value="Question"/>
     <Internationalization id="question_zh" lang="zh" property="question" value="Question"/>
+    <Internationalization id="applicationWorkStatus_en" lang="en" property="applicationWorkStatus" value="Applicant processing status"/>
+    <Internationalization id="applicationWorkStatus_zh" lang="zh" property="applicationWorkStatus" value="申请人处理状态"/>
+    <Internationalization id="supplierWorkStatus_en" lang="en" property="supplierWorkStatus" value="Supplier processing status"/>
+    <Internationalization id="supplierWorkStatus_zh" lang="zh" property="supplierWorkStatus" value="供应商处理状态"/>
+    <Internationalization id="complianceWorkStatus_en" lang="en" property="complianceWorkStatus" value="Compliance processing status"/>
+    <Internationalization id="complianceWorkStatus_zh" lang="zh" property="complianceWorkStatus" value="合规处理状态"/>
+
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
     <DBField dbFieldId="CUST_REQ_10001" dbFieldName="statusId" dbFieldTypeId="STATUS" description="当前状态" dbEntityId="CUST_REQ_10000"/>
@@ -418,6 +425,7 @@ under the License.
     <DBField dbFieldId="PGC10000_14" dbFieldName="currentStatusId" dbFieldTypeId="STATUS" dbEntityId="PGC10000" description="Status"/>
     <DBField dbFieldId="PGC10000_15" dbFieldName="workEffortId" dbFieldTypeId="STRING" dbEntityId="PGC10000" description="Task ID"/>
     <DBField dbFieldId="PGC10000_16" dbFieldName="partyId" dbFieldTypeId="STRING" dbEntityId="PGC10000" description="Party ID"/>
+    <DBField dbFieldId="PGC10000_17" dbFieldName="address2" dbFieldTypeId="STRING" dbEntityId="PGC10000" description="Website address"/>
     <DBFieldLabel dbFieldLabelId="PGC10000_01_ZH" dbFieldId="PGC10000_01" language="zh" value="Email"/>
     <DBFieldLabel dbFieldLabelId="PGC10000_01_EN" dbFieldId="PGC10000_01" language="en" value="Email"/>
     <DBFieldLabel dbFieldLabelId="PGC10000_02_ZH" dbFieldId="PGC10000_02" language="zh" value="Address"/>
@@ -450,6 +458,8 @@ under the License.
     <DBFieldLabel dbFieldLabelId="PGC10000_15_EN" dbFieldId="PGC10000_15" language="en" value="Task ID"/>
     <DBFieldLabel dbFieldLabelId="PGC10000_16_ZH" dbFieldId="PGC10000_16" language="zh" value="供应商"/>
     <DBFieldLabel dbFieldLabelId="PGC10000_16_EN" dbFieldId="PGC10000_16" language="en" value="Name"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_17_ZH" dbFieldId="PGC10000_17" language="zh" value="网站地址"/>
+    <DBFieldLabel dbFieldLabelId="PGC10000_17_EN" dbFieldId="PGC10000_17" language="en" value="Website address"/>
 
     <!-- Entity labels for view-entity Department -->
     <DBEntity dbEntityId="DPT10000" dbEntityName="PartyGroupAndContact" dbEntityTypeField="PartyRole/roleTypeId" dbEntityTypeId="DEPARTMENT" description="Vendor" isOpen="N" />
@@ -744,4 +754,12 @@ under the License.
     <DBFieldLabel dbFieldLabelId="PMR10000_05_EN" dbFieldId="PMR10000_05" language="en" value="Effective end Time"/>
     <DBFieldLabel dbFieldLabelId="PMR10000_06_ZH" dbFieldId="PMR10000_06" language="zh" value="文件"/>
     <DBFieldLabel dbFieldLabelId="PMR10000_06_EN" dbFieldId="PMR10000_06" language="en" value="File Name"/>
+
+    <DBEntity dbEntityId="PTNH10000" dbEntityName="PartyNameHistory" description="Party Name History" isOpen="N" />
+    <DBField dbFieldId="PTNH10001" dbFieldName="changeDate" dbFieldTypeId="STRING" dbEntityId="PTNH10000" description="Change date"/>
+    <DBField dbFieldId="PTNH10002" dbFieldName="groupName" dbFieldTypeId="STRING" dbEntityId="PTNH10000" description="Change Name"/>
+    <DBFieldLabel dbFieldLabelId="PTNH10001_01_ZH" dbFieldId="PTNH10001" language="zh" value="变更日期"/>
+    <DBFieldLabel dbFieldLabelId="PTNH10001_01_EN" dbFieldId="PTNH10001" language="en" value="Change Date"/>
+    <DBFieldLabel dbFieldLabelId="PTNH10002_02_ZH" dbFieldId="PTNH10002" language="zh" value="变更名称"/>
+    <DBFieldLabel dbFieldLabelId="PTNH10002_02_EN" dbFieldId="PTNH10002" language="en" value="Change Name"/>
 </entity-engine-xml>

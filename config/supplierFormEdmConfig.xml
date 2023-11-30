@@ -18,16 +18,16 @@
         <RelAlias Name="SurveyQuestionAnswer1" Relations="SurveyQuestionAnswer(surveyQuestionId=9001)"/>
         <RelAlias Name="SurveyQuestionAnswer2" Relations="SurveyQuestionAnswer(surveyQuestionId=9002)"/>
         <RelAlias Name="SurveyQuestionAnswer3" Relations="SurveyQuestionAnswer(surveyQuestionId=9003)"/>
-        <RelAlias Name="ContactPerson" Relations="FromPartyRelationship(roleTypeIdTo=CONTACT and roleTypeIdFrom=SUPPLIER)/ToPersonAndContact"/>
-        <RelAlias Name="ContactPersonPosition" Relations="FromPartyRelationship(roleTypeIdTo=CONTACT and roleTypeIdFrom=SUPPLIER)/ToPersonAndContact/PartyAttribute(attrName=position)"/>
+<!--        <RelAlias Name="ContactPerson" Relations="FromPartyRelationship(roleTypeIdTo=CONTACT and roleTypeIdFrom=SUPPLIER)/ToPersonAndContact"/>-->
+<!--        <RelAlias Name="ContactPersonPosition" Relations="FromPartyRelationship(roleTypeIdTo=CONTACT and roleTypeIdFrom=SUPPLIER)/ToPersonAndContact/PartyAttribute(attrName=position)"/>-->
 
-        <Property Name="partyName" Label="1.Full Name of Company or Individual Party"/>
-        <Property Name="address1" Label="2.Registered Address"/>
-        <Property Name="address2" Label="5.Website Address (if any)"/>
-        <Property Name="dateIncorporation" IsDateAttribute="true" Type="Timestamp" Label="3(a).Date of Incorporation/Date of Birth"/>
-        <Property Name="countryIncorporation" Type="String" RelAlias="CountryIncorporation" Field="information" Label="3(b).Country of Incorporation/Country of Birth"/>
+        <Property Name="partyName" Label="Full Name of Company or Individual Party"/>
+<!--        <Property Name="address1" Label="Registered Address"/>-->
+<!--        <Property Name="address2" Label="Website Address (if any)"/>-->
+        <Property Name="dateIncorporation" IsDateAttribute="true" Type="Timestamp" Label="Date of Incorporation/Date of Birth"/>
+        <Property Name="countryIncorporation" Type="String" RelAlias="CountryIncorporation" Field="information" Label="Country of Incorporation/Country of Birth"/>
         <Property Name="businessLocation" Type="String" RelAlias="BusinessLocation" Field="information" Label="${BusinessLocation}"/>
-        <Property Name="registrationNumber" Type="String" RelAlias="PartyIdentification" Field="idValue" Label="4.Business Registration Number/Passport number"/>
+        <Property Name="registrationNumber" Type="String" RelAlias="PartyIdentification" Field="idValue" Label="Business Registration Number/Passport number"/>
         <Property Name="workScope" Type="String" RelAlias="WorkScopeAnswer" Field="textResponse" Label="${WorkScopeAnswer}"/>
         <Property Name="answer0" Type="Boolean" RelAlias="SurveyQuestionAnswer0" Field="booleanResponse" Label="Does the Business Partner conduct any business in, with, or involving (directly or indirectly) individuals or entities in or from Cuba, Iran, North Korea, Syria, Russia, Belarus or the Crimea region (each, a “Sanctioned Country”)?"/>
         <Property Name="answerText0" Type="String" RelAlias="SurveyQuestionAnswer0" Field="textResponse" Label="Comments"/>
@@ -37,10 +37,10 @@
         <Property Name="answerText2" Type="String" RelAlias="SurveyQuestionAnswer2" Field="textResponse" Label="Comments"/>
         <Property Name="answer3" Type="Boolean" RelAlias="SurveyQuestionAnswer3" Field="booleanResponse" Label="To the best of your knowledge, currently or during the last during the last five (5) years, have any of the Business Partner’s owners, officers, directors or senior management been identified on any official, governmental or regulatory body’s list as a politically exposed person?"/>
         <Property Name="answerText3" Type="String" RelAlias="SurveyQuestionAnswer3" Field="textResponse" Label="Comments"/>
-        <Property Name="contactPersonName" Type="String" RelAlias="ContactPerson" Field="partyName" Label="6(a).Point of Contact Name"/>
-        <Property Name="contactPersonPosition" Type="String" RelAlias="ContactPersonPosition" Field="attrValue" Label="6(b).Point of Contact Position"/>
-        <Property Name="contactPhone" Type="String" RelAlias="ContactPerson" Field="primaryPhone" Label="7(a).Business Phone"/>
-        <Property Name="contactEmail" Type="String" RelAlias="ContactPerson" Field="primaryEmail" Label="7(b).Email"/>
+<!--        <Property Name="contactPersonName" Type="String" RelAlias="ContactPerson" Field="partyName" Label="6(a).Point of Contact Name"/>-->
+<!--        <Property Name="contactPersonPosition" Type="String" RelAlias="ContactPersonPosition" Field="attrValue" Label="6(b).Point of Contact Position"/>-->
+<!--        <Property Name="contactPhone" Type="String" RelAlias="ContactPerson" Field="primaryPhone" Label="7(a).Business Phone"/>-->
+<!--        <Property Name="contactEmail" Type="String" RelAlias="ContactPerson" Field="primaryEmail" Label="7(b).Email"/>-->
         <Property Name="agent" IsAttribute="true" Type="Boolean" Label="Agent"/>
         <Property Name="jvPartner" IsAttribute="true" Type="Boolean" Label="JV Partner"/>
         <Property Name="subContractor" IsAttribute="true" Type="Boolean" Label="Sub-contractor"/>
@@ -71,13 +71,13 @@
             <DataField Values="registrationNumber" Importance="High"/>
         </FieldGroup>
         <!-- 5.网站地址 -->
-        <FieldGroup Label="WebsiteAddress" Qualifier="WebsiteAddress">
-            <DataField Values="address2" Importance="High"/>
-        </FieldGroup>
+<!--        <FieldGroup Label="WebsiteAddress" Qualifier="WebsiteAddress">-->
+<!--            <DataField Values="address2" Importance="High"/>-->
+<!--        </FieldGroup>-->
         <!-- 6.a-b 7a-b联系人 -->
-        <FieldGroup Label="ContactPerson" Qualifier="ContactPerson">
-            <DataField Values="contactPersonName,contactPersonPosition,contactPhone,contactEmail" Importance="High"/>
-        </FieldGroup>
+<!--        <FieldGroup Label="ContactPerson" Qualifier="ContactPerson">-->
+<!--            <DataField Values="contactPersonName,contactPersonPosition,contactPhone,contactEmail" Importance="High"/>-->
+<!--        </FieldGroup>-->
         <!-- 8.PartyRole -->
         <FieldGroup Label="BusinessRelationship" Qualifier="BusinessRelationship">
 <!--            <DataField Values="agent,jvPartner,subContractor,consultant,supplier,distributor,investmentTarget,otherAttr" Importance="High"/>-->
@@ -94,25 +94,15 @@
         <!-- 11.更名记录 PartyNameHistory/LineItem-->
         <!-- 最终受益人 -->
         <!-- 董事/高级职员姓名 -->
-<!--        <FieldGroup Label="ComplianceCertifications0" Qualifier="ComplianceCertifications0">-->
-<!--            <DataField Values="answer0,answerText0" Importance="High"/>-->
-<!--        </FieldGroup>-->
-<!--        <FieldGroup Label="ComplianceCertifications1" Qualifier="ComplianceCertifications1">-->
-<!--            <DataField Values="answer1,answerText1" Importance="High"/>-->
-<!--        </FieldGroup>-->
-<!--        <FieldGroup Label="ComplianceCertifications2" Qualifier="ComplianceCertifications2">-->
-<!--            <DataField Values="answer2,answerText2" Importance="High"/>-->
-<!--        </FieldGroup>-->
-<!--        <FieldGroup Label="ComplianceCertifications3" Qualifier="ComplianceCertifications3">-->
-<!--            <DataField Values="answer3,answerText3" Importance="High"/>-->
-<!--        </FieldGroup>-->
-
         <NavigationProperty Name="PartyNameHistory"/>
         <NavigationProperty Name="BusinessRelationship" Relations="PartyRoleType(parentTypeId=BUSINESS_RELATIONSHIP)" IsCollection="true" Type="BusinessRelationship"/>
         <NavigationProperty Name="BeneficialPerson" Type="RelationshipAndToParty" IsCollection="true"
                             Relations="FromRelationshipAndToParty(roleTypeIdTo=BENEFICIAL_PERSON and roleTypeIdFrom=SUPPLIER)"/>
         <NavigationProperty Name="SeniorStaff" Type="RelationshipAndToParty" IsCollection="true"
                             Relations="FromRelationshipAndToParty(roleTypeIdTo=SENIOR_STAFF and roleTypeIdFrom=SUPPLIER)"/>
+        <NavigationProperty Name="ContactPerson" Type="RelationshipAndToParty" IsCollection="true"
+                            Relations="FromRelationshipAndToParty(roleTypeIdTo=CONTACT and roleTypeIdFrom=SUPPLIER)"/>
+        <NavigationProperty Name="PostalAddress" Type="PostalAddress" Relations="PartyContactMechPurpose(contactMechPurposeTypeId=LOCATION)/PostalAddress" IsCollection="true"/>
 
         <!--Submit to procurement-->
         <Action Name="SubmitToProcurement" IsBound="true" EntitySetPath="supplierParty"
@@ -122,6 +112,40 @@
         </Action>
     </EntityType>
 
+    <EntityType Name="PostalAddress" AutoProperties="true" EntitySetName="PostalAddresses" DraftEntityName="PostalAddressesDDFormDraft">
+        <LineItem Qualifier="PostalAddressLineItem">
+            <DataField Values="countryGeoId,stateProvinceGeoId,cityGeoId,address1,address2,contactNumber,email" Importance="High"/>
+        </LineItem>
+        <Property Name="countryGeoId">
+            <Text Path="CountryGeo/geoName" TextArrangement="TextOnly"/>
+            <ValueList CollectionPath="Countries" WithFixedValues="true">
+                <ParameterOut ValueListProperty="geoId" LocalDataProperty="countryGeoId"/>
+            </ValueList>
+        </Property>
+        <Property Name="stateProvinceGeoId">
+            <Text Path="StateProvinceGeo/geoName" TextArrangement="TextOnly"/>
+            <ValueList CollectionPath="Provinces" WithFixedValues="true">
+                <ParameterIn LocalDataProperty="countryGeoId" ValueListProperty="geoIdFrom"/>
+                <ParameterOut LocalDataProperty="stateProvinceGeoId" ValueListProperty="geoId"/>
+            </ValueList>
+        </Property>
+        <Property Name="cityGeoId">
+            <Text Path="CityGeo/geoName" TextArrangement="TextOnly"/>
+            <ValueList CollectionPath="Cities" WithFixedValues="true">
+                <ParameterIn LocalDataProperty="stateProvinceGeoId" ValueListProperty="geoIdFrom"/>
+                <ParameterOut LocalDataProperty="cityGeoId" ValueListProperty="geoId"/>
+            </ValueList>
+        </Property>
+        <NavigationProperty Name="CountryGeo"/>
+        <NavigationProperty Name="StateProvinceGeo"/>
+        <NavigationProperty Name="CityGeo"/>
+    </EntityType>
+
+    <EntityType Name="Geo" AutoProperties="true" EntitySetName="Geos">
+        <Property Name="geoId">
+            <Text Path="geoName" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
     <EntityType Name="PartyGeoPoint" AutoProperties="true" EntitySetName="PartyGeoPoints">
 
     </EntityType>
@@ -143,6 +167,7 @@
         </Property>
             <NavigationProperty Name="RoleType"/>
     </EntityType>
+
     <EntityType Name="PersonAndContact" AutoProperties="true" DraftEntityName="SupplierContactDraft" EntitySetName="PersonAndContacts">
 
     </EntityType>
@@ -161,15 +186,44 @@
         <Property Name="copyIdentificationAttached" Type="Boolean" IsAttribute="true" Label="${copyIdentificationAttached}"/>
         <Property Name="positionTitle" Label="${position}"/>
         <Property Name="amount" Label="${partyRelationshipAmount}"/>
-        <Property Name="partyName" Label="${nameOfDirector}"/>
-<!--        <LineItem Qualifier="BeneficialPerson">-->
-<!--            <DataField Values="partyName,nationality,amount,copyIdentificationAttached" Importance="High"/>-->
-<!--        </LineItem>-->
+        <Property Name="firstName" Label="${firstName}"/>
+        <Property Name="lastName" Label="${lastName}"/>
+        <Property Name="primaryPhone" Label="${supplierActionPrimaryPhone}"/>
+        <Property Name="primaryEmail" Label="${supplierActionPrimaryEmail}"/>
+        <LineItem Qualifier="BeneficialPerson">
+            <DataField Values="firstName,lastName,nationality,amount,copyIdentificationAttached" Importance="High"/>
+        </LineItem>
         <LineItem Qualifier="SeniorStaff">
-            <DataField Values="partyName,nationality,positionTitle,copyIdentificationAttached" Importance="High"/>
+            <DataField Values="firstName,lastName,nationality,positionTitle,copyIdentificationAttached" Importance="High"/>
+        </LineItem>
+        <LineItem Qualifier="ContactPersonList">
+            <DataField Values="firstName,lastName,primaryPhone,primaryEmail" Importance="High"/>
         </LineItem>
     </EntityType>
 
+    <!--Country（国家）-->
+    <EntityType Name="Country" OfbizEntity="Geo" EntityCondition="geoId in (FRA,USA,GBR,ARE,DEU,JPN,ITA,CHE,17)" AutoProperties="true" EntitySetName="Countries">
+        <Property Name="geoId">
+            <Text Path="geoName" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <EntityType Name="ListedCountry" OfbizType="geoTypeId=COUNTRY" OfbizEntity="Geo" EntityCondition="geoId in (USA,UK,ARE,Europe,CHN)" AutoProperties="true" EntitySetName="ListedCountries">
+        <Property Name="geoId">
+            <Text Path="geoName" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <!--Province（省份）-->
+    <EntityType Name="Province" OfbizEntity="GeoAssocAndGeoTo" EntityCondition="geoTypeId=MUNICIPALITY" AutoProperties="true" EntitySetName="Provinces">
+        <Property Name="geoId">
+            <Text Path="geoName" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <!--City（城市）-->
+    <EntityType Name="City" OfbizEntity="GeoAssocAndGeoTo" EntityCondition="geoTypeId=CITY" AutoProperties="true" EntitySetName="Cities">
+        <Property Name="geoId">
+            <Text Path="geoName" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
 
 
 </ofbiz-edm>

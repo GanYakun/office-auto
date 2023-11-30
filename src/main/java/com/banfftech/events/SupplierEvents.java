@@ -415,14 +415,6 @@ public class SupplierEvents {
         dispatcher.runSync("banfftech.createSurveyQuestionAnswer",
                 UtilMisc.toMap("userLogin", userLogin, "surveyQuestionAnswerId", delegator.getNextSeqId("SurveyQuestionAnswer"), "surveyQuestionId", "9004", "partyId", partyId));
 
-        //crate first ContactPerson
-        Map<String, Object> result = dispatcher.runSync("banfftech.createPersonAndContact", UtilMisc.toMap("userLogin", userLogin));
-        String contactPartyId = (String) result.get("partyId");
-        dispatcher.runSync("banfftech.createPartyRole", UtilMisc.toMap("userLogin", userLogin, "partyId", contactPartyId, "roleTypeId", "CONTACT"));
-        dispatcher.runSync("banfftech.createPartyAttribute", UtilMisc.toMap("userLogin", userLogin, "partyId", contactPartyId, "attrName", "position"));
-        dispatcher.runSync("banfftech.createPartyRelationship", UtilMisc.toMap("partyIdFrom", partyId, "roleTypeIdFrom", "SUPPLIER",
-                "partyIdTo", contactPartyId, "roleTypeIdTo", "CONTACT", "fromDate", UtilDateTime.nowTimestamp(), "userLogin", userLogin));
-
         //create PartyMediaResource
         Map<String, Object> serviceParam = new HashMap<>();
         serviceParam.put("partyId", partyId);
@@ -536,17 +528,16 @@ public class SupplierEvents {
      * 完成文件上传
      */
     public static void finishDomUpload(Map<String, Object> oDataContext, Map<String, Object> actionParameters, EdmBindingTarget edmBindingTarget)
-            throws GenericServiceException {
+            throws GenericServiceException, GenericEntityException {
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
+        Delegator delegator = dispatcher.getDelegator();
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
         OdataOfbizEntity supplierPartyEntity = (OdataOfbizEntity) actionParameters.get("supplierParty");
         GenericValue supplierParty = supplierPartyEntity.getGenericValue();
-        dispatcher.runSync("banfftech.createPartyAttributeDate",
-                UtilMisc.toMap("userLogin", userLogin, "partyId", supplierParty.get("partyId"),
-                        "attrName", "finishDomUploadDate", "attrValue", UtilDateTime.nowTimestamp()));
-        dispatcher.runSync("banfftech.createPartyAttribute",
-                UtilMisc.toMap("userLogin", userLogin, "partyId", supplierParty.get("partyId"),
-                        "attrName", "isFinishedDomUpload", "attrValue", "Y"));
+        GenericValue party = EntityQuery.use(delegator).from("Party").where("partyId", supplierParty.getString("partyId")).queryOne();
+        CommonUtils.setObjectAttribute(party, "PartyAttributeDate", "finishDomUploadDate", UtilDateTime.nowTimestamp());
+        dispatcher.runSync("banfftech.updateWorkEffort",
+                UtilMisc.toMap("userLogin", userLogin, "workEffortId", supplierParty.getString("workEffortId"), "currentStatusId", "DOCUMENT_READY"));
     }
 
     /**

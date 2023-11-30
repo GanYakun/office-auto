@@ -97,7 +97,13 @@
         <Property Name="complianceComments" Type="String" Label="${complianceComments}" IsAttribute="true"/>
         <Property Name="complianceCheckWarning" Type="Boolean" Label="${complianceCheckWarning}" IsAttribute="true"/>
         <Property Name="checkWarningCritical" Type="numeric"/>
-
+        <!-- coWork Status -->
+        <Property Name="applicationWorkStatus" Type="String" Label="${applicationWorkStatus}" />
+        <Property Name="applicationWorkCriticality" Type="Edm.Int64" />
+        <Property Name="supplierWorkStatus" Type="String" Label="${supplierWorkStatus}" />
+        <Property Name="supplierWorkCriticality" Type="Edm.Int64" />
+        <Property Name="complianceWorkStatus" Type="String" Label="${complianceWorkStatus}" />
+        <Property Name="complianceWorkCriticality" Type="Edm.Int64" />
 
         <NavigationProperty Name="Product" Type="Product" Relations="SupplierProduct/Product" IsCollection="true"/>
         <NavigationProperty Name="Service" Type="Service" Relations="SupplierProduct/Product" IsCollection="true"/>
@@ -175,18 +181,29 @@
         <FieldGroup Qualifier="ComplianceResult" Label="ComplianceResult">
             <DataField Values="adverseResults,additionalProtection" Importance="High"/>
         </FieldGroup>
+        <FieldGroup Qualifier="ProgressStatus" Label="ProgressStatus">
+            <DataField Values="applicationWorkStatus" Importance="High" Criticality="complianceWorkCriticality"/>
+            <DataField Values="supplierWorkStatus" Importance="High" Criticality="applicationWorkCriticality"/>
+            <DataField Values="complianceWorkStatus" Importance="High" Criticality="supplierWorkCriticality"/>
+        </FieldGroup>
 
         <LineItem>
             <DataField Values="partyId,cycleTime" Importance="High"/>
             <DataField Values="ddFormDealStatus" Criticality="ddFormDealCritical" Importance="High"/>
             <DataField Values="ddFormType,ddResponseTime" Importance="High"/>
             <DataField Values="PartyClassification/PartyClassificationGroup/description" Criticality="riskCritical" Importance="High"/>
+            <DataField Values="applicationWorkStatus" Importance="High" Criticality="complianceWorkCriticality"/>
+            <DataField Values="supplierWorkStatus" Importance="High" Criticality="applicationWorkCriticality"/>
+            <DataField Values="complianceWorkStatus" Importance="High" Criticality="supplierWorkCriticality"/>
         </LineItem>
         <LineItem Qualifier="CreateLineItem">
             <DataField Values="partyId,cycleTime" Importance="High"/>
             <DataField Values="ddFormDealStatus" Criticality="ddFormDealCritical" Importance="High"/>
             <DataField Values="ddFormType,ddResponseTime" Importance="High"/>
             <DataField Values="PartyClassification/PartyClassificationGroup/description" Criticality="riskCritical" Importance="High"/>
+            <DataField Values="applicationWorkStatus" Importance="High" Criticality="complianceWorkCriticality"/>
+            <DataField Values="supplierWorkStatus" Importance="High" Criticality="applicationWorkCriticality"/>
+            <DataField Values="complianceWorkStatus" Importance="High" Criticality="supplierWorkCriticality"/>
             <DataFieldForAction Label="${create}" Action="CreateSupplierParty" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
 
@@ -922,17 +939,17 @@
         <Property Name="copyIdentificationAttached" Type="Boolean" IsAttribute="true" Label="${copyIdentificationAttached}"/>
         <Property Name="amount" RelAlias="ToPartyRelationship" Field="amount" Label="${partyRelationshipAmount}"/>
         <LineItem Qualifier="PartyRelationshipLineItem">
-            <DataField Values="firstName,lastName,primaryPhone,phoneMobile,primaryEmail,position" Importance="High"/>
+            <DataField Values="firstName,lastName,primaryPhone,primaryEmail" Importance="High"/>
             <DataFieldForAction Label="${create}" Action="CreatePersonAndContact" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
         <LineItem Qualifier="PartyRelationshipLineItemWithoutAction">
-            <DataField Values="firstName,lastName,primaryPhone,phoneMobile,primaryEmail,position" Importance="High"/>
+            <DataField Values="firstName,lastName,primaryPhone,primaryEmail" Importance="High"/>
         </LineItem>
         <LineItem Qualifier="BeneficialPersonLineItem">
-            <DataField Values="firstName,lastName,primaryPhone,phoneMobile,primaryEmail,amount,nationality,copyIdentificationAttached" Importance="High"/>
+            <DataField Values="firstName,lastName,nationality,amount,copyIdentificationAttached" Importance="High"/>
         </LineItem>
         <LineItem Qualifier="BeneficialPersonLineItem_Action">
-            <DataField Values="firstName,lastName,primaryPhone,phoneMobile,primaryEmail,amount,nationality,copyIdentificationAttached" Importance="High"/>
+            <DataField Values="firstName,lastName,nationality,amount,copyIdentificationAttached" Importance="High"/>
             <DataFieldForAction Label="${create}" Action="CreateBeneficialPerson" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
         <!-- 创建联系人 -->

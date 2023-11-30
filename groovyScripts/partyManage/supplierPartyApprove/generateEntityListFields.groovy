@@ -64,20 +64,25 @@ def generateFields(Map<String, Object> context){
         entity.addProperty(new Property(null, "ddResponseTime", ValueType.PRIMITIVE, ddResponseTime))
 
         //文件数量
-        List<GenericValue> fsList = supplierParty.getRelated("PartyMediaResource", UtilMisc.toMap("partyContentTypeId", "FINANCIAL_STATEMENTS"), null, false);
-        List<GenericValue> caList = supplierParty.getRelated("PartyMediaResource", UtilMisc.toMap("partyContentTypeId", "CONFIDENTIALITY_AGREEMENT"), null, false);
-        List<GenericValue> cpList = supplierParty.getRelated("PartyMediaResource", UtilMisc.toMap("partyContentTypeId", "COMPLIANCE_REPORT"), null, false);
-        entity.addProperty(new Property(null, "fsStatus", ValueType.PRIMITIVE, fsList.size() < 1 ? "Not uploaded" : "Uploaded"))
-        entity.addProperty(new Property(null, "caStatus", ValueType.PRIMITIVE, caList.size() < 1 ? "Not uploaded" : "Uploaded"))
-        entity.addProperty(new Property(null, "cpStatus", ValueType.PRIMITIVE, cpList.size() < 1 ? "Not uploaded" : "Uploaded"))
-        entity.addProperty(new Property(null, "fsStatusCriticality", ValueType.PRIMITIVE, fsList.size() < 1 ? 1 : 3))
-        entity.addProperty(new Property(null, "caStatusCriticality", ValueType.PRIMITIVE, caList.size() < 1 ? 1 : 3))
-        entity.addProperty(new Property(null, "cpStatusCriticality", ValueType.PRIMITIVE, cpList.size() < 1 ? 1 : 3))
+        String supplierId = supplierParty.getString("partyId");
+        GenericValue fs = EntityQuery.use(delegator).from("PartyMediaResource").where("partyId", supplierId, "partyContentTypeId", "FINANCIAL_STATEMENTS").queryFirst();
+        GenericValue ca = EntityQuery.use(delegator).from("PartyMediaResource").where("partyId", supplierId, "partyContentTypeId", "CONFIDENTIALITY_AGREEMENT").queryFirst();
+        GenericValue cp = EntityQuery.use(delegator).from("PartyMediaResource").where("partyId", supplierId, "partyContentTypeId", "COMPLIANCE_REPORT").queryFirst();
+        int fsCriticality = UtilValidate.isNotEmpty(fs) && UtilValidate.isNotEmpty(fs.getString("dataResourceName")) ? 3 : 1;
+        int caCriticality = UtilValidate.isNotEmpty(ca) && UtilValidate.isNotEmpty(ca.getString("dataResourceName")) ? 3 : 1;
+        int cpCriticality = UtilValidate.isNotEmpty(cp) && UtilValidate.isNotEmpty(cp.getString("dataResourceName")) ? 3 : 1;
+
+        entity.addProperty(new Property(null, "fsStatus", ValueType.PRIMITIVE, fsCriticality == 1 ? "Not uploaded" : "Uploaded"))
+        entity.addProperty(new Property(null, "caStatus", ValueType.PRIMITIVE, caCriticality == 1 ? "Not uploaded" : "Uploaded"))
+        entity.addProperty(new Property(null, "cpStatus", ValueType.PRIMITIVE, cpCriticality == 1 ? "Not uploaded" : "Uploaded"))
+        entity.addProperty(new Property(null, "fsStatusCriticality", ValueType.PRIMITIVE, fsCriticality));
+        entity.addProperty(new Property(null, "caStatusCriticality", ValueType.PRIMITIVE, caCriticality));
+        entity.addProperty(new Property(null, "cpStatusCriticality", ValueType.PRIMITIVE, cpCriticality));
         //DDFormPDF访问地址
         String url = null;
         String formName = null;
         if ("Submitted".equals(ddFormDealStatus)) {
-            GenericValue genericValue = EntityQuery.use(delegator).from("PartyAttribute").where("partyId", supplierParty.getString("partyId"), "attrName", "ddFormType").queryFirst();
+            GenericValue genericValue = EntityQuery.use(delegator).from("PartyAttribute").where("partyId", supplierId, "attrName", "ddFormType").queryFirst();
             if (UtilValidate.isNotEmpty(genericValue)) {
                 String attrValue = genericValue.getString("attrValue");
                 if ("SIMPLIFIED_DD".equals(attrValue)) {
@@ -94,16 +99,16 @@ def generateFields(Map<String, Object> context){
         entity.addProperty(new Property(null, "ddFromName", ValueType.PRIMITIVE, formName));
         //WorkScope
         String workScope = null;
-        GenericValue surveyQuestionAnswer = EntityQuery.use(delegator).from("SurveyQuestionAnswer").where(UtilMisc.toMap("partyId", supplierParty.getString("partyId"), "surveyQuestionId", "9004")).queryFirst();
+        GenericValue surveyQuestionAnswer = EntityQuery.use(delegator).from("SurveyQuestionAnswer").where(UtilMisc.toMap("partyId", supplierId, "surveyQuestionId", "9004")).queryFirst();
         if (UtilValidate.isNotEmpty(surveyQuestionAnswer)) {
             workScope = surveyQuestionAnswer.getString("textResponse");
         }
         entity.addProperty(new Property(null, "workScope", ValueType.PRIMITIVE, workScope));
         GenericValue partyIdentification = EntityQuery.use(delegator).from("PartyIdentification")
-                .where(UtilMisc.toMap("partyIdentificationTypeId", "REGISTRATION_NUMBER", "partyId", supplierParty.getString("partyId"))).queryFirst();
+                .where(UtilMisc.toMap("partyIdentificationTypeId", "REGISTRATION_NUMBER", "partyId", supplierId)).queryFirst();
         String usccNumber = partyIdentification == null ? null : partyIdentification.getString("idValue")
         //DDForm Bool Field
-        List<String> roles = EntityQuery.use(delegator).from("PartyRole").where("partyId", supplierParty.getString("partyId")).getFieldList("roleTypeId");
+        List<String> roles = EntityQuery.use(delegator).from("PartyRole").where("partyId", supplierId).getFieldList("roleTypeId");
         entity.addProperty(new Property(null, "agent", ValueType.PRIMITIVE, roles.contains("AGENT")));
         entity.addProperty(new Property(null, "jvPartner", ValueType.PRIMITIVE, roles.contains("JV_PARTNER")));
         entity.addProperty(new Property(null, "subContractor", ValueType.PRIMITIVE, roles.contains("SUB_CONTRACTOR")));
@@ -114,6 +119,28 @@ def generateFields(Map<String, Object> context){
         entity.addProperty(new Property(null, "otherSpecify", ValueType.PRIMITIVE, roles.contains("OTHER_SPECIFY")));
         entity.addProperty(new Property(null, "usccNumber", ValueType.PRIMITIVE, usccNumber));
         entity.addProperty(new Property(null, "checkWarningCritical", ValueType.PRIMITIVE, checkWarningCritical));
+
+        //coWork Status
+        GenericValue parentWork = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", supplierId, "workEffortTypeId", "COWORK").queryFirst();
+        if (UtilValidate.isNotEmpty(parentWork)) {
+            List<GenericValue> childWork =parentWork.getRelated("ChildWorkEffortAndPartyGroupContact", null, null, false);
+            for (GenericValue child : childWork) {
+                String approveCompany = child.getString("approvePartyId");
+                GenericValue coWorkStatus = child.getRelatedOne("CurrentStatusItem", false);
+                String coWorkStatusDescription = "PROCESSED".equals(coWorkStatus.getString("statusId")) ? "Processed" : "Not Processed";
+                int coWorkCriticality = "PROCESSED".equals(coWorkStatus.getString("statusId")) ? 3 : 1;
+                if (supplierId.equals(approveCompany)) {
+                    entity.addProperty(new Property(null, "supplierWorkStatus", ValueType.PRIMITIVE, coWorkStatusDescription));
+                    entity.addProperty(new Property(null, "applicationWorkCriticality", ValueType.PRIMITIVE, coWorkCriticality));
+                } else if ("HG".equals(approveCompany)) {
+                    entity.addProperty(new Property(null, "complianceWorkStatus", ValueType.PRIMITIVE, coWorkStatusDescription));
+                    entity.addProperty(new Property(null, "supplierWorkCriticality", ValueType.PRIMITIVE, coWorkCriticality));
+                } else {
+                    entity.addProperty(new Property(null, "applicationWorkStatus", ValueType.PRIMITIVE, coWorkStatusDescription));
+                    entity.addProperty(new Property(null, "complianceWorkCriticality", ValueType.PRIMITIVE, coWorkCriticality));
+                }
+            }
+        }
     }
     return entityList;
 }
