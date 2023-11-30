@@ -233,7 +233,7 @@ under the License.
     <WorkEffort workEffortId="8001" workEffortTypeId="COWORK" currentStatusId="COWORK_CREATED" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9000" createdDate="2023-11-29 10:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-29 10:43:22.660"/>
     <WorkEffort workEffortId="8010" workEffortTypeId="COWORK" currentStatusId="COWORK_CREATED" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-12-02 12:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-03 12:22:22.660"/>
     <WorkEffort workEffortId="8003" workEffortTypeId="COWORK" currentStatusId="COWORK_CREATED" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-29 10:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-30 19:43:22.660"/>
-    <WorkEffort workEffortId="8006" workEffortTypeId="COWORK" currentStatusId="COWORK_CREATED" workEffortParentId="" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-12-01 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-02 11:22:22.660"/>
+    <WorkEffort workEffortId="8006" workEffortTypeId="COWORK" currentStatusId="REQUIRE_CHANGES" workEffortParentId="" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-12-01 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-02 11:22:22.660"/>
     <WorkEffort workEffortId="8013" workEffortTypeId="COWORK" currentStatusId="REGISTERED" workEffortParentId="" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-12-01 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-05 11:22:22.660"/>
     <WorkEffort workEffortId="8016" workEffortTypeId="COWORK" currentStatusId="REGISTERED" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9006" createdDate="2023-11-29 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-06 11:22:22.660"/>
 
@@ -279,6 +279,7 @@ under the License.
     <PartyAttribute partyId="9002" attrName="ddFormStatusHistory" attrValue="Submitted"/>
     <PartyAttribute partyId="9004" attrName="ddFormStatusHistory" attrValue="Submitted"/>
     <PartyAttribute partyId="9006" attrName="ddFormStatusHistory" attrValue="Submitted"/>
+    <PartyAttribute partyId="9000" attrName="isGovernment" attrValue="N"/>
     <PartyAttribute partyId="9001" attrName="isGovernment" attrValue="N"/>
     <PartyAttribute partyId="9002" attrName="isGovernment" attrValue="N"/>
     <PartyAttribute partyId="9003" attrName="isGovernment" attrValue="Y"/>
@@ -315,6 +316,16 @@ under the License.
     <PartyIdentification partyId="9005" partyIdentificationTypeId="REGISTRATION_NUMBER" idValue="91310104023416912K"/>
     <PartyIdentification partyId="9006" partyIdentificationTypeId="REGISTRATION_NUMBER" idValue="91310981390416912K"/>
 
+    <PartyRelationship partyRelationshipId="9000" partyIdFrom="IT" partyIdTo="9000" roleTypeIdTo="SUPPLIER" roleTypeIdFrom="DEPARTMENT"/>
+    <PartyRelationship partyRelationshipId="9001" partyIdFrom="IT" partyIdTo="9001" roleTypeIdTo="SUPPLIER" roleTypeIdFrom="DEPARTMENT"/>
+    <PartyRelationship partyRelationshipId="9002" partyIdFrom="IT" partyIdTo="9002" roleTypeIdTo="SUPPLIER" roleTypeIdFrom="DEPARTMENT"/>
+    <PartyRelationship partyRelationshipId="9003" partyIdFrom="IT" partyIdTo="9003" roleTypeIdTo="SUPPLIER" roleTypeIdFrom="DEPARTMENT"/>
+    <PartyRelationship partyRelationshipId="9004" partyIdFrom="IT" partyIdTo="9004" roleTypeIdTo="SUPPLIER" roleTypeIdFrom="DEPARTMENT"/>
+    <PartyRelationship partyRelationshipId="9005" partyIdFrom="IT" partyIdTo="9005" roleTypeIdTo="SUPPLIER" roleTypeIdFrom="DEPARTMENT"/>
+    <PartyRelationship partyRelationshipId="9006" partyIdFrom="IT" partyIdTo="9006" roleTypeIdTo="SUPPLIER" roleTypeIdFrom="DEPARTMENT"/>
+
+    <ContactMech contactMechId="9000" contactMechTypeId=""/>
+
     <ProductCategoryRole partyId="9000" productCategoryId="IT_SERVICE" roleTypeId="SUPPLIER" fromDate="2023-05-13 15:10:00.0"/>
     <ProductCategoryRole partyId="9001" productCategoryId="IT_SERVICE" roleTypeId="SUPPLIER" fromDate="2023-05-13 15:10:00.0"/>
     <ProductCategoryRole partyId="9002" productCategoryId="HR_SERVICE" roleTypeId="SUPPLIER" fromDate="2023-05-13 15:10:00.0"/>
@@ -325,8 +336,8 @@ under the License.
 
     <PartyClassification partyId="9001" partyClassificationGroupId="LOW_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
     <PartyClassification partyId="9002" partyClassificationGroupId="HIGH_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
+    <PartyClassification partyId="9004" partyClassificationGroupId="MIDDLE_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
     <PartyClassification partyId="9005" partyClassificationGroupId="LOW_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
-    <PartyClassification partyId="9006" partyClassificationGroupId="HIGH_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
 
     <!-- StatusValidChange -->
     <StatusValidChange statusId="APPROVAL_APPROVED" statusIdTo="PARTY_ENABLED"/>

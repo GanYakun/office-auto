@@ -91,7 +91,7 @@ public class SupplierWorker {
         if (isWrongType){
             return "Wrong Types";
         }else if (isRequireChanges){
-            return "Require Changes";
+            return "Request";
         }else if (isSubmit){
             return "Submitted";
         }else if (isSent){
@@ -228,7 +228,7 @@ public class SupplierWorker {
      */
     public static Long getClassificationCriticalValue (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
         Long criticalValue = 0L;
-        Map<String, Object> statusMap = UtilMisc.toMap("High",1L,"Low",3L,"Middle",5L);
+        Map<String, Object> statusMap = UtilMisc.toMap("High",1L,"Low",3L,"Middle",4L);
         List<GenericValue> partyClassifications = delegator.findByAnd("PartyClassification",
                 UtilMisc.toMap("partyId", supplierParty.get("partyId")), null, true);
         if (UtilValidate.isNotEmpty(partyClassifications)){
