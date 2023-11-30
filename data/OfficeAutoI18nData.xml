@@ -218,6 +218,8 @@ under the License.
     <Internationalization id="complianceCheckWarning_zh" lang="zh" property="complianceCheckWarning" value="Warning"/>
     <Internationalization id="question_en" lang="en" property="question" value="Question"/>
     <Internationalization id="question_zh" lang="zh" property="question" value="Question"/>
+    <Internationalization id="finishDomUploadDate_en" lang="en" property="finishDomUploadDate" value="Upload Finished Date"/>
+    <Internationalization id="finishDomUploadDate_zh" lang="zh" property="finishDomUploadDate" value="Upload Finished Date"/>
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
     <DBField dbFieldId="CUST_REQ_10001" dbFieldName="statusId" dbFieldTypeId="STATUS" description="当前状态" dbEntityId="CUST_REQ_10000"/>

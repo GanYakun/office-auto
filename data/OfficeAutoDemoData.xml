@@ -240,14 +240,14 @@ under the License.
     <WorkEffort workEffortId="8000" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8001" priority="PRIORITY_HIGH" partyId="9000" createdDate="2023-11-28 10:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-11-29 10:43:22.660"/>
     <WorkEffort workEffortId="8012" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8001" priority="PRIORITY_HIGH" partyId="9000" createdDate="2023-11-29 10:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-29 10:43:22.660"/>
     <WorkEffort workEffortId="8002" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8003" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-28 10:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-11-29 10:43:22.660"/>
-    <WorkEffort workEffortId="8004" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8003" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-29 18:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-30 19:43:22.660"/>
+    <WorkEffort workEffortId="8004" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8003" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-28 18:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-30 19:43:22.660"/>
     <WorkEffort workEffortId="8005" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8006" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-11-30 18:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 11:22:22.660"/>
-    <WorkEffort workEffortId="8007" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8006" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-12-02 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-03 11:22:22.660"/>
+    <WorkEffort workEffortId="8007" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8006" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-11-27 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-03 11:22:22.660"/>
     <WorkEffort workEffortId="8008" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9003" createdDate="2023-12-02 12:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-02 12:22:22.660"/>
     <WorkEffort workEffortId="8009" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8010" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-12-02 12:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-02 12:22:22.660"/>
-    <WorkEffort workEffortId="8011" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8010" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-12-03 12:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-03 12:22:22.660"/>
+    <WorkEffort workEffortId="8011" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8010" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-11-26 12:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-03 12:22:22.660"/>
     <WorkEffort workEffortId="8014" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8013" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-11-29 12:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 12:22:22.660"/>
-    <WorkEffort workEffortId="8015" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8013" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-12-01 09:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-01 09:22:22.660"/>
+    <WorkEffort workEffortId="8015" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8013" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-11-25 09:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-01 09:22:22.660"/>
     <WorkEffort workEffortId="8017" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8016" priority="PRIORITY_MEDIUM" partyId="9006" createdDate="2023-11-25 09:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
     <WorkEffort workEffortId="8018" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8016" priority="PRIORITY_MEDIUM" partyId="9006" createdDate="2023-11-29 09:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-01 09:22:22.660"/>
 
@@ -302,11 +302,12 @@ under the License.
     <PartyAttributeDate partyId="9005" attrName="firstOrderDate" attrValue="2023-11-25 10:43:22.660"/>
     <PartyAttributeDate partyId="9006" attrName="firstOrderDate" attrValue="2023-11-25 10:43:22.660"/>
 
-    <PartyAttributeDate partyId="9001" attrName="finishDomUploadDate" attrValue="2023-12-02 20:43:22.660"/>
-    <PartyAttributeDate partyId="9002" attrName="finishDomUploadDate" attrValue="2023-12-03 18:22:22.660"/>
-    <PartyAttributeDate partyId="9004" attrName="finishDomUploadDate" attrValue="2023-12-05 12:22:22.660"/>
-    <PartyAttributeDate partyId="9005" attrName="finishDomUploadDate" attrValue="2023-12-03 12:22:22.660"/>
-    <PartyAttributeDate partyId="9006" attrName="finishDomUploadDate" attrValue="2023-12-02 12:22:22.660"/>
+    <PartyAttributeDate partyId="9001" attrName="finishDomUploadDate" attrValue="2023-11-24 20:43:22.660"/>
+    <PartyAttributeDate partyId="9000" attrName="finishDomUploadDate" attrValue="2023-11-25 20:43:22.660"/>
+    <PartyAttributeDate partyId="9002" attrName="finishDomUploadDate" attrValue="2023-11-29 18:22:22.660"/>
+    <PartyAttributeDate partyId="9004" attrName="finishDomUploadDate" attrValue="2023-11-27 12:22:22.660"/>
+    <PartyAttributeDate partyId="9005" attrName="finishDomUploadDate" attrValue="2023-11-28 12:22:22.660"/>
+    <PartyAttributeDate partyId="9006" attrName="finishDomUploadDate" attrValue="2023-11-27 12:22:22.660"/>
 
     <PartyIdentification partyId="9000" partyIdentificationTypeId="REGISTRATION_NUMBER" idValue="91520900MA6J6CBN9Q"/>
     <PartyIdentification partyId="9001" partyIdentificationTypeId="REGISTRATION_NUMBER" idValue="913205056725028046"/>
