@@ -185,7 +185,7 @@ under the License.
     <!-- Party -->
     <Party partyId="9000" partyName="Huawei Technologies Co Ltd" partyTypeId="PARTY_GROUP" statusId=""/>
     <Party partyId="9001" partyName="ASUS" partyTypeId="PARTY_GROUP" statusId=""/>
-    <Party partyId="9002" partyName="Unilever" partyTypeId="PARTY_GROUP" statusId=""/>
+    <Party partyId="9002" partyName="K.J Consultation Company" partyTypeId="PARTY_GROUP" statusId=""/>
     <Party partyId="9003" partyName="NARI Technology Development Limited" partyTypeId="PARTY_GROUP" statusId=""/>
     <Party partyId="9004" partyName="Tongcheng Travel Holdings Limited" partyTypeId="PARTY_GROUP" statusId=""/>
 <!--    <Party partyId="9005" partyName="Vendor6" partyTypeId="PARTY_GROUP" statusId=""/>-->
@@ -206,11 +206,17 @@ under the License.
 <!--    <PartyRole partyId="9008" roleTypeId="SUPPLIER"/>-->
 <!--    <PartyRole partyId="9009" roleTypeId="SUPPLIER"/>-->
     <!--PartyGroup-->
-    <PartyGroup partyId="9000" groupName="Huawei Technologies Co Ltd" numEmployees="EMP_GE10000"/>
-    <PartyGroup partyId="9001" groupName="ASUS" numEmployees="EMP_GE10000"/>
-    <PartyGroup partyId="9002" groupName="Unilever" numEmployees="EMP_GE10000"/>
-    <PartyGroup partyId="9003" groupName="NARI Technology Development Limited" numEmployees="EMP_GE10000"/>
-    <PartyGroup partyId="9004" groupName="ZhiHengJiaCheng Real Estate Economy Company" numEmployees="EMP_GE1000_LT5000"/>
+    <PartyGroup partyId="9000" groupName="Huawei Technologies Co Ltd" employeesSection="EMP_GE10000" annualRevenue="450000000" comments="Main communication electronic technology business"/>
+    <PartyGroup partyId="9001" groupName="ASUS" employeesSection="EMP_GE10000" annualRevenue="120000000" comments="Sell computer hardware"/>
+    <PartyGroup partyId="9002" groupName="K.J Consultation Company" employeesSection="EMP_GE10000" annualRevenue="85000000" comments="HR consulting"/>
+    <PartyGroup partyId="9003" groupName="NARI Technology Development Limited" employeesSection="EMP_GE10000" annualRevenue="232000000" comments="Government sector"/>
+    <PartyGroup partyId="9004" groupName="ZhiHengJiaCheng Real Estate Economy Company" employeesSection="EMP_GE1000_LT5000" annualRevenue="12000000" comments="Empirical real estate sales"/>
+
+    <PartyGeo partyGeoId="9000" partyId="9000" geoId="CHN" partyGeoTypeId="LISTED_COUNTRY"/>
+    <PartyGeo partyGeoId="9001" partyId="9001" geoId="CHN" partyGeoTypeId="LISTED_COUNTRY"/>
+    <PartyGeo partyGeoId="9002" partyId="9002" geoId="CHN" partyGeoTypeId="LISTED_COUNTRY"/>
+    <PartyGeo partyGeoId="9003" partyId="9003" geoId="CHN" partyGeoTypeId="LISTED_COUNTRY"/>
+    <PartyGeo partyGeoId="9004" partyId="9004" geoId="CHN" partyGeoTypeId="LISTED_COUNTRY"/>
 
     <WorkEffort workEffortId="8001" workEffortTypeId="COWORK" currentStatusId="COWORK_CREATED" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9000" createdDate="2023-11-29 10:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-29 10:43:22.660"/>
     <WorkEffort workEffortId="8010" workEffortTypeId="COWORK" currentStatusId="COWORK_CREATED" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-12-02 12:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-03 12:22:22.660"/>
@@ -250,7 +256,20 @@ under the License.
     <PartyAttribute partyId="9002" attrName="isGovernment" attrValue="N"/>
     <PartyAttribute partyId="9003" attrName="isGovernment" attrValue="Y"/>
     <PartyAttribute partyId="9004" attrName="isGovernment" attrValue="N"/>
+    <PartyAttributeDate partyId="9000" attrName="collectionDate" attrValue="2023-11-18 10:43:22.660"/>
+    <PartyAttributeDate partyId="9001" attrName="collectionDate" attrValue="2023-11-18 10:43:22.660"/>
+    <PartyAttributeDate partyId="9002" attrName="collectionDate" attrValue="2023-11-18 10:43:22.660"/>
+    <PartyAttributeDate partyId="9003" attrName="collectionDate" attrValue="2023-11-18 10:43:22.660"/>
+    <PartyAttributeDate partyId="9004" attrName="collectionDate" attrValue="2023-11-18 10:43:22.660"/>
+    <PartyAttributeDate partyId="9000" attrName="firstOrderDate" attrValue="2023-11-25 10:43:22.660"/>
+    <PartyAttributeDate partyId="9001" attrName="firstOrderDate" attrValue="2023-11-25 10:43:22.660"/>
+    <PartyAttributeDate partyId="9002" attrName="firstOrderDate" attrValue="2023-11-25 10:43:22.660"/>
+    <PartyAttributeDate partyId="9003" attrName="firstOrderDate" attrValue="2023-11-25 10:43:22.660"/>
+    <PartyAttributeDate partyId="9004" attrName="firstOrderDate" attrValue="2023-11-25 10:43:22.660"/>
 
+    <PartyAttributeDate partyId="9001" attrName="finishDomUploadDate" attrValue="2023-12-02 20:43:22.660"/>
+    <PartyAttributeDate partyId="9002" attrName="finishDomUploadDate" attrValue="2023-12-03 18:22:22.660"/>
+    <PartyAttributeDate partyId="9004" attrName="finishDomUploadDate" attrValue="2023-12-05 12:22:22.660"/>
 
     <PartyIdentification partyId="9000" partyIdentificationTypeId="REGISTRATION_NUMBER" idValue="91520900MA6J6CBN9Q"/>
     <PartyIdentification partyId="9001" partyIdentificationTypeId="REGISTRATION_NUMBER" idValue="913205056725028046"/>
@@ -263,6 +282,9 @@ under the License.
     <ProductCategoryRole partyId="9002" productCategoryId="HR_SERVICE" roleTypeId="SUPPLIER" fromDate="2023-05-13 15:10:00.0"/>
     <ProductCategoryRole partyId="9003" productCategoryId="OFFICE_SUPPLY" roleTypeId="SUPPLIER" fromDate="2023-05-13 15:10:00.0"/>
     <ProductCategoryRole partyId="9004" productCategoryId="ESTATE_AGENCY" roleTypeId="SUPPLIER" fromDate="2023-05-13 15:10:00.0"/>
+
+    <PartyClassification partyId="9001" partyClassificationGroupId="LOW_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
+    <PartyClassification partyId="9002" partyClassificationGroupId="HIGH_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
 
     <!-- StatusValidChange -->
     <StatusValidChange statusId="APPROVAL_APPROVED" statusIdTo="PARTY_ENABLED"/>
