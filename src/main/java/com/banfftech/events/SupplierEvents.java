@@ -395,10 +395,8 @@ public class SupplierEvents {
 
         //create DD Form
         String partyId = (String) resultMap.get("partyId");
-        String countryIncorporationId = delegator.getNextSeqId("GeoPoint");
-        delegator.create("GeoPoint", UtilMisc.toMap("geoPointId", countryIncorporationId, "latitude", "_NA_", "longitude", "_NA_"));
-        delegator.create("PartyGeoPoint", UtilMisc.toMap("partyGeoPointId",delegator.getNextSeqId("PartyGeoPoint"),
-                "partyId",partyId, "partyGeoPointTypeId", "COUNTRY_INCORPORATION","geoPointId", countryIncorporationId));
+        delegator.create("PartyGeo", UtilMisc.toMap("partyGeoId",delegator.getNextSeqId("PartyGeo"),
+                "partyId", partyId, "partyGeoTypeId", "REGISTERED_COUNTRY"));
 
         String businessLocationId = delegator.getNextSeqId("GeoPoint");
         delegator.create("GeoPoint", UtilMisc.toMap("geoPointId", businessLocationId, "latitude", "_NA_", "longitude", "_NA_"));

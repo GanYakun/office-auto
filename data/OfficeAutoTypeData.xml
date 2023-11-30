@@ -127,6 +127,7 @@ under the License.
     <PartyGeoPointType partyGeoPointTypeId="BUSINESS_LOCATION" description="Business location" />
 
     <PartyGeoType partyGeoTypeId="LISTED_COUNTRY" description="Listed Country"/>
+    <PartyGeoType partyGeoTypeId="REGISTERED_COUNTRY" description="Registered country"/>
 
     <PartyIdentificationType partyIdentificationTypeId="REGISTRATION_NUMBER"/>
 
