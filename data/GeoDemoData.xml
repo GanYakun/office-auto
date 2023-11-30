@@ -947,6 +947,8 @@ under the License.
     <Geo geoId="8028" geoName="Changchun City" geoTypeId="CITY"/>
     <Geo geoId="8029" geoName="Harbin City" geoTypeId="CITY"/>
     <Geo geoId="8030" geoName="Wuhan City" geoTypeId="CITY"/>
+    <Geo geoId="8031" geoName="Shenzhen City" geoTypeId="CITY"/>
+    <Geo geoId="8032" geoName="Suzhou City" geoTypeId="CITY"/>
 
     <GeoAssocType geoAssocTypeId="PROVINCE_CITY" description="省-市"/>
 
@@ -984,6 +986,8 @@ under the License.
     <GeoAssoc geoId="420" geoIdTo="8028" geoAssocTypeId="PROVINCE_CITY"/>
     <GeoAssoc geoId="417" geoIdTo="8029" geoAssocTypeId="PROVINCE_CITY"/>
     <GeoAssoc geoId="418" geoIdTo="8030" geoAssocTypeId="PROVINCE_CITY"/>
+    <GeoAssoc geoId="411" geoIdTo="8031" geoAssocTypeId="PROVINCE_CITY"/>
+    <GeoAssoc geoId="412" geoIdTo="8032" geoAssocTypeId="PROVINCE_CITY"/>
 
     <!--国家-省-->
     <GeoAssoc createdStamp="2020-03-03 17:41:11.891" createdTxStamp="2020-03-03 17:41:11.891" geoAssocTypeId="REGIONS"

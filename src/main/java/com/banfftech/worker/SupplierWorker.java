@@ -222,7 +222,7 @@ public class SupplierWorker {
         List<GenericValue> supplierWorkEfforts = delegator.findByAnd("WorkEffortAndPartyGroupContact",
                 UtilMisc.toMap("partyId", supplierParty.get("partyId"), "approvePartyId", supplierParty.get("partyId")), null, true);
         if (UtilValidate.isEmpty(supplierWorkEfforts)){
-           return "0 days";
+           return getDaysDifference(UtilDateTime.nowTimestamp(), getFinishUploadDate(supplierParty, delegator));
         }
         GenericValue supplierWorkEffort = EntityUtil.getFirst(supplierWorkEfforts);
         return getDaysDifference(supplierWorkEffort.getTimestamp("createdDate"), getFinishUploadDate(supplierParty, delegator));

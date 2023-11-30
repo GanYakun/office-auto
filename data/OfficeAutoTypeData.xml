@@ -129,4 +129,16 @@ under the License.
     <PartyGeoType partyGeoTypeId="LISTED_COUNTRY" description="Listed Country"/>
 
     <PartyIdentificationType partyIdentificationTypeId="REGISTRATION_NUMBER"/>
+
+    <!-- ContactMechPurposeType(联系目的类型) -->
+    <ContactMechPurposeType contactMechPurposeTypeId="LOCATION" description="Location"/>
+    <ContactMechPurposeType contactMechPurposeTypeId="SHIPPING_LOCATION" parentTypeId="LOCATION" description="Shipping Destination Address"/>
+    <ContactMechPurposeType contactMechPurposeTypeId="SHIP_ORIG_LOCATION" parentTypeId="LOCATION" description="Shipping Origin Address"/>
+    <ContactMechPurposeType contactMechPurposeTypeId="BILLING_LOCATION" parentTypeId="LOCATION" description="Billing (AP) Address"/>
+    <ContactMechPurposeType contactMechPurposeTypeId="PAYMENT_LOCATION" parentTypeId="LOCATION" description="Payment (AR) Address"/>
+    <ContactMechPurposeType contactMechPurposeTypeId="GENERAL_LOCATION" parentTypeId="LOCATION" description="General Correspondence Address"/>
+    <ContactMechPurposeType contactMechPurposeTypeId="PUR_RET_LOCATION" parentTypeId="LOCATION" description="Purchase Return Address"/>
+    <ContactMechPurposeType contactMechPurposeTypeId="PRIMARY_LOCATION" parentTypeId="LOCATION" description="Primary Address"/>
+    <ContactMechPurposeType contactMechPurposeTypeId="PREVIOUS_LOCATION" parentTypeId="LOCATION" description="Previous Address"/>
+
 </entity-engine-xml>
