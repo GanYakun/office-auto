@@ -35,4 +35,15 @@
         <action service="banfftech.copyRelationshipAttr" mode="sync"/>
     </eca>
 
+    <!-- workEffort status change Record -->
+    <eca service="banfftech.createWorkEffort" event="return">
+        <condition field-name="currentStatusId" operator="is-not-empty"/>
+        <action service="banfftech.recordWorkEffortStatus" mode="sync"/>
+    </eca>
+    <eca service="banfftech.updateWorkEffort" event="return">
+        <condition field-name="currentStatusId" operator="is-not-empty"/>
+        <action service="banfftech.recordWorkEffortStatus" mode="sync"/>
+    </eca>
+
+
 </service-eca>

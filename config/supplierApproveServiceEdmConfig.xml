@@ -131,6 +131,8 @@
         <NavigationProperty Name="ListRegionEnumeration" Type="ListRegionEnumeration" Relations="ListRegionEnumeration"/>
         <NavigationProperty Name="ListedCountry" Type="ListedCountry" Relations="PartyGeo(partyGeoTypeId=LISTED_COUNTRY)/Geo" IsCollection="true"/>
         <NavigationProperty Name="SurveyQuestionAndAnswer"/>
+        <NavigationProperty Name="ChildWorkEffortStatus" Type="WorkEffortStatus" Relations="ChildWorkEffort/WorkEffortStatus" IsCollection="true"/>
+
         <!-- 文件列表 -->
         <NavigationProperty Name="FileList" Type="PartyMediaResource" Relations="PartyMediaResource" IsCollection="true"/>
         <!-- 合规报告 -->
@@ -293,8 +295,8 @@
                 OfbizService="com.banfftech.events.SupplierApproveEvents.toProcurement"
                 StickySession="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
-            <Parameter Name="source" Type="String" IsCollection="false"/>
-            <Parameter Name="noteInfo" Type="String" Label="${noteInfo}"/>
+            <Parameter Name="source" Type="String" IsCollection="false" Nullable="true"/>
+            <Parameter Name="noteInfo" Type="String" Label="${noteInfo}" Nullable="true"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
         <!--推送到申请人的Action-->
@@ -977,6 +979,15 @@
         </Action>
     </EntityType>
 
+    <EntityType Name="WorkEffortStatus" AutoProperties="true" EntitySetName="WorkEffortStatus">
+        <RelAlias Name="AssignParty" Relations="WorkEffort/WorkEffortPartyAssignment/Party"/>
+        <Property Name="partyName" RelAlias="AssignParty" Field="partyName" Label="${partyName}"/>
+        <Property Name="statusDatetime" Label="${changeStatus}"/>
+        <LineItem Qualifier="WorkEffortStatusList">
+            <DataField Values="partyName,StatusItem/description,statusDatetime" Importance="High"/>
+        </LineItem>
+      <NavigationProperty Name="StatusItem"/>
+    </EntityType>
     <!--==================================不同对象状态==============================================-->
     <!--StatusItem（只展示TextOnly时使用）-->
     <EntityType Name="StatusItem" AutoProperties="true" EntitySetName="StatusItems">

@@ -199,6 +199,9 @@
         <relation type="many" title="Child" rel-entity-name="WorkEffortAndPartyGroupContact">
             <key-map field-name="workEffortId" rel-field-name="workEffortParentId"/>
         </relation>
+        <relation type="many" title="Child" rel-entity-name="WorkEffort">
+            <key-map field-name="workEffortId" rel-field-name="workEffortParentId"/>
+        </relation>
         <relation type="many" rel-entity-name="PartyContactMechPurpose">
             <key-map field-name="partyId" rel-field-name="partyId"/>
         </relation>

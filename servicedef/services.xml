@@ -94,5 +94,12 @@ under the License.
         <attribute mode="IN" name="supplierPartyId" type="String"/>
     </service>
 
+    <service name="banfftech.recordWorkEffortStatus"
+             location="com.banfftech.services.WorkEffortService" engine="java" invoke="recordWorkEffortStatus" auth="true">
+        <description>WorkEffort状态变更记录</description>
+        <attribute mode="IN" name="workEffortId" type="String"/>
+        <attribute mode="IN" name="currentStatusId" type="String"/>
+    </service>
+
 
 </services>

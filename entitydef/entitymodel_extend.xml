@@ -59,9 +59,6 @@
 		<relation type="many" title="From" rel-entity-name="PartyRelationshipAndContactMechDetail">
 			<key-map field-name="partyId" rel-field-name="partyIdFrom"/>
 		</relation>
-		<relation type="many" rel-entity-name="CashAccount">
-			<key-map field-name="partyId"/>
-		</relation>
 		<relation type="many" rel-entity-name="Budget">
 			<key-map field-name="partyId"/>
 		</relation>

@@ -226,6 +226,8 @@ under the License.
     <Internationalization id="complianceWorkStatus_zh" lang="zh" property="complianceWorkStatus" value="合规处理状态"/>
     <Internationalization id="finishDomUploadDate_en" lang="en" property="finishDomUploadDate" value="Upload Finished Date"/>
     <Internationalization id="finishDomUploadDate_zh" lang="zh" property="finishDomUploadDate" value="Upload Finished Date"/>
+    <Internationalization id="changeStatus_en" lang="en" property="changeStatus" value="Change date"/>
+    <Internationalization id="changeStatus_zh" lang="zh" property="changeStatus" value="变更日期"/>
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
     <DBField dbFieldId="CUST_REQ_10001" dbFieldName="statusId" dbFieldTypeId="STATUS" description="当前状态" dbEntityId="CUST_REQ_10000"/>
@@ -763,4 +765,12 @@ under the License.
     <DBFieldLabel dbFieldLabelId="PTNH10001_01_EN" dbFieldId="PTNH10001" language="en" value="Change Date"/>
     <DBFieldLabel dbFieldLabelId="PTNH10002_02_ZH" dbFieldId="PTNH10002" language="zh" value="变更名称"/>
     <DBFieldLabel dbFieldLabelId="PTNH10002_02_EN" dbFieldId="PTNH10002" language="en" value="Change Name"/>
+
+    <DBEntity dbEntityId="STITEM10000" dbEntityName="StatusItem" description="Status" isOpen="N" />
+    <DBField dbFieldId="STITEM10001" dbFieldName="statusId" dbFieldTypeId="STRING" dbEntityId="STITEM10000" description="Status ID"/>
+    <DBField dbFieldId="STITEM10002" dbFieldName="description" dbFieldTypeId="STRING" dbEntityId="STITEM10000" description="Status"/>
+    <DBFieldLabel dbFieldLabelId="STITEM10001_ZH" dbFieldId="STITEM10001" language="zh" value="状态标识"/>
+    <DBFieldLabel dbFieldLabelId="STITEM10001_EN" dbFieldId="STITEM10001" language="en" value="Status ID"/>
+    <DBFieldLabel dbFieldLabelId="STITEM10002_ZH" dbFieldId="STITEM10002" language="zh" value="状态"/>
+    <DBFieldLabel dbFieldLabelId="STITEM10002_EN" dbFieldId="STITEM10002" language="en" value="Status"/>
 </entity-engine-xml>
