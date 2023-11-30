@@ -4,6 +4,7 @@ import com.banfftech.common.util.CommonUtils;
 import com.dpbird.odata.OdataParts;
 import com.dpbird.odata.OfbizODataException;
 import com.dpbird.odata.edm.OdataOfbizEntity;
+import org.apache.ofbiz.base.util.GeneralException;
 import org.apache.ofbiz.base.util.UtilDateTime;
 import org.apache.ofbiz.base.util.UtilMisc;
 import org.apache.ofbiz.base.util.UtilValidate;
@@ -22,6 +23,7 @@ import org.apache.ofbiz.service.LocalDispatcher;
 import org.apache.olingo.commons.api.edm.EdmBindingTarget;
 
 import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
@@ -31,7 +33,7 @@ import java.sql.Timestamp;
 
 public class SupplierEvents {
     public static void fillPartyClassification(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
-                                                 EdmBindingTarget edmBindingTarget) throws OfbizODataException {
+                                                 EdmBindingTarget edmBindingTarget) throws OfbizODataException, UnsupportedEncodingException {
         Delegator delegator = (Delegator) oDataContext.get("delegator");
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
@@ -62,7 +64,10 @@ public class SupplierEvents {
             if (UtilValidate.isNotEmpty(complianceComments)) {
                 CommonUtils.setObjectAttribute(party, "complianceComments", complianceComments);
             }
-        } catch (GenericEntityException | GenericServiceException e) {
+            //submit to procurement
+            actionParameters.put("noteInfo", complianceComments);
+            SupplierApproveEvents.toProcurement(oDataContext, actionParameters, edmBindingTarget);
+        } catch (GeneralException e) {
             throw new OfbizODataException(e.getMessage());
         }
     }
