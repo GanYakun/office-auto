@@ -32,7 +32,7 @@
         <!--供应商收藏时间-->
         <Property Name="collectionDate" Type="Timestamp" IsDateAttribute="true"/>
         <!--文件上传完成时间-->
-        <Property Name="finishDomUploadDate" Type="Timestamp" IsDateAttribute="true"/>
+        <Property Name="finishDomUploadDate" Label="${finishDomUploadDate}" Type="Timestamp" IsDateAttribute="true"/>
         <!--记录是否已完成文件上传-->
         <Property Name="isFinishedDomUpload" Type="Boolean" IsAttribute="true"/>
         <Property Name="totalAmount" Type="BigDecimal" Scale="3"/>
@@ -169,10 +169,10 @@
         </FieldGroup>
 
         <FieldGroup Qualifier="SupplierTimeInfo" Label="SupplierTimeInfo">
-            <DataField Values="createdDate,lastModifiedDate,collectionDate,firstOrderDate" Importance="High"/>
+            <DataField Values="createdDate,lastModifiedDate,finishDomUploadDate,collectionDate,firstOrderDate" Importance="High"/>
         </FieldGroup>
         <FieldGroup Qualifier="SupplierTimeInfoWithAction" Label="SupplierTimeInfoWithAction">
-            <DataField Values="createdDate,lastModifiedDate,collectionDate,firstOrderDate" Importance="High"/>
+            <DataField Values="createdDate,lastModifiedDate,finishDomUploadDate,collectionDate,firstOrderDate" Importance="High"/>
             <DataFieldForAction Label="${UpdateSupplierTimeInfo}" Action="UpdateSupplierTimeInfo" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated" Hidden="disableEditSupplier"/>
         </FieldGroup>
         <FieldGroup Qualifier="DDFormBoolFields" Label="DDFormBoolFields">

@@ -1,12 +1,14 @@
 package com.banfftech.worker;
 
 import org.apache.commons.net.ntp.TimeStamp;
+import org.apache.ofbiz.base.util.UtilDateTime;
 import org.apache.ofbiz.base.util.UtilMisc;
 import org.apache.ofbiz.base.util.UtilValidate;
 import org.apache.ofbiz.entity.Delegator;
 import org.apache.ofbiz.entity.GenericEntityException;
 import org.apache.ofbiz.entity.GenericValue;
 import org.apache.ofbiz.entity.util.EntityUtil;
+import org.joda.time.DateTimeUtils;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -25,7 +27,7 @@ public class SupplierWorker {
     public static String getDDFormType (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
         String ddFormType = null;
         Boolean isGovernment = isGovernment((String) supplierParty.get("partyId"), delegator);
-        Boolean isNoFormListCountry = isNoFormListCountry(supplierParty);
+        Boolean isNoFormListCountry = isNoFormListCountry(supplierParty, delegator);
 
         List<GenericValue> productCategoryRoles = delegator.findByAnd("ProductCategoryRole",
                 UtilMisc.toMap("partyId", supplierParty.get("partyId")), null, false);
@@ -59,18 +61,21 @@ public class SupplierWorker {
         return isGovernment;
     }
 
-    private static Boolean isNoFormListCountry (GenericValue supplierParty){
+    private static Boolean isNoFormListCountry (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
         Boolean isNoFormListCountry = false;
-        if (UtilValidate.isNotEmpty(supplierParty.get("tickerSymbol"))){
-            String tickerSymbol = supplierParty.getString("tickerSymbol");
-            if (tickerSymbol.contains("US")){
-                isNoFormListCountry = true;
-            }else if (tickerSymbol.contains("UK")){
-                isNoFormListCountry = true;
-            }else if (tickerSymbol.contains("UAE")){
-                isNoFormListCountry = true;
+        List<GenericValue> partyGeos = delegator.findByAnd("PartyGeo", UtilMisc.toMap("partyId", supplierParty.get("partyId")), null, true);
+            if (UtilValidate.isNotEmpty(partyGeos)){
+                List<String> geoIds = EntityUtil.getFieldListFromEntityList(partyGeos, "geoId", false);
+                if (geoIds.contains("USA")){
+                    isNoFormListCountry = true;
+                }else if (geoIds.contains("UK")){
+                    isNoFormListCountry = true;
+                }else if (geoIds.contains("UAE")){
+                    isNoFormListCountry = true;
+                }else if (geoIds.contains("Europe")){
+                    isNoFormListCountry = true;
+                }
             }
-        }
         return isNoFormListCountry;
     }
 
@@ -88,7 +93,7 @@ public class SupplierWorker {
         if (isWrongType){
             return "Wrong Types";
         }else if (isRequireChanges){
-            return "Require Changes";
+            return "Request";
         }else if (isSubmit){
             return "Submitted";
         }else if (isSent){
@@ -169,7 +174,7 @@ public class SupplierWorker {
         List<GenericValue> supplierWorkEfforts = delegator.findByAnd("WorkEffortAndPartyGroupContact",
                 UtilMisc.toMap("partyId", supplierParty.get("partyId"), "workEffortTypeId", "COWORK", "currentStatusId", "REGISTERED"), null, true);
         if (UtilValidate.isEmpty(supplierWorkEfforts)){
-            return "0 days";
+            return getDaysDifference(getFinishUploadDate(supplierParty, delegator), UtilDateTime.nowTimestamp());
         }
         GenericValue supplierWorkEffort = EntityUtil.getFirst(supplierWorkEfforts);
         return getDaysDifference(getFinishUploadDate(supplierParty, delegator), supplierWorkEffort.getTimestamp("lastModifiedDate"));
@@ -180,7 +185,7 @@ public class SupplierWorker {
         GenericValue partyAttributeDate = delegator.findOne("PartyAttributeDate",
                 UtilMisc.toMap("partyId", supplierParty.get("partyId"), "attrName", "finishDomUploadDate"), true);
         if (UtilValidate.isEmpty(partyAttributeDate)){
-            return null;
+            return UtilDateTime.nowTimestamp();
         }
         return partyAttributeDate.getTimestamp("attrValue");
     }
@@ -188,14 +193,20 @@ public class SupplierWorker {
     //计算时间差，并转化为~days的时间格式
     private static String getDaysDifference (Timestamp startDate, Timestamp completionDate){
         String daysDifference = "0 days";
-        if (UtilValidate.isEmpty(startDate) || UtilValidate.isEmpty(completionDate)){
-            return "0 days";
+        if (UtilValidate.isEmpty(startDate)){
+            startDate = UtilDateTime.nowTimestamp();
+        }
+        if (UtilValidate.isEmpty(completionDate)){
+            completionDate = UtilDateTime.nowTimestamp();
         }
         long startDateSeconds = startDate.getTime();
         long completionDateSeconds = completionDate.getTime();
         long differenceSeconds = completionDateSeconds - startDateSeconds;
         double differenceDaysFloat = (double) differenceSeconds / (3600*1000*24);
         double days = Math.floor(differenceDaysFloat);
+        if (days < 0){
+            return "0 days";
+        }
         daysDifference = (int) days + " days";
         return daysDifference;
     }
@@ -225,7 +236,7 @@ public class SupplierWorker {
      */
     public static Long getClassificationCriticalValue (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
         Long criticalValue = 0L;
-        Map<String, Object> statusMap = UtilMisc.toMap("High",1L,"Low",3L,"Middle",5L);
+        Map<String, Object> statusMap = UtilMisc.toMap("High",1L,"Low",3L,"Middle",4L);
         List<GenericValue> partyClassifications = delegator.findByAnd("PartyClassification",
                 UtilMisc.toMap("partyId", supplierParty.get("partyId")), null, true);
         if (UtilValidate.isNotEmpty(partyClassifications)){

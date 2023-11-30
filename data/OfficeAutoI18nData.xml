@@ -224,7 +224,8 @@ under the License.
     <Internationalization id="supplierWorkStatus_zh" lang="zh" property="supplierWorkStatus" value="供应商处理状态"/>
     <Internationalization id="complianceWorkStatus_en" lang="en" property="complianceWorkStatus" value="Compliance processing status"/>
     <Internationalization id="complianceWorkStatus_zh" lang="zh" property="complianceWorkStatus" value="合规处理状态"/>
-
+    <Internationalization id="finishDomUploadDate_en" lang="en" property="finishDomUploadDate" value="Upload Finished Date"/>
+    <Internationalization id="finishDomUploadDate_zh" lang="zh" property="finishDomUploadDate" value="Upload Finished Date"/>
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
     <DBField dbFieldId="CUST_REQ_10001" dbFieldName="statusId" dbFieldTypeId="STATUS" description="当前状态" dbEntityId="CUST_REQ_10000"/>
