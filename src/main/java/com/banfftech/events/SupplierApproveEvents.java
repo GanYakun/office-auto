@@ -207,11 +207,12 @@ public class SupplierApproveEvents {
                 "Thank you for your cooperation, and we look forward to the potential collaboration with [SupplierXXX].\n" +
                 "Best regards";
         try {
-            GenericValue createUser = delegator.findOne("UserLogin", UtilMisc.toMap("userLoginId", supplierParty.getPropertyValue("createdByUserLogin")), false);
+            GenericValue firstTask = EntityQuery.use(delegator).from("WorkEffort").where("partyId", partyId).orderBy("createdDate").queryFirst();
+            GenericValue createUser = delegator.findOne("UserLogin", UtilMisc.toMap("userLoginId", firstTask.getString("createdByUserLogin")), false);
             GenericValue applicantParty = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", createUser.getString("partyId")).queryFirst();
-            String email = applicantParty.getString("primaryEmail");
-            if (UtilValidate.isNotEmpty(email)) {
-                UtilEmail.sendEmail("longxi.jin@banff-tech.com", "Supplier registration completed", content);
+            String applicantEmail =  applicantParty.getString("primaryEmail");
+            if (UtilValidate.isNotEmpty(applicantEmail)) {
+                UtilEmail.sendEmail(applicantEmail, "Supplier registration completed", content);
             } else {
                 Debug.logWarning("No email address", MODULE);
             }
