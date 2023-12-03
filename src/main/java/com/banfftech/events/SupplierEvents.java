@@ -590,8 +590,9 @@ public class SupplierEvents {
 
     }
 
+    // Implement CreatePurchaseAgreement action
     // url example: SupplierParties('10000')/PurchaseAgreement/com.dpbird.CreateAgreement
-    public static Object createAgreement(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
+    public static Object createPurchaseAgreement(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
                                          EdmBindingTarget edmBindingTarget) throws OfbizODataException, GenericServiceException, GenericEntityException {
         Delegator delegator = (Delegator) oDataContext.get("delegator");
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
@@ -599,22 +600,24 @@ public class SupplierEvents {
         String description = (String) actionParameters.get("description");
         String productId = (String) actionParameters.get("productId");
         Timestamp agreementDate = (Timestamp) actionParameters.get("agreementDate");
-        // get OdataOfbizEntity of SupplierParties('10000')
+        Timestamp fromDate = (Timestamp) actionParameters.get("fromDate");
+        Timestamp thruDate = (Timestamp) actionParameters.get("thruDate");
+        // get the first bound OdataOfbizEntity. example: SupplierParties('10000')
         OdataOfbizEntity supplierPartyEntity = CommonUtils.getOdataPartByEntityType(oDataContext, "SupplierParty");
         GenericValue supplierParty = null;
         if (UtilValidate.isEmpty(supplierPartyEntity)) {
             return null;
         }
         supplierParty = supplierPartyEntity.getGenericValue();
-        String toPartyId = supplierParty.getString("partyId");
-        String fromPartyId = CommonUtils.getPartyCompany(userLogin.getString("partyId"), delegator);
+        String partyIdTo = supplierParty.getString("partyId");
+        String partyIdFrom = CommonUtils.getPartyCompany(userLogin.getString("partyId"), delegator);
 
         Map<String, Object> createAgreementResult;
         try {
             createAgreementResult = dispatcher.runSync("banfftech.createAgreement",
                     UtilMisc.toMap("userLogin", userLogin, "description", description,
-                            "productId", productId, "agreementDate", agreementDate, "fromPartyId", fromPartyId,
-                            "toPartyId", toPartyId, "agreementTypeId", "PURCHASE_AGREEMENT"));
+                            "productId", productId, "agreementDate", agreementDate, "partyIdFrom", partyIdFrom,
+                            "partyIdTo", partyIdTo, "agreementTypeId", "PURCHASE_AGREEMENT", "fromDate", fromDate, "thruDate", thruDate));
         } catch (GenericServiceException e) {
             throw new OfbizODataException(e.getMessage());
         }

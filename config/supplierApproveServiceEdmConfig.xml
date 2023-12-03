@@ -708,6 +708,8 @@
                 EntityCondition="agreementTypeId=PURCHASE_AGREEMENT" AutoProperties="true" OfbizEntity="Agreement">
         <LineItem Qualifier="PurchaseAgreementLineItem">
             <DataField Values="productId,description,agreementDate,fromDate,thruDate" Importance="High"/>
+            <DataFieldForAction Label="${create}" Action="CreatePurchaseAgreement" Importance="High" Criticality="Positive"
+                                Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
         <SelectionFields PropertyPath="productId,partyIdFrom,partyIdTo"/>
         <HeaderInfo TypeName="合同">
@@ -737,7 +739,7 @@
         <NavigationProperty Name="SupplierParty" Type="SupplierParty" Relations="ToPartyGroupAndContact"/>
         <NavigationProperty Name="Company" Type="Company" Relations="FromPartyGroupAndContact"/>
         <NavigationProperty Name="AgreementTerm"/>
-        <Action Name="CreateAgreement" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createAgreement">
+        <Action Name="CreatePurchaseAgreement" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createPurchaseAgreement">
             <Parameter Name="agreement" Type="PurchaseAgreement" Nullable="false" IsCollection="true"/>
             <Parameter Name="productId" Type="String" Label="${productId}" Nullable="true">
                 <ValueList CollectionPath="Products">
