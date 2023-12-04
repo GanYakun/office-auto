@@ -271,7 +271,7 @@ public class SupplierEvents {
         //创建或者更新PartyGeo
         if (UtilValidate.isNotEmpty(actionParameters.get("geoId"))) {
             List<String> geoIds = (List<String>) actionParameters.get("geoId");
-            List<GenericValue> partyGeos = delegator.findByAnd("PartyGeo", UtilMisc.toMap("partyId", supplierParty.get("partyId")), null, true);
+            List<GenericValue> partyGeos = delegator.findByAnd("PartyGeo", UtilMisc.toMap("partyId", supplierParty.get("partyId"), "partyGeoTypeId", "LISTED_COUNTRY"), null, true);
             if (UtilValidate.isNotEmpty(partyGeos)) {
                 for (GenericValue partyGeo : partyGeos) {
                     dispatcher.runSync("banfftech.deletePartyGeo",
