@@ -773,4 +773,32 @@ under the License.
     <DBFieldLabel dbFieldLabelId="STITEM10001_EN" dbFieldId="STITEM10001" language="en" value="Status ID"/>
     <DBFieldLabel dbFieldLabelId="STITEM10002_ZH" dbFieldId="STITEM10002" language="zh" value="状态"/>
     <DBFieldLabel dbFieldLabelId="STITEM10002_EN" dbFieldId="STITEM10002" language="en" value="Status"/>
+
+
+    <!-- Entity labels for entity PostalAddress -->
+    <DBEntity dbEntityId="PCMPA10000" dbEntityName="PartyContactMechPurposeAndAddress" description="Postal Address" isOpen="N" />
+    <DBField dbFieldId="PCMPA10000_01" dbFieldName="countryGeoId" dbFieldTypeId="STRING" dbEntityId="PCMPA10000" description="Note name"/>
+    <DBField dbFieldId="PCMPA10000_02" dbFieldName="cityGeoId" dbFieldTypeId="STRING" dbEntityId="PCMPA10000" description="Note info"/>
+    <DBField dbFieldId="PCMPA10000_03" dbFieldName="stateProvinceGeoId" dbFieldTypeId="STRING" dbEntityId="PCMPA10000" description="Note date time"/>
+    <DBField dbFieldId="PCMPA10000_04" dbFieldName="address1" dbFieldTypeId="STRING" dbEntityId="PCMPA10000" description="Note party"/>
+    <DBField dbFieldId="PCMPA10000_06" dbFieldName="contactNumber" dbFieldTypeId="STRING" dbEntityId="PCMPA10000" description="Note ID"/>
+    <DBField dbFieldId="PCMPA10000_07" dbFieldName="email" dbFieldTypeId="STRING" dbEntityId="PCMPA10000" description="Note ID"/>
+    <DBField dbFieldId="PCMPA10000_08" dbFieldName="address2" dbFieldTypeId="STRING" dbEntityId="PCMPA10000" description="Address2"/>
+    <DBField dbFieldId="PCMPA10000_09" dbFieldName="contactMechPurposeTypeId" dbFieldTypeId="STRING" dbEntityId="PCMPA10000" description="Address2"/>
+    <DBFieldLabel dbFieldLabelId="PCMPA10000_01_ZH" dbFieldId="PCMPA10000_01" language="zh" value="国家"/>
+    <DBFieldLabel dbFieldLabelId="PCMPA10000_01_EN" dbFieldId="PCMPA10000_01" language="en" value="Country"/>
+    <DBFieldLabel dbFieldLabelId="PCMPA10000_02_ZH" dbFieldId="PCMPA10000_02" language="zh" value="城市"/>
+    <DBFieldLabel dbFieldLabelId="PCMPA10000_02_EN" dbFieldId="PCMPA10000_02" language="en" value="City"/>
+    <DBFieldLabel dbFieldLabelId="PCMPA10000_03_ZH" dbFieldId="PCMPA10000_03" language="zh" value="省份"/>
+    <DBFieldLabel dbFieldLabelId="PCMPA10000_03_EN" dbFieldId="PCMPA10000_03" language="en" value="Province"/>
+    <DBFieldLabel dbFieldLabelId="PCMPA10000_04_ZH" dbFieldId="PCMPA10000_04" language="zh" value="地址"/>
+    <DBFieldLabel dbFieldLabelId="PCMPA10000_04_EN" dbFieldId="PCMPA10000_04" language="en" value="Address"/>
+    <DBFieldLabel dbFieldLabelId="PCMPA10000_06_ZH" dbFieldId="PCMPA10000_06" language="zh" value="电话"/>
+    <DBFieldLabel dbFieldLabelId="PCMPA10000_06_EN" dbFieldId="PCMPA10000_06" language="en" value="Number"/>
+    <DBFieldLabel dbFieldLabelId="PCMPA10000_07_ZH" dbFieldId="PCMPA10000_07" language="zh" value="邮箱"/>
+    <DBFieldLabel dbFieldLabelId="PCMPA10000_07_EN" dbFieldId="PCMPA10000_07" language="en" value="Email"/>
+    <DBFieldLabel dbFieldLabelId="PCMPA10000_08_ZH" dbFieldId="PCMPA10000_08" language="zh" value="网址"/>
+    <DBFieldLabel dbFieldLabelId="PCMPA10000_08_EN" dbFieldId="PCMPA10000_08" language="en" value="Website address"/>
+    <DBFieldLabel dbFieldLabelId="PCMPA10000_09_ZH" dbFieldId="PCMPA10000_09" language="zh" value="目的"/>
+    <DBFieldLabel dbFieldLabelId="PCMPA10000_10_EN" dbFieldId="PCMPA10000_09" language="en" value="Purpose"/>
 </entity-engine-xml>
