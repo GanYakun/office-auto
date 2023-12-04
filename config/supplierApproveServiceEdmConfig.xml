@@ -22,6 +22,7 @@
         <Property Name="isGovernment" Type="Boolean" IsAttribute="true" Label="${isGovernment}"/>
         <!--供应商填写的ddForm类型-->
         <Property Name="ddFormType" Type="String" Label="${ddFormType}"/>
+        <Property Name="ddFormTypeId" Type="String" Label="${ddFormType}"/>
         <!--供应商填写ddForm进度情况-->
         <Property Name="ddFormDealStatus" Type="String" Label="${ddFormDealStatus}"/>
         <Property Name="ddFormStatusHistory" Type="String" IsAttribute="true"/>

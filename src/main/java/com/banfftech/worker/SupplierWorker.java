@@ -258,4 +258,8 @@ public class SupplierWorker {
         }
 
     }
+
+    public static String getDDFormTypeId (String ddFormType) {
+        return (String) DDType.get(ddFormType);
+    }
 }

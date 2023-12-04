@@ -30,6 +30,7 @@ def generateFields(Map<String, Object> context){
     Map<String, Object> ddFormDealMap = UtilMisc.toMap("Not Request", 5L, "Request", 2L, "Submitted", 3L, "Require Changes", 2L, "Wrong Types", 1L);
     entityList.each { entity ->
         String ddFormType;
+        String ddFormTypeId;
         String ddFormDealStatus;
         ddFormTypeCritical = 0L;
         ddFormDealCritical = 0L;
@@ -37,6 +38,7 @@ def generateFields(Map<String, Object> context){
         riskCritical = 0L;
         GenericValue supplierParty = (GenericValue) entity.getGenericValue();
         ddFormType = SupplierWorker.getDDFormType(supplierParty, delegator);
+        ddFormTypeId = SupplierWorker.getDDFormTypeId(ddFormType);
         ddFormDealStatus = SupplierWorker.getDDFormDealStatus(supplierParty, delegator);
         riskCritical = SupplierWorker.getClassificationCriticalValue(supplierParty, delegator);
         String cycleTime = SupplierWorker.calculateCycleTime(supplierParty, delegator);
@@ -55,6 +57,7 @@ def generateFields(Map<String, Object> context){
         ddFormTypeCritical = CriticalValueWorker.getCriticalValue(ddFormTypeMap, ddFormType);
         ddFormDealCritical = CriticalValueWorker.getCriticalValue(ddFormDealMap, ddFormDealStatus);
         entity.addProperty(new Property(null, "ddFormType", ValueType.PRIMITIVE, ddFormType))
+        entity.addProperty(new Property(null, "ddFormTypeId", ValueType.PRIMITIVE, ddFormTypeId))
         entity.addProperty(new Property(null, "ddFormDealStatus", ValueType.PRIMITIVE, ddFormDealStatus))
         entity.addProperty(new Property(null, "criticalityValue", ValueType.PRIMITIVE, criticalityValue))
         entity.addProperty(new Property(null, "ddFormTypeCritical", ValueType.PRIMITIVE, ddFormTypeCritical))

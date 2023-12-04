@@ -650,6 +650,15 @@ under the License.
 <!--    <SurveyQuestionAnswer surveyQuestionAnswerId="9003" surveyQuestionId="9003" partyId="SUPPLIER0001" booleanResponse="N"/>-->
 <!--    <SurveyQuestionAnswer surveyQuestionAnswerId="9004" surveyQuestionId="9004" partyId="SUPPLIER0001" textResponse="Asus From a professional private brand to an international 3C brand marketing the world, ASUS has always adhered to uncompromising quality and innovation. In the Chinese name to Chinese master for the hope, and the English name inspiration from the Greek mythology of the PEGASUS, which symbolizes the holy, perfect and pure image, representing ASUS never slack, the pursuit of excellence of the spirit."/>-->
 
+    <FinAccount finAccountTypeId="BANK_ACCOUNT" ownerPartyId="9000" finAccountId="9000" finAccountName="Bank of Shanghai" finAccountCode="79361234075342678" currencyUomId="CNY" statusId="FNACT_ACTIVE"/>
+    <FinAccount finAccountTypeId="BANK_ACCOUNT" ownerPartyId="9001" finAccountId="9001" finAccountName="Bank of Shanghai" finAccountCode="79361234075342678" currencyUomId="CNY" statusId="FNACT_ACTIVE"/>
+    <FinAccount finAccountTypeId="BANK_ACCOUNT" ownerPartyId="9002" finAccountId="9002" finAccountName="Bank of Shanghai" finAccountCode="79361234075342678" currencyUomId="CNY" statusId="FNACT_ACTIVE"/>
+    <FinAccount finAccountTypeId="BANK_ACCOUNT" ownerPartyId="9003" finAccountId="9003" finAccountName="Bank of Shanghai" finAccountCode="79361234075342678" currencyUomId="CNY" statusId="FNACT_ACTIVE"/>
+    <FinAccount finAccountTypeId="BANK_ACCOUNT" ownerPartyId="9004" finAccountId="9004" finAccountName="Bank of Shanghai" finAccountCode="79361234075342678" currencyUomId="CNY" statusId="FNACT_ACTIVE"/>
+    <FinAccount finAccountTypeId="BANK_ACCOUNT" ownerPartyId="9005" finAccountId="9005" finAccountName="Bank of Shanghai" finAccountCode="79361234075342678" currencyUomId="CNY" statusId="FNACT_ACTIVE"/>
+    <FinAccount finAccountTypeId="BANK_ACCOUNT" ownerPartyId="9006" finAccountId="9006" finAccountName="Bank of Shanghai" finAccountCode="79361234075342678" currencyUomId="CNY" statusId="FNACT_ACTIVE"/>
+    <FinAccount finAccountTypeId="BANK_ACCOUNT" ownerPartyId="9007" finAccountId="9007" finAccountName="Bank of Shanghai" finAccountCode="79361234075342678" currencyUomId="CNY" statusId="FNACT_ACTIVE"/>
+
     <!--产品Demo数据-->
     <UomType uomTypeId="QUANTITY_MEASURE" description="Quantity"/>
     <Uom uomId="SET" uomTypeId="QUANTITY_MEASURE" description="Set"/>
@@ -698,5 +707,213 @@ under the License.
     <RoleTypeUILabApp roleTypeId="CONTACT" roleTypeUILabAppId="10006" uiLabAppId="10004"/>
     <RoleTypeUILabApp roleTypeId="SUPPLIER" roleTypeUILabAppId="10007" uiLabAppId="10004"/>
     <RoleTypeUILabApp roleTypeId="PROCUREMENT" roleTypeUILabAppId="1000" uiLabAppId="10000"/>
+
+    <Party partyId="CONTACT00001" partyName="Zhang Zheng" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00002" partyName="Chen Xiaoxin" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00003" partyName="Yang Lin" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00004" partyName="Chang Ting" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00005" partyName="Zhou Junming" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00006" partyName="Chen Xiaotong" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00007" partyName="Wang Xiuping" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+
+    <Party partyId="CONTACT00008" partyName="陈博涛" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00009" partyName="杨宏兴" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00010" partyName="孙磊" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00011" partyName="张程" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00012" partyName="刘云" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00013" partyName="程鑫" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00014" partyName="朱新兰" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+
+    <PartyAttribute attrName="nationality" attrValue="China" partyId="CONTACT00008"/>
+    <PartyAttribute attrName="nationality" attrValue="China" partyId="CONTACT00009"/>
+    <PartyAttribute attrName="nationality" attrValue="China" partyId="CONTACT00010"/>
+    <PartyAttribute attrName="nationality" attrValue="China" partyId="CONTACT00011"/>
+    <PartyAttribute attrName="nationality" attrValue="China" partyId="CONTACT00012"/>
+    <PartyAttribute attrName="nationality" attrValue="China" partyId="CONTACT00013"/>
+    <PartyAttribute attrName="nationality" attrValue="China" partyId="CONTACT00014"/>
+
+    <PartyAttribute attrName="copyIdentificationAttached" attrValue="Y" partyId="CONTACT00008"/>
+    <PartyAttribute attrName="copyIdentificationAttached" attrValue="Y" partyId="CONTACT00009"/>
+    <PartyAttribute attrName="copyIdentificationAttached" attrValue="Y" partyId="CONTACT00010"/>
+    <PartyAttribute attrName="copyIdentificationAttached" attrValue="Y" partyId="CONTACT00011"/>
+    <PartyAttribute attrName="copyIdentificationAttached" attrValue="Y" partyId="CONTACT00012"/>
+    <PartyAttribute attrName="copyIdentificationAttached" attrValue="Y" partyId="CONTACT00013"/>
+    <PartyAttribute attrName="copyIdentificationAttached" attrValue="Y" partyId="CONTACT00014"/>
+
+    <Person partyId="CONTACT00008" firstName="Chen" lastName="Botao"/>
+    <Person partyId="CONTACT00009" firstName="Yang" lastName="Hongxing"/>
+    <Person partyId="CONTACT00010" firstName="Sun" lastName="Lei"/>
+    <Person partyId="CONTACT00011" firstName="Zhang" lastName="Cheng"/>
+    <Person partyId="CONTACT00012" firstName="Liu" lastName="Yun"/>
+    <Person partyId="CONTACT00013" firstName="Cheng" lastName="Xin"/>
+    <Person partyId="CONTACT00014" firstName="Zhu" lastName="Xinlan"/>
+
+
+    <Person partyId="CONTACT00001" firstName="Zhang" lastName="Zheng"/>
+    <Person partyId="CONTACT00002" firstName="Chen" lastName="Xiaoxin"/>
+    <Person partyId="CONTACT00003" firstName="Yang" lastName="Lin"/>
+    <Person partyId="CONTACT00004" firstName="Chang" lastName="Ting"/>
+    <Person partyId="CONTACT00005" firstName="Zhou" lastName="Junming"/>
+    <Person partyId="CONTACT00006" firstName="Chen" lastName="Xiaotong"/>
+    <Person partyId="CONTACT00007" firstName="Wang" lastName="Xiuping"/>
+
+    <PartyRole partyId="CONTACT00001" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00002" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00003" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00004" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00005" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00006" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00007" roleTypeId="CONTACT"/>
+
+    <PartyRole partyId="CONTACT00008" roleTypeId="BENEFICIAL_PERSON"/>
+    <PartyRole partyId="CONTACT00009" roleTypeId="BENEFICIAL_PERSON"/>
+    <PartyRole partyId="CONTACT00010" roleTypeId="BENEFICIAL_PERSON"/>
+    <PartyRole partyId="CONTACT00011" roleTypeId="BENEFICIAL_PERSON"/>
+    <PartyRole partyId="CONTACT00012" roleTypeId="BENEFICIAL_PERSON"/>
+    <PartyRole partyId="CONTACT00013" roleTypeId="BENEFICIAL_PERSON"/>
+    <PartyRole partyId="CONTACT00014" roleTypeId="BENEFICIAL_PERSON"/>
+
+    <PartyRelationship partyRelationshipId="9000" partyIdFrom="9000" partyIdTo="CONTACT00001" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="9001" partyIdFrom="9001" partyIdTo="CONTACT00002" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="9002" partyIdFrom="9002" partyIdTo="CONTACT00003" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="9003" partyIdFrom="9003" partyIdTo="CONTACT00004" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="9004" partyIdFrom="9004" partyIdTo="CONTACT00005" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="9005" partyIdFrom="9005" partyIdTo="CONTACT00006" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="9006" partyIdFrom="9006" partyIdTo="CONTACT00007" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+
+    <PartyRelationship partyRelationshipId="9007" partyIdFrom="9000" partyIdTo="CONTACT00008" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="BENEFICIAL_PERSON" fromDate="2023-08-18 11:45:31.928" amount="0.3"/>
+    <PartyRelationship partyRelationshipId="9008" partyIdFrom="9001" partyIdTo="CONTACT00009" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="BENEFICIAL_PERSON" fromDate="2023-08-18 11:45:31.928" amount="0.3"/>
+    <PartyRelationship partyRelationshipId="9009" partyIdFrom="9002" partyIdTo="CONTACT00010" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="BENEFICIAL_PERSON" fromDate="2023-08-18 11:45:31.928" amount="0.3"/>
+    <PartyRelationship partyRelationshipId="9010" partyIdFrom="9003" partyIdTo="CONTACT00011" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="BENEFICIAL_PERSON" fromDate="2023-08-18 11:45:31.928" amount="0.3"/>
+    <PartyRelationship partyRelationshipId="9011" partyIdFrom="9004" partyIdTo="CONTACT00012" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="BENEFICIAL_PERSON" fromDate="2023-08-18 11:45:31.928" amount="0.3"/>
+    <PartyRelationship partyRelationshipId="9012" partyIdFrom="9005" partyIdTo="CONTACT00013" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="BENEFICIAL_PERSON" fromDate="2023-08-18 11:45:31.928" amount="0.3"/>
+    <PartyRelationship partyRelationshipId="9013" partyIdFrom="9006" partyIdTo="CONTACT00014" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="BENEFICIAL_PERSON" fromDate="2023-08-18 11:45:31.928" amount="0.3"/>
+
+    <!--ContactMech(联系人电话)-->
+    <ContactMech contactMechId="TELE_CONTACT00001" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00002" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00003" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00004" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00005" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00006" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00007" contactMechTypeId="TELECOM_NUMBER"/>
+
+    <ContactMech contactMechId="TELE_CONTACT00008" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00009" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00010" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00011" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00012" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00013" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00014" contactMechTypeId="TELECOM_NUMBER"/>
+
+    <!--ContactMech(联系人邮箱)-->
+    <ContactMech contactMechId="EMAIL_CONTACT00001" infoString="ZZJGUIH@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00002" infoString="CXX968756@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00003" infoString="YL534CBY@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00004" infoString="CT5345YGU@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00005" infoString="CXV3654@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00006" infoString="239869876@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00007" infoString="ZX54653@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00008" infoString="9087BUYG@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00009" infoString="NCBY45365@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00010" infoString="NNMM536@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00011" infoString="1235NUIGM@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00012" infoString="256C89FDT@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00013" infoString="GZ8349657@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00014" infoString="MN534BYU@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <!--ContactMech(联系人微信)-->
+    <ContactMech contactMechId="VX_CONTACT00008" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00009" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00010" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00011" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00012" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00013" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00014" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00001" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00002" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00003" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00004" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00005" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00006" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00007" contactMechTypeId="TELECOM_NUMBER"/>
+    <!--TelecomNumber(联系人电话)-->
+    <TelecomNumber contactMechId="TELE_CONTACT00001" contactNumber="19946345361"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00002" contactNumber="18374260957"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00003" contactNumber="13246792210"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00004" contactNumber="18014723319"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00005" contactNumber="18880412334"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00006" contactNumber="17923406725"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00007" contactNumber="13947270871"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00008" contactNumber="15674722218"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00009" contactNumber="19946730021"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00010" contactNumber="12846771380"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00011" contactNumber="17910403725"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00012" contactNumber="18014722372"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00013" contactNumber="15945267478"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00014" contactNumber="13908276623"/>
+
+    <!--TelecomNumber(联系人微信)-->
+    <TelecomNumber contactMechId="VX_CONTACT00001" contactNumber="VX:ZZG890821"/>
+    <TelecomNumber contactMechId="VX_CONTACT00002" contactNumber="VX:YL980643"/>
+    <TelecomNumber contactMechId="VX_CONTACT00003" contactNumber="VX:CT43254CT"/>
+    <TelecomNumber contactMechId="VX_CONTACT00004" contactNumber="VX:zhou43645634"/>
+    <TelecomNumber contactMechId="VX_CONTACT00005" contactNumber="VX:xiaotong32546"/>
+    <TelecomNumber contactMechId="VX_CONTACT00006" contactNumber="VX:9867864235xp"/>
+    <TelecomNumber contactMechId="VX_CONTACT00007" contactNumber="VX:49cbt8973"/>
+    <TelecomNumber contactMechId="VX_CONTACT00008" contactNumber="VX:YHX42356"/>
+    <TelecomNumber contactMechId="VX_CONTACT00009" contactNumber="VX:SL32978BH"/>
+    <TelecomNumber contactMechId="VX_CONTACT00010" contactNumber="VX:BBS732459"/>
+    <TelecomNumber contactMechId="VX_CONTACT00011" contactNumber="VX:LIU8294725"/>
+    <TelecomNumber contactMechId="VX_CONTACT00012" contactNumber="VX:CX248973948seq"/>
+    <TelecomNumber contactMechId="VX_CONTACT00013" contactNumber="VX:xinlan34526"/>
+    <TelecomNumber contactMechId="VX_CONTACT00014" contactNumber="VX:TZ923876727"/>
+
+    <!--PartyContactMechPurpose(联系人电话)-->
+    <PartyContactMechPurpose partyId="CONTACT00001" contactMechId="TELE_CONTACT00001" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00002" contactMechId="TELE_CONTACT00002" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00003" contactMechId="TELE_CONTACT00003" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00004" contactMechId="TELE_CONTACT00004" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00005" contactMechId="TELE_CONTACT00005" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00006" contactMechId="TELE_CONTACT00006" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00007" contactMechId="TELE_CONTACT00007" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00008" contactMechId="TELE_CONTACT00008" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00009" contactMechId="TELE_CONTACT00009" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00010" contactMechId="TELE_CONTACT00010" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00011" contactMechId="TELE_CONTACT00011" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00012" contactMechId="TELE_CONTACT00012" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00013" contactMechId="TELE_CONTACT00013" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00014" contactMechId="TELE_CONTACT00014" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+
+    <!--PartyContactMechPurpose(联系人微信)-->
+    <PartyContactMechPurpose partyId="CONTACT00001" contactMechId="VX_CONTACT00001" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00002" contactMechId="VX_CONTACT00002" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00003" contactMechId="VX_CONTACT00003" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00004" contactMechId="VX_CONTACT00004" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00005" contactMechId="VX_CONTACT00005" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00006" contactMechId="VX_CONTACT00006" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00007" contactMechId="VX_CONTACT00007" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00008" contactMechId="VX_CONTACT00008" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00009" contactMechId="VX_CONTACT00009" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00010" contactMechId="VX_CONTACT00010" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00011" contactMechId="VX_CONTACT00011" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00012" contactMechId="VX_CONTACT00012" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00013" contactMechId="VX_CONTACT00013" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00014" contactMechId="VX_CONTACT00014" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+
+    <!--PartyContactMechPurpose(联系人邮箱)-->
+    <PartyContactMechPurpose partyId="CONTACT00001" contactMechId="EMAIL_CONTACT00001" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00002" contactMechId="EMAIL_CONTACT00002" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00003" contactMechId="EMAIL_CONTACT00003" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00004" contactMechId="EMAIL_CONTACT00004" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00005" contactMechId="EMAIL_CONTACT00005" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00006" contactMechId="EMAIL_CONTACT00006" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00007" contactMechId="EMAIL_CONTACT00007" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00008" contactMechId="EMAIL_CONTACT00008" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00009" contactMechId="EMAIL_CONTACT00009" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00010" contactMechId="EMAIL_CONTACT00010" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00011" contactMechId="EMAIL_CONTACT00011" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00012" contactMechId="EMAIL_CONTACT00012" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00013" contactMechId="EMAIL_CONTACT00013" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00014" contactMechId="EMAIL_CONTACT00014" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
 
 </entity-engine-xml>
