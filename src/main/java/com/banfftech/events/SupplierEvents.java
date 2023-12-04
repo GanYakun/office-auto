@@ -417,6 +417,10 @@ public class SupplierEvents {
                 UtilMisc.toMap("userLogin", userLogin, "surveyQuestionAnswerId", delegator.getNextSeqId("SurveyQuestionAnswer"), "surveyQuestionId", "9003", "partyId", partyId));
         dispatcher.runSync("banfftech.createSurveyQuestionAnswer",
                 UtilMisc.toMap("userLogin", userLogin, "surveyQuestionAnswerId", delegator.getNextSeqId("SurveyQuestionAnswer"), "surveyQuestionId", "9004", "partyId", partyId));
+        dispatcher.runSync("banfftech.createSurveyQuestionAnswer",
+                UtilMisc.toMap("userLogin", userLogin, "surveyQuestionAnswerId", delegator.getNextSeqId("SurveyQuestionAnswer"), "surveyQuestionId", "9005", "partyId", partyId));
+        dispatcher.runSync("banfftech.createSurveyQuestionAnswer",
+                UtilMisc.toMap("userLogin", userLogin, "surveyQuestionAnswerId", delegator.getNextSeqId("SurveyQuestionAnswer"), "surveyQuestionId", "9006", "partyId", partyId));
 
         //create PartyMediaResource
         Map<String, Object> serviceParam = new HashMap<>();
