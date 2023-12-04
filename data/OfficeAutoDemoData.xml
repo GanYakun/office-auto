@@ -632,6 +632,10 @@ under the License.
                     question="Is the Business Partner or any direct or indirect owner of the Business Partner currently listed, or has been listed in the last five (5) years, on any government watchlist, export or trade control list or sanctioned/restricted party list? If “Yes”, provide the name of the list and the date of the designation:"/>
     <SurveyQuestion surveyQuestionId="9003" surveyQuestionCategoryId="DD_STD_QUESTIONS" surveyQuestionTypeId="BOOLEAN"
                     question="To the best of your knowledge, currently or during the last during the last five (5) years, have any of the Business Partner’s owners, officers, directors or senior management been identified on any official, governmental or regulatory body’s list as a politically exposed person?"/>
+    <SurveyQuestion surveyQuestionId="9005" surveyQuestionCategoryId="DD_STD_QUESTIONS" surveyQuestionTypeId="BOOLEAN"
+                        question="To the best of your knowledge, currently or during the last during the last five (5) years, has the Business Partner (including its owners, officers, directors or senior management) been: (1) subject to any investigation, administrative action, fine, censure or legal proceedings involving bribery, fraud, corruption, money laundering, violations of sanctions, export controls or similar offenses; or (2) suspended, restricted from doing business, or disbarred/excluded by any regulator, professional licensing agency or government program? For each “Yes” answer, provide complete details of the relevant circumstances."/>
+    <SurveyQuestion surveyQuestionId="9006" surveyQuestionCategoryId="DD_STD_QUESTIONS" surveyQuestionTypeId="BOOLEAN"
+                    question="Is any owner, director, officer or senior management of the Business Partner, a former employee of the Company? If “Yes”, provide name, company, title, and last date of employment:"/>
 
     <SurveyQuestionType surveyQuestionTypeId="TEXT_LONG" description="Long Text (single-line)"/>
     <SurveyQuestion surveyQuestionId="9004" surveyQuestionCategoryId="DD_STD_QUESTIONS" surveyQuestionTypeId="TEXT_LONG"
@@ -643,6 +647,8 @@ under the License.
     <SurveyQuestionAppl surveyId="DD_STD_FORM" surveyQuestionId="9002" sequenceNum="3" requiredField="Y" fromDate="2023-08-18 11:45:31.928"/>
     <SurveyQuestionAppl surveyId="DD_STD_FORM" surveyQuestionId="9003" sequenceNum="4" requiredField="Y" fromDate="2023-08-18 11:45:31.928"/>
     <SurveyQuestionAppl surveyId="DD_STD_FORM" surveyQuestionId="9004" sequenceNum="5" requiredField="Y" fromDate="2023-08-18 11:45:31.928"/>
+    <SurveyQuestionAppl surveyId="DD_STD_FORM" surveyQuestionId="9005" sequenceNum="6" requiredField="Y" fromDate="2023-08-18 11:45:31.928"/>
+    <SurveyQuestionAppl surveyId="DD_STD_FORM" surveyQuestionId="9006" sequenceNum="7" requiredField="Y" fromDate="2023-08-18 11:45:31.928"/>
 <!--    <PartySurveyAppl partyId="SUPPLIER0001" surveyId="DD_STD_FORM" surveyApplTypeId="DD_FORM"/>-->
 <!--    <SurveyQuestionAnswer surveyQuestionAnswerId="9000" surveyQuestionId="9000" partyId="SUPPLIER0001" booleanResponse="Y"/>-->
 <!--    <SurveyQuestionAnswer surveyQuestionAnswerId="9001" surveyQuestionId="9001" partyId="SUPPLIER0001" booleanResponse="Y"/>-->

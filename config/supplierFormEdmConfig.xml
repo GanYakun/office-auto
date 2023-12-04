@@ -3,11 +3,13 @@
 
     <!--======================================SupplierParty（主对象）========================================-->
     <EntityType Name="SupplierParty" EntityCondition="partyId=${company.partyId}"
-                OfbizEntity="PartyGroupAndContact" EntitySetName="SupplierParties" AttrDateEntityName="PartyGroupAttributeDate" AttrEntityName="PartyGroupAttribute"
-                AutoProperties="true" DraftEntityName="SupplierPartyFormDraft" AutoDraft="true">
+                OfbizEntity="PartyGroupAndContact" EntitySetName="SupplierParties"
+                AttrDateEntityName="PartyGroupAttributeDate" AttrEntityName="PartyGroupAttribute"
+                AutoProperties="true" DraftEntityName="SupplierPartyFormDraft" AutoDraft="true"
+                Handler="component://officeauto/groovyScripts/partyManage/ddForm/generateEntityListFields.groovy">
         <SelectionFields PropertyPath="partyName"/>
         <HeaderInfo>
-            <Title Path="partyId"/>
+            <Title Path="ddStatus"/>
             <Description Path="partyName"/>
         </HeaderInfo>
 <!--        <RelAlias Name="CountryIncorporation" Relations="PartyGeoPoint(partyGeoPointTypeId=COUNTRY_INCORPORATION)/GeoPoint"/>-->
@@ -19,6 +21,8 @@
         <RelAlias Name="SurveyQuestionAnswer1" Relations="SurveyQuestionAnswer(surveyQuestionId=9001)"/>
         <RelAlias Name="SurveyQuestionAnswer2" Relations="SurveyQuestionAnswer(surveyQuestionId=9002)"/>
         <RelAlias Name="SurveyQuestionAnswer3" Relations="SurveyQuestionAnswer(surveyQuestionId=9003)"/>
+        <RelAlias Name="SurveyQuestionAnswer5" Relations="SurveyQuestionAnswer(surveyQuestionId=9005)"/>
+        <RelAlias Name="SurveyQuestionAnswer6" Relations="SurveyQuestionAnswer(surveyQuestionId=9006)"/>
 
         <Property Name="partyName" Label="Full Name of Company or Individual Party"/>
         <Property Name="dateIncorporation" IsDateAttribute="true" Type="Timestamp" Label="Date of Incorporation/Date of Birth"/>
@@ -35,6 +39,10 @@
         <Property Name="answerText2" Type="String" RelAlias="SurveyQuestionAnswer2" Field="textResponse" Label="Comments"/>
         <Property Name="answer3" Type="Boolean" RelAlias="SurveyQuestionAnswer3" Field="booleanResponse" Label="To the best of your knowledge, currently or during the last during the last five (5) years, have any of the Business Partner’s owners, officers, directors or senior management been identified on any official, governmental or regulatory body’s list as a politically exposed person?"/>
         <Property Name="answerText3" Type="String" RelAlias="SurveyQuestionAnswer3" Field="textResponse" Label="Comments"/>
+        <Property Name="answer5" Type="Boolean" RelAlias="SurveyQuestionAnswer5" Field="booleanResponse" Label="To the best of your knowledge, currently or during the last during the last five (5) years, has the Business Partner (including its owners, officers, directors or senior management) been: (1) subject to any investigation, administrative action, fine, censure or legal proceedings involving bribery, fraud, corruption, money laundering, violations of sanctions, export controls or similar offenses; or (2) suspended, restricted from doing business, or disbarred/excluded by any regulator, professional licensing agency or government program? For each “Yes” answer, provide complete details of the relevant circumstances."/>
+        <Property Name="answerText5" Type="String" RelAlias="SurveyQuestionAnswer5" Field="textResponse" Label="Comments"/>
+        <Property Name="answer6" Type="Boolean" RelAlias="SurveyQuestionAnswer6" Field="booleanResponse" Label="Is any owner, director, officer or senior management of the Business Partner, a former employee of the Company? If “Yes”, provide name, company, title, and last date of employment:"/>
+        <Property Name="answerText6" Type="String" RelAlias="SurveyQuestionAnswer6" Field="textResponse" Label="Comments"/>
         <Property Name="agent" IsAttribute="true" Type="Boolean" Label="Agent"/>
         <Property Name="jvPartner" IsAttribute="true" Type="Boolean" Label="JV Partner"/>
         <Property Name="subContractor" IsAttribute="true" Type="Boolean" Label="Sub-contractor"/>
@@ -43,6 +51,7 @@
         <Property Name="distributor" IsAttribute="true" Type="Boolean" Label="Distributor"/>
         <Property Name="investmentTarget" IsAttribute="true" Type="Boolean" Label="Investment Target"/>
         <Property Name="otherAttr" IsAttribute="true" Type="Boolean" Label="Other (specify)"/>
+        <Property Name="ddStatus" Type="String" Label="${ddFormDealStatus}"/>
 
         <LineItem>
             <DataField Values="partyName" Importance="High"/>
@@ -87,7 +96,7 @@
                             Relations="FromRelationshipAndToParty(roleTypeIdTo=SENIOR_STAFF and roleTypeIdFrom=SUPPLIER)"/>
         <NavigationProperty Name="ContactPerson" Type="RelationshipAndToParty" IsCollection="true"
                             Relations="FromRelationshipAndToParty(roleTypeIdTo=CONTACT and roleTypeIdFrom=SUPPLIER)"/>
-        <NavigationProperty Name="PostalAddress" Type="PostalAddress" Relations="PartyContactMechPurpose(contactMechPurposeTypeId=LOCATION)/PostalAddress" IsCollection="true"/>
+        <NavigationProperty Name="PartyContactMechPurposeAndAddress" />
         <NavigationProperty Name="RegisteredCountry" Type="PartyGeo" Relations="PartyGeo(partyGeoTypeId=REGISTERED_COUNTRY)" IsCollection="false"/>
 
         <!--Submit to procurement-->
@@ -98,10 +107,17 @@
         </Action>
     </EntityType>
 
-    <EntityType Name="PostalAddress" AutoProperties="true" EntitySetName="PostalAddresses" DraftEntityName="PostalAddressesDDFormDraft">
+    <EntityType Name="PartyContactMechPurposeAndAddress" AutoProperties="true" EntitySetName="PurposeAndAddresses"
+                DraftEntityName="PurposeAndAddressesDraft">
         <LineItem Qualifier="PostalAddressLineItem">
-            <DataField Values="countryGeoId,stateProvinceGeoId,cityGeoId,address1,address2,contactNumber,email" Importance="High"/>
+            <DataField Values="contactMechPurposeTypeId,countryGeoId,stateProvinceGeoId,cityGeoId,address1,address2,contactNumber,email" Importance="High"/>
         </LineItem>
+        <Property Name="contactMechPurposeTypeId">
+            <Text Path="ContactMechPurposeType/description" TextArrangement="TextOnly"/>
+            <ValueList WithFixedValues="true" CollectionPath="ContactMechPurposeTypes">
+                <ParameterInOut LocalDataProperty="contactMechPurposeTypeId" ValueListProperty="contactMechPurposeTypeId"/>
+            </ValueList>
+        </Property>
         <Property Name="countryGeoId">
             <Text Path="CountryGeo/geoName" TextArrangement="TextOnly"/>
             <ValueList CollectionPath="Countries" WithFixedValues="true">
@@ -125,6 +141,13 @@
         <NavigationProperty Name="CountryGeo"/>
         <NavigationProperty Name="StateProvinceGeo"/>
         <NavigationProperty Name="CityGeo"/>
+        <NavigationProperty Name="ContactMechPurposeType"/>
+    </EntityType>
+
+    <EntityType Name="ContactMechPurposeType" EntityCondition="parentTypeId=LOCATION"  EntitySetName="ContactMechPurposeTypes" AutoProperties="true">
+        <Property Name="contactMechPurposeTypeId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
     </EntityType>
 
     <EntityType Name="PartyGeo" AutoProperties="true" EntitySetName="PartyGeos" DraftEntityName="PartyGeoDDFormDraft">

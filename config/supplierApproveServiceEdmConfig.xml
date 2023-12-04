@@ -8,7 +8,7 @@
                 OfbizEntity="WorkEffortAndPartyGroupContact" EntitySetName="SupplierParties" AutoSet="true"
                 AutoProperties="true"
                 AttrDateEntityName="PartyAttributeDate" AttrEntityName="PartyAttribute"
-                AutoLabel="true" SearchOption="partyName,primaryEmail,address1"
+                AutoLabel="true" SearchOption="partyName"
                 Handler="component://officeauto/groovyScripts/partyManage/supplierPartyApprove/generateEntityListFields.groovy">
         <Property Name="partyId">
             <Text Path="partyName" TextArrangement="TextFirst"/>

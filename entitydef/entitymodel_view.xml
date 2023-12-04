@@ -121,16 +121,23 @@
                  never-cache="true">
         <member-entity entity-alias="WF" entity-name="WorkEffort"/>
         <member-entity entity-alias="WFPTASSI" entity-name="WorkEffortPartyAssignment"/>
-        <member-entity entity-alias="PTY" entity-name="PartyGroupAndContact"/>
+        <member-entity entity-alias="PTY" entity-name="Party"/>
+        <member-entity entity-alias="PTYGRO" entity-name="PartyGroup"/>
         <alias-all entity-alias="WF" group-by="true">
             <exclude field="partyId"/>
         </alias-all>
         <alias-all entity-alias="PTY" group-by="true">
             <exclude field="description"/>
         </alias-all>
+        <alias-all entity-alias="PTYGRO" group-by="true">
+            <exclude field="partyId"/>
+        </alias-all>
         <alias name="partyId" entity-alias="PTY" prim-key="false" group-by="true"/>
         <alias name="approvePartyId" entity-alias="WFPTASSI" field="partyId" group-by="true"/>
         <view-link entity-alias="WF" rel-entity-alias="PTY" rel-optional="false">
+            <key-map field-name="partyId"/>
+        </view-link>
+        <view-link entity-alias="PTY" rel-entity-alias="PTYGRO" rel-optional="false">
             <key-map field-name="partyId"/>
         </view-link>
         <view-link entity-alias="WF" rel-entity-alias="WFPTASSI" rel-optional="true">
