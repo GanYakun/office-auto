@@ -220,7 +220,7 @@ under the License.
     <Internationalization id="question_zh" lang="zh" property="question" value="Question"/>
     <Internationalization id="applicationWorkStatus_en" lang="en" property="applicationWorkStatus" value="Applicant status"/>
     <Internationalization id="applicationWorkStatus_zh" lang="zh" property="applicationWorkStatus" value="申请人处理状态"/>
-    <Internationalization id="supplierWorkStatus_en" lang="en" property="supplierWorkStatus" value="Supplier status"/>
+    <Internationalization id="supplierWorkStatus_en" lang="en" property="supplierWorkStatus" value="Vendor status"/>
     <Internationalization id="supplierWorkStatus_zh" lang="zh" property="supplierWorkStatus" value="供应商处理状态"/>
     <Internationalization id="complianceWorkStatus_en" lang="en" property="complianceWorkStatus" value="Compliance status"/>
     <Internationalization id="complianceWorkStatus_zh" lang="zh" property="complianceWorkStatus" value="合规处理状态"/>

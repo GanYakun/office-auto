@@ -213,6 +213,217 @@ under the License.
     <PartyRole partyId="9007" roleTypeId="SUPPLIER"/>
 <!--    <PartyRole partyId="9008" roleTypeId="SUPPLIER"/>-->
 <!--    <PartyRole partyId="9009" roleTypeId="SUPPLIER"/>-->
+
+    <!--UserLogin-->
+    <UserLogin partyId="9000" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" userLoginId="supplier9000"/>
+    <UserLogin partyId="9001" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" userLoginId="supplier9001"/>
+    <UserLogin partyId="9002" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" userLoginId="supplier9002"/>
+    <UserLogin partyId="9003" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" userLoginId="supplier9003"/>
+    <UserLogin partyId="9004" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" userLoginId="supplier9004"/>
+    <UserLogin partyId="9005" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" userLoginId="supplier9005"/>
+    <UserLogin partyId="9006" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" userLoginId="supplier9006"/>
+    <UserLogin partyId="9007" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" userLoginId="supplier9007"/>
+
+    <DataResource dataResourceId="9000" objectInfo="" dataResourceName="Financial Report"                 />
+    <DataResource dataResourceId="9001" objectInfo="" dataResourceName="NDA"                              />
+    <DataResource dataResourceId="9002" objectInfo="" dataResourceName="Commercial Licences"              />
+    <DataResource dataResourceId="9003" objectInfo="" dataResourceName="VAT Certificate"                  />
+    <DataResource dataResourceId="9004" objectInfo="" dataResourceName="PoA(Power of Atterny)"            />
+    <DataResource dataResourceId="9005" objectInfo="" dataResourceName="Qualification Certificate:e.g.lso"/>
+    <DataResource dataResourceId="9006" objectInfo="" dataResourceName="Other Files"                      />
+    <DataResource dataResourceId="9007" objectInfo="" dataResourceName="Financial Report"                 />
+    <DataResource dataResourceId="9008" objectInfo="" dataResourceName="NDA"                              />
+    <DataResource dataResourceId="9009" objectInfo="" dataResourceName="Commercial Licences"              />
+    <DataResource dataResourceId="9010" objectInfo="" dataResourceName="VAT Certificate"                  />
+    <DataResource dataResourceId="9011" objectInfo="" dataResourceName="PoA(Power of Atterny)"            />
+    <DataResource dataResourceId="9012" objectInfo="" dataResourceName="Qualification Certificate:e.g.lso"/>
+    <DataResource dataResourceId="9013" objectInfo="" dataResourceName="Other Files"                      />
+    <DataResource dataResourceId="9014" objectInfo="" dataResourceName="Other Files"                      />
+    <DataResource dataResourceId="9015" objectInfo="" dataResourceName="Compliance Report"                />
+    <DataResource dataResourceId="9016" objectInfo="" dataResourceName="Financial Report"                 />
+    <DataResource dataResourceId="9017" objectInfo="" dataResourceName="NDA"                              />
+    <DataResource dataResourceId="9018" objectInfo="" dataResourceName="VAT Certificate"                  />
+    <DataResource dataResourceId="9019" objectInfo="" dataResourceName="PoA(Power of Atterny)"            />
+    <DataResource dataResourceId="9020" objectInfo="" dataResourceName="Qualification Certificate:e.g.lso"/>
+    <DataResource dataResourceId="9021" objectInfo="" dataResourceName="Other Files"                      />
+    <DataResource dataResourceId="9022" objectInfo="" dataResourceName="Compliance Report"                />
+    <DataResource dataResourceId="9023" objectInfo="" dataResourceName="VAT Certificate"                  />
+    <DataResource dataResourceId="9024" objectInfo="" dataResourceName="PoA(Power of Atterny)"            />
+    <DataResource dataResourceId="9025" objectInfo="" dataResourceName="Qualification Certificate:e.g.lso"/>
+    <DataResource dataResourceId="9026" objectInfo="" dataResourceName="Other Files"                      />
+    <DataResource dataResourceId="9027" objectInfo="" dataResourceName="Financial Report"                 />
+    <DataResource dataResourceId="9028" objectInfo="" dataResourceName="NDA"                              />
+    <DataResource dataResourceId="9029" objectInfo="" dataResourceName="Commercial Licences"              />
+    <DataResource dataResourceId="9030" objectInfo="" dataResourceName="VAT Certificate"                  />
+    <DataResource dataResourceId="9031" objectInfo="" dataResourceName="PoA(Power of Atterny)"            />
+    <DataResource dataResourceId="9032" objectInfo="" dataResourceName="Qualification Certificate:e.g.lso"/>
+    <DataResource dataResourceId="9033" objectInfo="" dataResourceName="Other Files"                      />
+    <DataResource dataResourceId="9034" objectInfo="" dataResourceName="Other Files"                      />
+    <DataResource dataResourceId="9035" objectInfo="" dataResourceName="Compliance Report"                />
+    <DataResource dataResourceId="9036" objectInfo="" dataResourceName="Financial Report"                 />
+    <DataResource dataResourceId="9037" objectInfo="" dataResourceName="NDA"                              />
+    <DataResource dataResourceId="9038" objectInfo="" dataResourceName="Commercial Licences"              />
+    <DataResource dataResourceId="9039" objectInfo="" dataResourceName="VAT Certificate"                  />
+    <DataResource dataResourceId="9040" objectInfo="" dataResourceName="PoA(Power of Atterny)"            />
+    <DataResource dataResourceId="9041" objectInfo="" dataResourceName="Qualification Certificate:e.g.lso"/>
+    <DataResource dataResourceId="9042" objectInfo="" dataResourceName="Other Files"                      />
+    <DataResource dataResourceId="9043" objectInfo="" dataResourceName="Other Files"                      />
+    <DataResource dataResourceId="9044" objectInfo="" dataResourceName="Compliance Report"                />
+    <DataResource dataResourceId="9045" objectInfo="" dataResourceName="Financial Report"                 />
+    <DataResource dataResourceId="9046" objectInfo="" dataResourceName="NDA"                              />
+    <DataResource dataResourceId="9047" objectInfo="" dataResourceName="Commercial Licences"              />
+    <DataResource dataResourceId="9048" objectInfo="" dataResourceName="VAT Certificate"                  />
+    <DataResource dataResourceId="9049" objectInfo="" dataResourceName="PoA(Power of Atterny)"            />
+    <DataResource dataResourceId="9050" objectInfo="" dataResourceName="Qualification Certificate:e.g.lso"/>
+    <DataResource dataResourceId="9051" objectInfo="" dataResourceName="Other Files"                      />
+    <DataResource dataResourceId="9052" objectInfo="" dataResourceName="Other Files"                      />
+    <DataResource dataResourceId="9053" objectInfo="" dataResourceName="Compliance Report"                />
+    <DataResource dataResourceId="9054" objectInfo="" dataResourceName="Financial Report"                 />
+    <DataResource dataResourceId="9055" objectInfo="" dataResourceName="NDA"                              />
+    <DataResource dataResourceId="9056" objectInfo="" dataResourceName="Commercial Licences"              />
+    <DataResource dataResourceId="9057" objectInfo="" dataResourceName="VAT Certificate"                  />
+    <DataResource dataResourceId="9058" objectInfo="" dataResourceName="PoA(Power of Atterny)"            />
+    <DataResource dataResourceId="9059" objectInfo="" dataResourceName="Qualification Certificate:e.g.lso"/>
+    <DataResource dataResourceId="9060" objectInfo="" dataResourceName="Other Files"                      />
+    <DataResource dataResourceId="9061" objectInfo="" dataResourceName="Other Files"                      />
+    <DataResource dataResourceId="9062" objectInfo="" dataResourceName="Compliance Report"                />
+
+    <Content contentId="9000" dataResourceId="9000" contentName="Financial Report"                 />
+    <Content contentId="9001" dataResourceId="9001" contentName="NDA"                              />
+    <Content contentId="9002" dataResourceId="9002" contentName="Commercial Licences"              />
+    <Content contentId="9003" dataResourceId="9003" contentName="VAT Certificate"                  />
+    <Content contentId="9004" dataResourceId="9004" contentName="PoA(Power of Atterny)"            />
+    <Content contentId="9005" dataResourceId="9005" contentName="Qualification Certificate:e.g.lso"/>
+    <Content contentId="9006" dataResourceId="9006" contentName="Other Files"                      />
+    <Content contentId="9007" dataResourceId="9007" contentName="Financial Report"                 />
+    <Content contentId="9008" dataResourceId="9008" contentName="NDA"                              />
+    <Content contentId="9009" dataResourceId="9009" contentName="Commercial Licences"              />
+    <Content contentId="9010" dataResourceId="9010" contentName="VAT Certificate"                  />
+    <Content contentId="9011" dataResourceId="9011" contentName="PoA(Power of Atterny)"            />
+    <Content contentId="9012" dataResourceId="9012" contentName="Qualification Certificate:e.g.lso"/>
+    <Content contentId="9013" dataResourceId="9013" contentName="Other Files"                      />
+    <Content contentId="9014" dataResourceId="9014" contentName="Other Files"                      />
+    <Content contentId="9015" dataResourceId="9015" contentName="Compliance Report"                />
+    <Content contentId="9016" dataResourceId="9016" contentName="Financial Report"                 />
+    <Content contentId="9017" dataResourceId="9017" contentName="NDA"                              />
+    <Content contentId="9018" dataResourceId="9018" contentName="VAT Certificate"                  />
+    <Content contentId="9019" dataResourceId="9019" contentName="PoA(Power of Atterny)"            />
+    <Content contentId="9020" dataResourceId="9020" contentName="Qualification Certificate:e.g.lso"/>
+    <Content contentId="9021" dataResourceId="9021" contentName="Other Files"                      />
+    <Content contentId="9022" dataResourceId="9022" contentName="Compliance Report"                />
+    <Content contentId="9023" dataResourceId="9023" contentName="VAT Certificate"                  />
+    <Content contentId="9024" dataResourceId="9024" contentName="PoA(Power of Atterny)"            />
+    <Content contentId="9025" dataResourceId="9025" contentName="Qualification Certificate:e.g.lso"/>
+    <Content contentId="9026" dataResourceId="9026" contentName="Other Files"                      />
+    <Content contentId="9027" dataResourceId="9027" contentName="Financial Report"                 />
+    <Content contentId="9028" dataResourceId="9028" contentName="NDA"                              />
+    <Content contentId="9029" dataResourceId="9029" contentName="Commercial Licences"              />
+    <Content contentId="9030" dataResourceId="9030" contentName="VAT Certificate"                  />
+    <Content contentId="9031" dataResourceId="9031" contentName="PoA(Power of Atterny)"            />
+    <Content contentId="9032" dataResourceId="9032" contentName="Qualification Certificate:e.g.lso"/>
+    <Content contentId="9033" dataResourceId="9033" contentName="Other Files"                      />
+    <Content contentId="9034" dataResourceId="9034" contentName="Other Files"                      />
+    <Content contentId="9035" dataResourceId="9035" contentName="Compliance Report"                />
+    <Content contentId="9036" dataResourceId="9036" contentName="Financial Report"                 />
+    <Content contentId="9037" dataResourceId="9037" contentName="NDA"                              />
+    <Content contentId="9038" dataResourceId="9038" contentName="Commercial Licences"              />
+    <Content contentId="9039" dataResourceId="9039" contentName="VAT Certificate"                  />
+    <Content contentId="9040" dataResourceId="9040" contentName="PoA(Power of Atterny)"            />
+    <Content contentId="9041" dataResourceId="9041" contentName="Qualification Certificate:e.g.lso"/>
+    <Content contentId="9042" dataResourceId="9042" contentName="Other Files"                      />
+    <Content contentId="9043" dataResourceId="9043" contentName="Other Files"                      />
+    <Content contentId="9044" dataResourceId="9044" contentName="Compliance Report"                />
+    <Content contentId="9045" dataResourceId="9045" contentName="Financial Report"                 />
+    <Content contentId="9046" dataResourceId="9046" contentName="NDA"                              />
+    <Content contentId="9047" dataResourceId="9047" contentName="Commercial Licences"              />
+    <Content contentId="9048" dataResourceId="9048" contentName="VAT Certificate"                  />
+    <Content contentId="9049" dataResourceId="9049" contentName="PoA(Power of Atterny)"            />
+    <Content contentId="9050" dataResourceId="9050" contentName="Qualification Certificate:e.g.lso"/>
+    <Content contentId="9051" dataResourceId="9051" contentName="Other Files"                      />
+    <Content contentId="9052" dataResourceId="9052" contentName="Other Files"                      />
+    <Content contentId="9053" dataResourceId="9053" contentName="Compliance Report"                />
+    <Content contentId="9054" dataResourceId="9054" contentName="Financial Report"                 />
+    <Content contentId="9055" dataResourceId="9055" contentName="NDA"                              />
+    <Content contentId="9056" dataResourceId="9056" contentName="Commercial Licences"              />
+    <Content contentId="9057" dataResourceId="9057" contentName="VAT Certificate"                  />
+    <Content contentId="9058" dataResourceId="9058" contentName="PoA(Power of Atterny)"            />
+    <Content contentId="9059" dataResourceId="9059" contentName="Qualification Certificate:e.g.lso"/>
+    <Content contentId="9060" dataResourceId="9060" contentName="Other Files"                      />
+    <Content contentId="9061" dataResourceId="9061" contentName="Other Files"                      />
+    <Content contentId="9062" dataResourceId="9062" contentName="Compliance Report"                />
+
+    <!--PartyContent-->
+    <PartyContent partyContentId="9000" partyId="9000" contentId="9000" partyContentTypeId="FINANCIAL_STATEMENTS"/>
+    <PartyContent partyContentId="9001" partyId="9000" contentId="9001" partyContentTypeId="CONFIDENTIALITY_AGREEMENT"/>
+    <PartyContent partyContentId="9002" partyId="9000" contentId="9002" partyContentTypeId="COMMERCIAL_LICENSE"/>
+    <PartyContent partyContentId="9003" partyId="9000" contentId="9003" partyContentTypeId="VAT_CERTIFICATE"/>
+    <PartyContent partyContentId="9004" partyId="9000" contentId="9004" partyContentTypeId="POA"/>
+    <PartyContent partyContentId="9005" partyId="9000" contentId="9005" partyContentTypeId="TAX_CODE"/>
+    <PartyContent partyContentId="9006" partyId="9000" contentId="9006" partyContentTypeId="IDENTIFICATION"/>
+
+    <PartyContent partyContentId="9007" partyId="9001" contentId="9007" partyContentTypeId="FINANCIAL_STATEMENTS"/>
+    <PartyContent partyContentId="9008" partyId="9001" contentId="9008" partyContentTypeId="CONFIDENTIALITY_AGREEMENT"/>
+    <PartyContent partyContentId="9009" partyId="9001" contentId="9009" partyContentTypeId="COMMERCIAL_LICENSE"/>
+    <PartyContent partyContentId="9010" partyId="9001" contentId="9010" partyContentTypeId="VAT_CERTIFICATE"/>
+    <PartyContent partyContentId="9011" partyId="9001" contentId="9011" partyContentTypeId="POA"/>
+    <PartyContent partyContentId="9012" partyId="9001" contentId="9012" partyContentTypeId="TAX_CODE"/>
+    <PartyContent partyContentId="9013" partyId="9001" contentId="9013" partyContentTypeId="COMMERCIAL_LICENSE"/>
+    <PartyContent partyContentId="9014" partyId="9001" contentId="9014" partyContentTypeId="IDENTIFICATION"/>
+    <PartyContent partyContentId="9015" partyId="9001" contentId="9015" partyContentTypeId="COMPLIANCE_REPORT"/>
+
+    <PartyContent partyContentId="9016" partyId="9002" contentId="9016" partyContentTypeId="FINANCIAL_STATEMENTS"/>
+    <PartyContent partyContentId="9017" partyId="9002" contentId="9017" partyContentTypeId="CONFIDENTIALITY_AGREEMENT"/>
+    <PartyContent partyContentId="9018" partyId="9002" contentId="9018" partyContentTypeId="VAT_CERTIFICATE"/>
+    <PartyContent partyContentId="9019" partyId="9002" contentId="9019" partyContentTypeId="POA"/>
+    <PartyContent partyContentId="9020" partyId="9002" contentId="9020" partyContentTypeId="TAX_CODE"/>
+    <PartyContent partyContentId="9021" partyId="9002" contentId="9021" partyContentTypeId="IDENTIFICATION"/>
+    <PartyContent partyContentId="9022" partyId="9002" contentId="9022" partyContentTypeId="COMPLIANCE_REPORT"/>
+
+    <PartyContent partyContentId="9023" partyId="9003" contentId="9023" partyContentTypeId="VAT_CERTIFICATE"/>
+    <PartyContent partyContentId="9024" partyId="9003" contentId="9024" partyContentTypeId="POA"/>
+    <PartyContent partyContentId="9025" partyId="9003" contentId="9025" partyContentTypeId="TAX_CODE"/>
+    <PartyContent partyContentId="9026" partyId="9003" contentId="9026" partyContentTypeId="IDENTIFICATION"/>
+
+    <PartyContent partyContentId="9027" partyId="9004" contentId="9027" partyContentTypeId="FINANCIAL_STATEMENTS"/>
+    <PartyContent partyContentId="9028" partyId="9004" contentId="9028" partyContentTypeId="CONFIDENTIALITY_AGREEMENT"/>
+    <PartyContent partyContentId="9029" partyId="9004" contentId="9029" partyContentTypeId="COMMERCIAL_LICENSE"/>
+    <PartyContent partyContentId="9030" partyId="9004" contentId="9030" partyContentTypeId="VAT_CERTIFICATE"/>
+    <PartyContent partyContentId="9031" partyId="9004" contentId="9031" partyContentTypeId="POA"/>
+    <PartyContent partyContentId="9032" partyId="9004" contentId="9032" partyContentTypeId="TAX_CODE"/>
+    <PartyContent partyContentId="9033" partyId="9004" contentId="9033" partyContentTypeId="COMMERCIAL_LICENSE"/>
+    <PartyContent partyContentId="9034" partyId="9004" contentId="9034" partyContentTypeId="IDENTIFICATION"/>
+    <PartyContent partyContentId="9035" partyId="9004" contentId="9035" partyContentTypeId="COMPLIANCE_REPORT"/>
+
+    <PartyContent partyContentId="9036" partyId="9005" contentId="9036" partyContentTypeId="FINANCIAL_STATEMENTS"/>
+    <PartyContent partyContentId="9037" partyId="9005" contentId="9037" partyContentTypeId="CONFIDENTIALITY_AGREEMENT"/>
+    <PartyContent partyContentId="9038" partyId="9005" contentId="9038" partyContentTypeId="COMMERCIAL_LICENSE"/>
+    <PartyContent partyContentId="9039" partyId="9005" contentId="9039" partyContentTypeId="VAT_CERTIFICATE"/>
+    <PartyContent partyContentId="9040" partyId="9005" contentId="9040" partyContentTypeId="POA"/>
+    <PartyContent partyContentId="9041" partyId="9005" contentId="9041" partyContentTypeId="TAX_CODE"/>
+    <PartyContent partyContentId="9042" partyId="9005" contentId="9042" partyContentTypeId="COMMERCIAL_LICENSE"/>
+    <PartyContent partyContentId="9043" partyId="9005" contentId="9043" partyContentTypeId="IDENTIFICATION"/>
+    <PartyContent partyContentId="9044" partyId="9005" contentId="9044" partyContentTypeId="COMPLIANCE_REPORT"/>
+
+    <PartyContent partyContentId="9045" partyId="9006" contentId="9045" partyContentTypeId="FINANCIAL_STATEMENTS"/>
+    <PartyContent partyContentId="9046" partyId="9006" contentId="9046" partyContentTypeId="CONFIDENTIALITY_AGREEMENT"/>
+    <PartyContent partyContentId="9047" partyId="9006" contentId="9047" partyContentTypeId="COMMERCIAL_LICENSE"/>
+    <PartyContent partyContentId="9048" partyId="9006" contentId="9048" partyContentTypeId="VAT_CERTIFICATE"/>
+    <PartyContent partyContentId="9049" partyId="9006" contentId="9049" partyContentTypeId="POA"/>
+    <PartyContent partyContentId="9050" partyId="9006" contentId="9050" partyContentTypeId="TAX_CODE"/>
+    <PartyContent partyContentId="9051" partyId="9006" contentId="9051" partyContentTypeId="COMMERCIAL_LICENSE"/>
+    <PartyContent partyContentId="9052" partyId="9006" contentId="9052" partyContentTypeId="IDENTIFICATION"/>
+    <PartyContent partyContentId="9053" partyId="9006" contentId="9053" partyContentTypeId="COMPLIANCE_REPORT"/>
+
+    <PartyContent partyContentId="9054" partyId="9007" contentId="9054" partyContentTypeId="FINANCIAL_STATEMENTS"/>
+    <PartyContent partyContentId="9055" partyId="9007" contentId="9055" partyContentTypeId="CONFIDENTIALITY_AGREEMENT"/>
+    <PartyContent partyContentId="9056" partyId="9007" contentId="9056" partyContentTypeId="COMMERCIAL_LICENSE"/>
+    <PartyContent partyContentId="9057" partyId="9007" contentId="9057" partyContentTypeId="VAT_CERTIFICATE"/>
+    <PartyContent partyContentId="9058" partyId="9007" contentId="9058" partyContentTypeId="POA"/>
+    <PartyContent partyContentId="9059" partyId="9007" contentId="9059" partyContentTypeId="TAX_CODE"/>
+    <PartyContent partyContentId="9060" partyId="9007" contentId="9060" partyContentTypeId="COMMERCIAL_LICENSE"/>
+    <PartyContent partyContentId="9061" partyId="9007" contentId="9061" partyContentTypeId="IDENTIFICATION"/>
+    <PartyContent partyContentId="9062" partyId="9007" contentId="9062" partyContentTypeId="COMPLIANCE_REPORT"/>
+
     <!--PartyGroup-->
     <PartyGroup partyId="9000" groupName="Huawei Technologies Co Ltd" employeesSection="EMP_GE10000" annualRevenue="450000000" comments="Main communication electronic technology business"/>
     <PartyGroup partyId="9001" groupName="ASUS" employeesSection="EMP_GE10000" annualRevenue="120000000" comments="Sell computer hardware"/>
@@ -242,17 +453,22 @@ under the License.
 
     <WorkEffort workEffortId="8000" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8001" priority="PRIORITY_HIGH" partyId="9000" createdDate="2023-11-28 10:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-11-29 10:43:22.660"/>
     <WorkEffort workEffortId="8012" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8001" priority="PRIORITY_HIGH" partyId="9000" createdDate="2023-11-26 10:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-18 10:43:22.660"/>
+    <WorkEffort workEffortId="8023" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8003" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-26 10:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-18 10:43:22.660"/>
     <WorkEffort workEffortId="8002" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8003" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-28 10:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-11-29 10:43:22.660"/>
     <WorkEffort workEffortId="8004" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8003" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-20 18:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-16 19:43:22.660"/>
-    <WorkEffort workEffortId="8005" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8006" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-11-30 18:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 11:22:22.660"/>
-    <WorkEffort workEffortId="8007" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8006" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-11-21 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-03 11:22:22.660"/>
+    <WorkEffort workEffortId="8005" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8006" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-11-30 18:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 11:22:22.660"/>
+    <WorkEffort workEffortId="8007" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8006" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-11-21 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-03 11:22:22.660"/>
+    <WorkEffort workEffortId="8024" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8006" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-11-21 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-03 11:22:22.660"/>
     <WorkEffort workEffortId="8008" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9003" createdDate="2023-12-02 12:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-02 12:22:22.660"/>
     <WorkEffort workEffortId="8009" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8010" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-12-02 12:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-02 12:22:22.660"/>
     <WorkEffort workEffortId="8011" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8010" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-11-22 12:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-03 12:22:22.660"/>
+    <WorkEffort workEffortId="8025" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8010" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-11-22 12:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-03 12:22:22.660"/>
     <WorkEffort workEffortId="8014" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8013" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-11-29 12:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 12:22:22.660"/>
     <WorkEffort workEffortId="8015" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8013" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-11-18 09:18:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-01 09:22:22.660"/>
+    <WorkEffort workEffortId="8026" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8013" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-11-18 09:18:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-01 09:22:22.660"/>
     <WorkEffort workEffortId="8017" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8016" priority="PRIORITY_MEDIUM" partyId="9006" createdDate="2023-11-25 09:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
     <WorkEffort workEffortId="8018" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8016" priority="PRIORITY_MEDIUM" partyId="9006" createdDate="2023-11-23 09:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-01 09:22:22.660"/>
+    <WorkEffort workEffortId="8027" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8016" priority="PRIORITY_MEDIUM" partyId="9006" createdDate="2023-11-23 09:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-01 09:22:22.660"/>
     <WorkEffort workEffortId="8020" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8019" priority="PRIORITY_HIGH" partyId="9007" createdDate="2023-11-23 09:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
     <WorkEffort workEffortId="8021" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8019" priority="PRIORITY_HIGH" partyId="9007" createdDate="2023-11-25 19:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-01 09:22:22.660"/>
     <WorkEffort workEffortId="8022" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8019" priority="PRIORITY_HIGH" partyId="9007" createdDate="2023-11-25 19:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-01 09:22:22.660"/>
@@ -279,7 +495,12 @@ under the License.
     <WorkEffortPartyAssignment workEffortPartyAssignment="9019" partyId="CG" workEffortId="8019"/>
     <WorkEffortPartyAssignment workEffortPartyAssignment="9020" partyId="IT" workEffortId="8020"/>
     <WorkEffortPartyAssignment workEffortPartyAssignment="9021" partyId="9007" workEffortId="8021"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9021" partyId="HG" workEffortId="8022"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9022" partyId="HG" workEffortId="8022"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9023" partyId="HG" workEffortId="8023"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9024" partyId="HG" workEffortId="8024"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9025" partyId="HG" workEffortId="8025"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9026" partyId="HG" workEffortId="8026"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9027" partyId="HG" workEffortId="8027"/>
 
     <PartyAttribute partyId="9001" attrName="ddFormType" attrValue="STANDARD_DD"/>
     <PartyAttribute partyId="9002" attrName="ddFormType" attrValue="STANDARD_DD"/>
@@ -352,21 +573,21 @@ under the License.
     <ContactMech contactMechId="9006" contactMechTypeId="POSTAL_ADDRESS"/>
     <ContactMech contactMechId="9007" contactMechTypeId="POSTAL_ADDRESS"/>
 
-    <!--9000-->
+    <!--供应商9000-->
     <PostalAddress contactMechId="9000" countryGeoId="17" stateProvinceGeoId="411" cityGeoId="8008" contactNumber="+86 20 8365 2641" email="corporate.comms@huawei.com" address1="4F, Garden Commercial Building, 368 Huanshi East Road" address2="https://www.huawei.com/cn"/>
-    <!--9000-->
+    <!--供应商9000-->
     <PostalAddress contactMechId="9001" countryGeoId="17" stateProvinceGeoId="408" cityGeoId="8000" contactNumber="010-65222633" email="bond.ir@huawei.com" address1="Zhongguancun Environmental Science and Technology Demonstration Park, No.156 North Qing Road, Yinhua Road, Haidian District, Beijing, China" address2="https://www.huawei.com/cn"/>
-    <!--9001-->
+    <!--供应商9001-->
     <PostalAddress contactMechId="9002" countryGeoId="17" stateProvinceGeoId="447" cityGeoId="8002" contactNumber="18699127993" email="Summer_Li@asus.com" address1="Huashuo Computer Building, 5077 Jindu Road, Xinzhuang Industrial Zone, Minhang" address2="https://w3.asus.com.cn/"/>
-    <!--9004-->
+    <!--供应商9004-->
     <PostalAddress contactMechId="9003" countryGeoId="17" stateProvinceGeoId="412" cityGeoId="8023" contactNumber="86-512-80717992" email="tongchengir@ly.com" address1="Tongcheng Building, 188 Yuxin Road, Nanjing Industrial Park" address2="http://www.tongchengir.com"/>
-    <!--9002-->
+    <!--供应商9002-->
     <PostalAddress contactMechId="9004" countryGeoId="17" stateProvinceGeoId="447" cityGeoId="8002" contactNumber="021-3865 3865" email="joyce.pan@qiagen.com" address1="Building 20, Peninsula Science and Technology Park, 88 Darwin Road, Pudong 201203" address2="http://www.qiagen.com"/>
-    <!--9003-->
+    <!--供应商9003-->
     <PostalAddress contactMechId="9005" countryGeoId="17" stateProvinceGeoId="412" cityGeoId="8023" contactNumber="025-81087102" email="stock@sgepri.sgcc.com.cn" address1="No 19 Chengxin Avenue, Jiangning District" address2="www.naritech.cn"/>
-    <!--9005-->
+    <!--供应商9005-->
     <PostalAddress contactMechId="9006" countryGeoId="17" stateProvinceGeoId="427" cityGeoId="8021" contactNumber="0539-8035703" email="FUSHI@fushi.com" address1="Fushi Industrial Park" address2=""/>
-    <!--9006-->
+    <!--供应商9006-->
     <PostalAddress contactMechId="9007" countryGeoId="17" stateProvinceGeoId="408" cityGeoId="8000" contactNumber="400-720-7200" email="ir@gds-services.com" address1="14th Floor, South Tower, Zhengda Center, 20 Jinhe East Road, Chaoyang District" address2="http://www.gds-services.com"/>
 
     <PartyContactMechPurpose contactMechPurposeTypeId="GENERAL_LOCATION" contactMechId="9000" partyId="9000" fromDate="2023-05-13 15:10:00.0"/>
@@ -392,6 +613,7 @@ under the License.
     <PartyClassification partyId="9004" partyClassificationGroupId="MIDDLE_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
     <PartyClassification partyId="9005" partyClassificationGroupId="LOW_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
     <PartyClassification partyId="9007" partyClassificationGroupId="LOW_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
+    <PartyClassification partyId="9006" partyClassificationGroupId="HIGH_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
 
     <!-- StatusValidChange -->
     <StatusValidChange statusId="APPROVAL_APPROVED" statusIdTo="PARTY_ENABLED"/>

@@ -33,7 +33,7 @@ import java.sql.Timestamp;
 
 public class SupplierEvents {
     public static void fillPartyClassification(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
-                                                 EdmBindingTarget edmBindingTarget) throws OfbizODataException, UnsupportedEncodingException {
+                                               EdmBindingTarget edmBindingTarget) throws OfbizODataException, UnsupportedEncodingException {
         Delegator delegator = (Delegator) oDataContext.get("delegator");
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
@@ -114,7 +114,7 @@ public class SupplierEvents {
 
 
     public static void createBeneficialPerson(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
-                                                EdmBindingTarget edmBindingTarget) throws OfbizODataException {
+                                              EdmBindingTarget edmBindingTarget) throws OfbizODataException {
         Delegator delegator = (Delegator) oDataContext.get("delegator");
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
@@ -149,7 +149,7 @@ public class SupplierEvents {
             dispatcher.runSync("banfftech.createPartyRole", UtilMisc.toMap("userLogin", userLogin, "partyId", contactPartyId, "roleTypeId", "BENEFICIAL_PERSON"));
             dispatcher.runSync("banfftech.createPartyAttribute", UtilMisc.toMap("userLogin", userLogin, "partyId", contactPartyId, "attrName", "position", "attrValue", position));
             dispatcher.runSync("banfftech.createPartyAttribute", UtilMisc.toMap("userLogin", userLogin, "partyId", contactPartyId, "attrName", "nationality", "attrValue", nationality));
-            dispatcher.runSync("banfftech.createPartyAttribute", UtilMisc.toMap("userLogin", userLogin, "partyId", contactPartyId, "attrName", "copyIdentificationAttached", "attrValue", copyIdentificationAttached ? "Y" :"N"));
+            dispatcher.runSync("banfftech.createPartyAttribute", UtilMisc.toMap("userLogin", userLogin, "partyId", contactPartyId, "attrName", "copyIdentificationAttached", "attrValue", copyIdentificationAttached ? "Y" : "N"));
             dispatcher.runSync("banfftech.createPartyRelationship", UtilMisc.toMap("partyIdFrom", partyId, "roleTypeIdFrom", "SUPPLIER",
                     "partyIdTo", contactPartyId, "roleTypeIdTo", "BENEFICIAL_PERSON", "fromDate", UtilDateTime.nowTimestamp(), "amount", amount, "userLogin", userLogin));
         } catch (GenericEntityException | GenericServiceException e) {
@@ -163,6 +163,7 @@ public class SupplierEvents {
      * @Date 12:15 2023/11/13
      * @Edmconfig supplierApprovalServiceEdmConfig.xml
      **/
+    // url example: SupplierParties('10000')/NoteData/com.dpbird.CreateNoteData
     public static Object createNoteData(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
                                         EdmBindingTarget edmBindingTarget) throws OfbizODataException, GenericServiceException {
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
@@ -172,6 +173,7 @@ public class SupplierEvents {
         String noteInfo = (String) actionParameters.get("noteInfo");
         Timestamp noteDateTime = UtilDateTime.nowTimestamp();
 
+        // get OdataOfbizEntity of SupplierParties('10000')
         OdataOfbizEntity supplierPartyEntity = CommonUtils.getOdataPartByEntityType(oDataContext, "SupplierParty");
         GenericValue supplierParty = null;
         if (UtilValidate.isEmpty(supplierPartyEntity)) {
@@ -249,34 +251,34 @@ public class SupplierEvents {
         OdataOfbizEntity supplierPartyEntity = (OdataOfbizEntity) actionParameters.get("supplierParty");
         GenericValue supplierParty = supplierPartyEntity.getGenericValue();
 
-        actionParameters.put("workEffortId",supplierParty.getString("workEffortId"));
-        actionParameters.put("partyId",supplierParty.getString("partyId"));
-        actionParameters.put("userLogin",userLogin);
+        actionParameters.put("workEffortId", supplierParty.getString("workEffortId"));
+        actionParameters.put("partyId", supplierParty.getString("partyId"));
+        actionParameters.put("userLogin", userLogin);
         //创建或者更新usccNumber
-        if(UtilValidate.isNotEmpty(actionParameters.get("usccNumber"))){
+        if (UtilValidate.isNotEmpty(actionParameters.get("usccNumber"))) {
             List<GenericValue> partyIdentifications = delegator.findByAnd("PartyIdentification", UtilMisc.toMap("partyId", supplierParty.getString("partyId")), null, false);
-            if (UtilValidate.isNotEmpty(partyIdentifications)){
+            if (UtilValidate.isNotEmpty(partyIdentifications)) {
                 GenericValue partyIdentification = EntityUtil.getFirst(partyIdentifications);
                 dispatcher.runSync("banfftech.updatePartyIdentification",
                         UtilMisc.toMap("partyId", partyIdentification.getString("partyId"), "userLogin", userLogin,
                                 "partyIdentificationTypeId", partyIdentification.get("partyIdentificationTypeId"), "idValue", actionParameters.get("usccNumber")));
-            }else{
+            } else {
                 dispatcher.runSync("banfftech.createPartyIdentification",
                         UtilMisc.toMap("userLogin", userLogin, "partyIdentificationTypeId", "USCC_OF_CHINESE_ORG",
                                 "partyId", supplierParty.get("partyId"), "idValue", actionParameters.get("usccNumber")));
             }
         }
         //创建或者更新PartyGeo
-        if (UtilValidate.isNotEmpty(actionParameters.get("geoId"))){
+        if (UtilValidate.isNotEmpty(actionParameters.get("geoId"))) {
             List<String> geoIds = (List<String>) actionParameters.get("geoId");
             List<GenericValue> partyGeos = delegator.findByAnd("PartyGeo", UtilMisc.toMap("partyId", supplierParty.get("partyId")), null, true);
-            if (UtilValidate.isNotEmpty(partyGeos)){
-                for (GenericValue partyGeo : partyGeos){
+            if (UtilValidate.isNotEmpty(partyGeos)) {
+                for (GenericValue partyGeo : partyGeos) {
                     dispatcher.runSync("banfftech.deletePartyGeo",
                             UtilMisc.toMap("userLogin", userLogin, "partyGeoId", partyGeo.get("partyGeoId")));
                 }
             }
-            for (String geoId : geoIds){
+            for (String geoId : geoIds) {
                 dispatcher.runSync("banfftech.createPartyGeo",
                         UtilMisc.toMap("userLogin", userLogin, "geoId", geoId,
                                 "partyId", supplierParty.get("partyId"), "partyGeoTypeId", "LISTED_COUNTRY"));
@@ -287,13 +289,13 @@ public class SupplierEvents {
     }
 
     /**
-    * @Author yyp
-    * @Description 修改联系方式
-    * @Date 7:52 2023/11/14
-    * @Edmconfig supplierApproveServiceEdmConfig.xml
-    **/
+     * @Author yyp
+     * @Description 修改联系方式
+     * @Date 7:52 2023/11/14
+     * @Edmconfig supplierApproveServiceEdmConfig.xml
+     **/
     public static Object updateSupplierContactInfo(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
-                                              EdmBindingTarget edmBindingTarget) throws OfbizODataException, GenericServiceException {
+                                                   EdmBindingTarget edmBindingTarget) throws OfbizODataException, GenericServiceException {
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
         OdataOfbizEntity supplierPartyEntity = CommonUtils.getOdataPartByEntityType(oDataContext, "SupplierParty");
@@ -314,13 +316,13 @@ public class SupplierEvents {
     }
 
     /**
-    * @Author yyp
-    * @Description 更新时间信息
-    * @Date 7:55 2023/11/14
-    * @Edmconfig supplierApproveServiceEdmConfig.xml
-    **/
+     * @Author yyp
+     * @Description 更新时间信息
+     * @Date 7:55 2023/11/14
+     * @Edmconfig supplierApproveServiceEdmConfig.xml
+     **/
     public static void updateSupplierTimeInfo(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
-                                                   EdmBindingTarget edmBindingTarget) throws GenericEntityException {
+                                              EdmBindingTarget edmBindingTarget) throws GenericEntityException {
         Delegator delegator = (Delegator) oDataContext.get("delegator");
         OdataOfbizEntity supplierPartyEntity = (OdataOfbizEntity) actionParameters.get("supplierParty");
         GenericValue supplierParty = delegator.findOne("Party", UtilMisc.toMap("partyId", supplierPartyEntity.getPropertyValue("partyId")), false);
@@ -330,6 +332,7 @@ public class SupplierEvents {
 
     /**
      * 创建地址列表
+     *
      * @param oDataContext
      * @param actionParameters
      * @param edmBindingTarget
@@ -338,7 +341,7 @@ public class SupplierEvents {
      * @throws GenericServiceException
      */
     public static void createPostalAddress(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
-                                              EdmBindingTarget edmBindingTarget) throws GenericEntityException, OfbizODataException, GenericServiceException {
+                                           EdmBindingTarget edmBindingTarget) throws GenericEntityException, OfbizODataException, GenericServiceException {
 
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
@@ -370,14 +373,14 @@ public class SupplierEvents {
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
         String priority = "PRIORITY_MEDIUM";
-        if (UtilValidate.isNotEmpty(actionParameters.get("priority"))){
+        if (UtilValidate.isNotEmpty(actionParameters.get("priority"))) {
             priority = (String) actionParameters.get("priority");
         }
         Map<String, Object> resultMap = dispatcher.runSync("banfftech.createWorkEffortAndPartyGroupContact",
                 UtilMisc.toMap("userLogin", userLogin, "partyName", actionParameters.get("partyName"), "currentStatusId", "NOT_PROCESSED",
                         "primaryPhone", actionParameters.get("primaryPhone"), "primaryEmail", actionParameters.get("primaryEmail"), "priority", priority));
         Delegator delegator = dispatcher.getDelegator();
-        if ((Boolean) actionParameters.get("isGovernment")){
+        if ((Boolean) actionParameters.get("isGovernment")) {
             dispatcher.runSync("banfftech.createPartyRole", UtilMisc.toMap("userLogin", userLogin, "partyId", resultMap.get("partyId"), "roleTypeId", "GOVERNMENT_SUPPLIER"));
         }
         dispatcher.runSync("banfftech.createPartyAttribute", UtilMisc.toMap("userLogin", userLogin, "partyId", resultMap.get("partyId"), "attrName", "isGovernment", "attrValue", (Boolean) actionParameters.get("isGovernment") ? "Y" : "N"));
@@ -391,18 +394,18 @@ public class SupplierEvents {
                         "roleTypeIdTo", "SUPPLIER", "partyIdTo", resultMap.get("partyId")));
         String code = CommonUtils.getEncryptedPassword(delegator, "ofbiz");
         dispatcher.runSync("banfftech.createUserLogin",
-                UtilMisc.toMap("userLogin", userLogin, "partyId", resultMap.get("partyId"), "userLoginId", "supplier"+resultMap.get("partyId"), "currentPassword", code));
+                UtilMisc.toMap("userLogin", userLogin, "partyId", resultMap.get("partyId"), "userLoginId", "supplier" + resultMap.get("partyId"), "currentPassword", code));
 
         //create DD Form
         String partyId = (String) resultMap.get("partyId");
-        delegator.create("PartyGeo", UtilMisc.toMap("partyGeoId",delegator.getNextSeqId("PartyGeo"),
+        delegator.create("PartyGeo", UtilMisc.toMap("partyGeoId", delegator.getNextSeqId("PartyGeo"),
                 "partyId", partyId, "partyGeoTypeId", "REGISTERED_COUNTRY"));
 
         String businessLocationId = delegator.getNextSeqId("GeoPoint");
         delegator.create("GeoPoint", UtilMisc.toMap("geoPointId", businessLocationId, "latitude", "_NA_", "longitude", "_NA_"));
-        delegator.create("PartyGeoPoint", UtilMisc.toMap("partyGeoPointId",delegator.getNextSeqId("PartyGeoPoint"),
-                "partyId",partyId, "partyGeoPointTypeId", "BUSINESS_LOCATION","geoPointId", businessLocationId));
-        delegator.create("PartyIdentification", UtilMisc.toMap("partyId",partyId, "partyIdentificationTypeId", "REGISTRATION_NUMBER"));
+        delegator.create("PartyGeoPoint", UtilMisc.toMap("partyGeoPointId", delegator.getNextSeqId("PartyGeoPoint"),
+                "partyId", partyId, "partyGeoPointTypeId", "BUSINESS_LOCATION", "geoPointId", businessLocationId));
+        delegator.create("PartyIdentification", UtilMisc.toMap("partyId", partyId, "partyIdentificationTypeId", "REGISTRATION_NUMBER"));
 
         //SurveyQuestion
         dispatcher.runSync("banfftech.createPartySurveyAppl",
@@ -462,6 +465,7 @@ public class SupplierEvents {
 
     /**
      * 选择权限部门
+     *
      * @param oDataContext
      * @param actionParameters
      * @param edmBindingTarget
@@ -470,7 +474,7 @@ public class SupplierEvents {
      * @throws GenericServiceException
      */
     public static void selectDepartment(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
-                                           EdmBindingTarget edmBindingTarget) throws GenericEntityException, OfbizODataException, GenericServiceException {
+                                        EdmBindingTarget edmBindingTarget) throws GenericEntityException, OfbizODataException, GenericServiceException {
 
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
@@ -486,8 +490,8 @@ public class SupplierEvents {
         }
         String supplierPartyId = (String) supplierParty.get("partyId");
         List<String> partyIds = (List<String>) actionParameters.get("partyId");
-        for (String partyId : partyIds){
-            if(CommonUtils.checkInputRepeat(delegator, "partyIdFrom", "PartyRelationship", UtilMisc.toMap("partyIdTo", supplierPartyId, "roleTypeIdFrom", "DEPARTMENT"), partyId)){
+        for (String partyId : partyIds) {
+            if (CommonUtils.checkInputRepeat(delegator, "partyIdFrom", "PartyRelationship", UtilMisc.toMap("partyIdTo", supplierPartyId, "roleTypeIdFrom", "DEPARTMENT"), partyId)) {
                 throw new OfbizODataException("Don't select repeat department！");
             }
             dispatcher.runSync("banfftech.createPartyRelationship",
@@ -498,6 +502,7 @@ public class SupplierEvents {
 
     /**
      * 移除权限部门
+     *
      * @param oDataContext
      * @param actionParameters
      * @param edmBindingTarget
@@ -506,7 +511,7 @@ public class SupplierEvents {
      * @throws GenericServiceException
      */
     public static void removeDepartment(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
-                                           EdmBindingTarget edmBindingTarget) throws GenericEntityException, OfbizODataException, GenericServiceException {
+                                        EdmBindingTarget edmBindingTarget) throws GenericEntityException, OfbizODataException, GenericServiceException {
 
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
@@ -589,4 +594,44 @@ public class SupplierEvents {
 
     }
 
+    // Implement CreatePurchaseAgreement action
+    // url example: SupplierParties('10000')/PurchaseAgreement/com.dpbird.CreateAgreement
+    public static Object createPurchaseAgreement(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
+                                         EdmBindingTarget edmBindingTarget) throws OfbizODataException, GenericServiceException, GenericEntityException {
+        Delegator delegator = (Delegator) oDataContext.get("delegator");
+        LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
+        GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
+        String description = (String) actionParameters.get("description");
+        String productId = (String) actionParameters.get("productId");
+        Timestamp agreementDate = (Timestamp) actionParameters.get("agreementDate");
+        Timestamp fromDate = (Timestamp) actionParameters.get("fromDate");
+        Timestamp thruDate = (Timestamp) actionParameters.get("thruDate");
+        // get the first bound OdataOfbizEntity. example: SupplierParties('10000')
+        OdataOfbizEntity supplierPartyEntity = CommonUtils.getOdataPartByEntityType(oDataContext, "SupplierParty");
+        GenericValue supplierParty = null;
+        if (UtilValidate.isEmpty(supplierPartyEntity)) {
+            return null;
+        }
+        supplierParty = supplierPartyEntity.getGenericValue();
+        String partyIdTo = supplierParty.getString("partyId");
+        String partyIdFrom = CommonUtils.getPartyCompany(userLogin.getString("partyId"), delegator);
+
+        Map<String, Object> createAgreementResult;
+        try {
+            createAgreementResult = dispatcher.runSync("banfftech.createAgreement",
+                    UtilMisc.toMap("userLogin", userLogin, "description", description,
+                            "productId", productId, "agreementDate", agreementDate, "partyIdFrom", partyIdFrom,
+                            "partyIdTo", partyIdTo, "agreementTypeId", "PURCHASE_AGREEMENT", "fromDate", fromDate, "thruDate", thruDate));
+        } catch (GenericServiceException e) {
+            throw new OfbizODataException(e.getMessage());
+        }
+        String agreementId = (String) createAgreementResult.get("agreementId");
+        GenericValue agreement;
+        try {
+            agreement = delegator.findOne("Agreement", UtilMisc.toMap("agreementId", agreementId), false);
+        } catch (GenericEntityException e) {
+            throw new OfbizODataException(e.getMessage());
+        }
+        return agreement;
+    }
 }
