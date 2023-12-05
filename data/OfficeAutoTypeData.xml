@@ -86,6 +86,8 @@ under the License.
     <PartyContentType partyContentTypeId="IDENTIFICATION"/>
     <!-- 其他文件 -->
     <PartyContentType partyContentTypeId="OTHER_FILES"/>
+    <!-- Logo -->
+    <PartyContentType partyContentTypeId="SUPPLIER_LOGO"/>
 
     <EnumerationType description="Priority" enumTypeId="PRIORITY" hasTable="N" />
     <Enumeration description="High" enumCode="PRIORITY_HIGH" enumId="PRIORITY_HIGH" enumTypeId="PRIORITY" sequenceId="01"/>

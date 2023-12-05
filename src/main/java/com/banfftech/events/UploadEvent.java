@@ -145,4 +145,24 @@ public class UploadEvent {
         }
     }
 
+    public static void uploadSupplierLogo(Map<String, Object> oDataContext, Map<String, Object> actionParameters, EdmBindingTarget edmBindingTarget)
+            throws GenericEntityException, OfbizODataException, GeneralServiceException, GenericServiceException {
+        LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
+        GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
+        ParameterContext parameterContext = (ParameterContext) actionParameters.get("file");
+        OdataOfbizEntity supplierParty = (OdataOfbizEntity) actionParameters.get("supplierParty");
+        Map<String, Object> resultMap = dispatcher.runSync("banfftech.createPartyMediaResource",
+                UtilMisc.toMap("contentName", "Supplier Logo", "dataResourceName", "Supplier Logo", "imageData", parameterContext.getFile(),
+                        "mimeTypeId", parameterContext.getFileMimeType(), "partyContentTypeId",
+                        "SUPPLIER_LOGO", "partyId", supplierParty.getPropertyValue("partyId"), "userLogin", userLogin));
+
+        Map<String, Object> serviceParam = new HashMap<>();
+        serviceParam.put("partyId", supplierParty.getPropertyValue("partyId"));
+        serviceParam.put("logoImageUrl", "/officeauto/control/odataAppSvc/supplierApproveService/PartyMediaResources('" + resultMap.get("partyContentId") + "')/imageData");
+        serviceParam.put("userLogin", userLogin);
+        //创建文件
+        Map<String, Object> createResult = dispatcher.runSync("banfftech.updatePartyGroup", serviceParam);
+        Debug.logInfo("Upload Result: " + createResult, module);
+    }
+
 }

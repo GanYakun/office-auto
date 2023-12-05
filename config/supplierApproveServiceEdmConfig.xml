@@ -19,6 +19,7 @@
         <Property Name="statusId">
             <Text Path="SupplierStatusItem/description" TextArrangement="TextOnly"/>
         </Property>
+        <Property Name="logoImageUrl" IsImage="true"/>
         <Property Name="isGovernment" Type="Boolean" IsAttribute="true" Label="${isGovernment}"/>
         <!--供应商填写的ddForm类型-->
         <Property Name="ddFormType" Type="String" Label="${ddFormType}"/>
@@ -223,7 +224,7 @@
         </FieldGroup>
 
         <LineItem>
-            <DataField Values="partyId,cycleTime" Importance="High"/>
+            <DataField Values="logoImageUrl,partyId,cycleTime" Importance="High"/>
             <DataField Values="ddFormDealStatus" Criticality="ddFormDealCritical" Importance="High"/>
             <DataField Values="ddFormType,ddResponseTime" Importance="High"/>
             <DataField Values="PartyClassification/PartyClassificationGroup/description" Criticality="riskCritical"
@@ -233,9 +234,9 @@
             <DataField Values="complianceWorkStatus" Importance="High" Criticality="supplierWorkCriticality"/>
         </LineItem>
         <LineItem Qualifier="CreateLineItem">
-            <DataField Values="partyId,cycleTime" Importance="High"/>
+            <DataField Values="logoImageUrl,partyId" Importance="High"/>
             <DataField Values="ddFormDealStatus" Criticality="ddFormDealCritical" Importance="High"/>
-            <DataField Values="ddFormType,ddResponseTime" Importance="High"/>
+            <DataField Values="ddFormType" Importance="High"/>
             <DataField Values="PartyClassification/PartyClassificationGroup/description" Criticality="riskCritical"
                        Importance="High"/>
             <DataField Values="applicationWorkStatus" Importance="High" Criticality="complianceWorkCriticality"/>
@@ -245,10 +246,16 @@
                                 Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
 
-        <HeaderInfo TypeName="Supplier Party" TypeNamePlural="Supplier Party List">
+        <HeaderInfo TypeName="Supplier Party" ImageUrl="logoImageUrl" TypeNamePlural="Supplier Party List">
             <Title Path="partyId"/>
             <Description Path="description"/>
         </HeaderInfo>
+
+        <!--上传头像-->
+        <Action Name="UploadSupplierLogo" IsBound="true" OfbizService="com.banfftech.events.UploadEvent.uploadSupplierLogo">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <Parameter Name="file" Type="Stream" Nullable="true" IsCollection="false"/>
+        </Action>
 
         <!--填写评级-->
         <Action Name="FillPartyClassification" IsBound="true"
@@ -541,7 +548,7 @@
 
     <!-- 文件 -->
     <EntityType Name="PartyMediaResource" EntitySetName="PartyMediaResources"
-                Properties="partyContentId,partyId,contentId,contentName,otherData,mimeTypeId,dataResourceId,dataResourceName,fromDate"
+                Properties="partyContentId,partyId,contentId,contentName,otherData,mimeTypeId,dataResourceId,dataResourceName,fromDate,imageData"
                 Handler="component://officeauto/groovyScripts/partyManage/partyMedia/generateEntityListFields.groovy">
         <!--        <LineItem Qualifier="FileList">-->
         <!--            <DataField Values="contentName,createdDate,otherData" Importance="High"/>-->
