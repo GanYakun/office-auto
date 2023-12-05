@@ -31,6 +31,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -284,6 +285,48 @@ public class SupplierApproveEvents {
         }
 
     }
+
+    public static Object getProcessFlow(Map<String, Object> oDataContext, Map<String, Object> actionParameters, EdmBindingTarget edmBindingTarget) throws GenericEntityException {
+        Delegator delegator = (Delegator) oDataContext.get("delegator");
+        OdataOfbizEntity supplierParty = (OdataOfbizEntity) actionParameters.get("supplierParty");
+        GenericValue coWork = supplierParty.getGenericValue();
+        String partyId = coWork.getString("partyId");
+        boolean parentActive = true;
+        //applicant task
+        GenericValue applicantTask = EntityQuery.use(delegator).from("WorkEffort").where("partyId", partyId).orderBy("createdDate").queryFirst();
+        String nodeStatus = applicantTask.getString("currentStatusId");
+        Map<String, Object> applicantNode = UtilMisc.toMap("nodeSeq", 0, "nodeName", "Applicant", "nodeDescription", "applicant Description", "nodeStartDate", UtilDateTime.nowTimestamp(),
+                "nodeCompletedDate", UtilDateTime.nowTimestamp(), "isActive", false);
+        if ("NOT_PROCESSED".equals(nodeStatus)) {
+            applicantNode.put("isActive", true);
+            parentActive = false;
+        }
+
+        //vendor task
+        GenericValue vendorTask = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", partyId, "approvePartyId", partyId).queryFirst();
+        Map<String, Object> vendorNode = UtilMisc.toMap("nodeSeq", 1, "nodeName", "Vendor", "nodeDescription", "vendor Description", "nodeStartDate", UtilDateTime.nowTimestamp(),
+                "nodeCompletedDate", UtilDateTime.nowTimestamp(), "isActive", false);
+        if (UtilValidate.isNotEmpty(vendorTask) && "NOT_PROCESSED".equals(vendorTask.getString("currentStatusId"))) {
+            vendorNode.put("isActive", true);
+            parentActive = false;
+        }
+
+        //compliance task
+        GenericValue complianceTask = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", partyId, "approvePartyId", "HG").queryFirst();
+        Map<String, Object> complianceNode = UtilMisc.toMap("nodeSeq", 3, "nodeName", "Compliance", "nodeDescription", "compliance Description", "nodeStartDate", UtilDateTime.nowTimestamp(),
+                "nodeCompletedDate", UtilDateTime.nowTimestamp(), "isActive", false);
+        if (UtilValidate.isNotEmpty(complianceTask) && "NOT_PROCESSED".equals(complianceTask.getString("currentStatusId"))) {
+            complianceNode.put("isActive", true);
+            parentActive = false;
+        }
+
+        //procurement task
+        GenericValue procurementTask = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", partyId, "workEffortTypeId", "COWORK").queryFirst();
+        Map<String, Object> procurementNode = UtilMisc.toMap("nodeSeq", 2, "nodeName", "Procurement", "nodeDescription", "procurement Description", "nodeStartDate", UtilDateTime.nowTimestamp(),
+                "nodeCompletedDate", UtilDateTime.nowTimestamp(), "isActive", parentActive);
+        return UtilMisc.toList(applicantNode, vendorNode, procurementNode, complianceNode);
+    }
+
 
 
 }
