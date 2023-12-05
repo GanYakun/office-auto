@@ -1,6 +1,14 @@
 <ofbiz-edm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:noNamespaceSchemaLocation="https://dev.odatalab.com/dtds/edmconfig.xsd" ImportGlobal="false">
     <ImportEdm Path="component://officeauto/config/launchpadManageEdmConfig.xml"/>
+    <ComplexType Name="NodeData">
+        <Property Name="nodeSeq" Type="Edm.Int64"/>
+        <Property Name="nodeName" Type="String"/>
+        <Property Name="nodeDescription" Type="String"/>
+        <Property Name="nodeStartDate" Type="DateTimeOffset"/>
+        <Property Name="nodeCompletedDate" Type="DateTimeOffset"/>
+        <Property Name="isActive" Type="Boolean"/>
+    </ComplexType>
 
     <!--======================================SupplierParty（主对象）========================================-->
     <EntityType Name="SupplierParty" OfbizType="PartyRole/roleTypeId=SUPPLIER"
@@ -406,6 +414,11 @@
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
             <Parameter Name="file" Type="Stream" Nullable="false" IsCollection="false"/>
         </Action>
+
+        <Function Name="getProcessFlow" IsBound="true" OfbizService="com.banfftech.events.SupplierApproveEvents.getProcessFlow">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <ReturnType Type="NodeData" IsCollection="true"/>
+        </Function>
     </EntityType>
 
     <!--======================================CoWorkHistory（审批历史）========================================-->
