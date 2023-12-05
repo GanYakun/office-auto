@@ -27,7 +27,7 @@
         <Property Name="statusId">
             <Text Path="SupplierStatusItem/description" TextArrangement="TextOnly"/>
         </Property>
-        <Property Name="logoImageUrl" IsImage="true"/>
+        <Property Name="logoImageUrl" IsImageURL="true"/>
         <Property Name="isGovernment" Type="Boolean" IsAttribute="true" Label="${isGovernment}"/>
         <!--供应商填写的ddForm类型-->
         <Property Name="ddFormType" Type="String" Label="${ddFormType}"/>

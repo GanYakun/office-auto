@@ -372,6 +372,7 @@ under the License.
     <DBField dbFieldId="WPC10000_16" dbFieldName="partyId" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Party ID"/>
     <DBField dbFieldId="WPC10000_17" dbFieldName="partyName" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Name"/>
     <DBField dbFieldId="WPC10000_18" dbFieldName="priority" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Priority"/>
+    <DBField dbFieldId="WPC10000_19" dbFieldName="logoImageUrl" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Logo Image Url"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_01_ZH" dbFieldId="WPC10000_01" language="zh" value="Email"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_01_EN" dbFieldId="WPC10000_01" language="en" value="Email"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_02_ZH" dbFieldId="WPC10000_02" language="zh" value="Address"/>
@@ -408,6 +409,8 @@ under the License.
     <DBFieldLabel dbFieldLabelId="WPC10000_17_EN" dbFieldId="WPC10000_17" language="en" value="Vendor name"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_18_ZH" dbFieldId="WPC10000_18" language="zh" value="优先级"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_18_EN" dbFieldId="WPC10000_18" language="en" value="Priority"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_19_ZH" dbFieldId="WPC10000_19" language="zh" value="Logo"/>
+    <DBFieldLabel dbFieldLabelId="WPC10000_19_EN" dbFieldId="WPC10000_19" language="en" value="Supplier Logo"/>
 
 
     <!-- Entity labels for view-entity PartyGroupAndContact -->
