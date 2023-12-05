@@ -634,4 +634,18 @@ public class SupplierEvents {
         }
         return agreement;
     }
+
+    public static void fillCommentsForPRM(Map<String, Object> oDataContext, Map<String, Object> actionParameters, EdmBindingTarget edmBindingTarget)
+            throws GenericServiceException, GenericEntityException {
+        LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
+        Delegator delegator = dispatcher.getDelegator();
+        GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
+        OdataOfbizEntity supplierPartyEntity = (OdataOfbizEntity) actionParameters.get("supplierParty");
+        GenericValue supplierParty = supplierPartyEntity.getGenericValue();
+        String comments = (String) actionParameters.get("comments");
+        List<GenericValue> workEffortAndPartyGroups = delegator.findByAnd("WorkEffortAndPartyGroupContact", UtilMisc.toMap("partyId", supplierParty.get("partyId")), null, false);
+        GenericValue workEffortAndPartyGroup = EntityUtil.getFirst(workEffortAndPartyGroups);
+        dispatcher.runSync("banfftech.updateWorkEffortAndPartyGroupContact",
+                UtilMisc.toMap("userLogin", userLogin, "workEffortId", workEffortAndPartyGroup.getString("workEffortId"), "approveComments", comments));
+    }
 }

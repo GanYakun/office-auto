@@ -225,4 +225,8 @@
 		<field name="employeesSection" type="long-varchar"/>
 	</extend-entity>
 
+	<extend-entity entity-name="WorkEffort">
+		<field name="approveComments" type="long-varchar"/>
+	</extend-entity>
+
 </entitymodel>

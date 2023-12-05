@@ -186,7 +186,7 @@
             <DataField
                     Values="usccNumber,employeesSection,isGovernment,annualRevenue,ListedCountry/geoId,comments,priority"
                     Importance="High"/>
-            <DataFieldForAction Label="${UpdateBasicInfo}" Action="FillSupplierBaseInfo" Importance="High"
+            <DataFieldForAction Label="${UpdateBasicInfo}" Action="SupplierBaseInfo" Importance="High"
                                 Criticality="Positive" Inline="false" InvocationGrouping="Isolated"
                                 Hidden="disableEditSupplier"/>
         </FieldGroup>
@@ -233,23 +233,15 @@
 
         <LineItem>
             <DataField Values="logoImageUrl,partyId,cycleTime" Importance="High"/>
-            <DataField Values="ddFormDealStatus" Criticality="ddFormDealCritical" Importance="High"/>
             <DataField Values="ddFormType,ddResponseTime" Importance="High"/>
             <DataField Values="PartyClassification/PartyClassificationGroup/description" Criticality="riskCritical"
                        Importance="High"/>
-            <DataField Values="applicationWorkStatus" Importance="High" Criticality="complianceWorkCriticality"/>
-            <DataField Values="supplierWorkStatus" Importance="High" Criticality="applicationWorkCriticality"/>
-            <DataField Values="complianceWorkStatus" Importance="High" Criticality="supplierWorkCriticality"/>
         </LineItem>
         <LineItem Qualifier="CreateLineItem">
             <DataField Values="logoImageUrl,partyId" Importance="High"/>
-            <DataField Values="ddFormDealStatus" Criticality="ddFormDealCritical" Importance="High"/>
             <DataField Values="ddFormType" Importance="High"/>
             <DataField Values="PartyClassification/PartyClassificationGroup/description" Criticality="riskCritical"
                        Importance="High"/>
-            <DataField Values="applicationWorkStatus" Importance="High" Criticality="complianceWorkCriticality"/>
-            <DataField Values="supplierWorkStatus" Importance="High" Criticality="applicationWorkCriticality"/>
-            <DataField Values="complianceWorkStatus" Importance="High" Criticality="supplierWorkCriticality"/>
             <DataFieldForAction Label="${create}" Action="CreateSupplierParty" Importance="High" Criticality="Positive"
                                 Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
@@ -394,6 +386,15 @@
                 OfbizService="com.banfftech.events.SupplierEvents.finishDomUpload"
                 StickySession="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <ReturnType Type="SupplierParty"/>
+        </Action>
+
+        <!--Procurement填写comments-->
+        <Action Name="FillCommentsForPRM" IsBound="true" EntitySetPath="supplierParty" SideEffects="true"
+                OfbizService="com.banfftech.events.SupplierEvents.fillCommentsForPRM"
+                StickySession="true">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <Parameter Name="comments" Type="String" Nullable="true" IsCollection="false"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
 
