@@ -32,23 +32,23 @@ def generateFields(Map<String, Object> context){
     entityList.each { entity ->
         String ddFormType;
         String ddFormTypeId;
-        String ddFormDealStatus;
         ddFormTypeCritical = 0L;
-        ddFormDealCritical = 0L;
         checkWarningCritical = 0L;
+        ddFormTypeCritical = 0L;
+        ratingNumeric = 0L;
         priorityCritical = 0L;
         riskCritical = 0L;
         GenericValue supplierParty = (GenericValue) entity.getGenericValue();
         ddFormType = SupplierWorker.getDDFormType(supplierParty, delegator);
         ddFormTypeId = SupplierWorker.getDDFormTypeId(ddFormType);
-        ddFormDealStatus = SupplierWorker.getDDFormDealStatus(supplierParty, delegator);
+        ratingNumeric = SupplierWorker.getClassificationRatingNumber(supplierParty, delegator);
+        String ddFormDealStatus = SupplierWorker.getDDFormDealStatus(supplierParty, delegator);
         Timestamp lastSubmittedDate = SupplierWorker.getLastSubmittedDate(supplierParty, delegator);
         riskCritical = SupplierWorker.getClassificationCriticalValue(supplierParty, delegator);
         if (UtilValidate.isNotEmpty(supplierParty.get("priority"))){
             priorityCritical = priorityMap.get(supplierParty.get("priority"));
         }
         String cycleTime = SupplierWorker.calculateCycleTime(supplierParty, delegator);
-        String ddResponseTime = SupplierWorker.calculateResponseTime(supplierParty, delegator);
         criticalityValue = 2L
         String statusId = supplierParty.getString("statusId");
         if (statusId.equals("PROCESSED") && UtilValidate.isNotEmpty(criticalityValue)){
@@ -61,18 +61,15 @@ def generateFields(Map<String, Object> context){
             checkWarningCritical = 1L
         }
         ddFormTypeCritical = CriticalValueWorker.getCriticalValue(ddFormTypeMap, ddFormType);
-        ddFormDealCritical = CriticalValueWorker.getCriticalValue(ddFormDealMap, ddFormDealStatus);
         entity.addProperty(new Property(null, "ddFormType", ValueType.PRIMITIVE, ddFormType))
         entity.addProperty(new Property(null, "ddFormTypeId", ValueType.PRIMITIVE, ddFormTypeId))
-        entity.addProperty(new Property(null, "ddFormDealStatus", ValueType.PRIMITIVE, ddFormDealStatus))
         entity.addProperty(new Property(null, "criticalityValue", ValueType.PRIMITIVE, criticalityValue))
         entity.addProperty(new Property(null, "ddFormTypeCritical", ValueType.PRIMITIVE, ddFormTypeCritical))
         entity.addProperty(new Property(null, "cycleTime", ValueType.PRIMITIVE, cycleTime))
-        entity.addProperty(new Property(null, "ddFormDealCritical", ValueType.PRIMITIVE, ddFormDealCritical))
         entity.addProperty(new Property(null, "riskCritical", ValueType.PRIMITIVE, riskCritical))
-        entity.addProperty(new Property(null, "ddResponseTime", ValueType.PRIMITIVE, ddResponseTime))
         entity.addProperty(new Property(null, "priorityCritical", ValueType.PRIMITIVE, priorityCritical))
         entity.addProperty(new Property(null, "lastSubmittedDate", ValueType.PRIMITIVE, lastSubmittedDate))
+        entity.addProperty(new Property(null, "ratingNumeric", ValueType.PRIMITIVE, ratingNumeric))
 
         //文件数量
         String supplierId = supplierParty.getString("partyId");

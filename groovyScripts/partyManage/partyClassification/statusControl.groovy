@@ -11,9 +11,11 @@ import java.util.Map;
 
 module = "partyManage.shipment.statusControl.groovy";
 def generateFields(Map<String, Object> context) {
-    Map<String, Integer> statusMap = UtilMisc.toMap("High",1,"Low",3,"Middle",5);
+    Map<String, Integer> statusMap = UtilMisc.toMap("High",1,"Low",3,"Medium",5);
+    Map<String, Object> ratingMap = UtilMisc.toMap("High",5L,"Low",1L,"Medium",3L);
     List<Entity> entityList = context.parameters.get("entityList");
     statusColor = 0L;
+    ratingNumeric = 0L;
     String description = null;
     entityList.each { entity ->
         OdataOfbizEntity odataOfbizEntity = (OdataOfbizEntity) entity;
@@ -23,9 +25,11 @@ def generateFields(Map<String, Object> context) {
             if (UtilValidate.isNotEmpty(partyClassificationGroup)){
                 description = partyClassificationGroup.getString("description");
                 statusColor = statusMap.get(description);
+                ratingNumeric = ratingMap.get(description);
             }
         }
         entity.addProperty(new Property(null, "statusColor", ValueType.PRIMITIVE, statusColor));
+        entity.addProperty(new Property(null, "ratingNumeric", ValueType.PRIMITIVE, ratingNumeric));
     }
     return entityList;
 }

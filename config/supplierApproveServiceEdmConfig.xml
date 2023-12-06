@@ -33,13 +33,11 @@
         <!--供应商填写的ddForm类型-->
         <Property Name="ddFormType" Type="String" Label="${ddFormType}"/>
         <Property Name="ddFormTypeId" Type="String" Label="${ddFormType}"/>
-        <!--供应商填写ddForm进度情况-->
-        <Property Name="ddFormDealStatus" Type="String" Label="${ddFormDealStatus}"/>
         <Property Name="ddFormStatusHistory" Type="String" IsAttribute="true"/>
         <!--供应商完成ddForm时间-->
         <Property Name="cycleTime" Type="String" Label="${cycleTime}"/>
         <!--供应商ddForm响应时间-->
-        <Property Name="ddResponseTime" Type="String" Label="${ddResponseTime}"/>
+<!--        <Property Name="ddResponseTime" Type="String" Label="${ddResponseTime}"/>-->
         <Property Name="createSupplierHidden" Type="Boolean" Hidden="true"/>
         <!--首次订单时间-->
         <Property Name="firstOrderDate" Type="Timestamp" IsDateAttribute="true"/>
@@ -54,10 +52,9 @@
         <Property Name="criticalityValue" Type="numeric" Hidden="true" HiddenFilter="true"/>
         <!--供应商填写的ddForm类型的颜色显示-->
         <Property Name="ddFormTypeCritical" Type="numeric" Hidden="true" HiddenFilter="true"/>
-        <!--供应商填写ddForm进度颜色显示-->
-        <Property Name="ddFormDealCritical" Type="numeric" Hidden="true" HiddenFilter="true"/>
         <!--供应商风险评级颜色显示-->
         <Property Name="riskCritical" Type="numeric" Hidden="true" HiddenFilter="true"/>
+        <Property Name="ratingNumeric" Type="numeric" Label="ratingNumeric"/>
         <!--供应商优先级颜色显示-->
         <Property Name="priorityCritical" Type="numeric" Hidden="true" HiddenFilter="true"/>
         <Property Name="statusId" Immutable="true" DefaultValue="PARTY_DISABLED">
@@ -100,7 +97,6 @@
         <Property Name="ddFromUrl" Type="String"/>
         <!-- Work scope -->
         <Property Name="workScope" Type="String" Label="${workScope}"/>
-
         <!-- DDForm Bool Field -->
         <Property Name="agent" Type="Boolean" Label="Agent"/>
         <Property Name="jvPartner" Type="Boolean" Label="JV Partner"/>
@@ -114,7 +110,7 @@
         <Property Name="adverseResults" Type="String" Label="${adverseResults}" IsAttribute="true"/>
         <Property Name="additionalProtection" Type="String" Label="${additionalProtection}" IsAttribute="true"/>
         <Property Name="complianceComments" Type="String" Label="${complianceComments}" IsAttribute="true"/>
-        <Property Name="complianceCheckWarning" Type="Boolean" Label="${complianceCheckWarning}" IsAttribute="true"/>
+        <Property Name="complianceCheckWarning" Type="String" IsAttribute="true"/>
         <Property Name="checkWarningCritical" Type="numeric"/>
         <!-- coWork Status -->
         <Property Name="applicationWorkStatus" Type="String" Label="${applicationWorkStatus}"/>
@@ -166,7 +162,7 @@
                             Relations="ChildWorkEffort/WorkEffortStatus" IsCollection="true"/>
 
         <!-- 文件列表 -->
-        <NavigationProperty Name="FileList" Type="PartyMediaResource" Relations="PartyMediaResource"
+        <NavigationProperty Name="FileList" Type="PartyMediaResource" Relations="PartyMediaResource(partyContentTypeId=SUPPLIER_DOCUMENT)"
                             IsCollection="true"/>
         <!-- 合规报告 -->
         <NavigationProperty Name="ComplianceReport" Type="PartyMediaResource"
@@ -177,12 +173,12 @@
         <SelectionFields PropertyPath="partyName"/>
         <!--Annotation-->
         <FieldGroup Label="PartyBaseInfo" Qualifier="PartyBaseInfo">
-            <DataField Values="tickerSymbol,ProductCategory/categoryName,cycleTime,usccNumber" Importance="High"/>
+            <DataField Values="tickerSymbol,ProductCategory/categoryName,usccNumber,cycleTime" Importance="High"/>
         </FieldGroup>
-        <DataPoint Title="${ddFormType}" Value="ddFormType" Qualifier="DDFormType"/>
+        <DataPoint Title="${ddFormType}" Value="ddFormType" Qualifier="DDFormType" Criticality="ddFormTypeCritical"/>
         <DataPoint Title="${SupplierCategory}" Value="ProductCategory/categoryName" Qualifier="SupplierCategory"/>
-        <DataPoint Title="${complianceCheckWarning}" Value="complianceCheckWarning" Qualifier="complianceCheckWarning"
-                   Criticality="checkWarningCritical"/>
+<!--        <DataPoint Title="${complianceCheckWarning}" Value="complianceCheckWarning" Qualifier="complianceCheckWarning"-->
+<!--                   Criticality="checkWarningCritical"/>-->
         <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">
             <DataField Values="usccNumber,employeesSection,isGovernment,annualRevenue,ListedCountry/geoId,comments"
                        Importance="High"/>
@@ -240,17 +236,18 @@
         </FieldGroup>
 
         <LineItem>
-            <DataField Values="logoImageUrl,partyId,cycleTime" Importance="High"/>
-            <DataField Values="ddFormType,ddResponseTime" Importance="High"/>
+            <DataField Values="logoImageUrl,partyId" Importance="High"/>
+            <DataField Values="ddFormType" Criticality="ddFormTypeCritical" Importance="High"/>
             <DataField Values="PartyClassification/PartyClassificationGroup/description" Criticality="riskCritical"
                        Importance="High"/>
+            <DataField Values="cycleTime" Importance="High"/>
         </LineItem>
         <LineItem Qualifier="CreateLineItem">
             <DataField Values="logoImageUrl,partyId" Importance="High"/>
-            <DataField Values="ddFormType,lastSubmittedDate" Importance="High"/>
+            <DataField Values="ddFormType" Criticality="ddFormTypeCritical" Importance="High"/>
 <!--            <DataField Values="PartyClassification/PartyClassificationGroup/description" Criticality="riskCritical"-->
 <!--                       Importance="High"/>-->
-            <DataField Values="cycleTime,ddResponseTime" Importance="High"/>
+            <DataField Values="lastSubmittedDate,cycleTime" Importance="High"/>
             <DataFieldForAction Label="${create}" Action="CreateSupplierParty" Importance="High" Criticality="Positive"
                                 Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
@@ -571,7 +568,7 @@
 
     <!-- 文件 -->
     <EntityType Name="PartyMediaResource" EntitySetName="PartyMediaResources"
-                Properties="partyContentId,partyId,contentId,contentName,otherData,mimeTypeId,dataResourceId,dataResourceName,fromDate,imageData"
+                Properties="partyContentId,partyId,contentId,contentName,otherData,mimeTypeId,dataResourceId,dataResourceName,fromDate,imageData,description"
                 Handler="component://officeauto/groovyScripts/partyManage/partyMedia/generateEntityListFields.groovy">
         <!--        <LineItem Qualifier="FileList">-->
         <!--            <DataField Values="contentName,createdDate,otherData" Importance="High"/>-->
@@ -579,6 +576,8 @@
         <!--        </LineItem>-->
         <Property Name="otherData" FileNamePath="dataResourceName"/>
         <Property Name="fileUrl" Type="String"/>
+        <!-- 文件上传Critical -->
+        <Property Name="uploadDocCritical" Type="numeric" Hidden="true"/>
         <Action Name="UploadAction" IsBound="true" OfbizService="com.banfftech.events.UploadEvent.uploadFile">
             <Parameter Name="partyMediaResource" Type="PartyMediaResource" Nullable="false" IsCollection="false"/>
             <Parameter Name="file" Type="Stream" Nullable="false" IsCollection="false"/>
@@ -643,6 +642,7 @@
         <NavigationProperty Name="PartyClassificationGroup"/>
 
         <Property Name="statusColor" Type="numeric" Hidden="true" HiddenFilter="true"/>
+        <Property Name="ratingNumeric" Type="numeric"/>
     </EntityType>
     <!--PartyClassificationGroup（评级组）-->
     <EntityType Name="PartyClassificationGroup" AutoSet="true" AutoProperties="true"
@@ -975,7 +975,7 @@
                 AttrEntityName="FinAccountAttribute" DraftEntityName="FinAccountAppDraft">
         <Property Name="accountName" IsAttribute="true" Type="String"/>
         <Property Name="currencyUomId">
-            <Text Path="CurrencyUom/description" TextArrangement="TextOnly"/>
+<!--            <Text Path="CurrencyUom/description" TextArrangement="TextOnly"/>-->
             <ValueList CollectionPath="CurrencyUoms" WithFixedValues="true"/>
         </Property>
         <Property Name="finAccountTypeId">

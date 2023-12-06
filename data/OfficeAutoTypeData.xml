@@ -78,23 +78,23 @@ under the License.
 
 <!--    <PartyQuestionApplType description="Due Diligence Form" partyQuestionApplTypeId="DD_FORM" hasTable="N"/>-->
     <!-- 财务报表 -->
-    <PartyContentType partyContentTypeId="FINANCIAL_STATEMENTS"/>
+    <PartyContentType partyContentTypeId="SUPPLIER_DOCUMENT"/>
     <!-- 保密协议 -->
-    <PartyContentType partyContentTypeId="CONFIDENTIALITY_AGREEMENT"/>
+    <PartyContentType partyContentTypeId="SUPPLIER_DOCUMENT"/>
     <!-- 合规报告 -->
     <PartyContentType partyContentTypeId="COMPLIANCE_REPORT"/>
     <!-- 商业许可证 -->
-    <PartyContentType partyContentTypeId="COMMERCIAL_LICENSE"/>
+    <PartyContentType partyContentTypeId="SUPPLIER_DOCUMENT"/>
     <!-- 增值税证书 -->
-    <PartyContentType partyContentTypeId="VAT_CERTIFICATE"/>
+    <PartyContentType partyContentTypeId="SUPPLIER_DOCUMENT"/>
     <!-- POA -->
-    <PartyContentType partyContentTypeId="POA"/>
+    <PartyContentType partyContentTypeId="SUPPLIER_DOCUMENT"/>
     <!-- 税号 -->
-    <PartyContentType partyContentTypeId="TAX_CODE"/>
+    <PartyContentType partyContentTypeId="SUPPLIER_DOCUMENT"/>
     <!-- 证件号 -->
-    <PartyContentType partyContentTypeId="IDENTIFICATION"/>
+    <PartyContentType partyContentTypeId="SUPPLIER_DOCUMENT"/>
     <!-- 其他文件 -->
-    <PartyContentType partyContentTypeId="OTHER_FILES"/>
+    <PartyContentType partyContentTypeId="SUPPLIER_DOCUMENT"/>
     <!-- Logo -->
     <PartyContentType partyContentTypeId="SUPPLIER_LOGO"/>
 
