@@ -970,7 +970,7 @@
                 AttrEntityName="FinAccountAttribute" DraftEntityName="FinAccountAppDraft">
         <Property Name="accountName" IsAttribute="true" Type="String"/>
         <Property Name="currencyUomId">
-            <Text Path="CurrencyUom/description" TextArrangement="TextOnly"/>
+<!--            <Text Path="CurrencyUom/description" TextArrangement="TextOnly"/>-->
             <ValueList CollectionPath="CurrencyUoms" WithFixedValues="true"/>
         </Property>
         <Property Name="finAccountTypeId">
