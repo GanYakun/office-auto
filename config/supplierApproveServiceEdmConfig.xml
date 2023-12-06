@@ -237,7 +237,7 @@
 
         <LineItem>
             <DataField Values="logoImageUrl,partyId,cycleTime" Importance="High"/>
-            <DataField Values="ddFormType,ddResponseTime" Importance="High"/>
+            <DataField Values="ddFormType" Importance="High"/>
             <DataField Values="PartyClassification/PartyClassificationGroup/description" Criticality="riskCritical"
                        Importance="High"/>
         </LineItem>
@@ -246,7 +246,7 @@
             <DataField Values="ddFormType,lastSubmittedDate" Importance="High"/>
 <!--            <DataField Values="PartyClassification/PartyClassificationGroup/description" Criticality="riskCritical"-->
 <!--                       Importance="High"/>-->
-            <DataField Values="cycleTime,ddResponseTime" Importance="High"/>
+            <DataField Values="cycleTime" Importance="High"/>
             <DataFieldForAction Label="${create}" Action="CreateSupplierParty" Importance="High" Criticality="Positive"
                                 Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
