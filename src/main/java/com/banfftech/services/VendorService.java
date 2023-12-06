@@ -156,7 +156,7 @@ public class VendorService {
             EntityCondition condition = EntityCondition.makeCondition(condition1, condition2);
             List<GenericValue> surveyQuestionAnswers = EntityQuery.use(delegator).from("SurveyQuestionAnswer").where(condition).queryList();
             List<String> boolAnswer = EntityUtil.getFieldListFromEntityList(surveyQuestionAnswers, "booleanResponse", false);
-            CommonUtils.setObjectAttributeBoolean(supplier, "complianceCheckWarning", boolAnswer.contains("Y"));
+            CommonUtils.setObjectAttribute(supplier, "complianceCheckWarning", boolAnswer.contains("Y") ? "Warning" : "Normal");
         }
         CommonUtils.setObjectAttribute(supplier, "ddFormStatusHistory", "Submitted");
         return ServiceUtil.returnSuccess();

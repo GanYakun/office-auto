@@ -34,6 +34,7 @@ def generateFields(Map<String, Object> context){
         String ddFormTypeId;
         ddFormTypeCritical = 0L;
         checkWarningCritical = 0L;
+        ddFormTypeCritical = 0L;
         ratingNumeric = 0L;
         priorityCritical = 0L;
         riskCritical = 0L;

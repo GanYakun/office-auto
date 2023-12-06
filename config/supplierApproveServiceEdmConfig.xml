@@ -109,7 +109,7 @@
         <Property Name="adverseResults" Type="String" Label="${adverseResults}" IsAttribute="true"/>
         <Property Name="additionalProtection" Type="String" Label="${additionalProtection}" IsAttribute="true"/>
         <Property Name="complianceComments" Type="String" Label="${complianceComments}" IsAttribute="true"/>
-        <Property Name="complianceCheckWarning" Type="Boolean" Label="${complianceCheckWarning}" IsAttribute="true"/>
+        <Property Name="complianceCheckWarning" Type="String" IsAttribute="true"/>
         <Property Name="checkWarningCritical" Type="numeric"/>
         <!-- coWork Status -->
         <Property Name="applicationWorkStatus" Type="String" Label="${applicationWorkStatus}"/>
@@ -161,7 +161,7 @@
                             Relations="ChildWorkEffort/WorkEffortStatus" IsCollection="true"/>
 
         <!-- 文件列表 -->
-        <NavigationProperty Name="FileList" Type="PartyMediaResource" Relations="PartyMediaResource"
+        <NavigationProperty Name="FileList" Type="PartyMediaResource" Relations="PartyMediaResource(partyContentTypeId=SUPPLIER_DOCUMENT)"
                             IsCollection="true"/>
         <!-- 合规报告 -->
         <NavigationProperty Name="ComplianceReport" Type="PartyMediaResource"
@@ -169,12 +169,12 @@
         <SelectionFields PropertyPath="partyName"/>
         <!--Annotation-->
         <FieldGroup Label="PartyBaseInfo" Qualifier="PartyBaseInfo">
-            <DataField Values="tickerSymbol,ProductCategory/categoryName,cycleTime,usccNumber" Importance="High"/>
+            <DataField Values="tickerSymbol,ProductCategory/categoryName,usccNumber,cycleTime" Importance="High"/>
         </FieldGroup>
-        <DataPoint Title="${ddFormType}" Value="ddFormType" Qualifier="DDFormType"/>
+        <DataPoint Title="${ddFormType}" Value="ddFormType" Qualifier="DDFormType" Criticality="ddFormTypeCritical"/>
         <DataPoint Title="${SupplierCategory}" Value="ProductCategory/categoryName" Qualifier="SupplierCategory"/>
-        <DataPoint Title="${complianceCheckWarning}" Value="complianceCheckWarning" Qualifier="complianceCheckWarning"
-                   Criticality="checkWarningCritical"/>
+<!--        <DataPoint Title="${complianceCheckWarning}" Value="complianceCheckWarning" Qualifier="complianceCheckWarning"-->
+<!--                   Criticality="checkWarningCritical"/>-->
         <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">
             <DataField Values="usccNumber,employeesSection,isGovernment,annualRevenue,ListedCountry/geoId,comments"
                        Importance="High"/>
@@ -232,17 +232,18 @@
         </FieldGroup>
 
         <LineItem>
-            <DataField Values="logoImageUrl,partyId,cycleTime" Importance="High"/>
-            <DataField Values="ddFormType" Importance="High"/>
+            <DataField Values="logoImageUrl,partyId" Importance="High"/>
+            <DataField Values="ddFormType" Criticality="ddFormTypeCritical" Importance="High"/>
             <DataField Values="PartyClassification/PartyClassificationGroup/description" Criticality="riskCritical"
                        Importance="High"/>
+            <DataField Values="cycleTime" Importance="High"/>
         </LineItem>
         <LineItem Qualifier="CreateLineItem">
             <DataField Values="logoImageUrl,partyId" Importance="High"/>
-            <DataField Values="ddFormType,lastSubmittedDate" Importance="High"/>
+            <DataField Values="ddFormType" Criticality="ddFormTypeCritical" Importance="High"/>
 <!--            <DataField Values="PartyClassification/PartyClassificationGroup/description" Criticality="riskCritical"-->
 <!--                       Importance="High"/>-->
-            <DataField Values="cycleTime" Importance="High"/>
+            <DataField Values="lastSubmittedDate,cycleTime" Importance="High"/>
             <DataFieldForAction Label="${create}" Action="CreateSupplierParty" Importance="High" Criticality="Positive"
                                 Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
@@ -563,7 +564,7 @@
 
     <!-- 文件 -->
     <EntityType Name="PartyMediaResource" EntitySetName="PartyMediaResources"
-                Properties="partyContentId,partyId,contentId,contentName,otherData,mimeTypeId,dataResourceId,dataResourceName,fromDate,imageData"
+                Properties="partyContentId,partyId,contentId,contentName,otherData,mimeTypeId,dataResourceId,dataResourceName,fromDate,imageData,description"
                 Handler="component://officeauto/groovyScripts/partyManage/partyMedia/generateEntityListFields.groovy">
         <!--        <LineItem Qualifier="FileList">-->
         <!--            <DataField Values="contentName,createdDate,otherData" Importance="High"/>-->
