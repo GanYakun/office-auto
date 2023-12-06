@@ -28,6 +28,7 @@ def generateFields(Map<String, Object> context){
     Delegator delegator = context.get("delegator");
     Map<String, Object> ddFormTypeMap = UtilMisc.toMap("No DD", 1L, "Simplified", 2L, "Standard", 3L);
     Map<String, Object> ddFormDealMap = UtilMisc.toMap("Not Request", 5L, "Request", 2L, "Submitted", 3L, "Require Changes", 2L, "Wrong Types", 1L);
+    Map<String, Object> priorityMap = UtilMisc.toMap("PRIORITY_HIGH", 1L, "PRIORITY_MEDIUM", 3L, "PRIORITY_LOW", 5L);
     entityList.each { entity ->
         String ddFormType;
         String ddFormTypeId;
@@ -35,12 +36,16 @@ def generateFields(Map<String, Object> context){
         ddFormTypeCritical = 0L;
         ddFormDealCritical = 0L;
         checkWarningCritical = 0L;
+        priorityCritical = 0L;
         riskCritical = 0L;
         GenericValue supplierParty = (GenericValue) entity.getGenericValue();
         ddFormType = SupplierWorker.getDDFormType(supplierParty, delegator);
         ddFormTypeId = SupplierWorker.getDDFormTypeId(ddFormType);
         ddFormDealStatus = SupplierWorker.getDDFormDealStatus(supplierParty, delegator);
         riskCritical = SupplierWorker.getClassificationCriticalValue(supplierParty, delegator);
+        if (UtilValidate.isNotEmpty(supplierParty.get("priority"))){
+            priorityCritical = priorityMap.get(supplierParty.get("priority"));
+        }
         String cycleTime = SupplierWorker.calculateCycleTime(supplierParty, delegator);
         String ddResponseTime = SupplierWorker.calculateResponseTime(supplierParty, delegator);
         criticalityValue = 2L
@@ -65,6 +70,7 @@ def generateFields(Map<String, Object> context){
         entity.addProperty(new Property(null, "ddFormDealCritical", ValueType.PRIMITIVE, ddFormDealCritical))
         entity.addProperty(new Property(null, "riskCritical", ValueType.PRIMITIVE, riskCritical))
         entity.addProperty(new Property(null, "ddResponseTime", ValueType.PRIMITIVE, ddResponseTime))
+        entity.addProperty(new Property(null, "priorityCritical", ValueType.PRIMITIVE, priorityCritical))
 
         //文件数量
         String supplierId = supplierParty.getString("partyId");
