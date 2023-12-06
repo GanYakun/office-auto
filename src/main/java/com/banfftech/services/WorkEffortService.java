@@ -10,6 +10,7 @@ import org.apache.ofbiz.entity.GenericValue;
 import org.apache.ofbiz.entity.util.EntityQuery;
 import org.apache.ofbiz.service.*;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +25,8 @@ public class WorkEffortService {
         Map<String, Object> serviceParam = new HashMap<>();
         serviceParam.put("workEffortId", workEffortId);
         serviceParam.put("statusId", currentStatusId);
-        serviceParam.put("statusDatetime", UtilDateTime.nowTimestamp());
+        //不精确到毫秒
+        serviceParam.put("statusDatetime", UtilDateTime.toDateString(UtilDateTime.nowTimestamp(), "yyyy-MM-dd HH:mm:ss"));
         serviceParam.put("userLogin", userLogin);
         dispatcher.runSync("banfftech.createWorkEffortStatus", serviceParam);
         return ServiceUtil.returnSuccess();
