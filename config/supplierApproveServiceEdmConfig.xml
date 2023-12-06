@@ -32,13 +32,11 @@
         <!--供应商填写的ddForm类型-->
         <Property Name="ddFormType" Type="String" Label="${ddFormType}"/>
         <Property Name="ddFormTypeId" Type="String" Label="${ddFormType}"/>
-        <!--供应商填写ddForm进度情况-->
-        <Property Name="ddFormDealStatus" Type="String" Label="${ddFormDealStatus}"/>
         <Property Name="ddFormStatusHistory" Type="String" IsAttribute="true"/>
         <!--供应商完成ddForm时间-->
         <Property Name="cycleTime" Type="String" Label="${cycleTime}"/>
         <!--供应商ddForm响应时间-->
-        <Property Name="ddResponseTime" Type="String" Label="${ddResponseTime}"/>
+<!--        <Property Name="ddResponseTime" Type="String" Label="${ddResponseTime}"/>-->
         <Property Name="createSupplierHidden" Type="Boolean" Hidden="true"/>
         <!--首次订单时间-->
         <Property Name="firstOrderDate" Type="Timestamp" IsDateAttribute="true"/>
@@ -53,8 +51,6 @@
         <Property Name="criticalityValue" Type="numeric" Hidden="true" HiddenFilter="true"/>
         <!--供应商填写的ddForm类型的颜色显示-->
         <Property Name="ddFormTypeCritical" Type="numeric" Hidden="true" HiddenFilter="true"/>
-        <!--供应商填写ddForm进度颜色显示-->
-        <Property Name="ddFormDealCritical" Type="numeric" Hidden="true" HiddenFilter="true"/>
         <!--供应商风险评级颜色显示-->
         <Property Name="riskCritical" Type="numeric" Hidden="true" HiddenFilter="true"/>
         <!--供应商优先级颜色显示-->
@@ -99,7 +95,6 @@
         <Property Name="ddFromUrl" Type="String"/>
         <!-- Work scope -->
         <Property Name="workScope" Type="String" Label="${workScope}"/>
-
         <!-- DDForm Bool Field -->
         <Property Name="agent" Type="Boolean" Label="Agent"/>
         <Property Name="jvPartner" Type="Boolean" Label="JV Partner"/>
@@ -575,6 +570,8 @@
         <!--        </LineItem>-->
         <Property Name="otherData" FileNamePath="contentName"/>
         <Property Name="fileUrl" Type="String"/>
+        <!-- 文件上传Critical -->
+        <Property Name="uploadDocCritical" Type="numeric" Hidden="true"/>
         <Action Name="UploadAction" IsBound="true" OfbizService="com.banfftech.events.UploadEvent.uploadFile">
             <Parameter Name="partyMediaResource" Type="PartyMediaResource" Nullable="false" IsCollection="false"/>
             <Parameter Name="file" Type="Stream" Nullable="false" IsCollection="false"/>

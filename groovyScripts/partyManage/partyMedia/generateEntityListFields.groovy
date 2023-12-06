@@ -6,6 +6,7 @@ import org.apache.ofbiz.service.ServiceUtil
 import org.apache.ofbiz.base.util.UtilValidate;
 import org.apache.olingo.commons.api.data.Entity
 import com.banfftech.common.util.CommonUtils;
+import com.banfftech.worker.SupplierWorker;
 import com.dpbird.odata.edm.OdataOfbizEntity;
 import org.apache.ofbiz.entity.GenericValue;
 import org.apache.ofbiz.base.util.UtilValidate;
@@ -29,9 +30,12 @@ def generateFields(Map<String, Object> context){
     Delegator delegator = context.get("delegator");
     entityList.each { entity ->
         GenericValue partyMedia = (GenericValue) entity.getGenericValue();
+        uploadDocCritical = 0L;
+        uploadDocCritical = SupplierWorker.getUploadDocCriticalValue(partyMedia);
         String partyContentId = partyMedia.getString("partyContentId")
         String url = "/officeauto/control/odataAppSvc/supplierApproveService/PartyMediaResources('" + partyContentId + "')/otherData"
         entity.addProperty(new Property(null, "fileUrl", ValueType.PRIMITIVE, url))
+        entity.addProperty(new Property(null, "uploadDocCritical", ValueType.PRIMITIVE, uploadDocCritical))
     }
     return entityList;
 }

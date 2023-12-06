@@ -278,4 +278,13 @@ public class SupplierWorker {
         }
 
     }
+
+    public static Long getUploadDocCriticalValue (GenericValue partyMedia) {
+        if (UtilValidate.isNotEmpty(partyMedia.get("dataResourceName"))){
+            return 3L;
+        }else {
+            return 1L;
+        }
+
+    }
 }
