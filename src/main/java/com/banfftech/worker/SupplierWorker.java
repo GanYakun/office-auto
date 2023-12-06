@@ -7,11 +7,13 @@ import org.apache.ofbiz.base.util.UtilValidate;
 import org.apache.ofbiz.entity.Delegator;
 import org.apache.ofbiz.entity.GenericEntityException;
 import org.apache.ofbiz.entity.GenericValue;
+import org.apache.ofbiz.entity.util.EntityQuery;
 import org.apache.ofbiz.entity.util.EntityUtil;
 import org.joda.time.DateTimeUtils;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -261,5 +263,19 @@ public class SupplierWorker {
 
     public static String getDDFormTypeId (String ddFormType) {
         return (String) DDType.get(ddFormType);
+    }
+
+    public static Timestamp getLastSubmittedDate (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
+        List<String> orderBy = new ArrayList<>();
+        orderBy.add("-statusDatetime");
+        GenericValue workEffortStatus = EntityQuery.use(delegator).from("WorkEffortStatus").
+                where(UtilMisc.toMap("workEffortId", supplierParty.get("workEffortId"), "statusId", "PROCESSED")).
+                orderBy(orderBy).queryFirst();
+        if (UtilValidate.isNotEmpty(workEffortStatus)){
+            return workEffortStatus.getTimestamp("statusDatetime");
+        }else {
+            return null;
+        }
+
     }
 }

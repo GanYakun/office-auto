@@ -72,6 +72,8 @@
         <Property Name="tickerSymbol">
             <Text Path="ListRegionEnumeration/description" TextArrangement="TextOnly"/>
         </Property>
+        <!--供应商收藏时间-->
+        <Property Name="lastSubmittedDate" Type="Timestamp" Label="${lastSubmittedDate}"/>
         <Property Name="usccNumber" Type="String" HiddenFilter="true"/>
         <RelAlias Name="PersonAndContact"
                   Relations="FromPartyRelationship(roleTypeIdTo=CONTACT and roleTypeIdFrom=SUPPLIER)/ToPersonAndContact"/>
@@ -241,9 +243,10 @@
         </LineItem>
         <LineItem Qualifier="CreateLineItem">
             <DataField Values="logoImageUrl,partyId" Importance="High"/>
-            <DataField Values="ddFormType" Importance="High"/>
-            <DataField Values="PartyClassification/PartyClassificationGroup/description" Criticality="riskCritical"
-                       Importance="High"/>
+            <DataField Values="ddFormType,lastSubmittedDate" Importance="High"/>
+<!--            <DataField Values="PartyClassification/PartyClassificationGroup/description" Criticality="riskCritical"-->
+<!--                       Importance="High"/>-->
+            <DataField Values="cycleTime,ddResponseTime" Importance="High"/>
             <DataFieldForAction Label="${create}" Action="CreateSupplierParty" Importance="High" Criticality="Positive"
                                 Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>

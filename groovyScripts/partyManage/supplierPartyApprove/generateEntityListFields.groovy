@@ -42,6 +42,7 @@ def generateFields(Map<String, Object> context){
         ddFormType = SupplierWorker.getDDFormType(supplierParty, delegator);
         ddFormTypeId = SupplierWorker.getDDFormTypeId(ddFormType);
         ddFormDealStatus = SupplierWorker.getDDFormDealStatus(supplierParty, delegator);
+        Timestamp lastSubmittedDate = SupplierWorker.getLastSubmittedDate(supplierParty, delegator);
         riskCritical = SupplierWorker.getClassificationCriticalValue(supplierParty, delegator);
         if (UtilValidate.isNotEmpty(supplierParty.get("priority"))){
             priorityCritical = priorityMap.get(supplierParty.get("priority"));
@@ -71,6 +72,7 @@ def generateFields(Map<String, Object> context){
         entity.addProperty(new Property(null, "riskCritical", ValueType.PRIMITIVE, riskCritical))
         entity.addProperty(new Property(null, "ddResponseTime", ValueType.PRIMITIVE, ddResponseTime))
         entity.addProperty(new Property(null, "priorityCritical", ValueType.PRIMITIVE, priorityCritical))
+        entity.addProperty(new Property(null, "lastSubmittedDate", ValueType.PRIMITIVE, lastSubmittedDate))
 
         //文件数量
         String supplierId = supplierParty.getString("partyId");
