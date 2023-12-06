@@ -34,11 +34,13 @@ def generateFields(Map<String, Object> context){
         String ddFormTypeId;
         ddFormTypeCritical = 0L;
         checkWarningCritical = 0L;
+        ratingNumeric = 0L;
         priorityCritical = 0L;
         riskCritical = 0L;
         GenericValue supplierParty = (GenericValue) entity.getGenericValue();
         ddFormType = SupplierWorker.getDDFormType(supplierParty, delegator);
         ddFormTypeId = SupplierWorker.getDDFormTypeId(ddFormType);
+        ratingNumeric = SupplierWorker.getClassificationRatingNumber(supplierParty, delegator);
         String ddFormDealStatus = SupplierWorker.getDDFormDealStatus(supplierParty, delegator);
         Timestamp lastSubmittedDate = SupplierWorker.getLastSubmittedDate(supplierParty, delegator);
         riskCritical = SupplierWorker.getClassificationCriticalValue(supplierParty, delegator);
@@ -66,6 +68,7 @@ def generateFields(Map<String, Object> context){
         entity.addProperty(new Property(null, "riskCritical", ValueType.PRIMITIVE, riskCritical))
         entity.addProperty(new Property(null, "priorityCritical", ValueType.PRIMITIVE, priorityCritical))
         entity.addProperty(new Property(null, "lastSubmittedDate", ValueType.PRIMITIVE, lastSubmittedDate))
+        entity.addProperty(new Property(null, "ratingNumeric", ValueType.PRIMITIVE, ratingNumeric))
 
         //文件数量
         String supplierId = supplierParty.getString("partyId");
