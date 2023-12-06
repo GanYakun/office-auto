@@ -248,7 +248,7 @@
 
         <HeaderInfo TypeName="Supplier Party" ImageUrl="logoImageUrl" TypeNamePlural="Supplier Party List">
             <Title Path="partyId"/>
-            <Description Path="description"/>
+            <Description Path="workScope"/>
         </HeaderInfo>
 
         <!--上传头像-->
