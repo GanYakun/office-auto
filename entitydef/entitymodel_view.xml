@@ -236,6 +236,9 @@
         <relation type="many" rel-entity-name="PartyAttribute">
             <key-map field-name="partyId" rel-field-name="partyId"/>
         </relation>
+        <relation type="one-nofk" rel-entity-name="PartyGroupAndContact">
+            <key-map field-name="partyId" rel-field-name="partyId"/>
+        </relation>
     </view-entity>
 
     <view-entity entity-name="PartyMediaResource"

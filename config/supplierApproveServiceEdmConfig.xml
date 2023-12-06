@@ -1,6 +1,7 @@
 <ofbiz-edm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:noNamespaceSchemaLocation="https://dev.odatalab.com/dtds/edmconfig.xsd" ImportGlobal="false">
-    <ImportEdm Path="component://officeauto/config/launchpadManageEdmConfig.xml"/>
+    <ImportEdm Path="component://officeauto/config/supplierFormEdmConfig.xml"/>
+
     <ComplexType Name="NodeData">
         <Property Name="nodeSeq" Type="Edm.Int64"/>
         <Property Name="nodeName" Type="String"/>
@@ -170,6 +171,9 @@
         <!-- 合规报告 -->
         <NavigationProperty Name="ComplianceReport" Type="PartyMediaResource"
                             Relations="PartyMediaResource(partyContentTypeId=COMPLIANCE_REPORT)" IsCollection="true"/>
+        <!-- Supplier DD -->
+        <NavigationProperty Name="SupplierDDForm" Type="SupplierDDForm" Relations="PartyGroupAndContact" IsCollection="false"/>
+
         <SelectionFields PropertyPath="partyName"/>
         <!--Annotation-->
         <FieldGroup Label="PartyBaseInfo" Qualifier="PartyBaseInfo">
@@ -364,7 +368,7 @@
         </Action>
         <!--推送到供应商的Action-->
         <Action Name="ReturnToSupplier" IsBound="true" EntitySetPath="supplierParty" SideEffects="true"
-                OfbizService="com.banfftech.events.SupplierApproveEvents.procurementReturn"
+                OfbizService="com.banfftech.events.SupplierApproveEvents.sendDDForm"
                 StickySession="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
             <Parameter Name="target" Type="String" IsCollection="false"/>
@@ -417,11 +421,11 @@
         </Action>
 
         <!--生成调查问卷的回答-->
-        <Action Name="GenerateSurveyQuestionAnswer" IsBound="true"
-                OfbizService="com.banfftech.events.SupplierEvents.generateSurveyQuestionAnswer" SideEffects="true">
-            <Parameter Name="partyUserLogin" Type="PartyUserLogin" Nullable="false" IsCollection="false"/>
-            <ReturnType Type="SupplierParty"/>
-        </Action>
+<!--        <Action Name="GenerateSurveyQuestionAnswer" IsBound="true"-->
+<!--                OfbizService="com.banfftech.events.SupplierEvents.generateSurveyQuestionAnswer" SideEffects="true">-->
+<!--            <Parameter Name="partyUserLogin" Type="PartyUserLogin" Nullable="false" IsCollection="false"/>-->
+<!--            <ReturnType Type="SupplierParty"/>-->
+<!--        </Action>-->
 
         <Action Name="ImportProducts" IsBound="true" OfbizService="com.banfftech.events.UploadEvent.importProduct">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
@@ -573,7 +577,7 @@
         <!--            <DataField Values="contentName,createdDate,otherData" Importance="High"/>-->
         <!--            <DataFieldForAction Label="${upload}" Action="UploadAction" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>-->
         <!--        </LineItem>-->
-        <Property Name="otherData" FileNamePath="contentName"/>
+        <Property Name="otherData" FileNamePath="dataResourceName"/>
         <Property Name="fileUrl" Type="String"/>
         <Action Name="UploadAction" IsBound="true" OfbizService="com.banfftech.events.UploadEvent.uploadFile">
             <Parameter Name="partyMediaResource" Type="PartyMediaResource" Nullable="false" IsCollection="false"/>

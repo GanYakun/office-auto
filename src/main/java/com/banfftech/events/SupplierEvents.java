@@ -66,6 +66,7 @@ public class SupplierEvents {
             }
             //submit to procurement
             actionParameters.put("noteInfo", complianceComments);
+            actionParameters.put("source", "compliance");
             SupplierApproveEvents.toProcurement(oDataContext, actionParameters, edmBindingTarget);
         } catch (GeneralException e) {
             throw new OfbizODataException(e.getMessage());
@@ -398,8 +399,12 @@ public class SupplierEvents {
 
         //create DD Form
         String partyId = (String) resultMap.get("partyId");
-        delegator.create("PartyGeo", UtilMisc.toMap("partyGeoId", delegator.getNextSeqId("PartyGeo"),
-                "partyId", partyId, "partyGeoTypeId", "REGISTERED_COUNTRY"));
+//        delegator.create("PartyGeo", UtilMisc.toMap("partyGeoId", delegator.getNextSeqId("PartyGeo"),
+//                "partyId", partyId, "partyGeoTypeId", "REGISTERED_COUNTRY"));
+
+        dispatcher.runSync("banfftech.createPartyContactMechPurposeAndAddress",
+                UtilMisc.toMap("userLogin", userLogin, "contactMechId", delegator.getNextSeqId("ContactMech"),
+                        "partyId", partyId, "contactMechPurposeTypeId", "REGISTERED_LOCATION"));
 
         String businessLocationId = delegator.getNextSeqId("GeoPoint");
         delegator.create("GeoPoint", UtilMisc.toMap("geoPointId", businessLocationId, "latitude", "_NA_", "longitude", "_NA_"));
@@ -549,7 +554,7 @@ public class SupplierEvents {
         GenericValue party = EntityQuery.use(delegator).from("Party").where("partyId", supplierParty.getString("partyId")).queryOne();
         CommonUtils.setObjectAttribute(party, "PartyAttributeDate", "finishDomUploadDate", UtilDateTime.nowTimestamp());
         dispatcher.runSync("banfftech.updateWorkEffort",
-                UtilMisc.toMap("userLogin", userLogin, "workEffortId", supplierParty.getString("workEffortId"), "currentStatusId", "DOCUMENT_READY"));
+                UtilMisc.toMap("userLogin", userLogin, "workEffortId", supplierParty.getString("workEffortId"), "currentStatusId", "DOC_READY"));
     }
 
     /**
@@ -635,17 +640,13 @@ public class SupplierEvents {
         return agreement;
     }
 
-    public static void fillCommentsForPRM(Map<String, Object> oDataContext, Map<String, Object> actionParameters, EdmBindingTarget edmBindingTarget)
+    public static void demoAction(Map<String, Object> oDataContext, Map<String, Object> actionParameters, EdmBindingTarget edmBindingTarget)
             throws GenericServiceException, GenericEntityException {
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
         Delegator delegator = dispatcher.getDelegator();
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
-        OdataOfbizEntity supplierPartyEntity = (OdataOfbizEntity) actionParameters.get("supplierParty");
-        GenericValue supplierParty = supplierPartyEntity.getGenericValue();
-        String comments = (String) actionParameters.get("comments");
-        List<GenericValue> workEffortAndPartyGroups = delegator.findByAnd("WorkEffortAndPartyGroupContact", UtilMisc.toMap("partyId", supplierParty.get("partyId")), null, false);
-        GenericValue workEffortAndPartyGroup = EntityUtil.getFirst(workEffortAndPartyGroups);
-        dispatcher.runSync("banfftech.updateWorkEffortAndPartyGroupContact",
-                UtilMisc.toMap("userLogin", userLogin, "workEffortId", workEffortAndPartyGroup.getString("workEffortId"), "approveComments", comments));
+
     }
+
+
 }

@@ -230,6 +230,8 @@ under the License.
     <Internationalization id="changeStatus_zh" lang="zh" property="changeStatus" value="变更日期"/>
     <Internationalization id="lastSubmittedDate_en" lang="en" property="lastSubmittedDate" value="Submitted Date"/>
     <Internationalization id="lastSubmittedDate_zh" lang="zh" property="lastSubmittedDate" value="Submitted Date"/>
+    <Internationalization id="NONE_en" lang="en" property="NONE" value=""/>
+    <Internationalization id="NONE_zh" lang="zh" property="NONE" value=""/>
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
     <DBField dbFieldId="CUST_REQ_10001" dbFieldName="statusId" dbFieldTypeId="STATUS" description="当前状态" dbEntityId="CUST_REQ_10000"/>
