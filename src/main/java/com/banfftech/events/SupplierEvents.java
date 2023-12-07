@@ -378,14 +378,12 @@ public class SupplierEvents {
             priority = (String) actionParameters.get("priority");
         }
         Map<String, Object> resultMap = dispatcher.runSync("banfftech.createWorkEffortAndPartyGroupContact",
-                UtilMisc.toMap("userLogin", userLogin, "partyName", actionParameters.get("partyName"), "currentStatusId", "NOT_PROCESSED",
+                UtilMisc.toMap("userLogin", userLogin, "partyName", actionParameters.get("partyName"), "currentStatusId", "NOT_PROCESSED", "groupTypeId", actionParameters.get("groupTypeId"),
                         "primaryPhone", actionParameters.get("primaryPhone"), "primaryEmail", actionParameters.get("primaryEmail"), "priority", priority));
         Delegator delegator = dispatcher.getDelegator();
-        if ((Boolean) actionParameters.get("isGovernment")) {
+        if (actionParameters.get("groupTypeId").equals("GOVERNMENT_TYPE")) {
             dispatcher.runSync("banfftech.createPartyRole", UtilMisc.toMap("userLogin", userLogin, "partyId", resultMap.get("partyId"), "roleTypeId", "GOVERNMENT_SUPPLIER"));
         }
-        dispatcher.runSync("banfftech.createPartyAttribute", UtilMisc.toMap("userLogin", userLogin, "partyId", resultMap.get("partyId"), "attrName", "isGovernment", "attrValue", (Boolean) actionParameters.get("isGovernment") ? "Y" : "N"));
-
         dispatcher.runSync("banfftech.createProductCategoryRole",
                 UtilMisc.toMap("userLogin", userLogin, "partyId", resultMap.get("partyId"), "roleTypeId", "SUPPLIER",
                         "productCategoryId", actionParameters.get("productCategoryId"), "fromDate", UtilDateTime.nowTimestamp()));
