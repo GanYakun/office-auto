@@ -49,7 +49,7 @@ def generateFields(Map<String, Object> context){
         processNumeric = SupplierWorker.getProcessNumeric(supplierParty, delegator);
         processCritical = SupplierWorker.getProcessCritical(processNumeric);
         vendorTypeCritical = vendorTypeMap.get(supplierParty.get("groupTypeId"));
-        String ddFormDealStatus = SupplierWorker.getDDFormDealStatus(supplierParty, delegator);
+        Boolean ddFormIsSubmitted = SupplierWorker.ddFormIsSubmitted(supplierParty, delegator);
         Timestamp lastSubmittedDate = SupplierWorker.getLastSubmittedDate(supplierParty, delegator);
         riskCritical = SupplierWorker.getClassificationCriticalValue(supplierParty, delegator);
         if (UtilValidate.isNotEmpty(supplierParty.get("priority"))){

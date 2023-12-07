@@ -81,40 +81,7 @@ public class SupplierWorker {
         return isNoFormListCountry;
     }
 
-    /**
-     * 返回供应商填写ddForm情况
-     * @param supplierParty 供应商
-     * @param delegator
-     * @return ddFormDealStatus
-     */
-    public static String getDDFormDealStatus (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-        Boolean isSent = ddFormIsSent(delegator, supplierParty);
-        Boolean isSubmit = ddFormIsSubmitted(delegator, supplierParty);
-        Boolean isRequireChanges = ddFormRequireChanges(delegator, supplierParty);
-        Boolean isWrongType = ddFormIsWrongType(delegator, supplierParty);
-        if (isWrongType){
-            return "Wrong Types";
-        }else if (isRequireChanges){
-            return "Request";
-        }else if (isSubmit){
-            return "Submitted";
-        }else if (isSent){
-            return "Request";
-        }
-        return "Not Request";
-    }
-
-    private static Boolean ddFormIsSent(Delegator delegator, GenericValue supplierParty) throws GenericEntityException {
-        Boolean isSent = false;
-        List<GenericValue> supplierWorkEfforts = delegator.findByAnd("WorkEffortAndPartyGroupContact",
-                UtilMisc.toMap("partyId", supplierParty.get("partyId"), "approvePartyId", supplierParty.get("partyId")), null, true);
-        if (UtilValidate.isNotEmpty(supplierWorkEfforts)){
-            isSent = true;
-        }
-        return isSent;
-    }
-
-    private static Boolean ddFormIsSubmitted(Delegator delegator, GenericValue supplierParty) throws GenericEntityException {
+    public static Boolean ddFormIsSubmitted(Delegator delegator, GenericValue supplierParty) throws GenericEntityException {
         Boolean isSubmit = false;
         List<GenericValue> supplierWorkEfforts = delegator.findByAnd("WorkEffortAndPartyGroupContact",
                 UtilMisc.toMap("partyId", supplierParty.get("partyId"), "approvePartyId", supplierParty.get("partyId")), null, true);
@@ -126,43 +93,6 @@ public class SupplierWorker {
             isSubmit = true;
         }
         return isSubmit;
-    }
-
-    private static Boolean ddFormIsWrongType(Delegator delegator, GenericValue supplierParty) throws GenericEntityException{
-        Boolean isWrongType = false;
-        GenericValue partyAttribute = delegator.findOne("PartyAttribute",
-                UtilMisc.toMap("partyId", supplierParty.get("partyId"), "attrName", "ddFormType"), true);
-        List<GenericValue> supplierWorkEfforts = delegator.findByAnd("WorkEffortAndPartyGroupContact",
-                UtilMisc.toMap("partyId", supplierParty.get("partyId"), "approvePartyId", supplierParty.get("partyId")), null, true);
-        if (UtilValidate.isEmpty(supplierWorkEfforts)){
-            return false;
-        }
-        GenericValue supplierWorkEffort = EntityUtil.getFirst(supplierWorkEfforts);
-        if (UtilValidate.isEmpty(partyAttribute)){
-            return false;
-        }
-        String selectDDType = partyAttribute.getString("attrValue");
-        String recommendDDType = getDDFormType(supplierParty, delegator);
-        if (!selectDDType.equals(DDType.get(recommendDDType)) && supplierWorkEffort.get("currentStatusId").equals("NOT_PROCESSED")){
-            isWrongType = true;
-        }
-        return isWrongType;
-    }
-
-    private static Boolean ddFormRequireChanges(Delegator delegator, GenericValue supplierParty) throws GenericEntityException {
-        Boolean isRequireChanges = false;
-        GenericValue ddFormStatusHistory = delegator.findOne("PartyAttribute",
-                UtilMisc.toMap("partyId", supplierParty.get("partyId"), "attrName", "ddFormStatusHistory"), true);
-        List<GenericValue> supplierWorkEfforts = delegator.findByAnd("WorkEffortAndPartyGroupContact",
-                UtilMisc.toMap("partyId", supplierParty.get("partyId"), "approvePartyId", supplierParty.get("partyId")), null, true);
-        if (UtilValidate.isEmpty(supplierWorkEfforts)){
-            return false;
-        }
-        GenericValue supplierWorkEffort = EntityUtil.getFirst(supplierWorkEfforts);
-        if (UtilValidate.isNotEmpty(ddFormStatusHistory) && supplierWorkEffort.get("currentStatusId").equals("NOT_PROCESSED")){
-            isRequireChanges = true;
-        }
-        return isRequireChanges;
     }
 
     /**
@@ -299,6 +229,15 @@ public class SupplierWorker {
             return 3L;
         }else {
             return 1L;
+        }
+
+    }
+
+    public static String addNameForUpload (GenericValue partyMedia) {
+        if (UtilValidate.isNotEmpty(partyMedia.get("dataResourceName"))){
+            return "Download";
+        }else {
+            return null;
         }
 
     }
