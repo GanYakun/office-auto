@@ -45,6 +45,7 @@ under the License.
     <RoleType description="Distributor" roleTypeId="DISTRIBUTOR" parentTypeId="BUSINESS_RELATIONSHIP" />
     <RoleType description="Investment Target" roleTypeId="INVESTMENT_TARGET" parentTypeId="BUSINESS_RELATIONSHIP" />
     <RoleType description="Other (specify)" roleTypeId="OTHER_SPECIFY" parentTypeId="BUSINESS_RELATIONSHIP" />
+    <RoleType description="Company" roleTypeId="COMPANY"/>
 
     <CustRequestType description="采购请求" custRequestTypeId="PURCHASE_REQ"/>
 
@@ -119,6 +120,15 @@ under the License.
     <Enumeration enumId="EMP_GE1000_LT5000" enumTypeId="EMPLOYEES_ENUM" sequenceId="02" description="Between 1000~5000"/>
     <Enumeration enumId="EMP_GE5000_LT10000" enumTypeId="EMPLOYEES_ENUM" sequenceId="03" description="Between 5000~10000"/>
     <Enumeration enumId="EMP_GE10000" enumTypeId="EMPLOYEES_ENUM" sequenceId="04" description="Greater than 10000"/>
+
+    <!--供应商类型枚举值-->
+    <!--EnumerationType-->
+    <EnumerationType enumTypeId="VENDOR_TYPE_ENUM" description="Vendor Type Enumeration"/>
+    <!--Enumeration-->
+    <Enumeration enumId="GOVERNMENT_TYPE" enumTypeId="VENDOR_TYPE_ENUM" sequenceId="01" description="Government"/>
+    <Enumeration enumId="INTERNAL_ORG_TYPE" enumTypeId="VENDOR_TYPE_ENUM" sequenceId="02" description="Internal Organization"/>
+    <Enumeration enumId="REGULAR_TYPE" enumTypeId="VENDOR_TYPE_ENUM" sequenceId="03" description="Regular Vendor"/>
+    <Enumeration enumId="SMALL_PURCHASE_TYPE" enumTypeId="VENDOR_TYPE_ENUM" sequenceId="04" description="Small Purchase"/>
 
     <!--上市地区枚举值-->
     <!--EnumerationType-->

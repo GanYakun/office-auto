@@ -239,6 +239,9 @@
         <relation type="one-nofk" rel-entity-name="PartyGroupAndContact">
             <key-map field-name="partyId" rel-field-name="partyId"/>
         </relation>
+        <relation type="one-nofk" title="GroupType" rel-entity-name="Enumeration">
+            <key-map field-name="groupTypeId" rel-field-name="enumId"/>
+        </relation>
     </view-entity>
 
     <view-entity entity-name="PartyMediaResource"

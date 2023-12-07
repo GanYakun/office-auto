@@ -27,6 +27,7 @@ def generateFields(Map<String, Object> context){
     List<Entity> entityList = context.parameters.entityList;
     Delegator delegator = context.get("delegator");
     Map<String, Object> ddFormTypeMap = UtilMisc.toMap("No DD", 1L, "Simplified", 2L, "Standard", 3L);
+    Map<String, Object> vendorTypeMap = UtilMisc.toMap("GOVERNMENT_TYPE", 1L, "INTERNAL_ORG_TYPE", 2L, "REGULAR_TYPE", 3L, "SMALL_PURCHASE_TYPE", 5L);
     Map<String, Object> ddFormDealMap = UtilMisc.toMap("Not Request", 5L, "Request", 2L, "Submitted", 3L, "Require Changes", 2L, "Wrong Types", 1L);
     Map<String, Object> priorityMap = UtilMisc.toMap("PRIORITY_HIGH", 1L, "PRIORITY_MEDIUM", 3L, "PRIORITY_LOW", 5L);
     entityList.each { entity ->
@@ -35,6 +36,7 @@ def generateFields(Map<String, Object> context){
         ddFormTypeCritical = 0L;
         checkWarningCritical = 0L;
         ddFormTypeCritical = 0L;
+        vendorTypeCritical = 0L;
         ratingNumeric = 0L;
         processNumeric = 0L;
         processCritical = 0L;
@@ -46,6 +48,7 @@ def generateFields(Map<String, Object> context){
         ratingNumeric = SupplierWorker.getClassificationRatingNumber(supplierParty, delegator);
         processNumeric = SupplierWorker.getProcessNumeric(supplierParty, delegator);
         processCritical = SupplierWorker.getProcessCritical(processNumeric);
+        vendorTypeCritical = vendorTypeMap.get(supplierParty.get("groupTypeId"));
         String ddFormDealStatus = SupplierWorker.getDDFormDealStatus(supplierParty, delegator);
         Timestamp lastSubmittedDate = SupplierWorker.getLastSubmittedDate(supplierParty, delegator);
         riskCritical = SupplierWorker.getClassificationCriticalValue(supplierParty, delegator);
@@ -76,6 +79,7 @@ def generateFields(Map<String, Object> context){
         entity.addProperty(new Property(null, "ratingNumeric", ValueType.PRIMITIVE, ratingNumeric))
         entity.addProperty(new Property(null, "processNumeric", ValueType.PRIMITIVE, processNumeric))
         entity.addProperty(new Property(null, "processCritical", ValueType.PRIMITIVE, processCritical))
+        entity.addProperty(new Property(null, "vendorTypeCritical", ValueType.PRIMITIVE, vendorTypeCritical))
 
         //文件数量
         String supplierId = supplierParty.getString("partyId");

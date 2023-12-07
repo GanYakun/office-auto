@@ -28,6 +28,10 @@
         <Property Name="statusId">
             <Text Path="SupplierStatusItem/description" TextArrangement="TextOnly"/>
         </Property>
+        <Property Name="groupTypeId">
+            <Text Path="GroupTypeEnumeration/description" TextArrangement="TextOnly"/>
+            <ValueList WithFixedValues="true" CollectionPath="GroupTypeEnumerations"/>
+        </Property>
         <Property Name="logoImageUrl" IsImageURL="true"/>
         <Property Name="isGovernment" Type="Boolean" IsAttribute="true" Label="${isGovernment}"/>
         <!--供应商填写的ddForm类型-->
@@ -114,6 +118,7 @@
         <Property Name="complianceComments" Type="String" Label="${complianceComments}" IsAttribute="true"/>
         <Property Name="complianceCheckWarning" Type="String" IsAttribute="true"/>
         <Property Name="checkWarningCritical" Type="numeric"/>
+        <Property Name="vendorTypeCritical" Type="numeric"/>
         <!-- coWork Status -->
         <Property Name="applicationWorkStatus" Type="String" Label="${applicationWorkStatus}"/>
         <Property Name="applicationWorkCriticality" Type="Edm.Int64"/>
@@ -152,9 +157,10 @@
         <NavigationProperty Name="PriorityEnumeration"/>
         <NavigationProperty Name="ProductCategory" Type="ProductCategory"
                             Relations="ProductCategoryRole/ProductCategory" IsCollection="false"/>
-        <NavigationProperty Name="Department" Type="Department"
-                            Relations="ToPartyRelationship(roleTypeIdFrom=DEPARTMENT)/FromParty" IsCollection="true"/>
+        <NavigationProperty Name="Company" Type="Company"
+                            Relations="ToPartyRelationship(roleTypeIdFrom=COMPANY)/FromParty" IsCollection="true"/>
         <NavigationProperty Name="EmployeesEnumeration" Type="EmployeesEnumeration" Relations="EmployeesEnumeration"/>
+        <NavigationProperty Name="GroupTypeEnumeration" Type="GroupTypeEnumeration" Relations="GroupTypeEnumeration"/>
         <NavigationProperty Name="ListRegionEnumeration" Type="ListRegionEnumeration"
                             Relations="ListRegionEnumeration"/>
         <NavigationProperty Name="ListedCountry" Type="ListedCountry"
@@ -334,7 +340,11 @@
                 OfbizService="com.banfftech.events.SupplierEvents.createSupplierParty">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="true"/>
             <Parameter Name="partyName" Type="String" Label="${supplierActionPartyName}" Nullable="false"/>
-            <Parameter Name="isGovernment" Type="Boolean" Label="${isGovernment}" Nullable="false"/>
+            <Parameter Name="groupTypeId" Type="String" Label="${groupTypeId}" Nullable="false">
+                <ValueList CollectionPath="GroupTypeEnumerations" WithFixedValues="true">
+                    <ParameterInOut LocalDataProperty="groupTypeId" ValueListProperty="enumId"/>
+                </ValueList>
+            </Parameter>
             <Parameter Name="priority" Type="String" Label="${Priority}">
                 <ValueList CollectionPath="PriorityEnumerations" WithFixedValues="true" Label="${selectPriority}">
                     <ParameterInOut LocalDataProperty="priority" ValueListProperty="enumId"/>
@@ -757,7 +767,7 @@
         </FieldGroup>
 
         <Property Name="partyIdFrom">
-            <Text Path="Company/partyName" TextArrangement="TextOnly"/>
+            <Text Path="InternalCompany/partyName" TextArrangement="TextOnly"/>
             <ValueList CollectionPath="Companies" ParameterDisplayOnly="PartyAndContact/primaryPhone"/>
         </Property>
         <Property Name="partyIdTo">
@@ -770,7 +780,7 @@
 
         <NavigationProperty Name="Product"/>
         <NavigationProperty Name="SupplierParty" Type="SupplierParty" Relations="ToPartyGroupAndContact"/>
-        <NavigationProperty Name="Company" Type="Company" Relations="FromPartyGroupAndContact"/>
+        <NavigationProperty Name="InternalCompany" Type="InternalCompany" Relations="FromPartyGroupAndContact"/>
         <NavigationProperty Name="AgreementTerm"/>
         <Action Name="CreatePurchaseAgreement" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createPurchaseAgreement">
             <Parameter Name="agreement" Type="PurchaseAgreement" Nullable="false" IsCollection="true"/>
@@ -867,12 +877,7 @@
         <Action Name="CreateSupplierProduct" IsBound="true"
                 OfbizService="com.banfftech.events.SupplierEvents.createSupplierProduct" SideEffects="true">
             <Parameter Name="product" Type="Product" Nullable="false" IsCollection="true"/>
-            <Parameter Name="productId" Type="String" Label="${productId}" Nullable="false"/>
-            <!--            <Parameter Name="primaryProductCategoryId" Type="String" Label="${primaryProductCategoryId}" Nullable="false">-->
-            <!--                <ValueList CollectionPath="ProductCategories" WithFixedValues="true">-->
-            <!--                    <ParameterInOut ValueListProperty="productCategoryId" LocalDataProperty="primaryProductCategoryId"/>-->
-            <!--                </ValueList>-->
-            <!--            </Parameter>-->
+            <Parameter Name="productId" Type="String" Label="${goodsName}" Nullable="false"/>
             <ReturnType Type="Product"/>
         </Action>
         <NavigationProperty Name="PrimaryProductCategory"/>
@@ -897,12 +902,7 @@
         <Action Name="CreateSupplierService" IsBound="true"
                 OfbizService="com.banfftech.events.SupplierEvents.createSupplierProduct" SideEffects="true">
             <Parameter Name="service" Type="Service" Nullable="false" IsCollection="true"/>
-            <Parameter Name="productId" Type="String" Label="${productId}" Nullable="false"/>
-            <!--            <Parameter Name="primaryProductCategoryId" Type="String" Label="${primaryProductCategoryId}" Nullable="false">-->
-            <!--                <ValueList CollectionPath="ProductCategories" WithFixedValues="true">-->
-            <!--                    <ParameterInOut ValueListProperty="productCategoryId" LocalDataProperty="primaryProductCategoryId"/>-->
-            <!--                </ValueList>-->
-            <!--            </Parameter>-->
+            <Parameter Name="productId" Type="String" Label="${serviceName}" Nullable="false"/>
             <ReturnType Type="Service"/>
         </Action>
         <NavigationProperty Name="PrimaryProductCategory"/>
@@ -1017,44 +1017,44 @@
     <!--Party-->
     <EntityType Name="Party" EntitySetName="Parties" AutoSet="true" AutoProperties="true"/>
     <!--Company（公司）-->
-    <EntityType Name="Company" OfbizEntity="PartyGroupAndContact" AutoProperties="true"
-                EntityCondition="PartyRole/roleTypeId=INTERNAL_ORGANIZATIO" EntitySetName="Companies" AutoSet="true">
+    <EntityType Name="InternalCompany" OfbizEntity="PartyGroupAndContact" AutoProperties="true"
+                EntityCondition="PartyRole/roleTypeId=INTERNAL_ORGANIZATIO" EntitySetName="InternalCompanies" AutoSet="true">
         <Property Name="partyId">
             <Text Path="partyName" TextArrangement="TextOnly"/>
         </Property>
     </EntityType>
-    <EntityType Name="Department" OfbizEntity="PartyGroupAndContact" AutoProperties="true"
-                EntityCondition="PartyRole/roleTypeId=DEPARTMENT" OfbizType="PartyRole/roleTypeId=DEPARTMENT"
-                EntitySetName="Departments" AutoSet="true">
+    <EntityType Name="Company" OfbizEntity="PartyGroupAndContact" AutoProperties="true"
+                EntityCondition="PartyRole/roleTypeId=COMPANY" OfbizType="PartyRole/roleTypeId=COMPANY"
+                EntitySetName="Companies" AutoSet="true">
         <Property Name="partyId">
             <Text Path="partyName" TextArrangement="TextOnly"/>
         </Property>
 
         <LineItem Qualifier="DepartmentLineItem">
             <DataField Values="partyName," Importance="High"/>
-            <DataFieldForAction Label="${selectDepartment}" Action="SelectDepartment" Importance="High"
+            <DataFieldForAction Label="${selectCompany}" Action="SelectCompany" Importance="High"
                                 Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
-            <DataFieldForAction Label="${removeDepartment}" Action="RemoveDepartment" Importance="High"
+            <DataFieldForAction Label="${removeCompany}" Action="RemoveCompany" Importance="High"
                                 Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
 
-        <!--选择可以查看该供应商的部门-->
-        <Action Name="SelectDepartment" IsBound="true" EntitySetPath="department"
-                OfbizService="com.banfftech.events.SupplierEvents.selectDepartment"
+        <!--选择供应商所属公司-->
+        <Action Name="SelectCompany" IsBound="true" EntitySetPath="company"
+                OfbizService="com.banfftech.events.SupplierEvents.selectCompany"
                 StickySession="true" SideEffects="true">
-            <Parameter Name="department" Type="Department" Nullable="false" IsCollection="true"/>
+            <Parameter Name="company" Type="Company" Nullable="false" IsCollection="true"/>
             <Parameter Name="partyId" Type="String" Nullable="false" IsCollection="true"
-                       Label="${selectDepartmentParam}">
-                <ValueList CollectionPath="Departments">
+                       Label="${selectCompanyParam}">
+                <ValueList CollectionPath="Companies">
                     <ParameterInOut LocalDataProperty="partyId" ValueListProperty="partyId"/>
                 </ValueList>
             </Parameter>
         </Action>
-        <!--移除可以查看该供应商的部门-->
-        <Action Name="RemoveDepartment" IsBound="true" EntitySetPath="department"
-                OfbizService="com.banfftech.events.SupplierEvents.removeDepartment"
+        <!--移除供应商所属公司-->
+        <Action Name="RemoveCompany" IsBound="true" EntitySetPath="company"
+                OfbizService="com.banfftech.events.SupplierEvents.removeCompany"
                 StickySession="true">
-            <Parameter Name="department" Type="Department" Nullable="false" IsCollection="false"/>
+            <Parameter Name="company" Type="Company" Nullable="false" IsCollection="false"/>
         </Action>
     </EntityType>
     <!--CustomerParty（客户）-->
@@ -1246,6 +1246,13 @@
 
     <EntityType Name="EmployeesEnumeration" Orderby="sequenceId" EntitySetName="EmployeesEnumerations"
                 OfbizEntity="Enumeration" EntityCondition="enumTypeId=EMPLOYEES_ENUM" AutoProperties="true">
+        <Property Name="enumId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+
+    <EntityType Name="GroupTypeEnumeration" Orderby="sequenceId" EntitySetName="GroupTypeEnumerations"
+                OfbizEntity="Enumeration" EntityCondition="enumTypeId=VENDOR_TYPE_ENUM" AutoProperties="true">
         <Property Name="enumId">
             <Text Path="description" TextArrangement="TextOnly"/>
         </Property>
