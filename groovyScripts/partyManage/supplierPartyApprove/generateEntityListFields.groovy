@@ -49,7 +49,7 @@ def generateFields(Map<String, Object> context){
         processNumeric = SupplierWorker.getProcessNumeric(supplierParty, delegator);
         processCritical = SupplierWorker.getProcessCritical(processNumeric);
         vendorTypeCritical = vendorTypeMap.get(supplierParty.get("groupTypeId"));
-        Boolean ddFormIsSubmitted = SupplierWorker.ddFormIsSubmitted(supplierParty, delegator);
+        Boolean ddFormIsSubmitted = SupplierWorker.ddFormIsSubmitted(delegator, supplierParty);
         Timestamp lastSubmittedDate = SupplierWorker.getLastSubmittedDate(supplierParty, delegator);
         riskCritical = SupplierWorker.getClassificationCriticalValue(supplierParty, delegator);
         if (UtilValidate.isNotEmpty(supplierParty.get("priority"))){
@@ -80,6 +80,7 @@ def generateFields(Map<String, Object> context){
         entity.addProperty(new Property(null, "processNumeric", ValueType.PRIMITIVE, processNumeric))
         entity.addProperty(new Property(null, "processCritical", ValueType.PRIMITIVE, processCritical))
         entity.addProperty(new Property(null, "vendorTypeCritical", ValueType.PRIMITIVE, vendorTypeCritical))
+        entity.addProperty(new Property(null, "ddFormIsSubmitted", ValueType.PRIMITIVE, ddFormIsSubmitted))
 
         //文件数量
         String supplierId = supplierParty.getString("partyId");
@@ -99,7 +100,7 @@ def generateFields(Map<String, Object> context){
         //DDFormPDF访问地址
         String url = null;
         String formName = null;
-        if ("Submitted".equals(ddFormDealStatus)) {
+        if (ddFormIsSubmitted) {
             GenericValue genericValue = EntityQuery.use(delegator).from("PartyAttribute").where("partyId", supplierId, "attrName", "ddFormType").queryFirst();
             if (UtilValidate.isNotEmpty(genericValue)) {
                 String attrValue = genericValue.getString("attrValue");

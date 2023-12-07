@@ -604,6 +604,7 @@
                 Handler="component://officeauto/groovyScripts/partyManage/surveyQuestionAppl/generateEntityListFields.groovy">
         <Property Name="response" Type="String" Label="${response}"/>
         <Property Name="question" Type="String" Label="${question}"/>
+        <Property Name="boolResponseCritical" Type="numeric"/>
         <LineItem Qualifier="SurveyQuestionApplLineItem">
             <DataField Values="question,response" Importance="High"/>
         </LineItem>
