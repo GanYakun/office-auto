@@ -638,7 +638,7 @@
         <NavigationProperty Name="PartyClassificationGroup"/>
 
         <Property Name="statusColor" Type="numeric" Hidden="true" HiddenFilter="true"/>
-        <Property Name="ratingNumeric" Type="numeric"/>
+        <Property Name="ratingNumeric" Type="numeric" Label="ratingNumeric"/>
     </EntityType>
     <!--PartyClassificationGroup（评级组）-->
     <EntityType Name="PartyClassificationGroup" AutoSet="true" AutoProperties="true"
