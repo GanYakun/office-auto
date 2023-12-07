@@ -80,21 +80,21 @@ under the License.
     <!-- 财务报表 -->
     <PartyContentType partyContentTypeId="SUPPLIER_DOCUMENT"/>
     <!-- 保密协议 -->
-    <PartyContentType partyContentTypeId="SUPPLIER_DOCUMENT"/>
+<!--    <PartyContentType partyContentTypeId="SUPPLIER_DOCUMENT"/>-->
     <!-- 合规报告 -->
     <PartyContentType partyContentTypeId="COMPLIANCE_REPORT"/>
     <!-- 商业许可证 -->
-    <PartyContentType partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <!-- 增值税证书 -->
-    <PartyContentType partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <!-- POA -->
-    <PartyContentType partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <!-- 税号 -->
-    <PartyContentType partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <!-- 证件号 -->
-    <PartyContentType partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <!-- 其他文件 -->
-    <PartyContentType partyContentTypeId="SUPPLIER_DOCUMENT"/>
+<!--    <PartyContentType partyContentTypeId="SUPPLIER_DOCUMENT"/>-->
+<!--    &lt;!&ndash; 增值税证书 &ndash;&gt;-->
+<!--    <PartyContentType partyContentTypeId="SUPPLIER_DOCUMENT"/>-->
+<!--    &lt;!&ndash; POA &ndash;&gt;-->
+<!--    <PartyContentType partyContentTypeId="SUPPLIER_DOCUMENT"/>-->
+<!--    &lt;!&ndash; 税号 &ndash;&gt;-->
+<!--    <PartyContentType partyContentTypeId="SUPPLIER_DOCUMENT"/>-->
+<!--    &lt;!&ndash; 证件号 &ndash;&gt;-->
+<!--    <PartyContentType partyContentTypeId="SUPPLIER_DOCUMENT"/>-->
+<!--    &lt;!&ndash; 其他文件 &ndash;&gt;-->
+<!--    <PartyContentType partyContentTypeId="SUPPLIER_DOCUMENT"/>-->
     <!-- Logo -->
     <PartyContentType partyContentTypeId="SUPPLIER_LOGO"/>
 
@@ -123,6 +123,10 @@ under the License.
     <!--上市地区枚举值-->
     <!--EnumerationType-->
     <EnumerationType enumTypeId="LIST_REGION_ENUM" description="List Region Enumeration"/>
+    <EnumerationType enumTypeId="BOOLEAN_ENUM_TYPE" description="Boolean Enum" hasTable="N" />
+    <Enumeration enumId="TRUE" enumTypeId="BOOLEAN_ENUM_TYPE" description="Yes"/>
+    <Enumeration enumId="FALSE" enumTypeId="BOOLEAN_ENUM_TYPE" description="No"/>
+
     <!--Enumeration-->
     <Enumeration enumId="LIST_CHINA" enumTypeId="LIST_REGION_ENUM" description="List in China"/>
     <Enumeration enumId="LIST_EU" enumTypeId="LIST_REGION_ENUM" description="List in Europe"/>

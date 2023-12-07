@@ -11,37 +11,13 @@
             <Title Path="ddStatus"/>
             <Description Path="partyName"/>
         </HeaderInfo>
-<!--        <RelAlias Name="CountryIncorporation" Relations="PartyGeoPoint(partyGeoPointTypeId=COUNTRY_INCORPORATION)/GeoPoint"/>-->
-<!--        <RelAlias Name="RegisteredCountry" Relations="PartyGeo(partyGeoTypeId=REGISTERED_COUNTRY)"/>-->
         <RelAlias Name="BusinessLocation" Relations="PartyGeoPoint(partyGeoPointTypeId=BUSINESS_LOCATION)/GeoPoint"/>
         <RelAlias Name="PartyIdentification" Relations="PartyIdentification(partyIdentificationTypeId=REGISTRATION_NUMBER)"/>
-        <RelAlias Name="WorkScopeAnswer" Relations="SurveyQuestionAnswer(surveyQuestionId=9004)"/>
-        <RelAlias Name="SurveyQuestionAnswer0" Relations="SurveyQuestionAnswer(surveyQuestionId=9000)"/>
-        <RelAlias Name="SurveyQuestionAnswer1" Relations="SurveyQuestionAnswer(surveyQuestionId=9001)"/>
-        <RelAlias Name="SurveyQuestionAnswer2" Relations="SurveyQuestionAnswer(surveyQuestionId=9002)"/>
-        <RelAlias Name="SurveyQuestionAnswer3" Relations="SurveyQuestionAnswer(surveyQuestionId=9003)"/>
-        <RelAlias Name="SurveyQuestionAnswer5" Relations="SurveyQuestionAnswer(surveyQuestionId=9005)"/>
-        <RelAlias Name="SurveyQuestionAnswer6" Relations="SurveyQuestionAnswer(surveyQuestionId=9006)"/>
-
         <Property Name="partyName" Label="${NONE}"/>
         <Property Name="dateIncorporation" IsDateAttribute="true" Type="Timestamp" Label="${NONE}"/>
-<!--        <Property Name="countryIncorporation" Type="String" RelAlias="CountryIncorporation" Field="information" Label="Country of Incorporation/Country of Birth"/>-->
-<!--        <Property Name="registeredCountry" Type="String" RelAlias="RegisteredCountry" Field="geoId" Label="Country of Incorporation/Country of Birth"/>-->
         <Property Name="businessLocation" Type="String" RelAlias="BusinessLocation" Field="information" Label="${BusinessLocation}"/>
         <Property Name="registrationNumber" Type="String" RelAlias="PartyIdentification" Field="idValue" Label="${NONE}"/>
         <Property Name="workScope" Type="String" RelAlias="WorkScopeAnswer" Field="textResponse" Label="${WorkScopeAnswer}"/>
-        <Property Name="answer0" Type="Boolean" RelAlias="SurveyQuestionAnswer0" Field="booleanResponse" Label="Does the Business Partner conduct any business in, with, or involving (directly or indirectly) individuals or entities in or from Cuba, Iran, North Korea, Syria, Russia, Belarus or the Crimea region (each, a “Sanctioned Country”)?"/>
-        <Property Name="answerText0" Type="String" RelAlias="SurveyQuestionAnswer0" Field="textResponse" Label="Comments"/>
-        <Property Name="answer1" Type="Boolean" RelAlias="SurveyQuestionAnswer1" Field="booleanResponse" Label="Does the Business Partner have any physical or legal presence (including offices, branches, and operations) in any Sanctioned Country?"/>
-        <Property Name="answerText1" Type="String" RelAlias="SurveyQuestionAnswer1" Field="textResponse" Label="Comments"/>
-        <Property Name="answer2" Type="Boolean" RelAlias="SurveyQuestionAnswer2" Field="booleanResponse" Label="Is the Business Partner or any direct or indirect owner of the Business Partner currently listed, or has been listed in the last five (5) years, on any government watchlist, export or trade control list or sanctioned"/>
-        <Property Name="answerText2" Type="String" RelAlias="SurveyQuestionAnswer2" Field="textResponse" Label="Comments"/>
-        <Property Name="answer3" Type="Boolean" RelAlias="SurveyQuestionAnswer3" Field="booleanResponse" Label="To the best of your knowledge, currently or during the last during the last five (5) years, have any of the Business Partner’s owners, officers, directors or senior management been identified on any official, governmental or regulatory body’s list as a politically exposed person?"/>
-        <Property Name="answerText3" Type="String" RelAlias="SurveyQuestionAnswer3" Field="textResponse" Label="Comments"/>
-        <Property Name="answer5" Type="Boolean" RelAlias="SurveyQuestionAnswer5" Field="booleanResponse" Label="To the best of your knowledge, currently or during the last during the last five (5) years, has the Business Partner (including its owners, officers, directors or senior management) been: (1) subject to any investigation, administrative action, fine, censure or legal proceedings involving bribery, fraud, corruption, money laundering, violations of sanctions, export controls or similar offenses; or (2) suspended, restricted from doing business, or disbarred/excluded by any regulator, professional licensing agency or government program? For each “Yes” answer, provide complete details of the relevant circumstances."/>
-        <Property Name="answerText5" Type="String" RelAlias="SurveyQuestionAnswer5" Field="textResponse" Label="Comments"/>
-        <Property Name="answer6" Type="Boolean" RelAlias="SurveyQuestionAnswer6" Field="booleanResponse" Label="Is any owner, director, officer or senior management of the Business Partner, a former employee of the Company? If “Yes”, provide name, company, title, and last date of employment:"/>
-        <Property Name="answerText6" Type="String" RelAlias="SurveyQuestionAnswer6" Field="textResponse" Label="Comments"/>
         <Property Name="agent" IsAttribute="true" Type="Boolean" Label="Agent"/>
         <Property Name="jvPartner" IsAttribute="true" Type="Boolean" Label="JV Partner"/>
         <Property Name="subContractor" IsAttribute="true" Type="Boolean" Label="Sub-contractor"/>
@@ -91,25 +67,6 @@
         <!-- 11.更名记录 PartyNameHistory/LineItem-->
         <!-- 最终受益人 -->
         <!-- 董事/高级职员姓名 -->
-        <!-- DDForm问题 -->
-        <FieldGroup Label="ComplianceCert0" Qualifier="ComplianceCert0">
-            <DataField Values="answer0,answerText0" Importance="High"/>
-        </FieldGroup>
-        <FieldGroup Label="ComplianceCert1" Qualifier="ComplianceCert1">
-            <DataField Values="answer1,answerText1" Importance="High"/>
-        </FieldGroup>
-        <FieldGroup Label="ComplianceCert2" Qualifier="ComplianceCert2">
-            <DataField Values="answer2,answerText2" Importance="High"/>
-        </FieldGroup>
-        <FieldGroup Label="ComplianceCert3" Qualifier="ComplianceCert3">
-            <DataField Values="answer3,answerText3" Importance="High"/>
-        </FieldGroup>
-        <FieldGroup Label="ComplianceCert5" Qualifier="ComplianceCert5">
-            <DataField Values="answer5,answerText5" Importance="High"/>
-        </FieldGroup>
-        <FieldGroup Label="ComplianceCert6" Qualifier="ComplianceCert6">
-            <DataField Values="answer6,answerText6" Importance="High"/>
-        </FieldGroup>
         <NavigationProperty Name="PartyNameHistory"/>
         <NavigationProperty Name="BusinessRelationship" Relations="PartyRoleType(parentTypeId=BUSINESS_RELATIONSHIP)" IsCollection="true" Type="BusinessRelationship"/>
         <NavigationProperty Name="BeneficialPerson" Type="RelationshipAndToParty" IsCollection="true"
@@ -121,7 +78,10 @@
         <!-- 注册地址 -->
         <NavigationProperty Name="RegisterPostalAddress" Type="RegisterPostalAddress"
                             Relations="PartyContactMechPurpose(contactMechPurposeTypeId=REGISTERED_LOCATION)/PostalAddress" IsCollection="false"/>
-                <NavigationProperty Name="RegisteredCountry" Type="PartyGeo" Relations="PartyGeo(partyGeoTypeId=REGISTERED_COUNTRY)" IsCollection="false"/>
+        <NavigationProperty Name="RegisteredCountry" Type="PartyGeo" Relations="PartyGeo(partyGeoTypeId=REGISTERED_COUNTRY)" IsCollection="false"/>
+        <!-- DDForm问题 -->
+        <NavigationProperty Name="SurveyQuestionAnswer" Type="DDFormSurveyQuestionAnswer"
+                            Relations="SurveyQuestionAnswer(surveyQuestionId in (9000,9001,9002,9003,9005,9006))" IsCollection="true"/>
 
         <!--Submit to procurement-->
         <Action Name="SubmitDDForm" IsBound="true" EntitySetPath="supplierDDForm"
@@ -162,36 +122,31 @@
         <NavigationProperty Name="CityGeo"/>
     </EntityType>
 
-<!--    <EntityType Name="PartyContactMechPurposeAndAddress" AutoProperties="true" EntitySetName="PurposeAndAddresses"-->
-<!--                DraftEntityName="PurposeAndAddressesDraft">-->
-<!--        <LineItem Qualifier="PostalAddressLineItem">-->
-<!--            <DataField Values="countryGeoId,stateProvinceGeoId,cityGeoId,address1,address2,contactNumber,email" Importance="High"/>-->
-<!--        </LineItem>-->
-<!--        <Property Name="countryGeoId">-->
-<!--            <Text Path="CountryGeo/geoName" TextArrangement="TextOnly"/>-->
-<!--            <ValueList CollectionPath="Countries" WithFixedValues="true">-->
-<!--                <ParameterOut ValueListProperty="geoId" LocalDataProperty="countryGeoId"/>-->
-<!--            </ValueList>-->
-<!--        </Property>-->
-<!--        <Property Name="stateProvinceGeoId">-->
-<!--            <Text Path="StateProvinceGeo/geoName" TextArrangement="TextOnly"/>-->
-<!--            <ValueList CollectionPath="Provinces" WithFixedValues="true">-->
-<!--                <ParameterIn LocalDataProperty="countryGeoId" ValueListProperty="geoIdFrom"/>-->
-<!--                <ParameterOut LocalDataProperty="stateProvinceGeoId" ValueListProperty="geoId"/>-->
-<!--            </ValueList>-->
-<!--        </Property>-->
-<!--        <Property Name="cityGeoId">-->
-<!--            <Text Path="CityGeo/geoName" TextArrangement="TextOnly"/>-->
-<!--            <ValueList CollectionPath="Cities" WithFixedValues="true">-->
-<!--                <ParameterIn LocalDataProperty="stateProvinceGeoId" ValueListProperty="geoIdFrom"/>-->
-<!--                <ParameterOut LocalDataProperty="cityGeoId" ValueListProperty="geoId"/>-->
-<!--            </ValueList>-->
-<!--        </Property>-->
-<!--        <NavigationProperty Name="CountryGeo"/>-->
-<!--        <NavigationProperty Name="StateProvinceGeo"/>-->
-<!--        <NavigationProperty Name="CityGeo"/>-->
-<!--        <NavigationProperty Name="ContactMechPurposeType"/>-->
-<!--    </EntityType>-->
+
+    <EntityType Name="DDFormSurveyQuestionAnswer" OfbizEntity="SurveyQuestionAnswer" AutoProperties="true"
+                EntitySetName="DDFormSurveyQuestionAnswers" DraftEntityName="DDFormSurveyQuestionAnswerDraft">
+        <Property Name="enumResponse" Label="${NONE}">
+            <Text Path="BooleanEnum/description" TextArrangement="TextOnly"/>
+            <ValueList CollectionPath="BooleanEnums" WithFixedValues="true"/>
+        </Property>
+        <LineItem Qualifier="AnswerLineItem">
+            <DataField Values="DDFormSurveyQuestion/question,enumResponse,textResponse" Importance="High"/>
+        </LineItem>
+        <NavigationProperty Name="DDFormSurveyQuestion" Type="DDFormSurveyQuestion" Relations="SurveyQuestion" IsCollection="false"/>
+        <NavigationProperty Name="BooleanEnum" Type="BooleanEnum" Relations="RepsEnumeration" IsCollection="false"/>
+    </EntityType>
+
+    <EntityType Name="DDFormSurveyQuestion" OfbizEntity="SurveyQuestion" AutoProperties="true"
+                EntitySetName="DDFormSurveyQuestions">
+        <Property Name="question" Computed="true"/>
+    </EntityType>
+
+    <!-- Bool Enum -->
+    <EntityType Name="BooleanEnum" OfbizEntity="Enumeration" EntitySetName="BooleanEnums" EntityCondition="enumTypeId=BOOLEAN_ENUM_TYPE" AutoProperties="true">
+        <Property Name="enumId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
 
     <EntityType Name="ContactMechPurposeType" EntityCondition="parentTypeId=LOCATION"  EntitySetName="ContactMechPurposeTypes" AutoProperties="true">
         <Property Name="contactMechPurposeTypeId">

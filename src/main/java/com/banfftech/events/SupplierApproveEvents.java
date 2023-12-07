@@ -13,6 +13,7 @@ import org.apache.ofbiz.entity.Delegator;
 import org.apache.ofbiz.entity.GenericEntityException;
 import org.apache.ofbiz.entity.GenericValue;
 import org.apache.ofbiz.entity.util.EntityQuery;
+import org.apache.ofbiz.entity.util.EntityUtil;
 import org.apache.ofbiz.service.GeneralServiceException;
 import org.apache.ofbiz.service.GenericServiceException;
 import org.apache.ofbiz.service.LocalDispatcher;
@@ -196,7 +197,7 @@ public class SupplierApproveEvents {
         if (UtilValidate.isNotEmpty(ddFormType)) {
             CommonUtils.setObjectAttribute(party, "ddFormType", ddFormType);
         }
-        GenericValue ddFormTask = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact") .where("approvePartyId", partyId, "partyId", partyId).queryFirst();
+        GenericValue ddFormTask = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("approvePartyId", partyId, "partyId", partyId).queryFirst();
         if (UtilValidate.isEmpty(ddFormTask)) {
             //首次传递
             String nextWorkEffortId = delegator.getNextSeqId("WorkEffort");
@@ -280,7 +281,7 @@ public class SupplierApproveEvents {
             GenericValue firstTask = EntityQuery.use(delegator).from("WorkEffort").where("partyId", partyId).orderBy("createdDate").queryFirst();
             GenericValue createUser = delegator.findOne("UserLogin", UtilMisc.toMap("userLoginId", firstTask.getString("createdByUserLogin")), false);
             GenericValue applicantParty = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", createUser.getString("partyId")).queryFirst();
-            String applicantEmail =  applicantParty.getString("primaryEmail");
+            String applicantEmail = applicantParty.getString("primaryEmail");
             if (UtilValidate.isNotEmpty(applicantEmail)) {
                 UtilEmail.sendEmail(applicantEmail, "Supplier registration completed", content);
             } else {
@@ -293,7 +294,7 @@ public class SupplierApproveEvents {
 
 
     public static void sendEmailToTarget(Delegator delegator, String target, HttpServletRequest httpServletRequest, OdataOfbizEntity entity,
-                                           GenericValue parentWorkEffort, String defaultEmail) throws GenericEntityException, UnsupportedEncodingException {
+                                         GenericValue parentWorkEffort, String defaultEmail) throws GenericEntityException, UnsupportedEncodingException {
         //获取app访问地址和邮件
         String currentUrl = httpServletRequest.getRequestURL().toString().replace(httpServletRequest.getRequestURI(), "");
         Object supplierPartyId = entity.getPropertyValue("partyId");
@@ -327,7 +328,7 @@ public class SupplierApproveEvents {
             odataId = odataId.replaceAll("'[^']*'", "'" + coWorkId + "'");
             GenericValue applicantParty = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", createUser.getString("partyId")).queryFirst();
             currentUrl += "/menu6/supplierapprove-managebyapplication/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
-            targetEmail =  applicantParty.getString("primaryEmail");
+            targetEmail = applicantParty.getString("primaryEmail");
         }
         if ("supplier".equals(target)) {
             odataId = odataId.replaceAll("'[^']*'", "'" + supplierPartyId + "'");
@@ -360,42 +361,61 @@ public class SupplierApproveEvents {
         OdataOfbizEntity supplierParty = (OdataOfbizEntity) actionParameters.get("supplierParty");
         GenericValue coWork = supplierParty.getGenericValue();
         String partyId = coWork.getString("partyId");
-        boolean parentActive = true;
-        //applicant task
-        GenericValue applicantTask = EntityQuery.use(delegator).from("WorkEffort").where("partyId", partyId).orderBy("createdDate").queryFirst();
-        String nodeStatus = applicantTask.getString("currentStatusId");
-        Map<String, Object> applicantNode = UtilMisc.toMap("nodeSeq", 0, "nodeName", "Applicant", "nodeDescription", "applicant Description", "nodeStartDate", UtilDateTime.nowTimestamp(),
-                "nodeCompletedDate", UtilDateTime.nowTimestamp(), "isActive", false);
-        if ("NOT_PROCESSED".equals(nodeStatus)) {
-            applicantNode.put("isActive", true);
-            parentActive = false;
-        }
-
-        //vendor task
-        GenericValue vendorTask = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", partyId, "approvePartyId", partyId).queryFirst();
-        Map<String, Object> vendorNode = UtilMisc.toMap("nodeSeq", 1, "nodeName", "Vendor", "nodeDescription", "vendor Description", "nodeStartDate", UtilDateTime.nowTimestamp(),
-                "nodeCompletedDate", UtilDateTime.nowTimestamp(), "isActive", false);
-        if (UtilValidate.isNotEmpty(vendorTask) && "NOT_PROCESSED".equals(vendorTask.getString("currentStatusId"))) {
-            vendorNode.put("isActive", true);
-            parentActive = false;
-        }
-
-        //compliance task
-        GenericValue complianceTask = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", partyId, "approvePartyId", "HG").queryFirst();
-        Map<String, Object> complianceNode = UtilMisc.toMap("nodeSeq", 3, "nodeName", "Compliance", "nodeDescription", "compliance Description", "nodeStartDate", UtilDateTime.nowTimestamp(),
-                "nodeCompletedDate", UtilDateTime.nowTimestamp(), "isActive", false);
-        if (UtilValidate.isNotEmpty(complianceTask) && "NOT_PROCESSED".equals(complianceTask.getString("currentStatusId"))) {
-            complianceNode.put("isActive", true);
-            parentActive = false;
-        }
-
-        //procurement task
+        //根据状态变更记录补充所有的节点信息
+        Map<String, Object> submitted = UtilMisc.toMap("nodeSeq", 0, "nodeName", "Submitted", "nodeDescription", "COWORK_CREATED", "isActive", false);
+        Map<String, Object> ddRequested = UtilMisc.toMap("nodeSeq", 1, "nodeName", "DD Requested", "nodeDescription", "REQUEST_DD", "isActive", false);
+        Map<String, Object> ddCompleted = UtilMisc.toMap("nodeSeq", 2, "nodeName", "DD Completed", "nodeDescription", "COMPLETE_DD", "isActive", false);
+        Map<String, Object> documentReady = UtilMisc.toMap("nodeSeq", 3, "nodeName", "Document Ready", "nodeDescription", "DOC_READY", "isActive", false);
+        Map<String, Object> complianceRequested = UtilMisc.toMap("nodeSeq", 4, "nodeName", "Compliance Requested", "nodeDescription", "REQUEST_COMP", "isActive", false);
+        Map<String, Object> complianceCompleted = UtilMisc.toMap("nodeSeq", 5, "nodeName", "Compliance Completed", "nodeDescription", "COMPLETE_COMP", "isActive", false);
+        Map<String, Object> registered = UtilMisc.toMap("nodeSeq", 6, "nodeName", "Registered", "nodeDescription", "COMPLETE", "isActive", false);
         GenericValue procurementTask = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", partyId, "workEffortTypeId", "COWORK").queryFirst();
-        Map<String, Object> procurementNode = UtilMisc.toMap("nodeSeq", 2, "nodeName", "Procurement", "nodeDescription", "procurement Description", "nodeStartDate", UtilDateTime.nowTimestamp(),
-                "nodeCompletedDate", UtilDateTime.nowTimestamp(), "isActive", parentActive);
-        return UtilMisc.toList(applicantNode, vendorNode, procurementNode, complianceNode);
+        if (UtilValidate.isNotEmpty(procurementTask)) {
+            String workEffortId = procurementTask.getString("workEffortId");
+            String statusId = procurementTask.getString("currentStatusId");
+            GenericValue statusGV = EntityQuery.use(delegator).from("WorkEffortStatus").where("workEffortId", workEffortId, "statusId", "COWORK_CREATED").orderBy("statusDatetime").queryFirst();
+            if (UtilValidate.isNotEmpty(statusGV)) {
+                submitted.put("nodeStartDate", statusGV.getTimestamp("statusDatetime"));
+                submitted.put("isActive", statusId.equals("COWORK_CREATED"));
+            }
+            statusGV = EntityQuery.use(delegator).from("WorkEffortStatus").where("workEffortId", workEffortId, "statusId", "REQUEST_DD").orderBy("statusDatetime").queryFirst();
+            if (UtilValidate.isNotEmpty(statusGV)) {
+                ddRequested.put("nodeStartDate", statusGV.getTimestamp("statusDatetime"));
+                ddRequested.put("isActive", statusId.equals("REQUEST_DD"));
+            }
+            statusGV = EntityQuery.use(delegator).from("WorkEffortStatus")
+                    .where("workEffortId", workEffortId, "statusId", "COMPLETE_DD").orderBy("statusDatetime").queryFirst();
+            if (UtilValidate.isNotEmpty(statusGV)) {
+                ddCompleted.put("nodeStartDate", statusGV.getTimestamp("statusDatetime"));
+                ddCompleted.put("isActive", statusId.equals("COMPLETE_DD"));
+            }
+            statusGV = EntityQuery.use(delegator).from("WorkEffortStatus")
+                    .where("workEffortId", workEffortId, "statusId", "DOC_READY").orderBy("statusDatetime").queryFirst();
+            if (UtilValidate.isNotEmpty(statusGV)) {
+                documentReady.put("nodeStartDate", statusGV.getTimestamp("statusDatetime"));
+                documentReady.put("isActive", statusId.equals("DOC_READY"));
+            }
+            statusGV = EntityQuery.use(delegator).from("WorkEffortStatus")
+                    .where("workEffortId", workEffortId, "statusId", "REQUEST_COMP").orderBy("statusDatetime").queryFirst();
+            if (UtilValidate.isNotEmpty(statusGV)) {
+                complianceRequested.put("nodeStartDate", statusGV.getTimestamp("statusDatetime"));
+                complianceRequested.put("isActive", statusId.equals("REQUEST_COMP"));
+            }
+            statusGV = EntityQuery.use(delegator).from("WorkEffortStatus")
+                    .where("workEffortId", workEffortId, "statusId", "COMPLETE_COMP").orderBy("statusDatetime").queryFirst();
+            if (UtilValidate.isNotEmpty(statusGV)) {
+                complianceCompleted.put("nodeStartDate", statusGV.getTimestamp("statusDatetime"));
+                complianceCompleted.put("isActive", statusId.equals("COMPLETE_COMP"));
+            }
+            statusGV = EntityQuery.use(delegator).from("WorkEffortStatus")
+                    .where("workEffortId", workEffortId, "statusId", "COMPLETE").orderBy("statusDatetime").queryFirst();
+            if (UtilValidate.isNotEmpty(statusGV)) {
+                registered.put("nodeStartDate", statusGV.getTimestamp("statusDatetime"));
+                registered.put("isActive", statusId.equals("COMPLETE"));
+            }
+        }
+        return UtilMisc.toList(submitted, ddRequested, ddCompleted, documentReady, complianceRequested, complianceCompleted, registered);
     }
-
 
 
 }

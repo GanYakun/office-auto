@@ -83,6 +83,7 @@ under the License.
         <field name="floatResponse" type="floating-point"></field>
         <field name="numericResponse" type="numeric"></field>
         <field name="textResponse" type="very-long"></field>
+        <field name="enumResponse" type="id"></field>
         <field name="surveyOptionSeqId" type="id"></field>
         <field name="answeredDate" type="date-time"></field>
         <field name="lastModifiedDate" type="date-time"></field>
@@ -92,6 +93,9 @@ under the License.
         </relation>
         <relation type="one" fk-name="SQA_SQ" rel-entity-name="SurveyQuestion">
             <key-map field-name="surveyQuestionId"/>
+        </relation>
+        <relation type="one" fk-name="SQANSWER_ENUM" title="Reps" rel-entity-name="Enumeration">
+            <key-map field-name="enumResponse" rel-field-name="enumId"/>
         </relation>
     </entity>
     
