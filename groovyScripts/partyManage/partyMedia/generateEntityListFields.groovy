@@ -37,6 +37,7 @@ def generateFields(Map<String, Object> context){
         String url = "/officeauto/control/odataAppSvc/supplierApproveService/PartyMediaResources('" + partyContentId + "')/otherData"
         entity.addProperty(new Property(null, "fileUrl", ValueType.PRIMITIVE, url))
         entity.addProperty(new Property(null, "uploadDocCritical", ValueType.PRIMITIVE, uploadDocCritical))
+        entity.addProperty(new Property(null, "addNameForUpload", ValueType.PRIMITIVE, addNameForUpload))
     }
     return entityList;
 }

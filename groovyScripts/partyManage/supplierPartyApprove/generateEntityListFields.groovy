@@ -84,19 +84,6 @@ def generateFields(Map<String, Object> context){
 
         //文件数量
         String supplierId = supplierParty.getString("partyId");
-        GenericValue fs = EntityQuery.use(delegator).from("PartyMediaResource").where("partyId", supplierId, "partyContentTypeId", "FINANCIAL_STATEMENTS").queryFirst();
-        GenericValue ca = EntityQuery.use(delegator).from("PartyMediaResource").where("partyId", supplierId, "partyContentTypeId", "CONFIDENTIALITY_AGREEMENT").queryFirst();
-        GenericValue cp = EntityQuery.use(delegator).from("PartyMediaResource").where("partyId", supplierId, "partyContentTypeId", "COMPLIANCE_REPORT").queryFirst();
-        int fsCriticality = UtilValidate.isNotEmpty(fs) && UtilValidate.isNotEmpty(fs.getString("dataResourceName")) ? 3 : 1;
-        int caCriticality = UtilValidate.isNotEmpty(ca) && UtilValidate.isNotEmpty(ca.getString("dataResourceName")) ? 3 : 1;
-        int cpCriticality = UtilValidate.isNotEmpty(cp) && UtilValidate.isNotEmpty(cp.getString("dataResourceName")) ? 3 : 1;
-
-        entity.addProperty(new Property(null, "fsStatus", ValueType.PRIMITIVE, fsCriticality == 1 ? "Not uploaded" : "Uploaded"))
-        entity.addProperty(new Property(null, "caStatus", ValueType.PRIMITIVE, caCriticality == 1 ? "Not uploaded" : "Uploaded"))
-        entity.addProperty(new Property(null, "cpStatus", ValueType.PRIMITIVE, cpCriticality == 1 ? "Not uploaded" : "Uploaded"))
-        entity.addProperty(new Property(null, "fsStatusCriticality", ValueType.PRIMITIVE, fsCriticality));
-        entity.addProperty(new Property(null, "caStatusCriticality", ValueType.PRIMITIVE, caCriticality));
-        entity.addProperty(new Property(null, "cpStatusCriticality", ValueType.PRIMITIVE, cpCriticality));
         //DDFormPDF访问地址
         String url = null;
         String formName = null;
@@ -105,12 +92,12 @@ def generateFields(Map<String, Object> context){
             if (UtilValidate.isNotEmpty(genericValue)) {
                 String attrValue = genericValue.getString("attrValue");
                 if ("SIMPLIFIED_DD".equals(attrValue)) {
-                    formName = "Download DDForm";
+                    formName = "Download";
                     url = "https://dpbird.oss-cn-hangzhou.aliyuncs.com/scy/SimplifiedForm.pdf"
                 };
                 if ("STANDARD_DD".equals(attrValue)) {
                     url = "https://dpbird.oss-cn-hangzhou.aliyuncs.com/scy/StandardForm.pdf"
-                    formName = "Download DDForm";
+                    formName = "Download";
                 };
             }
         }
