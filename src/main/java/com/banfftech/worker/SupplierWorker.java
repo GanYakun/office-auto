@@ -303,17 +303,25 @@ public class SupplierWorker {
 
     }
 
-    public static Long getProcessNumeric (GenericValue supplierParty) {
+    public static Long getProcessNumeric (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
         Map<String, Object> processBarMap = UtilMisc.toMap("COWORK_CREATED", 1L, "REQUEST_DD", 2L,
                 "COMPLETE_DD", 3L, "DOC_READY", 4L, "REQUEST_COMP", 5L, "COMPLETE_COMP", 6L, "COMPLETE", 7L);
-        if (UtilValidate.isEmpty(supplierParty.getString("workEffortParentId"))){
-            return (Long) processBarMap.get(supplierParty.getString("currentStatusId"));
+        GenericValue workEffort = delegator.findOne("WorkEffort", UtilMisc.toMap("workEffortId", supplierParty.get("workEffortId")), true);
+        if (UtilValidate.isEmpty(workEffort.getString("workEffortParentId")) && workEffort.get("workEffortTypeId").equals("COWORK")){
+            return (Long) processBarMap.get(workEffort.getString("currentStatusId"));
+        }else if (UtilValidate.isNotEmpty(workEffort.getString("workEffortParentId"))){
+            List<GenericValue> parentSuppliers = delegator.findByAnd("WorkEffortAndPartyGroupContact", UtilMisc.toMap("workEffortId", workEffort.getString("workEffortParentId")), null, true);
+            GenericValue parentSupplier = EntityUtil.getFirst(parentSuppliers);
+            return (Long) processBarMap.get(parentSupplier.getString("currentStatusId"));
         }else {
             return 0L;
         }
     }
 
-    public static Long getprocessCritical (Long processNumeric) {
+    public static Long getProcessCritical (Long processNumeric) {
+        if (UtilValidate.isEmpty(processNumeric)){
+            return 0L;
+        }
         if (processNumeric == 0L){
             return 0L;
         }else if (0L < processNumeric && processNumeric <= 3L){

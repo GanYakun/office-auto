@@ -44,8 +44,8 @@ def generateFields(Map<String, Object> context){
         ddFormType = SupplierWorker.getDDFormType(supplierParty, delegator);
         ddFormTypeId = SupplierWorker.getDDFormTypeId(ddFormType);
         ratingNumeric = SupplierWorker.getClassificationRatingNumber(supplierParty, delegator);
-        processNumeric = SupplierWorker.getProcessNumeric(supplierParty);
-        processCritical = SupplierWorker.getprocessCritical(processNumeric);
+        processNumeric = SupplierWorker.getProcessNumeric(supplierParty, delegator);
+        processCritical = SupplierWorker.getProcessCritical(processNumeric);
         String ddFormDealStatus = SupplierWorker.getDDFormDealStatus(supplierParty, delegator);
         Timestamp lastSubmittedDate = SupplierWorker.getLastSubmittedDate(supplierParty, delegator);
         riskCritical = SupplierWorker.getClassificationCriticalValue(supplierParty, delegator);
