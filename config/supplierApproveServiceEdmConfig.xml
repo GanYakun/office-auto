@@ -183,7 +183,7 @@
 <!--        <DataPoint Title="${complianceCheckWarning}" Value="complianceCheckWarning" Qualifier="complianceCheckWarning"-->
 <!--                   Criticality="checkWarningCritical"/>-->
         <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">
-            <DataField Values="usccNumber,employeesSection,isGovernment,annualRevenue,ListedCountry/geoId,comments"
+            <DataField Values="usccNumber,employeesSection,groupTypeId,annualRevenue,ListedCountry/geoId,comments"
                        Importance="High"/>
         </FieldGroup>
         <FieldGroup Qualifier="WorkScope" Label="WorkScope">
@@ -191,7 +191,7 @@
         </FieldGroup>
         <FieldGroup Qualifier="PartyGroupFieldGroupWithAction" Label="PartyGroupFieldGroupWithAction">
             <DataField
-                    Values="usccNumber,employeesSection,isGovernment,annualRevenue,ListedCountry/geoId,comments,priority"
+                    Values="usccNumber,employeesSection,groupTypeId,annualRevenue,ListedCountry/geoId,comments,priority"
                     Importance="High"/>
             <DataFieldForAction Label="${UpdateBasicInfo}" Action="FillSupplierBaseInfo" Importance="High"
                                 Criticality="Positive" Inline="false" InvocationGrouping="Isolated"
