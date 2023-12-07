@@ -59,7 +59,7 @@
         <Property Name="ddFormTypeCritical" Type="numeric" Hidden="true" HiddenFilter="true"/>
         <!--供应商风险评级颜色显示-->
         <Property Name="riskCritical" Type="numeric" Hidden="true" HiddenFilter="true"/>
-        <Property Name="ratingNumeric" Type="numeric" Label="ratingNumeric"/>
+        <Property Name="ratingNumeric" Type="numeric" Label="${ratingNumeric}"/>
         <Property Name="processNumeric" Type="numeric" Label="processNumeric"/>
         <Property Name="processCritical" Type="numeric"/>
         <!--供应商优先级颜色显示-->
@@ -127,7 +127,8 @@
         <Property Name="supplierWorkCriticality" Type="Edm.Int64"/>
         <Property Name="complianceWorkStatus" Type="String" Label="${complianceWorkStatus}"/>
         <Property Name="complianceWorkCriticality" Type="Edm.Int64"/>
-
+        <!-- ddForm是否已提交 -->
+        <Property Name="ddFormIsSubmitted" Type="Boolean"/>
         <NavigationProperty Name="Product" Type="Product" Relations="SupplierProduct/Product" IsCollection="true"/>
         <NavigationProperty Name="Service" Type="Service" Relations="SupplierProduct/Product" IsCollection="true"/>
         <NavigationProperty Name="ToShipment"/>
@@ -591,8 +592,8 @@
         <!--        </LineItem>-->
         <Property Name="otherData" FileNamePath="dataResourceName"/>
         <Property Name="fileUrl" Type="String"/>
-        <!-- 文件上传Critical -->
         <Property Name="uploadDocCritical" Type="numeric" Hidden="true"/>
+        <Property Name="addNameForUpload" Type="String"/>
         <Action Name="UploadAction" IsBound="true" OfbizService="com.banfftech.events.UploadEvent.uploadFile">
             <Parameter Name="partyMediaResource" Type="PartyMediaResource" Nullable="false" IsCollection="false"/>
             <Parameter Name="file" Type="Stream" Nullable="false" IsCollection="false"/>
@@ -604,6 +605,7 @@
                 Handler="component://officeauto/groovyScripts/partyManage/surveyQuestionAppl/generateEntityListFields.groovy">
         <Property Name="response" Type="String" Label="${response}"/>
         <Property Name="question" Type="String" Label="${question}"/>
+        <Property Name="boolResponseCritical" Type="numeric"/>
         <LineItem Qualifier="SurveyQuestionApplLineItem">
             <DataField Values="question,response" Importance="High"/>
         </LineItem>

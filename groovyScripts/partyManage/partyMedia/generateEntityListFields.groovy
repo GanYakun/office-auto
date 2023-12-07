@@ -32,7 +32,8 @@ def generateFields(Map<String, Object> context){
         GenericValue partyMedia = (GenericValue) entity.getGenericValue();
         uploadDocCritical = 0L;
         uploadDocCritical = SupplierWorker.getUploadDocCriticalValue(partyMedia);
-        String partyContentId = partyMedia.getString("partyContentId")
+        addNameForUpload = SupplierWorker.addNameForUpload(partyMedia);
+                String partyContentId = partyMedia.getString("partyContentId")
         String url = "/officeauto/control/odataAppSvc/supplierApproveService/PartyMediaResources('" + partyContentId + "')/otherData"
         entity.addProperty(new Property(null, "fileUrl", ValueType.PRIMITIVE, url))
         entity.addProperty(new Property(null, "uploadDocCritical", ValueType.PRIMITIVE, uploadDocCritical))

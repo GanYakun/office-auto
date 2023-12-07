@@ -14,6 +14,7 @@ module = "purchaseManage.OrderHeader.generateEntityListFields.groovy";
 def generateFields(Map<String, Object> context) {
     List<Entity> entityList = context.parameters.get("entityList");
     String response = null
+    boolResponseCritical = 0L
     entityList.each { entity ->
         OdataOfbizEntity odataOfbizEntity = (OdataOfbizEntity) entity;
         GenericValue surveyQuestionAndAnswer = odataOfbizEntity.getGenericValue();
@@ -33,13 +34,16 @@ def generateFields(Map<String, Object> context) {
                 String booleanResponse = (String) answer.get("booleanResponse")
                 if (booleanResponse.equals("Y")) {
                     response = "yes"
+                    boolResponseCritical = 3L
                 }else {
                     response = "no"
+                    boolResponseCritical = 1L
                 }
             }
 
         }
         entity.addProperty(new Property(null, "response", ValueType.PRIMITIVE, response));
+        entity.addProperty(new Property(null, "boolResponseCritical", ValueType.PRIMITIVE, boolResponseCritical));
     }
     return entityList;
 }
