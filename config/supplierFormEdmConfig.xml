@@ -1,9 +1,8 @@
 <ofbiz-edm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://dev.odatalab.com/dtds/edmconfig.xsd" ImportGlobal="false">
-    <ImportEdm Path="component://officeauto/config/launchpadManageEdmConfig.xml"/>
 
     <!--======================================SupplierParty（主对象）========================================-->
-    <EntityType Name="SupplierParty" EntityCondition="partyId=${company.partyId}"
-                OfbizEntity="PartyGroupAndContact" EntitySetName="SupplierParties"
+    <EntityType Name="SupplierDDForm" EntityCondition="partyId=${company.partyId}"
+                OfbizEntity="PartyGroupAndContact" EntitySetName="SupplierDDForms"
                 AttrDateEntityName="PartyGroupAttributeDate" AttrEntityName="PartyGroupAttribute"
                 AutoProperties="true" DraftEntityName="SupplierPartyFormDraft" AutoDraft="true"
                 Handler="component://officeauto/groovyScripts/partyManage/ddForm/generateEntityListFields.groovy">
@@ -15,7 +14,7 @@
 <!--        <RelAlias Name="CountryIncorporation" Relations="PartyGeoPoint(partyGeoPointTypeId=COUNTRY_INCORPORATION)/GeoPoint"/>-->
 <!--        <RelAlias Name="RegisteredCountry" Relations="PartyGeo(partyGeoTypeId=REGISTERED_COUNTRY)"/>-->
         <RelAlias Name="BusinessLocation" Relations="PartyGeoPoint(partyGeoPointTypeId=BUSINESS_LOCATION)/GeoPoint"/>
-        <RelAlias Name="PartyIdentification" Relations="PartyIdentification( partyIdentificationTypeId=REGISTRATION_NUMBER)"/>
+        <RelAlias Name="PartyIdentification" Relations="PartyIdentification(partyIdentificationTypeId=REGISTRATION_NUMBER)"/>
         <RelAlias Name="WorkScopeAnswer" Relations="SurveyQuestionAnswer(surveyQuestionId=9004)"/>
         <RelAlias Name="SurveyQuestionAnswer0" Relations="SurveyQuestionAnswer(surveyQuestionId=9000)"/>
         <RelAlias Name="SurveyQuestionAnswer1" Relations="SurveyQuestionAnswer(surveyQuestionId=9001)"/>
@@ -24,12 +23,12 @@
         <RelAlias Name="SurveyQuestionAnswer5" Relations="SurveyQuestionAnswer(surveyQuestionId=9005)"/>
         <RelAlias Name="SurveyQuestionAnswer6" Relations="SurveyQuestionAnswer(surveyQuestionId=9006)"/>
 
-        <Property Name="partyName" Label="Full Name of Company or Individual Party"/>
-        <Property Name="dateIncorporation" IsDateAttribute="true" Type="Timestamp" Label="Date of Incorporation/Date of Birth"/>
+        <Property Name="partyName" Label="${NONE}"/>
+        <Property Name="dateIncorporation" IsDateAttribute="true" Type="Timestamp" Label="${NONE}"/>
 <!--        <Property Name="countryIncorporation" Type="String" RelAlias="CountryIncorporation" Field="information" Label="Country of Incorporation/Country of Birth"/>-->
 <!--        <Property Name="registeredCountry" Type="String" RelAlias="RegisteredCountry" Field="geoId" Label="Country of Incorporation/Country of Birth"/>-->
         <Property Name="businessLocation" Type="String" RelAlias="BusinessLocation" Field="information" Label="${BusinessLocation}"/>
-        <Property Name="registrationNumber" Type="String" RelAlias="PartyIdentification" Field="idValue" Label="Business Registration Number/Passport number"/>
+        <Property Name="registrationNumber" Type="String" RelAlias="PartyIdentification" Field="idValue" Label="${NONE}"/>
         <Property Name="workScope" Type="String" RelAlias="WorkScopeAnswer" Field="textResponse" Label="${WorkScopeAnswer}"/>
         <Property Name="answer0" Type="Boolean" RelAlias="SurveyQuestionAnswer0" Field="booleanResponse" Label="Does the Business Partner conduct any business in, with, or involving (directly or indirectly) individuals or entities in or from Cuba, Iran, North Korea, Syria, Russia, Belarus or the Crimea region (each, a “Sanctioned Country”)?"/>
         <Property Name="answerText0" Type="String" RelAlias="SurveyQuestionAnswer0" Field="textResponse" Label="Comments"/>
@@ -52,6 +51,10 @@
         <Property Name="investmentTarget" IsAttribute="true" Type="Boolean" Label="Investment Target"/>
         <Property Name="otherAttr" IsAttribute="true" Type="Boolean" Label="Other (specify)"/>
         <Property Name="ddStatus" Type="String" Label="${ddFormDealStatus}"/>
+        <!-- 注册地址 -->
+        <Property Name="countryGeoId" />
+        <Property Name="stateProvinceGeoId" />
+        <Property Name="cityGeoId" />
 
         <LineItem>
             <DataField Values="partyName" Importance="High"/>
@@ -62,11 +65,11 @@
         </FieldGroup>
         <!-- 2.注册地 -->
         <FieldGroup Label="RegisteredAddress" Qualifier="RegisteredAddress">
-            <DataField Values="address1" Importance="High"/>
+            <DataField Values="RegisterPostalAddress/countryGeoId,RegisterPostalAddress/stateProvinceGeoId,RegisterPostalAddress/cityGeoId,RegisterPostalAddress/address1" Importance="High"/>
         </FieldGroup>
-        <!-- 3a-3b.成立日期, 注册国 -->
+        <!-- 3a-3b.成立日期, -->
         <FieldGroup Label="DateIncorporation" Qualifier="DateIncorporation">
-            <DataField Values="dateIncorporation,RegisteredCountry/geoId" Importance="High"/>
+            <DataField Values="dateIncorporation" Importance="High"/>
         </FieldGroup>
         <!-- 4.商登记号 -->
         <FieldGroup Label="RegistrationNumber" Qualifier="RegistrationNumber">
@@ -88,6 +91,25 @@
         <!-- 11.更名记录 PartyNameHistory/LineItem-->
         <!-- 最终受益人 -->
         <!-- 董事/高级职员姓名 -->
+        <!-- DDForm问题 -->
+        <FieldGroup Label="ComplianceCert0" Qualifier="ComplianceCert0">
+            <DataField Values="answer0,answerText0" Importance="High"/>
+        </FieldGroup>
+        <FieldGroup Label="ComplianceCert1" Qualifier="ComplianceCert1">
+            <DataField Values="answer1,answerText1" Importance="High"/>
+        </FieldGroup>
+        <FieldGroup Label="ComplianceCert2" Qualifier="ComplianceCert2">
+            <DataField Values="answer2,answerText2" Importance="High"/>
+        </FieldGroup>
+        <FieldGroup Label="ComplianceCert3" Qualifier="ComplianceCert3">
+            <DataField Values="answer3,answerText3" Importance="High"/>
+        </FieldGroup>
+        <FieldGroup Label="ComplianceCert5" Qualifier="ComplianceCert5">
+            <DataField Values="answer5,answerText5" Importance="High"/>
+        </FieldGroup>
+        <FieldGroup Label="ComplianceCert6" Qualifier="ComplianceCert6">
+            <DataField Values="answer6,answerText6" Importance="High"/>
+        </FieldGroup>
         <NavigationProperty Name="PartyNameHistory"/>
         <NavigationProperty Name="BusinessRelationship" Relations="PartyRoleType(parentTypeId=BUSINESS_RELATIONSHIP)" IsCollection="true" Type="BusinessRelationship"/>
         <NavigationProperty Name="BeneficialPerson" Type="RelationshipAndToParty" IsCollection="true"
@@ -96,28 +118,25 @@
                             Relations="FromRelationshipAndToParty(roleTypeIdTo=SENIOR_STAFF and roleTypeIdFrom=SUPPLIER)"/>
         <NavigationProperty Name="ContactPerson" Type="RelationshipAndToParty" IsCollection="true"
                             Relations="FromRelationshipAndToParty(roleTypeIdTo=CONTACT and roleTypeIdFrom=SUPPLIER)"/>
-        <NavigationProperty Name="PartyContactMechPurposeAndAddress" />
-        <NavigationProperty Name="RegisteredCountry" Type="PartyGeo" Relations="PartyGeo(partyGeoTypeId=REGISTERED_COUNTRY)" IsCollection="false"/>
+        <!-- 注册地址 -->
+        <NavigationProperty Name="RegisterPostalAddress" Type="RegisterPostalAddress"
+                            Relations="PartyContactMechPurpose(contactMechPurposeTypeId=REGISTERED_LOCATION)/PostalAddress" IsCollection="false"/>
+                <NavigationProperty Name="RegisteredCountry" Type="PartyGeo" Relations="PartyGeo(partyGeoTypeId=REGISTERED_COUNTRY)" IsCollection="false"/>
 
         <!--Submit to procurement-->
-        <Action Name="SubmitToProcurement" IsBound="true" EntitySetPath="supplierParty"
+        <Action Name="SubmitDDForm" IsBound="true" EntitySetPath="supplierDDForm"
                 OfbizService="com.banfftech.events.DDFormEvents.submitDDForm">
-            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+            <Parameter Name="supplierDDForm" Type="SupplierDDForm" Nullable="false" IsCollection="false"/>
             <Parameter Name="noteInfo" Type="String" Label="${noteInfo}"/>
         </Action>
     </EntityType>
 
-    <EntityType Name="PartyContactMechPurposeAndAddress" AutoProperties="true" EntitySetName="PurposeAndAddresses"
-                DraftEntityName="PurposeAndAddressesDraft">
+
+    <EntityType Name="RegisterPostalAddress" OfbizEntity="PostalAddress" AutoProperties="true"
+                EntitySetName="RegisterPostalAddresses" DraftEntityName="PostalAddressesDDFormDraft">
         <LineItem Qualifier="PostalAddressLineItem">
-            <DataField Values="contactMechPurposeTypeId,countryGeoId,stateProvinceGeoId,cityGeoId,address1,address2,contactNumber,email" Importance="High"/>
+            <DataField Values="countryGeoId,stateProvinceGeoId,cityGeoId,address1,address2,contactNumber,email" Importance="High"/>
         </LineItem>
-        <Property Name="contactMechPurposeTypeId">
-            <Text Path="ContactMechPurposeType/description" TextArrangement="TextOnly"/>
-            <ValueList WithFixedValues="true" CollectionPath="ContactMechPurposeTypes">
-                <ParameterInOut LocalDataProperty="contactMechPurposeTypeId" ValueListProperty="contactMechPurposeTypeId"/>
-            </ValueList>
-        </Property>
         <Property Name="countryGeoId">
             <Text Path="CountryGeo/geoName" TextArrangement="TextOnly"/>
             <ValueList CollectionPath="Countries" WithFixedValues="true">
@@ -141,8 +160,38 @@
         <NavigationProperty Name="CountryGeo"/>
         <NavigationProperty Name="StateProvinceGeo"/>
         <NavigationProperty Name="CityGeo"/>
-        <NavigationProperty Name="ContactMechPurposeType"/>
     </EntityType>
+
+<!--    <EntityType Name="PartyContactMechPurposeAndAddress" AutoProperties="true" EntitySetName="PurposeAndAddresses"-->
+<!--                DraftEntityName="PurposeAndAddressesDraft">-->
+<!--        <LineItem Qualifier="PostalAddressLineItem">-->
+<!--            <DataField Values="countryGeoId,stateProvinceGeoId,cityGeoId,address1,address2,contactNumber,email" Importance="High"/>-->
+<!--        </LineItem>-->
+<!--        <Property Name="countryGeoId">-->
+<!--            <Text Path="CountryGeo/geoName" TextArrangement="TextOnly"/>-->
+<!--            <ValueList CollectionPath="Countries" WithFixedValues="true">-->
+<!--                <ParameterOut ValueListProperty="geoId" LocalDataProperty="countryGeoId"/>-->
+<!--            </ValueList>-->
+<!--        </Property>-->
+<!--        <Property Name="stateProvinceGeoId">-->
+<!--            <Text Path="StateProvinceGeo/geoName" TextArrangement="TextOnly"/>-->
+<!--            <ValueList CollectionPath="Provinces" WithFixedValues="true">-->
+<!--                <ParameterIn LocalDataProperty="countryGeoId" ValueListProperty="geoIdFrom"/>-->
+<!--                <ParameterOut LocalDataProperty="stateProvinceGeoId" ValueListProperty="geoId"/>-->
+<!--            </ValueList>-->
+<!--        </Property>-->
+<!--        <Property Name="cityGeoId">-->
+<!--            <Text Path="CityGeo/geoName" TextArrangement="TextOnly"/>-->
+<!--            <ValueList CollectionPath="Cities" WithFixedValues="true">-->
+<!--                <ParameterIn LocalDataProperty="stateProvinceGeoId" ValueListProperty="geoIdFrom"/>-->
+<!--                <ParameterOut LocalDataProperty="cityGeoId" ValueListProperty="geoId"/>-->
+<!--            </ValueList>-->
+<!--        </Property>-->
+<!--        <NavigationProperty Name="CountryGeo"/>-->
+<!--        <NavigationProperty Name="StateProvinceGeo"/>-->
+<!--        <NavigationProperty Name="CityGeo"/>-->
+<!--        <NavigationProperty Name="ContactMechPurposeType"/>-->
+<!--    </EntityType>-->
 
     <EntityType Name="ContactMechPurposeType" EntityCondition="parentTypeId=LOCATION"  EntitySetName="ContactMechPurposeTypes" AutoProperties="true">
         <Property Name="contactMechPurposeTypeId">
@@ -165,14 +214,6 @@
             <Text Path="geoName" TextArrangement="TextOnly"/>
         </Property>
     </EntityType>
-    <EntityType Name="PartyGeoPoint" AutoProperties="true" EntitySetName="PartyGeoPoints">
-
-    </EntityType>
-
-    <EntityType Name="PartyIdentification" AutoProperties="true" EntitySetName="PartyIdentifications">
-
-    </EntityType>
-
     <EntityType Name="RoleType" AutoProperties="true" EntitySetName="RoleTypes" EntityCondition="parentTypeId=BUSINESS_RELATIONSHIP">
         <Property Name="roleTypeId">
             <Text Path="description" TextArrangement="TextOnly"/>
@@ -185,10 +226,6 @@
             <ValueList CollectionPath="RoleTypes" WithFixedValues="true" Label="${RoleTypes}"/>
         </Property>
             <NavigationProperty Name="RoleType"/>
-    </EntityType>
-
-    <EntityType Name="PersonAndContact" AutoProperties="true" DraftEntityName="SupplierContactDraft" EntitySetName="PersonAndContacts">
-
     </EntityType>
 
     <EntityType Name="PartyNameHistory" AutoProperties="true" DraftEntityName="PartyNameHistoryDraft" EntitySetName="PartyNameHistories">
@@ -216,7 +253,7 @@
             <DataField Values="firstName,lastName,nationality,positionTitle,copyIdentificationAttached" Importance="High"/>
         </LineItem>
         <LineItem Qualifier="ContactPersonList">
-            <DataField Values="firstName,lastName,primaryPhone,primaryEmail" Importance="High"/>
+            <DataField Values="firstName,lastName,primaryPhone,primaryEmail,positionTitle" Importance="High"/>
         </LineItem>
     </EntityType>
 

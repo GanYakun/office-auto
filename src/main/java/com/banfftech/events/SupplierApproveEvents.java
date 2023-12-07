@@ -17,21 +17,11 @@ import org.apache.ofbiz.service.GeneralServiceException;
 import org.apache.ofbiz.service.GenericServiceException;
 import org.apache.ofbiz.service.LocalDispatcher;
 import org.apache.olingo.commons.api.edm.EdmBindingTarget;
-import org.apache.olingo.commons.api.http.HttpHeader;
-import org.apache.olingo.commons.api.http.HttpStatusCode;
-import org.apache.olingo.server.api.OData;
-import org.apache.olingo.server.api.ODataResponse;
-import org.apache.olingo.server.api.serializer.SerializerException;
 
 import javax.mail.MessagingException;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +39,7 @@ public class SupplierApproveEvents {
         HttpServletRequest httpServletRequest = (HttpServletRequest) oDataContext.get("httpServletRequest");
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
         OdataOfbizEntity boundEntity = Util.getBoundEntity(actionParameters);
+        //source: applicant, vendor, compliance
         String source = (String) actionParameters.get("source");
         if (UtilValidate.isEmpty(boundEntity)) {
             throw new OfbizODataException("Parameter error");
@@ -75,10 +66,11 @@ public class SupplierApproveEvents {
                 dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", task.getString("workEffortId"),
                         "workEffortParentId", workEffortParentId, "userLogin", userLogin));
             }
-        } else if ("applicant".equals(source)) {
-            dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortParentId,
-                    "currentStatusId", "COWORK_CREATED", "userLogin", userLogin));
         }
+//        else if ("applicant".equals(source)) {
+//            dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortParentId,
+//                    "currentStatusId", "COWORK_CREATED", "userLogin", userLogin));
+//        }
         //当前的改为已处理
         Map<String, Object> updateWorkMap = UtilMisc.toMap("workEffortId", workEffortId, "currentStatusId", "PROCESSED", "workEffortParentId", workEffortParentId);
         CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), updateWorkMap, "banfftech.updateWorkEffort", userLogin);
@@ -92,10 +84,12 @@ public class SupplierApproveEvents {
         Map<String, Object> noteDataResult = CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), noteMap, "banfftech.createNoteData", userLogin);
         // create PartyNote
         CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), UtilMisc.toMap("noteId", noteDataResult.get("noteId"), "partyId", partyId, "userLogin", userLogin), "banfftech.createPartyNote", userLogin);
-        //保存合规建议
         if ("compliance".equals(source)) {
+            //保存合规建议,状态改为COMPLETE_COMP
             GenericValue party = delegator.findOne("Party", UtilMisc.toMap("partyId", partyId), false);
             CommonUtils.setObjectAttribute(party, "complianceNote", noteInfo);
+            dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortParentId,
+                    "currentStatusId", "COMPLETE_COMP", "userLogin", userLogin));
         }
         //发送邮件
         sendEmailToTarget(delegator, "procurement", httpServletRequest, boundEntity, null, null);
@@ -121,19 +115,17 @@ public class SupplierApproveEvents {
         }
         GenericValue boundGenericValue = boundEntity.getGenericValue();
         String partyId = boundGenericValue.getString("partyId");
-        GenericValue parentWorkEffort = UtilValidate.isNotEmpty(boundGenericValue.getString("workEffortParentId")) ?
-                boundGenericValue.getRelatedOne("ParentWorkEffort", false) : boundGenericValue;
-        String workEffortParentId = parentWorkEffort.getString("workEffortId");
-        if ("applicant".equals(target)) {
-            //传递给applicant 改为需要修改
-            dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortParentId,
-                    "currentStatusId", "REQUIRE_CHANGES", "userLogin", userLogin));
-        }
+        String workEffortParentId = boundGenericValue.getString("workEffortId");
+//        if ("applicant".equals(target)) {
+//            //打回给applicant 改为需要修改
+//            dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortParentId,
+//                    "currentStatusId", "REQUIRE_CHANGES", "userLogin", userLogin));
+//        }
         if (UtilValidate.isNotEmpty(ddFormType)) {
             GenericValue party = delegator.findOne("Party", UtilMisc.toMap("partyId", partyId), false);
             CommonUtils.setObjectAttribute(party, "ddFormType", ddFormType);
         }
-        String transferTarget = getTransferTarget(delegator, target, parentWorkEffort);
+        String transferTarget = getTransferTarget(delegator, target, boundGenericValue);
         if (UtilValidate.isEmpty(transferTarget)) {
             throw new OfbizODataException("No department found");
         }
@@ -143,7 +135,7 @@ public class SupplierApproveEvents {
             //首次传递
             String nextWorkEffortId = delegator.getNextSeqId("WorkEffort");
             Map<String, Object> createWorkMap = UtilMisc.toMap("partyId", partyId, "workEffortId", nextWorkEffortId, "comments", comments,
-                    "workEffortTypeId", "COWORK_TASK", "currentStatusId", "NOT_PROCESSED", "workEffortParentId", workEffortParentId, "priority", parentWorkEffort.getString("priority"));
+                    "workEffortTypeId", "COWORK_TASK", "currentStatusId", "NOT_PROCESSED", "workEffortParentId", workEffortParentId, "priority", boundGenericValue.getString("priority"));
             CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), createWorkMap, "banfftech.createWorkEffort", userLogin);
             dispatcher.runSync("banfftech.createWorkEffortPartyAssignment",
                     UtilMisc.toMap("userLogin", userLogin, "workEffortId", nextWorkEffortId, "partyId", transferTarget));
@@ -151,6 +143,16 @@ public class SupplierApproveEvents {
             //改为未处理
             CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), UtilMisc.toMap("workEffortId", supplierTask.getString("workEffortId"),
                     "currentStatusId", "NOT_PROCESSED", "comments", comments, "userLogin", userLogin), "banfftech.updateWorkEffort", userLogin);
+        }
+        if ("supplier".equals(target)) {
+            //发送DD,状态改为REQUEST_DD
+            dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortParentId,
+                    "currentStatusId", "REQUEST_DD", "userLogin", userLogin));
+        }
+        if ("compliance".equals(target)) {
+            //发送给合规,状态改为REQUEST_COMP
+            dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortParentId,
+                    "currentStatusId", "REQUEST_COMP", "userLogin", userLogin));
         }
         // create NoteData for the Party
         if (UtilValidate.isEmpty(noteInfo)) {
@@ -162,7 +164,74 @@ public class SupplierApproveEvents {
         // create PartyNote
         CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), UtilMisc.toMap("noteId", noteDataResult.get("noteId"), "partyId", partyId, "userLogin", userLogin), "banfftech.createPartyNote", userLogin);
         //发送邮件
-        sendEmailToTarget(delegator, target, httpServletRequest, boundEntity, parentWorkEffort, email);
+        sendEmailToTarget(delegator, target, httpServletRequest, boundEntity, boundGenericValue, email);
+    }
+
+
+    /**
+     * 发送DD
+     */
+    public static void sendDDForm(Map<String, Object> oDataContext, Map<String, Object> actionParameters, EdmBindingTarget edmBindingTarget)
+            throws GenericEntityException, OfbizODataException, GeneralServiceException, GenericServiceException, UnsupportedEncodingException {
+        Delegator delegator = (Delegator) oDataContext.get("delegator");
+        LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
+        HttpServletRequest httpServletRequest = (HttpServletRequest) oDataContext.get("httpServletRequest");
+        GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
+        String target = (String) actionParameters.get("target");
+        String noteInfo = (String) actionParameters.get("noteInfo");
+        String ddFormType = (String) actionParameters.get("ddFormType");
+        String email = (String) actionParameters.get("email");
+        OdataOfbizEntity boundEntity = Util.getBoundEntity(actionParameters);
+        if (UtilValidate.isEmpty(boundEntity)) {
+            throw new OfbizODataException("Parameter error");
+        }
+        GenericValue boundGenericValue = boundEntity.getGenericValue();
+        String partyId = boundGenericValue.getString("partyId");
+        GenericValue party = delegator.findOne("Party", UtilMisc.toMap("partyId", partyId), false);
+        String workEffortParentId = null;
+        GenericValue parentWorkEffort = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", partyId, "workEffortTypeId", "COWORK").queryFirst();
+        if (UtilValidate.isNotEmpty(parentWorkEffort)) {
+            workEffortParentId = parentWorkEffort.getString("workEffortId");
+        }
+        if (UtilValidate.isNotEmpty(ddFormType)) {
+            CommonUtils.setObjectAttribute(party, "ddFormType", ddFormType);
+        }
+        GenericValue ddFormTask = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact") .where("approvePartyId", partyId, "partyId", partyId).queryFirst();
+        if (UtilValidate.isEmpty(ddFormTask)) {
+            //首次传递
+            String nextWorkEffortId = delegator.getNextSeqId("WorkEffort");
+            Map<String, Object> createWorkMap = UtilMisc.toMap("partyId", partyId, "workEffortId", nextWorkEffortId,
+                    "workEffortTypeId", "COWORK_TASK", "currentStatusId", "NOT_PROCESSED", "workEffortParentId", workEffortParentId, "priority", boundGenericValue.getString("priority"));
+            CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), createWorkMap, "banfftech.createWorkEffort", userLogin);
+            dispatcher.runSync("banfftech.createWorkEffortPartyAssignment",
+                    UtilMisc.toMap("userLogin", userLogin, "workEffortId", nextWorkEffortId, "partyId", partyId));
+        } else {
+            //改为未处理
+            CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), UtilMisc.toMap("workEffortId", ddFormTask.getString("workEffortId"),
+                    "currentStatusId", "NOT_PROCESSED", "userLogin", userLogin), "banfftech.updateWorkEffort", userLogin);
+        }
+        //标记发送方, 提交时要向这里提交
+        String ddFormSource;
+        if ("COWORK".equals(boundGenericValue.getString("workEffortTypeId"))) {
+            //发送DD,状态改为REQUEST_DD
+            ddFormSource = "procurement";
+            dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", boundGenericValue.getString("workEffortId"),
+                    "currentStatusId", "REQUEST_DD", "userLogin", userLogin));
+        } else {
+            ddFormSource = "applicant";
+        }
+        CommonUtils.setObjectAttribute(party, "ddFormSource", ddFormSource);
+        // create NoteData for the Party
+        if (UtilValidate.isEmpty(noteInfo)) {
+            noteInfo = "Procurement to " + target + " note";
+        }
+        Map<String, Object> noteMap = UtilMisc.toMap("noteName", "Procument to " + target, "noteInfo", noteInfo,
+                "noteParty", userLogin.get("partyId"), "noteDateTime", UtilDateTime.nowTimestamp(), "userLogin", userLogin);
+        Map<String, Object> noteDataResult = CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), noteMap, "banfftech.createNoteData", userLogin);
+        // create PartyNote
+        CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), UtilMisc.toMap("noteId", noteDataResult.get("noteId"), "partyId", partyId, "userLogin", userLogin), "banfftech.createPartyNote", userLogin);
+        //发送邮件
+        sendEmailToTarget(delegator, target, httpServletRequest, boundEntity, boundGenericValue, email);
     }
 
     private static String getTransferTarget(Delegator delegator, String target, GenericValue parentWorkEffort) throws GenericEntityException {
@@ -197,7 +266,7 @@ public class SupplierApproveEvents {
         String partyId = (String) supplierParty.getPropertyValue("partyId");
         //完成workEffort
         dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortId,
-                "currentStatusId", "REGISTERED", "userLogin", userLogin));
+                "currentStatusId", "COMPLETE", "userLogin", userLogin));
         //启用supplier
         dispatcher.runSync("banfftech.updateParty", UtilMisc.toMap("partyId", partyId,
                 "statusId", "PARTY_ENABLED", "userLogin", userLogin));

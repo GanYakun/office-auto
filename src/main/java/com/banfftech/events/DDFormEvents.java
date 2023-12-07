@@ -41,31 +41,14 @@ public class DDFormEvents {
             throw new OfbizODataException("Parameter error");
         }
         String partyId = (String) boundEntity.getPropertyValue("partyId");
+        GenericValue supplierParty = delegator.findOne("Party", UtilMisc.toMap("partyId", partyId), false);
         GenericValue coWork = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", partyId, "approvePartyId", partyId, "workEffortTypeId", "COWORK_TASK").queryFirst();
         String workEffortId = coWork.getString("workEffortId");
         String workEffortParentId = coWork.getString("workEffortParentId");
-        GenericValue coWorkParent = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", partyId, "workEffortTypeId", "COWORK").queryFirst();
-        String priority = coWork.getString("priority");
-        if (UtilValidate.isEmpty(coWorkParent)) {
-            //首次提交 创建ParentWorkEffort分配给采购
-            Map<String, Object> createParentWorkMap = new HashMap<>();
-            workEffortParentId = delegator.getNextSeqId("WorkEffort");
-            createParentWorkMap.put("workEffortId", workEffortParentId);
-            createParentWorkMap.put("workEffortTypeId", "COWORK");
-            createParentWorkMap.put("priority", priority);
-            createParentWorkMap.put("currentStatusId", "COWORK_CREATED");
-            createParentWorkMap.put("partyId", partyId);
-            createParentWorkMap.put("userLogin", userLogin);
-            CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), createParentWorkMap, "banfftech.createWorkEffort", userLogin);
-            dispatcher.runSync("banfftech.createWorkEffortPartyAssignment",
-                    UtilMisc.toMap("userLogin", userLogin, "workEffortId", workEffortParentId, "partyId", "CG"));
-            List<GenericValue> coWorkTask = EntityQuery.use(delegator).from("WorkEffort").where("partyId", partyId, "workEffortTypeId", "COWORK_TASK").queryList();
-            for (GenericValue task : coWorkTask) {
-                dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", task.getString("workEffortId"),
-                        "workEffortParentId", workEffortParentId, "userLogin", userLogin));
-            }
-        } else {
-            workEffortParentId = coWorkParent.getString("workEffortId");
+        String ddFormSource = CommonUtils.getObjectAttribute(supplierParty, "ddFormSource");
+        if ("procurement".equals(ddFormSource)) {
+            dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortParentId,
+                    "currentStatusId", "COMPLETE_DD", "userLogin", userLogin));
         }
         //当前的改为已处理
         Map<String, Object> updateWorkMap = UtilMisc.toMap("workEffortId", workEffortId, "currentStatusId", "PROCESSED", "workEffortParentId", workEffortParentId);
