@@ -877,12 +877,7 @@
         <Action Name="CreateSupplierProduct" IsBound="true"
                 OfbizService="com.banfftech.events.SupplierEvents.createSupplierProduct" SideEffects="true">
             <Parameter Name="product" Type="Product" Nullable="false" IsCollection="true"/>
-            <Parameter Name="productId" Type="String" Label="${productId}" Nullable="false"/>
-            <!--            <Parameter Name="primaryProductCategoryId" Type="String" Label="${primaryProductCategoryId}" Nullable="false">-->
-            <!--                <ValueList CollectionPath="ProductCategories" WithFixedValues="true">-->
-            <!--                    <ParameterInOut ValueListProperty="productCategoryId" LocalDataProperty="primaryProductCategoryId"/>-->
-            <!--                </ValueList>-->
-            <!--            </Parameter>-->
+            <Parameter Name="productId" Type="String" Label="${goodsName}" Nullable="false"/>
             <ReturnType Type="Product"/>
         </Action>
         <NavigationProperty Name="PrimaryProductCategory"/>
@@ -907,12 +902,7 @@
         <Action Name="CreateSupplierService" IsBound="true"
                 OfbizService="com.banfftech.events.SupplierEvents.createSupplierProduct" SideEffects="true">
             <Parameter Name="service" Type="Service" Nullable="false" IsCollection="true"/>
-            <Parameter Name="productId" Type="String" Label="${productId}" Nullable="false"/>
-            <!--            <Parameter Name="primaryProductCategoryId" Type="String" Label="${primaryProductCategoryId}" Nullable="false">-->
-            <!--                <ValueList CollectionPath="ProductCategories" WithFixedValues="true">-->
-            <!--                    <ParameterInOut ValueListProperty="productCategoryId" LocalDataProperty="primaryProductCategoryId"/>-->
-            <!--                </ValueList>-->
-            <!--            </Parameter>-->
+            <Parameter Name="productId" Type="String" Label="${serviceName}" Nullable="false"/>
             <ReturnType Type="Service"/>
         </Action>
         <NavigationProperty Name="PrimaryProductCategory"/>

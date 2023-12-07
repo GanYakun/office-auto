@@ -56,8 +56,8 @@ under the License.
     <Internationalization id="I10033" lang="en" property="create" value="Create"/>
     <Internationalization id="I10034" lang="zh" property="noteName" value="备注名称"/>
     <Internationalization id="I10035" lang="en" property="noteName" value="Note name"/>
-    <Internationalization id="I10036" lang="zh" property="productId" value="产品标识"/>
-    <Internationalization id="I10037" lang="en" property="productId" value="Product name"/>
+    <Internationalization id="I10036" lang="zh" property="goodsName" value="产品标识"/>
+    <Internationalization id="I10037" lang="en" property="goodsName" value="Goods name"/>
     <Internationalization id="I10038" lang="zh" property="currencyUomId" value="货币单位"/>
     <Internationalization id="I10039" lang="en" property="currencyUomId" value="Currency"/>
     <Internationalization id="I10040" lang="zh" property="minimumOrderQuantity" value="最小订单数量"/>
@@ -238,6 +238,8 @@ under the License.
     <Internationalization id="processNumeric_zh" lang="zh" property="processNumeric" value="Process Bar"/>
     <Internationalization id="groupTypeId_en" lang="en" property="groupTypeId" value="Vendor type"/>
     <Internationalization id="groupTypeId_zh" lang="zh" property="groupTypeId" value="Vendor type"/>
+    <Internationalization id="serviceName_en" lang="en" property="serviceName" value="Service name"/>
+    <Internationalization id="serviceName_zh" lang="zh" property="serviceName" value="Service name"/>
 
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
@@ -659,7 +661,7 @@ under the License.
     <DBFieldLabel dbFieldLabelId="PRD10000_01_ZH" dbFieldId="PRD10000_01" language="zh" value="产品ID"/>
     <DBFieldLabel dbFieldLabelId="PRD10000_01_EN" dbFieldId="PRD10000_01" language="en" value="Goods name"/>
     <DBFieldLabel dbFieldLabelId="PRD10000_02_ZH" dbFieldId="PRD10000_02" language="zh" value="产品名称"/>
-    <DBFieldLabel dbFieldLabelId="PRD10000_02_EN" dbFieldId="PRD10000_02" language="en" value="Product name"/>
+    <DBFieldLabel dbFieldLabelId="PRD10000_02_EN" dbFieldId="PRD10000_02" language="en" value="Goods name"/>
     <DBFieldLabel dbFieldLabelId="PRD10000_03_ZH" dbFieldId="PRD10000_03" language="zh" value="产品类型"/>
     <DBFieldLabel dbFieldLabelId="PRD10000_03_EN" dbFieldId="PRD10000_03" language="en" value="Product type"/>
     <DBFieldLabel dbFieldLabelId="PRD10000_04_ZH" dbFieldId="PRD10000_04" language="zh" value="数量单位"/>
