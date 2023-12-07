@@ -25,6 +25,7 @@ public class WorkEffortService {
         Map<String, Object> serviceParam = new HashMap<>();
         serviceParam.put("workEffortId", workEffortId);
         serviceParam.put("statusId", currentStatusId);
+        serviceParam.put("setByUserLogin", userLogin.getString("userLoginId"));
         //不精确到毫秒
         serviceParam.put("statusDatetime", UtilDateTime.toDateString(UtilDateTime.nowTimestamp(), "yyyy-MM-dd HH:mm:ss"));
         serviceParam.put("userLogin", userLogin);

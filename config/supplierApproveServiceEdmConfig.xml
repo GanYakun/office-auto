@@ -8,6 +8,7 @@
         <Property Name="nodeDescription" Type="String"/>
         <Property Name="nodeStartDate" Type="DateTimeOffset"/>
         <Property Name="nodeCompletedDate" Type="DateTimeOffset"/>
+        <Property Name="setUser" Type="String"/>
         <Property Name="isActive" Type="Boolean"/>
     </ComplexType>
 
