@@ -169,6 +169,8 @@
         <NavigationProperty Name="ChildWorkEffortStatus" Type="WorkEffortStatus"
                             Relations="ChildWorkEffort/WorkEffortStatus" IsCollection="true"/>
 
+        <NavigationProperty Name="CreatedParty" Type="CreatedParty" Relations="CreatedByUserLogin/PersonAndContact" IsCollection="false"/>
+
         <!-- 文件列表 -->
         <NavigationProperty Name="FileList" Type="PartyMediaResource" Relations="PartyMediaResource(partyContentTypeId=SUPPLIER_DOCUMENT)"
                             IsCollection="true"/>
@@ -1019,6 +1021,13 @@
     <!--Company（公司）-->
     <EntityType Name="InternalCompany" OfbizEntity="PartyGroupAndContact" AutoProperties="true"
                 EntityCondition="PartyRole/roleTypeId=INTERNAL_ORGANIZATIO" EntitySetName="InternalCompanies" AutoSet="true">
+        <Property Name="partyId">
+            <Text Path="partyName" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <!--创建人-->
+    <EntityType Name="CreatedParty" OfbizEntity="PartyGroupAndContact" AutoProperties="true"
+                EntitySetName="CreatedParties" AutoSet="true">
         <Property Name="partyId">
             <Text Path="partyName" TextArrangement="TextOnly"/>
         </Property>

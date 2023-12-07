@@ -35,11 +35,11 @@
 		</relation>
 	</extend-entity>
 
-<!--	<extend-entity entity-name="UserLogin">-->
-<!--		<relation type="one-nofk"  rel-entity-name="WeChatUser">-->
-<!--			<key-map field-name="externalAuthId" rel-field-name="openId"/>-->
-<!--		</relation>-->
-<!--	</extend-entity>-->
+	<extend-entity entity-name="UserLogin">
+		<relation type="one-nofk"  rel-entity-name="PersonAndContact">
+			<key-map field-name="partyId" rel-field-name="partyId"/>
+		</relation>
+	</extend-entity>
 
 	<extend-entity entity-name="Person">
 		<relation type="many" title="From" rel-entity-name="PartyRelationship">
