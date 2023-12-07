@@ -375,41 +375,51 @@ public class SupplierApproveEvents {
             String statusId = procurementTask.getString("currentStatusId");
             GenericValue statusGV = EntityQuery.use(delegator).from("WorkEffortStatus").where("workEffortId", workEffortId, "statusId", "COWORK_CREATED").orderBy("statusDatetime").queryFirst();
             if (UtilValidate.isNotEmpty(statusGV)) {
+                String setUserName = CommonUtils.getPartyNameByLoginId(delegator, statusGV.getString("setByUserLogin"));
+                submitted.put("setUser", setUserName);
                 submitted.put("nodeStartDate", statusGV.getTimestamp("statusDatetime"));
                 submitted.put("isActive", statusId.equals("COWORK_CREATED"));
             }
             statusGV = EntityQuery.use(delegator).from("WorkEffortStatus").where("workEffortId", workEffortId, "statusId", "REQUEST_DD").orderBy("statusDatetime").queryFirst();
             if (UtilValidate.isNotEmpty(statusGV)) {
+                String setUserName = CommonUtils.getPartyNameByLoginId(delegator, statusGV.getString("setByUserLogin"));
+                ddRequested.put("setUser", setUserName);
                 ddRequested.put("nodeStartDate", statusGV.getTimestamp("statusDatetime"));
                 ddRequested.put("isActive", statusId.equals("REQUEST_DD"));
             }
-            statusGV = EntityQuery.use(delegator).from("WorkEffortStatus")
-                    .where("workEffortId", workEffortId, "statusId", "COMPLETE_DD").orderBy("statusDatetime").queryFirst();
+            statusGV = EntityQuery.use(delegator).from("WorkEffortStatus").where("workEffortId", workEffortId, "statusId", "COMPLETE_DD").orderBy("statusDatetime").queryFirst();
             if (UtilValidate.isNotEmpty(statusGV)) {
+                String setUserName = CommonUtils.getPartyNameByLoginId(delegator, statusGV.getString("setByUserLogin"));
+                ddCompleted.put("setUser", setUserName);
                 ddCompleted.put("nodeStartDate", statusGV.getTimestamp("statusDatetime"));
                 ddCompleted.put("isActive", statusId.equals("COMPLETE_DD"));
             }
-            statusGV = EntityQuery.use(delegator).from("WorkEffortStatus")
-                    .where("workEffortId", workEffortId, "statusId", "DOC_READY").orderBy("statusDatetime").queryFirst();
+            statusGV = EntityQuery.use(delegator).from("WorkEffortStatus").where("workEffortId", workEffortId, "statusId", "DOC_READY").orderBy("statusDatetime").queryFirst();
             if (UtilValidate.isNotEmpty(statusGV)) {
+                String setUserName = CommonUtils.getPartyNameByLoginId(delegator, statusGV.getString("setByUserLogin"));
+                documentReady.put("setUser", setUserName);
                 documentReady.put("nodeStartDate", statusGV.getTimestamp("statusDatetime"));
                 documentReady.put("isActive", statusId.equals("DOC_READY"));
             }
-            statusGV = EntityQuery.use(delegator).from("WorkEffortStatus")
-                    .where("workEffortId", workEffortId, "statusId", "REQUEST_COMP").orderBy("statusDatetime").queryFirst();
+            statusGV = EntityQuery.use(delegator).from("WorkEffortStatus").where("workEffortId", workEffortId, "statusId", "REQUEST_COMP").orderBy("statusDatetime").queryFirst();
             if (UtilValidate.isNotEmpty(statusGV)) {
+                String setUserName = CommonUtils.getPartyNameByLoginId(delegator, statusGV.getString("setByUserLogin"));
+                complianceRequested.put("setUser", setUserName);
                 complianceRequested.put("nodeStartDate", statusGV.getTimestamp("statusDatetime"));
                 complianceRequested.put("isActive", statusId.equals("REQUEST_COMP"));
             }
             statusGV = EntityQuery.use(delegator).from("WorkEffortStatus")
                     .where("workEffortId", workEffortId, "statusId", "COMPLETE_COMP").orderBy("statusDatetime").queryFirst();
             if (UtilValidate.isNotEmpty(statusGV)) {
+                String setUserName = CommonUtils.getPartyNameByLoginId(delegator, statusGV.getString("setByUserLogin"));
+                complianceCompleted.put("setUser", setUserName);
                 complianceCompleted.put("nodeStartDate", statusGV.getTimestamp("statusDatetime"));
                 complianceCompleted.put("isActive", statusId.equals("COMPLETE_COMP"));
             }
-            statusGV = EntityQuery.use(delegator).from("WorkEffortStatus")
-                    .where("workEffortId", workEffortId, "statusId", "COMPLETE").orderBy("statusDatetime").queryFirst();
+            statusGV = EntityQuery.use(delegator).from("WorkEffortStatus").where("workEffortId", workEffortId, "statusId", "COMPLETE").orderBy("statusDatetime").queryFirst();
             if (UtilValidate.isNotEmpty(statusGV)) {
+                String setUserName = CommonUtils.getPartyNameByLoginId(delegator, statusGV.getString("setByUserLogin"));
+                registered.put("setUser", setUserName);
                 registered.put("nodeStartDate", statusGV.getTimestamp("statusDatetime"));
                 registered.put("isActive", statusId.equals("COMPLETE"));
             }
