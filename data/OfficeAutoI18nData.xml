@@ -234,6 +234,8 @@ under the License.
     <Internationalization id="NONE_zh" lang="zh" property="NONE" value=""/>
     <Internationalization id="ratingNumeric_en" lang="en" property="ratingNumeric" value="Risk level"/>
     <Internationalization id="ratingNumeric_zh" lang="zh" property="ratingNumeric" value="Risk level"/>
+    <Internationalization id="processNumeric_en" lang="en" property="processNumeric" value="Process Bar"/>
+    <Internationalization id="processNumeric_zh" lang="zh" property="processNumeric" value="Process Bar"/>
 
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>

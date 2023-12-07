@@ -302,4 +302,26 @@ public class SupplierWorker {
         }
 
     }
+
+    public static Long getProcessNumeric (GenericValue supplierParty) {
+        Map<String, Object> processBarMap = UtilMisc.toMap("COWORK_CREATED", 1L, "REQUEST_DD", 2L,
+                "COMPLETE_DD", 3L, "DOC_READY", 4L, "REQUEST_COMP", 5L, "COMPLETE_COMP", 6L, "COMPLETE", 7L);
+        if (UtilValidate.isEmpty(supplierParty.getString("workEffortParentId"))){
+            return (Long) processBarMap.get(supplierParty.getString("currentStatusId"));
+        }else {
+            return 0L;
+        }
+    }
+
+    public static Long getprocessCritical (Long processNumeric) {
+        if (processNumeric == 0L){
+            return 0L;
+        }else if (0L < processNumeric && processNumeric <= 3L){
+            return 1L;
+        }else if (3L < processNumeric && processNumeric <= 5L){
+            return 2L;
+        }else {
+            return 3L;
+        }
+    }
 }
