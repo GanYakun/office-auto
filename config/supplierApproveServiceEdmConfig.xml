@@ -58,7 +58,7 @@
         <Property Name="ddFormTypeCritical" Type="numeric" Hidden="true" HiddenFilter="true"/>
         <!--供应商风险评级颜色显示-->
         <Property Name="riskCritical" Type="numeric" Hidden="true" HiddenFilter="true"/>
-        <Property Name="ratingNumeric" Type="numeric" Label="ratingNumeric"/>
+        <Property Name="ratingNumeric" Type="numeric" Label="${ratingNumeric}"/>
         <Property Name="processNumeric" Type="numeric" Label="processNumeric"/>
         <Property Name="processCritical" Type="numeric"/>
         <!--供应商优先级颜色显示-->
