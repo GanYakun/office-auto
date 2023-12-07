@@ -45,6 +45,7 @@ under the License.
     <RoleType description="Distributor" roleTypeId="DISTRIBUTOR" parentTypeId="BUSINESS_RELATIONSHIP" />
     <RoleType description="Investment Target" roleTypeId="INVESTMENT_TARGET" parentTypeId="BUSINESS_RELATIONSHIP" />
     <RoleType description="Other (specify)" roleTypeId="OTHER_SPECIFY" parentTypeId="BUSINESS_RELATIONSHIP" />
+    <RoleType description="Company" roleTypeId="COMPANY"/>
 
     <CustRequestType description="采购请求" custRequestTypeId="PURCHASE_REQ"/>
 

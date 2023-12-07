@@ -475,7 +475,7 @@ public class SupplierEvents {
     }
 
     /**
-     * 选择权限部门
+     * 选择供应商所属公司
      *
      * @param oDataContext
      * @param actionParameters
@@ -484,7 +484,7 @@ public class SupplierEvents {
      * @throws OfbizODataException
      * @throws GenericServiceException
      */
-    public static void selectDepartment(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
+    public static void selectCompany(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
                                         EdmBindingTarget edmBindingTarget) throws GenericEntityException, OfbizODataException, GenericServiceException {
 
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
@@ -497,16 +497,16 @@ public class SupplierEvents {
         OdataOfbizEntity supplierPartyEntity = (OdataOfbizEntity) odataPartsOne.getEntityData();
         supplierParty = supplierPartyEntity.getGenericValue();
         if (supplierParty == null) {
-            throw new OfbizODataException("Account is invalid");
+            throw new OfbizODataException("Supplier is invalid");
         }
         String supplierPartyId = (String) supplierParty.get("partyId");
         List<String> partyIds = (List<String>) actionParameters.get("partyId");
         for (String partyId : partyIds) {
-            if (CommonUtils.checkInputRepeat(delegator, "partyIdFrom", "PartyRelationship", UtilMisc.toMap("partyIdTo", supplierPartyId, "roleTypeIdFrom", "DEPARTMENT"), partyId)) {
-                throw new OfbizODataException("Don't select repeat department！");
+            if (CommonUtils.checkInputRepeat(delegator, "partyIdFrom", "PartyRelationship", UtilMisc.toMap("partyIdTo", supplierPartyId, "roleTypeIdFrom", "COMPANY"), partyId)) {
+                throw new OfbizODataException("Don't select repeat company！");
             }
             dispatcher.runSync("banfftech.createPartyRelationship",
-                    UtilMisc.toMap("userLogin", userLogin, "roleTypeIdFrom", "DEPARTMENT", "partyIdFrom", partyId,
+                    UtilMisc.toMap("userLogin", userLogin, "roleTypeIdFrom", "COMPANY", "partyIdFrom", partyId,
                             "roleTypeIdTo", "SUPPLIER", "partyIdTo", supplierPartyId));
         }
     }
@@ -521,13 +521,13 @@ public class SupplierEvents {
      * @throws OfbizODataException
      * @throws GenericServiceException
      */
-    public static void removeDepartment(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
+    public static void removeCompany(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
                                         EdmBindingTarget edmBindingTarget) throws GenericEntityException, OfbizODataException, GenericServiceException {
 
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
         Delegator delegator = dispatcher.getDelegator();
-        OdataOfbizEntity departmentEntity = (OdataOfbizEntity) actionParameters.get("department");
+        OdataOfbizEntity departmentEntity = (OdataOfbizEntity) actionParameters.get("company");
         GenericValue department = departmentEntity.getGenericValue();
         List<OdataParts> odataPartsList = (List<OdataParts>) oDataContext.get("odataParts");
         int odataPartsListSize = odataPartsList.size();
@@ -540,7 +540,7 @@ public class SupplierEvents {
         }
         String supplierPartyId = (String) supplierParty.get("partyId");
         List<GenericValue> partyRelationships = delegator.findByAnd("PartyRelationship",
-                UtilMisc.toMap("partyIdFrom", department.get("partyId"), "roleTypeIdFrom", "DEPARTMENT",
+                UtilMisc.toMap("partyIdFrom", department.get("partyId"), "roleTypeIdFrom", "COMPANY",
                         "partyIdTo", supplierPartyId, "roleTypeIdTo", "SUPPLIER"), null, true);
         GenericValue partyRelationship = EntityUtil.getFirst(partyRelationships);
         dispatcher.runSync("banfftech.deletePartyRelationship",

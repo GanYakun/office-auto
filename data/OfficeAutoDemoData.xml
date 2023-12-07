@@ -25,6 +25,27 @@ under the License.
     <PartyGroup partyId="Company" groupName="Office Auto" numEmployees="0"/>
     <PartyRole partyId="Company" roleTypeId="INTERNAL_ORGANIZATIO"/>
 
+    <!-- 供应商所属公司 -->
+    <Party partyId="Company_A" partyTypeId="PARTY_GROUP" partyName="Company A"/>
+    <PartyGroup partyId="Company_A" groupName="Company A"/>
+    <PartyRole partyId="Company_A" roleTypeId="COMPANY"/>
+
+    <Party partyId="Company_B" partyTypeId="PARTY_GROUP" partyName="Company B"/>
+    <PartyGroup partyId="Company_B" groupName="Company B"/>
+    <PartyRole partyId="Company_B" roleTypeId="COMPANY"/>
+
+    <Party partyId="Company_C" partyTypeId="PARTY_GROUP" partyName="Company C"/>
+    <PartyGroup partyId="Company_C" groupName="Company C"/>
+    <PartyRole partyId="Company_C" roleTypeId="COMPANY"/>
+
+    <Party partyId="Company_D" partyTypeId="PARTY_GROUP" partyName="Company D"/>
+    <PartyGroup partyId="Company_D" groupName="Company D"/>
+    <PartyRole partyId="Company_D" roleTypeId="COMPANY"/>
+
+    <Party partyId="Company_E" partyTypeId="PARTY_GROUP" partyName="Company E"/>
+    <PartyGroup partyId="Company_E" groupName="Company E"/>
+    <PartyRole partyId="Company_E" roleTypeId="COMPANY"/>
+
     <!-- 部门-->
     <Party partyId="CG" partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED" partyName="Procurement Department"/>
     <Party partyId="HG" partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED" partyName="Compliance Department" externalId="HG"/>

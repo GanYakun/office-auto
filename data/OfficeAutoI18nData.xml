@@ -148,8 +148,8 @@ under the License.
     <Internationalization id="I10125" lang="zh" property="ddFormType" value="表单类型"/>
     <Internationalization id="I10126" lang="en" property="cycleTime" value="Cycle time"/>
     <Internationalization id="I10127" lang="zh" property="cycleTime" value="表单填写周期"/>
-    <Internationalization id="I10128" lang="zh" property="selectDepartment" value="选择部门"/>
-    <Internationalization id="I10129" lang="en" property="selectDepartment" value="Select"/>
+    <Internationalization id="I10128" lang="zh" property="selectCompany" value="选择公司"/>
+    <Internationalization id="I10129" lang="en" property="selectCompany" value="Select"/>
     <Internationalization id="I10130" lang="en" property="partyCategoryId" value="Category"/>
     <Internationalization id="I10131" lang="zh" property="partyCategoryId" value="供应商类型"/>
     <Internationalization id="I10132" lang="en" property="contactMechPurposeTypeId" value="Purpose"/>
@@ -180,10 +180,10 @@ under the License.
     <Internationalization id="I10157" lang="zh" property="copyIdentificationAttached" value=""/>
     <Internationalization id="ddFormDealStatus_en" lang="en" property="ddFormDealStatus" value="DD Status"/>
     <Internationalization id="ddFormDealStatus_zh" lang="zh" property="ddFormDealStatus" value=""/>
-    <Internationalization id="I10158" lang="zh" property="removeDepartment" value="移除部门"/>
-    <Internationalization id="I10159" lang="en" property="removeDepartment" value="Remove"/>
-    <Internationalization id="I10160" lang="zh" property="selectDepartmentParam" value="选择部门"/>
-    <Internationalization id="I10161" lang="en" property="selectDepartmentParam" value="Select department"/>
+    <Internationalization id="I10158" lang="zh" property="removeCompany" value="移除公司"/>
+    <Internationalization id="I10159" lang="en" property="removeCompany" value="Remove"/>
+    <Internationalization id="I10160" lang="zh" property="selectCompanyParam" value="选择公司"/>
+    <Internationalization id="I10161" lang="en" property="selectCompanyParam" value="Select company"/>
     <Internationalization id="I10162" lang="en" property="sharesHeld" value="Shares Held"/>
     <Internationalization id="I10163" lang="zh" property="sharesHeld" value="持有股份"/>
     <Internationalization id="I10164" lang="en" property="isGovernment" value="Is government"/>
@@ -484,14 +484,14 @@ under the License.
     <DBFieldLabel dbFieldLabelId="PGC10000_17_ZH" dbFieldId="PGC10000_17" language="zh" value="网站地址"/>
     <DBFieldLabel dbFieldLabelId="PGC10000_17_EN" dbFieldId="PGC10000_17" language="en" value="Website address"/>
 
-    <!-- Entity labels for view-entity Department -->
-    <DBEntity dbEntityId="DPT10000" dbEntityName="PartyGroupAndContact" dbEntityTypeField="PartyRole/roleTypeId" dbEntityTypeId="DEPARTMENT" description="Vendor" isOpen="N" />
+    <!-- Entity labels for view-entity Company -->
+    <DBEntity dbEntityId="DPT10000" dbEntityName="PartyGroupAndContact" dbEntityTypeField="PartyRole/roleTypeId" dbEntityTypeId="COMPANY" description="Vendor" isOpen="N" />
     <DBField dbFieldId="DPT10000_01" dbFieldName="partyName" dbFieldTypeId="STRING" dbEntityId="DPT10000" description="Name"/>
     <DBField dbFieldId="DPT10000_02" dbFieldName="partyId" dbFieldTypeId="STRING" dbEntityId="DPT10000" description="Name"/>
-    <DBFieldLabel dbFieldLabelId="DPT10000_01_ZH" dbFieldId="DPT10000_01" language="zh" value="部门"/>
-    <DBFieldLabel dbFieldLabelId="DPT10000_01_EN" dbFieldId="DPT10000_01" language="en" value="Department name"/>
-    <DBFieldLabel dbFieldLabelId="DPT10000_02_ZH" dbFieldId="DPT10000_02" language="zh" value="部门"/>
-    <DBFieldLabel dbFieldLabelId="DPT10000_02_EN" dbFieldId="DPT10000_02" language="en" value="Department name"/>
+    <DBFieldLabel dbFieldLabelId="DPT10000_01_ZH" dbFieldId="DPT10000_01" language="zh" value="公司"/>
+    <DBFieldLabel dbFieldLabelId="DPT10000_01_EN" dbFieldId="DPT10000_01" language="en" value="Company name"/>
+    <DBFieldLabel dbFieldLabelId="DPT10000_02_ZH" dbFieldId="DPT10000_02" language="zh" value="公司"/>
+    <DBFieldLabel dbFieldLabelId="DPT10000_02_EN" dbFieldId="DPT10000_02" language="en" value="Company name"/>
 
     <!-- Entity labels for view-entity PartyContactMechPurpose -->
     <DBEntity dbEntityId="PCMP10000" dbEntityName="PartyContactMechPurpose" description="Party ContactMech Purpose" isOpen="N" />

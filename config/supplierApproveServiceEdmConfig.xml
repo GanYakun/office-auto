@@ -157,8 +157,8 @@
         <NavigationProperty Name="PriorityEnumeration"/>
         <NavigationProperty Name="ProductCategory" Type="ProductCategory"
                             Relations="ProductCategoryRole/ProductCategory" IsCollection="false"/>
-        <NavigationProperty Name="Department" Type="Department"
-                            Relations="ToPartyRelationship(roleTypeIdFrom=DEPARTMENT)/FromParty" IsCollection="true"/>
+        <NavigationProperty Name="Company" Type="Company"
+                            Relations="ToPartyRelationship(roleTypeIdFrom=COMPANY)/FromParty" IsCollection="true"/>
         <NavigationProperty Name="EmployeesEnumeration" Type="EmployeesEnumeration" Relations="EmployeesEnumeration"/>
         <NavigationProperty Name="GroupTypeEnumeration" Type="GroupTypeEnumeration" Relations="GroupTypeEnumeration"/>
         <NavigationProperty Name="ListRegionEnumeration" Type="ListRegionEnumeration"
@@ -767,7 +767,7 @@
         </FieldGroup>
 
         <Property Name="partyIdFrom">
-            <Text Path="Company/partyName" TextArrangement="TextOnly"/>
+            <Text Path="InternalCompany/partyName" TextArrangement="TextOnly"/>
             <ValueList CollectionPath="Companies" ParameterDisplayOnly="PartyAndContact/primaryPhone"/>
         </Property>
         <Property Name="partyIdTo">
@@ -780,7 +780,7 @@
 
         <NavigationProperty Name="Product"/>
         <NavigationProperty Name="SupplierParty" Type="SupplierParty" Relations="ToPartyGroupAndContact"/>
-        <NavigationProperty Name="Company" Type="Company" Relations="FromPartyGroupAndContact"/>
+        <NavigationProperty Name="InternalCompany" Type="InternalCompany" Relations="FromPartyGroupAndContact"/>
         <NavigationProperty Name="AgreementTerm"/>
         <Action Name="CreatePurchaseAgreement" IsBound="true" OfbizService="com.banfftech.events.SupplierEvents.createPurchaseAgreement">
             <Parameter Name="agreement" Type="PurchaseAgreement" Nullable="false" IsCollection="true"/>
@@ -1027,44 +1027,44 @@
     <!--Party-->
     <EntityType Name="Party" EntitySetName="Parties" AutoSet="true" AutoProperties="true"/>
     <!--Company（公司）-->
-    <EntityType Name="Company" OfbizEntity="PartyGroupAndContact" AutoProperties="true"
-                EntityCondition="PartyRole/roleTypeId=INTERNAL_ORGANIZATIO" EntitySetName="Companies" AutoSet="true">
+    <EntityType Name="InternalCompany" OfbizEntity="PartyGroupAndContact" AutoProperties="true"
+                EntityCondition="PartyRole/roleTypeId=INTERNAL_ORGANIZATIO" EntitySetName="InternalCompanies" AutoSet="true">
         <Property Name="partyId">
             <Text Path="partyName" TextArrangement="TextOnly"/>
         </Property>
     </EntityType>
-    <EntityType Name="Department" OfbizEntity="PartyGroupAndContact" AutoProperties="true"
-                EntityCondition="PartyRole/roleTypeId=DEPARTMENT" OfbizType="PartyRole/roleTypeId=DEPARTMENT"
-                EntitySetName="Departments" AutoSet="true">
+    <EntityType Name="Company" OfbizEntity="PartyGroupAndContact" AutoProperties="true"
+                EntityCondition="PartyRole/roleTypeId=COMPANY" OfbizType="PartyRole/roleTypeId=COMPANY"
+                EntitySetName="Companies" AutoSet="true">
         <Property Name="partyId">
             <Text Path="partyName" TextArrangement="TextOnly"/>
         </Property>
 
         <LineItem Qualifier="DepartmentLineItem">
             <DataField Values="partyName," Importance="High"/>
-            <DataFieldForAction Label="${selectDepartment}" Action="SelectDepartment" Importance="High"
+            <DataFieldForAction Label="${selectCompany}" Action="SelectCompany" Importance="High"
                                 Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
-            <DataFieldForAction Label="${removeDepartment}" Action="RemoveDepartment" Importance="High"
+            <DataFieldForAction Label="${removeCompany}" Action="RemoveCompany" Importance="High"
                                 Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>
         </LineItem>
 
-        <!--选择可以查看该供应商的部门-->
-        <Action Name="SelectDepartment" IsBound="true" EntitySetPath="department"
-                OfbizService="com.banfftech.events.SupplierEvents.selectDepartment"
+        <!--选择供应商所属公司-->
+        <Action Name="SelectCompany" IsBound="true" EntitySetPath="company"
+                OfbizService="com.banfftech.events.SupplierEvents.selectCompany"
                 StickySession="true" SideEffects="true">
-            <Parameter Name="department" Type="Department" Nullable="false" IsCollection="true"/>
+            <Parameter Name="company" Type="Company" Nullable="false" IsCollection="true"/>
             <Parameter Name="partyId" Type="String" Nullable="false" IsCollection="true"
-                       Label="${selectDepartmentParam}">
-                <ValueList CollectionPath="Departments">
+                       Label="${selectCompanyParam}">
+                <ValueList CollectionPath="Companies">
                     <ParameterInOut LocalDataProperty="partyId" ValueListProperty="partyId"/>
                 </ValueList>
             </Parameter>
         </Action>
-        <!--移除可以查看该供应商的部门-->
-        <Action Name="RemoveDepartment" IsBound="true" EntitySetPath="department"
-                OfbizService="com.banfftech.events.SupplierEvents.removeDepartment"
+        <!--移除供应商所属公司-->
+        <Action Name="RemoveCompany" IsBound="true" EntitySetPath="company"
+                OfbizService="com.banfftech.events.SupplierEvents.removeCompany"
                 StickySession="true">
-            <Parameter Name="department" Type="Department" Nullable="false" IsCollection="false"/>
+            <Parameter Name="company" Type="Company" Nullable="false" IsCollection="false"/>
         </Action>
     </EntityType>
     <!--CustomerParty（客户）-->
