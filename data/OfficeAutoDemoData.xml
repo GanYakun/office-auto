@@ -467,7 +467,7 @@ under the License.
     <WorkEffort workEffortId="8001" workEffortTypeId="COWORK" currentStatusId="DOC_READY" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9000" createdDate="2023-11-29 10:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-29 10:43:22.660"/>
     <WorkEffort workEffortId="8003" workEffortTypeId="COWORK" currentStatusId="COMPLETE" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-29 10:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-30 19:43:22.660"/>
     <WorkEffort workEffortId="8006" workEffortTypeId="COWORK" currentStatusId="COMPLETE_COMP" workEffortParentId="" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-12-01 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-02 11:22:22.660"/>
-    <WorkEffort workEffortId="8028" workEffortTypeId="COWORK" currentStatusId="COWORK_CREATED" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9003" createdDate="2023-12-01 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-02 11:22:22.660"/>
+    <WorkEffort workEffortId="8029" workEffortTypeId="COWORK" currentStatusId="COWORK_CREATED" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9003" createdDate="2023-12-01 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-02 11:22:22.660"/>
     <WorkEffort workEffortId="8010" workEffortTypeId="COWORK" currentStatusId="REQUEST_DD" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-12-02 12:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-03 12:22:22.660"/>
     <WorkEffort workEffortId="8013" workEffortTypeId="COWORK" currentStatusId="COMPLETE_COMP" workEffortParentId="" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-12-01 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-05 11:22:22.660"/>
     <WorkEffort workEffortId="8016" workEffortTypeId="COWORK" currentStatusId="COMPLETE" workEffortParentId="" priority="PRIORITY_MEDIUM" partyId="9006" createdDate="2023-11-29 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-06 11:22:22.660"/>
@@ -524,7 +524,8 @@ under the License.
     <WorkEffortPartyAssignment workEffortPartyAssignment="9025" partyId="HG" workEffortId="8025"/>
     <WorkEffortPartyAssignment workEffortPartyAssignment="9026" partyId="HG" workEffortId="8026"/>
     <WorkEffortPartyAssignment workEffortPartyAssignment="9027" partyId="HG" workEffortId="8027"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9028" partyId="IT" workEffortId="8028"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9028" partyId="HG" workEffortId="8028"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9029" partyId="CG" workEffortId="8029"/>
 
     <PartyAttribute partyId="9006" attrName="complianceCheckWarning" attrValue="Warning"/>
     <PartyAttributeDate partyId="9000" attrName="collectionDate" attrValue="2023-11-18 10:43:22.660"/>
