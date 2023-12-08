@@ -224,17 +224,22 @@ public class SupplierWorker {
 
     }
 
-    public static Long getUploadDocCriticalValue (GenericValue partyMedia) {
-        if (UtilValidate.isNotEmpty(partyMedia.get("dataResourceName"))){
+    public static Long getUploadDocCriticalValue (GenericValue partyMedia, Delegator delegator) throws GenericEntityException {
+        GenericValue partyContent = delegator.findOne("PartyContent", UtilMisc.toMap("partyContentId", partyMedia.get("partyContentId")), true);
+        GenericValue content = delegator.findOne("Content", UtilMisc.toMap("contentId", partyContent.get("contentId")), true);
+        GenericValue dataResource = delegator.findOne("DataResource", UtilMisc.toMap("dataResourceId", content.get("dataResourceId")), true);
+        if (UtilValidate.isNotEmpty(dataResource.get("dataResourceName"))){
             return 3L;
         }else {
             return 1L;
         }
-
     }
 
-    public static String addNameForUpload (GenericValue partyMedia) {
-        if (UtilValidate.isNotEmpty(partyMedia.get("dataResourceName"))){
+    public static String addNameForUpload (GenericValue partyMedia, Delegator delegator) throws GenericEntityException {
+        GenericValue partyContent = delegator.findOne("PartyContent", UtilMisc.toMap("partyContentId", partyMedia.get("partyContentId")), true);
+        GenericValue content = delegator.findOne("Content", UtilMisc.toMap("contentId", partyContent.get("contentId")), true);
+        GenericValue dataResource = delegator.findOne("DataResource", UtilMisc.toMap("dataResourceId", content.get("dataResourceId")), true);
+        if (UtilValidate.isNotEmpty(dataResource.get("dataResourceName"))){
             return "Download";
         }else {
             return null;

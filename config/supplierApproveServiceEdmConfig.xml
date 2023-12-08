@@ -209,7 +209,7 @@
         </FieldGroup>
 
         <LineItem>
-            <DataField Values="logoImageUrl,partyId" Importance="High"/>
+            <DataField Values="logoImageUrl,partyId,groupTypeId" Importance="High"/>
             <DataField Values="ddFormType" Criticality="ddFormTypeCritical" Importance="High"/>
             <DataField Values="PartyClassification/PartyClassificationGroup/description" Criticality="riskCritical"
                        Importance="High"/>
