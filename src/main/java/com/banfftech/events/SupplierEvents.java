@@ -654,5 +654,16 @@ public class SupplierEvents {
 
     }
 
+    public static void fillCommentsForPRM(Map<String, Object> oDataContext, Map<String, Object> actionParameters, EdmBindingTarget edmBindingTarget)
+            throws GenericServiceException, GenericEntityException {
+        LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
+        Delegator delegator = dispatcher.getDelegator();
+        GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
+        OdataOfbizEntity supplierPartyEntity = (OdataOfbizEntity) actionParameters.get("supplierParty");
+        GenericValue supplierParty = supplierPartyEntity.getGenericValue();
+        dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", supplierParty.get("workEffortId"), "approveComments", actionParameters.get("comments"), "userLogin", userLogin));
+
+    }
+
 
 }

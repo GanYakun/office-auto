@@ -187,15 +187,6 @@
         <!--            <DataField Values="ofCount" Importance="High" Criticality="ofCountCriticality"/>-->
         <!--        </FieldGroup>-->
 
-        <FieldGroup Qualifier="ContactInfo" Label="ContactInfo">
-            <DataField Values="primaryPhone,primaryEmail,usccNumber" Importance="High"/>
-        </FieldGroup>
-        <FieldGroup Qualifier="ContactInfoWithAction" Label="ContactInfoWithAction">
-            <DataField Values="primaryPhone,primaryEmail,usccNumber" Importance="High"/>
-            <DataFieldForAction Label="${UpdateSupplierContactInfo}" Action="UpdateSupplierContactInfo"
-                                Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"
-                                Hidden="disableEditSupplier"/>
-        </FieldGroup>
 
         <FieldGroup Qualifier="SupplierTimeInfo" Label="SupplierTimeInfo">
             <DataField Values="createdDate,lastModifiedDate,finishDomUploadDate,collectionDate,firstOrderDate"
@@ -387,7 +378,6 @@
                 StickySession="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
             <Parameter Name="comments" Type="String" Nullable="true" IsCollection="false"/>
-            <ReturnType Type="SupplierParty"/>
         </Action>
 
         <Action Name="CompleteCoWork" IsBound="true" EntitySetPath="supplierParty"
