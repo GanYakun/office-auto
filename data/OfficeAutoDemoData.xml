@@ -446,14 +446,14 @@ under the License.
     <PartyContent partyContentId="9062" partyId="9007" contentId="9062" partyContentTypeId="COMPLIANCE_REPORT"/>
 
     <!--PartyGroup-->
-    <PartyGroup partyId="9000" groupName="Huawei Technologies Co Ltd" employeesSection="EMP_GE10000" annualRevenue="450000000" comments="Main communication electronic technology business"/>
-    <PartyGroup partyId="9001" groupName="ASUS" employeesSection="EMP_GE10000" annualRevenue="120000000" comments="Sell computer hardware"/>
-    <PartyGroup partyId="9002" groupName="K.J Consultation Company" employeesSection="EMP_GE10000" annualRevenue="85000000" comments="HR consulting"/>
-    <PartyGroup partyId="9003" groupName="NARI Technology Development Limited" employeesSection="EMP_GE10000" annualRevenue="232000000" comments="Government sector"/>
-    <PartyGroup partyId="9004" groupName="ZhiHengJiaCheng Real Estate Economy Company" employeesSection="EMP_GE1000_LT5000" annualRevenue="12000000" comments="Empirical real estate sales"/>
-    <PartyGroup partyId="9005" groupName="FORTUNEINT'L.LTD" employeesSection="EMP_GE1000_LT5000" annualRevenue="5300000" comments="Sales foods"/>
-    <PartyGroup partyId="9006" groupName="GDS" employeesSection="EMP_LT1000" annualRevenue="4200000" comments="Data storage service"/>
-    <PartyGroup partyId="9007" groupName="Tencent Holdings Limited" employeesSection="EMP_GE10000" annualRevenue="48200000000" comments="Main communication and social services"/>
+    <PartyGroup partyId="9000" groupName="Huawei Technologies Co Ltd" employeesSection="EMP_GE10000" annualRevenue="450000000" comments="Main communication electronic technology business" groupTypeId="REGULAR_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/012f7330-6af5-459d-aa5d-fc4890284481.png"/>
+    <PartyGroup partyId="9001" groupName="ASUS" employeesSection="EMP_GE10000" annualRevenue="120000000" comments="Sell computer hardware" groupTypeId="REGULAR_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/aa3cc9ec-4f0f-455c-9839-fa86f004b33b.png"/>
+    <PartyGroup partyId="9002" groupName="K.J Consultation Company" employeesSection="EMP_GE10000" annualRevenue="85000000" comments="HR consulting" groupTypeId="REGULAR_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/1e175eb7-1466-41a7-b623-b522bb43c90c.png"/>
+    <PartyGroup partyId="9003" groupName="NARI Technology Development Limited" employeesSection="EMP_GE10000" annualRevenue="232000000" comments="Government sector" groupTypeId="GOVERNMENT_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/7f132f90-5317-47c2-a728-a8bf88f9d2cd.png"/>
+    <PartyGroup partyId="9004" groupName="ZhiHengJiaCheng Real Estate Economy Company" employeesSection="EMP_GE1000_LT5000" annualRevenue="12000000" comments="Empirical real estate sales" groupTypeId="REGULAR_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/bd2f3c73-80d8-4b15-8c74-00404a194197.png"/>
+    <PartyGroup partyId="9005" groupName="FORTUNEINT'L.LTD" employeesSection="EMP_GE1000_LT5000" annualRevenue="5300000" comments="Sales foods" groupTypeId="SMALL_PURCHASE_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/daed7d80-ea3c-4eb6-9f70-bf3cbe1bca06.png"/>
+    <PartyGroup partyId="9006" groupName="GDS" employeesSection="EMP_LT1000" annualRevenue="4200000" comments="Data storage service" groupTypeId="INTERNAL_ORG_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/2609a427-4704-47e7-8647-0d47f14cc5e1.png"/>
+    <PartyGroup partyId="9007" groupName="Tencent Holdings Limited" employeesSection="EMP_GE10000" annualRevenue="48200000000" comments="Main communication and social services" groupTypeId="REGULAR_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/2e3bde80-89ec-4bdb-820a-730949994e56.png"/>
 
     <PartyGeo partyGeoId="9000" partyId="9000" geoId="CHN" partyGeoTypeId="LISTED_COUNTRY"/>
     <PartyGeo partyGeoId="9001" partyId="9001" geoId="CHN" partyGeoTypeId="LISTED_COUNTRY"/>
@@ -464,35 +464,37 @@ under the License.
     <PartyGeo partyGeoId="9006" partyId="9006" geoId="CHN" partyGeoTypeId="LISTED_COUNTRY"/>
     <PartyGeo partyGeoId="9007" partyId="9007" geoId="CHN" partyGeoTypeId="LISTED_COUNTRY"/>
 
-    <WorkEffort workEffortId="8001" workEffortTypeId="COWORK" currentStatusId="COWORK_CREATED" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9000" createdDate="2023-11-29 10:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-29 10:43:22.660"/>
-    <WorkEffort workEffortId="8010" workEffortTypeId="COWORK" currentStatusId="COWORK_CREATED" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-12-02 12:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-03 12:22:22.660"/>
-    <WorkEffort workEffortId="8003" workEffortTypeId="COWORK" currentStatusId="COWORK_CREATED" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-29 10:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-30 19:43:22.660"/>
-    <WorkEffort workEffortId="8006" workEffortTypeId="COWORK" currentStatusId="COWORK_CREATED" workEffortParentId="" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-12-01 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-02 11:22:22.660"/>
-    <WorkEffort workEffortId="8013" workEffortTypeId="COWORK" currentStatusId="COWORK_CREATED" workEffortParentId="" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-12-01 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-05 11:22:22.660"/>
-    <WorkEffort workEffortId="8016" workEffortTypeId="COWORK" currentStatusId="COWORK_CREATED" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9006" createdDate="2023-11-29 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-06 11:22:22.660"/>
-    <WorkEffort workEffortId="8019" workEffortTypeId="COWORK" currentStatusId="COWORK_CREATED" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9007" createdDate="2023-11-25 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-06 11:22:22.660"/>
+    <WorkEffort workEffortId="8001" workEffortTypeId="COWORK" currentStatusId="DOC_READY" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9000" createdDate="2023-11-29 10:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-29 10:43:22.660"/>
+    <WorkEffort workEffortId="8003" workEffortTypeId="COWORK" currentStatusId="COMPLETE" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-29 10:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-30 19:43:22.660"/>
+    <WorkEffort workEffortId="8006" workEffortTypeId="COWORK" currentStatusId="COMPLETE_COMP" workEffortParentId="" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-12-01 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-02 11:22:22.660"/>
+    <WorkEffort workEffortId="8028" workEffortTypeId="COWORK" currentStatusId="COWORK_CREATED" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9003" createdDate="2023-12-01 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-02 11:22:22.660"/>
+    <WorkEffort workEffortId="8010" workEffortTypeId="COWORK" currentStatusId="REQUEST_DD" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-12-02 12:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-03 12:22:22.660"/>
+    <WorkEffort workEffortId="8013" workEffortTypeId="COWORK" currentStatusId="COMPLETE_COMP" workEffortParentId="" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-12-01 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-05 11:22:22.660"/>
+    <WorkEffort workEffortId="8016" workEffortTypeId="COWORK" currentStatusId="COMPLETE" workEffortParentId="" priority="PRIORITY_MEDIUM" partyId="9006" createdDate="2023-11-29 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-06 11:22:22.660"/>
+    <WorkEffort workEffortId="8019" workEffortTypeId="COWORK" currentStatusId="REQUEST_COMP" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9007" createdDate="2023-11-25 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-06 11:22:22.660"/>
 
     <WorkEffort workEffortId="8000" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8001" priority="PRIORITY_HIGH" partyId="9000" createdDate="2023-11-28 10:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-11-29 10:43:22.660"/>
-    <WorkEffort workEffortId="8012" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8001" priority="PRIORITY_HIGH" partyId="9000" createdDate="2023-11-26 10:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-18 10:43:22.660"/>
-    <WorkEffort workEffortId="8023" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8003" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-26 10:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-18 10:43:22.660"/>
+    <WorkEffort workEffortId="8012" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8001" priority="PRIORITY_HIGH" partyId="9000" createdDate="2023-11-26 10:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-11-18 10:43:22.660"/>
+    <WorkEffort workEffortId="8028" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8001" priority="PRIORITY_HIGH" partyId="9000" createdDate="2023-11-26 10:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-11-18 10:43:22.660"/>
+    <WorkEffort workEffortId="8023" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8003" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-26 10:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-11-18 10:43:22.660"/>
     <WorkEffort workEffortId="8002" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8003" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-28 10:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-11-29 10:43:22.660"/>
-    <WorkEffort workEffortId="8004" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8003" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-20 18:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-16 19:43:22.660"/>
-    <WorkEffort workEffortId="8005" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8006" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-11-30 18:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 11:22:22.660"/>
-    <WorkEffort workEffortId="8007" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8006" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-11-21 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-03 11:22:22.660"/>
-    <WorkEffort workEffortId="8024" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8006" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-11-21 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-03 11:22:22.660"/>
-    <WorkEffort workEffortId="8008" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9003" createdDate="2023-12-02 12:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-02 12:22:22.660"/>
+    <WorkEffort workEffortId="8004" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8003" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-20 18:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-11-16 19:43:22.660"/>
+    <WorkEffort workEffortId="8005" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8006" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-11-30 18:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 11:22:22.660"/>
+    <WorkEffort workEffortId="8007" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8006" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-11-21 11:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-03 11:22:22.660"/>
+    <WorkEffort workEffortId="8024" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8006" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-11-21 11:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-03 11:22:22.660"/>
+    <WorkEffort workEffortId="8008" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8028" priority="PRIORITY_HIGH" partyId="9003" createdDate="2023-12-02 12:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-02 12:22:22.660"/>
     <WorkEffort workEffortId="8009" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8010" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-12-02 12:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-02 12:22:22.660"/>
-    <WorkEffort workEffortId="8011" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8010" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-11-22 12:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-03 12:22:22.660"/>
-    <WorkEffort workEffortId="8025" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8010" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-11-22 12:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-03 12:22:22.660"/>
+    <WorkEffort workEffortId="8011" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8010" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-11-22 12:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-03 12:22:22.660"/>
+    <WorkEffort workEffortId="8025" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8010" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-11-22 12:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-03 12:22:22.660"/>
     <WorkEffort workEffortId="8014" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8013" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-11-29 12:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 12:22:22.660"/>
-    <WorkEffort workEffortId="8015" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8013" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-11-18 09:18:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-01 09:22:22.660"/>
-    <WorkEffort workEffortId="8026" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8013" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-11-18 09:18:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-01 09:22:22.660"/>
+    <WorkEffort workEffortId="8015" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8013" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-11-18 09:18:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
+    <WorkEffort workEffortId="8026" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8013" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-11-18 09:18:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
     <WorkEffort workEffortId="8017" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8016" priority="PRIORITY_MEDIUM" partyId="9006" createdDate="2023-11-25 09:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
-    <WorkEffort workEffortId="8018" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8016" priority="PRIORITY_MEDIUM" partyId="9006" createdDate="2023-11-23 09:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-01 09:22:22.660"/>
-    <WorkEffort workEffortId="8027" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8016" priority="PRIORITY_MEDIUM" partyId="9006" createdDate="2023-11-23 09:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-01 09:22:22.660"/>
+    <WorkEffort workEffortId="8018" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8016" priority="PRIORITY_MEDIUM" partyId="9006" createdDate="2023-11-23 09:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
+    <WorkEffort workEffortId="8027" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8016" priority="PRIORITY_MEDIUM" partyId="9006" createdDate="2023-11-23 09:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
     <WorkEffort workEffortId="8020" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8019" priority="PRIORITY_HIGH" partyId="9007" createdDate="2023-11-23 09:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
-    <WorkEffort workEffortId="8021" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8019" priority="PRIORITY_HIGH" partyId="9007" createdDate="2023-11-25 19:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-01 09:22:22.660"/>
-    <WorkEffort workEffortId="8022" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8019" priority="PRIORITY_HIGH" partyId="9007" createdDate="2023-11-25 19:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-01 09:22:22.660"/>
+    <WorkEffort workEffortId="8021" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8019" priority="PRIORITY_HIGH" partyId="9007" createdDate="2023-11-25 19:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
+    <WorkEffort workEffortId="8022" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8019" priority="PRIORITY_HIGH" partyId="9007" createdDate="2023-11-25 19:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
 
     <WorkEffortPartyAssignment workEffortPartyAssignment="9000" partyId="IT" workEffortId="8000"/>
     <WorkEffortPartyAssignment workEffortPartyAssignment="9001" partyId="CG" workEffortId="8001"/>
@@ -522,26 +524,9 @@ under the License.
     <WorkEffortPartyAssignment workEffortPartyAssignment="9025" partyId="HG" workEffortId="8025"/>
     <WorkEffortPartyAssignment workEffortPartyAssignment="9026" partyId="HG" workEffortId="8026"/>
     <WorkEffortPartyAssignment workEffortPartyAssignment="9027" partyId="HG" workEffortId="8027"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9028" partyId="IT" workEffortId="8028"/>
 
-    <PartyAttribute partyId="9001" attrName="ddFormType" attrValue="STANDARD_DD"/>
-    <PartyAttribute partyId="9002" attrName="ddFormType" attrValue="STANDARD_DD"/>
-    <PartyAttribute partyId="9004" attrName="ddFormType" attrValue="STANDARD_DD"/>
-    <PartyAttribute partyId="9006" attrName="ddFormType" attrValue="STANDARD_DD"/>
-    <PartyAttribute partyId="9007" attrName="ddFormType" attrValue="STANDARD_DD"/>
-    <PartyAttribute partyId="9001" attrName="ddFormStatusHistory" attrValue="Submitted"/>
-    <PartyAttribute partyId="9002" attrName="ddFormStatusHistory" attrValue="Submitted"/>
-    <PartyAttribute partyId="9004" attrName="ddFormStatusHistory" attrValue="Submitted"/>
-    <PartyAttribute partyId="9006" attrName="ddFormStatusHistory" attrValue="Submitted"/>
-    <PartyAttribute partyId="9007" attrName="ddFormStatusHistory" attrValue="Submitted"/>
-    <PartyAttribute partyId="9000" attrName="isGovernment" attrValue="N"/>
-    <PartyAttribute partyId="9001" attrName="isGovernment" attrValue="N"/>
-    <PartyAttribute partyId="9002" attrName="isGovernment" attrValue="N"/>
-    <PartyAttribute partyId="9003" attrName="isGovernment" attrValue="Y"/>
-    <PartyAttribute partyId="9004" attrName="isGovernment" attrValue="N"/>
-    <PartyAttribute partyId="9005" attrName="isGovernment" attrValue="N"/>
-    <PartyAttribute partyId="9006" attrName="isGovernment" attrValue="N"/>
-    <PartyAttribute partyId="9007" attrName="isGovernment" attrValue="N"/>
-    <PartyAttribute partyId="9006" attrName="complianceCheckWarning" attrValue="Y"/>
+    <PartyAttribute partyId="9006" attrName="complianceCheckWarning" attrValue="Warning"/>
     <PartyAttributeDate partyId="9000" attrName="collectionDate" attrValue="2023-11-18 10:43:22.660"/>
     <PartyAttributeDate partyId="9001" attrName="collectionDate" attrValue="2023-11-18 10:43:22.660"/>
     <PartyAttributeDate partyId="9002" attrName="collectionDate" attrValue="2023-11-18 10:43:22.660"/>
@@ -562,7 +547,6 @@ under the License.
     <PartyAttributeDate partyId="9001" attrName="finishDomUploadDate" attrValue="2023-11-24 20:43:22.660"/>
     <PartyAttributeDate partyId="9000" attrName="finishDomUploadDate" attrValue="2023-11-25 20:43:22.660"/>
     <PartyAttributeDate partyId="9002" attrName="finishDomUploadDate" attrValue="2023-11-29 18:22:22.660"/>
-    <PartyAttributeDate partyId="9004" attrName="finishDomUploadDate" attrValue="2023-11-27 12:22:22.660"/>
     <PartyAttributeDate partyId="9005" attrName="finishDomUploadDate" attrValue="2023-11-28 12:22:22.660"/>
     <PartyAttributeDate partyId="9006" attrName="finishDomUploadDate" attrValue="2023-11-27 12:22:22.660"/>
     <PartyAttributeDate partyId="9007" attrName="finishDomUploadDate" attrValue="2023-11-28 12:22:22.660"/>
@@ -631,9 +615,7 @@ under the License.
 
     <PartyClassification partyId="9001" partyClassificationGroupId="LOW_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
     <PartyClassification partyId="9002" partyClassificationGroupId="HIGH_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
-    <PartyClassification partyId="9004" partyClassificationGroupId="MIDDLE_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
     <PartyClassification partyId="9005" partyClassificationGroupId="LOW_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
-    <PartyClassification partyId="9007" partyClassificationGroupId="LOW_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
     <PartyClassification partyId="9006" partyClassificationGroupId="HIGH_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
 
     <!-- StatusValidChange -->
