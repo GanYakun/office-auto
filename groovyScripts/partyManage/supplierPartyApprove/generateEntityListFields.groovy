@@ -88,18 +88,14 @@ def generateFields(Map<String, Object> context){
         String url = null;
         String formName = null;
         if (ddFormIsSubmitted) {
-            GenericValue genericValue = EntityQuery.use(delegator).from("PartyAttribute").where("partyId", supplierId, "attrName", "ddFormType").queryFirst();
-            if (UtilValidate.isNotEmpty(genericValue)) {
-                String attrValue = genericValue.getString("attrValue");
-                if ("SIMPLIFIED_DD".equals(attrValue)) {
-                    formName = "Download";
-                    url = "https://dpbird.oss-cn-hangzhou.aliyuncs.com/scy/SimplifiedForm.pdf"
-                };
-                if ("STANDARD_DD".equals(attrValue)) {
-                    url = "https://dpbird.oss-cn-hangzhou.aliyuncs.com/scy/StandardForm.pdf"
-                    formName = "Download";
-                };
-            }
+            if ("SIMPLIFIED_DD".equals(ddFormType)) {
+                formName = "Download";
+                url = "https://dpbird.oss-cn-hangzhou.aliyuncs.com/scy/SimplifiedForm.pdf"
+            };
+            if ("STANDARD_DD".equals(ddFormType)) {
+                url = "https://dpbird.oss-cn-hangzhou.aliyuncs.com/scy/StandardForm.pdf"
+                formName = "Download";
+            };
         }
         entity.addProperty(new Property(null, "ddFromUrl", ValueType.PRIMITIVE, url));
         entity.addProperty(new Property(null, "ddFromName", ValueType.PRIMITIVE, formName));
@@ -113,40 +109,9 @@ def generateFields(Map<String, Object> context){
         GenericValue partyIdentification = EntityQuery.use(delegator).from("PartyIdentification")
                 .where(UtilMisc.toMap("partyIdentificationTypeId", "REGISTRATION_NUMBER", "partyId", supplierId)).queryFirst();
         String usccNumber = partyIdentification == null ? null : partyIdentification.getString("idValue")
-        //DDForm Bool Field
-        List<String> roles = EntityQuery.use(delegator).from("PartyRole").where("partyId", supplierId).getFieldList("roleTypeId");
-        entity.addProperty(new Property(null, "agent", ValueType.PRIMITIVE, roles.contains("AGENT")));
-        entity.addProperty(new Property(null, "jvPartner", ValueType.PRIMITIVE, roles.contains("JV_PARTNER")));
-        entity.addProperty(new Property(null, "subContractor", ValueType.PRIMITIVE, roles.contains("SUB_CONTRACTOR")));
-        entity.addProperty(new Property(null, "consultantAdvisor", ValueType.PRIMITIVE, roles.contains("CONSULTANT_ADVISOR")));
-        entity.addProperty(new Property(null, "supplierVendor", ValueType.PRIMITIVE, roles.contains("SUPPLIER_VENDOR")));
-        entity.addProperty(new Property(null, "distributor", ValueType.PRIMITIVE, roles.contains("DISTRIBUTOR")));
-        entity.addProperty(new Property(null, "investmentTarget", ValueType.PRIMITIVE, roles.contains("INVESTMENT_TARGET")));
-        entity.addProperty(new Property(null, "otherSpecify", ValueType.PRIMITIVE, roles.contains("OTHER_SPECIFY")));
         entity.addProperty(new Property(null, "usccNumber", ValueType.PRIMITIVE, usccNumber));
         entity.addProperty(new Property(null, "checkWarningCritical", ValueType.PRIMITIVE, checkWarningCritical));
 
-        //coWork Status
-        GenericValue parentWork = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", supplierId, "workEffortTypeId", "COWORK").queryFirst();
-        if (UtilValidate.isNotEmpty(parentWork)) {
-            List<GenericValue> childWork =parentWork.getRelated("ChildWorkEffortAndPartyGroupContact", null, null, false);
-            for (GenericValue child : childWork) {
-                String approveCompany = child.getString("approvePartyId");
-                GenericValue coWorkStatus = child.getRelatedOne("CurrentStatusItem", false);
-                String coWorkStatusDescription = "PROCESSED".equals(coWorkStatus.getString("statusId")) ? "Processed" : "Not Processed";
-                int coWorkCriticality = "PROCESSED".equals(coWorkStatus.getString("statusId")) ? 3 : 1;
-                if (supplierId.equals(approveCompany)) {
-                    entity.addProperty(new Property(null, "supplierWorkStatus", ValueType.PRIMITIVE, coWorkStatusDescription));
-                    entity.addProperty(new Property(null, "applicationWorkCriticality", ValueType.PRIMITIVE, coWorkCriticality));
-                } else if ("HG".equals(approveCompany)) {
-                    entity.addProperty(new Property(null, "complianceWorkStatus", ValueType.PRIMITIVE, coWorkStatusDescription));
-                    entity.addProperty(new Property(null, "supplierWorkCriticality", ValueType.PRIMITIVE, coWorkCriticality));
-                } else {
-                    entity.addProperty(new Property(null, "applicationWorkStatus", ValueType.PRIMITIVE, coWorkStatusDescription));
-                    entity.addProperty(new Property(null, "complianceWorkCriticality", ValueType.PRIMITIVE, coWorkCriticality));
-                }
-            }
-        }
     }
     return entityList;
 }

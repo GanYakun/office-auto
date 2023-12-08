@@ -95,15 +95,6 @@
         <Property Name="ddFromUrl" Type="String"/>
         <!-- Work scope -->
         <Property Name="workScope" Type="String" Label="${workScope}"/>
-        <!-- DDForm Bool Field -->
-        <Property Name="agent" Type="Boolean" Label="Agent"/>
-        <Property Name="jvPartner" Type="Boolean" Label="JV Partner"/>
-        <Property Name="subContractor" Type="Boolean" Label="Sub-contractor"/>
-        <Property Name="consultantAdvisor" Type="Boolean" Label="Consultant/Advisor"/>
-        <Property Name="supplierVendor" Type="Boolean" Label="Supplier/Vendor"/>
-        <Property Name="distributor" Type="Boolean" Label="Distributor"/>
-        <Property Name="investmentTarget" Type="Boolean" Label="Investment Target"/>
-        <Property Name="otherSpecify" Type="Boolean" Label="Other (specify)"/>
         <!-- 合规回复参数 -->
         <Property Name="adverseResults" Type="String" Label="${adverseResults}" IsAttribute="true"/>
         <Property Name="additionalProtection" Type="String" Label="${additionalProtection}" IsAttribute="true"/>
@@ -111,13 +102,6 @@
         <Property Name="complianceCheckWarning" Type="String" IsAttribute="true"/>
         <Property Name="checkWarningCritical" Type="numeric"/>
         <Property Name="vendorTypeCritical" Type="numeric"/>
-        <!-- coWork Status -->
-        <Property Name="applicationWorkStatus" Type="String" Label="${applicationWorkStatus}"/>
-        <Property Name="applicationWorkCriticality" Type="Edm.Int64"/>
-        <Property Name="supplierWorkStatus" Type="String" Label="${supplierWorkStatus}"/>
-        <Property Name="supplierWorkCriticality" Type="Edm.Int64"/>
-        <Property Name="complianceWorkStatus" Type="String" Label="${complianceWorkStatus}"/>
-        <Property Name="complianceWorkCriticality" Type="Edm.Int64"/>
         <!-- ddForm是否已提交 -->
         <Property Name="ddFormIsSubmitted" Type="Boolean"/>
         <NavigationProperty Name="Product" Type="Product" Relations="SupplierProduct/Product" IsCollection="true"/>
@@ -231,11 +215,6 @@
         </FieldGroup>
         <FieldGroup Qualifier="ComplianceResult" Label="ComplianceResult">
             <DataField Values="adverseResults,additionalProtection" Importance="High"/>
-        </FieldGroup>
-        <FieldGroup Qualifier="ProgressStatus" Label="ProgressStatus">
-            <DataField Values="applicationWorkStatus" Importance="High" Criticality="complianceWorkCriticality"/>
-            <DataField Values="supplierWorkStatus" Importance="High" Criticality="applicationWorkCriticality"/>
-            <DataField Values="complianceWorkStatus" Importance="High" Criticality="supplierWorkCriticality"/>
         </FieldGroup>
 
         <LineItem>
