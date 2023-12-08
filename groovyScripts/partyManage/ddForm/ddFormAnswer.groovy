@@ -25,14 +25,10 @@ module = "generateFields.groovy";
 
 def generateFields(Map<String, Object> context){
     List<Entity> entityList = context.parameters.entityList;
-    Delegator delegator = context.get("delegator");
     entityList.each { entity ->
-        GenericValue supplierParty = (GenericValue) entity.getGenericValue();
-        String supplierId = supplierParty.getString("partyId");
-        GenericValue workEffort = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", supplierId, "approvePartyId", supplierId).queryFirst();
-        if (UtilValidate.isNotEmpty(workEffort)) {
-            entity.addProperty(new Property(null, "ddStatus", ValueType.PRIMITIVE, "PROCESSED".equals(workEffort.getString("currentStatusId")) ? "Processed" : "Not Processed"))
-        }
+        GenericValue answer = (GenericValue) entity.getGenericValue();
+        Debug.log(">>>>>>>>>>> " + answer.getString("enumResponse"))
+        entity.addProperty(new Property(null, "responseCritical", ValueType.PRIMITIVE, "TRUE".equals(answer.getString("enumResponse")) ? 2 : 3))
     }
     return entityList;
 }

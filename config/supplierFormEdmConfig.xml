@@ -79,7 +79,7 @@
     </EntityType>
 
 
-    <EntityType Name="RegisterPostalAddress" OfbizEntity="PostalAddress" AutoProperties="true" 
+    <EntityType Name="RegisterPostalAddress" OfbizEntity="PostalAddress" AutoProperties="true"
                 EntitySetName="RegisterPostalAddresses" DraftEntityName="PostalAddressesDDFormDraft">
         <LineItem Qualifier="PostalAddressLineItem">
             <DataField Values="countryGeoId,stateProvinceGeoId,cityGeoId,address1,address2,contactNumber,email" Importance="High"/>
@@ -111,13 +111,20 @@
 
 
     <EntityType Name="DDFormSurveyQuestionAnswer" OfbizEntity="SurveyQuestionAnswer" AutoProperties="true"
-                EntitySetName="DDFormSurveyQuestionAnswers" DraftEntityName="DDFormSurveyQuestionAnswerDraft">
+                EntitySetName="DDFormSurveyQuestionAnswers" DraftEntityName="DDFormSurveyQuestionAnswerDraft"
+                Handler="component://officeauto/groovyScripts/partyManage/ddForm/ddFormAnswer.groovy">
         <Property Name="enumResponse" Label="${NONE}">
             <Text Path="BooleanEnum/description" TextArrangement="TextOnly"/>
             <ValueList CollectionPath="BooleanEnums" WithFixedValues="true"/>
         </Property>
+        <Property Name="responseCritical" Type="numeric"/>
         <LineItem Qualifier="AnswerLineItem">
             <DataField Values="DDFormSurveyQuestion/question,enumResponse,textResponse" Importance="High"/>
+        </LineItem>
+        <LineItem Qualifier="ComplianceAnswerLineItem">
+            <DataField Values="DDFormSurveyQuestion/question" Importance="High"/>
+            <DataField Values="enumResponse" Criticality="responseCritical" Importance="High"/>
+            <DataField Values="textResponse" Importance="High"/>
         </LineItem>
         <NavigationProperty Name="DDFormSurveyQuestion" Type="DDFormSurveyQuestion" Relations="SurveyQuestion" IsCollection="false"/>
         <NavigationProperty Name="BooleanEnum" Type="BooleanEnum" Relations="RepsEnumeration" IsCollection="false"/>
