@@ -40,7 +40,7 @@ public class SupplierWorker {
         GenericValue productCategory = delegator.findOne("ProductCategory",
                 UtilMisc.toMap("productCategoryId", productCategoryRole.get("productCategoryId")), true);
 
-        if (isGovernment || isNoFormListCountry || productCategory.get("primaryParentCategoryId").equals("NEGLIGIBLE_RISK")){
+        if (isGovernment || isNoFormListCountry || productCategory.get("primaryParentCategoryId").equals("NEGLIGIBLE_RISK") || supplierParty.get("groupTypeId").equals("INTERNAL_ORG_TYPE")){
             ddFormType = "No DD";
         }else if (productCategory.get("primaryParentCategoryId").equals("LOW_RISK")){
             ddFormType = "Simplified";
