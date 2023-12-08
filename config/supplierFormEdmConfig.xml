@@ -111,20 +111,13 @@
 
 
     <EntityType Name="DDFormSurveyQuestionAnswer" OfbizEntity="SurveyQuestionAnswer" AutoProperties="true"
-                EntitySetName="DDFormSurveyQuestionAnswers" DraftEntityName="DDFormSurveyQuestionAnswerDraft"
-                Handler="component://officeauto/groovyScripts/partyManage/ddForm/ddFormAnswer.groovy">
+                EntitySetName="DDFormSurveyQuestionAnswers" DraftEntityName="DDFormSurveyQuestionAnswerDraft">
         <Property Name="enumResponse" Label="${NONE}">
             <Text Path="BooleanEnum/description" TextArrangement="TextOnly"/>
             <ValueList CollectionPath="BooleanEnums" WithFixedValues="true"/>
         </Property>
-        <Property Name="responseCritical" Type="numeric"/>
         <LineItem Qualifier="AnswerLineItem">
             <DataField Values="DDFormSurveyQuestion/question,enumResponse,textResponse" Importance="High"/>
-        </LineItem>
-        <LineItem Qualifier="ComplianceAnswerLineItem">
-            <DataField Values="DDFormSurveyQuestion/question" Importance="High"/>
-            <DataField Values="enumResponse" Criticality="responseCritical" Importance="High"/>
-            <DataField Values="textResponse" Importance="High"/>
         </LineItem>
         <NavigationProperty Name="DDFormSurveyQuestion" Type="DDFormSurveyQuestion" Relations="SurveyQuestion" IsCollection="false"/>
         <NavigationProperty Name="BooleanEnum" Type="BooleanEnum" Relations="RepsEnumeration" IsCollection="false"/>
