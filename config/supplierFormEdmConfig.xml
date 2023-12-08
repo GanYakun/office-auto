@@ -70,6 +70,9 @@
         <!-- DDForm问题 -->
         <NavigationProperty Name="SurveyQuestionAnswer" Type="DDFormSurveyQuestionAnswer"
                             Relations="SurveyQuestionAnswer(surveyQuestionId in (9000,9001,9002,9003,9005,9006))" IsCollection="true"/>
+        <!-- DDForm问题没有Draft -->
+        <NavigationProperty Name="SurveyQuestionAnswerNoDraft" Type="DDFormSurveyQuestionAnswerNoDraft"
+                            Relations="SurveyQuestionAnswer(surveyQuestionId in (9000,9001,9002,9003,9005,9006))" IsCollection="true"/>
 
         <!--Submit to procurement-->
         <Action Name="SubmitDDForm" IsBound="true" EntitySetPath="supplierDDForm"
@@ -119,6 +122,23 @@
         </Property>
         <LineItem Qualifier="AnswerLineItem">
             <DataField Values="DDFormSurveyQuestion/question,enumResponse,textResponse" Importance="High"/>
+        </LineItem>
+        <NavigationProperty Name="DDFormSurveyQuestion" Type="DDFormSurveyQuestion" Relations="SurveyQuestion" IsCollection="false"/>
+        <NavigationProperty Name="BooleanEnum" Type="BooleanEnum" Relations="RepsEnumeration" IsCollection="false"/>
+    </EntityType>
+
+    <EntityType Name="DDFormSurveyQuestionAnswerNoDraft" OfbizEntity="SurveyQuestionAnswer" AutoProperties="true"
+                EntitySetName="DDFormSurveyQuestionAnswerNoDrafts"
+                Handler="component://officeauto/groovyScripts/partyManage/ddForm/ddFormAnswer.groovy">
+        <Property Name="enumResponse" Label="${NONE}">
+            <Text Path="BooleanEnum/description" TextArrangement="TextOnly"/>
+            <ValueList CollectionPath="BooleanEnums" WithFixedValues="true"/>
+        </Property>
+        <Property Name="enumResponseCritical" Type="numeric"/>
+        <LineItem Qualifier="ComplianceAnswerLineItem">
+            <DataField Values="DDFormSurveyQuestion/question" Importance="High"/>
+            <DataField Values="enumResponse" Criticality="enumResponseCritical" Importance="High"/>
+            <DataField Values="textResponse" Importance="High"/>
         </LineItem>
         <NavigationProperty Name="DDFormSurveyQuestion" Type="DDFormSurveyQuestion" Relations="SurveyQuestion" IsCollection="false"/>
         <NavigationProperty Name="BooleanEnum" Type="BooleanEnum" Relations="RepsEnumeration" IsCollection="false"/>
@@ -192,12 +212,20 @@
         <LineItem Qualifier="BeneficialPerson">
             <DataField Values="firstName,lastName,nationality,amount,copyIdentificationAttached" Importance="High"/>
         </LineItem>
+        <LineItem Qualifier="BeneficialPerson_Upload">
+            <DataField Values="firstName,lastName,nationality,amount,copyIdentificationAttached" Importance="High"/>
+            <DataFieldForAction Label="Upload" Action="UBOUpload" Importance="High" Criticality="Positive" Inline="true" InvocationGrouping="Isolated"/>        </LineItem>
         <LineItem Qualifier="SeniorStaff">
             <DataField Values="firstName,lastName,nationality,positionTitle,copyIdentificationAttached" Importance="High"/>
         </LineItem>
         <LineItem Qualifier="ContactPersonList">
             <DataField Values="firstName,lastName,primaryPhone,primaryEmail,positionTitle" Importance="High"/>
         </LineItem>
+        <Action Name="UBOUpload" IsBound="true" EntitySetPath="supplierDDForm"
+                OfbizService="com.banfftech.events.DDFormEvents.uboUpload">
+            <Parameter Name="relationshipAndToParty" Type="RelationshipAndToParty" Nullable="false" IsCollection="false"/>
+            <Parameter Name="file" Type="Stream"/>
+        </Action>
     </EntityType>
 
     <!--Country（国家）-->
