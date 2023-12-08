@@ -761,14 +761,14 @@ under the License.
     <DBFieldLabel dbFieldLabelId="AG10000_10_EN" dbFieldId="AG10000_10" language="en" value="Agreement text"/>
 
     <DBEntity dbEntityId="PMR10000" dbEntityName="PartyMediaResource" description="Party Media" isOpen="N" />
-    <DBField dbFieldId="PMR10000_01" dbFieldName="contentName" dbFieldTypeId="STRING" dbEntityId="PMR10000" description="File Description"/>
+    <DBField dbFieldId="PMR10000_01" dbFieldName="contentName" dbFieldTypeId="STRING" dbEntityId="PMR10000" description="Description"/>
     <DBField dbFieldId="PMR10000_02" dbFieldName="createdDate" dbFieldTypeId="DATE_TIME" dbEntityId="PMR10000" description="Creation time"/>
     <DBField dbFieldId="PMR10000_03" dbFieldName="otherData" dbFieldTypeId="STRING" dbEntityId="PMR10000" description="File"/>
     <DBField dbFieldId="PMR10000_04" dbFieldName="fromDate" dbFieldTypeId="DATE_TIME" dbEntityId="PMR10000" description="Effective start time"/>
     <DBField dbFieldId="PMR10000_05" dbFieldName="thruDate" dbFieldTypeId="DATE_TIME" dbEntityId="PMR10000" description="Effective end Time"/>
     <DBField dbFieldId="PMR10000_06" dbFieldName="dataResourceName" dbFieldTypeId="STRING" dbEntityId="PMR10000" description="File Name"/>
     <DBFieldLabel dbFieldLabelId="PMR10000_01_ZH" dbFieldId="PMR10000_01" language="zh" value="文件描述"/>
-    <DBFieldLabel dbFieldLabelId="PMR10000_01_EN" dbFieldId="PMR10000_01" language="en" value="File Description"/>
+    <DBFieldLabel dbFieldLabelId="PMR10000_01_EN" dbFieldId="PMR10000_01" language="en" value="Description"/>
     <DBFieldLabel dbFieldLabelId="PMR10000_02_ZH" dbFieldId="PMR10000_02" language="zh" value="创建时间"/>
     <DBFieldLabel dbFieldLabelId="PMR10000_02_EN" dbFieldId="PMR10000_02" language="en" value="Creation time"/>
     <DBFieldLabel dbFieldLabelId="PMR10000_03_ZH" dbFieldId="PMR10000_03" language="zh" value="文件"/>
