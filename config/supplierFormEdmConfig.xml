@@ -13,6 +13,7 @@
         </HeaderInfo>
         <RelAlias Name="BusinessLocation" Relations="PartyGeoPoint(partyGeoPointTypeId=BUSINESS_LOCATION)/GeoPoint"/>
         <RelAlias Name="PartyIdentification" Relations="PartyIdentification(partyIdentificationTypeId=REGISTRATION_NUMBER)"/>
+        <RelAlias Name="WorkScopeAnswer" Relations="SurveyQuestionAnswer(surveyQuestionId=9004)"/>
         <Property Name="partyName" Label="${NONE}"/>
         <Property Name="dateIncorporation" IsDateAttribute="true" Type="Timestamp" Label="${NONE}"/>
         <Property Name="businessLocation" Type="String" RelAlias="BusinessLocation" Field="information" Label="${BusinessLocation}"/>
