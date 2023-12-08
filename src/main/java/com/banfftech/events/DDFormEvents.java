@@ -66,6 +66,7 @@ public class DDFormEvents {
         //检索是否勾选敏感问题,添加首次提交标志
         dispatcher.runSync("banfftech.ddFormCommitCheck",UtilMisc.toMap("supplierPartyId", partyId, "userLogin", userLogin));
         //发送邮件
-        SupplierApproveEvents.sendEmailToTarget(delegator, "procurement", httpServletRequest, boundEntity, null, null);
+//        SupplierApproveEvents.sendEmailToTarget(delegator, "procurement", httpServletRequest, boundEntity, null, null);
+        VendorOnBoardingEmailEvents.ddSubmit(delegator, httpServletRequest, boundEntity);
     }
 }

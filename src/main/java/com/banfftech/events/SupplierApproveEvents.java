@@ -91,9 +91,13 @@ public class SupplierApproveEvents {
             CommonUtils.setObjectAttribute(party, "complianceNote", noteInfo);
             dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortParentId,
                     "currentStatusId", "COMPLETE_COMP", "userLogin", userLogin));
+            VendorOnBoardingEmailEvents.complianceComplete(delegator, httpServletRequest, boundEntity);
+        }
+        if ("applicant".equals(source)) {
+            VendorOnBoardingEmailEvents.toProcurement(delegator, httpServletRequest, boundEntity);
         }
         //发送邮件
-        sendEmailToTarget(delegator, "procurement", httpServletRequest, boundEntity, null, null);
+//        sendEmailToTarget(delegator, "procurement", httpServletRequest, boundEntity, null, null);
     }
 
     /**
@@ -145,15 +149,11 @@ public class SupplierApproveEvents {
             CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), UtilMisc.toMap("workEffortId", supplierTask.getString("workEffortId"),
                     "currentStatusId", "NOT_PROCESSED", "comments", comments, "userLogin", userLogin), "banfftech.updateWorkEffort", userLogin);
         }
-        if ("supplier".equals(target)) {
-            //发送DD,状态改为REQUEST_DD
-            dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortParentId,
-                    "currentStatusId", "REQUEST_DD", "userLogin", userLogin));
-        }
         if ("compliance".equals(target)) {
             //发送给合规,状态改为REQUEST_COMP
             dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortParentId,
                     "currentStatusId", "REQUEST_COMP", "userLogin", userLogin));
+            VendorOnBoardingEmailEvents.toCompliance(delegator, httpServletRequest, boundEntity);
         }
         // create NoteData for the Party
         if (UtilValidate.isEmpty(noteInfo)) {
@@ -165,7 +165,7 @@ public class SupplierApproveEvents {
         // create PartyNote
         CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), UtilMisc.toMap("noteId", noteDataResult.get("noteId"), "partyId", partyId, "userLogin", userLogin), "banfftech.createPartyNote", userLogin);
         //发送邮件
-        sendEmailToTarget(delegator, target, httpServletRequest, boundEntity, boundGenericValue, email);
+//        sendEmailToTarget(delegator, target, httpServletRequest, boundEntity, boundGenericValue, email);
     }
 
 
@@ -231,8 +231,10 @@ public class SupplierApproveEvents {
         Map<String, Object> noteDataResult = CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), noteMap, "banfftech.createNoteData", userLogin);
         // create PartyNote
         CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), UtilMisc.toMap("noteId", noteDataResult.get("noteId"), "partyId", partyId, "userLogin", userLogin), "banfftech.createPartyNote", userLogin);
+
+        VendorOnBoardingEmailEvents.toVendor(delegator, boundEntity, email);
         //发送邮件
-        sendEmailToTarget(delegator, target, httpServletRequest, boundEntity, boundGenericValue, email);
+//        sendEmailToTarget(delegator, target, httpServletRequest, boundEntity, boundGenericValue, email);
     }
 
     private static String getTransferTarget(Delegator delegator, String target, GenericValue parentWorkEffort) throws GenericEntityException {
@@ -262,6 +264,7 @@ public class SupplierApproveEvents {
         Delegator delegator = (Delegator) oDataContext.get("delegator");
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
+        HttpServletRequest httpServletRequest = (HttpServletRequest) oDataContext.get("httpServletRequest");
         OdataOfbizEntity supplierParty = (OdataOfbizEntity) actionParameters.get("supplierParty");
         String workEffortId = (String) supplierParty.getPropertyValue("workEffortId");
         String partyId = (String) supplierParty.getPropertyValue("partyId");
@@ -272,88 +275,7 @@ public class SupplierApproveEvents {
         dispatcher.runSync("banfftech.updateParty", UtilMisc.toMap("partyId", partyId,
                 "statusId", "PARTY_ENABLED", "userLogin", userLogin));
         //发送邮件
-        String content = "We are pleased to inform you that the supplier registration application for [SupplierXXX], submitted by [ApplicantXXX], has been successfully processed and completed.\n" +
-                "The supplier account is now active, and we appreciate your prompt attention to this matter. This successful registration marks an important step towards establishing a partnership with [SupplierXXX].\n" +
-                "If you have any further questions or require additional information, please do not hesitate to contact us at [XXXXXXX@banff-tech.com].\n" +
-                "Thank you for your cooperation, and we look forward to the potential collaboration with [SupplierXXX].\n" +
-                "Best regards";
-        try {
-            GenericValue firstTask = EntityQuery.use(delegator).from("WorkEffort").where("partyId", partyId).orderBy("createdDate").queryFirst();
-            GenericValue createUser = delegator.findOne("UserLogin", UtilMisc.toMap("userLoginId", firstTask.getString("createdByUserLogin")), false);
-            GenericValue applicantParty = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", createUser.getString("partyId")).queryFirst();
-            String applicantEmail = applicantParty.getString("primaryEmail");
-            if (UtilValidate.isNotEmpty(applicantEmail)) {
-                UtilEmail.sendEmail(applicantEmail, "Supplier registration completed", content);
-            } else {
-                Debug.logWarning("No email address", MODULE);
-            }
-        } catch (MessagingException | GenericEntityException e) {
-            Debug.log("邮件发送失败: " + e.getMessage());
-        }
-    }
-
-
-    public static void sendEmailToTarget(Delegator delegator, String target, HttpServletRequest httpServletRequest, OdataOfbizEntity entity,
-                                         GenericValue parentWorkEffort, String defaultEmail) throws GenericEntityException, UnsupportedEncodingException {
-        //获取app访问地址和邮件
-        String currentUrl = httpServletRequest.getRequestURL().toString().replace(httpServletRequest.getRequestURI(), "");
-        Object supplierPartyId = entity.getPropertyValue("partyId");
-        String odataId = entity.getId().toString();
-        String targetEmail = defaultEmail;
-        if ("procurement".equals(target)) {
-            GenericValue coWork = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", supplierPartyId, "approvePartyId", "CG", "workEffortTypeId", "COWORK").queryFirst();
-            if (UtilValidate.isEmpty(coWork)) {
-                return;
-            }
-            String coWorkId = coWork.getString("workEffortId");
-            odataId = odataId.replaceAll("'[^']*'", "'" + coWorkId + "'");
-            currentUrl += "/menu6/supplierapprove-managebyprocurement/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
-            GenericValue procurement = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", "procurement").queryFirst();
-            targetEmail = procurement.getString("primaryEmail");
-        }
-        if ("compliance".equals(target)) {
-            GenericValue coWork = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", supplierPartyId, "approvePartyId", "HG", "workEffortTypeId", "COWORK_TASK").queryFirst();
-            String coWorkId = coWork.getString("workEffortId");
-            odataId = odataId.replaceAll("'[^']*'", "'" + coWorkId + "'");
-            currentUrl += "/menu6/supplierapprove-managebycompliance/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
-            GenericValue procurement = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", "compliance").queryFirst();
-            targetEmail = procurement.getString("primaryEmail");
-        }
-        if ("applicant".equals(target)) {
-            GenericValue firstTask = EntityQuery.use(delegator).from("WorkEffort").where("partyId", supplierPartyId).orderBy("createdDate").queryFirst();
-            GenericValue createUser = delegator.findOne("UserLogin", UtilMisc.toMap("userLoginId", firstTask.getString("createdByUserLogin")), false);
-            String createCompany = CommonUtils.getPartyCompany(createUser.getString("partyId"), delegator);
-            GenericValue coWork = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", supplierPartyId, "approvePartyId", createCompany, "workEffortTypeId", "COWORK_TASK").queryFirst();
-            String coWorkId = coWork.getString("workEffortId");
-            odataId = odataId.replaceAll("'[^']*'", "'" + coWorkId + "'");
-            GenericValue applicantParty = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", createUser.getString("partyId")).queryFirst();
-            currentUrl += "/menu6/supplierapprove-managebyapplication/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
-            targetEmail = applicantParty.getString("primaryEmail");
-        }
-        if ("supplier".equals(target)) {
-            odataId = odataId.replaceAll("'[^']*'", "'" + supplierPartyId + "'");
-            currentUrl += "/o3/#Supplier-DDForm&/" + URLEncoder.encode(odataId, "UTF-8");
-        }
-        //发送邮件
-        String content = "Vendor Onboarding Progress Update Notification\n" +
-                "<br><br>" +
-                "Details:\n" + currentUrl +
-                "<br><br>" +
-                "Kindly attend to this matter promptly and update the task status accordingly. Should you have any questions or require further assistance, feel free to reach out.\n" +
-                "<br><br>" +
-                "Thank you,\n" +
-                "<br><br>" +
-                "[FormXXX]";
-        try {
-            if (UtilValidate.isNotEmpty(targetEmail)) {
-                UtilEmail.sendEmail(targetEmail, "Vendor On-boarding", content);
-            } else {
-                Debug.logWarning("No email address", MODULE);
-            }
-        } catch (MessagingException e) {
-            Debug.log("邮件发送失败: " + e.getMessage());
-        }
-
+        VendorOnBoardingEmailEvents.vendorComplete(delegator, httpServletRequest, supplierParty);
     }
 
     public static Object getProcessFlow(Map<String, Object> oDataContext, Map<String, Object> actionParameters, EdmBindingTarget edmBindingTarget) throws GenericEntityException {
