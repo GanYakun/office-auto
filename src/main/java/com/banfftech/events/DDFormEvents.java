@@ -8,6 +8,7 @@ import com.dpbird.odata.handler.annotation.DraftAction;
 import com.dpbird.odata.handler.annotation.DraftEventContext;
 import com.dpbird.odata.handler.annotation.EdmEntity;
 import com.dpbird.odata.handler.annotation.EdmService;
+import org.apache.ofbiz.base.util.Debug;
 import org.apache.ofbiz.base.util.UtilDateTime;
 import org.apache.ofbiz.base.util.UtilMisc;
 import org.apache.ofbiz.base.util.UtilValidate;
@@ -69,4 +70,10 @@ public class DDFormEvents {
 //        SupplierApproveEvents.sendEmailToTarget(delegator, "procurement", httpServletRequest, boundEntity, null, null);
         VendorOnBoardingEmailEvents.ddSubmit(delegator, httpServletRequest, boundEntity);
     }
+
+    public static void uboUpload(Map<String, Object> oDataContext, Map<String, Object> actionParameters, EdmBindingTarget edmBindingTarget)
+            throws GenericEntityException, OfbizODataException, GeneralServiceException, GenericServiceException, UnsupportedEncodingException {
+        Debug.log("run ubo Upload =============");
+    }
+
 }
