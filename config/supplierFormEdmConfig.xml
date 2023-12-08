@@ -18,19 +18,7 @@
         <Property Name="businessLocation" Type="String" RelAlias="BusinessLocation" Field="information" Label="${BusinessLocation}"/>
         <Property Name="registrationNumber" Type="String" RelAlias="PartyIdentification" Field="idValue" Label="${NONE}"/>
         <Property Name="workScope" Type="String" RelAlias="WorkScopeAnswer" Field="textResponse" Label="${WorkScopeAnswer}"/>
-        <Property Name="agent" IsAttribute="true" Type="Boolean" Label="Agent"/>
-        <Property Name="jvPartner" IsAttribute="true" Type="Boolean" Label="JV Partner"/>
-        <Property Name="subContractor" IsAttribute="true" Type="Boolean" Label="Sub-contractor"/>
-        <Property Name="consultant" IsAttribute="true" Type="Boolean" Label="Consultant/Advisor"/>
-        <Property Name="supplier" IsAttribute="true" Type="Boolean" Label="Supplier/Vendor"/>
-        <Property Name="distributor" IsAttribute="true" Type="Boolean" Label="Distributor"/>
-        <Property Name="investmentTarget" IsAttribute="true" Type="Boolean" Label="Investment Target"/>
-        <Property Name="otherAttr" IsAttribute="true" Type="Boolean" Label="Other (specify)"/>
         <Property Name="ddStatus" Type="String" Label="${ddFormDealStatus}"/>
-        <!-- 注册地址 -->
-        <Property Name="countryGeoId" />
-        <Property Name="stateProvinceGeoId" />
-        <Property Name="cityGeoId" />
 
         <LineItem>
             <DataField Values="partyName" Importance="High"/>
@@ -53,7 +41,6 @@
         </FieldGroup>
         <!-- 8.PartyRole -->
         <FieldGroup Label="BusinessRelationship" Qualifier="BusinessRelationship">
-<!--            <DataField Values="agent,jvPartner,subContractor,consultant,supplier,distributor,investmentTarget,otherAttr" Importance="High"/>-->
             <DataField Values="BusinessRelationship/roleTypeId" Importance="High"/>
         </FieldGroup>
         <!-- 9.工作范围 -->
@@ -92,7 +79,7 @@
     </EntityType>
 
 
-    <EntityType Name="RegisterPostalAddress" OfbizEntity="PostalAddress" AutoProperties="true"
+    <EntityType Name="RegisterPostalAddress" OfbizEntity="PostalAddress" AutoProperties="true" 
                 EntitySetName="RegisterPostalAddresses" DraftEntityName="PostalAddressesDDFormDraft">
         <LineItem Qualifier="PostalAddressLineItem">
             <DataField Values="countryGeoId,stateProvinceGeoId,cityGeoId,address1,address2,contactNumber,email" Importance="High"/>

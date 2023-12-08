@@ -88,11 +88,11 @@ def generateFields(Map<String, Object> context){
         String url = null;
         String formName = null;
         if (ddFormIsSubmitted) {
-            if ("SIMPLIFIED_DD".equals(ddFormType)) {
+            if ("SIMPLIFIED_DD".equals(ddFormTypeId)) {
                 formName = "Download";
                 url = "https://dpbird.oss-cn-hangzhou.aliyuncs.com/scy/SimplifiedForm.pdf"
             };
-            if ("STANDARD_DD".equals(ddFormType)) {
+            if ("STANDARD_DD".equals(ddFormTypeId)) {
                 url = "https://dpbird.oss-cn-hangzhou.aliyuncs.com/scy/StandardForm.pdf"
                 formName = "Download";
             };
