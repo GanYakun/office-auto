@@ -388,8 +388,10 @@ public class SupplierEvents {
                 UtilMisc.toMap("userLogin", userLogin, "partyId", resultMap.get("partyId"), "roleTypeId", "SUPPLIER",
                         "productCategoryId", actionParameters.get("productCategoryId"), "fromDate", UtilDateTime.nowTimestamp()));
         String departmentPartyId = CommonUtils.getPartyCompany(userLogin.getString("partyId"), delegator);
+        List<GenericValue> companyRelations = delegator.findByAnd("PartyRelationship", UtilMisc.toMap("roleTypeIdFrom", "COMPANY", "partyIdTo", departmentPartyId), null, true);
+        GenericValue companyRelation = EntityUtil.getFirst(companyRelations);
         dispatcher.runSync("banfftech.createPartyRelationship",
-                UtilMisc.toMap("userLogin", userLogin, "roleTypeIdFrom", "DEPARTMENT", "partyIdFrom", departmentPartyId,
+                UtilMisc.toMap("userLogin", userLogin, "roleTypeIdFrom", "COMPANY", "partyIdFrom", companyRelation.get("partyIdFrom"),
                         "roleTypeIdTo", "SUPPLIER", "partyIdTo", resultMap.get("partyId")));
         String code = CommonUtils.getEncryptedPassword(delegator, "ofbiz");
         dispatcher.runSync("banfftech.createUserLogin",
@@ -444,6 +446,16 @@ public class SupplierEvents {
         dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
 
         serviceParam.put("contentName", "Compliance Report");
+        serviceParam.put("description", "Download");
+        serviceParam.put("partyContentTypeId", "COMPLIANCE_REPORT");
+        dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
+
+        serviceParam.put("contentName", "Audit Report");
+        serviceParam.put("description", "Download");
+        serviceParam.put("partyContentTypeId", "COMPLIANCE_REPORT");
+        dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
+
+        serviceParam.put("contentName", "Regulatory Document");
         serviceParam.put("description", "Download");
         serviceParam.put("partyContentTypeId", "COMPLIANCE_REPORT");
         dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
