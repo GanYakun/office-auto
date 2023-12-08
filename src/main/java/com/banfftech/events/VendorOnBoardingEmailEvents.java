@@ -73,12 +73,11 @@ public class VendorOnBoardingEmailEvents {
 
     public static void ddSubmit(Delegator delegator, HttpServletRequest request, OdataOfbizEntity entity) {
         try {
-            String odataId = entity.getId().toString();
             String supplierId = (String) entity.getPropertyValue("partyId");
             GenericValue supplier = EntityQuery.use(delegator).from("Party").where("partyId", supplierId).queryOne();
             String supplierName = supplier.getString("partyName");
             String ddFormSource = CommonUtils.getObjectAttribute(supplier, "ddFormSource");
-            String currentUrl = request.getRequestURL().toString().replace(request.getRequestURI(), "");
+            String currentUrl = "http://officeauto.banff-tech.com";
             String emailUrl = null;
             if ("procurement".equals(ddFormSource)) {
                 //to procurement
@@ -86,7 +85,7 @@ public class VendorOnBoardingEmailEvents {
                 emailUrl = procurement.getString("primaryEmail");
                 GenericValue coWork = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", supplierId, "workEffortTypeId", "COWORK").queryFirst();
                 String coWorkId = coWork.getString("workEffortId");
-                odataId = odataId.replaceAll("'[^']*'", "'" + coWorkId + "'");
+                String odataId = "SupplierParties('" + coWorkId + "')";
                 currentUrl += "/#/menu2/supplierapprove-managebyprocurement/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
             } else {
                 //to applicant
@@ -95,7 +94,7 @@ public class VendorOnBoardingEmailEvents {
                 GenericValue applicantParty = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", createUser.getString("partyId")).queryFirst();
                 emailUrl = applicantParty.getString("primaryEmail");
                 String coWorkId = coWork.getString("workEffortId");
-                odataId = odataId.replaceAll("'[^']*'", "'" + coWorkId + "'");
+                String odataId = "SupplierParties('" + coWorkId + "')";
                 currentUrl += "/#/menu2/supplierapprove-managebyapplication/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
             }
             String content = "To Procurement,<br>" +
