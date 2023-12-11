@@ -708,8 +708,10 @@
             <Parameter Name="noteInfo" Type="String" Label="${noteInfo}" Nullable="false"/>
             <ReturnType Type="NoteData"/>
         </Action>
-        <NavigationProperty Name="NoteParty" Relations="NoteParty" Type="Party"/>
+        <NavigationProperty Name="NoteParty" Relations="NoteParty" Type="NoteParty"/>
     </EntityType>
+
+    <EntityType Name="NoteParty" OfbizEntity="PersonAndContact" AutoProperties="true" EntitySetName="NoteParties"/>
 
     <!--==================================采购合同相关对象==============================================-->
     <!--PurchaseAgreement（采购合同）-->
