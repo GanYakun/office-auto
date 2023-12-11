@@ -28,26 +28,70 @@ public class SupplierWorker {
      */
     public static String getDDFormType (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
         String ddFormType = null;
+
+        if (satisfiedNoDDRegular(supplierParty, delegator)){
+            ddFormType = "No DD";
+        }else if (simplifiedDDRegular(supplierParty, delegator)){
+            ddFormType = "Simplified";
+        }else if (standardDDRegular(supplierParty, delegator)){
+            ddFormType = "Standard";
+        }
+        return ddFormType;
+    }
+
+    public static Boolean satisfiedNoDDRegular (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
         Boolean isGovernment = isGovernment((String) supplierParty.get("partyId"), delegator);
         Boolean isNoFormListCountry = isNoFormListCountry(supplierParty, delegator);
+        String primaryParentCategoryId = getSupplierParentCategory(supplierParty, delegator);
+        String vendorTypeEnumCode = getVendorTypeEnumCode(supplierParty, delegator);
 
+        if (isGovernment || isNoFormListCountry || primaryParentCategoryId.equals("NEGLIGIBLE_RISK") || vendorTypeEnumCode.equals("NO_DD")){
+            return true;
+        }else {
+            return false;
+        }
+
+    }
+
+    public static Boolean simplifiedDDRegular(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
+        String primaryParentCategoryId = getSupplierParentCategory(supplierParty, delegator);
+        String vendorTypeEnumCode = getVendorTypeEnumCode(supplierParty, delegator);
+        if (primaryParentCategoryId.equals("LOW_RISK") || vendorTypeEnumCode.equals("SIMPLIFIED_DD")){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public static Boolean standardDDRegular(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
+        String primaryParentCategoryId = getSupplierParentCategory(supplierParty, delegator);
+        String vendorTypeEnumCode = getVendorTypeEnumCode(supplierParty, delegator);
+        if (primaryParentCategoryId.equals("HIGH-VALUE_HIGH-RISK") || vendorTypeEnumCode.equals("STANDARD_DD")){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    private static String getSupplierParentCategory (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
         List<GenericValue> productCategoryRoles = delegator.findByAnd("ProductCategoryRole",
                 UtilMisc.toMap("partyId", supplierParty.get("partyId")), null, false);
         if (UtilValidate.isEmpty(productCategoryRoles)){
-            return null;
+            return "";
         }
         GenericValue productCategoryRole = EntityUtil.getFirst(productCategoryRoles);
         GenericValue productCategory = delegator.findOne("ProductCategory",
                 UtilMisc.toMap("productCategoryId", productCategoryRole.get("productCategoryId")), true);
+        return productCategory.getString("primaryParentCategoryId");
+    }
 
-        if (isGovernment || isNoFormListCountry || productCategory.get("primaryParentCategoryId").equals("NEGLIGIBLE_RISK") || supplierParty.get("groupTypeId").equals("INTERNAL_ORG_TYPE")){
-            ddFormType = "No DD";
-        }else if (productCategory.get("primaryParentCategoryId").equals("LOW_RISK")){
-            ddFormType = "Simplified";
-        }else if (productCategory.get("primaryParentCategoryId").equals("HIGH-VALUE_HIGH-RISK")){
-            ddFormType = "Standard";
+    private static String getVendorTypeEnumCode(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
+        String groupTypeId = supplierParty.getString("groupTypeId");
+        GenericValue enumeration = delegator.findOne("Enumeration", UtilMisc.toMap("enumId", groupTypeId), true);
+        if (UtilValidate.isEmpty(enumeration)){
+            return "";
         }
-        return ddFormType;
+        return enumeration.getString("enumCode");
     }
 
     private static Boolean isGovernment (String partyId, Delegator delegator) throws GenericEntityException {
@@ -233,6 +277,60 @@ public class SupplierWorker {
         }else {
             return 1L;
         }
+    }
+
+    public static String noUploadedFiles (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
+        String noUploadedFilesName = "Missing supported documents: ";
+        List<GenericValue> partyContents = delegator.findByAnd("PartyContent",
+                UtilMisc.toMap("partyId", supplierParty.getString("partyId"),
+                        "partyContentTypeId", "SUPPLIER_DOCUMENT"), null, true);
+        for (GenericValue partyContent : partyContents){
+            GenericValue content = delegator.findOne("Content", UtilMisc.toMap("contentId", partyContent.get("contentId")), true);
+            GenericValue dataResource = delegator.findOne("DataResource", UtilMisc.toMap("dataResourceId", content.get("dataResourceId")), true);
+            if (UtilValidate.isEmpty(dataResource.get("dataResourceName"))){
+                noUploadedFilesName = noUploadedFilesName.equals("Missing supported documents: ") ? "Missing supported documents: " + content.getString("contentName") : noUploadedFilesName + "、 " + content.getString("contentName");
+            }
+        }
+        if (noUploadedFilesName.equals("Missing supported documents: ")){
+            return "";
+        }
+        return noUploadedFilesName + ";\n\r ";
+    }
+
+    public static String getYesResponse (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
+        String warningString = "";
+        if (isCheckWarning(supplierParty, delegator)){
+            warningString = "Compliance check warning;\n\r ";
+        }
+        return warningString;
+    }
+
+    public static String noUploadUBODoc(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
+        String missingDoc = "Missing documents uploaded by UBO: ";
+        List<GenericValue> partyContents = delegator.findByAnd("PartyContent",
+                UtilMisc.toMap("partyId", supplierParty.getString("partyId"),
+                        "partyContentTypeId", "UBO_DOCUMENT"), null, true);
+        if (UtilValidate.isEmpty(partyContents)){
+            return "";
+        }
+        for (GenericValue partyContent : partyContents){
+            GenericValue content = delegator.findOne("Content", UtilMisc.toMap("contentId", partyContent.get("contentId")), true);
+            GenericValue dataResource = delegator.findOne("DataResource", UtilMisc.toMap("dataResourceId", content.get("dataResourceId")), true);
+            if (UtilValidate.isEmpty(dataResource.get("dataResourceName"))){
+                missingDoc = missingDoc.equals("Missing documents uploaded by UBO: ") ? "Missing documents uploaded by UBO: " + content.getString("contentName") : missingDoc + "、 " + content.getString("contentName");
+            }
+        }
+        if (missingDoc.equals("Missing documents uploaded by UBO: ")){
+            return "";
+        }
+        return missingDoc;
+    }
+
+    public static String getWarningContent(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
+        String warningString = getYesResponse(supplierParty, delegator);
+        String noUploadedFilesName = noUploadedFiles(supplierParty, delegator);
+        String noUploadUBODoc = noUploadUBODoc(supplierParty, delegator);
+        return warningString + noUploadedFilesName + noUploadUBODoc;
     }
 
     public static String addNameForUpload (GenericValue partyMedia, Delegator delegator) throws GenericEntityException {

@@ -43,6 +43,7 @@ def generateFields(Map<String, Object> context){
         priorityCritical = 0L;
         riskCritical = 0L;
         GenericValue supplierParty = (GenericValue) entity.getGenericValue();
+        String warningContent = SupplierWorker.getWarningContent(supplierParty, delegator);
         ddFormType = SupplierWorker.getDDFormType(supplierParty, delegator);
         ddFormTypeId = SupplierWorker.getDDFormTypeId(ddFormType);
         ratingNumeric = SupplierWorker.getClassificationRatingNumber(supplierParty, delegator);
@@ -81,6 +82,7 @@ def generateFields(Map<String, Object> context){
         entity.addProperty(new Property(null, "processCritical", ValueType.PRIMITIVE, processCritical))
         entity.addProperty(new Property(null, "vendorTypeCritical", ValueType.PRIMITIVE, vendorTypeCritical))
         entity.addProperty(new Property(null, "ddFormIsSubmitted", ValueType.PRIMITIVE, ddFormIsSubmitted))
+        entity.addProperty(new Property(null, "warningContent", ValueType.PRIMITIVE, warningContent))
 
         //文件数量
         String supplierId = supplierParty.getString("partyId");

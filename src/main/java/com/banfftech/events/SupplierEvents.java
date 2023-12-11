@@ -381,7 +381,7 @@ public class SupplierEvents {
                 UtilMisc.toMap("userLogin", userLogin, "partyName", actionParameters.get("partyName"), "currentStatusId", "NOT_PROCESSED", "groupTypeId", actionParameters.get("groupTypeId"),
                         "primaryPhone", actionParameters.get("primaryPhone"), "primaryEmail", actionParameters.get("primaryEmail"), "priority", priority));
         Delegator delegator = dispatcher.getDelegator();
-        if (actionParameters.get("groupTypeId").equals("GOVERNMENT_TYPE")) {
+        if (actionParameters.get("groupTypeId").equals("GOVERNMENTAL_AGENCIES_TYPE")) {
             dispatcher.runSync("banfftech.createPartyRole", UtilMisc.toMap("userLogin", userLogin, "partyId", resultMap.get("partyId"), "roleTypeId", "GOVERNMENT_SUPPLIER"));
         }
         dispatcher.runSync("banfftech.createProductCategoryRole",
@@ -483,6 +483,11 @@ public class SupplierEvents {
         serviceParam.put("contentName", "Other Files");
         serviceParam.put("description", "Download");
         serviceParam.put("partyContentTypeId", "SUPPLIER_DOCUMENT");
+        dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
+
+        serviceParam.put("contentName", "UBO Document1");
+        serviceParam.put("description", "Download");
+        serviceParam.put("partyContentTypeId", "UBO_DOCUMENT");
         dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
     }
 

@@ -240,6 +240,8 @@ under the License.
     <Internationalization id="groupTypeId_zh" lang="zh" property="groupTypeId" value="Vendor type"/>
     <Internationalization id="serviceName_en" lang="en" property="serviceName" value="Service name"/>
     <Internationalization id="serviceName_zh" lang="zh" property="serviceName" value="Service name"/>
+    <Internationalization id="warningContent_en" lang="en" property="warningContent" value=""/>
+    <Internationalization id="warningContent_zh" lang="zh" property="warningContent" value=""/>
 
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
