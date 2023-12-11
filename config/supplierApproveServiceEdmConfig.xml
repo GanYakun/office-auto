@@ -146,7 +146,7 @@
         <NavigationProperty Name="SurveyQuestionAndAnswer"/>
         <NavigationProperty Name="ChildWorkEffortStatus" Type="WorkEffortStatus"
                             Relations="ChildWorkEffort/WorkEffortStatus" IsCollection="true"/>
-
+        <NavigationProperty Name="ContactPerson" IsCollection="false" Type="RelationshipAndToParty" Relations="PartyGroupAndContact/FromRelationshipAndToParty(roleTypeIdTo=CONTACT and roleTypeIdFrom=SUPPLIER)"/>
         <NavigationProperty Name="CreatedParty" Type="CreatedParty" Relations="CreatedByUserLogin/PersonAndContact" IsCollection="false"/>
 
         <!-- 文件列表 -->
