@@ -29,7 +29,7 @@ public class VendorOnBoardingEmailEvents {
             GenericValue coWork = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", supplierId, "workEffortTypeId", "COWORK").queryFirst();
             String coWorkId = coWork.getString("workEffortId");
             odataId = odataId.replaceAll("'[^']*'", "'" + coWorkId + "'");
-            currentUrl += "/#/menu2/supplierapprove-managebyprocurement/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
+            currentUrl += "/#/supplier/supplierapprove-managebyprocurement/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
             String content = "To Procurement ,<br>" +
                     "Please see attached link " + currentUrl + ".<br>" +
                     "Looking forward to your reply.<br>" +
@@ -78,7 +78,7 @@ public class VendorOnBoardingEmailEvents {
             String emailUrl = applicantParty.getString("primaryEmail");
             String coWorkId = coWork.getString("workEffortId");
             String odataId = "SupplierParties('" + coWorkId + "')";
-            String currentUrl = "http://officeauto.banff-tech.com/#/menu2/supplierapprove-managebyapplication/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
+            String currentUrl = "http://officeauto.banff-tech.com/#/supplier/supplierapprove-managebyapplication/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
             String content = "To Procurement,<br>" +
                     "Please see attached link " + currentUrl + ". <br>" +
                     "Kind regards, ";
@@ -100,7 +100,7 @@ public class VendorOnBoardingEmailEvents {
             GenericValue coWork = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", supplierId, "approvePartyId", "HG").queryFirst();
             String coWorkId = coWork.getString("workEffortId");
             odataId = odataId.replaceAll("'[^']*'", "'" + coWorkId + "'");
-            currentUrl += "/#/menu2/supplierapprove-managebycompliance/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
+            currentUrl += "/#/supplier/supplierapprove-managebycompliance/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
             String content = "To Compliance,<br>" +
                     "Please see attached link " + currentUrl + ".<br>" +
                     "Looking forward to your reply.<br>" +
@@ -123,7 +123,7 @@ public class VendorOnBoardingEmailEvents {
             GenericValue coWork = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", supplierId, "workEffortTypeId", "COWORK").queryFirst();
             String coWorkId = coWork.getString("workEffortId");
             odataId = odataId.replaceAll("'[^']*'", "'" + coWorkId + "'");
-            currentUrl += "/#/menu2/supplierapprove-managebyprocurement/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
+            currentUrl += "/#/supplier/supplierapprove-managebyprocurement/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
             String content = "To Procurement,<br>" +
                     "Please see attached link " + currentUrl + ".<br>" +
                     "Kind regards,";
@@ -148,7 +148,7 @@ public class VendorOnBoardingEmailEvents {
             String emailUrl = applicantParty.getString("primaryEmail");
             String coWorkId = coWork.getString("workEffortId");
             odataId = odataId.replaceAll("'[^']*'", "'" + coWorkId + "'");
-            currentUrl += "/#/menu2/supplierapprove-managebyapplication/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
+            currentUrl += "/#/supplier/supplierapprove-managebyapplication/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
             String content = "To Applicant,<br>" +
                     "I am writing to present the result of your vendor onboarding application at attached link " + currentUrl + " .<br>" +
                     "Kind regards, ";
@@ -173,7 +173,7 @@ public class VendorOnBoardingEmailEvents {
             GenericValue applicantParty = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", createUser.getString("partyId")).queryFirst();
             String emailUrl = applicantParty.getString("primaryEmail");
             String coWorkId = coWork.getString("workEffortId");
-            currentUrl += "/#/menu2/supplierapprove-managebyapplication/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode("SupplierParties('" + coWorkId + "')", "UTF-8");
+            currentUrl += "/#/supplier/supplierapprove-managebyapplication/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode("SupplierParties('" + coWorkId + "')", "UTF-8");
             String content = "To Applicant,<br>" + comments + "<br>" + currentUrl;
             UtilEmail.sendEmail(emailUrl, supplierName + "(" + supplierId + ") onboarding process", content);
         } catch (Exception e) {
@@ -195,7 +195,7 @@ public class VendorOnBoardingEmailEvents {
             String emailUrl = procurement.getString("primaryEmail");
             GenericValue coWork = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", supplierId, "workEffortTypeId", "COWORK").queryFirst();
             String coWorkId = coWork.getString("workEffortId");
-            currentUrl += "/#/menu2/supplierapprove-managebyapplication/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode("SupplierParties('" + coWorkId + "')", "UTF-8");
+            currentUrl += "/#/supplier/supplierapprove-managebyapplication/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode("SupplierParties('" + coWorkId + "')", "UTF-8");
             String content = "To Procurement,<br>" + comments + "<br>" + currentUrl;
             UtilEmail.sendEmail(emailUrl, supplierName + "(" + supplierId + ") onboarding process", content);
         } catch (Exception e) {
