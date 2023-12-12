@@ -258,7 +258,8 @@ public class SupplierEvents {
         actionParameters.put("userLogin", userLogin);
         //创建或者更新usccNumber
         if (UtilValidate.isNotEmpty(actionParameters.get("usccNumber"))) {
-            List<GenericValue> partyIdentifications = delegator.findByAnd("PartyIdentification", UtilMisc.toMap("partyId", supplierParty.getString("partyId")), null, false);
+            List<GenericValue> partyIdentifications = delegator.findByAnd("PartyIdentification",
+                    UtilMisc.toMap("partyId", supplierParty.getString("partyId"), "partyIdentificationTypeId", "USCC_OF_CHINESE_ORG"), null, false);
             if (UtilValidate.isNotEmpty(partyIdentifications)) {
                 GenericValue partyIdentification = EntityUtil.getFirst(partyIdentifications);
                 dispatcher.runSync("banfftech.updatePartyIdentification",
@@ -428,6 +429,7 @@ public class SupplierEvents {
         delegator.create("PartyGeoPoint", UtilMisc.toMap("partyGeoPointId", delegator.getNextSeqId("PartyGeoPoint"),
                 "partyId", partyId, "partyGeoPointTypeId", "BUSINESS_LOCATION", "geoPointId", businessLocationId));
         delegator.create("PartyIdentification", UtilMisc.toMap("partyId", partyId, "partyIdentificationTypeId", "REGISTRATION_NUMBER"));
+        delegator.create("PartyIdentification", UtilMisc.toMap("partyId", partyId, "partyIdentificationTypeId", "USCC_OF_CHINESE_ORG"));
 
         //SurveyQuestion
         dispatcher.runSync("banfftech.createPartySurveyAppl",

@@ -13,17 +13,32 @@
         </HeaderInfo>
         <RelAlias Name="BusinessLocation" Relations="PartyGeoPoint(partyGeoPointTypeId=BUSINESS_LOCATION)/GeoPoint"/>
         <RelAlias Name="PartyIdentification" Relations="PartyIdentification(partyIdentificationTypeId=REGISTRATION_NUMBER)"/>
+        <RelAlias Name="TaxCodeRel" Relations="PartyIdentification(partyIdentificationTypeId=USCC_OF_CHINESE_ORG)"/>
         <RelAlias Name="WorkScopeAnswer" Relations="SurveyQuestionAnswer(surveyQuestionId=9004)"/>
         <Property Name="partyName" Label="${NONE}"/>
         <Property Name="dateIncorporation" IsDateAttribute="true" Type="Timestamp" Label="${NONE}"/>
         <Property Name="businessLocation" Type="String" RelAlias="BusinessLocation" Field="information" Label="${BusinessLocation}"/>
         <Property Name="registrationNumber" Type="String" RelAlias="PartyIdentification" Field="idValue" Label="${NONE}"/>
+        <Property Name="taxCode" Type="String" RelAlias="TaxCodeRel" Field="idValue" Label="Tax code"/>
         <Property Name="workScope" Type="String" RelAlias="WorkScopeAnswer" Field="textResponse" Label="${WorkScopeAnswer}"/>
         <Property Name="ddStatus" Type="String" Label="${ddFormDealStatus}"/>
-
+        <Property Name="annualRevenue" Label="Annual revenue"/>
+        <Property Name="usccNumber" Label="Tax code"/>
+        <Property Name="comments" Label="Comments"/>
+        <Property Name="writeBasicInfo" IsAttribute="true" Type="Boolean"/>
+        <Property Name="uploadDocuments" IsAttribute="true"  Type="Boolean"/>
+        <Property Name="employeesSection" Label="Employees">
+            <Text Path="EmployeesEnumeration/description" TextArrangement="TextOnly"/>
+            <ValueList CollectionPath="EmployeesEnumerations" WithFixedValues="true"/>
+        </Property>
         <LineItem>
             <DataField Values="partyName" Importance="High"/>
         </LineItem>
+        <!-- 基本信息 -->
+        <FieldGroup Label="DDFormBasicInfo" Qualifier="DDFormBasicInfo">
+            <DataField Values="taxCode,employeesSection,annualRevenue,ListedPartyGeo/geoId,comments" Importance="High"/>
+        </FieldGroup>
+
         <!-- 1.供应商全称 -->
         <FieldGroup Label="FullName" Qualifier="FullName">
             <DataField Values="partyName" Importance="High"/>
@@ -73,12 +88,28 @@
         <!-- DDForm问题没有Draft -->
         <NavigationProperty Name="SurveyQuestionAnswerNoDraft" Type="DDFormSurveyQuestionAnswerNoDraft"
                             Relations="SurveyQuestionAnswer(surveyQuestionId in (9000,9001,9002,9003,9005,9006))" IsCollection="true"/>
-
+        <NavigationProperty Name="ListedPartyGeo" Type="ListedPartyGeo"
+                            Relations="PartyGeo(partyGeoTypeId=LISTED_COUNTRY)" IsCollection="true"/>
+        <NavigationProperty Name="EmployeesEnumeration" Type="EmployeesEnumeration" Relations="EmployeesEnumeration"/>
+        <NavigationProperty Name="FileList" Type="PartyMediaResource" Relations="PartyMediaResource(partyContentTypeId=SUPPLIER_DOCUMENT)" IsCollection="true"/>
         <!--Submit to procurement-->
         <Action Name="SubmitDDForm" IsBound="true" EntitySetPath="supplierDDForm"
                 OfbizService="com.banfftech.events.DDFormEvents.submitDDForm">
             <Parameter Name="supplierDDForm" Type="SupplierDDForm" Nullable="false" IsCollection="false"/>
             <Parameter Name="noteInfo" Type="String" Label="${noteInfo}"/>
+        </Action>
+    </EntityType>
+
+    <EntityType Name="PartyMediaResource" EntitySetName="PartyMediaResources"
+                Properties="partyContentId,partyId,contentId,contentName,otherData,mimeTypeId,dataResourceId,dataResourceName,fromDate,imageData,description"
+                Handler="component://officeauto/groovyScripts/partyManage/partyMedia/generateEntityListFields.groovy">
+        <Property Name="otherData" FileNamePath="dataResourceName"/>
+        <Property Name="fileUrl" Type="String"/>
+        <Property Name="uploadDocCritical" Type="numeric" Hidden="true"/>
+        <Property Name="addNameForUpload" Type="String"/>
+        <Action Name="UploadAction" IsBound="true" OfbizService="com.banfftech.events.UploadEvent.uploadFile">
+            <Parameter Name="partyMediaResource" Type="PartyMediaResource" Nullable="false" IsCollection="false"/>
+            <Parameter Name="file" Type="Stream" Nullable="false" IsCollection="false"/>
         </Action>
     </EntityType>
 
@@ -172,6 +203,17 @@
         <NavigationProperty Name="Geo"/>
     </EntityType>
 
+    <EntityType Name="ListedPartyGeo" OfbizEntity="PartyGeo" AutoProperties="true" EntitySetName="ListedPartyGeos"
+                DraftEntityName="ListedPartyGeoDraft">
+        <Property Name="geoId" Label="Listed country">
+            <Text Path="Geo/geoName" TextArrangement="TextOnly"/>
+            <ValueList CollectionPath="ListedCountries" WithFixedValues="true">
+                <ParameterInOut LocalDataProperty="geoId" ValueListProperty="geoId"/>
+            </ValueList>
+        </Property>
+        <NavigationProperty Name="Geo"/>
+    </EntityType>
+
     <EntityType Name="Geo" AutoProperties="true" EntitySetName="Geos">
         <Property Name="geoId">
             <Text Path="geoName" TextArrangement="TextOnly"/>
@@ -237,6 +279,9 @@
     <EntityType Name="ListedCountry" OfbizType="geoTypeId=COUNTRY" OfbizEntity="Geo" EntityCondition="geoId in (USA,UK,ARE,Europe,CHN)" AutoProperties="true" EntitySetName="ListedCountries">
         <Property Name="geoId">
             <Text Path="geoName" TextArrangement="TextOnly"/>
+            <ValueList WithFixedValues="true" CollectionPath="ListedCountries">
+                <ParameterInOut LocalDataProperty="geoId" ValueListProperty="geoId"/>
+            </ValueList>
         </Property>
     </EntityType>
     <!--Province（省份）-->
@@ -251,6 +296,15 @@
             <Text Path="geoName" TextArrangement="TextOnly"/>
         </Property>
     </EntityType>
+
+    <!-- 员工数量区间枚举值 -->
+    <EntityType Name="EmployeesEnumeration" Orderby="sequenceId" EntitySetName="EmployeesEnumerations"
+                OfbizEntity="Enumeration" EntityCondition="enumTypeId=EMPLOYEES_ENUM" AutoProperties="true">
+        <Property Name="enumId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+
 
 
 </ofbiz-edm>

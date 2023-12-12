@@ -109,7 +109,7 @@ def generateFields(Map<String, Object> context){
         }
         entity.addProperty(new Property(null, "workScope", ValueType.PRIMITIVE, workScope));
         GenericValue partyIdentification = EntityQuery.use(delegator).from("PartyIdentification")
-                .where(UtilMisc.toMap("partyIdentificationTypeId", "REGISTRATION_NUMBER", "partyId", supplierId)).queryFirst();
+                .where(UtilMisc.toMap("partyIdentificationTypeId", "USCC_OF_CHINESE_ORG", "partyId", supplierId)).queryFirst();
         String usccNumber = partyIdentification == null ? null : partyIdentification.getString("idValue")
         entity.addProperty(new Property(null, "usccNumber", ValueType.PRIMITIVE, usccNumber));
         entity.addProperty(new Property(null, "checkWarningCritical", ValueType.PRIMITIVE, checkWarningCritical));
