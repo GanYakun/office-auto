@@ -30,11 +30,14 @@ public class VendorOnBoardingEmailEvents {
             String coWorkId = coWork.getString("workEffortId");
             odataId = odataId.replaceAll("'[^']*'", "'" + coWorkId + "'");
             currentUrl += "/#/supplier/supplierapprove-managebyprocurement/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
-            String content = "To Procurement ,<br>" +
-                    "Please see attached link " + currentUrl + ".<br>" +
+            String contentStr = "Please see attached link.<br>" +
                     "Looking forward to your reply.<br>" +
                     "Thank you.<br>" +
                     "Kind regards, ";
+            String content = UtilEmail.vendorOnBoardingTemp;
+            content = content.replace("{{title}}", "To Procurement");
+            content = content.replace("{{content}}", contentStr);
+            content = content.replace("{{url}}", currentUrl);
             Debug.logInfo("===== Url: " + currentUrl, module);
             UtilEmail.sendEmail(procurement.getString("primaryEmail"), supplierName + "(" + supplierId + ") onboarding process", content);
         } catch (Exception e) {
@@ -50,14 +53,17 @@ public class VendorOnBoardingEmailEvents {
             String currentUrl = "http://officeauto.officeauto.banff-tech.com/o3/#Supplier-DDForm&/SupplierDDForms('{id}')";
             Object supplierPartyId = entity.getPropertyValue("partyId");
             currentUrl = currentUrl.replace("{id}", supplierPartyId.toString());
-            String content = "Dear Mr./Ms. ,<br>" +
-                    "Please see attached link " + currentUrl + ". <br>" +
-                    "Please ensure that the following form is completed in its entirety. Failure to complete or sign will resultin the form being returned and will delay due diligence activities.\n" +
-                    " Please also ensure that a current (not expired) copy of the Business Partner's Commercial License (oPassport, if relevant) is submitted along with this form.\n" +
+            String contentStr = "Dear Mr./Ms. ,<br>" +
+                    "Please ensure that the following form is completed in its entirety. Failure to complete or sign will resultin the form being returned and will delay due diligence activities.<br>" +
+                    "Please also ensure that a current (not expired) copy of the Business Partner's Commercial License (oPassport, if relevant) is submitted along with this form.<br>" +
                     "Kindly provide documents for your entities.<br>" +
                     "Looking forward to your reply.<br>" +
                     "Thank you.<br>" +
                     "Kind regards, ";
+            String content = UtilEmail.vendorOnBoardingTemp;
+            content = content.replace("{{title}}", "Hello!");
+            content = content.replace("{{content}}", contentStr);
+            content = content.replace("{{url}}", currentUrl);
             Debug.logInfo("===== Url: " + currentUrl, module);
             UtilEmail.sendEmail(email, supplierName + "(" + supplierId + ") onboarding process", content);
         } catch (Exception e) {
@@ -79,9 +85,14 @@ public class VendorOnBoardingEmailEvents {
             String coWorkId = coWork.getString("workEffortId");
             String odataId = "SupplierParties('" + coWorkId + "')";
             String currentUrl = "http://officeauto.banff-tech.com/#/supplier/supplierapprove-managebyapplication/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
-            String content = "To Procurement,<br>" +
-                    "Please see attached link " + currentUrl + ". <br>" +
+            String contentStr = "Please see attached link. <br>" +
+                    "Looking forward to your reply.<br>" +
+                    "Thank you.<br>" +
                     "Kind regards, ";
+            String content = UtilEmail.vendorOnBoardingTemp;
+            content = content.replace("{{title}}", "To Applicant");
+            content = content.replace("{{content}}", contentStr);
+            content = content.replace("{{url}}", currentUrl);
             Debug.logInfo("===== Url: " + currentUrl, module);
             UtilEmail.sendEmail(emailUrl, supplierName + "(" + supplierId + ") onboarding process", content);
         } catch (Exception e) {
@@ -101,10 +112,13 @@ public class VendorOnBoardingEmailEvents {
             String coWorkId = coWork.getString("workEffortId");
             odataId = odataId.replaceAll("'[^']*'", "'" + coWorkId + "'");
             currentUrl += "/#/supplier/supplierapprove-managebycompliance/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
-            String content = "To Compliance,<br>" +
-                    "Please see attached link " + currentUrl + ".<br>" +
+            String contentStr = "Please see attached link.<br>" +
                     "Looking forward to your reply.<br>" +
                     "Kind regards, ";
+            String content = UtilEmail.vendorOnBoardingTemp;
+            content = content.replace("{{title}}", "To Compliance");
+            content = content.replace("{{content}}", contentStr);
+            content = content.replace("{{url}}", currentUrl);
             Debug.logInfo("===== Url: " + currentUrl, module);
             UtilEmail.sendEmail(compliance.getString("primaryEmail"), supplierName + "(" + supplierId + ") onboarding process", content);
         } catch (Exception e) {
@@ -124,9 +138,12 @@ public class VendorOnBoardingEmailEvents {
             String coWorkId = coWork.getString("workEffortId");
             odataId = odataId.replaceAll("'[^']*'", "'" + coWorkId + "'");
             currentUrl += "/#/supplier/supplierapprove-managebyprocurement/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
-            String content = "To Procurement,<br>" +
-                    "Please see attached link " + currentUrl + ".<br>" +
+            String contentStr = "Please see attached link. <br>" +
                     "Kind regards,";
+            String content = UtilEmail.vendorOnBoardingTemp;
+            content = content.replace("{{title}}", "To Procurement");
+            content = content.replace("{{content}}", contentStr);
+            content = content.replace("{{url}}", currentUrl);
             Debug.logInfo("===== Url: " + currentUrl, module);
             UtilEmail.sendEmail(procurement.getString("primaryEmail"), supplierName + "(" + supplierId + ") onboarding process", content);
         } catch (Exception e) {
@@ -149,9 +166,13 @@ public class VendorOnBoardingEmailEvents {
             String coWorkId = coWork.getString("workEffortId");
             odataId = odataId.replaceAll("'[^']*'", "'" + coWorkId + "'");
             currentUrl += "/#/supplier/supplierapprove-managebyapplication/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
-            String content = "To Applicant,<br>" +
-                    "I am writing to present the result of your vendor onboarding application at attached link " + currentUrl + " .<br>" +
+            String contentStr = "To Applicant,<br>" +
+                    "I am writing to present the result of your vendor onboarding application at attached link.<br>" +
                     "Kind regards, ";
+            String content = UtilEmail.vendorOnBoardingTemp;
+            content = content.replace("{{title}}", "To Applicant");
+            content = content.replace("{{content}}", contentStr);
+            content = content.replace("{{url}}", currentUrl);
             UtilEmail.sendEmail(emailUrl, supplierName + "(" + supplierId + ") onboarding process", content);
         } catch (Exception e) {
             Debug.logError(e, module);
@@ -174,7 +195,11 @@ public class VendorOnBoardingEmailEvents {
             String emailUrl = applicantParty.getString("primaryEmail");
             String coWorkId = coWork.getString("workEffortId");
             currentUrl += "/#/supplier/supplierapprove-managebyapplication/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode("SupplierParties('" + coWorkId + "')", "UTF-8");
-            String content = "To Applicant,<br>" + comments + "<br>" + currentUrl;
+            String contentStr = comments + "<br>";
+            String content = UtilEmail.vendorOnBoardingTemp;
+            content = content.replace("{{title}}", "To Applicant");
+            content = content.replace("{{content}}", contentStr);
+            content = content.replace("{{url}}", currentUrl);
             UtilEmail.sendEmail(emailUrl, supplierName + "(" + supplierId + ") onboarding process", content);
         } catch (Exception e) {
             Debug.logError(e, module);
@@ -196,7 +221,11 @@ public class VendorOnBoardingEmailEvents {
             GenericValue coWork = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", supplierId, "workEffortTypeId", "COWORK").queryFirst();
             String coWorkId = coWork.getString("workEffortId");
             currentUrl += "/#/supplier/supplierapprove-managebyapplication/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode("SupplierParties('" + coWorkId + "')", "UTF-8");
-            String content = "To Procurement,<br>" + comments + "<br>" + currentUrl;
+            String contentStr = comments + "<br>";
+            String content = UtilEmail.vendorOnBoardingTemp;
+            content = content.replace("{{title}}", "To Procurement");
+            content = content.replace("{{content}}", contentStr);
+            content = content.replace("{{url}}", currentUrl);
             UtilEmail.sendEmail(emailUrl, supplierName + "(" + supplierId + ") onboarding process", content);
         } catch (Exception e) {
             Debug.logError(e, module);
