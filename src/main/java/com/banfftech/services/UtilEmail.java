@@ -51,4 +51,33 @@ public class UtilEmail {
         Debug.log("准备发送到: " + emailUrl);
         Transport.send(message);
     }
+
+    public static final String vendorOnBoardingTemp = "<!DOCTYPE html>\n" +
+            "<html lang=\"en\">\n" +
+            "<head>\n" +
+            "    <meta charset=\"UTF-8\">\n" +
+            "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+            "    <title>Email with Button</title>\n" +
+            "</head>\n" +
+            "<body style=\"font-family: Arial, sans-serif; text-align: center;\">\n" +
+            "\n" +
+            "    <img src=\"https://dpbird.oss-cn-hangzhou.aliyuncs.com/scy/demo_min.jpg\" alt=\"Logo\" style=\"max-width: 100%; height: auto; margin-bottom: 20px;\">\n" +
+            "<h1>OfficeAuto Demo</h1>" +
+            "\n" +
+            "    <div style=\"text-align: left;\">\n" +
+            "        <hr style=\"margin: 30px 0; border: none; border-top: 2px solid #ddd;\">\n" +
+            "        <h1>{{title}}</h1>\n" +
+            "        <p>{{content}}.</p>\n" +
+            "\n" +
+            "        <a href=\"{{url}}\" style=\"text-decoration: none;\">\n" +
+            "            <button style=\"display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: bold; text-align: center; text-decoration: none; background-color: #4CAF50; color: white; border-radius: 5px; cursor: pointer;\">\n" +
+            "                Click Here\n" +
+            "            </button>\n" +
+            "        </a>\n" +
+            "\n" +
+            "        <hr style=\"margin: 30px 0; border: none; border-top: 2px solid #ddd;\">\n" +
+            "    </div>\n" +
+            "\n" +
+            "</body>\n" +
+            "</html>\n";
 }
