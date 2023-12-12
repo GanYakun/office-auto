@@ -40,38 +40,14 @@ public class SupplierApproveEvents {
         HttpServletRequest httpServletRequest = (HttpServletRequest) oDataContext.get("httpServletRequest");
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
         OdataOfbizEntity boundEntity = Util.getBoundEntity(actionParameters);
-        //source: applicant, vendor, compliance
+        //source: applicant, compliance
         String source = (String) actionParameters.get("source");
         if (UtilValidate.isEmpty(boundEntity)) {
             throw new OfbizODataException("Parameter error");
         }
         String partyId = (String) boundEntity.getPropertyValue("partyId");
         String workEffortId = (String) boundEntity.getPropertyValue("workEffortId");
-        String priority = (String) boundEntity.getPropertyValue("priority");
         String workEffortParentId = (String) boundEntity.getPropertyValue("workEffortParentId");
-        if (UtilValidate.isEmpty(workEffortParentId)) {
-            //首次提交 创建ParentWorkEffort分配给采购
-            Map<String, Object> createParentWorkMap = new HashMap<>();
-            workEffortParentId = delegator.getNextSeqId("WorkEffort");
-            createParentWorkMap.put("workEffortId", workEffortParentId);
-            createParentWorkMap.put("workEffortTypeId", "COWORK");
-            createParentWorkMap.put("priority", priority);
-            createParentWorkMap.put("currentStatusId", "COWORK_CREATED");
-            createParentWorkMap.put("partyId", partyId);
-            createParentWorkMap.put("userLogin", userLogin);
-            CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), createParentWorkMap, "banfftech.createWorkEffort", userLogin);
-            dispatcher.runSync("banfftech.createWorkEffortPartyAssignment",
-                    UtilMisc.toMap("userLogin", userLogin, "workEffortId", workEffortParentId, "partyId", "CG"));
-            List<GenericValue> coWorkTask = EntityQuery.use(delegator).from("WorkEffort").where("partyId", partyId, "workEffortTypeId", "COWORK_TASK").queryList();
-            for (GenericValue task : coWorkTask) {
-                dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", task.getString("workEffortId"),
-                        "workEffortParentId", workEffortParentId, "userLogin", userLogin));
-            }
-        }
-//        else if ("applicant".equals(source)) {
-//            dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortParentId,
-//                    "currentStatusId", "COWORK_CREATED", "userLogin", userLogin));
-//        }
         //当前的改为已处理
         Map<String, Object> updateWorkMap = UtilMisc.toMap("workEffortId", workEffortId, "currentStatusId", "PROCESSED", "workEffortParentId", workEffortParentId);
         CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), updateWorkMap, "banfftech.updateWorkEffort", userLogin);
@@ -89,19 +65,24 @@ public class SupplierApproveEvents {
             //保存合规建议,状态改为COMPLETE_COMP
             GenericValue party = delegator.findOne("Party", UtilMisc.toMap("partyId", partyId), false);
             CommonUtils.setObjectAttribute(party, "complianceNote", noteInfo);
-            dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortParentId,
-                    "currentStatusId", "COMPLETE_COMP", "userLogin", userLogin));
-            VendorOnBoardingEmailEvents.complianceComplete(delegator, httpServletRequest, boundEntity);
+            if (actionParameters.containsKey("compliancePassed")) {
+                dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortParentId,
+                        "currentStatusId", "COMPLETED_DD", "userLogin", userLogin));
+                VendorOnBoardingEmailEvents.complianceComplete(delegator, httpServletRequest, boundEntity);
+            } else {
+                //compliance打回
+                VendorOnBoardingEmailEvents.returnToProcurement(delegator, httpServletRequest, boundEntity, noteInfo);
+            }
         }
         if ("applicant".equals(source)) {
+            dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortParentId,
+                    "currentStatusId", "PROCUREMENT_REVIEW", "userLogin", userLogin));
             VendorOnBoardingEmailEvents.toProcurement(delegator, httpServletRequest, boundEntity);
         }
-        //发送邮件
-//        sendEmailToTarget(delegator, "procurement", httpServletRequest, boundEntity, null, null);
     }
 
     /**
-     * 采购传递给其他部门
+     * 采购传递给compliance或applicant
      */
     public static void procurementReturn(Map<String, Object> oDataContext, Map<String, Object> actionParameters, EdmBindingTarget edmBindingTarget)
             throws GenericEntityException, OfbizODataException, GeneralServiceException, GenericServiceException, UnsupportedEncodingException {
@@ -109,52 +90,53 @@ public class SupplierApproveEvents {
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
         HttpServletRequest httpServletRequest = (HttpServletRequest) oDataContext.get("httpServletRequest");
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
-        String target = (String) actionParameters.get("target");
-        String comments = (String) actionParameters.get("comments"); // 也许不需要comments了
+        String target = (String) actionParameters.get("target"); // compliance, applicant
         String noteInfo = (String) actionParameters.get("noteInfo");
         String ddFormType = (String) actionParameters.get("ddFormType");
-        String email = (String) actionParameters.get("email");
         OdataOfbizEntity boundEntity = Util.getBoundEntity(actionParameters);
         if (UtilValidate.isEmpty(boundEntity)) {
             throw new OfbizODataException("Parameter error");
         }
         GenericValue boundGenericValue = boundEntity.getGenericValue();
         String partyId = boundGenericValue.getString("partyId");
+        String currentStatusId = boundGenericValue.getString("currentStatusId");
         String workEffortParentId = boundGenericValue.getString("workEffortId");
-//        if ("applicant".equals(target)) {
-//            //打回给applicant 改为需要修改
-//            dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortParentId,
-//                    "currentStatusId", "REQUIRE_CHANGES", "userLogin", userLogin));
-//        }
         if (UtilValidate.isNotEmpty(ddFormType)) {
             GenericValue party = delegator.findOne("Party", UtilMisc.toMap("partyId", partyId), false);
             CommonUtils.setObjectAttribute(party, "ddFormType", ddFormType);
         }
-        String transferTarget = getTransferTarget(delegator, target, boundGenericValue);
-        if (UtilValidate.isEmpty(transferTarget)) {
-            throw new OfbizODataException("No department found");
-        }
-        GenericValue supplierTask = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact")
-                .where("approvePartyId", transferTarget, "workEffortParentId", workEffortParentId).queryFirst();
-        if (UtilValidate.isEmpty(supplierTask)) {
-            //首次传递
-            String nextWorkEffortId = delegator.getNextSeqId("WorkEffort");
-            Map<String, Object> createWorkMap = UtilMisc.toMap("partyId", partyId, "workEffortId", nextWorkEffortId, "comments", comments,
-                    "workEffortTypeId", "COWORK_TASK", "currentStatusId", "NOT_PROCESSED", "workEffortParentId", workEffortParentId, "priority", boundGenericValue.getString("priority"));
-            CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), createWorkMap, "banfftech.createWorkEffort", userLogin);
-            dispatcher.runSync("banfftech.createWorkEffortPartyAssignment",
-                    UtilMisc.toMap("userLogin", userLogin, "workEffortId", nextWorkEffortId, "partyId", transferTarget));
-        } else {
-            //改为未处理
-            CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), UtilMisc.toMap("workEffortId", supplierTask.getString("workEffortId"),
-                    "currentStatusId", "NOT_PROCESSED", "comments", comments, "userLogin", userLogin), "banfftech.updateWorkEffort", userLogin);
-        }
+        //to compliance
         if ("compliance".equals(target)) {
-            //发送给合规,状态改为REQUEST_COMP
-            dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortParentId,
-                    "currentStatusId", "REQUEST_COMP", "userLogin", userLogin));
+            GenericValue complianceWork = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("approvePartyId", "HG", "workEffortParentId", workEffortParentId).queryFirst();
+            if (UtilValidate.isEmpty(complianceWork)) {
+                //首次传递
+                String nextWorkEffortId = delegator.getNextSeqId("WorkEffort");
+                Map<String, Object> createWorkMap = UtilMisc.toMap("partyId", partyId, "workEffortId", nextWorkEffortId,
+                        "workEffortTypeId", "COWORK_TASK", "currentStatusId", "NOT_PROCESSED", "workEffortParentId", workEffortParentId, "priority", boundGenericValue.getString("priority"));
+                CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), createWorkMap, "banfftech.createWorkEffort", userLogin);
+                dispatcher.runSync("banfftech.createWorkEffortPartyAssignment",
+                        UtilMisc.toMap("userLogin", userLogin, "workEffortId", nextWorkEffortId, "partyId", "HG"));
+            } else {
+                CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), UtilMisc.toMap("workEffortId", complianceWork.getString("workEffortId"),
+                        "currentStatusId", "NOT_PROCESSED", "userLogin", userLogin), "banfftech.updateWorkEffort", userLogin);
+            }
+            //发送给合规,状态改为COMPLIANCE_REVIEW
+            if (currentStatusId.equals("PROCUREMENT_REVIEW")) {
+                dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortParentId,
+                        "currentStatusId", "COMPLIANCE_REVIEW", "userLogin", userLogin));
+            }
             VendorOnBoardingEmailEvents.toCompliance(delegator, httpServletRequest, boundEntity);
         }
+
+        //to applicant
+        if ("applicant".equals(target)) {
+            //改为未处理
+            GenericValue firstTask = EntityQuery.use(delegator).from("WorkEffort").where("workEffortParentId", workEffortParentId).orderBy("createdDate").queryFirst();
+            CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), UtilMisc.toMap("workEffortId", firstTask.getString("workEffortId"),
+                    "currentStatusId", "NOT_PROCESSED","userLogin", userLogin), "banfftech.updateWorkEffort", userLogin);
+            VendorOnBoardingEmailEvents.returnToApplicant(delegator, httpServletRequest, boundEntity, noteInfo);
+        }
+
         // create NoteData for the Party
         if (UtilValidate.isEmpty(noteInfo)) {
             noteInfo = "Procurement to " + target + " note";
@@ -164,8 +146,6 @@ public class SupplierApproveEvents {
         Map<String, Object> noteDataResult = CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), noteMap, "banfftech.createNoteData", userLogin);
         // create PartyNote
         CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), UtilMisc.toMap("noteId", noteDataResult.get("noteId"), "partyId", partyId, "userLogin", userLogin), "banfftech.createPartyNote", userLogin);
-        //发送邮件
-//        sendEmailToTarget(delegator, target, httpServletRequest, boundEntity, boundGenericValue, email);
     }
 
 
@@ -173,12 +153,10 @@ public class SupplierApproveEvents {
      * 发送DD
      */
     public static void sendDDForm(Map<String, Object> oDataContext, Map<String, Object> actionParameters, EdmBindingTarget edmBindingTarget)
-            throws GenericEntityException, OfbizODataException, GeneralServiceException, GenericServiceException, UnsupportedEncodingException {
+            throws GenericEntityException, OfbizODataException, GeneralServiceException, GenericServiceException {
         Delegator delegator = (Delegator) oDataContext.get("delegator");
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
-        HttpServletRequest httpServletRequest = (HttpServletRequest) oDataContext.get("httpServletRequest");
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
-        String target = (String) actionParameters.get("target");
         String noteInfo = (String) actionParameters.get("noteInfo");
         String ddFormType = (String) actionParameters.get("ddFormType");
         String email = (String) actionParameters.get("email");
@@ -188,12 +166,10 @@ public class SupplierApproveEvents {
         }
         GenericValue boundGenericValue = boundEntity.getGenericValue();
         String partyId = boundGenericValue.getString("partyId");
+        String workEffortParentId = boundGenericValue.getString("workEffortParentId");
+        GenericValue parentWorkEffort = EntityQuery.use(delegator).from("WorkEffort").where("workEffortId", workEffortParentId).queryOne();
+
         GenericValue party = delegator.findOne("Party", UtilMisc.toMap("partyId", partyId), false);
-        String workEffortParentId = null;
-        GenericValue parentWorkEffort = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", partyId, "workEffortTypeId", "COWORK").queryFirst();
-        if (UtilValidate.isNotEmpty(parentWorkEffort)) {
-            workEffortParentId = parentWorkEffort.getString("workEffortId");
-        }
         if (UtilValidate.isNotEmpty(ddFormType)) {
             CommonUtils.setObjectAttribute(party, "ddFormType", ddFormType);
         }
@@ -211,49 +187,36 @@ public class SupplierApproveEvents {
             CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), UtilMisc.toMap("workEffortId", ddFormTask.getString("workEffortId"),
                     "currentStatusId", "NOT_PROCESSED", "userLogin", userLogin), "banfftech.updateWorkEffort", userLogin);
         }
-        //标记发送方, 提交时要向这里提交
-        String ddFormSource;
-        if ("COWORK".equals(boundGenericValue.getString("workEffortTypeId"))) {
-            //发送DD,状态改为REQUEST_DD
-            ddFormSource = "procurement";
-            dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", boundGenericValue.getString("workEffortId"),
-                    "currentStatusId", "REQUEST_DD", "userLogin", userLogin));
-        } else {
-            ddFormSource = "applicant";
+        if (parentWorkEffort.getString("currentStatusId").equals("COWORK_CREATED")) {
+            //parent改为Request_DD
+            CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), UtilMisc.toMap("workEffortId", workEffortParentId,
+                    "currentStatusId", "REQUESTED_DD", "userLogin", userLogin), "banfftech.updateWorkEffort", userLogin);
         }
-        CommonUtils.setObjectAttribute(party, "ddFormSource", ddFormSource);
         // create NoteData for the Party
         if (UtilValidate.isEmpty(noteInfo)) {
-            noteInfo = "Procurement to " + target + " note";
+            noteInfo = "Applicant to Vendor note";
         }
-        Map<String, Object> noteMap = UtilMisc.toMap("noteName", "Procument to " + target, "noteInfo", noteInfo,
+        Map<String, Object> noteMap = UtilMisc.toMap("noteName", "Applicant to Vendor", "noteInfo", noteInfo,
                 "noteParty", userLogin.get("partyId"), "noteDateTime", UtilDateTime.nowTimestamp(), "userLogin", userLogin);
         Map<String, Object> noteDataResult = CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), noteMap, "banfftech.createNoteData", userLogin);
         // create PartyNote
         CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), UtilMisc.toMap("noteId", noteDataResult.get("noteId"), "partyId", partyId, "userLogin", userLogin), "banfftech.createPartyNote", userLogin);
-
+        // send email
         VendorOnBoardingEmailEvents.toVendor(delegator, boundEntity, email);
-        //发送邮件
-//        sendEmailToTarget(delegator, target, httpServletRequest, boundEntity, boundGenericValue, email);
     }
 
-    private static String getTransferTarget(Delegator delegator, String target, GenericValue parentWorkEffort) throws GenericEntityException {
-        if ("procurement".equals(target)) {
-            return "CG";
-        }
-        if ("compliance".equals(target)) {
-            return "HG";
-        }
-        if ("applicant".equals(target)) {
-            //获取申请人的部门
-            GenericValue firstTask = EntityQuery.use(delegator).from("WorkEffort").where("partyId", parentWorkEffort.getString("partyId")).orderBy("createdDate").queryFirst();
-            GenericValue createUser = delegator.findOne("UserLogin", UtilMisc.toMap("userLoginId", firstTask.getString("createdByUserLogin")), false);
-            return CommonUtils.getPartyCompany(createUser.getString("partyId"), delegator);
-        }
-        if ("supplier".equals(target)) {
-            return parentWorkEffort.getString("partyId");
-        }
-        return null;
+    public static String getApplicantId(String vendorPartyId, Delegator delegator) throws GenericEntityException {
+        //获取申请人的部门
+        GenericValue firstTask = EntityQuery.use(delegator).from("WorkEffort").where("partyId", vendorPartyId, "workEffortTypeId", "COWORK_TASK").orderBy("createdDate").queryFirst();
+        GenericValue createUser = delegator.findOne("UserLogin", UtilMisc.toMap("userLoginId", firstTask.getString("createdByUserLogin")), false);
+        return createUser.getString("partyId");
+    }
+
+    public static String getApplicantCompanyId(String vendorPartyId, Delegator delegator) throws GenericEntityException {
+        //获取申请人的部门
+        GenericValue firstTask = EntityQuery.use(delegator).from("WorkEffort").where("partyId", vendorPartyId, "workEffortTypeId", "COWORK_TASK").orderBy("createdDate").queryFirst();
+        GenericValue createUser = delegator.findOne("UserLogin", UtilMisc.toMap("userLoginId", firstTask.getString("createdByUserLogin")), false);
+        return CommonUtils.getPartyCompany(createUser.getString("partyId"), delegator);
     }
 
     /**
@@ -270,7 +233,7 @@ public class SupplierApproveEvents {
         String partyId = (String) supplierParty.getPropertyValue("partyId");
         //完成workEffort
         dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortId,
-                "currentStatusId", "COMPLETE", "userLogin", userLogin));
+                "currentStatusId", "REGISTERED", "userLogin", userLogin));
         //启用supplier
         dispatcher.runSync("banfftech.updateParty", UtilMisc.toMap("partyId", partyId,
                 "statusId", "PARTY_ENABLED", "userLogin", userLogin));
@@ -284,13 +247,13 @@ public class SupplierApproveEvents {
         GenericValue coWork = supplierParty.getGenericValue();
         String partyId = coWork.getString("partyId");
         //根据状态变更记录补充所有的节点信息
-        Map<String, Object> submitted = UtilMisc.toMap("nodeSeq", 0, "nodeName", "Submitted", "nodeDescription", "COWORK_CREATED", "isActive", false);
-        Map<String, Object> ddRequested = UtilMisc.toMap("nodeSeq", 1, "nodeName", "DD Requested", "nodeDescription", "REQUEST_DD", "isActive", false);
-        Map<String, Object> ddCompleted = UtilMisc.toMap("nodeSeq", 2, "nodeName", "DD Completed", "nodeDescription", "COMPLETE_DD", "isActive", false);
-        Map<String, Object> documentReady = UtilMisc.toMap("nodeSeq", 3, "nodeName", "Document Ready", "nodeDescription", "DOC_READY", "isActive", false);
-        Map<String, Object> complianceRequested = UtilMisc.toMap("nodeSeq", 4, "nodeName", "Compliance Requested", "nodeDescription", "REQUEST_COMP", "isActive", false);
-        Map<String, Object> complianceCompleted = UtilMisc.toMap("nodeSeq", 5, "nodeName", "Compliance Completed", "nodeDescription", "COMPLETE_COMP", "isActive", false);
-        Map<String, Object> registered = UtilMisc.toMap("nodeSeq", 6, "nodeName", "Registered", "nodeDescription", "COMPLETE", "isActive", false);
+        Map<String, Object> submitted = UtilMisc.toMap("nodeSeq", 0, "nodeName", "Created", "nodeDescription", "COWORK_CREATED", "isActive", false);
+        Map<String, Object> ddRequested = UtilMisc.toMap("nodeSeq", 1, "nodeName", "BPDD Requested", "nodeDescription", "REQUESTED_DD", "isActive", false);
+        Map<String, Object> ddCompleted = UtilMisc.toMap("nodeSeq", 2, "nodeName", "BPDD Submitted", "nodeDescription", "SUBMITTED_DD", "isActive", false);
+        Map<String, Object> documentReady = UtilMisc.toMap("nodeSeq", 3, "nodeName", "Procurement Review", "nodeDescription", "PROCUREMENT_REVIEW", "isActive", false);
+        Map<String, Object> complianceRequested = UtilMisc.toMap("nodeSeq", 4, "nodeName", "Compliance Review", "nodeDescription", "COMPLIANCE_REVIEW", "isActive", false);
+        Map<String, Object> complianceCompleted = UtilMisc.toMap("nodeSeq", 5, "nodeName", "BPDD Completed", "nodeDescription", "COMPLETED_DD", "isActive", false);
+        Map<String, Object> registered = UtilMisc.toMap("nodeSeq", 6, "nodeName", "Registered", "nodeDescription", "REGISTERED", "isActive", false);
         GenericValue procurementTask = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", partyId, "workEffortTypeId", "COWORK").queryFirst();
         if (UtilValidate.isNotEmpty(procurementTask)) {
             String workEffortId = procurementTask.getString("workEffortId");
@@ -302,48 +265,48 @@ public class SupplierApproveEvents {
                 submitted.put("nodeStartDate", statusGV.getTimestamp("statusDatetime"));
                 submitted.put("isActive", statusId.equals("COWORK_CREATED"));
             }
-            statusGV = EntityQuery.use(delegator).from("WorkEffortStatus").where("workEffortId", workEffortId, "statusId", "REQUEST_DD").orderBy("statusDatetime").queryFirst();
+            statusGV = EntityQuery.use(delegator).from("WorkEffortStatus").where("workEffortId", workEffortId, "statusId", "REQUESTED_DD").orderBy("statusDatetime").queryFirst();
             if (UtilValidate.isNotEmpty(statusGV)) {
                 String setUserName = CommonUtils.getPartyNameByLoginId(delegator, statusGV.getString("setByUserLogin"));
                 ddRequested.put("setUser", setUserName);
                 ddRequested.put("nodeStartDate", statusGV.getTimestamp("statusDatetime"));
-                ddRequested.put("isActive", statusId.equals("REQUEST_DD"));
+                ddRequested.put("isActive", statusId.equals("REQUESTED_DD"));
             }
-            statusGV = EntityQuery.use(delegator).from("WorkEffortStatus").where("workEffortId", workEffortId, "statusId", "COMPLETE_DD").orderBy("statusDatetime").queryFirst();
+            statusGV = EntityQuery.use(delegator).from("WorkEffortStatus").where("workEffortId", workEffortId, "statusId", "SUBMITTED_DD").orderBy("statusDatetime").queryFirst();
             if (UtilValidate.isNotEmpty(statusGV)) {
                 String setUserName = CommonUtils.getPartyNameByLoginId(delegator, statusGV.getString("setByUserLogin"));
                 ddCompleted.put("setUser", setUserName);
                 ddCompleted.put("nodeStartDate", statusGV.getTimestamp("statusDatetime"));
-                ddCompleted.put("isActive", statusId.equals("COMPLETE_DD"));
+                ddCompleted.put("isActive", statusId.equals("SUBMITTED_DD"));
             }
-            statusGV = EntityQuery.use(delegator).from("WorkEffortStatus").where("workEffortId", workEffortId, "statusId", "DOC_READY").orderBy("statusDatetime").queryFirst();
+            statusGV = EntityQuery.use(delegator).from("WorkEffortStatus").where("workEffortId", workEffortId, "statusId", "PROCUREMENT_REVIEW").orderBy("statusDatetime").queryFirst();
             if (UtilValidate.isNotEmpty(statusGV)) {
                 String setUserName = CommonUtils.getPartyNameByLoginId(delegator, statusGV.getString("setByUserLogin"));
                 documentReady.put("setUser", setUserName);
                 documentReady.put("nodeStartDate", statusGV.getTimestamp("statusDatetime"));
-                documentReady.put("isActive", statusId.equals("DOC_READY"));
+                documentReady.put("isActive", statusId.equals("PROCUREMENT_REVIEW"));
             }
-            statusGV = EntityQuery.use(delegator).from("WorkEffortStatus").where("workEffortId", workEffortId, "statusId", "REQUEST_COMP").orderBy("statusDatetime").queryFirst();
+            statusGV = EntityQuery.use(delegator).from("WorkEffortStatus").where("workEffortId", workEffortId, "statusId", "COMPLIANCE_REVIEW").orderBy("statusDatetime").queryFirst();
             if (UtilValidate.isNotEmpty(statusGV)) {
                 String setUserName = CommonUtils.getPartyNameByLoginId(delegator, statusGV.getString("setByUserLogin"));
                 complianceRequested.put("setUser", setUserName);
                 complianceRequested.put("nodeStartDate", statusGV.getTimestamp("statusDatetime"));
-                complianceRequested.put("isActive", statusId.equals("REQUEST_COMP"));
+                complianceRequested.put("isActive", statusId.equals("COMPLIANCE_REVIEW"));
             }
             statusGV = EntityQuery.use(delegator).from("WorkEffortStatus")
-                    .where("workEffortId", workEffortId, "statusId", "COMPLETE_COMP").orderBy("statusDatetime").queryFirst();
+                    .where("workEffortId", workEffortId, "statusId", "COMPLETED_DD").orderBy("statusDatetime").queryFirst();
             if (UtilValidate.isNotEmpty(statusGV)) {
                 String setUserName = CommonUtils.getPartyNameByLoginId(delegator, statusGV.getString("setByUserLogin"));
                 complianceCompleted.put("setUser", setUserName);
                 complianceCompleted.put("nodeStartDate", statusGV.getTimestamp("statusDatetime"));
-                complianceCompleted.put("isActive", statusId.equals("COMPLETE_COMP"));
+                complianceCompleted.put("isActive", statusId.equals("COMPLETED_DD"));
             }
-            statusGV = EntityQuery.use(delegator).from("WorkEffortStatus").where("workEffortId", workEffortId, "statusId", "COMPLETE").orderBy("statusDatetime").queryFirst();
+            statusGV = EntityQuery.use(delegator).from("WorkEffortStatus").where("workEffortId", workEffortId, "statusId", "REGISTERED").orderBy("statusDatetime").queryFirst();
             if (UtilValidate.isNotEmpty(statusGV)) {
                 String setUserName = CommonUtils.getPartyNameByLoginId(delegator, statusGV.getString("setByUserLogin"));
                 registered.put("setUser", setUserName);
                 registered.put("nodeStartDate", statusGV.getTimestamp("statusDatetime"));
-                registered.put("isActive", statusId.equals("COMPLETE"));
+                registered.put("isActive", statusId.equals("REGISTERED"));
             }
         }
         return UtilMisc.toList(submitted, ddRequested, ddCompleted, documentReady, complianceRequested, complianceCompleted, registered);

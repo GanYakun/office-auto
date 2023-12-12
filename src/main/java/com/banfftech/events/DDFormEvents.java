@@ -32,7 +32,7 @@ public class DDFormEvents {
      * submit DDForm
      */
     public static void submitDDForm(Map<String, Object> oDataContext, Map<String, Object> actionParameters, EdmBindingTarget edmBindingTarget)
-            throws GenericEntityException, OfbizODataException, GeneralServiceException, GenericServiceException, UnsupportedEncodingException {
+            throws GenericEntityException, OfbizODataException, GeneralServiceException, GenericServiceException {
         Delegator delegator = (Delegator) oDataContext.get("delegator");
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
         HttpServletRequest httpServletRequest = (HttpServletRequest) oDataContext.get("httpServletRequest");
@@ -42,24 +42,24 @@ public class DDFormEvents {
             throw new OfbizODataException("Parameter error");
         }
         String partyId = (String) boundEntity.getPropertyValue("partyId");
-        GenericValue supplierParty = delegator.findOne("Party", UtilMisc.toMap("partyId", partyId), false);
         GenericValue coWork = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", partyId, "approvePartyId", partyId, "workEffortTypeId", "COWORK_TASK").queryFirst();
         String workEffortId = coWork.getString("workEffortId");
         String workEffortParentId = coWork.getString("workEffortParentId");
-        String ddFormSource = CommonUtils.getObjectAttribute(supplierParty, "ddFormSource");
-        if ("procurement".equals(ddFormSource)) {
-            dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortParentId,
-                    "currentStatusId", "COMPLETE_DD", "userLogin", userLogin));
-        }
         //当前的改为已处理
         Map<String, Object> updateWorkMap = UtilMisc.toMap("workEffortId", workEffortId, "currentStatusId", "PROCESSED", "workEffortParentId", workEffortParentId);
         CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), updateWorkMap, "banfftech.updateWorkEffort", userLogin);
+        //parent 改为SUBMITTED_DD
+        GenericValue parentWorkEffort = EntityQuery.use(delegator).from("WorkEffort").where("workEffortId", workEffortParentId).queryOne();
+        if (parentWorkEffort.getString("currentStatusId").equals("REQUESTED_DD")) {
+            CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), UtilMisc.toMap("workEffortId", workEffortParentId,
+                    "currentStatusId", "SUBMITTED_DD", "userLogin", userLogin), "banfftech.updateWorkEffort", userLogin);
+        }
         // create NoteData for the Party
         String noteInfo = (String) actionParameters.get("noteInfo");
         if (UtilValidate.isEmpty(noteInfo)) {
-            noteInfo = "Submit to procurement note";
+            noteInfo = "Submit BPDD note";
         }
-        Map<String, Object> noteMap = UtilMisc.toMap("noteName", "Submit to procurement", "noteInfo", noteInfo,
+        Map<String, Object> noteMap = UtilMisc.toMap("noteName", "Submit to applicant", "noteInfo", noteInfo,
                 "noteParty", userLogin.get("partyId"), "noteDateTime", UtilDateTime.nowTimestamp(), "userLogin", userLogin);
         Map<String, Object> noteDataResult = CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), noteMap, "banfftech.createNoteData", userLogin);
         // create PartyNote
@@ -67,7 +67,6 @@ public class DDFormEvents {
         //检索是否勾选敏感问题,添加首次提交标志
         dispatcher.runSync("banfftech.ddFormCommitCheck",UtilMisc.toMap("supplierPartyId", partyId, "userLogin", userLogin));
         //发送邮件
-//        SupplierApproveEvents.sendEmailToTarget(delegator, "procurement", httpServletRequest, boundEntity, null, null);
         VendorOnBoardingEmailEvents.ddSubmit(delegator, httpServletRequest, boundEntity);
     }
 
