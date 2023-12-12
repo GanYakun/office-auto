@@ -1,19 +1,14 @@
 package com.banfftech.events;
 
-import com.banfftech.common.util.CommonUtils;
 import com.banfftech.services.UtilEmail;
 import com.dpbird.odata.edm.OdataOfbizEntity;
 import org.apache.ofbiz.base.util.Debug;
 import org.apache.ofbiz.base.util.UtilMisc;
-import org.apache.ofbiz.base.util.UtilValidate;
 import org.apache.ofbiz.entity.Delegator;
-import org.apache.ofbiz.entity.GenericEntityException;
 import org.apache.ofbiz.entity.GenericValue;
 import org.apache.ofbiz.entity.util.EntityQuery;
 
-import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 /**
@@ -76,27 +71,14 @@ public class VendorOnBoardingEmailEvents {
             String supplierId = (String) entity.getPropertyValue("partyId");
             GenericValue supplier = EntityQuery.use(delegator).from("Party").where("partyId", supplierId).queryOne();
             String supplierName = supplier.getString("partyName");
-            String ddFormSource = CommonUtils.getObjectAttribute(supplier, "ddFormSource");
-            String currentUrl = "http://officeauto.banff-tech.com";
-            String emailUrl = null;
-            if ("procurement".equals(ddFormSource)) {
-                //to procurement
-                GenericValue procurement = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", "procurement").queryFirst();
-                emailUrl = procurement.getString("primaryEmail");
-                GenericValue coWork = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", supplierId, "workEffortTypeId", "COWORK").queryFirst();
-                String coWorkId = coWork.getString("workEffortId");
-                String odataId = "SupplierParties('" + coWorkId + "')";
-                currentUrl += "/#/menu2/supplierapprove-managebyprocurement/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
-            } else {
-                //to applicant
-                GenericValue coWork = EntityQuery.use(delegator).from("WorkEffort").where("partyId", supplierId).orderBy("createdDate").queryFirst();
-                GenericValue createUser = delegator.findOne("UserLogin", UtilMisc.toMap("userLoginId", coWork.getString("createdByUserLogin")), false);
-                GenericValue applicantParty = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", createUser.getString("partyId")).queryFirst();
-                emailUrl = applicantParty.getString("primaryEmail");
-                String coWorkId = coWork.getString("workEffortId");
-                String odataId = "SupplierParties('" + coWorkId + "')";
-                currentUrl += "/#/menu2/supplierapprove-managebyapplication/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
-            }
+            //to applicant
+            GenericValue coWork = EntityQuery.use(delegator).from("WorkEffort").where("partyId", supplierId).orderBy("createdDate").queryFirst();
+            GenericValue createUser = delegator.findOne("UserLogin", UtilMisc.toMap("userLoginId", coWork.getString("createdByUserLogin")), false);
+            GenericValue applicantParty = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", createUser.getString("partyId")).queryFirst();
+            String emailUrl = applicantParty.getString("primaryEmail");
+            String coWorkId = coWork.getString("workEffortId");
+            String odataId = "SupplierParties('" + coWorkId + "')";
+            String currentUrl = "http://officeauto.banff-tech.com/#/menu2/supplierapprove-managebyapplication/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
             String content = "To Procurement,<br>" +
                     "Please see attached link " + currentUrl + ". <br>" +
                     "Kind regards, ";
@@ -170,6 +152,51 @@ public class VendorOnBoardingEmailEvents {
             String content = "To Applicant,<br>" +
                     "I am writing to present the result of your vendor onboarding application at attached link " + currentUrl + " .<br>" +
                     "Kind regards, ";
+            UtilEmail.sendEmail(emailUrl, supplierName + "(" + supplierId + ") onboarding process", content);
+        } catch (Exception e) {
+            Debug.logError(e, module);
+        }
+    }
+
+    /**
+     * 打回给申请人
+     */
+    public static void returnToApplicant(Delegator delegator, HttpServletRequest request, OdataOfbizEntity entity, String comments) {
+        try {
+            String supplierId = (String) entity.getPropertyValue("partyId");
+            GenericValue supplier = EntityQuery.use(delegator).from("Party").where("partyId", supplierId).queryOne();
+            String supplierName = supplier.getString("partyName");
+            String currentUrl = request.getRequestURL().toString().replace(request.getRequestURI(), "");
+            //to applicant
+            GenericValue coWork = EntityQuery.use(delegator).from("WorkEffort").where("partyId", supplierId).orderBy("createdDate").queryFirst();
+            GenericValue createUser = delegator.findOne("UserLogin", UtilMisc.toMap("userLoginId", coWork.getString("createdByUserLogin")), false);
+            GenericValue applicantParty = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", createUser.getString("partyId")).queryFirst();
+            String emailUrl = applicantParty.getString("primaryEmail");
+            String coWorkId = coWork.getString("workEffortId");
+            currentUrl += "/#/menu2/supplierapprove-managebyapplication/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode("SupplierParties('" + coWorkId + "')", "UTF-8");
+            String content = "To Applicant,<br>" + comments + "<br>" + currentUrl;
+            UtilEmail.sendEmail(emailUrl, supplierName + "(" + supplierId + ") onboarding process", content);
+        } catch (Exception e) {
+            Debug.logError(e, module);
+        }
+    }
+
+    /**
+     * 合规打回给采购
+     */
+    public static void returnToProcurement(Delegator delegator, HttpServletRequest request, OdataOfbizEntity entity, String comments) {
+        try {
+            String supplierId = (String) entity.getPropertyValue("partyId");
+            GenericValue supplier = EntityQuery.use(delegator).from("Party").where("partyId", supplierId).queryOne();
+            String supplierName = supplier.getString("partyName");
+            String currentUrl = request.getRequestURL().toString().replace(request.getRequestURI(), "");
+            //to procurement
+            GenericValue procurement = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", "procurement").queryFirst();
+            String emailUrl = procurement.getString("primaryEmail");
+            GenericValue coWork = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("partyId", supplierId, "workEffortTypeId", "COWORK").queryFirst();
+            String coWorkId = coWork.getString("workEffortId");
+            currentUrl += "/#/menu2/supplierapprove-managebyapplication/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode("SupplierParties('" + coWorkId + "')", "UTF-8");
+            String content = "To Procurement,<br>" + comments + "<br>" + currentUrl;
             UtilEmail.sendEmail(emailUrl, supplierName + "(" + supplierId + ") onboarding process", content);
         } catch (Exception e) {
             Debug.logError(e, module);

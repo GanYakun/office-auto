@@ -67,6 +67,7 @@ public class SupplierEvents {
             //submit to procurement
             actionParameters.put("noteInfo", complianceComments);
             actionParameters.put("source", "compliance");
+            actionParameters.put("compliancePassed", "Y");
             SupplierApproveEvents.toProcurement(oDataContext, actionParameters, edmBindingTarget);
         } catch (GeneralException e) {
             throw new OfbizODataException(e.getMessage());
@@ -369,36 +370,52 @@ public class SupplierEvents {
     }
 
     public static void createSupplierParty(Map<String, Object> oDataContext, Map<String, Object> actionParameters,
-                                           EdmBindingTarget edmBindingTarget) throws GenericEntityException, OfbizODataException, GenericServiceException {
+                                           EdmBindingTarget edmBindingTarget) throws GenericEntityException, OfbizODataException, GenericServiceException, GeneralServiceException {
 
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
+        Delegator delegator = dispatcher.getDelegator();
         String priority = "PRIORITY_MEDIUM";
         if (UtilValidate.isNotEmpty(actionParameters.get("priority"))) {
             priority = (String) actionParameters.get("priority");
         }
-        Map<String, Object> resultMap = dispatcher.runSync("banfftech.createWorkEffortAndPartyGroupContact",
-                UtilMisc.toMap("userLogin", userLogin, "partyName", actionParameters.get("partyName"), "currentStatusId", "NOT_PROCESSED", "groupTypeId", actionParameters.get("groupTypeId"),
-                        "primaryPhone", actionParameters.get("primaryPhone"), "primaryEmail", actionParameters.get("primaryEmail"), "priority", priority));
-        Delegator delegator = dispatcher.getDelegator();
+        //create ParentWork
+        Map<String, Object> createParentWorkMap = new HashMap<>();
+        String workEffortParentId = delegator.getNextSeqId("WorkEffort");
+        String partyId = delegator.getNextSeqId("Party");
+        createParentWorkMap.put("workEffortId", workEffortParentId);
+        createParentWorkMap.put("workEffortTypeId", "COWORK");
+        createParentWorkMap.put("priority", priority);
+        createParentWorkMap.put("currentStatusId", "COWORK_CREATED");
+        createParentWorkMap.put("partyId", partyId);
+        createParentWorkMap.put("userLogin", userLogin);
+        CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), createParentWorkMap, "banfftech.createWorkEffort", userLogin);
+        dispatcher.runSync("banfftech.createWorkEffortPartyAssignment",
+                UtilMisc.toMap("userLogin", userLogin, "workEffortId", workEffortParentId, "partyId", "CG", "priority", priority));
+        //create cowork task
+        dispatcher.runSync("banfftech.createWorkEffortAndPartyGroupContact",
+                UtilMisc.toMap("userLogin", userLogin, "partyName", actionParameters.get("partyName"),
+                        "currentStatusId", "NOT_PROCESSED", "groupTypeId", actionParameters.get("groupTypeId"),
+                        "primaryPhone", actionParameters.get("primaryPhone"), "primaryEmail", actionParameters.get("primaryEmail"),
+                        "priority", priority, "partyId", partyId, "workEffortParentId", workEffortParentId));
+
         if (actionParameters.get("groupTypeId").equals("GOVERNMENTAL_AGENCIES_TYPE")) {
-            dispatcher.runSync("banfftech.createPartyRole", UtilMisc.toMap("userLogin", userLogin, "partyId", resultMap.get("partyId"), "roleTypeId", "GOVERNMENT_SUPPLIER"));
+            dispatcher.runSync("banfftech.createPartyRole", UtilMisc.toMap("userLogin", userLogin, "partyId", partyId, "roleTypeId", "GOVERNMENT_SUPPLIER"));
         }
         dispatcher.runSync("banfftech.createProductCategoryRole",
-                UtilMisc.toMap("userLogin", userLogin, "partyId", resultMap.get("partyId"), "roleTypeId", "SUPPLIER",
+                UtilMisc.toMap("userLogin", userLogin, "partyId", partyId, "roleTypeId", "SUPPLIER",
                         "productCategoryId", actionParameters.get("productCategoryId"), "fromDate", UtilDateTime.nowTimestamp()));
         String departmentPartyId = CommonUtils.getPartyCompany(userLogin.getString("partyId"), delegator);
         List<GenericValue> companyRelations = delegator.findByAnd("PartyRelationship", UtilMisc.toMap("roleTypeIdFrom", "COMPANY", "partyIdTo", departmentPartyId), null, true);
         GenericValue companyRelation = EntityUtil.getFirst(companyRelations);
         dispatcher.runSync("banfftech.createPartyRelationship",
                 UtilMisc.toMap("userLogin", userLogin, "roleTypeIdFrom", "COMPANY", "partyIdFrom", companyRelation.get("partyIdFrom"),
-                        "roleTypeIdTo", "SUPPLIER", "partyIdTo", resultMap.get("partyId")));
+                        "roleTypeIdTo", "SUPPLIER", "partyIdTo", partyId));
         String code = CommonUtils.getEncryptedPassword(delegator, "ofbiz");
         dispatcher.runSync("banfftech.createUserLogin",
-                UtilMisc.toMap("userLogin", userLogin, "partyId", resultMap.get("partyId"), "userLoginId", "supplier" + resultMap.get("partyId"), "currentPassword", code));
+                UtilMisc.toMap("userLogin", userLogin, "partyId", partyId, "userLoginId", "supplier" + partyId, "currentPassword", code));
 
         //create DD Form
-        String partyId = (String) resultMap.get("partyId");
 //        delegator.create("PartyGeo", UtilMisc.toMap("partyGeoId", delegator.getNextSeqId("PartyGeo"),
 //                "partyId", partyId, "partyGeoTypeId", "REGISTERED_COUNTRY"));
 
