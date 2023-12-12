@@ -689,14 +689,14 @@ under the License.
     <PartyGeo partyGeoId="9007" partyId="9007" geoId="CHN" partyGeoTypeId="LISTED_COUNTRY"/>
 
     <!--Co-work-->
-    <WorkEffort workEffortId="8001" workEffortTypeId="COWORK" currentStatusId="DOC_READY" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9000" createdDate="2023-11-29 10:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-29 10:43:22.660"/>
-    <WorkEffort workEffortId="8003" workEffortTypeId="COWORK" currentStatusId="COMPLETE" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-29 10:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-30 19:43:22.660"/>
-    <WorkEffort workEffortId="8006" workEffortTypeId="COWORK" currentStatusId="COMPLETE_COMP" workEffortParentId="" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-12-01 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-02 11:22:22.660"/>
+    <WorkEffort workEffortId="8001" workEffortTypeId="COWORK" currentStatusId="PROCUREMENT_REVIEW" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9000" createdDate="2023-11-29 10:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-29 10:43:22.660"/>
+    <WorkEffort workEffortId="8003" workEffortTypeId="COWORK" currentStatusId="REGISTERED" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-29 10:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-30 19:43:22.660"/>
+    <WorkEffort workEffortId="8006" workEffortTypeId="COWORK" currentStatusId="SUBMITTED_DD" workEffortParentId="" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-12-01 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-02 11:22:22.660"/>
     <WorkEffort workEffortId="8029" workEffortTypeId="COWORK" currentStatusId="COWORK_CREATED" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9003" createdDate="2023-12-01 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-02 11:22:22.660"/>
-    <WorkEffort workEffortId="8010" workEffortTypeId="COWORK" currentStatusId="REQUEST_DD" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-12-02 12:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-03 12:22:22.660"/>
-    <WorkEffort workEffortId="8013" workEffortTypeId="COWORK" currentStatusId="COMPLETE_COMP" workEffortParentId="" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-12-01 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-05 11:22:22.660"/>
-    <WorkEffort workEffortId="8016" workEffortTypeId="COWORK" currentStatusId="COMPLETE" workEffortParentId="" priority="PRIORITY_MEDIUM" partyId="9006" createdDate="2023-11-29 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-06 11:22:22.660"/>
-    <WorkEffort workEffortId="8019" workEffortTypeId="COWORK" currentStatusId="REQUEST_COMP" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9007" createdDate="2023-11-25 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-06 11:22:22.660"/>
+    <WorkEffort workEffortId="8010" workEffortTypeId="COWORK" currentStatusId="REQUESTED_DD" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-12-02 12:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-03 12:22:22.660"/>
+    <WorkEffort workEffortId="8013" workEffortTypeId="COWORK" currentStatusId="COMPLIANCE_REVIEW" workEffortParentId="" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-12-01 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-05 11:22:22.660"/>
+    <WorkEffort workEffortId="8016" workEffortTypeId="COWORK" currentStatusId="REGISTERED" workEffortParentId="" priority="PRIORITY_MEDIUM" partyId="9006" createdDate="2023-11-29 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-06 11:22:22.660"/>
+    <WorkEffort workEffortId="8019" workEffortTypeId="COWORK" currentStatusId="COMPLETED_DD" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9007" createdDate="2023-11-25 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-06 11:22:22.660"/>
 
     <!--Co-work_Task-->
     <!--供应商9000-->
@@ -735,27 +735,26 @@ under the License.
     <WorkEffortStatus workEffortId="8000" statusId="NOT_PROCESSED" statusDatetime="2023-11-29 12:22:22.660" setByUserLogin="applicant"/>
     <WorkEffortStatus workEffortId="8000" statusId="PROCESSED" statusDatetime="2023-11-29 18:22:22.660" setByUserLogin="applicant"/>
     <WorkEffortStatus workEffortId="8001" statusId="COWORK_CREATED" statusDatetime="2023-11-29 18:22:22.660" setByUserLogin="procurement"/>
-    <WorkEffortStatus workEffortId="8001" statusId="REQUEST_DD" statusDatetime="2023-11-30 11:22:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8001" statusId="REQUESTED_DD" statusDatetime="2023-11-30 11:22:22.660" setByUserLogin="procurement"/>
     <WorkEffortStatus workEffortId="8012" statusId="NOT_PROCESSED" statusDatetime="2023-11-30 11:22:22.660" setByUserLogin="supplier9000"/>
     <WorkEffortStatus workEffortId="8012" statusId="PROCESSED" statusDatetime="2023-11-30 18:22:22.660" setByUserLogin="supplier9000"/>
-    <WorkEffortStatus workEffortId="8001" statusId="COMPLETE_DD" statusDatetime="2023-11-30 18:22:22.660" setByUserLogin="procurement"/>
-    <WorkEffortStatus workEffortId="8001" statusId="DOC_READY" statusDatetime="2023-12-01 09:13:22.660" setByUserLogin="procurement"/>
-    <WorkEffortStatus workEffortId="8001" statusId="REQUEST_COMP" statusDatetime="2023-12-01 11:13:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8001" statusId="SUBMITTED_DD" statusDatetime="2023-11-30 18:22:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8001" statusId="PROCUREMENT_REVIEW" statusDatetime="2023-12-01 09:13:22.660" setByUserLogin="procurement"/>
     <WorkEffortStatus workEffortId="8028" statusId="NOT_PROCESSED" statusDatetime="2023-12-01 11:13:22.660" setByUserLogin="compliance"/>
     <!--供应商9001状态-->
     <WorkEffortStatus workEffortId="8002" statusId="NOT_PROCESSED" statusDatetime="2023-12-01 09:22:22.660" setByUserLogin="applicant"/>
     <WorkEffortStatus workEffortId="8002" statusId="PROCESSED" statusDatetime="2023-12-01 16:22:22.660" setByUserLogin="applicant"/>
     <WorkEffortStatus workEffortId="8003" statusId="COWORK_CREATED" statusDatetime="2023-12-01 16:22:22.660" setByUserLogin="procurement"/>
-    <WorkEffortStatus workEffortId="8003" statusId="REQUEST_DD" statusDatetime="2023-12-01 16:50:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8003" statusId="REQUESTED_DD" statusDatetime="2023-12-01 16:50:22.660" setByUserLogin="procurement"/>
     <WorkEffortStatus workEffortId="8004" statusId="NOT_PROCESSED" statusDatetime="2023-12-01 16:50:22.660" setByUserLogin="supplier9001"/>
     <WorkEffortStatus workEffortId="8004" statusId="PROCESSED" statusDatetime="2023-12-02 15:22:22.660" setByUserLogin="supplier9001"/>
-    <WorkEffortStatus workEffortId="8003" statusId="COMPLETE_DD" statusDatetime="2023-12-02 15:22:22.660" setByUserLogin="procurement"/>
-    <WorkEffortStatus workEffortId="8003" statusId="DOC_READY" statusDatetime="2023-12-03 09:22:22.660" setByUserLogin="procurement"/>
-    <WorkEffortStatus workEffortId="8003" statusId="REQUEST_COMP" statusDatetime="2023-12-03 09:22:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8003" statusId="SUBMITTED_DD" statusDatetime="2023-12-02 15:22:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8003" statusId="PROCUREMENT_REVIEW" statusDatetime="2023-12-03 09:22:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8003" statusId="COMPLIANCE_REVIEW" statusDatetime="2023-12-03 09:22:22.660" setByUserLogin="procurement"/>
     <WorkEffortStatus workEffortId="8023" statusId="NOT_PROCESSED" statusDatetime="2023-12-03 09:22:22.660" setByUserLogin="compliance"/>
     <WorkEffortStatus workEffortId="8023" statusId="PROCESSED" statusDatetime="2023-12-03 11:05:22.660" setByUserLogin="compliance"/>
-    <WorkEffortStatus workEffortId="8003" statusId="COMPLETE_COMP" statusDatetime="2023-12-03 11:05:22.660" setByUserLogin="procurement"/>
-    <WorkEffortStatus workEffortId="8003" statusId="COMPLETE" statusDatetime="2023-12-03 15:05:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8003" statusId="COMPLETED_DD" statusDatetime="2023-12-03 11:05:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8003" statusId="REGISTERED" statusDatetime="2023-12-03 15:05:22.660" setByUserLogin="procurement"/>
     <!--供应商9002状态-->
 
     <WorkEffortPartyAssignment workEffortPartyAssignment="9000" partyId="IT" workEffortId="8000"/>
