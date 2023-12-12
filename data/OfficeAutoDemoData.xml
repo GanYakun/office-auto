@@ -79,7 +79,7 @@ under the License.
     <UserLoginSecurityGroup groupId="SUPER" userLoginId="admin" fromDate="2001-01-01 12:00:00.0"/>
 
     <!-- 申请人 -->
-    <Party partyId="applicant" partyTypeId="PERSON" externalId="applicant" partyName="Applicant01"/>
+    <Party partyId="applicant" partyTypeId="PERSON" externalId="applicant" partyName="Alice White"/>
     <Person partyId="applicant"/>
     <PartyRole partyId="applicant" roleTypeId="APPLICANT"/>
     <PartyRole partyId="applicant" roleTypeId="ORD_EMPLOYEE"/>
@@ -91,7 +91,7 @@ under the License.
 
 
     <!-- 采购 -->
-    <Party partyId="procurement" partyTypeId="PERSON" externalId="procurement" partyName="Procurement01"/>
+    <Party partyId="procurement" partyTypeId="PERSON" externalId="procurement" partyName="Peter Ross"/>
     <Person partyId="procurement"/>
     <PartyRole partyId="procurement" roleTypeId="MANAGER"/>
     <PartyRole partyId="procurement" roleTypeId="PROCUREMENT"/>
@@ -137,7 +137,7 @@ under the License.
     <PartyRelationship partyRelationshipId="PR10005" partyIdFrom="FW" partyIdTo="legalAffairs" roleTypeIdTo="ORD_EMPLOYEE"/>
 
     <!-- 合规 -->
-    <Party partyId="compliance" partyTypeId="PERSON" externalId="compliance" partyName="Compliance01"/>
+    <Party partyId="compliance" partyTypeId="PERSON" externalId="compliance" partyName="Charles Miller"/>
     <Person partyId="compliance"/>
     <PartyRole partyId="compliance" roleTypeId="COMPLIANCE"/>
     <PartyRole partyId="compliance" roleTypeId="ORD_EMPLOYEE"/>
