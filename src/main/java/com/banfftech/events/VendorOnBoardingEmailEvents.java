@@ -72,7 +72,7 @@ public class VendorOnBoardingEmailEvents {
             GenericValue supplier = EntityQuery.use(delegator).from("Party").where("partyId", supplierId).queryOne();
             String supplierName = supplier.getString("partyName");
             //to applicant
-            GenericValue coWork = EntityQuery.use(delegator).from("WorkEffort").where("partyId", supplierId).orderBy("createdDate").queryFirst();
+            GenericValue coWork = EntityQuery.use(delegator).from("WorkEffort").where("partyId", supplierId, "workEffortTypeId", "COWORK_TASK").orderBy("createdDate").queryFirst();
             GenericValue createUser = delegator.findOne("UserLogin", UtilMisc.toMap("userLoginId", coWork.getString("createdByUserLogin")), false);
             GenericValue applicantParty = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", createUser.getString("partyId")).queryFirst();
             String emailUrl = applicantParty.getString("primaryEmail");
