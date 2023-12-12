@@ -95,7 +95,7 @@ under the License.
     <!--EnumerationType-->
     <EnumerationType enumTypeId="DD_FROM_TYPE_ENUM" description="DDForm Type"/>
     <!--Enumeration-->
-    <Enumeration enumId="NOT_DD" enumTypeId="DD_FROM_TYPE_ENUM" description="No DD"/>
+    <Enumeration enumId="NOT_DD" enumTypeId="DD_FROM_TYPE_ENUM" description="No BPDD"/>
     <Enumeration enumId="SIMPLIFIED_DD" enumTypeId="DD_FROM_TYPE_ENUM" description="Simplified"/>
     <Enumeration enumId="STANDARD_DD" enumTypeId="DD_FROM_TYPE_ENUM" description="Standard"/>
 
