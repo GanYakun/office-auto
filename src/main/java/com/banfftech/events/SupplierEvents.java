@@ -515,12 +515,6 @@ public class SupplierEvents {
         serviceParam.put("description", "Download");
         serviceParam.put("partyContentTypeId", "COMPLIANCE_REPORT");
         dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
-
-        //UBO临时增加上传文件
-        serviceParam.put("contentName", "UBO Document1");
-        serviceParam.put("description", "Download");
-        serviceParam.put("partyContentTypeId", "UBO_DOCUMENT");
-        dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
     }
 
     /**

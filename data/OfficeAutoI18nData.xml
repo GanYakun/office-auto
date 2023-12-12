@@ -144,7 +144,7 @@ under the License.
     <Internationalization id="I10121" lang="zh" property="cpStatus" value="合规报告"/>
     <Internationalization id="I10122" lang="en" property="complianceNote" value="Suggestion"/>
     <Internationalization id="I10123" lang="zh" property="complianceNote" value="建议"/>
-    <Internationalization id="I10124" lang="en" property="ddFormType" value="DD type"/>
+    <Internationalization id="I10124" lang="en" property="ddFormType" value="BPDD type"/>
     <Internationalization id="I10125" lang="zh" property="ddFormType" value="表单类型"/>
     <Internationalization id="I10126" lang="en" property="cycleTime" value="Cycle time"/>
     <Internationalization id="I10127" lang="zh" property="cycleTime" value="表单填写周期"/>
@@ -178,7 +178,7 @@ under the License.
     <Internationalization id="I10155" lang="zh" property="nationality" value="国籍"/>
     <Internationalization id="I10156" lang="en" property="copyIdentificationAttached" value="Copy of supporting identification attached"/>
     <Internationalization id="I10157" lang="zh" property="copyIdentificationAttached" value=""/>
-    <Internationalization id="ddFormDealStatus_en" lang="en" property="ddFormDealStatus" value="DD Status"/>
+    <Internationalization id="ddFormDealStatus_en" lang="en" property="ddFormDealStatus" value="BPDD Status"/>
     <Internationalization id="ddFormDealStatus_zh" lang="zh" property="ddFormDealStatus" value=""/>
     <Internationalization id="I10158" lang="zh" property="removeCompany" value="移除公司"/>
     <Internationalization id="I10159" lang="en" property="removeCompany" value="Remove"/>
@@ -192,7 +192,7 @@ under the License.
     <Internationalization id="adverseResults_zh" lang="zh" property="adverseResults" value="尽职调查筛选的确认和任何不良结果的报告"/>
     <Internationalization id="additionalProtection_en" lang="en" property="additionalProtection" value="Any additional contractual protections or enhanced due diligence recommended?"/>
     <Internationalization id="additionalProtection_zh" lang="zh" property="additionalProtection" value="是否有任何额外的合同保护或加强尽职调查建议?"/>
-    <Internationalization id="ddResponseTime_en" lang="en" property="ddResponseTime" value="DD response time"/>
+    <Internationalization id="ddResponseTime_en" lang="en" property="ddResponseTime" value="BPDD response time"/>
     <Internationalization id="ddResponseTime_zh" lang="zh" property="ddResponseTime" value=""/>
     <Internationalization id="nationality_en" lang="en" property="nationality" value="Nationality"/>
     <Internationalization id="nationality_zh" lang="zh" property="nationality" value="国籍"/>

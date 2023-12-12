@@ -42,10 +42,9 @@ public class SupplierWorker {
     public static Boolean satisfiedNoDDRegular (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
         Boolean isGovernment = isGovernment((String) supplierParty.get("partyId"), delegator);
         Boolean isNoFormListCountry = isNoFormListCountry(supplierParty, delegator);
-        String primaryParentCategoryId = getSupplierParentCategory(supplierParty, delegator);
         String vendorTypeEnumCode = getVendorTypeEnumCode(supplierParty, delegator);
 
-        if (isGovernment || isNoFormListCountry || primaryParentCategoryId.equals("NEGLIGIBLE_RISK") || vendorTypeEnumCode.equals("NO_DD")){
+        if (isGovernment || isNoFormListCountry || vendorTypeEnumCode.equals("NO_DD")){
             return true;
         }else {
             return false;
@@ -54,9 +53,9 @@ public class SupplierWorker {
     }
 
     public static Boolean simplifiedDDRegular(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-        String primaryParentCategoryId = getSupplierParentCategory(supplierParty, delegator);
+
         String vendorTypeEnumCode = getVendorTypeEnumCode(supplierParty, delegator);
-        if (primaryParentCategoryId.equals("LOW_RISK") || vendorTypeEnumCode.equals("SIMPLIFIED_DD")){
+        if (vendorTypeEnumCode.equals("SIMPLIFIED_DD")){
             return true;
         }else {
             return false;
@@ -64,9 +63,9 @@ public class SupplierWorker {
     }
 
     public static Boolean standardDDRegular(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-        String primaryParentCategoryId = getSupplierParentCategory(supplierParty, delegator);
+
         String vendorTypeEnumCode = getVendorTypeEnumCode(supplierParty, delegator);
-        if (primaryParentCategoryId.equals("HIGH-VALUE_HIGH-RISK") || vendorTypeEnumCode.equals("STANDARD_DD")){
+        if (vendorTypeEnumCode.equals("STANDARD_DD")){
             return true;
         }else {
             return false;
