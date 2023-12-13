@@ -152,7 +152,9 @@
             <ValueList CollectionPath="BooleanEnums" WithFixedValues="true"/>
         </Property>
         <LineItem Qualifier="AnswerLineItem">
-            <DataField Values="DDFormSurveyQuestion/question,enumResponse,textResponse" Importance="High"/>
+            <DataField Values="DDFormSurveyQuestion/question" Importance="High"/>
+            <DataField Values="enumResponse" Importance="High" Criticality="enumResponseCritical"/>
+            <DataField Values="textResponse" Importance="High"/>
         </LineItem>
         <NavigationProperty Name="DDFormSurveyQuestion" Type="DDFormSurveyQuestion" Relations="SurveyQuestion" IsCollection="false"/>
         <NavigationProperty Name="BooleanEnum" Type="BooleanEnum" Relations="RepsEnumeration" IsCollection="false"/>

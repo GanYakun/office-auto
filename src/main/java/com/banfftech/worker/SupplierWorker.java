@@ -305,21 +305,11 @@ public class SupplierWorker {
     }
 
     public static String noUploadUBODoc(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-        String missingDoc = "Missing documents uploaded by UBO: ";
+        String missingDoc = "Missing documents uploaded by UBO.";
         List<GenericValue> partyContents = delegator.findByAnd("PartyContent",
                 UtilMisc.toMap("partyId", supplierParty.getString("partyId"),
                         "partyContentTypeId", "UBO_DOCUMENT"), null, true);
         if (UtilValidate.isEmpty(partyContents)){
-            return "";
-        }
-        for (GenericValue partyContent : partyContents){
-            GenericValue content = delegator.findOne("Content", UtilMisc.toMap("contentId", partyContent.get("contentId")), true);
-            GenericValue dataResource = delegator.findOne("DataResource", UtilMisc.toMap("dataResourceId", content.get("dataResourceId")), true);
-            if (UtilValidate.isEmpty(dataResource.get("dataResourceName"))){
-                missingDoc = missingDoc.equals("Missing documents uploaded by UBO: ") ? "Missing documents uploaded by UBO: " + content.getString("contentName") : missingDoc + "、 " + content.getString("contentName");
-            }
-        }
-        if (missingDoc.equals("Missing documents uploaded by UBO: ")){
             return "";
         }
         return missingDoc;
