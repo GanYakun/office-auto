@@ -368,9 +368,10 @@ public class SupplierWorker {
         if (getDDFormType(supplierParty, delegator).equals("No DD")){
             return false;
         }
-        List<GenericValue> applicantWorkEfforts = delegator.findByAnd("WorkEffortAndPartyGroupContact",
-                UtilMisc.toMap("partyId", supplierParty.get("partyId")), null, true);
-        GenericValue applicantWorkEffort = EntityUtil.getFirst(applicantWorkEfforts);
+
+        GenericValue applicantWorkEffort = EntityQuery.use(delegator).from("WorkEffort").
+                where("partyId", supplierParty.getString("partyId"), "workEffortTypeId", "COWORK_TASK").orderBy("createdDate").queryFirst();
+
         List<GenericValue> vendorWorkEfforts = delegator.findByAnd("WorkEffortAndPartyGroupContact",
                 UtilMisc.toMap("partyId", supplierParty.get("partyId"), "approvePartyId", supplierParty.get("partyId")), null, true);
         if (UtilValidate.isEmpty(vendorWorkEfforts)){
