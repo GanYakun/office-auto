@@ -484,12 +484,12 @@ public class SupplierEvents {
         serviceParam.put("partyContentTypeId", "SUPPLIER_DOCUMENT");
         dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
 
-        serviceParam.put("contentName", "Other Documents");
+        serviceParam.put("contentName", "Technical Eveluation Report");
         serviceParam.put("description", "Download");
         serviceParam.put("partyContentTypeId", "SUPPLIER_DOCUMENT");
         dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
 
-        serviceParam.put("contentName", "Technical Eveluation Report");
+        serviceParam.put("contentName", "Other Documents");
         serviceParam.put("description", "Download");
         serviceParam.put("partyContentTypeId", "SUPPLIER_DOCUMENT");
         dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);

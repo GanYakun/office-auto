@@ -103,6 +103,8 @@
         <Property Name="checkWarningCritical" Type="numeric"/>
         <Property Name="vendorTypeCritical" Type="numeric"/>
         <Property Name="warningContent" Type="String" Label="${warningContent}"/>
+        <!-- applicant提交按钮隐藏逻辑 -->
+        <Property Name="applicantSubmitHidden" Type="Boolean"/>
         <!-- ddForm是否已提交 -->
         <Property Name="ddFormIsSubmitted" Type="Boolean"/>
         <NavigationProperty Name="Product" Type="Product" Relations="SupplierProduct/Product" IsCollection="true"/>

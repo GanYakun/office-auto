@@ -309,7 +309,7 @@ public class SupplierWorker {
         List<GenericValue> partyContents = delegator.findByAnd("PartyContent",
                 UtilMisc.toMap("partyId", supplierParty.getString("partyId"),
                         "partyContentTypeId", "UBO_DOCUMENT"), null, true);
-        if (UtilValidate.isEmpty(partyContents)){
+        if (UtilValidate.isNotEmpty(partyContents)){
             return "";
         }
         return missingDoc;
@@ -362,5 +362,24 @@ public class SupplierWorker {
         }else {
             return 3L;
         }
+    }
+
+    public static Boolean applicantSubmitIsHidden(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
+        if (getDDFormType(supplierParty, delegator).equals("No DD")){
+            return false;
+        }
+        List<GenericValue> applicantWorkEfforts = delegator.findByAnd("WorkEffortAndPartyGroupContact",
+                UtilMisc.toMap("partyId", supplierParty.get("partyId")), null, true);
+        GenericValue applicantWorkEffort = EntityUtil.getFirst(applicantWorkEfforts);
+        List<GenericValue> vendorWorkEfforts = delegator.findByAnd("WorkEffortAndPartyGroupContact",
+                UtilMisc.toMap("partyId", supplierParty.get("partyId"), "approvePartyId", supplierParty.get("partyId")), null, true);
+        if (UtilValidate.isEmpty(vendorWorkEfforts)){
+            return true;
+        }
+        GenericValue vendorWorkEffort = EntityUtil.getFirst(vendorWorkEfforts);
+        if (applicantWorkEffort.get("currentStatusId").equals("PROCESSED") || vendorWorkEffort.get("currentStatusId").equals("NOT_PROCESSED")){
+            return true;
+        }
+        return false;
     }
 }
