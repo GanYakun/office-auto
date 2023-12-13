@@ -1,10 +1,15 @@
 package com.banfftech.services;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.ofbiz.base.location.FlexibleLocation;
 import org.apache.ofbiz.base.util.Debug;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.Date;
 import java.util.Properties;
 
@@ -50,6 +55,13 @@ public class UtilEmail {
         message.saveChanges();
         Debug.log("准备发送到: " + emailUrl);
         Transport.send(message);
+
+    }
+
+    public static String getVendorOnBoardingTemp() throws IOException {
+        String tempPath="component://officeauto/documents/VendorOnBoarding_temp.html";
+        String fileUrl = FlexibleLocation.resolveLocation(tempPath).getFile();
+        return FileUtils.readFileToString(new File(fileUrl), "utf-8");
     }
 
     public static final String vendorOnBoardingTemp = "<!DOCTYPE html>\n" +
@@ -80,4 +92,5 @@ public class UtilEmail {
             "\n" +
             "</body>\n" +
             "</html>\n";
+
 }
