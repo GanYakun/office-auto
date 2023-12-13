@@ -41,6 +41,7 @@
         <Property Name="ddFormStatusHistory" Type="String" IsAttribute="true"/>
         <!--供应商完成ddForm时间-->
         <Property Name="cycleTime" Type="String" Label="${cycleTime}"/>
+        <Property Name="complianceCycleTime" Type="String" Label="${complianceCycleTime}"/>
         <!--供应商ddForm响应时间-->
 <!--        <Property Name="ddResponseTime" Type="String" Label="${ddResponseTime}"/>-->
         <Property Name="createSupplierHidden" Type="Boolean" Hidden="true"/>
@@ -550,7 +551,7 @@
     </EntityType>
 
     <!-- 文件 -->
-    <EntityType Name="PartyMediaResource" EntitySetName="PartyMediaResources"
+    <EntityType Name="PartyMediaResource" EntitySetName="PartyMediaResources" Orderby="description"
                 Properties="partyContentId,partyId,contentId,contentName,otherData,mimeTypeId,dataResourceId,dataResourceName,fromDate,imageData,description"
                 Handler="component://officeauto/groovyScripts/partyManage/partyMedia/generateEntityListFields.groovy">
         <!--        <LineItem Qualifier="FileList">-->

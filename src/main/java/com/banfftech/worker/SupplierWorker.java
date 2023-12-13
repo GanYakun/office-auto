@@ -299,7 +299,7 @@ public class SupplierWorker {
     public static String getYesResponse (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
         String warningString = "";
         if (isCheckWarning(supplierParty, delegator)){
-            warningString = "Compliance check warning;\n\r ";
+            warningString = "Compliance certifications warning;\n\r ";
         }
         return warningString;
     }
