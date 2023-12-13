@@ -413,6 +413,13 @@
             <Parameter Name="file" Type="Stream" Nullable="false" IsCollection="false"/>
         </Action>
 
+        <Action Name="OnHold" IsBound="true" OfbizService="com.banfftech.events.SupplierApproveEvents.onHold" SideEffects="true">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+        </Action>
+        <Action Name="Enable" IsBound="true" OfbizService="com.banfftech.events.SupplierApproveEvents.enable" SideEffects="true">
+            <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
+        </Action>
+
         <Function Name="getProcessFlow" IsBound="true" OfbizService="com.banfftech.events.SupplierApproveEvents.getProcessFlow">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
             <ReturnType Type="NodeData" IsCollection="true"/>
@@ -551,7 +558,7 @@
     </EntityType>
 
     <!-- 文件 -->
-    <EntityType Name="PartyMediaResource" EntitySetName="PartyMediaResources" Orderby="description"
+    <EntityType Name="PartyMediaResource" EntitySetName="PartyMediaResources" Orderby="partyContentId"
                 Properties="partyContentId,partyId,contentId,contentName,otherData,mimeTypeId,dataResourceId,dataResourceName,fromDate,imageData,description"
                 Handler="component://officeauto/groovyScripts/partyManage/partyMedia/generateEntityListFields.groovy">
         <!--        <LineItem Qualifier="FileList">-->
