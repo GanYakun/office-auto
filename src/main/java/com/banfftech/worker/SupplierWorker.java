@@ -280,9 +280,9 @@ public class SupplierWorker {
 
     public static String noUploadedFiles (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
         String noUploadedFilesName = "Missing supported documents: ";
-        List<GenericValue> partyContents = delegator.findByAnd("PartyContent",
+        List<GenericValue> partyContents = delegator.findByAnd("PartyMediaResource",
                 UtilMisc.toMap("partyId", supplierParty.getString("partyId"),
-                        "partyContentTypeId", "SUPPLIER_DOCUMENT"), null, true);
+                        "parentTypeId", "SUPPORTED_FILE"), null, true);
         for (GenericValue partyContent : partyContents){
             GenericValue content = delegator.findOne("Content", UtilMisc.toMap("contentId", partyContent.get("contentId")), true);
             GenericValue dataResource = delegator.findOne("DataResource", UtilMisc.toMap("dataResourceId", content.get("dataResourceId")), true);
