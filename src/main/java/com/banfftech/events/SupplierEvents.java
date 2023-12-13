@@ -495,11 +495,6 @@ public class SupplierEvents {
         dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
 
         //compliance report内容
-        serviceParam.put("contentName", "Compliance Report");
-        serviceParam.put("description", "Download");
-        serviceParam.put("partyContentTypeId", "COMPLIANCE_REPORT");
-        dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
-
         serviceParam.put("contentName", "Full Name of Company or Individual Party Report");
         serviceParam.put("description", "Download");
         serviceParam.put("partyContentTypeId", "COMPLIANCE_REPORT");

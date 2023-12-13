@@ -834,7 +834,6 @@ under the License.
     <DataResource dataResourceId="9004" objectInfo="" dataResourceName="Statement of Qualifications (SOQ)"              />
     <DataResource dataResourceId="9005" objectInfo="" dataResourceName="Other Documents"                                />
     <DataResource dataResourceId="9006" objectInfo="" dataResourceName="Technical Eveluation Report"                    />
-    <DataResource dataResourceId="9007" objectInfo="" dataResourceName="Compliance Report"                              />
     <DataResource dataResourceId="9008" objectInfo="" dataResourceName="Full Name of Company or Individual Party Report"/>
     <DataResource dataResourceId="9009" objectInfo="" dataResourceName="Share Holder Report"                            />
     <DataResource dataResourceId="9010" objectInfo="" dataResourceName="Director Report"                                />
@@ -851,7 +850,6 @@ under the License.
     <DataResource dataResourceId="9020" objectInfo="" dataResourceName="Statement of Qualifications (SOQ)"              />
     <DataResource dataResourceId="9021" objectInfo="" dataResourceName="Other Documents"                                />
     <DataResource dataResourceId="9022" objectInfo="" dataResourceName="Technical Eveluation Report"                    />
-    <DataResource dataResourceId="9023" objectInfo="" dataResourceName="Compliance Report"                              />
     <DataResource dataResourceId="9024" objectInfo="" dataResourceName="Full Name of Company or Individual Party Report"/>
     <DataResource dataResourceId="9025" objectInfo="" dataResourceName="Share Holder Report"                            />
     <DataResource dataResourceId="9026" objectInfo="" dataResourceName="Director Report"                                />
@@ -868,7 +866,6 @@ under the License.
     <DataResource dataResourceId="9036" objectInfo="" dataResourceName="Statement of Qualifications (SOQ)"              />
     <DataResource dataResourceId="9037" objectInfo="" dataResourceName="Other Documents"                                />
     <DataResource dataResourceId="9038" objectInfo="" dataResourceName="Technical Eveluation Report"                    />
-    <DataResource dataResourceId="9039" objectInfo="" dataResourceName="Compliance Report"                              />
     <DataResource dataResourceId="9040" objectInfo="" dataResourceName="Full Name of Company or Individual Party Report"/>
     <DataResource dataResourceId="9041" objectInfo="" dataResourceName="Share Holder Report"                            />
     <DataResource dataResourceId="9042" objectInfo="" dataResourceName="Director Report"                                />
@@ -885,7 +882,6 @@ under the License.
     <DataResource dataResourceId="9052" objectInfo="" dataResourceName="Statement of Qualifications (SOQ)"              />
     <DataResource dataResourceId="9053" objectInfo="" dataResourceName="Other Documents"                                />
     <DataResource dataResourceId="9054" objectInfo="" dataResourceName="Technical Eveluation Report"                    />
-    <DataResource dataResourceId="9055" objectInfo="" dataResourceName="Compliance Report"                              />
     <DataResource dataResourceId="9056" objectInfo="" dataResourceName="Full Name of Company or Individual Party Report"/>
     <DataResource dataResourceId="9057" objectInfo="" dataResourceName="Share Holder Report"                            />
     <DataResource dataResourceId="9058" objectInfo="" dataResourceName="Director Report"                                />
@@ -902,7 +898,6 @@ under the License.
     <DataResource dataResourceId="9068" objectInfo="" dataResourceName="Statement of Qualifications (SOQ)"              />
     <DataResource dataResourceId="9069" objectInfo="" dataResourceName="Other Documents"                                />
     <DataResource dataResourceId="9070" objectInfo="" dataResourceName="Technical Eveluation Report"                    />
-    <DataResource dataResourceId="9071" objectInfo="" dataResourceName="Compliance Report"                              />
     <DataResource dataResourceId="9072" objectInfo="" dataResourceName="Full Name of Company or Individual Party Report"/>
     <DataResource dataResourceId="9073" objectInfo="" dataResourceName="Share Holder Report"                            />
     <DataResource dataResourceId="9074" objectInfo="" dataResourceName="Director Report"                                />
@@ -919,7 +914,6 @@ under the License.
     <DataResource dataResourceId="9084" objectInfo="" dataResourceName="Statement of Qualifications (SOQ)"              />
     <DataResource dataResourceId="9085" objectInfo="" dataResourceName="Other Documents"                                />
     <DataResource dataResourceId="9086" objectInfo="" dataResourceName="Technical Eveluation Report"                    />
-    <DataResource dataResourceId="9087" objectInfo="" dataResourceName="Compliance Report"                              />
     <DataResource dataResourceId="9088" objectInfo="" dataResourceName="Full Name of Company or Individual Party Report"/>
     <DataResource dataResourceId="9089" objectInfo="" dataResourceName="Share Holder Report"                            />
     <DataResource dataResourceId="9090" objectInfo="" dataResourceName="Director Report"                                />
@@ -936,7 +930,6 @@ under the License.
     <DataResource dataResourceId="9100" objectInfo="" dataResourceName="Statement of Qualifications (SOQ)"              />
     <DataResource dataResourceId="9101" objectInfo="" dataResourceName="Other Documents"                                />
     <DataResource dataResourceId="9102" objectInfo="" dataResourceName="Technical Eveluation Report"                    />
-    <DataResource dataResourceId="9103" objectInfo="" dataResourceName="Compliance Report"                              />
     <DataResource dataResourceId="9104" objectInfo="" dataResourceName="Full Name of Company or Individual Party Report"/>
     <DataResource dataResourceId="9105" objectInfo="" dataResourceName="Share Holder Report"                            />
     <DataResource dataResourceId="9106" objectInfo="" dataResourceName="Director Report"                                />
@@ -953,7 +946,6 @@ under the License.
     <DataResource dataResourceId="9116" objectInfo="" dataResourceName="Statement of Qualifications (SOQ)"              />
     <DataResource dataResourceId="9117" objectInfo="" dataResourceName="Other Documents"                                />
     <DataResource dataResourceId="9118" objectInfo="" dataResourceName="Technical Eveluation Report"                    />
-    <DataResource dataResourceId="9119" objectInfo="" dataResourceName="Compliance Report"                              />
     <DataResource dataResourceId="9120" objectInfo="" dataResourceName="Full Name of Company or Individual Party Report"/>
     <DataResource dataResourceId="9121" objectInfo="" dataResourceName="Share Holder Report"                            />
     <DataResource dataResourceId="9122" objectInfo="" dataResourceName="Director Report"                                />
@@ -970,7 +962,6 @@ under the License.
     <Content contentId="9004" dataResourceId="9004" contentName="Statement of Qualifications (SOQ)"              />
     <Content contentId="9005" dataResourceId="9005" contentName="Other Documents"                                />
     <Content contentId="9006" dataResourceId="9006" contentName="Technical Eveluation Report"                    />
-    <Content contentId="9007" dataResourceId="9007" contentName="Compliance Report"                              />
     <Content contentId="9008" dataResourceId="9008" contentName="Full Name of Company or Individual Party Report"/>
     <Content contentId="9009" dataResourceId="9009" contentName="Share Holder Report"                            />
     <Content contentId="9010" dataResourceId="9010" contentName="Director Report"                                />
@@ -987,7 +978,6 @@ under the License.
     <Content contentId="9020" dataResourceId="9020" contentName="Statement of Qualifications (SOQ)"              />
     <Content contentId="9021" dataResourceId="9021" contentName="Other Documents"                                />
     <Content contentId="9022" dataResourceId="9022" contentName="Technical Eveluation Report"                    />
-    <Content contentId="9023" dataResourceId="9023" contentName="Compliance Report"                              />
     <Content contentId="9024" dataResourceId="9024" contentName="Full Name of Company or Individual Party Report"/>
     <Content contentId="9025" dataResourceId="9025" contentName="Share Holder Report"                            />
     <Content contentId="9026" dataResourceId="9026" contentName="Director Report"                                />
@@ -1004,7 +994,6 @@ under the License.
     <Content contentId="9036" dataResourceId="9036" contentName="Statement of Qualifications (SOQ)"              />
     <Content contentId="9037" dataResourceId="9037" contentName="Other Documents"                                />
     <Content contentId="9038" dataResourceId="9038" contentName="Technical Eveluation Report"                    />
-    <Content contentId="9039" dataResourceId="9039" contentName="Compliance Report"                              />
     <Content contentId="9040" dataResourceId="9040" contentName="Full Name of Company or Individual Party Report"/>
     <Content contentId="9041" dataResourceId="9041" contentName="Share Holder Report"                            />
     <Content contentId="9042" dataResourceId="9042" contentName="Director Report"                                />
@@ -1021,7 +1010,6 @@ under the License.
     <Content contentId="9052" dataResourceId="9052" contentName="Statement of Qualifications (SOQ)"              />
     <Content contentId="9053" dataResourceId="9053" contentName="Other Documents"                                />
     <Content contentId="9054" dataResourceId="9054" contentName="Technical Eveluation Report"                    />
-    <Content contentId="9055" dataResourceId="9055" contentName="Compliance Report"                              />
     <Content contentId="9056" dataResourceId="9056" contentName="Full Name of Company or Individual Party Report"/>
     <Content contentId="9057" dataResourceId="9057" contentName="Share Holder Report"                            />
     <Content contentId="9058" dataResourceId="9058" contentName="Director Report"                                />
@@ -1038,7 +1026,6 @@ under the License.
     <Content contentId="9068" dataResourceId="9068" contentName="Statement of Qualifications (SOQ)"              />
     <Content contentId="9069" dataResourceId="9069" contentName="Other Documents"                                />
     <Content contentId="9070" dataResourceId="9070" contentName="Technical Eveluation Report"                    />
-    <Content contentId="9071" dataResourceId="9071" contentName="Compliance Report"                              />
     <Content contentId="9072" dataResourceId="9072" contentName="Full Name of Company or Individual Party Report"/>
     <Content contentId="9073" dataResourceId="9073" contentName="Share Holder Report"                            />
     <Content contentId="9074" dataResourceId="9074" contentName="Director Report"                                />
@@ -1055,7 +1042,6 @@ under the License.
     <Content contentId="9084" dataResourceId="9084" contentName="Statement of Qualifications (SOQ)"              />
     <Content contentId="9085" dataResourceId="9085" contentName="Other Documents"                                />
     <Content contentId="9086" dataResourceId="9086" contentName="Technical Eveluation Report"                    />
-    <Content contentId="9087" dataResourceId="9087" contentName="Compliance Report"                              />
     <Content contentId="9088" dataResourceId="9088" contentName="Full Name of Company or Individual Party Report"/>
     <Content contentId="9089" dataResourceId="9089" contentName="Share Holder Report"                            />
     <Content contentId="9090" dataResourceId="9090" contentName="Director Report"                                />
@@ -1072,7 +1058,6 @@ under the License.
     <Content contentId="9100" dataResourceId="9100" contentName="Statement of Qualifications (SOQ)"              />
     <Content contentId="9101" dataResourceId="9101" contentName="Other Documents"                                />
     <Content contentId="9102" dataResourceId="9102" contentName="Technical Eveluation Report"                    />
-    <Content contentId="9103" dataResourceId="9103" contentName="Compliance Report"                              />
     <Content contentId="9104" dataResourceId="9104" contentName="Full Name of Company or Individual Party Report"/>
     <Content contentId="9105" dataResourceId="9105" contentName="Share Holder Report"                            />
     <Content contentId="9106" dataResourceId="9106" contentName="Director Report"                                />
@@ -1089,7 +1074,6 @@ under the License.
     <Content contentId="9116" dataResourceId="9116" contentName="Statement of Qualifications (SOQ)"              />
     <Content contentId="9117" dataResourceId="9117" contentName="Other Documents"                                />
     <Content contentId="9118" dataResourceId="9118" contentName="Technical Eveluation Report"                    />
-    <Content contentId="9119" dataResourceId="9119" contentName="Compliance Report"                              />
     <Content contentId="9120" dataResourceId="9120" contentName="Full Name of Company or Individual Party Report"/>
     <Content contentId="9121" dataResourceId="9121" contentName="Share Holder Report"                            />
     <Content contentId="9122" dataResourceId="9122" contentName="Director Report"                                />
@@ -1107,7 +1091,6 @@ under the License.
     <PartyContent partyContentId="9004" partyId="9000" contentId="9004" partyContentTypeId="SUPPLIER_DOCUMENT"/>
     <PartyContent partyContentId="9005" partyId="9000" contentId="9005" partyContentTypeId="SUPPLIER_DOCUMENT"/>
     <PartyContent partyContentId="9006" partyId="9000" contentId="9006" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9007" partyId="9000" contentId="9007" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9008" partyId="9000" contentId="9008" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9009" partyId="9000" contentId="9009" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9010" partyId="9000" contentId="9010" partyContentTypeId="COMPLIANCE_REPORT"/>
@@ -1124,7 +1107,6 @@ under the License.
     <PartyContent partyContentId="9020" partyId="9001" contentId="9020" partyContentTypeId="SUPPLIER_DOCUMENT"/>
     <PartyContent partyContentId="9021" partyId="9001" contentId="9021" partyContentTypeId="SUPPLIER_DOCUMENT"/>
     <PartyContent partyContentId="9022" partyId="9001" contentId="9022" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9023" partyId="9001" contentId="9023" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9024" partyId="9001" contentId="9024" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9025" partyId="9001" contentId="9025" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9026" partyId="9001" contentId="9026" partyContentTypeId="COMPLIANCE_REPORT"/>
@@ -1141,7 +1123,6 @@ under the License.
     <PartyContent partyContentId="9036" partyId="9002" contentId="9036" partyContentTypeId="SUPPLIER_DOCUMENT"/>
     <PartyContent partyContentId="9037" partyId="9002" contentId="9037" partyContentTypeId="SUPPLIER_DOCUMENT"/>
     <PartyContent partyContentId="9038" partyId="9002" contentId="9038" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9039" partyId="9002" contentId="9039" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9040" partyId="9002" contentId="9040" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9041" partyId="9002" contentId="9041" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9042" partyId="9002" contentId="9042" partyContentTypeId="COMPLIANCE_REPORT"/>
@@ -1158,7 +1139,6 @@ under the License.
     <PartyContent partyContentId="9052" partyId="9003" contentId="9052" partyContentTypeId="SUPPLIER_DOCUMENT"/>
     <PartyContent partyContentId="9053" partyId="9003" contentId="9053" partyContentTypeId="SUPPLIER_DOCUMENT"/>
     <PartyContent partyContentId="9054" partyId="9003" contentId="9054" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9055" partyId="9003" contentId="9055" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9056" partyId="9003" contentId="9056" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9057" partyId="9003" contentId="9057" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9058" partyId="9003" contentId="9058" partyContentTypeId="COMPLIANCE_REPORT"/>
@@ -1175,7 +1155,6 @@ under the License.
     <PartyContent partyContentId="9068" partyId="9004" contentId="9068" partyContentTypeId="SUPPLIER_DOCUMENT"/>
     <PartyContent partyContentId="9069" partyId="9004" contentId="9069" partyContentTypeId="SUPPLIER_DOCUMENT"/>
     <PartyContent partyContentId="9070" partyId="9004" contentId="9070" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9071" partyId="9004" contentId="9071" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9072" partyId="9004" contentId="9072" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9073" partyId="9004" contentId="9073" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9074" partyId="9004" contentId="9074" partyContentTypeId="COMPLIANCE_REPORT"/>
@@ -1192,7 +1171,6 @@ under the License.
     <PartyContent partyContentId="9084" partyId="9005" contentId="9084" partyContentTypeId="SUPPLIER_DOCUMENT"/>
     <PartyContent partyContentId="9085" partyId="9005" contentId="9085" partyContentTypeId="SUPPLIER_DOCUMENT"/>
     <PartyContent partyContentId="9086" partyId="9005" contentId="9086" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9087" partyId="9005" contentId="9087" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9088" partyId="9005" contentId="9088" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9089" partyId="9005" contentId="9089" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9090" partyId="9005" contentId="9090" partyContentTypeId="COMPLIANCE_REPORT"/>
@@ -1209,7 +1187,6 @@ under the License.
     <PartyContent partyContentId="9100" partyId="9006" contentId="9100" partyContentTypeId="SUPPLIER_DOCUMENT"/>
     <PartyContent partyContentId="9101" partyId="9006" contentId="9101" partyContentTypeId="SUPPLIER_DOCUMENT"/>
     <PartyContent partyContentId="9102" partyId="9006" contentId="9102" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9103" partyId="9006" contentId="9103" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9104" partyId="9006" contentId="9104" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9105" partyId="9006" contentId="9105" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9106" partyId="9006" contentId="9106" partyContentTypeId="COMPLIANCE_REPORT"/>
@@ -1226,7 +1203,6 @@ under the License.
     <PartyContent partyContentId="9116" partyId="9007" contentId="9116" partyContentTypeId="SUPPLIER_DOCUMENT"/>
     <PartyContent partyContentId="9117" partyId="9007" contentId="9117" partyContentTypeId="SUPPLIER_DOCUMENT"/>
     <PartyContent partyContentId="9118" partyId="9007" contentId="9118" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9119" partyId="9007" contentId="9119" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9120" partyId="9007" contentId="9120" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9121" partyId="9007" contentId="9121" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9122" partyId="9007" contentId="9122" partyContentTypeId="COMPLIANCE_REPORT"/>
