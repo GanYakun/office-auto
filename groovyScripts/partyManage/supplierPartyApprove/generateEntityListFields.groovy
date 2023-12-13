@@ -58,6 +58,7 @@ def generateFields(Map<String, Object> context){
             priorityCritical = priorityMap.get(supplierParty.get("priority"));
         }
         String cycleTime = SupplierWorker.calculateCycleTime(supplierParty, delegator);
+        String complianceCycleTime = SupplierWorker.calculateCycleTime(supplierParty, delegator);
         criticalityValue = 2L
         String statusId = supplierParty.getString("statusId");
         if (statusId.equals("PROCESSED") && UtilValidate.isNotEmpty(criticalityValue)){
@@ -85,6 +86,7 @@ def generateFields(Map<String, Object> context){
         entity.addProperty(new Property(null, "ddFormIsSubmitted", ValueType.PRIMITIVE, ddFormIsSubmitted))
         entity.addProperty(new Property(null, "warningContent", ValueType.PRIMITIVE, warningContent))
         entity.addProperty(new Property(null, "applicantSubmitHidden", ValueType.PRIMITIVE, applicantSubmitHidden))
+        entity.addProperty(new Property(null, "complianceCycleTime", ValueType.PRIMITIVE, complianceCycleTime))
 
         //文件数量
         String supplierId = supplierParty.getString("partyId");
