@@ -242,6 +242,10 @@ under the License.
     <Internationalization id="serviceName_zh" lang="zh" property="serviceName" value="Service name"/>
     <Internationalization id="warningContent_en" lang="en" property="warningContent" value=""/>
     <Internationalization id="warningContent_zh" lang="zh" property="warningContent" value=""/>
+    <Internationalization id="writeBasicInfo_en" lang="en" property="writeBasicInfo" value="Fill in basic info"/>
+    <Internationalization id="writeBasicInfo_zh" lang="zh" property="writeBasicInfo" value="填写基本信息"/>
+    <Internationalization id="uploadDocuments_en" lang="en" property="uploadDocuments" value="Upload supported documents"/>
+    <Internationalization id="uploadDocuments_zh" lang="zh" property="uploadDocuments" value="上传文件"/>
 
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>
