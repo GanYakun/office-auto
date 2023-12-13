@@ -12,6 +12,10 @@ import org.apache.ofbiz.base.util.UtilValidate;
 import org.apache.ofbiz.entity.Delegator;
 import org.apache.ofbiz.entity.GenericEntityException;
 import org.apache.ofbiz.entity.GenericValue;
+import org.apache.ofbiz.entity.condition.EntityCondition;
+import org.apache.ofbiz.entity.condition.EntityConditionList;
+import org.apache.ofbiz.entity.condition.EntityExpr;
+import org.apache.ofbiz.entity.condition.EntityOperator;
 import org.apache.ofbiz.entity.util.EntityQuery;
 import org.apache.ofbiz.entity.util.EntityUtil;
 import org.apache.ofbiz.service.GeneralServiceException;
@@ -319,6 +323,31 @@ public class SupplierApproveEvents {
             }
         }
         return UtilMisc.toList(submitted, ddRequested, ddCompleted, documentReady, complianceRequested, complianceCompleted, registered);
+    }
+
+    public static void onHold(Map<String, Object> oDataContext, Map<String, Object> actionParameters, EdmBindingTarget edmBindingTarget) throws GenericEntityException, GenericServiceException {
+        Delegator delegator = (Delegator) oDataContext.get("delegator");
+        LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
+        GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
+        OdataOfbizEntity supplierParty = (OdataOfbizEntity) actionParameters.get("supplierParty");
+        GenericValue coWork = supplierParty.getGenericValue();
+        String workEffortId = coWork.getString("workEffortId");
+        dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortId, "currentStatusId", "ON_HOLD", "userLogin", userLogin));
+    }
+
+    public static void enable(Map<String, Object> oDataContext, Map<String, Object> actionParameters, EdmBindingTarget edmBindingTarget) throws GenericEntityException, GenericServiceException {
+        Delegator delegator = (Delegator) oDataContext.get("delegator");
+        LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
+        GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
+        OdataOfbizEntity supplierParty = (OdataOfbizEntity) actionParameters.get("supplierParty");
+        GenericValue coWork = supplierParty.getGenericValue();
+        String workEffortId = coWork.getString("workEffortId");
+        //查找onHold的之前的状态 恢复到这个状态
+        EntityCondition queryCondition = EntityCondition.makeCondition(EntityCondition.makeCondition("statusId", EntityOperator.NOT_EQUAL, "ON_HOLD"),
+                EntityCondition.makeCondition("workEffortId", workEffortId));
+        GenericValue lastStatus = EntityQuery.use(delegator).from("WorkEffortStatus").where(queryCondition).orderBy("-statusDatetime").queryFirst();
+        dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortId,
+                "currentStatusId", lastStatus.getString("statusId"), "userLogin", userLogin));
     }
 
 

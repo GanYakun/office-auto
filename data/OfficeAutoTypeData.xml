@@ -69,6 +69,7 @@ under the License.
     <StatusItem statusId="COMPLIANCE_REVIEW" statusTypeId="COWORK_STATUS" description="Compliance Review"/>
     <StatusItem statusId="COMPLETED_DD" statusTypeId="COWORK_STATUS" description="BPDD Completed"/>
     <StatusItem statusId="REGISTERED" statusTypeId="COWORK_STATUS" description="Registered"/>
+    <StatusItem statusId="ON_HOLD" statusTypeId="COWORK_STATUS" description="On Hold"/>
 
 
     <StatusValidChange statusId="PARTY_ENABLED" statusIdTo="PARTY_ON_HOLD"/>
