@@ -153,7 +153,7 @@
         </Property>
         <LineItem Qualifier="AnswerLineItem">
             <DataField Values="DDFormSurveyQuestion/question" Importance="High"/>
-            <DataField Values="enumResponse" Importance="High" Criticality="enumResponseCritical"/>
+            <DataField Values="enumResponse" Importance="High"/>
             <DataField Values="textResponse" Importance="High"/>
         </LineItem>
         <NavigationProperty Name="DDFormSurveyQuestion" Type="DDFormSurveyQuestion" Relations="SurveyQuestion" IsCollection="false"/>
