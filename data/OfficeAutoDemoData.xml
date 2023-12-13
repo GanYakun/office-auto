@@ -1083,14 +1083,14 @@ under the License.
     <Content contentId="9126" dataResourceId="9126" contentName="Ultimate Beneficial Owners Report"              />
 
     <!--PartyContent-->
-    <PartyContent partyContentId="8999" partyId="9000" contentId="8999" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9000" partyId="9000" contentId="9000" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9001" partyId="9000" contentId="9001" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9002" partyId="9000" contentId="9002" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9003" partyId="9000" contentId="9003" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9004" partyId="9000" contentId="9004" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9005" partyId="9000" contentId="9005" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9006" partyId="9000" contentId="9006" partyContentTypeId="SUPPLIER_DOCUMENT"/>
+    <PartyContent partyContentId="8999" partyId="9000" contentId="8999" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9000" partyId="9000" contentId="9000" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9001" partyId="9000" contentId="9001" partyContentTypeId="COMPLIANCE_VIEW"/>
+    <PartyContent partyContentId="9002" partyId="9000" contentId="9002" partyContentTypeId="COMPLIANCE_VIEW"/>
+    <PartyContent partyContentId="9003" partyId="9000" contentId="9003" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9004" partyId="9000" contentId="9004" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9005" partyId="9000" contentId="9005" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9006" partyId="9000" contentId="9006" partyContentTypeId="SUPPLIER_VIEW"/>
     <PartyContent partyContentId="9008" partyId="9000" contentId="9008" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9009" partyId="9000" contentId="9009" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9010" partyId="9000" contentId="9010" partyContentTypeId="COMPLIANCE_REPORT"/>
@@ -1099,14 +1099,14 @@ under the License.
     <PartyContent partyContentId="9013" partyId="9000" contentId="9013" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9014" partyId="9000" contentId="9014" partyContentTypeId="COMPLIANCE_REPORT"/>
 
-    <PartyContent partyContentId="9015" partyId="9001" contentId="9015" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9016" partyId="9001" contentId="9016" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9017" partyId="9001" contentId="9017" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9018" partyId="9001" contentId="9018" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9019" partyId="9001" contentId="9019" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9020" partyId="9001" contentId="9020" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9021" partyId="9001" contentId="9021" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9022" partyId="9001" contentId="9022" partyContentTypeId="SUPPLIER_DOCUMENT"/>
+    <PartyContent partyContentId="9015" partyId="9001" contentId="9015" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9016" partyId="9001" contentId="9016" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9017" partyId="9001" contentId="9017" partyContentTypeId="COMPLIANCE_VIEW"/>
+    <PartyContent partyContentId="9018" partyId="9001" contentId="9018" partyContentTypeId="COMPLIANCE_VIEW"/>
+    <PartyContent partyContentId="9019" partyId="9001" contentId="9019" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9020" partyId="9001" contentId="9020" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9021" partyId="9001" contentId="9021" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9022" partyId="9001" contentId="9022" partyContentTypeId="SUPPLIER_VIEW"/>
     <PartyContent partyContentId="9024" partyId="9001" contentId="9024" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9025" partyId="9001" contentId="9025" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9026" partyId="9001" contentId="9026" partyContentTypeId="COMPLIANCE_REPORT"/>
@@ -1115,14 +1115,14 @@ under the License.
     <PartyContent partyContentId="9029" partyId="9001" contentId="9029" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9030" partyId="9001" contentId="9030" partyContentTypeId="COMPLIANCE_REPORT"/>
 
-    <PartyContent partyContentId="9031" partyId="9002" contentId="9031" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9032" partyId="9002" contentId="9032" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9033" partyId="9002" contentId="9033" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9034" partyId="9002" contentId="9034" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9035" partyId="9002" contentId="9035" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9036" partyId="9002" contentId="9036" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9037" partyId="9002" contentId="9037" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9038" partyId="9002" contentId="9038" partyContentTypeId="SUPPLIER_DOCUMENT"/>
+    <PartyContent partyContentId="9031" partyId="9002" contentId="9031" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9032" partyId="9002" contentId="9032" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9033" partyId="9002" contentId="9033" partyContentTypeId="COMPLIANCE_VIEW"/>
+    <PartyContent partyContentId="9034" partyId="9002" contentId="9034" partyContentTypeId="COMPLIANCE_VIEW"/>
+    <PartyContent partyContentId="9035" partyId="9002" contentId="9035" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9036" partyId="9002" contentId="9036" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9037" partyId="9002" contentId="9037" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9038" partyId="9002" contentId="9038" partyContentTypeId="SUPPLIER_VIEW"/>
     <PartyContent partyContentId="9040" partyId="9002" contentId="9040" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9041" partyId="9002" contentId="9041" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9042" partyId="9002" contentId="9042" partyContentTypeId="COMPLIANCE_REPORT"/>
@@ -1131,14 +1131,14 @@ under the License.
     <PartyContent partyContentId="9045" partyId="9002" contentId="9045" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9046" partyId="9002" contentId="9046" partyContentTypeId="COMPLIANCE_REPORT"/>
 
-    <PartyContent partyContentId="9047" partyId="9003" contentId="9047" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9048" partyId="9003" contentId="9048" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9049" partyId="9003" contentId="9049" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9050" partyId="9003" contentId="9050" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9051" partyId="9003" contentId="9051" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9052" partyId="9003" contentId="9052" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9053" partyId="9003" contentId="9053" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9054" partyId="9003" contentId="9054" partyContentTypeId="SUPPLIER_DOCUMENT"/>
+    <PartyContent partyContentId="9047" partyId="9003" contentId="9047" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9048" partyId="9003" contentId="9048" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9049" partyId="9003" contentId="9049" partyContentTypeId="COMPLIANCE_VIEW"/>
+    <PartyContent partyContentId="9050" partyId="9003" contentId="9050" partyContentTypeId="COMPLIANCE_VIEW"/>
+    <PartyContent partyContentId="9051" partyId="9003" contentId="9051" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9052" partyId="9003" contentId="9052" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9053" partyId="9003" contentId="9053" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9054" partyId="9003" contentId="9054" partyContentTypeId="SUPPLIER_VIEW"/>
     <PartyContent partyContentId="9056" partyId="9003" contentId="9056" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9057" partyId="9003" contentId="9057" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9058" partyId="9003" contentId="9058" partyContentTypeId="COMPLIANCE_REPORT"/>
@@ -1147,14 +1147,14 @@ under the License.
     <PartyContent partyContentId="9061" partyId="9003" contentId="9061" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9062" partyId="9003" contentId="9062" partyContentTypeId="COMPLIANCE_REPORT"/>
 
-    <PartyContent partyContentId="9063" partyId="9004" contentId="9063" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9064" partyId="9004" contentId="9064" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9065" partyId="9004" contentId="9065" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9066" partyId="9004" contentId="9066" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9067" partyId="9004" contentId="9067" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9068" partyId="9004" contentId="9068" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9069" partyId="9004" contentId="9069" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9070" partyId="9004" contentId="9070" partyContentTypeId="SUPPLIER_DOCUMENT"/>
+    <PartyContent partyContentId="9063" partyId="9004" contentId="9063" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9064" partyId="9004" contentId="9064" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9065" partyId="9004" contentId="9065" partyContentTypeId="COMPLIANCE_VIEW"/>
+    <PartyContent partyContentId="9066" partyId="9004" contentId="9066" partyContentTypeId="COMPLIANCE_VIEW"/>
+    <PartyContent partyContentId="9067" partyId="9004" contentId="9067" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9068" partyId="9004" contentId="9068" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9069" partyId="9004" contentId="9069" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9070" partyId="9004" contentId="9070" partyContentTypeId="SUPPLIER_VIEW"/>
     <PartyContent partyContentId="9072" partyId="9004" contentId="9072" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9073" partyId="9004" contentId="9073" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9074" partyId="9004" contentId="9074" partyContentTypeId="COMPLIANCE_REPORT"/>
@@ -1163,14 +1163,14 @@ under the License.
     <PartyContent partyContentId="9077" partyId="9004" contentId="9077" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9078" partyId="9004" contentId="9078" partyContentTypeId="COMPLIANCE_REPORT"/>
 
-    <PartyContent partyContentId="9079" partyId="9005" contentId="9079" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9080" partyId="9005" contentId="9080" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9081" partyId="9005" contentId="9081" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9082" partyId="9005" contentId="9082" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9083" partyId="9005" contentId="9083" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9084" partyId="9005" contentId="9084" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9085" partyId="9005" contentId="9085" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9086" partyId="9005" contentId="9086" partyContentTypeId="SUPPLIER_DOCUMENT"/>
+    <PartyContent partyContentId="9079" partyId="9005" contentId="9079" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9080" partyId="9005" contentId="9080" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9081" partyId="9005" contentId="9081" partyContentTypeId="COMPLIANCE_VIEW"/>
+    <PartyContent partyContentId="9082" partyId="9005" contentId="9082" partyContentTypeId="COMPLIANCE_VIEW"/>
+    <PartyContent partyContentId="9083" partyId="9005" contentId="9083" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9084" partyId="9005" contentId="9084" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9085" partyId="9005" contentId="9085" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9086" partyId="9005" contentId="9086" partyContentTypeId="SUPPLIER_VIEW"/>
     <PartyContent partyContentId="9088" partyId="9005" contentId="9088" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9089" partyId="9005" contentId="9089" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9090" partyId="9005" contentId="9090" partyContentTypeId="COMPLIANCE_REPORT"/>
@@ -1179,14 +1179,14 @@ under the License.
     <PartyContent partyContentId="9093" partyId="9005" contentId="9093" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9094" partyId="9005" contentId="9094" partyContentTypeId="COMPLIANCE_REPORT"/>
 
-    <PartyContent partyContentId="9095" partyId="9006" contentId="9095" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9096" partyId="9006" contentId="9096" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9097" partyId="9006" contentId="9097" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9098" partyId="9006" contentId="9098" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9099" partyId="9006" contentId="9099" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9100" partyId="9006" contentId="9100" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9101" partyId="9006" contentId="9101" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9102" partyId="9006" contentId="9102" partyContentTypeId="SUPPLIER_DOCUMENT"/>
+    <PartyContent partyContentId="9095" partyId="9006" contentId="9095" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9096" partyId="9006" contentId="9096" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9097" partyId="9006" contentId="9097" partyContentTypeId="COMPLIANCE_VIEW"/>
+    <PartyContent partyContentId="9098" partyId="9006" contentId="9098" partyContentTypeId="COMPLIANCE_VIEW"/>
+    <PartyContent partyContentId="9099" partyId="9006" contentId="9099" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9100" partyId="9006" contentId="9100" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9101" partyId="9006" contentId="9101" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9102" partyId="9006" contentId="9102" partyContentTypeId="SUPPLIER_VIEW"/>
     <PartyContent partyContentId="9104" partyId="9006" contentId="9104" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9105" partyId="9006" contentId="9105" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9106" partyId="9006" contentId="9106" partyContentTypeId="COMPLIANCE_REPORT"/>
@@ -1195,14 +1195,14 @@ under the License.
     <PartyContent partyContentId="9109" partyId="9006" contentId="9109" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9110" partyId="9006" contentId="9110" partyContentTypeId="COMPLIANCE_REPORT"/>
 
-    <PartyContent partyContentId="9111" partyId="9007" contentId="9111" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9112" partyId="9007" contentId="9112" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9113" partyId="9007" contentId="9113" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9114" partyId="9007" contentId="9114" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9115" partyId="9007" contentId="9115" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9116" partyId="9007" contentId="9116" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9117" partyId="9007" contentId="9117" partyContentTypeId="SUPPLIER_DOCUMENT"/>
-    <PartyContent partyContentId="9118" partyId="9007" contentId="9118" partyContentTypeId="SUPPLIER_DOCUMENT"/>
+    <PartyContent partyContentId="9111" partyId="9007" contentId="9111" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9112" partyId="9007" contentId="9112" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9113" partyId="9007" contentId="9113" partyContentTypeId="COMPLIANCE_VIEW"/>
+    <PartyContent partyContentId="9114" partyId="9007" contentId="9114" partyContentTypeId="COMPLIANCE_VIEW"/>
+    <PartyContent partyContentId="9115" partyId="9007" contentId="9115" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9116" partyId="9007" contentId="9116" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9117" partyId="9007" contentId="9117" partyContentTypeId="SUPPLIER_VIEW"/>
+    <PartyContent partyContentId="9118" partyId="9007" contentId="9118" partyContentTypeId="SUPPLIER_VIEW"/>
     <PartyContent partyContentId="9120" partyId="9007" contentId="9120" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9121" partyId="9007" contentId="9121" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9122" partyId="9007" contentId="9122" partyContentTypeId="COMPLIANCE_REPORT"/>

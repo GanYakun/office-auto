@@ -456,42 +456,42 @@ public class SupplierEvents {
         serviceParam.put("contentName", "Latest Three-years Finance Audit Report");
         serviceParam.put("description", "Download");
         serviceParam.put("fromDate", UtilDateTime.nowTimestamp());
-        serviceParam.put("partyContentTypeId", "SUPPLIER_DOCUMENT");
+        serviceParam.put("partyContentTypeId", "SUPPLIER_VIEW");
         dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
 
         serviceParam.put("contentName", "Non-disclosure Agreement (NDA)");
         serviceParam.put("description", "Download");
-        serviceParam.put("partyContentTypeId", "SUPPLIER_DOCUMENT");
+        serviceParam.put("partyContentTypeId", "SUPPLIER_VIEW");
         dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
 
         serviceParam.put("contentName", "Copy of Commercial License");
         serviceParam.put("description", "Download");
-        serviceParam.put("partyContentTypeId", "SUPPLIER_DOCUMENT");
+        serviceParam.put("partyContentTypeId", "COMPLIANCE_VIEW");
         dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
 
         serviceParam.put("contentName", "Copy of VAT Certificate");
         serviceParam.put("description", "Download");
-        serviceParam.put("partyContentTypeId", "SUPPLIER_DOCUMENT");
+        serviceParam.put("partyContentTypeId", "COMPLIANCE_VIEW");
         dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
 
         serviceParam.put("contentName", "PoA (Power of Atterney)");
         serviceParam.put("description", "Download");
-        serviceParam.put("partyContentTypeId", "SUPPLIER_DOCUMENT");
+        serviceParam.put("partyContentTypeId", "SUPPLIER_VIEW");
         dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
 
         serviceParam.put("contentName", "Statement of Qualifications (SOQ)");
         serviceParam.put("description", "Download");
-        serviceParam.put("partyContentTypeId", "SUPPLIER_DOCUMENT");
+        serviceParam.put("partyContentTypeId", "SUPPLIER_VIEW");
         dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
 
         serviceParam.put("contentName", "Technical Eveluation Report");
         serviceParam.put("description", "Download");
-        serviceParam.put("partyContentTypeId", "SUPPLIER_DOCUMENT");
+        serviceParam.put("partyContentTypeId", "SUPPLIER_VIEW");
         dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
 
         serviceParam.put("contentName", "Other Documents");
         serviceParam.put("description", "Download");
-        serviceParam.put("partyContentTypeId", "SUPPLIER_DOCUMENT");
+        serviceParam.put("partyContentTypeId", "SUPPLIER_VIEW");
         dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
 
         //compliance report内容

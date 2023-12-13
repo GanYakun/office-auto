@@ -152,7 +152,9 @@
         <NavigationProperty Name="CreatedParty" Type="CreatedParty" Relations="CreatedByUserLogin/PersonAndContact" IsCollection="false"/>
 
         <!-- 文件列表 -->
-        <NavigationProperty Name="FileList" Type="PartyMediaResource" Relations="PartyMediaResource(partyContentTypeId=SUPPLIER_DOCUMENT)"
+        <NavigationProperty Name="FileList" Type="PartyMediaResource" Relations="PartyMediaResource(parentTypeId=SUPPORTED_FILE)"
+                            IsCollection="true"/>
+        <NavigationProperty Name="ComplianceViewFile" Type="PartyMediaResource" Relations="PartyMediaResource(partyContentTypeId=COMPLIANCE_VIEW)"
                             IsCollection="true"/>
         <!-- 合规报告 -->
         <NavigationProperty Name="ComplianceReport" Type="PartyMediaResource"

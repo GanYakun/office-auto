@@ -78,10 +78,13 @@ under the License.
     <SurveyApplType surveyApplTypeId="DD_FORM" description="Due Diligence Form"/>
 
     <!-- Supported Documents -->
-    <PartyContentType partyContentTypeId="SUPPLIER_DOCUMENT"/>
+    <PartyContentType partyContentTypeId="SUPPORTED_FILE"/>
+    <PartyContentType partyContentTypeId="SUPPLIER_VIEW" parentTypeId="SUPPORTED_FILE"/>
     <!-- Compliance Reports -->
     <PartyContentType partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContentType partyContentTypeId="UBO_DOCUMENT"/>
+    <PartyContentType partyContentTypeId="COMPLIANCE_VIEW" parentTypeId="SUPPORTED_FILE"/>
+
 
     <!-- Logo -->
     <PartyContentType partyContentTypeId="SUPPLIER_LOGO"/>
