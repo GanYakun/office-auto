@@ -235,8 +235,6 @@ under the License.
     <Party partyId="9005" partyName="FORTUNEINT'L.LTD" partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED"/>
     <Party partyId="9006" partyName="GDS" partyTypeId="PARTY_GROUP" statusId="PARTY_ON_HOLD"/>
     <Party partyId="9007" partyName="Tencent Holdings Limited" partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED"/>
-<!--    <Party partyId="9008" partyName="Vendor9" partyTypeId="PARTY_GROUP" statusId=""/>-->
-<!--    <Party partyId="9009" partyName="Vendor10" partyTypeId="PARTY_GROUP" statusId=""/>-->
     <!-- PartyRole-->
     <PartyRole partyId="9000" roleTypeId="SUPPLIER"/>
     <PartyRole partyId="9001" roleTypeId="SUPPLIER"/>
@@ -247,9 +245,6 @@ under the License.
     <PartyRole partyId="9005" roleTypeId="SUPPLIER"/>
     <PartyRole partyId="9006" roleTypeId="SUPPLIER"/>
     <PartyRole partyId="9007" roleTypeId="SUPPLIER"/>
-<!--    <PartyRole partyId="9008" roleTypeId="SUPPLIER"/>-->
-<!--    <PartyRole partyId="9009" roleTypeId="SUPPLIER"/>-->
-
     <!--UserLogin-->
     <UserLogin partyId="9000" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" userLoginId="supplier9000"/>
     <UserLogin partyId="9001" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" userLoginId="supplier9001"/>
@@ -259,6 +254,577 @@ under the License.
     <UserLogin partyId="9005" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" userLoginId="supplier9005"/>
     <UserLogin partyId="9006" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" userLoginId="supplier9006"/>
     <UserLogin partyId="9007" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" userLoginId="supplier9007"/>
+
+    <!--PartyGroup-->
+    <PartyGroup partyId="9000" groupName="Huawei Technologies Co Ltd" employeesSection="EMP_GE10000" annualRevenue="450000000" comments="Main communication electronic technology business" groupTypeId="OTHERS_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/012f7330-6af5-459d-aa5d-fc4890284481.png"/>
+    <PartyGroup partyId="9001" groupName="ASUS" employeesSection="EMP_GE10000" annualRevenue="120000000" comments="Sell computer hardware" groupTypeId="OTHERS_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/aa3cc9ec-4f0f-455c-9839-fa86f004b33b.png"/>
+    <PartyGroup partyId="9002" groupName="K.J Consultation Company" employeesSection="EMP_GE10000" annualRevenue="85000000" comments="HR consulting" groupTypeId="OTHERS_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/1e175eb7-1466-41a7-b623-b522bb43c90c.png"/>
+    <PartyGroup partyId="9003" groupName="NARI Technology Development Limited" employeesSection="EMP_GE10000" annualRevenue="232000000" comments="Government sector" groupTypeId="GOVERNMENTAL_AGENCIES_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/7f132f90-5317-47c2-a728-a8bf88f9d2cd.png"/>
+    <PartyGroup partyId="9004" groupName="ZhiHengJiaCheng Real Estate Economy Company" employeesSection="EMP_GE1000_LT5000" annualRevenue="12000000" comments="Empirical real estate sales" groupTypeId="OTHERS_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/bd2f3c73-80d8-4b15-8c74-00404a194197.png"/>
+    <PartyGroup partyId="9005" groupName="FORTUNEINT'L.LTD" employeesSection="EMP_GE1000_LT5000" annualRevenue="5300000" comments="Sales foods" groupTypeId="ROUTINE_AND_LOW_VALUE_TRANSACTIONS_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/daed7d80-ea3c-4eb6-9f70-bf3cbe1bca06.png"/>
+    <PartyGroup partyId="9006" groupName="GDS" employeesSection="EMP_LT1000" annualRevenue="4200000" comments="Data storage service" groupTypeId="OTHERS_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/2609a427-4704-47e7-8647-0d47f14cc5e1.png"/>
+    <PartyGroup partyId="9007" groupName="Tencent Holdings Limited" employeesSection="EMP_GE10000" annualRevenue="48200000000" comments="Main communication and social services" groupTypeId="OTHERS_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/2e3bde80-89ec-4bdb-820a-730949994e56.png"/>
+
+    <PartyGeo partyGeoId="9000" partyId="9000" geoId="CHN" partyGeoTypeId="LISTED_COUNTRY"/>
+    <PartyGeo partyGeoId="9001" partyId="9001" geoId="CHN" partyGeoTypeId="LISTED_COUNTRY"/>
+    <PartyGeo partyGeoId="9002" partyId="9002" geoId="CHN" partyGeoTypeId="LISTED_COUNTRY"/>
+    <PartyGeo partyGeoId="9003" partyId="9003" geoId="CHN" partyGeoTypeId="LISTED_COUNTRY"/>
+    <PartyGeo partyGeoId="9004" partyId="9004" geoId="CHN" partyGeoTypeId="LISTED_COUNTRY"/>
+    <PartyGeo partyGeoId="9005" partyId="9005" geoId="CHN" partyGeoTypeId="LISTED_COUNTRY"/>
+    <PartyGeo partyGeoId="9006" partyId="9006" geoId="CHN" partyGeoTypeId="LISTED_COUNTRY"/>
+    <PartyGeo partyGeoId="9007" partyId="9007" geoId="CHN" partyGeoTypeId="LISTED_COUNTRY"/>
+
+    <!--Co-work-->
+    <WorkEffort workEffortId="8001" workEffortTypeId="COWORK" currentStatusId="PROCUREMENT_REVIEW" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9000" createdDate="2023-11-29 10:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-29 10:43:22.660"/>
+    <WorkEffort workEffortId="8003" workEffortTypeId="COWORK" currentStatusId="REGISTERED" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-29 10:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-30 19:43:22.660"/>
+    <WorkEffort workEffortId="8006" workEffortTypeId="COWORK" currentStatusId="SUBMITTED_DD" workEffortParentId="" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-12-01 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-02 11:22:22.660"/>
+    <WorkEffort workEffortId="8029" workEffortTypeId="COWORK" currentStatusId="PROCUREMENT_REVIEW" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9003" createdDate="2023-12-01 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-02 11:22:22.660"/>
+    <WorkEffort workEffortId="8010" workEffortTypeId="COWORK" currentStatusId="REQUESTED_DD" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-12-02 12:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-03 12:22:22.660"/>
+    <WorkEffort workEffortId="8013" workEffortTypeId="COWORK" currentStatusId="COMPLIANCE_REVIEW" workEffortParentId="" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-12-01 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-05 11:22:22.660"/>
+    <WorkEffort workEffortId="8016" workEffortTypeId="COWORK" currentStatusId="REGISTERED" workEffortParentId="" priority="PRIORITY_MEDIUM" partyId="9006" createdDate="2023-11-29 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-06 11:22:22.660"/>
+    <WorkEffort workEffortId="8019" workEffortTypeId="COWORK" currentStatusId="COMPLETED_DD" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9007" createdDate="2023-11-25 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-06 11:22:22.660"/>
+
+    <!--Co-work_Task-->
+    <!--供应商9000(standard DD)-->
+    <WorkEffort workEffortId="8000" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8001" priority="PRIORITY_HIGH" partyId="9000" createdDate="2023-11-28 10:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-11-29 10:43:22.660"/>
+    <WorkEffort workEffortId="8012" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8001" priority="PRIORITY_HIGH" partyId="9000" createdDate="2023-11-26 10:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-11-18 10:43:22.660"/>
+    <WorkEffort workEffortId="8028" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8001" priority="PRIORITY_HIGH" partyId="9000" createdDate="2023-11-26 10:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-11-18 10:43:22.660"/>
+    <!--供应商9001(standard DD)-->
+    <WorkEffort workEffortId="8023" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8003" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-26 10:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-11-18 10:43:22.660"/>
+    <WorkEffort workEffortId="8002" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8003" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-28 10:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-11-29 10:43:22.660"/>
+    <WorkEffort workEffortId="8004" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8003" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-20 18:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-11-16 19:43:22.660"/>
+    <!--供应商9002(standard DD)-->
+    <WorkEffort workEffortId="8005" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8006" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-11-30 18:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 11:22:22.660"/>
+    <WorkEffort workEffortId="8007" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8006" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-11-21 11:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-03 11:22:22.660"/>
+    <WorkEffort workEffortId="8024" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8006" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-11-21 11:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-03 11:22:22.660"/>
+    <!--供应商9003(Governmental no DD)-->
+    <WorkEffort workEffortId="8008" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8028" priority="PRIORITY_HIGH" partyId="9003" createdDate="2023-12-02 12:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-02 12:22:22.660"/>
+    <!--供应商9004(standard DD)-->
+    <WorkEffort workEffortId="8009" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8010" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-12-02 12:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-02 12:22:22.660"/>
+    <WorkEffort workEffortId="8011" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8010" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-11-22 12:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-03 12:22:22.660"/>
+    <WorkEffort workEffortId="8025" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8010" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-11-22 12:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-03 12:22:22.660"/>
+    <!--供应商9005(Simplified DD)-->
+    <WorkEffort workEffortId="8014" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8013" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-11-29 12:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 12:22:22.660"/>
+    <WorkEffort workEffortId="8015" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8013" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-11-18 09:18:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
+    <WorkEffort workEffortId="8026" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8013" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-11-18 09:18:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
+    <!--供应商9006(standard DD)-->
+    <WorkEffort workEffortId="8017" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8016" priority="PRIORITY_MEDIUM" partyId="9006" createdDate="2023-11-25 09:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
+    <WorkEffort workEffortId="8018" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8016" priority="PRIORITY_MEDIUM" partyId="9006" createdDate="2023-11-23 09:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
+    <WorkEffort workEffortId="8027" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8016" priority="PRIORITY_MEDIUM" partyId="9006" createdDate="2023-11-23 09:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
+    <!--供应商9007(standard DD)-->
+    <WorkEffort workEffortId="8020" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8019" priority="PRIORITY_HIGH" partyId="9007" createdDate="2023-11-23 09:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
+    <WorkEffort workEffortId="8021" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8019" priority="PRIORITY_HIGH" partyId="9007" createdDate="2023-11-25 19:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
+    <WorkEffort workEffortId="8022" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8019" priority="PRIORITY_HIGH" partyId="9007" createdDate="2023-11-25 19:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
+
+    <!--WorkEffortStatus-->
+    <!--供应商9000状态-->
+    <WorkEffortStatus workEffortId="8000" statusId="NOT_PROCESSED" statusDatetime="2023-11-29 12:22:22.660" setByUserLogin="applicant"/>
+    <WorkEffortStatus workEffortId="8000" statusId="PROCESSED" statusDatetime="2023-11-29 18:22:22.660" setByUserLogin="applicant"/>
+    <WorkEffortStatus workEffortId="8001" statusId="COWORK_CREATED" statusDatetime="2023-11-29 18:22:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8001" statusId="REQUESTED_DD" statusDatetime="2023-11-30 11:22:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8012" statusId="NOT_PROCESSED" statusDatetime="2023-11-30 11:22:22.660" setByUserLogin="supplier9000"/>
+    <WorkEffortStatus workEffortId="8012" statusId="PROCESSED" statusDatetime="2023-11-30 18:22:22.660" setByUserLogin="supplier9000"/>
+    <WorkEffortStatus workEffortId="8001" statusId="SUBMITTED_DD" statusDatetime="2023-11-30 18:22:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8001" statusId="PROCUREMENT_REVIEW" statusDatetime="2023-12-01 09:13:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8028" statusId="NOT_PROCESSED" statusDatetime="2023-12-01 11:13:22.660" setByUserLogin="compliance"/>
+    <!--供应商9001状态-->
+    <WorkEffortStatus workEffortId="8002" statusId="NOT_PROCESSED" statusDatetime="2023-12-01 09:22:22.660" setByUserLogin="applicant"/>
+    <WorkEffortStatus workEffortId="8002" statusId="PROCESSED" statusDatetime="2023-12-01 16:22:22.660" setByUserLogin="applicant"/>
+    <WorkEffortStatus workEffortId="8003" statusId="COWORK_CREATED" statusDatetime="2023-12-01 16:22:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8003" statusId="REQUESTED_DD" statusDatetime="2023-12-01 16:50:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8004" statusId="NOT_PROCESSED" statusDatetime="2023-12-01 16:50:22.660" setByUserLogin="supplier9001"/>
+    <WorkEffortStatus workEffortId="8004" statusId="PROCESSED" statusDatetime="2023-12-02 15:22:22.660" setByUserLogin="supplier9001"/>
+    <WorkEffortStatus workEffortId="8003" statusId="SUBMITTED_DD" statusDatetime="2023-12-02 15:22:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8003" statusId="PROCUREMENT_REVIEW" statusDatetime="2023-12-03 09:22:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8003" statusId="COMPLIANCE_REVIEW" statusDatetime="2023-12-03 09:22:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8023" statusId="NOT_PROCESSED" statusDatetime="2023-12-03 09:22:22.660" setByUserLogin="compliance"/>
+    <WorkEffortStatus workEffortId="8023" statusId="PROCESSED" statusDatetime="2023-12-03 11:05:22.660" setByUserLogin="compliance"/>
+    <WorkEffortStatus workEffortId="8003" statusId="COMPLETED_DD" statusDatetime="2023-12-03 11:05:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8003" statusId="REGISTERED" statusDatetime="2023-12-03 15:05:22.660" setByUserLogin="procurement"/>
+    <!--供应商9002状态-->
+    <WorkEffortStatus workEffortId="8005" statusId="NOT_PROCESSED" statusDatetime="2023-12-01 09:22:22.660" setByUserLogin="applicant"/>
+    <WorkEffortStatus workEffortId="8005" statusId="PROCESSED" statusDatetime="2023-12-01 16:22:22.660" setByUserLogin="applicant"/>
+    <WorkEffortStatus workEffortId="8006" statusId="COWORK_CREATED" statusDatetime="2023-12-01 16:22:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8006" statusId="REQUESTED_DD" statusDatetime="2023-12-01 16:50:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8007" statusId="NOT_PROCESSED" statusDatetime="2023-12-01 16:50:22.660" setByUserLogin="supplier9001"/>
+    <WorkEffortStatus workEffortId="8007" statusId="PROCESSED" statusDatetime="2023-12-02 15:22:22.660" setByUserLogin="supplier9001"/>
+    <WorkEffortStatus workEffortId="8006" statusId="SUBMITTED_DD" statusDatetime="2023-12-02 15:22:22.660" setByUserLogin="procurement"/>
+    <!--供应商9003状态-->
+    <WorkEffortStatus workEffortId="8008" statusId="NOT_PROCESSED" statusDatetime="2023-12-01 09:22:22.660" setByUserLogin="applicant"/>
+    <WorkEffortStatus workEffortId="8008" statusId="PROCESSED" statusDatetime="2023-12-01 09:22:22.660" setByUserLogin="applicant"/>
+    <WorkEffortStatus workEffortId="8029" statusId="COWORK_CREATED" statusDatetime="2023-12-01 09:22:22.660" setByUserLogin="applicant"/>
+    <WorkEffortStatus workEffortId="8029" statusId="REQUESTED_DD" statusDatetime="2023-12-01 09:22:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8029" statusId="SUBMITTED_DD" statusDatetime="2023-12-01 09:22:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8029" statusId="PROCUREMENT_REVIEW" statusDatetime="2023-12-01 09:22:22.660" setByUserLogin="procurement"/>
+    <!--供应商9004状态-->
+    <WorkEffortStatus workEffortId="8009" statusId="NOT_PROCESSED" statusDatetime="2023-12-01 09:22:22.660" setByUserLogin="applicant"/>
+    <WorkEffortStatus workEffortId="8009" statusId="PROCESSED" statusDatetime="2023-12-01 09:22:22.660" setByUserLogin="applicant"/>
+    <WorkEffortStatus workEffortId="8010" statusId="COWORK_CREATED" statusDatetime="2023-12-01 09:22:22.660" setByUserLogin="applicant"/>
+    <WorkEffortStatus workEffortId="8010" statusId="REQUESTED_DD" statusDatetime="2023-12-01 09:22:22.660" setByUserLogin="applicant"/>
+    <WorkEffortStatus workEffortId="8011" statusId="NOT_PROCESSED" statusDatetime="2023-12-01 09:22:22.660" setByUserLogin="applicant"/>
+    <!--供应商9005状态-->
+    <WorkEffortStatus workEffortId="8014" statusId="NOT_PROCESSED" statusDatetime="2023-12-01 09:22:22.660" setByUserLogin="applicant"/>
+    <WorkEffortStatus workEffortId="8014" statusId="PROCESSED" statusDatetime="2023-12-02 11:22:22.660" setByUserLogin="applicant"/>
+    <WorkEffortStatus workEffortId="8013" statusId="COWORK_CREATED" statusDatetime="2023-12-02 11:22:22.660" setByUserLogin="applicant"/>
+    <WorkEffortStatus workEffortId="8013" statusId="REQUESTED_DD" statusDatetime="2023-12-02 11:22:22.660" setByUserLogin="applicant"/>
+    <WorkEffortStatus workEffortId="8015" statusId="NOT_PROCESSED" statusDatetime="2023-12-02 11:22:22.660" setByUserLogin="applicant"/>
+    <WorkEffortStatus workEffortId="8015" statusId="PROCESSED" statusDatetime="2023-12-03 16:30:22.660" setByUserLogin="applicant"/>
+    <WorkEffortStatus workEffortId="8013" statusId="SUBMITTED_DD" statusDatetime="2023-12-03 16:30:22.660" setByUserLogin="applicant"/>
+    <WorkEffortStatus workEffortId="8013" statusId="PROCUREMENT_REVIEW" statusDatetime="2023-12-03 16:30:22.660" setByUserLogin="applicant"/>
+    <WorkEffortStatus workEffortId="8026" statusId="COMPLIANCE_REVIEW" statusDatetime="2023-12-04 14:30:22.660" setByUserLogin="applicant"/>
+    <WorkEffortStatus workEffortId="8026" statusId="NOT_PROCESSED" statusDatetime="2023-12-03 16:30:22.660" setByUserLogin="applicant"/>
+    <WorkEffortStatus workEffortId="8026" statusId="PROCESSED" statusDatetime="2023-12-04 14:30:22.660" setByUserLogin="applicant"/>
+    <!--供应商9006状态-->
+    <WorkEffortStatus workEffortId="8017" statusId="NOT_PROCESSED" statusDatetime="2023-12-01 09:22:22.660" setByUserLogin="applicant"/>
+    <WorkEffortStatus workEffortId="8017" statusId="PROCESSED" statusDatetime="2023-12-01 16:22:22.660" setByUserLogin="applicant"/>
+    <WorkEffortStatus workEffortId="8016" statusId="COWORK_CREATED" statusDatetime="2023-12-01 16:22:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8016" statusId="REQUESTED_DD" statusDatetime="2023-12-01 16:50:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8018" statusId="NOT_PROCESSED" statusDatetime="2023-12-01 16:50:22.660" setByUserLogin="supplier9001"/>
+    <WorkEffortStatus workEffortId="8018" statusId="PROCESSED" statusDatetime="2023-12-02 15:22:22.660" setByUserLogin="supplier9001"/>
+    <WorkEffortStatus workEffortId="8016" statusId="SUBMITTED_DD" statusDatetime="2023-12-02 15:22:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8016" statusId="PROCUREMENT_REVIEW" statusDatetime="2023-12-03 09:22:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8016" statusId="COMPLIANCE_REVIEW" statusDatetime="2023-12-03 09:22:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8027" statusId="NOT_PROCESSED" statusDatetime="2023-12-03 09:22:22.660" setByUserLogin="compliance"/>
+    <WorkEffortStatus workEffortId="8027" statusId="PROCESSED" statusDatetime="2023-12-03 11:05:22.660" setByUserLogin="compliance"/>
+    <WorkEffortStatus workEffortId="8016" statusId="COMPLETED_DD" statusDatetime="2023-12-03 11:05:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8016" statusId="REGISTERED" statusDatetime="2023-12-03 15:05:22.660" setByUserLogin="procurement"/>
+    <!--供应商9007状态-->
+    <WorkEffortStatus workEffortId="8020" statusId="NOT_PROCESSED" statusDatetime="2023-12-01 09:22:22.660" setByUserLogin="applicant"/>
+    <WorkEffortStatus workEffortId="8020" statusId="PROCESSED" statusDatetime="2023-12-01 16:22:22.660" setByUserLogin="applicant"/>
+    <WorkEffortStatus workEffortId="8019" statusId="COWORK_CREATED" statusDatetime="2023-12-01 16:22:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8019" statusId="REQUESTED_DD" statusDatetime="2023-12-01 16:50:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8021" statusId="NOT_PROCESSED" statusDatetime="2023-12-01 16:50:22.660" setByUserLogin="supplier9001"/>
+    <WorkEffortStatus workEffortId="8021" statusId="PROCESSED" statusDatetime="2023-12-02 15:22:22.660" setByUserLogin="supplier9001"/>
+    <WorkEffortStatus workEffortId="8019" statusId="SUBMITTED_DD" statusDatetime="2023-12-02 15:22:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8019" statusId="PROCUREMENT_REVIEW" statusDatetime="2023-12-03 09:22:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8019" statusId="COMPLIANCE_REVIEW" statusDatetime="2023-12-03 09:22:22.660" setByUserLogin="procurement"/>
+    <WorkEffortStatus workEffortId="8022" statusId="NOT_PROCESSED" statusDatetime="2023-12-03 09:22:22.660" setByUserLogin="compliance"/>
+    <WorkEffortStatus workEffortId="8022" statusId="PROCESSED" statusDatetime="2023-12-03 11:05:22.660" setByUserLogin="compliance"/>
+    <WorkEffortStatus workEffortId="8019" statusId="COMPLETED_DD" statusDatetime="2023-12-03 11:05:22.660" setByUserLogin="procurement"/>
+
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9000" partyId="IT" workEffortId="8000"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9001" partyId="CG" workEffortId="8001"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9002" partyId="IT" workEffortId="8002"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9003" partyId="CG" workEffortId="8003"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9004" partyId="9001" workEffortId="8004"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9005" partyId="IT" workEffortId="8005"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9006" partyId="CG" workEffortId="8006"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9007" partyId="9002" workEffortId="8007"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9008" partyId="IT" workEffortId="8008"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9009" partyId="IT" workEffortId="8009"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9010" partyId="CG" workEffortId="8010"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9011" partyId="9004" workEffortId="8011"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9012" partyId="9000" workEffortId="8012"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9013" partyId="CG" workEffortId="8013"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9014" partyId="IT" workEffortId="8014"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9015" partyId="9005" workEffortId="8015"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9016" partyId="CG" workEffortId="8016"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9017" partyId="IT" workEffortId="8017"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9018" partyId="9006" workEffortId="8018"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9019" partyId="CG" workEffortId="8019"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9020" partyId="IT" workEffortId="8020"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9021" partyId="9007" workEffortId="8021"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9022" partyId="HG" workEffortId="8022"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9023" partyId="HG" workEffortId="8023"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9024" partyId="HG" workEffortId="8024"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9025" partyId="HG" workEffortId="8025"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9026" partyId="HG" workEffortId="8026"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9027" partyId="HG" workEffortId="8027"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9028" partyId="HG" workEffortId="8028"/>
+    <WorkEffortPartyAssignment workEffortPartyAssignment="9029" partyId="CG" workEffortId="8029"/>
+
+    <PartyAttribute partyId="9006" attrName="complianceCheckWarning" attrValue="Warning"/>
+    <PartyAttributeDate partyId="9000" attrName="collectionDate" attrValue="2023-11-18 10:43:22.660"/>
+    <PartyAttributeDate partyId="9001" attrName="collectionDate" attrValue="2023-11-18 10:43:22.660"/>
+    <PartyAttributeDate partyId="9002" attrName="collectionDate" attrValue="2023-11-18 10:43:22.660"/>
+    <PartyAttributeDate partyId="9003" attrName="collectionDate" attrValue="2023-11-18 10:43:22.660"/>
+    <PartyAttributeDate partyId="9004" attrName="collectionDate" attrValue="2023-11-18 10:43:22.660"/>
+    <PartyAttributeDate partyId="9005" attrName="collectionDate" attrValue="2023-11-18 10:43:22.660"/>
+    <PartyAttributeDate partyId="9006" attrName="collectionDate" attrValue="2023-11-18 10:43:22.660"/>
+    <PartyAttributeDate partyId="9007" attrName="collectionDate" attrValue="2023-11-18 10:43:22.660"/>
+    <PartyAttributeDate partyId="9000" attrName="firstOrderDate" attrValue="2023-11-25 10:43:22.660"/>
+    <PartyAttributeDate partyId="9001" attrName="firstOrderDate" attrValue="2023-11-25 10:43:22.660"/>
+    <PartyAttributeDate partyId="9002" attrName="firstOrderDate" attrValue="2023-11-25 10:43:22.660"/>
+    <PartyAttributeDate partyId="9003" attrName="firstOrderDate" attrValue="2023-11-25 10:43:22.660"/>
+    <PartyAttributeDate partyId="9004" attrName="firstOrderDate" attrValue="2023-11-25 10:43:22.660"/>
+    <PartyAttributeDate partyId="9005" attrName="firstOrderDate" attrValue="2023-11-25 10:43:22.660"/>
+    <PartyAttributeDate partyId="9006" attrName="firstOrderDate" attrValue="2023-11-25 10:43:22.660"/>
+    <PartyAttributeDate partyId="9007" attrName="firstOrderDate" attrValue="2023-11-25 10:43:22.660"/>
+
+    <PartyAttributeDate partyId="9001" attrName="finishDomUploadDate" attrValue="2023-11-24 20:43:22.660"/>
+    <PartyAttributeDate partyId="9000" attrName="finishDomUploadDate" attrValue="2023-11-25 20:43:22.660"/>
+    <PartyAttributeDate partyId="9002" attrName="finishDomUploadDate" attrValue="2023-11-29 18:22:22.660"/>
+    <PartyAttributeDate partyId="9005" attrName="finishDomUploadDate" attrValue="2023-11-28 12:22:22.660"/>
+    <PartyAttributeDate partyId="9006" attrName="finishDomUploadDate" attrValue="2023-11-27 12:22:22.660"/>
+    <PartyAttributeDate partyId="9007" attrName="finishDomUploadDate" attrValue="2023-11-28 12:22:22.660"/>
+
+    <PartyIdentification partyId="9000" partyIdentificationTypeId="REGISTRATION_NUMBER" idValue="91520900MA6J6CBN9Q"/>
+    <PartyIdentification partyId="9001" partyIdentificationTypeId="REGISTRATION_NUMBER" idValue="913205056725028046"/>
+    <PartyIdentification partyId="9002" partyIdentificationTypeId="REGISTRATION_NUMBER" idValue="91340000607408459K"/>
+    <PartyIdentification partyId="9003" partyIdentificationTypeId="REGISTRATION_NUMBER" idValue="91320191726079387X"/>
+    <PartyIdentification partyId="9004" partyIdentificationTypeId="REGISTRATION_NUMBER" idValue="913101047354169127"/>
+    <PartyIdentification partyId="9005" partyIdentificationTypeId="REGISTRATION_NUMBER" idValue="91310104023416912K"/>
+    <PartyIdentification partyId="9006" partyIdentificationTypeId="REGISTRATION_NUMBER" idValue="91310981390416912K"/>
+    <PartyIdentification partyId="9007" partyIdentificationTypeId="REGISTRATION_NUMBER" idValue="91440300708461136T"/>
+
+    <PartyRelationship partyRelationshipId="9000" partyIdFrom="IT" partyIdTo="9000" roleTypeIdTo="SUPPLIER" roleTypeIdFrom="DEPARTMENT"/>
+    <PartyRelationship partyRelationshipId="9001" partyIdFrom="IT" partyIdTo="9001" roleTypeIdTo="SUPPLIER" roleTypeIdFrom="DEPARTMENT"/>
+    <PartyRelationship partyRelationshipId="9002" partyIdFrom="IT" partyIdTo="9002" roleTypeIdTo="SUPPLIER" roleTypeIdFrom="DEPARTMENT"/>
+    <PartyRelationship partyRelationshipId="9003" partyIdFrom="IT" partyIdTo="9003" roleTypeIdTo="SUPPLIER" roleTypeIdFrom="DEPARTMENT"/>
+    <PartyRelationship partyRelationshipId="9004" partyIdFrom="IT" partyIdTo="9004" roleTypeIdTo="SUPPLIER" roleTypeIdFrom="DEPARTMENT"/>
+    <PartyRelationship partyRelationshipId="9005" partyIdFrom="IT" partyIdTo="9005" roleTypeIdTo="SUPPLIER" roleTypeIdFrom="DEPARTMENT"/>
+    <PartyRelationship partyRelationshipId="9006" partyIdFrom="IT" partyIdTo="9006" roleTypeIdTo="SUPPLIER" roleTypeIdFrom="DEPARTMENT"/>
+    <PartyRelationship partyRelationshipId="9007" partyIdFrom="IT" partyIdTo="9007" roleTypeIdTo="SUPPLIER" roleTypeIdFrom="DEPARTMENT"/>
+
+    <ContactMech contactMechId="9000" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="9001" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="9002" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="9003" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="9004" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="9005" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="9006" contactMechTypeId="POSTAL_ADDRESS"/>
+    <ContactMech contactMechId="9007" contactMechTypeId="POSTAL_ADDRESS"/>
+
+    <!--供应商9000-->
+    <PostalAddress contactMechId="9000" countryGeoId="17" stateProvinceGeoId="411" cityGeoId="8008" contactNumber="+86 20 8365 2641" email="corporate.comms@huawei.com" address1="4F, Garden Commercial Building, 368 Huanshi East Road" address2="https://www.huawei.com/cn"/>
+    <!--供应商9000-->
+    <PostalAddress contactMechId="9001" countryGeoId="17" stateProvinceGeoId="408" cityGeoId="8000" contactNumber="010-65222633" email="bond.ir@huawei.com" address1="Zhongguancun Environmental Science and Technology Demonstration Park, No.156 North Qing Road, Yinhua Road, Haidian District, Beijing, China" address2="https://www.huawei.com/cn"/>
+    <!--供应商9001-->
+    <PostalAddress contactMechId="9002" countryGeoId="17" stateProvinceGeoId="447" cityGeoId="8002" contactNumber="18699127993" email="Summer_Li@asus.com" address1="Huashuo Computer Building, 5077 Jindu Road, Xinzhuang Industrial Zone, Minhang" address2="https://w3.asus.com.cn/"/>
+    <!--供应商9004-->
+    <PostalAddress contactMechId="9003" countryGeoId="17" stateProvinceGeoId="412" cityGeoId="8023" contactNumber="86-512-80717992" email="tongchengir@ly.com" address1="Tongcheng Building, 188 Yuxin Road, Nanjing Industrial Park" address2="http://www.tongchengir.com"/>
+    <!--供应商9002-->
+    <PostalAddress contactMechId="9004" countryGeoId="17" stateProvinceGeoId="447" cityGeoId="8002" contactNumber="021-3865 3865" email="joyce.pan@qiagen.com" address1="Building 20, Peninsula Science and Technology Park, 88 Darwin Road, Pudong 201203" address2="http://www.qiagen.com"/>
+    <!--供应商9003-->
+    <PostalAddress contactMechId="9005" countryGeoId="17" stateProvinceGeoId="412" cityGeoId="8023" contactNumber="025-81087102" email="stock@sgepri.sgcc.com.cn" address1="No 19 Chengxin Avenue, Jiangning District" address2="www.naritech.cn"/>
+    <!--供应商9005-->
+    <PostalAddress contactMechId="9006" countryGeoId="17" stateProvinceGeoId="427" cityGeoId="8021" contactNumber="0539-8035703" email="FUSHI@fushi.com" address1="Fushi Industrial Park" address2=""/>
+    <!--供应商9006-->
+    <PostalAddress contactMechId="9007" countryGeoId="17" stateProvinceGeoId="408" cityGeoId="8000" contactNumber="400-720-7200" email="ir@gds-services.com" address1="14th Floor, South Tower, Zhengda Center, 20 Jinhe East Road, Chaoyang District" address2="http://www.gds-services.com"/>
+
+    <PartyContactMechPurpose contactMechPurposeTypeId="GENERAL_LOCATION" contactMechId="9000" partyId="9000" fromDate="2023-05-13 15:10:00.0"/>
+    <PartyContactMechPurpose contactMechPurposeTypeId="SHIPPING_LOCATION" contactMechId="9001" partyId="9000" fromDate="2023-05-13 15:10:00.0"/>
+    <PartyContactMechPurpose contactMechPurposeTypeId="GENERAL_LOCATION" contactMechId="9002" partyId="9001" fromDate="2023-05-13 15:10:00.0"/>
+    <PartyContactMechPurpose contactMechPurposeTypeId="GENERAL_LOCATION" contactMechId="9003" partyId="9004" fromDate="2023-05-13 15:10:00.0"/>
+    <PartyContactMechPurpose contactMechPurposeTypeId="GENERAL_LOCATION" contactMechId="9004" partyId="9002" fromDate="2023-05-13 15:10:00.0"/>
+    <PartyContactMechPurpose contactMechPurposeTypeId="GENERAL_LOCATION" contactMechId="9005" partyId="9003" fromDate="2023-05-13 15:10:00.0"/>
+    <PartyContactMechPurpose contactMechPurposeTypeId="GENERAL_LOCATION" contactMechId="9006" partyId="9005" fromDate="2023-05-13 15:10:00.0"/>
+    <PartyContactMechPurpose contactMechPurposeTypeId="GENERAL_LOCATION" contactMechId="9007" partyId="9006" fromDate="2023-05-13 15:10:00.0"/>
+
+    <ProductCategoryRole partyId="9000" productCategoryId="CLOUD_SERVICE" roleTypeId="SUPPLIER" fromDate="2023-05-13 15:10:00.0"/>
+    <ProductCategoryRole partyId="9001" productCategoryId="NETWORK_FEES" roleTypeId="SUPPLIER" fromDate="2023-05-13 15:10:00.0"/>
+    <ProductCategoryRole partyId="9002" productCategoryId="TRAINING_EXPENSES" roleTypeId="SUPPLIER" fromDate="2023-05-13 15:10:00.0"/>
+    <ProductCategoryRole partyId="9003" productCategoryId="OFFICE_SUPPLIES" roleTypeId="SUPPLIER" fromDate="2023-05-13 15:10:00.0"/>
+    <ProductCategoryRole partyId="9004" productCategoryId="RENTAL-OFFICE-MORE_THAN_ONE_YEAR" roleTypeId="SUPPLIER" fromDate="2023-05-13 15:10:00.0"/>
+    <ProductCategoryRole partyId="9005" productCategoryId="MEALS" roleTypeId="SUPPLIER" fromDate="2023-05-13 15:10:00.0"/>
+    <ProductCategoryRole partyId="9006" productCategoryId="DATA_SERVICE" roleTypeId="SUPPLIER" fromDate="2023-05-13 15:10:00.0"/>
+    <ProductCategoryRole partyId="9007" productCategoryId="TECHNICAL_SERVICE_FEE" roleTypeId="SUPPLIER" fromDate="2023-05-13 15:10:00.0"/>
+
+    <PartyClassification partyId="9001" partyClassificationGroupId="LOW_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
+    <PartyClassification partyId="9002" partyClassificationGroupId="HIGH_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
+    <PartyClassification partyId="9005" partyClassificationGroupId="LOW_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
+    <PartyClassification partyId="9006" partyClassificationGroupId="HIGH_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
+
+    <!-- StatusValidChange -->
+    <StatusValidChange statusId="APPROVAL_APPROVED" statusIdTo="PARTY_ENABLED"/>
+    <StatusValidChange statusId="PARTY_DISABLED" statusIdTo="PARTY_ENABLED"/>
+
+    <SurveyQuestionCategory surveyQuestionCategoryId="DD_QUESTIONS" description="Due Diligence Questions"/>
+    <SurveyQuestionCategory surveyQuestionCategoryId="DD_STD_QUESTIONS" parentCategoryId="DD_QUESTIONS" description="Due Diligence Standard Questions"/>
+    <SurveyQuestionCategory surveyQuestionCategoryId="DD_SMP_QUESTIONS" parentCategoryId="DD_QUESTIONS" description="Due Diligence Simplified Questions"/>
+
+    <SurveyQuestionType surveyQuestionTypeId="BOOLEAN" description="Bool"/>
+    <SurveyQuestion surveyQuestionId="9000" surveyQuestionCategoryId="DD_STD_QUESTIONS" surveyQuestionTypeId="BOOLEAN"
+                    question="Does the Business Partner conduct any business in, with, or involving (directly or indirectly) individuals or entities in or from Cuba, Iran, North Korea, Syria, Russia, Belarus or the Crimea region (each, a “Sanctioned Country”)?"/>
+    <SurveyQuestion surveyQuestionId="9001" surveyQuestionCategoryId="DD_STD_QUESTIONS" surveyQuestionTypeId="BOOLEAN"
+                    question="Does the Business Partner have any physical or legal presence (including offices, branches, and operations) in any Sanctioned Country?"/>
+    <SurveyQuestion surveyQuestionId="9002" surveyQuestionCategoryId="DD_STD_QUESTIONS" surveyQuestionTypeId="BOOLEAN"
+                    question="Is the Business Partner or any direct or indirect owner of the Business Partner currently listed, or has been listed in the last five (5) years, on any government watchlist, export or trade control list or sanctioned/restricted party list? If “Yes”, provide the name of the list and the date of the designation:"/>
+    <SurveyQuestion surveyQuestionId="9003" surveyQuestionCategoryId="DD_STD_QUESTIONS" surveyQuestionTypeId="BOOLEAN"
+                    question="To the best of your knowledge, currently or during the last during the last five (5) years, have any of the Business Partner’s owners, officers, directors or senior management been identified on any official, governmental or regulatory body’s list as a politically exposed person?"/>
+    <SurveyQuestion surveyQuestionId="9005" surveyQuestionCategoryId="DD_STD_QUESTIONS" surveyQuestionTypeId="BOOLEAN"
+                        question="To the best of your knowledge, currently or during the last during the last five (5) years, has the Business Partner (including its owners, officers, directors or senior management) been: (1) subject to any investigation, administrative action, fine, censure or legal proceedings involving bribery, fraud, corruption, money laundering, violations of sanctions, export controls or similar offenses; or (2) suspended, restricted from doing business, or disbarred/excluded by any regulator, professional licensing agency or government program? For each “Yes” answer, provide complete details of the relevant circumstances."/>
+    <SurveyQuestion surveyQuestionId="9006" surveyQuestionCategoryId="DD_STD_QUESTIONS" surveyQuestionTypeId="BOOLEAN"
+                    question="Is any owner, director, officer or senior management of the Business Partner, a former employee of the Company? If “Yes”, provide name, company, title, and last date of employment:"/>
+
+    <SurveyQuestionType surveyQuestionTypeId="TEXT_LONG" description="Long Text (single-line)"/>
+    <SurveyQuestion surveyQuestionId="9004" surveyQuestionCategoryId="DD_STD_QUESTIONS" surveyQuestionTypeId="TEXT_LONG"
+                    question="Summary of the anticipated scope of work (including estimated value, term of engagement)"/>
+
+    <Survey surveyId="DD_STD_FORM" surveyName="Due Diligence Standard Form"/>
+    <SurveyQuestionAppl surveyId="DD_STD_FORM" surveyQuestionId="9000" sequenceNum="1" requiredField="Y" fromDate="2023-08-18 11:45:31.928"/>
+    <SurveyQuestionAppl surveyId="DD_STD_FORM" surveyQuestionId="9001" sequenceNum="2" requiredField="Y" fromDate="2023-08-18 11:45:31.928"/>
+    <SurveyQuestionAppl surveyId="DD_STD_FORM" surveyQuestionId="9002" sequenceNum="3" requiredField="Y" fromDate="2023-08-18 11:45:31.928"/>
+    <SurveyQuestionAppl surveyId="DD_STD_FORM" surveyQuestionId="9003" sequenceNum="4" requiredField="Y" fromDate="2023-08-18 11:45:31.928"/>
+    <SurveyQuestionAppl surveyId="DD_STD_FORM" surveyQuestionId="9004" sequenceNum="5" requiredField="Y" fromDate="2023-08-18 11:45:31.928"/>
+    <SurveyQuestionAppl surveyId="DD_STD_FORM" surveyQuestionId="9005" sequenceNum="6" requiredField="Y" fromDate="2023-08-18 11:45:31.928"/>
+    <SurveyQuestionAppl surveyId="DD_STD_FORM" surveyQuestionId="9006" sequenceNum="7" requiredField="Y" fromDate="2023-08-18 11:45:31.928"/>
+
+    <FinAccount finAccountTypeId="BANK_ACCOUNT" ownerPartyId="9000" finAccountId="9000" finAccountName="Bank of Shanghai" finAccountCode="79361234075342678" currencyUomId="CNY" statusId="FNACT_ACTIVE"/>
+    <FinAccount finAccountTypeId="BANK_ACCOUNT" ownerPartyId="9001" finAccountId="9001" finAccountName="Bank of Shanghai" finAccountCode="79361234075342678" currencyUomId="CNY" statusId="FNACT_ACTIVE"/>
+    <FinAccount finAccountTypeId="BANK_ACCOUNT" ownerPartyId="9002" finAccountId="9002" finAccountName="Bank of Shanghai" finAccountCode="79361234075342678" currencyUomId="CNY" statusId="FNACT_ACTIVE"/>
+    <FinAccount finAccountTypeId="BANK_ACCOUNT" ownerPartyId="9003" finAccountId="9003" finAccountName="Bank of Shanghai" finAccountCode="79361234075342678" currencyUomId="CNY" statusId="FNACT_ACTIVE"/>
+    <FinAccount finAccountTypeId="BANK_ACCOUNT" ownerPartyId="9004" finAccountId="9004" finAccountName="Bank of Shanghai" finAccountCode="79361234075342678" currencyUomId="CNY" statusId="FNACT_ACTIVE"/>
+    <FinAccount finAccountTypeId="BANK_ACCOUNT" ownerPartyId="9005" finAccountId="9005" finAccountName="Bank of Shanghai" finAccountCode="79361234075342678" currencyUomId="CNY" statusId="FNACT_ACTIVE"/>
+    <FinAccount finAccountTypeId="BANK_ACCOUNT" ownerPartyId="9006" finAccountId="9006" finAccountName="Bank of Shanghai" finAccountCode="79361234075342678" currencyUomId="CNY" statusId="FNACT_ACTIVE"/>
+    <FinAccount finAccountTypeId="BANK_ACCOUNT" ownerPartyId="9007" finAccountId="9007" finAccountName="Bank of Shanghai" finAccountCode="79361234075342678" currencyUomId="CNY" statusId="FNACT_ACTIVE"/>
+
+    <!--产品Demo数据-->
+    <UomType uomTypeId="QUANTITY_MEASURE" description="Quantity"/>
+    <Uom uomId="SET" uomTypeId="QUANTITY_MEASURE" description="Set"/>
+    <Uom uomId="PAIR" uomTypeId="QUANTITY_MEASURE" description="Pair"/>
+    <Uom uomId="_NA_" uomTypeId="QUANTITY_MEASURE" description="_NA_"/>
+    <Product productId="9000" productTypeId="FINISHED_GOOD" productName="ASUS desktop computer A380" primaryProductCategoryId="TECHNICAL_SERVICE_FEE" quantityUomId="SET"/>
+    <Product productId="9001" productTypeId="FINISHED_GOOD" productName="ASUS Tx series note book" primaryProductCategoryId="TECHNICAL_SERVICE_FEE" quantityUomId="SET"/>
+    <Product productId="9002" productTypeId="FINISHED_GOOD" productName="ASUS keyboard" primaryProductCategoryId="TECHNICAL_SERVICE_FEE" quantityUomId="SET"/>
+    <Product productId="9003" productTypeId="FINISHED_GOOD" productName="ASUS earphone" primaryProductCategoryId="TECHNICAL_SERVICE_FEE" quantityUomId="PAIR"/>
+    <Product productId="9004" productTypeId="FINISHED_GOOD" productName="ASUS display screen" primaryProductCategoryId="TECHNICAL_SERVICE_FEE" quantityUomId="SET"/>
+    <Product productId="9005" productTypeId="FINISHED_GOOD" productName="ASUS wireless mouse" primaryProductCategoryId="TECHNICAL_SERVICE_FEE" quantityUomId="SET"/>
+
+    <ProductType productTypeId="SERVICE" description="Service"/>
+    <Product productId="9006" productTypeId="SERVICE" productName="Food service" primaryProductCategoryId="MEALS"/>
+    <Product productId="9007" productTypeId="SERVICE" productName="Internet service" primaryProductCategoryId="CLOUD_SERVICE"/>
+    <Product productId="9008" productTypeId="SERVICE" productName="HR manage service" primaryProductCategoryId="TRAINING_EXPENSES"/>
+    <Product productId="9009" productTypeId="SERVICE" productName="Data storage service" primaryProductCategoryId="DATA_SERVICE"/>
+    <Product productId="9010" productTypeId="SERVICE" productName="Building clean service" primaryProductCategoryId="CLEANING"/>
+    <Product productId="9011" productTypeId="SERVICE" productName="Security service" primaryProductCategoryId="SECURITY_CHARGES"/>
+
+<!--    &lt;!&ndash;调查问卷完成情况枚举值&ndash;&gt;-->
+<!--    &lt;!&ndash;EnumerationType&ndash;&gt;-->
+<!--    <EnumerationType enumTypeId="DD_FROM_DEAL_ENUM" description="DDForm Deal Status"/>-->
+<!--    &lt;!&ndash;Enumeration&ndash;&gt;-->
+<!--    <Enumeration enumId="NOT_SEND_VENDOR" enumTypeId="DD_FROM_DEAL_ENUM" description="Not send to vendor"/>-->
+<!--    <Enumeration enumId="NOT_SUBMIT_VENDOR" enumTypeId="DD_FROM_DEAL_ENUM" description="Not submit to vendor"/>-->
+<!--    <Enumeration enumId="SUBMITTED_VENDOR" enumTypeId="DD_FROM_DEAL_ENUM" description="submitted to vendor"/>-->
+
+
+<!--    <PartyQuestionAppl partyQuatsionApplId="9000" partyId="SUPPLIER0001" surveyQuestionId="9000" partyQuestionApplTypeId="DD_FORM" requiredField="Y" sequenceNum="1"/>-->
+<!--    <PartyQuestionAppl partyQuatsionApplId="9000" partyId="SUPPLIER0001" surveyQuestionId="9001" partyQuestionApplTypeId="DD_FORM" requiredField="Y" sequenceNum="1"/>-->
+<!--    <PartyQuestionAppl partyQuatsionApplId="9000" partyId="SUPPLIER0001" surveyQuestionId="9002" partyQuestionApplTypeId="DD_FORM" requiredField="Y" sequenceNum="1"/>-->
+<!--    <PartyQuestionAppl partyQuatsionApplId="9000" partyId="SUPPLIER0001" surveyQuestionId="9003" partyQuestionApplTypeId="DD_FORM" requiredField="Y" sequenceNum="1"/>-->
+
+    <UILabApp description="01" permissionId="01" uiLabAppId="10000" uiLabAppName="Applicant"/>
+    <UILabApp description="02" permissionId="02" uiLabAppId="10001" uiLabAppName="Compliance"/>
+    <UILabApp description="00" permissionId="00" uiLabAppId="10002" uiLabAppName="Approval"/>
+    <UILabApp description="03" permissionId="03" uiLabAppId="10003" uiLabAppName="procurement"/>
+    <UILabApp description="04" permissionId="04" uiLabAppId="10004" uiLabAppName="vondors"/>
+    <RoleTypeUILabApp roleTypeId="APPLICANT" roleTypeUILabAppId="10000" uiLabAppId="10000"/>
+    <RoleTypeUILabApp roleTypeId="COMPLIANCE" roleTypeUILabAppId="10001" uiLabAppId="10001"/>
+    <RoleTypeUILabApp roleTypeId="CEO" roleTypeUILabAppId="10002" uiLabAppId="10002"/>
+    <RoleTypeUILabApp roleTypeId="CFO" roleTypeUILabAppId="10003" uiLabAppId="10002"/>
+    <RoleTypeUILabApp roleTypeId="CTO" roleTypeUILabAppId="10004" uiLabAppId="10002"/>
+    <RoleTypeUILabApp roleTypeId="PROCUREMENT" roleTypeUILabAppId="10005" uiLabAppId="10003"/>
+    <RoleTypeUILabApp roleTypeId="CONTACT" roleTypeUILabAppId="10006" uiLabAppId="10004"/>
+    <RoleTypeUILabApp roleTypeId="SUPPLIER" roleTypeUILabAppId="10007" uiLabAppId="10004"/>
+    <RoleTypeUILabApp roleTypeId="PROCUREMENT" roleTypeUILabAppId="1000" uiLabAppId="10000"/>
+
+    <Party partyId="CONTACT00001" partyName="Zhang Zheng" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00002" partyName="Chen Xiaoxin" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00003" partyName="Yang Lin" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00004" partyName="Chang Ting" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00005" partyName="Zhou Junming" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00006" partyName="Chen Xiaotong" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00007" partyName="Wang Xiuping" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+
+    <Party partyId="CONTACT00008" partyName="陈博涛" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00009" partyName="杨宏兴" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00010" partyName="孙磊" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00011" partyName="张程" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00012" partyName="刘云" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00013" partyName="程鑫" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+    <Party partyId="CONTACT00014" partyName="朱新兰" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
+
+    <PartyAttribute attrName="nationality" attrValue="China" partyId="CONTACT00008"/>
+    <PartyAttribute attrName="nationality" attrValue="China" partyId="CONTACT00009"/>
+    <PartyAttribute attrName="nationality" attrValue="China" partyId="CONTACT00010"/>
+    <PartyAttribute attrName="nationality" attrValue="China" partyId="CONTACT00011"/>
+    <PartyAttribute attrName="nationality" attrValue="China" partyId="CONTACT00012"/>
+    <PartyAttribute attrName="nationality" attrValue="China" partyId="CONTACT00013"/>
+    <PartyAttribute attrName="nationality" attrValue="China" partyId="CONTACT00014"/>
+
+    <PartyAttribute attrName="copyIdentificationAttached" attrValue="Y" partyId="CONTACT00008"/>
+    <PartyAttribute attrName="copyIdentificationAttached" attrValue="Y" partyId="CONTACT00009"/>
+    <PartyAttribute attrName="copyIdentificationAttached" attrValue="Y" partyId="CONTACT00010"/>
+    <PartyAttribute attrName="copyIdentificationAttached" attrValue="Y" partyId="CONTACT00011"/>
+    <PartyAttribute attrName="copyIdentificationAttached" attrValue="Y" partyId="CONTACT00012"/>
+    <PartyAttribute attrName="copyIdentificationAttached" attrValue="Y" partyId="CONTACT00013"/>
+    <PartyAttribute attrName="copyIdentificationAttached" attrValue="Y" partyId="CONTACT00014"/>
+
+    <Person partyId="CONTACT00008" firstName="Chen" lastName="Botao"/>
+    <Person partyId="CONTACT00009" firstName="Yang" lastName="Hongxing"/>
+    <Person partyId="CONTACT00010" firstName="Sun" lastName="Lei"/>
+    <Person partyId="CONTACT00011" firstName="Zhang" lastName="Cheng"/>
+    <Person partyId="CONTACT00012" firstName="Liu" lastName="Yun"/>
+    <Person partyId="CONTACT00013" firstName="Cheng" lastName="Xin"/>
+    <Person partyId="CONTACT00014" firstName="Zhu" lastName="Xinlan"/>
+
+
+    <Person partyId="CONTACT00001" firstName="Zhang" lastName="Zheng"/>
+    <Person partyId="CONTACT00002" firstName="Chen" lastName="Xiaoxin"/>
+    <Person partyId="CONTACT00003" firstName="Yang" lastName="Lin"/>
+    <Person partyId="CONTACT00004" firstName="Chang" lastName="Ting"/>
+    <Person partyId="CONTACT00005" firstName="Zhou" lastName="Junming"/>
+    <Person partyId="CONTACT00006" firstName="Chen" lastName="Xiaotong"/>
+    <Person partyId="CONTACT00007" firstName="Wang" lastName="Xiuping"/>
+
+    <PartyRole partyId="CONTACT00001" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00002" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00003" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00004" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00005" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00006" roleTypeId="CONTACT"/>
+    <PartyRole partyId="CONTACT00007" roleTypeId="CONTACT"/>
+
+    <PartyRole partyId="CONTACT00008" roleTypeId="BENEFICIAL_PERSON"/>
+    <PartyRole partyId="CONTACT00009" roleTypeId="BENEFICIAL_PERSON"/>
+    <PartyRole partyId="CONTACT00010" roleTypeId="BENEFICIAL_PERSON"/>
+    <PartyRole partyId="CONTACT00011" roleTypeId="BENEFICIAL_PERSON"/>
+    <PartyRole partyId="CONTACT00012" roleTypeId="BENEFICIAL_PERSON"/>
+    <PartyRole partyId="CONTACT00013" roleTypeId="BENEFICIAL_PERSON"/>
+    <PartyRole partyId="CONTACT00014" roleTypeId="BENEFICIAL_PERSON"/>
+
+    <PartyRelationship partyRelationshipId="9000" partyIdFrom="9000" partyIdTo="CONTACT00001" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="9001" partyIdFrom="9001" partyIdTo="CONTACT00002" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="9002" partyIdFrom="9002" partyIdTo="CONTACT00003" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="9003" partyIdFrom="9003" partyIdTo="CONTACT00004" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="9004" partyIdFrom="9004" partyIdTo="CONTACT00005" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="9005" partyIdFrom="9005" partyIdTo="CONTACT00006" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+    <PartyRelationship partyRelationshipId="9006" partyIdFrom="9006" partyIdTo="CONTACT00007" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
+
+    <PartyRelationship partyRelationshipId="9007" partyIdFrom="9000" partyIdTo="CONTACT00008" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="BENEFICIAL_PERSON" fromDate="2023-08-18 11:45:31.928" amount="0.3"/>
+    <PartyRelationship partyRelationshipId="9008" partyIdFrom="9001" partyIdTo="CONTACT00009" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="BENEFICIAL_PERSON" fromDate="2023-08-18 11:45:31.928" amount="0.3"/>
+    <PartyRelationship partyRelationshipId="9009" partyIdFrom="9002" partyIdTo="CONTACT00010" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="BENEFICIAL_PERSON" fromDate="2023-08-18 11:45:31.928" amount="0.3"/>
+    <PartyRelationship partyRelationshipId="9010" partyIdFrom="9003" partyIdTo="CONTACT00011" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="BENEFICIAL_PERSON" fromDate="2023-08-18 11:45:31.928" amount="0.3"/>
+    <PartyRelationship partyRelationshipId="9011" partyIdFrom="9004" partyIdTo="CONTACT00012" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="BENEFICIAL_PERSON" fromDate="2023-08-18 11:45:31.928" amount="0.3"/>
+    <PartyRelationship partyRelationshipId="9012" partyIdFrom="9005" partyIdTo="CONTACT00013" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="BENEFICIAL_PERSON" fromDate="2023-08-18 11:45:31.928" amount="0.3"/>
+    <PartyRelationship partyRelationshipId="9013" partyIdFrom="9006" partyIdTo="CONTACT00014" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="BENEFICIAL_PERSON" fromDate="2023-08-18 11:45:31.928" amount="0.3"/>
+
+    <!--ContactMech(联系人电话)-->
+    <ContactMech contactMechId="TELE_CONTACT00001" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00002" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00003" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00004" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00005" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00006" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00007" contactMechTypeId="TELECOM_NUMBER"/>
+
+    <ContactMech contactMechId="TELE_CONTACT00008" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00009" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00010" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00011" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00012" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00013" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="TELE_CONTACT00014" contactMechTypeId="TELECOM_NUMBER"/>
+
+    <!--ContactMech(联系人邮箱)-->
+    <ContactMech contactMechId="EMAIL_CONTACT00001" infoString="ZZJGUIH@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00002" infoString="CXX968756@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00003" infoString="YL534CBY@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00004" infoString="CT5345YGU@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00005" infoString="CXV3654@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00006" infoString="239869876@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00007" infoString="ZX54653@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00008" infoString="9087BUYG@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00009" infoString="NCBY45365@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00010" infoString="NNMM536@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00011" infoString="1235NUIGM@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00012" infoString="256C89FDT@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00013" infoString="GZ8349657@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <ContactMech contactMechId="EMAIL_CONTACT00014" infoString="MN534BYU@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <!--ContactMech(联系人微信)-->
+    <ContactMech contactMechId="VX_CONTACT00008" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00009" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00010" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00011" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00012" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00013" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00014" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00001" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00002" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00003" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00004" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00005" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00006" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="VX_CONTACT00007" contactMechTypeId="TELECOM_NUMBER"/>
+    <!--TelecomNumber(联系人电话)-->
+    <TelecomNumber contactMechId="TELE_CONTACT00001" contactNumber="19946345361"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00002" contactNumber="18374260957"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00003" contactNumber="13246792210"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00004" contactNumber="18014723319"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00005" contactNumber="18880412334"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00006" contactNumber="17923406725"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00007" contactNumber="13947270871"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00008" contactNumber="15674722218"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00009" contactNumber="19946730021"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00010" contactNumber="12846771380"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00011" contactNumber="17910403725"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00012" contactNumber="18014722372"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00013" contactNumber="15945267478"/>
+    <TelecomNumber contactMechId="TELE_CONTACT00014" contactNumber="13908276623"/>
+
+    <!--TelecomNumber(联系人微信)-->
+    <TelecomNumber contactMechId="VX_CONTACT00001" contactNumber="VX:ZZG890821"/>
+    <TelecomNumber contactMechId="VX_CONTACT00002" contactNumber="VX:YL980643"/>
+    <TelecomNumber contactMechId="VX_CONTACT00003" contactNumber="VX:CT43254CT"/>
+    <TelecomNumber contactMechId="VX_CONTACT00004" contactNumber="VX:zhou43645634"/>
+    <TelecomNumber contactMechId="VX_CONTACT00005" contactNumber="VX:xiaotong32546"/>
+    <TelecomNumber contactMechId="VX_CONTACT00006" contactNumber="VX:9867864235xp"/>
+    <TelecomNumber contactMechId="VX_CONTACT00007" contactNumber="VX:49cbt8973"/>
+    <TelecomNumber contactMechId="VX_CONTACT00008" contactNumber="VX:YHX42356"/>
+    <TelecomNumber contactMechId="VX_CONTACT00009" contactNumber="VX:SL32978BH"/>
+    <TelecomNumber contactMechId="VX_CONTACT00010" contactNumber="VX:BBS732459"/>
+    <TelecomNumber contactMechId="VX_CONTACT00011" contactNumber="VX:LIU8294725"/>
+    <TelecomNumber contactMechId="VX_CONTACT00012" contactNumber="VX:CX248973948seq"/>
+    <TelecomNumber contactMechId="VX_CONTACT00013" contactNumber="VX:xinlan34526"/>
+    <TelecomNumber contactMechId="VX_CONTACT00014" contactNumber="VX:TZ923876727"/>
+
+    <!--PartyContactMechPurpose(联系人电话)-->
+    <PartyContactMechPurpose partyId="CONTACT00001" contactMechId="TELE_CONTACT00001" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00002" contactMechId="TELE_CONTACT00002" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00003" contactMechId="TELE_CONTACT00003" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00004" contactMechId="TELE_CONTACT00004" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00005" contactMechId="TELE_CONTACT00005" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00006" contactMechId="TELE_CONTACT00006" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00007" contactMechId="TELE_CONTACT00007" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00008" contactMechId="TELE_CONTACT00008" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00009" contactMechId="TELE_CONTACT00009" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00010" contactMechId="TELE_CONTACT00010" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00011" contactMechId="TELE_CONTACT00011" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00012" contactMechId="TELE_CONTACT00012" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00013" contactMechId="TELE_CONTACT00013" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00014" contactMechId="TELE_CONTACT00014" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
+
+    <!--PartyContactMechPurpose(联系人微信)-->
+    <PartyContactMechPurpose partyId="CONTACT00001" contactMechId="VX_CONTACT00001" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00002" contactMechId="VX_CONTACT00002" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00003" contactMechId="VX_CONTACT00003" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00004" contactMechId="VX_CONTACT00004" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00005" contactMechId="VX_CONTACT00005" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00006" contactMechId="VX_CONTACT00006" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00007" contactMechId="VX_CONTACT00007" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00008" contactMechId="VX_CONTACT00008" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00009" contactMechId="VX_CONTACT00009" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00010" contactMechId="VX_CONTACT00010" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00011" contactMechId="VX_CONTACT00011" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00012" contactMechId="VX_CONTACT00012" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00013" contactMechId="VX_CONTACT00013" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00014" contactMechId="VX_CONTACT00014" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
+
+    <!--PartyContactMechPurpose(联系人邮箱)-->
+    <PartyContactMechPurpose partyId="CONTACT00001" contactMechId="EMAIL_CONTACT00001" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00002" contactMechId="EMAIL_CONTACT00002" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00003" contactMechId="EMAIL_CONTACT00003" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00004" contactMechId="EMAIL_CONTACT00004" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00005" contactMechId="EMAIL_CONTACT00005" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00006" contactMechId="EMAIL_CONTACT00006" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00007" contactMechId="EMAIL_CONTACT00007" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00008" contactMechId="EMAIL_CONTACT00008" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00009" contactMechId="EMAIL_CONTACT00009" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00010" contactMechId="EMAIL_CONTACT00010" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00011" contactMechId="EMAIL_CONTACT00011" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00012" contactMechId="EMAIL_CONTACT00012" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00013" contactMechId="EMAIL_CONTACT00013" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <PartyContactMechPurpose partyId="CONTACT00014" contactMechId="EMAIL_CONTACT00014" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
 
     <DataResource dataResourceId="8999" objectInfo="" dataResourceName="Latest Three-years Finance Audit Report"        />
     <DataResource dataResourceId="9000" objectInfo="" dataResourceName="Non-disclosure Agreement (NDA)"                 />
@@ -668,523 +1234,5 @@ under the License.
     <PartyContent partyContentId="9124" partyId="9007" contentId="9124" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9125" partyId="9007" contentId="9125" partyContentTypeId="COMPLIANCE_REPORT"/>
     <PartyContent partyContentId="9126" partyId="9007" contentId="9126" partyContentTypeId="COMPLIANCE_REPORT"/>
-
-    <!--PartyGroup-->
-    <PartyGroup partyId="9000" groupName="Huawei Technologies Co Ltd" employeesSection="EMP_GE10000" annualRevenue="450000000" comments="Main communication electronic technology business" groupTypeId="OTHERS_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/012f7330-6af5-459d-aa5d-fc4890284481.png"/>
-    <PartyGroup partyId="9001" groupName="ASUS" employeesSection="EMP_GE10000" annualRevenue="120000000" comments="Sell computer hardware" groupTypeId="OTHERS_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/aa3cc9ec-4f0f-455c-9839-fa86f004b33b.png"/>
-    <PartyGroup partyId="9002" groupName="K.J Consultation Company" employeesSection="EMP_GE10000" annualRevenue="85000000" comments="HR consulting" groupTypeId="OTHERS_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/1e175eb7-1466-41a7-b623-b522bb43c90c.png"/>
-    <PartyGroup partyId="9003" groupName="NARI Technology Development Limited" employeesSection="EMP_GE10000" annualRevenue="232000000" comments="Government sector" groupTypeId="GOVERNMENTAL_AGENCIES_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/7f132f90-5317-47c2-a728-a8bf88f9d2cd.png"/>
-    <PartyGroup partyId="9004" groupName="ZhiHengJiaCheng Real Estate Economy Company" employeesSection="EMP_GE1000_LT5000" annualRevenue="12000000" comments="Empirical real estate sales" groupTypeId="OTHERS_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/bd2f3c73-80d8-4b15-8c74-00404a194197.png"/>
-    <PartyGroup partyId="9005" groupName="FORTUNEINT'L.LTD" employeesSection="EMP_GE1000_LT5000" annualRevenue="5300000" comments="Sales foods" groupTypeId="ROUTINE_AND_LOW_VALUE_TRANSACTIONS_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/daed7d80-ea3c-4eb6-9f70-bf3cbe1bca06.png"/>
-    <PartyGroup partyId="9006" groupName="GDS" employeesSection="EMP_LT1000" annualRevenue="4200000" comments="Data storage service" groupTypeId="OTHERS_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/2609a427-4704-47e7-8647-0d47f14cc5e1.png"/>
-    <PartyGroup partyId="9007" groupName="Tencent Holdings Limited" employeesSection="EMP_GE10000" annualRevenue="48200000000" comments="Main communication and social services" groupTypeId="OTHERS_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/2e3bde80-89ec-4bdb-820a-730949994e56.png"/>
-
-    <PartyGeo partyGeoId="9000" partyId="9000" geoId="CHN" partyGeoTypeId="LISTED_COUNTRY"/>
-    <PartyGeo partyGeoId="9001" partyId="9001" geoId="CHN" partyGeoTypeId="LISTED_COUNTRY"/>
-    <PartyGeo partyGeoId="9002" partyId="9002" geoId="CHN" partyGeoTypeId="LISTED_COUNTRY"/>
-    <PartyGeo partyGeoId="9003" partyId="9003" geoId="CHN" partyGeoTypeId="LISTED_COUNTRY"/>
-    <PartyGeo partyGeoId="9004" partyId="9004" geoId="CHN" partyGeoTypeId="LISTED_COUNTRY"/>
-    <PartyGeo partyGeoId="9005" partyId="9005" geoId="UK" partyGeoTypeId="LISTED_COUNTRY"/>
-    <PartyGeo partyGeoId="9006" partyId="9006" geoId="CHN" partyGeoTypeId="LISTED_COUNTRY"/>
-    <PartyGeo partyGeoId="9007" partyId="9007" geoId="CHN" partyGeoTypeId="LISTED_COUNTRY"/>
-
-    <!--Co-work-->
-    <WorkEffort workEffortId="8001" workEffortTypeId="COWORK" currentStatusId="PROCUREMENT_REVIEW" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9000" createdDate="2023-11-29 10:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-29 10:43:22.660"/>
-    <WorkEffort workEffortId="8003" workEffortTypeId="COWORK" currentStatusId="REGISTERED" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-29 10:43:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-11-30 19:43:22.660"/>
-    <WorkEffort workEffortId="8006" workEffortTypeId="COWORK" currentStatusId="SUBMITTED_DD" workEffortParentId="" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-12-01 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-02 11:22:22.660"/>
-    <WorkEffort workEffortId="8029" workEffortTypeId="COWORK" currentStatusId="COWORK_CREATED" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9003" createdDate="2023-12-01 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-02 11:22:22.660"/>
-    <WorkEffort workEffortId="8010" workEffortTypeId="COWORK" currentStatusId="REQUESTED_DD" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-12-02 12:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-03 12:22:22.660"/>
-    <WorkEffort workEffortId="8013" workEffortTypeId="COWORK" currentStatusId="COMPLIANCE_REVIEW" workEffortParentId="" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-12-01 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-05 11:22:22.660"/>
-    <WorkEffort workEffortId="8016" workEffortTypeId="COWORK" currentStatusId="REGISTERED" workEffortParentId="" priority="PRIORITY_MEDIUM" partyId="9006" createdDate="2023-11-29 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-06 11:22:22.660"/>
-    <WorkEffort workEffortId="8019" workEffortTypeId="COWORK" currentStatusId="COMPLETED_DD" workEffortParentId="" priority="PRIORITY_HIGH" partyId="9007" createdDate="2023-11-25 11:22:22.660" createdByUserLogin="procurement" lastModifiedDate="2023-12-06 11:22:22.660"/>
-
-    <!--Co-work_Task-->
-    <!--供应商9000-->
-    <WorkEffort workEffortId="8000" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8001" priority="PRIORITY_HIGH" partyId="9000" createdDate="2023-11-28 10:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-11-29 10:43:22.660"/>
-    <WorkEffort workEffortId="8012" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8001" priority="PRIORITY_HIGH" partyId="9000" createdDate="2023-11-26 10:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-11-18 10:43:22.660"/>
-    <WorkEffort workEffortId="8028" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8001" priority="PRIORITY_HIGH" partyId="9000" createdDate="2023-11-26 10:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-11-18 10:43:22.660"/>
-    <!--供应商9001-->
-    <WorkEffort workEffortId="8023" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8003" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-26 10:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-11-18 10:43:22.660"/>
-    <WorkEffort workEffortId="8002" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8003" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-28 10:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-11-29 10:43:22.660"/>
-    <WorkEffort workEffortId="8004" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8003" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-20 18:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-11-16 19:43:22.660"/>
-    <!--供应商9002-->
-    <WorkEffort workEffortId="8005" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8006" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-11-30 18:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 11:22:22.660"/>
-    <WorkEffort workEffortId="8007" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8006" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-11-21 11:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-03 11:22:22.660"/>
-    <WorkEffort workEffortId="8024" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8006" priority="PRIORITY_MEDIUM" partyId="9002" createdDate="2023-11-21 11:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-03 11:22:22.660"/>
-    <!--供应商9003-->
-    <WorkEffort workEffortId="8008" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8028" priority="PRIORITY_HIGH" partyId="9003" createdDate="2023-12-02 12:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-02 12:22:22.660"/>
-    <!--供应商9004-->
-    <WorkEffort workEffortId="8009" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8010" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-12-02 12:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-02 12:22:22.660"/>
-    <WorkEffort workEffortId="8011" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8010" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-11-22 12:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-03 12:22:22.660"/>
-    <WorkEffort workEffortId="8025" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8010" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-11-22 12:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-03 12:22:22.660"/>
-    <!--供应商9005-->
-    <WorkEffort workEffortId="8014" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8013" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-11-29 12:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 12:22:22.660"/>
-    <WorkEffort workEffortId="8015" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8013" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-11-18 09:18:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
-    <WorkEffort workEffortId="8026" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8013" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-11-18 09:18:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
-    <!--供应商9006-->
-    <WorkEffort workEffortId="8017" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8016" priority="PRIORITY_MEDIUM" partyId="9006" createdDate="2023-11-25 09:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
-    <WorkEffort workEffortId="8018" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8016" priority="PRIORITY_MEDIUM" partyId="9006" createdDate="2023-11-23 09:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
-    <WorkEffort workEffortId="8027" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8016" priority="PRIORITY_MEDIUM" partyId="9006" createdDate="2023-11-23 09:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
-    <!--供应商9007-->
-    <WorkEffort workEffortId="8020" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8019" priority="PRIORITY_HIGH" partyId="9007" createdDate="2023-11-23 09:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
-    <WorkEffort workEffortId="8021" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8019" priority="PRIORITY_HIGH" partyId="9007" createdDate="2023-11-25 19:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
-    <WorkEffort workEffortId="8022" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8019" priority="PRIORITY_HIGH" partyId="9007" createdDate="2023-11-25 19:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
-
-    <!--WorkEffortStatus-->
-    <!--供应商9000状态-->
-    <WorkEffortStatus workEffortId="8000" statusId="NOT_PROCESSED" statusDatetime="2023-11-29 12:22:22.660" setByUserLogin="applicant"/>
-    <WorkEffortStatus workEffortId="8000" statusId="PROCESSED" statusDatetime="2023-11-29 18:22:22.660" setByUserLogin="applicant"/>
-    <WorkEffortStatus workEffortId="8001" statusId="COWORK_CREATED" statusDatetime="2023-11-29 18:22:22.660" setByUserLogin="procurement"/>
-    <WorkEffortStatus workEffortId="8001" statusId="REQUESTED_DD" statusDatetime="2023-11-30 11:22:22.660" setByUserLogin="procurement"/>
-    <WorkEffortStatus workEffortId="8012" statusId="NOT_PROCESSED" statusDatetime="2023-11-30 11:22:22.660" setByUserLogin="supplier9000"/>
-    <WorkEffortStatus workEffortId="8012" statusId="PROCESSED" statusDatetime="2023-11-30 18:22:22.660" setByUserLogin="supplier9000"/>
-    <WorkEffortStatus workEffortId="8001" statusId="SUBMITTED_DD" statusDatetime="2023-11-30 18:22:22.660" setByUserLogin="procurement"/>
-    <WorkEffortStatus workEffortId="8001" statusId="PROCUREMENT_REVIEW" statusDatetime="2023-12-01 09:13:22.660" setByUserLogin="procurement"/>
-    <WorkEffortStatus workEffortId="8028" statusId="NOT_PROCESSED" statusDatetime="2023-12-01 11:13:22.660" setByUserLogin="compliance"/>
-    <!--供应商9001状态-->
-    <WorkEffortStatus workEffortId="8002" statusId="NOT_PROCESSED" statusDatetime="2023-12-01 09:22:22.660" setByUserLogin="applicant"/>
-    <WorkEffortStatus workEffortId="8002" statusId="PROCESSED" statusDatetime="2023-12-01 16:22:22.660" setByUserLogin="applicant"/>
-    <WorkEffortStatus workEffortId="8003" statusId="COWORK_CREATED" statusDatetime="2023-12-01 16:22:22.660" setByUserLogin="procurement"/>
-    <WorkEffortStatus workEffortId="8003" statusId="REQUESTED_DD" statusDatetime="2023-12-01 16:50:22.660" setByUserLogin="procurement"/>
-    <WorkEffortStatus workEffortId="8004" statusId="NOT_PROCESSED" statusDatetime="2023-12-01 16:50:22.660" setByUserLogin="supplier9001"/>
-    <WorkEffortStatus workEffortId="8004" statusId="PROCESSED" statusDatetime="2023-12-02 15:22:22.660" setByUserLogin="supplier9001"/>
-    <WorkEffortStatus workEffortId="8003" statusId="SUBMITTED_DD" statusDatetime="2023-12-02 15:22:22.660" setByUserLogin="procurement"/>
-    <WorkEffortStatus workEffortId="8003" statusId="PROCUREMENT_REVIEW" statusDatetime="2023-12-03 09:22:22.660" setByUserLogin="procurement"/>
-    <WorkEffortStatus workEffortId="8003" statusId="COMPLIANCE_REVIEW" statusDatetime="2023-12-03 09:22:22.660" setByUserLogin="procurement"/>
-    <WorkEffortStatus workEffortId="8023" statusId="NOT_PROCESSED" statusDatetime="2023-12-03 09:22:22.660" setByUserLogin="compliance"/>
-    <WorkEffortStatus workEffortId="8023" statusId="PROCESSED" statusDatetime="2023-12-03 11:05:22.660" setByUserLogin="compliance"/>
-    <WorkEffortStatus workEffortId="8003" statusId="COMPLETED_DD" statusDatetime="2023-12-03 11:05:22.660" setByUserLogin="procurement"/>
-    <WorkEffortStatus workEffortId="8003" statusId="REGISTERED" statusDatetime="2023-12-03 15:05:22.660" setByUserLogin="procurement"/>
-    <!--供应商9002状态-->
-
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9000" partyId="IT" workEffortId="8000"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9001" partyId="CG" workEffortId="8001"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9002" partyId="IT" workEffortId="8002"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9003" partyId="CG" workEffortId="8003"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9004" partyId="9001" workEffortId="8004"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9005" partyId="IT" workEffortId="8005"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9006" partyId="CG" workEffortId="8006"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9007" partyId="9002" workEffortId="8007"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9008" partyId="IT" workEffortId="8008"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9009" partyId="IT" workEffortId="8009"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9010" partyId="CG" workEffortId="8010"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9011" partyId="9004" workEffortId="8011"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9012" partyId="9000" workEffortId="8012"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9013" partyId="CG" workEffortId="8013"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9014" partyId="IT" workEffortId="8014"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9015" partyId="9005" workEffortId="8015"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9016" partyId="CG" workEffortId="8016"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9017" partyId="IT" workEffortId="8017"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9018" partyId="9006" workEffortId="8018"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9019" partyId="CG" workEffortId="8019"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9020" partyId="IT" workEffortId="8020"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9021" partyId="9007" workEffortId="8021"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9022" partyId="HG" workEffortId="8022"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9023" partyId="HG" workEffortId="8023"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9024" partyId="HG" workEffortId="8024"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9025" partyId="HG" workEffortId="8025"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9026" partyId="HG" workEffortId="8026"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9027" partyId="HG" workEffortId="8027"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9028" partyId="HG" workEffortId="8028"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9029" partyId="CG" workEffortId="8029"/>
-
-    <PartyAttribute partyId="9006" attrName="complianceCheckWarning" attrValue="Warning"/>
-    <PartyAttributeDate partyId="9000" attrName="collectionDate" attrValue="2023-11-18 10:43:22.660"/>
-    <PartyAttributeDate partyId="9001" attrName="collectionDate" attrValue="2023-11-18 10:43:22.660"/>
-    <PartyAttributeDate partyId="9002" attrName="collectionDate" attrValue="2023-11-18 10:43:22.660"/>
-    <PartyAttributeDate partyId="9003" attrName="collectionDate" attrValue="2023-11-18 10:43:22.660"/>
-    <PartyAttributeDate partyId="9004" attrName="collectionDate" attrValue="2023-11-18 10:43:22.660"/>
-    <PartyAttributeDate partyId="9005" attrName="collectionDate" attrValue="2023-11-18 10:43:22.660"/>
-    <PartyAttributeDate partyId="9006" attrName="collectionDate" attrValue="2023-11-18 10:43:22.660"/>
-    <PartyAttributeDate partyId="9007" attrName="collectionDate" attrValue="2023-11-18 10:43:22.660"/>
-    <PartyAttributeDate partyId="9000" attrName="firstOrderDate" attrValue="2023-11-25 10:43:22.660"/>
-    <PartyAttributeDate partyId="9001" attrName="firstOrderDate" attrValue="2023-11-25 10:43:22.660"/>
-    <PartyAttributeDate partyId="9002" attrName="firstOrderDate" attrValue="2023-11-25 10:43:22.660"/>
-    <PartyAttributeDate partyId="9003" attrName="firstOrderDate" attrValue="2023-11-25 10:43:22.660"/>
-    <PartyAttributeDate partyId="9004" attrName="firstOrderDate" attrValue="2023-11-25 10:43:22.660"/>
-    <PartyAttributeDate partyId="9005" attrName="firstOrderDate" attrValue="2023-11-25 10:43:22.660"/>
-    <PartyAttributeDate partyId="9006" attrName="firstOrderDate" attrValue="2023-11-25 10:43:22.660"/>
-    <PartyAttributeDate partyId="9007" attrName="firstOrderDate" attrValue="2023-11-25 10:43:22.660"/>
-
-    <PartyAttributeDate partyId="9001" attrName="finishDomUploadDate" attrValue="2023-11-24 20:43:22.660"/>
-    <PartyAttributeDate partyId="9000" attrName="finishDomUploadDate" attrValue="2023-11-25 20:43:22.660"/>
-    <PartyAttributeDate partyId="9002" attrName="finishDomUploadDate" attrValue="2023-11-29 18:22:22.660"/>
-    <PartyAttributeDate partyId="9005" attrName="finishDomUploadDate" attrValue="2023-11-28 12:22:22.660"/>
-    <PartyAttributeDate partyId="9006" attrName="finishDomUploadDate" attrValue="2023-11-27 12:22:22.660"/>
-    <PartyAttributeDate partyId="9007" attrName="finishDomUploadDate" attrValue="2023-11-28 12:22:22.660"/>
-
-    <PartyIdentification partyId="9000" partyIdentificationTypeId="REGISTRATION_NUMBER" idValue="91520900MA6J6CBN9Q"/>
-    <PartyIdentification partyId="9001" partyIdentificationTypeId="REGISTRATION_NUMBER" idValue="913205056725028046"/>
-    <PartyIdentification partyId="9002" partyIdentificationTypeId="REGISTRATION_NUMBER" idValue="91340000607408459K"/>
-    <PartyIdentification partyId="9003" partyIdentificationTypeId="REGISTRATION_NUMBER" idValue="91320191726079387X"/>
-    <PartyIdentification partyId="9004" partyIdentificationTypeId="REGISTRATION_NUMBER" idValue="913101047354169127"/>
-    <PartyIdentification partyId="9005" partyIdentificationTypeId="REGISTRATION_NUMBER" idValue="91310104023416912K"/>
-    <PartyIdentification partyId="9006" partyIdentificationTypeId="REGISTRATION_NUMBER" idValue="91310981390416912K"/>
-    <PartyIdentification partyId="9007" partyIdentificationTypeId="REGISTRATION_NUMBER" idValue="91440300708461136T"/>
-
-    <PartyRelationship partyRelationshipId="9000" partyIdFrom="IT" partyIdTo="9000" roleTypeIdTo="SUPPLIER" roleTypeIdFrom="DEPARTMENT"/>
-    <PartyRelationship partyRelationshipId="9001" partyIdFrom="IT" partyIdTo="9001" roleTypeIdTo="SUPPLIER" roleTypeIdFrom="DEPARTMENT"/>
-    <PartyRelationship partyRelationshipId="9002" partyIdFrom="IT" partyIdTo="9002" roleTypeIdTo="SUPPLIER" roleTypeIdFrom="DEPARTMENT"/>
-    <PartyRelationship partyRelationshipId="9003" partyIdFrom="IT" partyIdTo="9003" roleTypeIdTo="SUPPLIER" roleTypeIdFrom="DEPARTMENT"/>
-    <PartyRelationship partyRelationshipId="9004" partyIdFrom="IT" partyIdTo="9004" roleTypeIdTo="SUPPLIER" roleTypeIdFrom="DEPARTMENT"/>
-    <PartyRelationship partyRelationshipId="9005" partyIdFrom="IT" partyIdTo="9005" roleTypeIdTo="SUPPLIER" roleTypeIdFrom="DEPARTMENT"/>
-    <PartyRelationship partyRelationshipId="9006" partyIdFrom="IT" partyIdTo="9006" roleTypeIdTo="SUPPLIER" roleTypeIdFrom="DEPARTMENT"/>
-    <PartyRelationship partyRelationshipId="9007" partyIdFrom="IT" partyIdTo="9007" roleTypeIdTo="SUPPLIER" roleTypeIdFrom="DEPARTMENT"/>
-
-    <ContactMech contactMechId="9000" contactMechTypeId="POSTAL_ADDRESS"/>
-    <ContactMech contactMechId="9001" contactMechTypeId="POSTAL_ADDRESS"/>
-    <ContactMech contactMechId="9002" contactMechTypeId="POSTAL_ADDRESS"/>
-    <ContactMech contactMechId="9003" contactMechTypeId="POSTAL_ADDRESS"/>
-    <ContactMech contactMechId="9004" contactMechTypeId="POSTAL_ADDRESS"/>
-    <ContactMech contactMechId="9005" contactMechTypeId="POSTAL_ADDRESS"/>
-    <ContactMech contactMechId="9006" contactMechTypeId="POSTAL_ADDRESS"/>
-    <ContactMech contactMechId="9007" contactMechTypeId="POSTAL_ADDRESS"/>
-
-    <!--供应商9000-->
-    <PostalAddress contactMechId="9000" countryGeoId="17" stateProvinceGeoId="411" cityGeoId="8008" contactNumber="+86 20 8365 2641" email="corporate.comms@huawei.com" address1="4F, Garden Commercial Building, 368 Huanshi East Road" address2="https://www.huawei.com/cn"/>
-    <!--供应商9000-->
-    <PostalAddress contactMechId="9001" countryGeoId="17" stateProvinceGeoId="408" cityGeoId="8000" contactNumber="010-65222633" email="bond.ir@huawei.com" address1="Zhongguancun Environmental Science and Technology Demonstration Park, No.156 North Qing Road, Yinhua Road, Haidian District, Beijing, China" address2="https://www.huawei.com/cn"/>
-    <!--供应商9001-->
-    <PostalAddress contactMechId="9002" countryGeoId="17" stateProvinceGeoId="447" cityGeoId="8002" contactNumber="18699127993" email="Summer_Li@asus.com" address1="Huashuo Computer Building, 5077 Jindu Road, Xinzhuang Industrial Zone, Minhang" address2="https://w3.asus.com.cn/"/>
-    <!--供应商9004-->
-    <PostalAddress contactMechId="9003" countryGeoId="17" stateProvinceGeoId="412" cityGeoId="8023" contactNumber="86-512-80717992" email="tongchengir@ly.com" address1="Tongcheng Building, 188 Yuxin Road, Nanjing Industrial Park" address2="http://www.tongchengir.com"/>
-    <!--供应商9002-->
-    <PostalAddress contactMechId="9004" countryGeoId="17" stateProvinceGeoId="447" cityGeoId="8002" contactNumber="021-3865 3865" email="joyce.pan@qiagen.com" address1="Building 20, Peninsula Science and Technology Park, 88 Darwin Road, Pudong 201203" address2="http://www.qiagen.com"/>
-    <!--供应商9003-->
-    <PostalAddress contactMechId="9005" countryGeoId="17" stateProvinceGeoId="412" cityGeoId="8023" contactNumber="025-81087102" email="stock@sgepri.sgcc.com.cn" address1="No 19 Chengxin Avenue, Jiangning District" address2="www.naritech.cn"/>
-    <!--供应商9005-->
-    <PostalAddress contactMechId="9006" countryGeoId="17" stateProvinceGeoId="427" cityGeoId="8021" contactNumber="0539-8035703" email="FUSHI@fushi.com" address1="Fushi Industrial Park" address2=""/>
-    <!--供应商9006-->
-    <PostalAddress contactMechId="9007" countryGeoId="17" stateProvinceGeoId="408" cityGeoId="8000" contactNumber="400-720-7200" email="ir@gds-services.com" address1="14th Floor, South Tower, Zhengda Center, 20 Jinhe East Road, Chaoyang District" address2="http://www.gds-services.com"/>
-
-    <PartyContactMechPurpose contactMechPurposeTypeId="GENERAL_LOCATION" contactMechId="9000" partyId="9000" fromDate="2023-05-13 15:10:00.0"/>
-    <PartyContactMechPurpose contactMechPurposeTypeId="SHIPPING_LOCATION" contactMechId="9001" partyId="9000" fromDate="2023-05-13 15:10:00.0"/>
-    <PartyContactMechPurpose contactMechPurposeTypeId="GENERAL_LOCATION" contactMechId="9002" partyId="9001" fromDate="2023-05-13 15:10:00.0"/>
-    <PartyContactMechPurpose contactMechPurposeTypeId="GENERAL_LOCATION" contactMechId="9003" partyId="9004" fromDate="2023-05-13 15:10:00.0"/>
-    <PartyContactMechPurpose contactMechPurposeTypeId="GENERAL_LOCATION" contactMechId="9004" partyId="9002" fromDate="2023-05-13 15:10:00.0"/>
-    <PartyContactMechPurpose contactMechPurposeTypeId="GENERAL_LOCATION" contactMechId="9005" partyId="9003" fromDate="2023-05-13 15:10:00.0"/>
-    <PartyContactMechPurpose contactMechPurposeTypeId="GENERAL_LOCATION" contactMechId="9006" partyId="9005" fromDate="2023-05-13 15:10:00.0"/>
-    <PartyContactMechPurpose contactMechPurposeTypeId="GENERAL_LOCATION" contactMechId="9007" partyId="9006" fromDate="2023-05-13 15:10:00.0"/>
-
-    <ProductCategoryRole partyId="9000" productCategoryId="CLOUD_SERVICE" roleTypeId="SUPPLIER" fromDate="2023-05-13 15:10:00.0"/>
-    <ProductCategoryRole partyId="9001" productCategoryId="NETWORK_FEES" roleTypeId="SUPPLIER" fromDate="2023-05-13 15:10:00.0"/>
-    <ProductCategoryRole partyId="9002" productCategoryId="TRAINING_EXPENSES" roleTypeId="SUPPLIER" fromDate="2023-05-13 15:10:00.0"/>
-    <ProductCategoryRole partyId="9003" productCategoryId="OFFICE_SUPPLIES" roleTypeId="SUPPLIER" fromDate="2023-05-13 15:10:00.0"/>
-    <ProductCategoryRole partyId="9004" productCategoryId="RENTAL-OFFICE-MORE_THAN_ONE_YEAR" roleTypeId="SUPPLIER" fromDate="2023-05-13 15:10:00.0"/>
-    <ProductCategoryRole partyId="9005" productCategoryId="MEALS" roleTypeId="SUPPLIER" fromDate="2023-05-13 15:10:00.0"/>
-    <ProductCategoryRole partyId="9006" productCategoryId="DATA_SERVICE" roleTypeId="SUPPLIER" fromDate="2023-05-13 15:10:00.0"/>
-    <ProductCategoryRole partyId="9007" productCategoryId="TECHNICAL_SERVICE_FEE" roleTypeId="SUPPLIER" fromDate="2023-05-13 15:10:00.0"/>
-
-    <PartyClassification partyId="9001" partyClassificationGroupId="LOW_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
-    <PartyClassification partyId="9002" partyClassificationGroupId="HIGH_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
-    <PartyClassification partyId="9005" partyClassificationGroupId="LOW_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
-    <PartyClassification partyId="9006" partyClassificationGroupId="HIGH_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
-
-    <!-- StatusValidChange -->
-    <StatusValidChange statusId="APPROVAL_APPROVED" statusIdTo="PARTY_ENABLED"/>
-    <StatusValidChange statusId="PARTY_DISABLED" statusIdTo="PARTY_ENABLED"/>
-
-    <SurveyQuestionCategory surveyQuestionCategoryId="DD_QUESTIONS" description="Due Diligence Questions"/>
-    <SurveyQuestionCategory surveyQuestionCategoryId="DD_STD_QUESTIONS" parentCategoryId="DD_QUESTIONS" description="Due Diligence Standard Questions"/>
-    <SurveyQuestionCategory surveyQuestionCategoryId="DD_SMP_QUESTIONS" parentCategoryId="DD_QUESTIONS" description="Due Diligence Simplified Questions"/>
-
-    <SurveyQuestionType surveyQuestionTypeId="BOOLEAN" description="Bool"/>
-    <SurveyQuestion surveyQuestionId="9000" surveyQuestionCategoryId="DD_STD_QUESTIONS" surveyQuestionTypeId="BOOLEAN"
-                    question="Does the Business Partner conduct any business in, with, or involving (directly or indirectly) individuals or entities in or from Cuba, Iran, North Korea, Syria, Russia, Belarus or the Crimea region (each, a “Sanctioned Country”)?"/>
-    <SurveyQuestion surveyQuestionId="9001" surveyQuestionCategoryId="DD_STD_QUESTIONS" surveyQuestionTypeId="BOOLEAN"
-                    question="Does the Business Partner have any physical or legal presence (including offices, branches, and operations) in any Sanctioned Country?"/>
-    <SurveyQuestion surveyQuestionId="9002" surveyQuestionCategoryId="DD_STD_QUESTIONS" surveyQuestionTypeId="BOOLEAN"
-                    question="Is the Business Partner or any direct or indirect owner of the Business Partner currently listed, or has been listed in the last five (5) years, on any government watchlist, export or trade control list or sanctioned/restricted party list? If “Yes”, provide the name of the list and the date of the designation:"/>
-    <SurveyQuestion surveyQuestionId="9003" surveyQuestionCategoryId="DD_STD_QUESTIONS" surveyQuestionTypeId="BOOLEAN"
-                    question="To the best of your knowledge, currently or during the last during the last five (5) years, have any of the Business Partner’s owners, officers, directors or senior management been identified on any official, governmental or regulatory body’s list as a politically exposed person?"/>
-    <SurveyQuestion surveyQuestionId="9005" surveyQuestionCategoryId="DD_STD_QUESTIONS" surveyQuestionTypeId="BOOLEAN"
-                        question="To the best of your knowledge, currently or during the last during the last five (5) years, has the Business Partner (including its owners, officers, directors or senior management) been: (1) subject to any investigation, administrative action, fine, censure or legal proceedings involving bribery, fraud, corruption, money laundering, violations of sanctions, export controls or similar offenses; or (2) suspended, restricted from doing business, or disbarred/excluded by any regulator, professional licensing agency or government program? For each “Yes” answer, provide complete details of the relevant circumstances."/>
-    <SurveyQuestion surveyQuestionId="9006" surveyQuestionCategoryId="DD_STD_QUESTIONS" surveyQuestionTypeId="BOOLEAN"
-                    question="Is any owner, director, officer or senior management of the Business Partner, a former employee of the Company? If “Yes”, provide name, company, title, and last date of employment:"/>
-
-    <SurveyQuestionType surveyQuestionTypeId="TEXT_LONG" description="Long Text (single-line)"/>
-    <SurveyQuestion surveyQuestionId="9004" surveyQuestionCategoryId="DD_STD_QUESTIONS" surveyQuestionTypeId="TEXT_LONG"
-                    question="Summary of the anticipated scope of work (including estimated value, term of engagement)"/>
-
-    <Survey surveyId="DD_STD_FORM" surveyName="Due Diligence Standard Form"/>
-    <SurveyQuestionAppl surveyId="DD_STD_FORM" surveyQuestionId="9000" sequenceNum="1" requiredField="Y" fromDate="2023-08-18 11:45:31.928"/>
-    <SurveyQuestionAppl surveyId="DD_STD_FORM" surveyQuestionId="9001" sequenceNum="2" requiredField="Y" fromDate="2023-08-18 11:45:31.928"/>
-    <SurveyQuestionAppl surveyId="DD_STD_FORM" surveyQuestionId="9002" sequenceNum="3" requiredField="Y" fromDate="2023-08-18 11:45:31.928"/>
-    <SurveyQuestionAppl surveyId="DD_STD_FORM" surveyQuestionId="9003" sequenceNum="4" requiredField="Y" fromDate="2023-08-18 11:45:31.928"/>
-    <SurveyQuestionAppl surveyId="DD_STD_FORM" surveyQuestionId="9004" sequenceNum="5" requiredField="Y" fromDate="2023-08-18 11:45:31.928"/>
-    <SurveyQuestionAppl surveyId="DD_STD_FORM" surveyQuestionId="9005" sequenceNum="6" requiredField="Y" fromDate="2023-08-18 11:45:31.928"/>
-    <SurveyQuestionAppl surveyId="DD_STD_FORM" surveyQuestionId="9006" sequenceNum="7" requiredField="Y" fromDate="2023-08-18 11:45:31.928"/>
-<!--    <PartySurveyAppl partyId="SUPPLIER0001" surveyId="DD_STD_FORM" surveyApplTypeId="DD_FORM"/>-->
-<!--    <SurveyQuestionAnswer surveyQuestionAnswerId="9000" surveyQuestionId="9000" partyId="SUPPLIER0001" booleanResponse="Y"/>-->
-<!--    <SurveyQuestionAnswer surveyQuestionAnswerId="9001" surveyQuestionId="9001" partyId="SUPPLIER0001" booleanResponse="Y"/>-->
-<!--    <SurveyQuestionAnswer surveyQuestionAnswerId="9002" surveyQuestionId="9002" partyId="SUPPLIER0001" booleanResponse="N"/>-->
-<!--    <SurveyQuestionAnswer surveyQuestionAnswerId="9003" surveyQuestionId="9003" partyId="SUPPLIER0001" booleanResponse="N"/>-->
-<!--    <SurveyQuestionAnswer surveyQuestionAnswerId="9004" surveyQuestionId="9004" partyId="SUPPLIER0001" textResponse="Asus From a professional private brand to an international 3C brand marketing the world, ASUS has always adhered to uncompromising quality and innovation. In the Chinese name to Chinese master for the hope, and the English name inspiration from the Greek mythology of the PEGASUS, which symbolizes the holy, perfect and pure image, representing ASUS never slack, the pursuit of excellence of the spirit."/>-->
-
-    <FinAccount finAccountTypeId="BANK_ACCOUNT" ownerPartyId="9000" finAccountId="9000" finAccountName="Bank of Shanghai" finAccountCode="79361234075342678" currencyUomId="CNY" statusId="FNACT_ACTIVE"/>
-    <FinAccount finAccountTypeId="BANK_ACCOUNT" ownerPartyId="9001" finAccountId="9001" finAccountName="Bank of Shanghai" finAccountCode="79361234075342678" currencyUomId="CNY" statusId="FNACT_ACTIVE"/>
-    <FinAccount finAccountTypeId="BANK_ACCOUNT" ownerPartyId="9002" finAccountId="9002" finAccountName="Bank of Shanghai" finAccountCode="79361234075342678" currencyUomId="CNY" statusId="FNACT_ACTIVE"/>
-    <FinAccount finAccountTypeId="BANK_ACCOUNT" ownerPartyId="9003" finAccountId="9003" finAccountName="Bank of Shanghai" finAccountCode="79361234075342678" currencyUomId="CNY" statusId="FNACT_ACTIVE"/>
-    <FinAccount finAccountTypeId="BANK_ACCOUNT" ownerPartyId="9004" finAccountId="9004" finAccountName="Bank of Shanghai" finAccountCode="79361234075342678" currencyUomId="CNY" statusId="FNACT_ACTIVE"/>
-    <FinAccount finAccountTypeId="BANK_ACCOUNT" ownerPartyId="9005" finAccountId="9005" finAccountName="Bank of Shanghai" finAccountCode="79361234075342678" currencyUomId="CNY" statusId="FNACT_ACTIVE"/>
-    <FinAccount finAccountTypeId="BANK_ACCOUNT" ownerPartyId="9006" finAccountId="9006" finAccountName="Bank of Shanghai" finAccountCode="79361234075342678" currencyUomId="CNY" statusId="FNACT_ACTIVE"/>
-    <FinAccount finAccountTypeId="BANK_ACCOUNT" ownerPartyId="9007" finAccountId="9007" finAccountName="Bank of Shanghai" finAccountCode="79361234075342678" currencyUomId="CNY" statusId="FNACT_ACTIVE"/>
-
-    <!--产品Demo数据-->
-    <UomType uomTypeId="QUANTITY_MEASURE" description="Quantity"/>
-    <Uom uomId="SET" uomTypeId="QUANTITY_MEASURE" description="Set"/>
-    <Uom uomId="PAIR" uomTypeId="QUANTITY_MEASURE" description="Pair"/>
-    <Uom uomId="_NA_" uomTypeId="QUANTITY_MEASURE" description="_NA_"/>
-    <Product productId="9000" productTypeId="FINISHED_GOOD" productName="ASUS desktop computer A380" primaryProductCategoryId="TECHNICAL_SERVICE_FEE" quantityUomId="SET"/>
-    <Product productId="9001" productTypeId="FINISHED_GOOD" productName="ASUS Tx series note book" primaryProductCategoryId="TECHNICAL_SERVICE_FEE" quantityUomId="SET"/>
-    <Product productId="9002" productTypeId="FINISHED_GOOD" productName="ASUS keyboard" primaryProductCategoryId="TECHNICAL_SERVICE_FEE" quantityUomId="SET"/>
-    <Product productId="9003" productTypeId="FINISHED_GOOD" productName="ASUS earphone" primaryProductCategoryId="TECHNICAL_SERVICE_FEE" quantityUomId="PAIR"/>
-    <Product productId="9004" productTypeId="FINISHED_GOOD" productName="ASUS display screen" primaryProductCategoryId="TECHNICAL_SERVICE_FEE" quantityUomId="SET"/>
-    <Product productId="9005" productTypeId="FINISHED_GOOD" productName="ASUS wireless mouse" primaryProductCategoryId="TECHNICAL_SERVICE_FEE" quantityUomId="SET"/>
-
-    <ProductType productTypeId="SERVICE" description="Service"/>
-    <Product productId="9006" productTypeId="SERVICE" productName="Food service" primaryProductCategoryId="MEALS"/>
-    <Product productId="9007" productTypeId="SERVICE" productName="Internet service" primaryProductCategoryId="CLOUD_SERVICE"/>
-    <Product productId="9008" productTypeId="SERVICE" productName="HR manage service" primaryProductCategoryId="TRAINING_EXPENSES"/>
-    <Product productId="9009" productTypeId="SERVICE" productName="Data storage service" primaryProductCategoryId="DATA_SERVICE"/>
-    <Product productId="9010" productTypeId="SERVICE" productName="Building clean service" primaryProductCategoryId="CLEANING"/>
-    <Product productId="9011" productTypeId="SERVICE" productName="Security service" primaryProductCategoryId="SECURITY_CHARGES"/>
-
-<!--    &lt;!&ndash;调查问卷完成情况枚举值&ndash;&gt;-->
-<!--    &lt;!&ndash;EnumerationType&ndash;&gt;-->
-<!--    <EnumerationType enumTypeId="DD_FROM_DEAL_ENUM" description="DDForm Deal Status"/>-->
-<!--    &lt;!&ndash;Enumeration&ndash;&gt;-->
-<!--    <Enumeration enumId="NOT_SEND_VENDOR" enumTypeId="DD_FROM_DEAL_ENUM" description="Not send to vendor"/>-->
-<!--    <Enumeration enumId="NOT_SUBMIT_VENDOR" enumTypeId="DD_FROM_DEAL_ENUM" description="Not submit to vendor"/>-->
-<!--    <Enumeration enumId="SUBMITTED_VENDOR" enumTypeId="DD_FROM_DEAL_ENUM" description="submitted to vendor"/>-->
-
-
-<!--    <PartyQuestionAppl partyQuatsionApplId="9000" partyId="SUPPLIER0001" surveyQuestionId="9000" partyQuestionApplTypeId="DD_FORM" requiredField="Y" sequenceNum="1"/>-->
-<!--    <PartyQuestionAppl partyQuatsionApplId="9000" partyId="SUPPLIER0001" surveyQuestionId="9001" partyQuestionApplTypeId="DD_FORM" requiredField="Y" sequenceNum="1"/>-->
-<!--    <PartyQuestionAppl partyQuatsionApplId="9000" partyId="SUPPLIER0001" surveyQuestionId="9002" partyQuestionApplTypeId="DD_FORM" requiredField="Y" sequenceNum="1"/>-->
-<!--    <PartyQuestionAppl partyQuatsionApplId="9000" partyId="SUPPLIER0001" surveyQuestionId="9003" partyQuestionApplTypeId="DD_FORM" requiredField="Y" sequenceNum="1"/>-->
-
-    <UILabApp description="01" permissionId="01" uiLabAppId="10000" uiLabAppName="Applicant"/>
-    <UILabApp description="02" permissionId="02" uiLabAppId="10001" uiLabAppName="Compliance"/>
-    <UILabApp description="00" permissionId="00" uiLabAppId="10002" uiLabAppName="Approval"/>
-    <UILabApp description="03" permissionId="03" uiLabAppId="10003" uiLabAppName="procurement"/>
-    <UILabApp description="04" permissionId="04" uiLabAppId="10004" uiLabAppName="vondors"/>
-    <RoleTypeUILabApp roleTypeId="APPLICANT" roleTypeUILabAppId="10000" uiLabAppId="10000"/>
-    <RoleTypeUILabApp roleTypeId="COMPLIANCE" roleTypeUILabAppId="10001" uiLabAppId="10001"/>
-    <RoleTypeUILabApp roleTypeId="CEO" roleTypeUILabAppId="10002" uiLabAppId="10002"/>
-    <RoleTypeUILabApp roleTypeId="CFO" roleTypeUILabAppId="10003" uiLabAppId="10002"/>
-    <RoleTypeUILabApp roleTypeId="CTO" roleTypeUILabAppId="10004" uiLabAppId="10002"/>
-    <RoleTypeUILabApp roleTypeId="PROCUREMENT" roleTypeUILabAppId="10005" uiLabAppId="10003"/>
-    <RoleTypeUILabApp roleTypeId="CONTACT" roleTypeUILabAppId="10006" uiLabAppId="10004"/>
-    <RoleTypeUILabApp roleTypeId="SUPPLIER" roleTypeUILabAppId="10007" uiLabAppId="10004"/>
-    <RoleTypeUILabApp roleTypeId="PROCUREMENT" roleTypeUILabAppId="1000" uiLabAppId="10000"/>
-
-    <Party partyId="CONTACT00001" partyName="Zhang Zheng" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
-    <Party partyId="CONTACT00002" partyName="Chen Xiaoxin" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
-    <Party partyId="CONTACT00003" partyName="Yang Lin" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
-    <Party partyId="CONTACT00004" partyName="Chang Ting" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
-    <Party partyId="CONTACT00005" partyName="Zhou Junming" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
-    <Party partyId="CONTACT00006" partyName="Chen Xiaotong" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
-    <Party partyId="CONTACT00007" partyName="Wang Xiuping" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
-
-    <Party partyId="CONTACT00008" partyName="陈博涛" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
-    <Party partyId="CONTACT00009" partyName="杨宏兴" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
-    <Party partyId="CONTACT00010" partyName="孙磊" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
-    <Party partyId="CONTACT00011" partyName="张程" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
-    <Party partyId="CONTACT00012" partyName="刘云" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
-    <Party partyId="CONTACT00013" partyName="程鑫" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
-    <Party partyId="CONTACT00014" partyName="朱新兰" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
-
-    <PartyAttribute attrName="nationality" attrValue="China" partyId="CONTACT00008"/>
-    <PartyAttribute attrName="nationality" attrValue="China" partyId="CONTACT00009"/>
-    <PartyAttribute attrName="nationality" attrValue="China" partyId="CONTACT00010"/>
-    <PartyAttribute attrName="nationality" attrValue="China" partyId="CONTACT00011"/>
-    <PartyAttribute attrName="nationality" attrValue="China" partyId="CONTACT00012"/>
-    <PartyAttribute attrName="nationality" attrValue="China" partyId="CONTACT00013"/>
-    <PartyAttribute attrName="nationality" attrValue="China" partyId="CONTACT00014"/>
-
-    <PartyAttribute attrName="copyIdentificationAttached" attrValue="Y" partyId="CONTACT00008"/>
-    <PartyAttribute attrName="copyIdentificationAttached" attrValue="Y" partyId="CONTACT00009"/>
-    <PartyAttribute attrName="copyIdentificationAttached" attrValue="Y" partyId="CONTACT00010"/>
-    <PartyAttribute attrName="copyIdentificationAttached" attrValue="Y" partyId="CONTACT00011"/>
-    <PartyAttribute attrName="copyIdentificationAttached" attrValue="Y" partyId="CONTACT00012"/>
-    <PartyAttribute attrName="copyIdentificationAttached" attrValue="Y" partyId="CONTACT00013"/>
-    <PartyAttribute attrName="copyIdentificationAttached" attrValue="Y" partyId="CONTACT00014"/>
-
-    <Person partyId="CONTACT00008" firstName="Chen" lastName="Botao"/>
-    <Person partyId="CONTACT00009" firstName="Yang" lastName="Hongxing"/>
-    <Person partyId="CONTACT00010" firstName="Sun" lastName="Lei"/>
-    <Person partyId="CONTACT00011" firstName="Zhang" lastName="Cheng"/>
-    <Person partyId="CONTACT00012" firstName="Liu" lastName="Yun"/>
-    <Person partyId="CONTACT00013" firstName="Cheng" lastName="Xin"/>
-    <Person partyId="CONTACT00014" firstName="Zhu" lastName="Xinlan"/>
-
-
-    <Person partyId="CONTACT00001" firstName="Zhang" lastName="Zheng"/>
-    <Person partyId="CONTACT00002" firstName="Chen" lastName="Xiaoxin"/>
-    <Person partyId="CONTACT00003" firstName="Yang" lastName="Lin"/>
-    <Person partyId="CONTACT00004" firstName="Chang" lastName="Ting"/>
-    <Person partyId="CONTACT00005" firstName="Zhou" lastName="Junming"/>
-    <Person partyId="CONTACT00006" firstName="Chen" lastName="Xiaotong"/>
-    <Person partyId="CONTACT00007" firstName="Wang" lastName="Xiuping"/>
-
-    <PartyRole partyId="CONTACT00001" roleTypeId="CONTACT"/>
-    <PartyRole partyId="CONTACT00002" roleTypeId="CONTACT"/>
-    <PartyRole partyId="CONTACT00003" roleTypeId="CONTACT"/>
-    <PartyRole partyId="CONTACT00004" roleTypeId="CONTACT"/>
-    <PartyRole partyId="CONTACT00005" roleTypeId="CONTACT"/>
-    <PartyRole partyId="CONTACT00006" roleTypeId="CONTACT"/>
-    <PartyRole partyId="CONTACT00007" roleTypeId="CONTACT"/>
-
-    <PartyRole partyId="CONTACT00008" roleTypeId="BENEFICIAL_PERSON"/>
-    <PartyRole partyId="CONTACT00009" roleTypeId="BENEFICIAL_PERSON"/>
-    <PartyRole partyId="CONTACT00010" roleTypeId="BENEFICIAL_PERSON"/>
-    <PartyRole partyId="CONTACT00011" roleTypeId="BENEFICIAL_PERSON"/>
-    <PartyRole partyId="CONTACT00012" roleTypeId="BENEFICIAL_PERSON"/>
-    <PartyRole partyId="CONTACT00013" roleTypeId="BENEFICIAL_PERSON"/>
-    <PartyRole partyId="CONTACT00014" roleTypeId="BENEFICIAL_PERSON"/>
-
-    <PartyRelationship partyRelationshipId="9000" partyIdFrom="9000" partyIdTo="CONTACT00001" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
-    <PartyRelationship partyRelationshipId="9001" partyIdFrom="9001" partyIdTo="CONTACT00002" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
-    <PartyRelationship partyRelationshipId="9002" partyIdFrom="9002" partyIdTo="CONTACT00003" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
-    <PartyRelationship partyRelationshipId="9003" partyIdFrom="9003" partyIdTo="CONTACT00004" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
-    <PartyRelationship partyRelationshipId="9004" partyIdFrom="9004" partyIdTo="CONTACT00005" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
-    <PartyRelationship partyRelationshipId="9005" partyIdFrom="9005" partyIdTo="CONTACT00006" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
-    <PartyRelationship partyRelationshipId="9006" partyIdFrom="9006" partyIdTo="CONTACT00007" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
-
-    <PartyRelationship partyRelationshipId="9007" partyIdFrom="9000" partyIdTo="CONTACT00008" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="BENEFICIAL_PERSON" fromDate="2023-08-18 11:45:31.928" amount="0.3"/>
-    <PartyRelationship partyRelationshipId="9008" partyIdFrom="9001" partyIdTo="CONTACT00009" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="BENEFICIAL_PERSON" fromDate="2023-08-18 11:45:31.928" amount="0.3"/>
-    <PartyRelationship partyRelationshipId="9009" partyIdFrom="9002" partyIdTo="CONTACT00010" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="BENEFICIAL_PERSON" fromDate="2023-08-18 11:45:31.928" amount="0.3"/>
-    <PartyRelationship partyRelationshipId="9010" partyIdFrom="9003" partyIdTo="CONTACT00011" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="BENEFICIAL_PERSON" fromDate="2023-08-18 11:45:31.928" amount="0.3"/>
-    <PartyRelationship partyRelationshipId="9011" partyIdFrom="9004" partyIdTo="CONTACT00012" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="BENEFICIAL_PERSON" fromDate="2023-08-18 11:45:31.928" amount="0.3"/>
-    <PartyRelationship partyRelationshipId="9012" partyIdFrom="9005" partyIdTo="CONTACT00013" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="BENEFICIAL_PERSON" fromDate="2023-08-18 11:45:31.928" amount="0.3"/>
-    <PartyRelationship partyRelationshipId="9013" partyIdFrom="9006" partyIdTo="CONTACT00014" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="BENEFICIAL_PERSON" fromDate="2023-08-18 11:45:31.928" amount="0.3"/>
-
-    <!--ContactMech(联系人电话)-->
-    <ContactMech contactMechId="TELE_CONTACT00001" contactMechTypeId="TELECOM_NUMBER"/>
-    <ContactMech contactMechId="TELE_CONTACT00002" contactMechTypeId="TELECOM_NUMBER"/>
-    <ContactMech contactMechId="TELE_CONTACT00003" contactMechTypeId="TELECOM_NUMBER"/>
-    <ContactMech contactMechId="TELE_CONTACT00004" contactMechTypeId="TELECOM_NUMBER"/>
-    <ContactMech contactMechId="TELE_CONTACT00005" contactMechTypeId="TELECOM_NUMBER"/>
-    <ContactMech contactMechId="TELE_CONTACT00006" contactMechTypeId="TELECOM_NUMBER"/>
-    <ContactMech contactMechId="TELE_CONTACT00007" contactMechTypeId="TELECOM_NUMBER"/>
-
-    <ContactMech contactMechId="TELE_CONTACT00008" contactMechTypeId="TELECOM_NUMBER"/>
-    <ContactMech contactMechId="TELE_CONTACT00009" contactMechTypeId="TELECOM_NUMBER"/>
-    <ContactMech contactMechId="TELE_CONTACT00010" contactMechTypeId="TELECOM_NUMBER"/>
-    <ContactMech contactMechId="TELE_CONTACT00011" contactMechTypeId="TELECOM_NUMBER"/>
-    <ContactMech contactMechId="TELE_CONTACT00012" contactMechTypeId="TELECOM_NUMBER"/>
-    <ContactMech contactMechId="TELE_CONTACT00013" contactMechTypeId="TELECOM_NUMBER"/>
-    <ContactMech contactMechId="TELE_CONTACT00014" contactMechTypeId="TELECOM_NUMBER"/>
-
-    <!--ContactMech(联系人邮箱)-->
-    <ContactMech contactMechId="EMAIL_CONTACT00001" infoString="ZZJGUIH@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
-    <ContactMech contactMechId="EMAIL_CONTACT00002" infoString="CXX968756@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
-    <ContactMech contactMechId="EMAIL_CONTACT00003" infoString="YL534CBY@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
-    <ContactMech contactMechId="EMAIL_CONTACT00004" infoString="CT5345YGU@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
-    <ContactMech contactMechId="EMAIL_CONTACT00005" infoString="CXV3654@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
-    <ContactMech contactMechId="EMAIL_CONTACT00006" infoString="239869876@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
-    <ContactMech contactMechId="EMAIL_CONTACT00007" infoString="ZX54653@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
-    <ContactMech contactMechId="EMAIL_CONTACT00008" infoString="9087BUYG@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
-    <ContactMech contactMechId="EMAIL_CONTACT00009" infoString="NCBY45365@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
-    <ContactMech contactMechId="EMAIL_CONTACT00010" infoString="NNMM536@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
-    <ContactMech contactMechId="EMAIL_CONTACT00011" infoString="1235NUIGM@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
-    <ContactMech contactMechId="EMAIL_CONTACT00012" infoString="256C89FDT@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
-    <ContactMech contactMechId="EMAIL_CONTACT00013" infoString="GZ8349657@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
-    <ContactMech contactMechId="EMAIL_CONTACT00014" infoString="MN534BYU@123.com" contactMechTypeId="EMAIL_ADDRESS"/>
-    <!--ContactMech(联系人微信)-->
-    <ContactMech contactMechId="VX_CONTACT00008" contactMechTypeId="TELECOM_NUMBER"/>
-    <ContactMech contactMechId="VX_CONTACT00009" contactMechTypeId="TELECOM_NUMBER"/>
-    <ContactMech contactMechId="VX_CONTACT00010" contactMechTypeId="TELECOM_NUMBER"/>
-    <ContactMech contactMechId="VX_CONTACT00011" contactMechTypeId="TELECOM_NUMBER"/>
-    <ContactMech contactMechId="VX_CONTACT00012" contactMechTypeId="TELECOM_NUMBER"/>
-    <ContactMech contactMechId="VX_CONTACT00013" contactMechTypeId="TELECOM_NUMBER"/>
-    <ContactMech contactMechId="VX_CONTACT00014" contactMechTypeId="TELECOM_NUMBER"/>
-    <ContactMech contactMechId="VX_CONTACT00001" contactMechTypeId="TELECOM_NUMBER"/>
-    <ContactMech contactMechId="VX_CONTACT00002" contactMechTypeId="TELECOM_NUMBER"/>
-    <ContactMech contactMechId="VX_CONTACT00003" contactMechTypeId="TELECOM_NUMBER"/>
-    <ContactMech contactMechId="VX_CONTACT00004" contactMechTypeId="TELECOM_NUMBER"/>
-    <ContactMech contactMechId="VX_CONTACT00005" contactMechTypeId="TELECOM_NUMBER"/>
-    <ContactMech contactMechId="VX_CONTACT00006" contactMechTypeId="TELECOM_NUMBER"/>
-    <ContactMech contactMechId="VX_CONTACT00007" contactMechTypeId="TELECOM_NUMBER"/>
-    <!--TelecomNumber(联系人电话)-->
-    <TelecomNumber contactMechId="TELE_CONTACT00001" contactNumber="19946345361"/>
-    <TelecomNumber contactMechId="TELE_CONTACT00002" contactNumber="18374260957"/>
-    <TelecomNumber contactMechId="TELE_CONTACT00003" contactNumber="13246792210"/>
-    <TelecomNumber contactMechId="TELE_CONTACT00004" contactNumber="18014723319"/>
-    <TelecomNumber contactMechId="TELE_CONTACT00005" contactNumber="18880412334"/>
-    <TelecomNumber contactMechId="TELE_CONTACT00006" contactNumber="17923406725"/>
-    <TelecomNumber contactMechId="TELE_CONTACT00007" contactNumber="13947270871"/>
-    <TelecomNumber contactMechId="TELE_CONTACT00008" contactNumber="15674722218"/>
-    <TelecomNumber contactMechId="TELE_CONTACT00009" contactNumber="19946730021"/>
-    <TelecomNumber contactMechId="TELE_CONTACT00010" contactNumber="12846771380"/>
-    <TelecomNumber contactMechId="TELE_CONTACT00011" contactNumber="17910403725"/>
-    <TelecomNumber contactMechId="TELE_CONTACT00012" contactNumber="18014722372"/>
-    <TelecomNumber contactMechId="TELE_CONTACT00013" contactNumber="15945267478"/>
-    <TelecomNumber contactMechId="TELE_CONTACT00014" contactNumber="13908276623"/>
-
-    <!--TelecomNumber(联系人微信)-->
-    <TelecomNumber contactMechId="VX_CONTACT00001" contactNumber="VX:ZZG890821"/>
-    <TelecomNumber contactMechId="VX_CONTACT00002" contactNumber="VX:YL980643"/>
-    <TelecomNumber contactMechId="VX_CONTACT00003" contactNumber="VX:CT43254CT"/>
-    <TelecomNumber contactMechId="VX_CONTACT00004" contactNumber="VX:zhou43645634"/>
-    <TelecomNumber contactMechId="VX_CONTACT00005" contactNumber="VX:xiaotong32546"/>
-    <TelecomNumber contactMechId="VX_CONTACT00006" contactNumber="VX:9867864235xp"/>
-    <TelecomNumber contactMechId="VX_CONTACT00007" contactNumber="VX:49cbt8973"/>
-    <TelecomNumber contactMechId="VX_CONTACT00008" contactNumber="VX:YHX42356"/>
-    <TelecomNumber contactMechId="VX_CONTACT00009" contactNumber="VX:SL32978BH"/>
-    <TelecomNumber contactMechId="VX_CONTACT00010" contactNumber="VX:BBS732459"/>
-    <TelecomNumber contactMechId="VX_CONTACT00011" contactNumber="VX:LIU8294725"/>
-    <TelecomNumber contactMechId="VX_CONTACT00012" contactNumber="VX:CX248973948seq"/>
-    <TelecomNumber contactMechId="VX_CONTACT00013" contactNumber="VX:xinlan34526"/>
-    <TelecomNumber contactMechId="VX_CONTACT00014" contactNumber="VX:TZ923876727"/>
-
-    <!--PartyContactMechPurpose(联系人电话)-->
-    <PartyContactMechPurpose partyId="CONTACT00001" contactMechId="TELE_CONTACT00001" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00002" contactMechId="TELE_CONTACT00002" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00003" contactMechId="TELE_CONTACT00003" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00004" contactMechId="TELE_CONTACT00004" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00005" contactMechId="TELE_CONTACT00005" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00006" contactMechId="TELE_CONTACT00006" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00007" contactMechId="TELE_CONTACT00007" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00008" contactMechId="TELE_CONTACT00008" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00009" contactMechId="TELE_CONTACT00009" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00010" contactMechId="TELE_CONTACT00010" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00011" contactMechId="TELE_CONTACT00011" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00012" contactMechId="TELE_CONTACT00012" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00013" contactMechId="TELE_CONTACT00013" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00014" contactMechId="TELE_CONTACT00014" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2023-01-28 11:45:31.928"/>
-
-    <!--PartyContactMechPurpose(联系人微信)-->
-    <PartyContactMechPurpose partyId="CONTACT00001" contactMechId="VX_CONTACT00001" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00002" contactMechId="VX_CONTACT00002" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00003" contactMechId="VX_CONTACT00003" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00004" contactMechId="VX_CONTACT00004" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00005" contactMechId="VX_CONTACT00005" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00006" contactMechId="VX_CONTACT00006" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00007" contactMechId="VX_CONTACT00007" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00008" contactMechId="VX_CONTACT00008" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00009" contactMechId="VX_CONTACT00009" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00010" contactMechId="VX_CONTACT00010" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00011" contactMechId="VX_CONTACT00011" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00012" contactMechId="VX_CONTACT00012" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00013" contactMechId="VX_CONTACT00013" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00014" contactMechId="VX_CONTACT00014" contactMechPurposeTypeId="PRIMARY_PHONE" fromDate="2023-01-28 11:45:31.928"/>
-
-    <!--PartyContactMechPurpose(联系人邮箱)-->
-    <PartyContactMechPurpose partyId="CONTACT00001" contactMechId="EMAIL_CONTACT00001" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00002" contactMechId="EMAIL_CONTACT00002" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00003" contactMechId="EMAIL_CONTACT00003" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00004" contactMechId="EMAIL_CONTACT00004" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00005" contactMechId="EMAIL_CONTACT00005" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00006" contactMechId="EMAIL_CONTACT00006" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00007" contactMechId="EMAIL_CONTACT00007" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00008" contactMechId="EMAIL_CONTACT00008" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00009" contactMechId="EMAIL_CONTACT00009" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00010" contactMechId="EMAIL_CONTACT00010" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00011" contactMechId="EMAIL_CONTACT00011" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00012" contactMechId="EMAIL_CONTACT00012" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00013" contactMechId="EMAIL_CONTACT00013" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
-    <PartyContactMechPurpose partyId="CONTACT00014" contactMechId="EMAIL_CONTACT00014" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
 
 </entity-engine-xml>
