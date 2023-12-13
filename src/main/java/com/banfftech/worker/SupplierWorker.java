@@ -279,7 +279,7 @@ public class SupplierWorker {
     }
 
     public static String noUploadedFiles (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-        String noUploadedFilesName = "Missing supported documents: ";
+        String noUploadedFilesName = "";
         List<GenericValue> partyContents = delegator.findByAnd("PartyMediaResource",
                 UtilMisc.toMap("partyId", supplierParty.getString("partyId"),
                         "parentTypeId", "SUPPORTED_FILE"), null, true);
@@ -287,25 +287,24 @@ public class SupplierWorker {
             GenericValue content = delegator.findOne("Content", UtilMisc.toMap("contentId", partyContent.get("contentId")), true);
             GenericValue dataResource = delegator.findOne("DataResource", UtilMisc.toMap("dataResourceId", content.get("dataResourceId")), true);
             if (UtilValidate.isEmpty(dataResource.get("dataResourceName"))){
-                noUploadedFilesName = noUploadedFilesName.equals("Missing supported documents: ") ? "Missing supported documents: " + content.getString("contentName") : noUploadedFilesName + "、 " + content.getString("contentName");
+//                noUploadedFilesName = noUploadedFilesName.equals("Missing supported documents: ") ? "Missing supported documents: " + content.getString("contentName") : noUploadedFilesName + "、 " + content.getString("contentName");
+                noUploadedFilesName = "Missing supported documents\n";
+                return noUploadedFilesName;
             }
         }
-        if (noUploadedFilesName.equals("Missing supported documents: ")){
-            return "";
-        }
-        return noUploadedFilesName + ";\n\r ";
+        return noUploadedFilesName;
     }
 
     public static String getYesResponse (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
         String warningString = "";
         if (isCheckWarning(supplierParty, delegator)){
-            warningString = "Compliance certifications warning;\n\r ";
+            warningString = "Compliance certifications warning\n\r ";
         }
         return warningString;
     }
 
     public static String noUploadUBODoc(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-        String missingDoc = "Missing documents uploaded by UBO.";
+        String missingDoc = "Missing ID copy of UBO";
         List<GenericValue> partyContents = delegator.findByAnd("PartyContent",
                 UtilMisc.toMap("partyId", supplierParty.getString("partyId"),
                         "partyContentTypeId", "UBO_DOCUMENT"), null, true);
@@ -319,7 +318,22 @@ public class SupplierWorker {
         String warningString = getYesResponse(supplierParty, delegator);
         String noUploadedFilesName = noUploadedFiles(supplierParty, delegator);
         String noUploadUBODoc = noUploadUBODoc(supplierParty, delegator);
-        return warningString + noUploadedFilesName + noUploadUBODoc;
+        String str = "";
+        List<String> stringList = new ArrayList<>();
+        stringList.add(warningString);
+        stringList.add(noUploadedFilesName);
+        stringList.add(noUploadUBODoc);
+        for (int i = 0; i < stringList.size(); i++) {
+            String s = stringList.get(i);
+            if (s == null) continue;
+            if (UtilValidate.isNotEmpty(str)) {
+                str += ";" + s;
+            } else {
+                str = s;
+            }
+        }
+        str += ".";
+        return str;
     }
 
     public static String addNameForUpload (GenericValue partyMedia, Delegator delegator) throws GenericEntityException {

@@ -163,7 +163,7 @@
         <!-- Supplier DD -->
         <NavigationProperty Name="SupplierDDForm" Type="SupplierDDForm" Relations="PartyGroupAndContact" IsCollection="false"/>
 
-        <SelectionFields PropertyPath="partyName"/>
+        <SelectionFields PropertyPath="partyName,groupTypeId"/>
         <!--Annotation-->
         <FieldGroup Label="PartyBaseInfo" Qualifier="PartyBaseInfo">
             <DataField Values="tickerSymbol,ProductCategory/categoryName,usccNumber,cycleTime" Importance="High"/>
