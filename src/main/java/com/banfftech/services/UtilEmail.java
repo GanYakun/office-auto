@@ -9,6 +9,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.util.Date;
 import java.util.Properties;
@@ -24,7 +25,7 @@ public class UtilEmail {
     // 端口号,这个是163使用到的;QQ的应该是465或者875
     public static final String SMTP_163_PORT = "465";
 
-    public static void sendEmail(String emailUrl, String titleName, String content) throws MessagingException {
+    public static void sendEmail(String emailUrl, String titleName, String content) throws MessagingException, UnsupportedEncodingException {
         Properties p = new Properties();
         p.setProperty("mail.smtp.host", EMAIL_163_SMTP_HOST);
         p.setProperty("mail.smtp.port", SMTP_163_PORT);
@@ -43,7 +44,9 @@ public class UtilEmail {
         Debug.log("创建邮件");
         MimeMessage message = new MimeMessage(session);
         // 发件人
-        message.setFrom(new InternetAddress(SEND_EMAIL_URL));
+        InternetAddress internetAddress = new InternetAddress(SEND_EMAIL_URL);
+        internetAddress.setPersonal("Procurement System");
+        message.setFrom(internetAddress);
         // 收件人和抄送人
         message.setRecipients(Message.RecipientType.TO, emailUrl);
 //		message.setRecipients(Message.RecipientType.CC, MY_EMAIL_ACCOUNT);
