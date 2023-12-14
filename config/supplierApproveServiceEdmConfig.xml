@@ -151,7 +151,7 @@
         <NavigationProperty Name="SurveyQuestionAndAnswer"/>
         <NavigationProperty Name="ChildWorkEffortStatus" Type="WorkEffortStatus"
                             Relations="ChildWorkEffort/WorkEffortStatus" IsCollection="true"/>
-        <NavigationProperty Name="ContactPerson" Type="RelationshipAndToParty" IsCollection="true"
+        <NavigationProperty Name="ContactPerson" Type="RelationshipAndToParty" IsCollection="false"
                             Relations="FromRelationshipAndToParty(roleTypeIdTo=CONTACT and roleTypeIdFrom=SUPPLIER)"/>
         <NavigationProperty Name="CreatedParty" Type="CreatedParty" Relations="CreatedByUserLogin/PersonAndContact" IsCollection="false"/>
 
