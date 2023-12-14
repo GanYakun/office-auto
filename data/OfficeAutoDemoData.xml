@@ -603,20 +603,22 @@ under the License.
 <!--    <PartyQuestionAppl partyQuatsionApplId="9000" partyId="SUPPLIER0001" surveyQuestionId="9002" partyQuestionApplTypeId="DD_FORM" requiredField="Y" sequenceNum="1"/>-->
 <!--    <PartyQuestionAppl partyQuatsionApplId="9000" partyId="SUPPLIER0001" surveyQuestionId="9003" partyQuestionApplTypeId="DD_FORM" requiredField="Y" sequenceNum="1"/>-->
 
-    <UILabApp description="01" permissionId="01" uiLabAppId="10000" uiLabAppName="Applicant"/>
-    <UILabApp description="02" permissionId="02" uiLabAppId="10001" uiLabAppName="Compliance"/>
-    <UILabApp description="00" permissionId="00" uiLabAppId="10002" uiLabAppName="Approval"/>
-    <UILabApp description="03" permissionId="03" uiLabAppId="10003" uiLabAppName="procurement"/>
-    <UILabApp description="04" permissionId="04" uiLabAppId="10004" uiLabAppName="vondors"/>
-    <RoleTypeUILabApp roleTypeId="APPLICANT" roleTypeUILabAppId="10000" uiLabAppId="10000"/>
-    <RoleTypeUILabApp roleTypeId="COMPLIANCE" roleTypeUILabAppId="10001" uiLabAppId="10001"/>
-    <RoleTypeUILabApp roleTypeId="CEO" roleTypeUILabAppId="10002" uiLabAppId="10002"/>
-    <RoleTypeUILabApp roleTypeId="CFO" roleTypeUILabAppId="10003" uiLabAppId="10002"/>
-    <RoleTypeUILabApp roleTypeId="CTO" roleTypeUILabAppId="10004" uiLabAppId="10002"/>
-    <RoleTypeUILabApp roleTypeId="PROCUREMENT" roleTypeUILabAppId="10005" uiLabAppId="10003"/>
-    <RoleTypeUILabApp roleTypeId="CONTACT" roleTypeUILabAppId="10006" uiLabAppId="10004"/>
-    <RoleTypeUILabApp roleTypeId="SUPPLIER" roleTypeUILabAppId="10007" uiLabAppId="10004"/>
-    <RoleTypeUILabApp roleTypeId="PROCUREMENT" roleTypeUILabAppId="1000" uiLabAppId="10000"/>
+    <UILabApp description="01" permissionId="01" uiLabAppId="UI10000" uiLabAppName="Applicant"/>
+    <UILabApp description="02" permissionId="02" uiLabAppId="UI10001" uiLabAppName="Compliance"/>
+    <UILabApp description="00" permissionId="00" uiLabAppId="UI10002" uiLabAppName="Approval"/>
+    <UILabApp description="03" permissionId="03" uiLabAppId="UI10003" uiLabAppName="procurement"/>
+    <UILabApp description="04" permissionId="04" uiLabAppId="UI10004" uiLabAppName="vendors"/>
+    <RoleTypeUILabApp roleTypeId="PROCUREMENT" roleTypeUILabAppId="UI1000" uiLabAppId="UI10000"/>
+    <RoleTypeUILabApp roleTypeId="APPLICANT" roleTypeUILabAppId="UI10000" uiLabAppId="UI10000"/>
+    <RoleTypeUILabApp roleTypeId="COMPLIANCE" roleTypeUILabAppId="UI10001" uiLabAppId="UI10001"/>
+    <RoleTypeUILabApp roleTypeId="CEO" roleTypeUILabAppId="UI10002" uiLabAppId="UI10002"/>
+    <RoleTypeUILabApp roleTypeId="CFO" roleTypeUILabAppId="UI10003" uiLabAppId="UI10002"/>
+    <RoleTypeUILabApp roleTypeId="CTO" roleTypeUILabAppId="UI10004" uiLabAppId="UI10002"/>
+    <RoleTypeUILabApp roleTypeId="PROCUREMENT" roleTypeUILabAppId="UI10005" uiLabAppId="UI10003"/>
+    <RoleTypeUILabApp roleTypeId="CONTACT" roleTypeUILabAppId="UI10006" uiLabAppId="UI10004"/>
+    <RoleTypeUILabApp roleTypeId="SUPPLIER" roleTypeUILabAppId="UI10007" uiLabAppId="UI10004"/>
+    <RoleTypeUILabApp roleTypeId="APPLICANT" roleTypeUILabAppId="UI10008" uiLabAppId="UI10004"/>
+    <RoleTypeUILabApp roleTypeId="PROCUREMENT" roleTypeUILabAppId="UI10009" uiLabAppId="UI10004"/>
 
     <Party partyId="CONTACT00001" partyName="Zhang Zheng" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
     <Party partyId="CONTACT00002" partyName="Chen Xiaoxin" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
