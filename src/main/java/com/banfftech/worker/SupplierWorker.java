@@ -325,7 +325,7 @@ public class SupplierWorker {
         stringList.add(noUploadUBODoc);
         for (int i = 0; i < stringList.size(); i++) {
             String s = stringList.get(i);
-            if (s == null) continue;
+            if (UtilValidate.isEmpty(s)) continue;
             if (UtilValidate.isNotEmpty(str)) {
                 str += ";\n" + s;
             } else {
