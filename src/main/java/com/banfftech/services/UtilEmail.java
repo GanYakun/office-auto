@@ -67,6 +67,12 @@ public class UtilEmail {
         return FileUtils.readFileToString(new File(fileUrl), "utf-8");
     }
 
+    public static String getVendorOnBoardingVendorTemp() throws IOException {
+        String tempPath="component://officeauto/documents/VendorOnBoarding_vendor_temp.html";
+        String fileUrl = FlexibleLocation.resolveLocation(tempPath).getFile();
+        return FileUtils.readFileToString(new File(fileUrl), "utf-8");
+    }
+
     public static final String vendorOnBoardingTemp = "<!DOCTYPE html>\n" +
             "<html lang=\"en\">\n" +
             "<head>\n" +

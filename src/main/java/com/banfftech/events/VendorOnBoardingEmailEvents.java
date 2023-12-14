@@ -66,7 +66,7 @@ public class VendorOnBoardingEmailEvents {
                     "Thank you.<br>" +
                     "Kind regards, ";
 
-            String content = UtilEmail.getVendorOnBoardingTemp();
+            String content = UtilEmail.getVendorOnBoardingVendorTemp();
             content = content.replace("${{Title}}", "Hello!");
             content = content.replace("${{Content}}", contentStr);
             content = content.replace("${{TargetUrl}}", currentUrl);
