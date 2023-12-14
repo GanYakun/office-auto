@@ -226,7 +226,7 @@ public class SupplierWorker {
 
     public static Long getClassificationRatingNumber (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
         Long criticalValue = 0L;
-        Map<String, Object> statusMap = UtilMisc.toMap("High",1L,"Low",3L,"Medium",2L);
+        Map<String, Object> statusMap = UtilMisc.toMap("High",3L,"Low",1L,"Medium",2L);
         List<GenericValue> partyClassifications = delegator.findByAnd("PartyClassification",
                 UtilMisc.toMap("partyId", supplierParty.get("partyId")), null, true);
         if (UtilValidate.isNotEmpty(partyClassifications)){
@@ -288,7 +288,7 @@ public class SupplierWorker {
             GenericValue dataResource = delegator.findOne("DataResource", UtilMisc.toMap("dataResourceId", content.get("dataResourceId")), true);
             if (UtilValidate.isEmpty(dataResource.get("dataResourceName"))){
 //                noUploadedFilesName = noUploadedFilesName.equals("Missing supported documents: ") ? "Missing supported documents: " + content.getString("contentName") : noUploadedFilesName + "、 " + content.getString("contentName");
-                noUploadedFilesName = "Missing supported documents\n";
+                noUploadedFilesName = "Missing supported documents";
                 return noUploadedFilesName;
             }
         }
@@ -298,7 +298,7 @@ public class SupplierWorker {
     public static String getYesResponse (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
         String warningString = "";
         if (isCheckWarning(supplierParty, delegator)){
-            warningString = "Compliance certifications warning\n\r ";
+            warningString = "Compliance certifications warning";
         }
         return warningString;
     }
@@ -327,7 +327,7 @@ public class SupplierWorker {
             String s = stringList.get(i);
             if (s == null) continue;
             if (UtilValidate.isNotEmpty(str)) {
-                str += ";" + s;
+                str += ";\n" + s;
             } else {
                 str = s;
             }
