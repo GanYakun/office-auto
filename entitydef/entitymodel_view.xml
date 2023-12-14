@@ -245,6 +245,9 @@
         <relation type="one-nofk" title="CreatedBy" rel-entity-name="UserLogin">
             <key-map field-name="createdByUserLogin" rel-field-name="userLoginId"/>
         </relation>
+        <relation type="many" title="From" rel-entity-name="RelationshipAndToParty">
+            <key-map field-name="partyId" rel-field-name="partyIdFrom"/>
+        </relation>
     </view-entity>
 
     <view-entity entity-name="SurveyQuestionAndAnswer"
