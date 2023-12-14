@@ -44,6 +44,7 @@ def generateFields(Map<String, Object> context){
         riskCritical = 0L;
         GenericValue supplierParty = (GenericValue) entity.getGenericValue();
         Boolean applicantSubmitHidden = SupplierWorker.applicantSubmitIsHidden(supplierParty, delegator);
+        Boolean procurementSubmitHidden = SupplierWorker.procurementSubmitIsHidden(supplierParty, delegator);
         String warningContent = SupplierWorker.getWarningContent(supplierParty, delegator);
         ddFormType = SupplierWorker.getDDFormType(supplierParty, delegator);
         ddFormTypeId = SupplierWorker.getDDFormTypeId(ddFormType);
@@ -87,6 +88,7 @@ def generateFields(Map<String, Object> context){
         entity.addProperty(new Property(null, "warningContent", ValueType.PRIMITIVE, warningContent))
         entity.addProperty(new Property(null, "applicantSubmitHidden", ValueType.PRIMITIVE, applicantSubmitHidden))
         entity.addProperty(new Property(null, "complianceCycleTime", ValueType.PRIMITIVE, complianceCycleTime))
+        entity.addProperty(new Property(null, "procurementSubmitHidden", ValueType.PRIMITIVE, procurementSubmitHidden))
 
         //文件数量
         String supplierId = supplierParty.getString("partyId");

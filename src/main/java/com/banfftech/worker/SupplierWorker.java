@@ -397,4 +397,18 @@ public class SupplierWorker {
         }
         return false;
     }
+
+    public static Boolean procurementSubmitIsHidden(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
+        Boolean procurementSubmitHidden = false;
+        List<GenericValue> coworks = delegator.findByAnd("WorkEffort",
+                UtilMisc.toMap("partyId", supplierParty.get("partyId"), "workEffortTypeId", "COWORK"), null, true);
+        if (UtilValidate.isNotEmpty(coworks)){
+            GenericValue cowork = EntityUtil.getFirst(coworks);
+            if (cowork.get("currentStatusId").equals("REGISTERED") || cowork.get("currentStatusId").equals("ON_HOLD") || cowork.get("currentStatusId").equals("COMPLIANCE_REVIEW")){
+                procurementSubmitHidden = true;
+            }
+        }
+        return procurementSubmitHidden;
+    }
+
 }

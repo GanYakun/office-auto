@@ -106,6 +106,8 @@
         <Property Name="warningContent" Type="String" Label="${warningContent}"/>
         <!-- applicant提交按钮隐藏逻辑 -->
         <Property Name="applicantSubmitHidden" Type="Boolean"/>
+        <!-- procurement提交按钮隐藏逻辑 -->
+        <Property Name="procurementSubmitHidden" Type="Boolean"/>
         <!-- ddForm是否已提交 -->
         <Property Name="ddFormIsSubmitted" Type="Boolean"/>
         <NavigationProperty Name="Product" Type="Product" Relations="SupplierProduct/Product" IsCollection="true"/>
@@ -149,7 +151,8 @@
         <NavigationProperty Name="SurveyQuestionAndAnswer"/>
         <NavigationProperty Name="ChildWorkEffortStatus" Type="WorkEffortStatus"
                             Relations="ChildWorkEffort/WorkEffortStatus" IsCollection="true"/>
-        <NavigationProperty Name="ContactPerson" IsCollection="false" Type="RelationshipAndToParty" Relations="FromRelationshipAndToParty(roleTypeIdTo=CONTACT and roleTypeIdFrom=SUPPLIER)"/>
+        <NavigationProperty Name="ContactPerson" Type="RelationshipAndToParty" IsCollection="true"
+                            Relations="FromRelationshipAndToParty(roleTypeIdTo=CONTACT and roleTypeIdFrom=SUPPLIER)"/>
         <NavigationProperty Name="CreatedParty" Type="CreatedParty" Relations="CreatedByUserLogin/PersonAndContact" IsCollection="false"/>
 
         <!-- 文件列表 -->
