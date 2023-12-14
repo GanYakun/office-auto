@@ -58,16 +58,15 @@ public class VendorOnBoardingEmailEvents {
             String currentUrl = "http://officeauto.officeauto.banff-tech.com/o3/#Supplier-DDForm&/SupplierDDForms('{id}')";
             Object supplierPartyId = entity.getPropertyValue("partyId");
             currentUrl = currentUrl.replace("{id}", supplierPartyId.toString());
-            String contentStr = "Dear Mr./Ms. ,<br>" +
-                    "Please ensure that the following form is completed in its entirety. Failure to complete or sign will resultin the form being returned and will delay due diligence activities.<br>" +
-                    "Please also ensure that a current (not expired) copy of the Business Partner's Commercial License (oPassport, if relevant) is submitted along with this form.<br>" +
+            String contentStr = "Please ensure that the following form is completed in its entirety. Failure to complete or sign will result in the form being returned and will delay due diligence activities.<br>" +
+                    "Please also ensure that a current (not expired) copy of the Business Partner's Commercial License (or Passport, if relevant) is submitted along with this form.<br>" +
                     "Kindly provide documents for your entities.<br>" +
                     "Looking forward to your reply.<br>" +
                     "Thank you.<br>" +
                     "Kind regards, ";
 
             String content = UtilEmail.getVendorOnBoardingVendorTemp();
-            content = content.replace("${{Title}}", "Hello!");
+            content = content.replace("${{Title}}", "Dear Mr./Ms.");
             content = content.replace("${{Content}}", contentStr);
             content = content.replace("${{TargetUrl}}", currentUrl);
 
