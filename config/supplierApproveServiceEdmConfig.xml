@@ -316,8 +316,8 @@
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="true"/>
             <Parameter Name="partyName" Type="String" Label="${supplierActionPartyName}" Nullable="false"/>
             <Parameter Name="partyGroupTypeId" Type="String" Label="${partyGroupTypeId}" Nullable="false">
-                <ValueList CollectionPath="GroupTypeEnumerations" WithFixedValues="true">
-                    <ParameterInOut LocalDataProperty="partyGroupTypeId" ValueListProperty="enumId"/>
+                <ValueList CollectionPath="PartyGroupTypes" WithFixedValues="true">
+                    <ParameterInOut LocalDataProperty="partyGroupTypeId" ValueListProperty="partyGroupTypeId"/>
                 </ValueList>
             </Parameter>
             <Parameter Name="priority" Type="String" Label="${Priority}">
@@ -1004,7 +1004,11 @@
     <!--==================================Party相关对象==============================================-->
     <!--Party-->
     <EntityType Name="Party" EntitySetName="Parties" AutoSet="true" AutoProperties="true"/>
-    <EntityType Name="PartyGroupType" EntitySetName="PartyGroupTypes" AutoSet="true" AutoProperties="true"/>
+    <EntityType Name="PartyGroupType" EntitySetName="PartyGroupTypes" AutoSet="true" AutoProperties="true">
+        <Property Name="partyGroupTypeId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
     <!--Company（公司）-->
     <EntityType Name="InternalCompany" OfbizEntity="PartyGroupAndContact" AutoProperties="true"
                 EntityCondition="PartyRole/roleTypeId=INTERNAL_ORGANIZATIO" EntitySetName="InternalCompanies" AutoSet="true">
