@@ -31,7 +31,7 @@
         </Property>
         <Property Name="partyGroupTypeId">
             <Text Path="PartyGroupType/description" TextArrangement="TextOnly"/>
-            <ValueList WithFixedValues="true" CollectionPath="GroupTypeEnumerations"/>
+            <ValueList WithFixedValues="true" CollectionPath="PartyGroupTypes"/>
         </Property>
         <Property Name="logoImageUrl" IsImageURL="true"/>
         <Property Name="isGovernment" Type="Boolean" IsAttribute="true" Label="${isGovernment}"/>
