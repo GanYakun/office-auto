@@ -413,49 +413,5 @@ public class SupplierWorker {
         return procurementSubmitHidden;
     }
 
-    public static String formatPartyNameObject(GenericValue partyValue, boolean lastNameFirst) {
-        if (partyValue == null) {
-            return "";
-        }
-        StringBuilder result = new StringBuilder();
-        ModelEntity modelEntity = partyValue.getModelEntity();
-        if (modelEntity.isField("firstName") && modelEntity.isField("middleName") && modelEntity.isField("lastName")) {
-            if (lastNameFirst) {
-                if (UtilFormatOut.checkNull(partyValue.getString("lastName")) != null) {
-                    result.append(UtilFormatOut.checkNull(partyValue.getString("lastName")));
-                    if (partyValue.getString("firstName") != null) {
-                        result.append(", ");
-                    }
-                }
-                result.append(UtilFormatOut.checkNull(partyValue.getString("firstName")));
-            } else {
-                result.append(UtilFormatOut.ifNotEmpty(partyValue.getString("firstName"), "", " "));
-                result.append(UtilFormatOut.ifNotEmpty(partyValue.getString("middleName"), "", " "));
-                result.append(UtilFormatOut.checkNull(partyValue.getString("lastName")));
-            }
-        }
-        if (modelEntity.isField("groupName") && partyValue.get("groupName") != null) {
-            result.append(partyValue.getString("groupName"));
-        }
-        return result.toString();
-    }
-
-    public static String joinPartyName(String firstName, String middleName, String lastName){
-        String partyName = "";
-        List<String> stringList = new ArrayList<>();
-        stringList.add(firstName);
-        stringList.add(middleName);
-        stringList.add(lastName);
-        for (int i = 0; i < stringList.size(); i++) {
-            String getName = stringList.get(i);
-            if (UtilValidate.isEmpty(getName)) continue;
-            if (UtilValidate.isNotEmpty(partyName)) {
-                partyName += " " + getName;
-            } else {
-                partyName = getName;
-            }
-        }
-        return partyName;
-    }
-
+    
 }
