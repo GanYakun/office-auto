@@ -363,8 +363,6 @@
                 </ValueList>
             </Parameter>
             <Parameter Name="email" Type="String" Label="${email}"/>
-            <Parameter Name="writeBasicInfo" Type="Boolean" Label="${writeBasicInfo}"/>
-            <Parameter Name="uploadDocuments" Type="Boolean" Label="${uploadDocuments}"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
         <!--推送到合规部门的Action-->

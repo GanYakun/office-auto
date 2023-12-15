@@ -164,8 +164,6 @@ public class SupplierApproveEvents {
         String noteInfo = (String) actionParameters.get("noteInfo");
         String ddFormType = (String) actionParameters.get("ddFormType");
         String email = (String) actionParameters.get("email");
-        Boolean writeBasicInfo = (Boolean) actionParameters.get("writeBasicInfo");
-        Boolean uploadDocuments = (Boolean) actionParameters.get("uploadDocuments");
         OdataOfbizEntity boundEntity = Util.getBoundEntity(actionParameters);
         if (UtilValidate.isEmpty(boundEntity)) {
             throw new OfbizODataException("Parameter error");
@@ -176,15 +174,8 @@ public class SupplierApproveEvents {
         GenericValue parentWorkEffort = EntityQuery.use(delegator).from("WorkEffort").where("workEffortId", workEffortParentId).queryOne();
 
         GenericValue party = delegator.findOne("Party", UtilMisc.toMap("partyId", partyId), false);
-        GenericValue partyGroup = delegator.findOne("PartyGroup", UtilMisc.toMap("partyId", partyId), false);
         if (UtilValidate.isNotEmpty(ddFormType)) {
             CommonUtils.setObjectAttribute(party, "ddFormType", ddFormType);
-        }
-        if (UtilValidate.isNotEmpty(writeBasicInfo)) {
-            CommonUtils.setObjectAttributeBoolean(partyGroup, "writeBasicInfo", writeBasicInfo);
-        }
-        if (UtilValidate.isNotEmpty(uploadDocuments)) {
-            CommonUtils.setObjectAttributeBoolean(partyGroup, "uploadDocuments", uploadDocuments);
         }
         GenericValue ddFormTask = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("approvePartyId", partyId, "partyId", partyId).queryFirst();
         if (UtilValidate.isEmpty(ddFormTask)) {
