@@ -245,6 +245,9 @@
         <relation type="many" title="From" rel-entity-name="RelationshipAndToParty">
             <key-map field-name="partyId" rel-field-name="partyIdFrom"/>
         </relation>
+        <relation type="one-nofk" rel-entity-name="PartyGroupType">
+            <key-map field-name="partyGroupTypeId" rel-field-name="partyGroupTypeId"/>
+        </relation>
     </view-entity>
 
     <view-entity entity-name="SurveyQuestionAndAnswer"

@@ -88,7 +88,7 @@ public class SupplierWorker {
 
     private static String getVendorTypeCode(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
         String partyGroupTypeId = supplierParty.getString("partyGroupTypeId");
-        GenericValue PartyGroupType = delegator.findOne("PartyGroupType", UtilMisc.toMap("partyGroupTypeId", partyGroupTypeId, "partyId", supplierParty.get("partyId")), true);
+        GenericValue PartyGroupType = delegator.findOne("PartyGroupType", UtilMisc.toMap("partyGroupTypeId", partyGroupTypeId), true);
         if (UtilValidate.isEmpty(PartyGroupType)){
             return "";
         }
@@ -413,5 +413,5 @@ public class SupplierWorker {
         return procurementSubmitHidden;
     }
 
-    
+
 }
