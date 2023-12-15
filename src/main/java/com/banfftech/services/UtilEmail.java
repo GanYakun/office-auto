@@ -4,13 +4,16 @@ import org.apache.commons.io.FileUtils;
 import org.apache.ofbiz.base.location.FlexibleLocation;
 import org.apache.ofbiz.base.util.Debug;
 
+import javax.activation.DataHandler;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import javax.mail.util.ByteArrayDataSource;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
 import java.util.Date;
 import java.util.Properties;
 
@@ -24,6 +27,7 @@ public class UtilEmail {
     public static final String EMAIL_163_SMTP_HOST = "smtp.163.com";
     // 端口号,这个是163使用到的;QQ的应该是465或者875
     public static final String SMTP_163_PORT = "465";
+
 
     public static void sendEmail(String emailUrl, String titleName, String content) throws MessagingException, UnsupportedEncodingException {
         Properties p = new Properties();
@@ -51,7 +55,6 @@ public class UtilEmail {
         message.setRecipients(Message.RecipientType.TO, emailUrl);
 //		message.setRecipients(Message.RecipientType.CC, MY_EMAIL_ACCOUNT);
 
-        // 内容(这个内容还不能乱写,有可能会被SMTP拒绝掉;多试几次吧)
         message.setSubject(titleName);
         message.setContent(content, "text/html;charset=UTF-8");
         message.setSentDate(new Date());
@@ -61,45 +64,67 @@ public class UtilEmail {
 
     }
 
+    public static void sendAttachmentEmail(String emailUrl, String titleName, String content, String attachmentUrl) throws MessagingException, IOException {
+        Properties p = new Properties();
+        p.setProperty("mail.smtp.host", EMAIL_163_SMTP_HOST);
+        p.setProperty("mail.smtp.port", SMTP_163_PORT);
+        p.setProperty("mail.smtp.socketFactory.port", SMTP_163_PORT);
+        p.setProperty("mail.smtp.auth", "true");
+        p.setProperty("mail.smtp.socketFactory.class", "SSL_FACTORY");
+        p.put("mail.smtp.ssl.enable", "true");// 设置是否使用ssl安全连接 ---一般都使用
+        Session session = Session.getInstance(p, new Authenticator() {
+            // 设置认证账户信息
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(SEND_EMAIL_URL, SEND_EMAIL_AUTHORIZE);
+            }
+        });
+        session.setDebug(true);
+        Debug.log("创建邮件");
+        // 发件人
+        InternetAddress internetAddress = new InternetAddress(SEND_EMAIL_URL);
+        internetAddress.setPersonal("Procurement System");
+        //主消息
+        MimeMessage message = new MimeMessage(session);
+        // 收件人和抄送人
+        message.setFrom(internetAddress);
+        message.setRecipients(Message.RecipientType.TO, emailUrl);
+//		message.setRecipients(Message.RecipientType.CC, MY_EMAIL_ACCOUNT);
+        Multipart multiPart = new MimeMultipart();
+        //文本部分
+        BodyPart textPart = new MimeBodyPart();
+        textPart.setContent(content, "text/html;charset=UTF-8");
+        //附件部分
+        BodyPart imageBodyPart = new MimeBodyPart();
+        String fileUrl = FlexibleLocation.resolveLocation(attachmentUrl).getFile();
+        fileUrl = fileUrl.replaceAll("%20", " ");
+        File file = new File(fileUrl);
+        //获取fileUrl这个路径的文件转为byte
+        imageBodyPart.setFileName(file.getName());
+        imageBodyPart.setDataHandler(new DataHandler(new ByteArrayDataSource(FileUtils.readFileToByteArray(file), "application/octet-stream")));
+        //放入multiPart
+        multiPart.addBodyPart(imageBodyPart);
+        multiPart.addBodyPart(textPart);
+
+        message.setSubject(titleName);
+        message.setContent(multiPart);
+        message.setSentDate(new Date());
+        message.saveChanges();
+        Debug.log("准备发送到: " + emailUrl);
+        Transport.send(message);
+
+    }
+
     public static String getVendorOnBoardingTemp() throws IOException {
-        String tempPath="component://officeauto/documents/VendorOnBoarding_temp.html";
+        String tempPath = "component://officeauto/documents/VendorOnBoarding_temp.html";
         String fileUrl = FlexibleLocation.resolveLocation(tempPath).getFile();
         return FileUtils.readFileToString(new File(fileUrl), "utf-8");
     }
 
     public static String getVendorOnBoardingVendorTemp() throws IOException {
-        String tempPath="component://officeauto/documents/VendorOnBoarding_vendor_temp.html";
+        String tempPath = "component://officeauto/documents/VendorOnBoarding_vendor_temp.html";
         String fileUrl = FlexibleLocation.resolveLocation(tempPath).getFile();
         return FileUtils.readFileToString(new File(fileUrl), "utf-8");
     }
-
-    public static final String vendorOnBoardingTemp = "<!DOCTYPE html>\n" +
-            "<html lang=\"en\">\n" +
-            "<head>\n" +
-            "    <meta charset=\"UTF-8\">\n" +
-            "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
-            "    <title>Email with Button</title>\n" +
-            "</head>\n" +
-            "<body style=\"font-family: Arial, sans-serif; text-align: center;\">\n" +
-            "\n" +
-            "    <img src=\"https://dpbird.oss-cn-hangzhou.aliyuncs.com/scy/demo_min.jpg\" alt=\"Logo\" style=\"max-width: 100%; height: auto; margin-bottom: 20px;\">\n" +
-            "<h1>OfficeAuto Demo</h1>" +
-            "\n" +
-            "    <div style=\"text-align: left;\">\n" +
-            "        <hr style=\"margin: 30px 0; border: none; border-top: 2px solid #ddd;\">\n" +
-            "        <h1>{{title}}</h1>\n" +
-            "        <p>{{content}}.</p>\n" +
-            "\n" +
-            "        <a href=\"{{url}}\" style=\"text-decoration: none;\">\n" +
-            "            <button style=\"display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: bold; text-align: center; text-decoration: none; background-color: #4CAF50; color: white; border-radius: 5px; cursor: pointer;\">\n" +
-            "                Click Here\n" +
-            "            </button>\n" +
-            "        </a>\n" +
-            "\n" +
-            "        <hr style=\"margin: 30px 0; border: none; border-top: 2px solid #ddd;\">\n" +
-            "    </div>\n" +
-            "\n" +
-            "</body>\n" +
-            "</html>\n";
 
 }
