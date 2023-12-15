@@ -396,11 +396,11 @@ public class SupplierEvents {
         //create cowork task
         dispatcher.runSync("banfftech.createWorkEffortAndPartyGroupContact",
                 UtilMisc.toMap("userLogin", userLogin, "partyName", actionParameters.get("partyName"),
-                        "currentStatusId", "NOT_PROCESSED", "groupTypeId", actionParameters.get("groupTypeId"),
+                        "currentStatusId", "NOT_PROCESSED", "partyGroupTypeId", actionParameters.get("partyGroupTypeId"),
                         "primaryPhone", actionParameters.get("primaryPhone"), "primaryEmail", actionParameters.get("primaryEmail"),
                         "priority", priority, "partyId", partyId, "workEffortParentId", workEffortParentId));
 
-        if (actionParameters.get("groupTypeId").equals("GOVERNMENTAL_AGENCIES_TYPE")) {
+        if (actionParameters.get("partyGroupTypeId").equals("GOVERNMENTAL_AGENCIES_TYPE")) {
             dispatcher.runSync("banfftech.createPartyRole", UtilMisc.toMap("userLogin", userLogin, "partyId", partyId, "roleTypeId", "GOVERNMENT_SUPPLIER"));
         }
         dispatcher.runSync("banfftech.createProductCategoryRole",

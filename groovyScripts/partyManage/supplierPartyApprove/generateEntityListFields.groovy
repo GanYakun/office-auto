@@ -51,7 +51,7 @@ def generateFields(Map<String, Object> context){
         ratingNumeric = SupplierWorker.getClassificationRatingNumber(supplierParty, delegator);
         processNumeric = SupplierWorker.getProcessNumeric(supplierParty, delegator);
         processCritical = SupplierWorker.getProcessCritical(processNumeric);
-        vendorTypeCritical = vendorTypeMap.get(supplierParty.get("groupTypeId"));
+        vendorTypeCritical = vendorTypeMap.get(supplierParty.get("partyGroupTypeId"));
         Boolean ddFormIsSubmitted = SupplierWorker.ddFormIsSubmitted(delegator, supplierParty);
         Timestamp lastSubmittedDate = SupplierWorker.getLastSubmittedDate(supplierParty, delegator);
         riskCritical = SupplierWorker.getClassificationCriticalValue(supplierParty, delegator);

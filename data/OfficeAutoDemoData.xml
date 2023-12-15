@@ -80,32 +80,32 @@ under the License.
 
     <!-- 申请人 -->
     <Party partyId="applicant" partyTypeId="PERSON" externalId="applicant" partyName="Alice White"/>
-    <Person partyId="applicant"/>
+    <Person partyId="applicant" personImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/de32462f-c677-4e3a-976f-fed452a85e31.png"/>
     <PartyRole partyId="applicant" roleTypeId="APPLICANT"/>
     <PartyRole partyId="applicant" roleTypeId="ORD_EMPLOYEE"/>
     <UserLogin userLoginId="applicant" currentPassword="$SHA$LmYbgkkhIHM$WCNGozAT9Lqd-cJ2n7tNM2JekRM" passwordHint="" partyId="applicant"/>
     <UserLoginSecurityGroup groupId="SUPER" userLoginId="applicant" fromDate="2001-01-01 12:00:00.0"/>
-    <PartyRelationship partyRelationshipId="PR10008" partyIdFrom="IT" partyIdTo="applicant" roleTypeIdTo="ORD_EMPLOYEE"/>
+    <PartyRelationship partyRelationshipId="PR10008" roleTypeIdFrom="DEPARTMENT" partyIdFrom="IT" partyIdTo="applicant" roleTypeIdTo="ORD_EMPLOYEE"/>
     <ContactMech contactMechId="applicant_email" infoString="wenji.tong@banff-tech.com" contactMechTypeId="EMAIL_ADDRESS"/>
     <PartyContactMechPurpose partyId="applicant" contactMechId="applicant_email" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
 
 
     <!-- 采购 -->
     <Party partyId="procurement" partyTypeId="PERSON" externalId="procurement" partyName="Peter Ross"/>
-    <Person partyId="procurement"/>
+    <Person partyId="procurement" personImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/3ca13a89-fff2-48d3-849c-ea1ed085e832.png"/>
     <PartyRole partyId="procurement" roleTypeId="MANAGER"/>
     <PartyRole partyId="procurement" roleTypeId="PROCUREMENT"/>
     <PartyRole partyId="procurement" roleTypeId="ORD_EMPLOYEE"/>
     <UserLogin userLoginId="procurement" currentPassword="$SHA$LmYbgkkhIHM$WCNGozAT9Lqd-cJ2n7tNM2JekRM" passwordHint="" partyId="procurement"/>
     <UserLoginSecurityGroup groupId="SUPER" userLoginId="procurement" fromDate="2001-01-01 12:00:00.0"/>
-    <PartyRelationship partyRelationshipId="PR_procurement" partyIdFrom="CG" partyIdTo="procurement" roleTypeIdTo="ORD_EMPLOYEE"/>
+    <PartyRelationship partyRelationshipId="PR_procurement" roleTypeIdFrom="DEPARTMENT" partyIdFrom="CG" partyIdTo="procurement" roleTypeIdTo="ORD_EMPLOYEE"/>
     <ContactMech contactMechId="procurement_email" infoString="wenji.tong@banff-tech.com" contactMechTypeId="EMAIL_ADDRESS"/>
     <PartyContactMechPurpose partyId="procurement" contactMechId="procurement_email" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
 
 
     <!-- 经理 -->
     <Party partyId="manager" partyTypeId="PERSON" externalId="manager" partyName="Manager01"/>
-    <Person partyId="manager"/>
+    <Person partyId="manager" personImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/828191d8-8805-49f8-bea6-2a0231ab795c.png"/>
     <PartyRole partyId="manager" roleTypeId="MANAGER"/>
     <PartyRole partyId="manager" roleTypeId="ORD_EMPLOYEE"/>
     <UserLogin userLoginId="manager" currentPassword="$SHA$LmYbgkkhIHM$WCNGozAT9Lqd-cJ2n7tNM2JekRM" passwordHint="" partyId="manager"/>
@@ -138,12 +138,12 @@ under the License.
 
     <!-- 合规 -->
     <Party partyId="compliance" partyTypeId="PERSON" externalId="compliance" partyName="Charles Miller"/>
-    <Person partyId="compliance"/>
+    <Person partyId="compliance" personImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/eeba1cbe-ce73-4f10-901d-bb7922409a8b.png"/>
     <PartyRole partyId="compliance" roleTypeId="COMPLIANCE"/>
     <PartyRole partyId="compliance" roleTypeId="ORD_EMPLOYEE"/>
     <UserLogin userLoginId="compliance" currentPassword="$SHA$LmYbgkkhIHM$WCNGozAT9Lqd-cJ2n7tNM2JekRM" passwordHint="" partyId="compliance"/>
     <UserLoginSecurityGroup groupId="SUPER" userLoginId="compliance" fromDate="2001-01-01 12:00:00.0"/>
-    <PartyRelationship partyRelationshipId="PR10006" partyIdFrom="HG" partyIdTo="compliance" roleTypeIdTo="ORD_EMPLOYEE"/>
+    <PartyRelationship partyRelationshipId="PR10006" partyIdFrom="HG" partyIdTo="compliance" roleTypeIdTo="ORD_EMPLOYEE" roleTypeIdFrom="DEPARTMENT"/>
     <ContactMech contactMechId="compliance_email" infoString="wenji.tong@banff-tech.com" contactMechTypeId="EMAIL_ADDRESS"/>
     <PartyContactMechPurpose partyId="compliance" contactMechId="compliance_email" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
 
@@ -256,14 +256,14 @@ under the License.
     <UserLogin partyId="9007" currentPassword="$SHA$LmYbgkkhIHM$WCNGozAT9Lqd-cJ2n7tNM2JekRM" userLoginId="supplier9007"/>
 
     <!--PartyGroup-->
-    <PartyGroup partyId="9000" groupName="Huawei Technologies Co Ltd" employeesSection="EMP_GE10000" annualRevenue="450000000" comments="Main communication electronic technology business" groupTypeId="OTHERS_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/012f7330-6af5-459d-aa5d-fc4890284481.png"/>
-    <PartyGroup partyId="9001" groupName="ASUS" employeesSection="EMP_GE10000" annualRevenue="120000000" comments="Sell computer hardware" groupTypeId="OTHERS_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/aa3cc9ec-4f0f-455c-9839-fa86f004b33b.png"/>
-    <PartyGroup partyId="9002" groupName="K.J Consultation Company" employeesSection="EMP_GE10000" annualRevenue="85000000" comments="HR consulting" groupTypeId="OTHERS_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/1e175eb7-1466-41a7-b623-b522bb43c90c.png"/>
-    <PartyGroup partyId="9003" groupName="NARI Technology Development Limited" employeesSection="EMP_GE10000" annualRevenue="232000000" comments="Government sector" groupTypeId="GOVERNMENTAL_AGENCIES_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/7f132f90-5317-47c2-a728-a8bf88f9d2cd.png"/>
-    <PartyGroup partyId="9004" groupName="ZhiHengJiaCheng Real Estate Economy Company" employeesSection="EMP_GE1000_LT5000" annualRevenue="12000000" comments="Empirical real estate sales" groupTypeId="OTHERS_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/bd2f3c73-80d8-4b15-8c74-00404a194197.png"/>
-    <PartyGroup partyId="9005" groupName="FORTUNEINT'L.LTD" employeesSection="EMP_GE1000_LT5000" annualRevenue="5300000" comments="Sales foods" groupTypeId="ROUTINE_AND_LOW_VALUE_TRANSACTIONS_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/daed7d80-ea3c-4eb6-9f70-bf3cbe1bca06.png"/>
-    <PartyGroup partyId="9006" groupName="GDS" employeesSection="EMP_LT1000" annualRevenue="4200000" comments="Data storage service" groupTypeId="OTHERS_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/2609a427-4704-47e7-8647-0d47f14cc5e1.png"/>
-    <PartyGroup partyId="9007" groupName="Tencent Holdings Limited" employeesSection="EMP_GE10000" annualRevenue="48200000000" comments="Main communication and social services" groupTypeId="OTHERS_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/2e3bde80-89ec-4bdb-820a-730949994e56.png"/>
+    <PartyGroup partyId="9000" groupName="Huawei Technologies Co Ltd" employeesSection="EMP_GE10000" annualRevenue="450000000" comments="Main communication electronic technology business" partyGroupTypeId="OTHERS_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/012f7330-6af5-459d-aa5d-fc4890284481.png"/>
+    <PartyGroup partyId="9001" groupName="ASUS" employeesSection="EMP_GE10000" annualRevenue="120000000" comments="Sell computer hardware" partyGroupTypeId="OTHERS_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/aa3cc9ec-4f0f-455c-9839-fa86f004b33b.png"/>
+    <PartyGroup partyId="9002" groupName="K.J Consultation Company" employeesSection="EMP_GE10000" annualRevenue="85000000" comments="HR consulting" partyGroupTypeId="OTHERS_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/1e175eb7-1466-41a7-b623-b522bb43c90c.png"/>
+    <PartyGroup partyId="9003" groupName="NARI Technology Development Limited" employeesSection="EMP_GE10000" annualRevenue="232000000" comments="Government sector" partyGroupTypeId="GOVERNMENTAL_AGENCIES_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/7f132f90-5317-47c2-a728-a8bf88f9d2cd.png"/>
+    <PartyGroup partyId="9004" groupName="ZhiHengJiaCheng Real Estate Economy Company" employeesSection="EMP_GE1000_LT5000" annualRevenue="12000000" comments="Empirical real estate sales" partyGroupTypeId="OTHERS_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/bd2f3c73-80d8-4b15-8c74-00404a194197.png"/>
+    <PartyGroup partyId="9005" groupName="FORTUNEINT'L.LTD" employeesSection="EMP_GE1000_LT5000" annualRevenue="5300000" comments="Sales foods" partyGroupTypeId="ROUTINE_AND_LOW_VALUE_TRANSACTIONS_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/daed7d80-ea3c-4eb6-9f70-bf3cbe1bca06.png"/>
+    <PartyGroup partyId="9006" groupName="GDS" employeesSection="EMP_LT1000" annualRevenue="4200000" comments="Data storage service" partyGroupTypeId="OTHERS_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/2609a427-4704-47e7-8647-0d47f14cc5e1.png"/>
+    <PartyGroup partyId="9007" groupName="Tencent Holdings Limited" employeesSection="EMP_GE10000" annualRevenue="48200000000" comments="Main communication and social services" partyGroupTypeId="OTHERS_TYPE" logoImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/2e3bde80-89ec-4bdb-820a-730949994e56.png"/>
 
     <PartyGeo partyGeoId="9000" partyId="9000" geoId="CHN" partyGeoTypeId="LISTED_COUNTRY"/>
     <PartyGeo partyGeoId="9001" partyId="9001" geoId="CHN" partyGeoTypeId="LISTED_COUNTRY"/>

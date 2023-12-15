@@ -116,11 +116,11 @@ under the License.
     <!--EnumerationType-->
     <EnumerationType enumTypeId="VENDOR_TYPE_ENUM" description="Vendor Type Enumeration"/>
     <!--Enumeration-->
-    <Enumeration enumId="HIGHLY_REGULATED_ENTITY_TYPE" enumTypeId="VENDOR_TYPE_ENUM" enumCode="NO_DD" sequenceId="01" description="Highly regulated entity"/>
-    <Enumeration enumId="GOVERNMENTAL_AGENCIES_TYPE" enumTypeId="VENDOR_TYPE_ENUM" enumCode="NO_DD" sequenceId="02" description="Governmental agencies"/>
-    <Enumeration enumId="LOW_VALUE_ONE-TIME_TRANSACTIONS_TYPE" enumTypeId="VENDOR_TYPE_ENUM" enumCode="NO_DD" sequenceId="03" description="Low value one-time transactions"/>
-    <Enumeration enumId="ROUTINE_AND_LOW_VALUE_TRANSACTIONS_TYPE" enumTypeId="VENDOR_TYPE_ENUM" enumCode="SIMPLIFIED_DD" sequenceId="04" description="Routine and low value transactions"/>
-    <Enumeration enumId="OTHERS_TYPE" enumTypeId="VENDOR_TYPE_ENUM" enumCode="STANDARD_DD" sequenceId="05" description="Others"/>
+    <PartyGroupType partyGroupTypeId="HIGHLY_REGULATED_ENTITY_TYPE" typeCode="NO_DD" sequenceId="01" description="Highly regulated entity"/>
+    <PartyGroupType partyGroupTypeId="GOVERNMENTAL_AGENCIES_TYPE" typeCode="NO_DD" sequenceId="02" description="Governmental agencies"/>
+    <PartyGroupType partyGroupTypeId="LOW_VALUE_ONE-TIME_TRANSACTIONS_TYPE" typeCode="NO_DD" sequenceId="03" description="Low value one-time transactions"/>
+    <PartyGroupType partyGroupTypeId="ROUTINE_AND_LOW_VALUE_TRANSACTIONS_TYPE" typeCode="SIMPLIFIED_DD" sequenceId="04" description="Routine and low value transactions"/>
+    <PartyGroupType partyGroupTypeId="OTHERS_TYPE" typeCode="STANDARD_DD" sequenceId="05" description="Others"/>
 
     <!--上市地区枚举值-->
     <!--EnumerationType-->

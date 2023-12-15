@@ -236,8 +236,8 @@ under the License.
     <Internationalization id="ratingNumeric_zh" lang="zh" property="ratingNumeric" value="Risk level"/>
     <Internationalization id="processNumeric_en" lang="en" property="processNumeric" value="Process Bar"/>
     <Internationalization id="processNumeric_zh" lang="zh" property="processNumeric" value="Process Bar"/>
-    <Internationalization id="groupTypeId_en" lang="en" property="groupTypeId" value="Vendor type"/>
-    <Internationalization id="groupTypeId_zh" lang="zh" property="groupTypeId" value="Vendor type"/>
+    <Internationalization id="partyGroupTypeId_en" lang="en" property="partyGroupTypeId" value="Vendor type"/>
+    <Internationalization id="partyGroupTypeId_zh" lang="zh" property="partyGroupTypeId" value="Vendor type"/>
     <Internationalization id="serviceName_en" lang="en" property="serviceName" value="Service name"/>
     <Internationalization id="serviceName_zh" lang="zh" property="serviceName" value="Service name"/>
     <Internationalization id="warningContent_en" lang="en" property="warningContent" value=""/>
@@ -395,7 +395,7 @@ under the License.
     <DBField dbFieldId="WPC10000_18" dbFieldName="priority" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Priority"/>
     <DBField dbFieldId="WPC10000_19" dbFieldName="logoImageUrl" dbFieldTypeId="STRING" dbEntityId="WPC10000" description=""/>
     <DBField dbFieldId="WPC10000_20" dbFieldName="approveComments" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="Procurement Comments"/>
-    <DBField dbFieldId="WPC10000_21" dbFieldName="groupTypeId" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="group Type Id"/>
+    <DBField dbFieldId="WPC10000_21" dbFieldName="partyGroupTypeId" dbFieldTypeId="STRING" dbEntityId="WPC10000" description="group Type Id"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_01_ZH" dbFieldId="WPC10000_01" language="zh" value="Email"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_01_EN" dbFieldId="WPC10000_01" language="en" value="Email"/>
     <DBFieldLabel dbFieldLabelId="WPC10000_02_ZH" dbFieldId="WPC10000_02" language="zh" value="Address"/>

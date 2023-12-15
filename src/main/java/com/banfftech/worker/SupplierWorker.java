@@ -2,11 +2,13 @@ package com.banfftech.worker;
 
 import org.apache.commons.net.ntp.TimeStamp;
 import org.apache.ofbiz.base.util.UtilDateTime;
+import org.apache.ofbiz.base.util.UtilFormatOut;
 import org.apache.ofbiz.base.util.UtilMisc;
 import org.apache.ofbiz.base.util.UtilValidate;
 import org.apache.ofbiz.entity.Delegator;
 import org.apache.ofbiz.entity.GenericEntityException;
 import org.apache.ofbiz.entity.GenericValue;
+import org.apache.ofbiz.entity.model.ModelEntity;
 import org.apache.ofbiz.entity.util.EntityQuery;
 import org.apache.ofbiz.entity.util.EntityUtil;
 import org.joda.time.DateTimeUtils;
@@ -42,7 +44,7 @@ public class SupplierWorker {
     public static Boolean satisfiedNoDDRegular (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
         Boolean isGovernment = isGovernment((String) supplierParty.get("partyId"), delegator);
         Boolean isNoFormListCountry = isNoFormListCountry(supplierParty, delegator);
-        String vendorTypeEnumCode = getVendorTypeEnumCode(supplierParty, delegator);
+        String vendorTypeEnumCode = getVendorTypeCode(supplierParty, delegator);
 
         if (isGovernment || isNoFormListCountry || vendorTypeEnumCode.equals("NO_DD")){
             return true;
@@ -54,7 +56,7 @@ public class SupplierWorker {
 
     public static Boolean simplifiedDDRegular(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
 
-        String vendorTypeEnumCode = getVendorTypeEnumCode(supplierParty, delegator);
+        String vendorTypeEnumCode = getVendorTypeCode(supplierParty, delegator);
         if (vendorTypeEnumCode.equals("SIMPLIFIED_DD")){
             return true;
         }else {
@@ -64,7 +66,7 @@ public class SupplierWorker {
 
     public static Boolean standardDDRegular(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
 
-        String vendorTypeEnumCode = getVendorTypeEnumCode(supplierParty, delegator);
+        String vendorTypeEnumCode = getVendorTypeCode(supplierParty, delegator);
         if (vendorTypeEnumCode.equals("STANDARD_DD")){
             return true;
         }else {
@@ -84,13 +86,13 @@ public class SupplierWorker {
         return productCategory.getString("primaryParentCategoryId");
     }
 
-    private static String getVendorTypeEnumCode(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-        String groupTypeId = supplierParty.getString("groupTypeId");
-        GenericValue enumeration = delegator.findOne("Enumeration", UtilMisc.toMap("enumId", groupTypeId), true);
-        if (UtilValidate.isEmpty(enumeration)){
+    private static String getVendorTypeCode(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
+        String partyGroupTypeId = supplierParty.getString("partyGroupTypeId");
+        GenericValue PartyGroupType = delegator.findOne("PartyGroupType", UtilMisc.toMap("partyGroupTypeId", partyGroupTypeId, "partyId", supplierParty.get("partyId")), true);
+        if (UtilValidate.isEmpty(PartyGroupType)){
             return "";
         }
-        return enumeration.getString("enumCode");
+        return PartyGroupType.getString("typeCode");
     }
 
     private static Boolean isGovernment (String partyId, Delegator delegator) throws GenericEntityException {
@@ -409,6 +411,51 @@ public class SupplierWorker {
             }
         }
         return procurementSubmitHidden;
+    }
+
+    public static String formatPartyNameObject(GenericValue partyValue, boolean lastNameFirst) {
+        if (partyValue == null) {
+            return "";
+        }
+        StringBuilder result = new StringBuilder();
+        ModelEntity modelEntity = partyValue.getModelEntity();
+        if (modelEntity.isField("firstName") && modelEntity.isField("middleName") && modelEntity.isField("lastName")) {
+            if (lastNameFirst) {
+                if (UtilFormatOut.checkNull(partyValue.getString("lastName")) != null) {
+                    result.append(UtilFormatOut.checkNull(partyValue.getString("lastName")));
+                    if (partyValue.getString("firstName") != null) {
+                        result.append(", ");
+                    }
+                }
+                result.append(UtilFormatOut.checkNull(partyValue.getString("firstName")));
+            } else {
+                result.append(UtilFormatOut.ifNotEmpty(partyValue.getString("firstName"), "", " "));
+                result.append(UtilFormatOut.ifNotEmpty(partyValue.getString("middleName"), "", " "));
+                result.append(UtilFormatOut.checkNull(partyValue.getString("lastName")));
+            }
+        }
+        if (modelEntity.isField("groupName") && partyValue.get("groupName") != null) {
+            result.append(partyValue.getString("groupName"));
+        }
+        return result.toString();
+    }
+
+    public static String joinPartyName(String firstName, String middleName, String lastName){
+        String partyName = "";
+        List<String> stringList = new ArrayList<>();
+        stringList.add(firstName);
+        stringList.add(middleName);
+        stringList.add(lastName);
+        for (int i = 0; i < stringList.size(); i++) {
+            String getName = stringList.get(i);
+            if (UtilValidate.isEmpty(getName)) continue;
+            if (UtilValidate.isNotEmpty(partyName)) {
+                partyName += " " + getName;
+            } else {
+                partyName = getName;
+            }
+        }
+        return partyName;
     }
 
 }
