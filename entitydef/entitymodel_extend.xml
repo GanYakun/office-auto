@@ -73,12 +73,7 @@
 		</relation>
 	</extend-entity>
 
-	<extend-entity entity-name="Person">
-		<field name="personImageUrl" type="url"/>
-		<relation type="many" rel-entity-name="PartyRole">
-			<key-map field-name="partyId"/>
-		</relation>
-	</extend-entity>
+
 
 	<extend-entity entity-name="SupplierProduct">
 		<relation type="one-nofk" rel-entity-name="PartyGroup">

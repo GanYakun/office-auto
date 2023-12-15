@@ -241,6 +241,7 @@
         <Property Name="amount" Label="${partyRelationshipAmount}"/>
         <Property Name="firstName" Label="${firstName}"/>
         <Property Name="lastName" Label="${lastName}"/>
+        <Property Name="personImageUrl" IsImageURL="true"/>
         <Property Name="primaryPhone" Label="${supplierActionPrimaryPhone}"/>
         <Property Name="primaryEmail" Label="${supplierActionPrimaryEmail}"/>
         <LineItem Qualifier="BeneficialPerson">

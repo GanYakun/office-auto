@@ -728,7 +728,9 @@
         <NavigationProperty Name="NoteParty" Relations="NoteParty" Type="NoteParty"/>
     </EntityType>
 
-    <EntityType Name="NoteParty" OfbizEntity="PersonAndContact" AutoProperties="true" EntitySetName="NoteParties"/>
+    <EntityType Name="NoteParty" OfbizEntity="PersonAndContact" AutoProperties="true" EntitySetName="NoteParties">
+        <NavigationProperty Name="Department" Type="Party" Relations="ToPartyRelationship(roleTypeIdFrom=DEPARTMENT)/FromParty" IsCollection="false"/>
+    </EntityType>
 
     <!--==================================采购合同相关对象==============================================-->
     <!--PurchaseAgreement（采购合同）-->
@@ -1009,11 +1011,12 @@
         </Property>
     </EntityType>
     <!--创建人-->
-    <EntityType Name="CreatedParty" OfbizEntity="PartyGroupAndContact" AutoProperties="true"
+    <EntityType Name="CreatedParty" OfbizEntity="PersonAndContact" AutoProperties="true"
                 EntitySetName="CreatedParties" AutoSet="true">
         <Property Name="partyId">
             <Text Path="partyName" TextArrangement="TextOnly"/>
         </Property>
+        <NavigationProperty Name="Department" Type="Party" Relations="ToPartyRelationship(roleTypeIdFrom=DEPARTMENT)/FromParty" IsCollection="false"/>
     </EntityType>
     <EntityType Name="Company" OfbizEntity="PartyGroupAndContact" AutoProperties="true"
                 EntityCondition="PartyRole/roleTypeId=COMPANY" OfbizType="PartyRole/roleTypeId=COMPANY"
