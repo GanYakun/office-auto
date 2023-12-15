@@ -73,7 +73,7 @@
         <!-- DDForm问题没有Draft -->
         <NavigationProperty Name="SurveyQuestionAnswerNoDraft" Type="DDFormSurveyQuestionAnswerNoDraft"
                             Relations="SurveyQuestionAnswer(surveyQuestionId in (9000,9001,9002,9003,9005,9006))" IsCollection="true"/>
-        <NavigationProperty Name="FileList" Type="PartyMediaResource" Relations="PartyMediaResource(partyContentTypeId=COMPLIANCE_VIEW)" IsCollection="true"/>
+        <NavigationProperty Name="FileList" Type="PartyMediaResource" Relations="PartyMediaResource(partyContentTypeId=COMMERCIAL_LICENSE)" IsCollection="true"/>
         <!--Submit to procurement-->
         <Action Name="SubmitDDForm" IsBound="true" EntitySetPath="supplierDDForm"
                 OfbizService="com.banfftech.events.DDFormEvents.submitDDForm">

@@ -156,14 +156,13 @@
         <NavigationProperty Name="CreatedParty" Type="CreatedParty" Relations="CreatedByUserLogin/PersonAndContact" IsCollection="false"/>
         <NavigationProperty Name="PartyGroupType"/>
 
-        <!-- 文件列表 -->
-        <NavigationProperty Name="FileList" Type="PartyMediaResource" Relations="PartyMediaResource(parentTypeId=SUPPORTED_FILE)"
-                            IsCollection="true"/>
-        <NavigationProperty Name="ComplianceViewFile" Type="PartyMediaResource" Relations="PartyMediaResource(partyContentTypeId=COMPLIANCE_VIEW)"
-                            IsCollection="true"/>
-        <!-- 合规报告 -->
-        <NavigationProperty Name="ComplianceReport" Type="PartyMediaResource"
-                            Relations="PartyMediaResource(partyContentTypeId=COMPLIANCE_REPORT)" IsCollection="true"/>
+        <!-- Supported Documents -->
+        <NavigationProperty Name="FileList" Type="PartyMediaResource" Relations="PartyMediaResource(parentTypeId=SUPPORTED_FILE)" IsCollection="true"/>
+        <!-- Compliance Report -->
+        <NavigationProperty Name="ComplianceReport" Type="PartyMediaResource" Relations="PartyMediaResource(parentTypeId=COMPLIANCE_REPORT)" IsCollection="true"/>
+        <!-- Compliance Supported Documents -->
+        <NavigationProperty Name="ComplianceViewFile" Type="PartyMediaResource" Relations="PartyMediaResource(partyContentTypeId=VAT_CERTIFICATE)" IsCollection="true"/>
+
         <!-- Supplier DD -->
         <NavigationProperty Name="SupplierDDForm" Type="SupplierDDForm" Relations="PartyGroupAndContact" IsCollection="false"/>
 

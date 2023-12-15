@@ -67,7 +67,7 @@ public class DDFormEvents {
         //检索是否勾选敏感问题,添加首次提交标志
         dispatcher.runSync("banfftech.ddFormCommitCheck",UtilMisc.toMap("supplierPartyId", partyId, "userLogin", userLogin));
         //发送邮件
-        VendorOnBoardingEmailEvents.ddSubmit(delegator, httpServletRequest, boundEntity);
+        VendorOnBoardingEmailEvents.ddSubmit(dispatcher, httpServletRequest, boundEntity);
     }
 
     public static void uboUpload(Map<String, Object> oDataContext, Map<String, Object> actionParameters, EdmBindingTarget edmBindingTarget)

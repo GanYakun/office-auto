@@ -72,16 +72,16 @@ public class SupplierApproveEvents {
             if (actionParameters.containsKey("compliancePassed")) {
                 dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortParentId,
                         "currentStatusId", "COMPLETED_DD", "userLogin", userLogin));
-                VendorOnBoardingEmailEvents.complianceComplete(delegator, httpServletRequest, boundEntity);
+                VendorOnBoardingEmailEvents.complianceComplete(dispatcher, httpServletRequest, boundEntity);
             } else {
                 //compliance打回
-                VendorOnBoardingEmailEvents.returnToProcurement(delegator, httpServletRequest, boundEntity, noteInfo);
+                VendorOnBoardingEmailEvents.returnToProcurement(dispatcher, httpServletRequest, boundEntity, noteInfo);
             }
         }
         if ("applicant".equals(source)) {
             dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortParentId,
                     "currentStatusId", "PROCUREMENT_REVIEW", "userLogin", userLogin));
-            VendorOnBoardingEmailEvents.toProcurement(delegator, httpServletRequest, boundEntity);
+            VendorOnBoardingEmailEvents.toProcurement(dispatcher, httpServletRequest, boundEntity);
         }
     }
 
@@ -129,7 +129,7 @@ public class SupplierApproveEvents {
                 dispatcher.runSync("banfftech.updateWorkEffort", UtilMisc.toMap("workEffortId", workEffortParentId,
                         "currentStatusId", "COMPLIANCE_REVIEW", "userLogin", userLogin));
             }
-            VendorOnBoardingEmailEvents.toCompliance(delegator, httpServletRequest, boundEntity);
+            VendorOnBoardingEmailEvents.toCompliance(dispatcher, httpServletRequest, boundEntity);
         }
 
         //to applicant
@@ -138,7 +138,7 @@ public class SupplierApproveEvents {
             GenericValue firstTask = EntityQuery.use(delegator).from("WorkEffort").where("workEffortParentId", workEffortParentId).orderBy("createdDate").queryFirst();
             CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), UtilMisc.toMap("workEffortId", firstTask.getString("workEffortId"),
                     "currentStatusId", "NOT_PROCESSED","userLogin", userLogin), "banfftech.updateWorkEffort", userLogin);
-            VendorOnBoardingEmailEvents.returnToApplicant(delegator, httpServletRequest, boundEntity, noteInfo);
+            VendorOnBoardingEmailEvents.returnToApplicant(dispatcher, httpServletRequest, boundEntity, noteInfo);
         }
 
         // create NoteData for the Party
@@ -206,7 +206,7 @@ public class SupplierApproveEvents {
         // create PartyNote
         CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), UtilMisc.toMap("noteId", noteDataResult.get("noteId"), "partyId", partyId, "userLogin", userLogin), "banfftech.createPartyNote", userLogin);
         // send email
-        VendorOnBoardingEmailEvents.toVendor(delegator, boundEntity, email);
+        VendorOnBoardingEmailEvents.toVendor(dispatcher, boundEntity, email);
     }
 
     public static String getApplicantId(String vendorPartyId, Delegator delegator) throws GenericEntityException {
@@ -242,7 +242,7 @@ public class SupplierApproveEvents {
         dispatcher.runSync("banfftech.updateParty", UtilMisc.toMap("partyId", partyId,
                 "statusId", "PARTY_ENABLED", "userLogin", userLogin));
         //发送邮件
-        VendorOnBoardingEmailEvents.vendorComplete(delegator, httpServletRequest, supplierParty);
+        VendorOnBoardingEmailEvents.vendorComplete(dispatcher, httpServletRequest, supplierParty);
     }
 
     public static Object getProcessFlow(Map<String, Object> oDataContext, Map<String, Object> actionParameters, EdmBindingTarget edmBindingTarget) throws GenericEntityException {

@@ -1,12 +1,15 @@
 package com.banfftech.events;
 
 import com.banfftech.services.UtilEmail;
+import com.dpbird.odata.Util;
 import com.dpbird.odata.edm.OdataOfbizEntity;
 import org.apache.ofbiz.base.util.Debug;
+import org.apache.ofbiz.base.util.UtilDateTime;
 import org.apache.ofbiz.base.util.UtilMisc;
 import org.apache.ofbiz.entity.Delegator;
 import org.apache.ofbiz.entity.GenericValue;
 import org.apache.ofbiz.entity.util.EntityQuery;
+import org.apache.ofbiz.service.LocalDispatcher;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.URLEncoder;
@@ -18,8 +21,9 @@ import java.net.URLEncoder;
 public class VendorOnBoardingEmailEvents {
     private static final String module = VendorOnBoardingEmailEvents.class.getName();
 
-    public static void toProcurement(Delegator delegator, HttpServletRequest request, OdataOfbizEntity entity) {
+    public static void toProcurement(LocalDispatcher dispatcher, HttpServletRequest request, OdataOfbizEntity entity) {
         try {
+            Delegator delegator = dispatcher.getDelegator();
             String supplierId = (String) entity.getPropertyValue("partyId");
             GenericValue supplier = EntityQuery.use(delegator).from("Party").where("partyId", supplierId).queryOne();
             String supplierName = supplier.getString("partyName");
@@ -38,15 +42,22 @@ public class VendorOnBoardingEmailEvents {
             content = content.replace("${{Title}}", "To Procurement");
             content = content.replace("${{Content}}", contentStr);
             content = content.replace("${{TargetUrl}}", currentUrl);
-            Debug.logInfo("===== Url: " + currentUrl, module);
-            UtilEmail.sendEmail(procurement.getString("primaryEmail"), supplierName + "(" + supplierId + ") onboarding process", content);
+            String subject = supplierName + "(" + supplierId + ") onboarding process";
+
+            dispatcher.runSync("banfftech.createCommunicationEvent", UtilMisc.toMap("communicationEventId",
+                            delegator.getNextSeqId("CommunicationEvent"), "communicationEventTypeId", "AUTO_EMAIL_COMM",
+                            "contactMechIdFrom", "EMAIL100", "subject", subject, "contentMimeTypeId", "text/html", "content", content,
+                            "toString", procurement.getString("primaryEmail"), "headerString", "Procurement System", "userLogin", Util.getSystemUser(delegator)));
+
+//            UtilEmail.sendEmail(procurement.getString("primaryEmail"), supplierName + "(" + supplierId + ") onboarding process", content);
         } catch (Exception e) {
             Debug.logError(e, module);
         }
     }
 
-    public static void toVendor(Delegator delegator, OdataOfbizEntity entity, String email) {
+    public static void toVendor(LocalDispatcher dispatcher, OdataOfbizEntity entity, String email) {
         try {
+            Delegator delegator = dispatcher.getDelegator();
             String supplierId = (String) entity.getPropertyValue("partyId");
             GenericValue supplier = EntityQuery.use(delegator).from("Party").where("partyId", supplierId).queryOne();
             String supplierName = supplier.getString("partyName");
@@ -59,22 +70,30 @@ public class VendorOnBoardingEmailEvents {
                     "Looking forward to your reply.<br>" +
                     "Thank you.<br>" +
                     "Kind regards, ";
-
             String content = UtilEmail.getVendorOnBoardingVendorTemp();
             content = content.replace("${{Title}}", "Dear Mr./Ms.");
             content = content.replace("${{Content}}", contentStr);
             content = content.replace("${{TargetUrl}}", currentUrl);
             Debug.logInfo("===== Url: " + currentUrl, module);
-            UtilEmail.sendAttachmentEmail(email, supplierName + "(" + supplierId + ") onboarding process",
-                    content, "component://officeauto/documents/Business Code of Conduct.pdf");
+            String subject = supplierName + "(" + supplierId + ") onboarding process";
+            String communicationEventId = delegator.getNextSeqId("CommunicationEvent");
+            dispatcher.runSync("banfftech.createCommunicationEvent", UtilMisc.toMap("communicationEventId",
+                    communicationEventId, "communicationEventTypeId", "AUTO_EMAIL_COMM",
+                    "contactMechIdFrom", "EMAIL100", "subject", subject, "contentMimeTypeId", "text/html", "content", content,
+                    "toString", email, "headerString", "Procurement System", "userLogin", Util.getSystemUser(delegator)));
+            dispatcher.runSync("banfftech.createCommEventContentAssoc", UtilMisc.toMap("communicationEventId", communicationEventId,
+                    "contentId", "EMAIL100", "fromDate", UtilDateTime.nowTimestamp(), "userLogin", Util.getSystemUser(delegator)));
+//            UtilEmail.sendAttachmentEmail(email, supplierName + "(" + supplierId + ") onboarding process",
+//                    content, "component://officeauto/documents/Business Code of Conduct.pdf");
         } catch (Exception e) {
             Debug.logError(e, module);
         }
 
     }
 
-    public static void ddSubmit(Delegator delegator, HttpServletRequest request, OdataOfbizEntity entity) {
+    public static void ddSubmit(LocalDispatcher dispatcher, HttpServletRequest request, OdataOfbizEntity entity) {
         try {
+            Delegator delegator = dispatcher.getDelegator();
             String supplierId = (String) entity.getPropertyValue("partyId");
             GenericValue supplier = EntityQuery.use(delegator).from("Party").where("partyId", supplierId).queryOne();
             String supplierName = supplier.getString("partyName");
@@ -90,20 +109,27 @@ public class VendorOnBoardingEmailEvents {
                     "Looking forward to your reply.<br>" +
                     "Thank you.<br>" +
                     "Kind regards, ";
-
+            String subject = supplierName + "(" + supplierId + ") onboarding process";
             String content = UtilEmail.getVendorOnBoardingTemp();
             content = content.replace("${{Title}}", "To Applicant");
             content = content.replace("${{Content}}", contentStr);
             content = content.replace("${{TargetUrl}}", currentUrl);
-            Debug.logInfo("===== Url: " + currentUrl, module);
-            UtilEmail.sendEmail(emailUrl, supplierName + "(" + supplierId + ") onboarding process", content);
+            dispatcher.runSync("banfftech.createCommunicationEvent", UtilMisc.toMap("communicationEventId",
+                    delegator.getNextSeqId("CommunicationEvent"), "communicationEventTypeId", "AUTO_EMAIL_COMM",
+                    "contactMechIdFrom", "EMAIL100", "subject", subject, "contentMimeTypeId", "text/html", "content", content,
+                    "toString", emailUrl, "headerString", "Procurement System", "userLogin", Util.getSystemUser(delegator)));
+
+
+//            Debug.logInfo("===== Url: " + currentUrl, module);
+//            UtilEmail.sendEmail(emailUrl, supplierName + "(" + supplierId + ") onboarding process", content);
         } catch (Exception e) {
             Debug.logError(e, module);
         }
     }
 
-    public static void toCompliance(Delegator delegator, HttpServletRequest request, OdataOfbizEntity entity) {
+    public static void toCompliance(LocalDispatcher dispatcher, HttpServletRequest request, OdataOfbizEntity entity) {
         try {
+            Delegator delegator = dispatcher.getDelegator();
             String supplierId = (String) entity.getPropertyValue("partyId");
             GenericValue supplier = EntityQuery.use(delegator).from("Party").where("partyId", supplierId).queryOne();
             String supplierName = supplier.getString("partyName");
@@ -117,20 +143,27 @@ public class VendorOnBoardingEmailEvents {
             String contentStr = "Please see attached link.<br>" +
                     "Looking forward to your reply.<br>" +
                     "Kind regards, ";
-
+            String subject = supplierName + "(" + supplierId + ") onboarding process";
             String content = UtilEmail.getVendorOnBoardingTemp();
             content = content.replace("${{Title}}", "To Compliance");
             content = content.replace("${{Content}}", contentStr);
             content = content.replace("${{TargetUrl}}", currentUrl);
-            Debug.logInfo("===== Url: " + currentUrl, module);
-            UtilEmail.sendEmail(compliance.getString("primaryEmail"), supplierName + "(" + supplierId + ") onboarding process", content);
+            dispatcher.runSync("banfftech.createCommunicationEvent", UtilMisc.toMap("communicationEventId",
+                    delegator.getNextSeqId("CommunicationEvent"), "communicationEventTypeId", "AUTO_EMAIL_COMM",
+                    "contactMechIdFrom", "EMAIL100", "subject", subject, "contentMimeTypeId", "text/html", "content", content,
+                    "toString", compliance.getString("primaryEmail"), "headerString", "Procurement System", "userLogin", Util.getSystemUser(delegator)));
+
+
+//            Debug.logInfo("===== Url: " + currentUrl, module);
+//            UtilEmail.sendEmail(compliance.getString("primaryEmail"), supplierName + "(" + supplierId + ") onboarding process", content);
         } catch (Exception e) {
             Debug.logError(e, module);
         }
     }
 
-    public static void complianceComplete(Delegator delegator, HttpServletRequest request, OdataOfbizEntity entity) {
+    public static void complianceComplete(LocalDispatcher dispatcher, HttpServletRequest request, OdataOfbizEntity entity) {
         try {
+            Delegator delegator = dispatcher.getDelegator();
             String supplierId = (String) entity.getPropertyValue("partyId");
             GenericValue supplier = EntityQuery.use(delegator).from("Party").where("partyId", supplierId).queryOne();
             String supplierName = supplier.getString("partyName");
@@ -143,20 +176,28 @@ public class VendorOnBoardingEmailEvents {
             currentUrl += "/#/supplier/supplierapprove-managebyprocurement/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
             String contentStr = "Please see attached link. <br>" +
                     "Kind regards,";
-
+            String subject = supplierName + "(" + supplierId + ") onboarding process";
             String content = UtilEmail.getVendorOnBoardingTemp();
             content = content.replace("${{Title}}", "To Procurement");
             content = content.replace("${{Content}}", contentStr);
             content = content.replace("${{TargetUrl}}", currentUrl);
-            Debug.logInfo("===== Url: " + currentUrl, module);
-            UtilEmail.sendEmail(procurement.getString("primaryEmail"), supplierName + "(" + supplierId + ") onboarding process", content);
+
+
+            dispatcher.runSync("banfftech.createCommunicationEvent", UtilMisc.toMap("communicationEventId",
+                    delegator.getNextSeqId("CommunicationEvent"), "communicationEventTypeId", "AUTO_EMAIL_COMM",
+                    "contactMechIdFrom", "EMAIL100", "subject", subject, "contentMimeTypeId", "text/html", "content", content,
+                    "toString", procurement.getString("primaryEmail"), "headerString", "Procurement System", "userLogin", Util.getSystemUser(delegator)));
+
+//            Debug.logInfo("===== Url: " + currentUrl, module);
+//            UtilEmail.sendEmail(procurement.getString("primaryEmail"), supplierName + "(" + supplierId + ") onboarding process", content);
         } catch (Exception e) {
             Debug.logError(e, module);
         }
     }
 
-    public static void vendorComplete(Delegator delegator, HttpServletRequest request, OdataOfbizEntity entity) {
+    public static void vendorComplete(LocalDispatcher dispatcher, HttpServletRequest request, OdataOfbizEntity entity) {
         try {
+            Delegator delegator = dispatcher.getDelegator();
             String odataId = entity.getId().toString();
             String supplierId = (String) entity.getPropertyValue("partyId");
             GenericValue supplier = EntityQuery.use(delegator).from("Party").where("partyId", supplierId).queryOne();
@@ -170,15 +211,20 @@ public class VendorOnBoardingEmailEvents {
             String coWorkId = coWork.getString("workEffortId");
             odataId = odataId.replaceAll("'[^']*'", "'" + coWorkId + "'");
             currentUrl += "/#/supplier/supplierapprove-managebyapplication/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
-            String contentStr = "To Applicant,<br>" +
-                    "I am writing to present the result of your vendor onboarding application at attached link.<br>" +
+            String contentStr = "I am writing to present the result of your vendor onboarding application at attached link.<br>" +
                     "Kind regards, ";
-
+            String subject = supplierName + "(" + supplierId + ") onboarding process";
             String content = UtilEmail.getVendorOnBoardingTemp();
             content = content.replace("${{Title}}", "To Applicant");
             content = content.replace("${{Content}}", contentStr);
             content = content.replace("${{TargetUrl}}", currentUrl);
-            UtilEmail.sendEmail(emailUrl, supplierName + "(" + supplierId + ") onboarding process", content);
+
+            dispatcher.runSync("banfftech.createCommunicationEvent", UtilMisc.toMap("communicationEventId",
+                    delegator.getNextSeqId("CommunicationEvent"), "communicationEventTypeId", "AUTO_EMAIL_COMM",
+                    "contactMechIdFrom", "EMAIL100", "subject", subject, "contentMimeTypeId", "text/html", "content", content,
+                    "toString", emailUrl, "headerString", "Procurement System", "userLogin", Util.getSystemUser(delegator)));
+
+//            UtilEmail.sendEmail(emailUrl, supplierName + "(" + supplierId + ") onboarding process", content);
         } catch (Exception e) {
             Debug.logError(e, module);
         }
@@ -187,8 +233,9 @@ public class VendorOnBoardingEmailEvents {
     /**
      * 打回给申请人
      */
-    public static void returnToApplicant(Delegator delegator, HttpServletRequest request, OdataOfbizEntity entity, String comments) {
+    public static void returnToApplicant(LocalDispatcher dispatcher, HttpServletRequest request, OdataOfbizEntity entity, String comments) {
         try {
+            Delegator delegator = dispatcher.getDelegator();
             String supplierId = (String) entity.getPropertyValue("partyId");
             GenericValue supplier = EntityQuery.use(delegator).from("Party").where("partyId", supplierId).queryOne();
             String supplierName = supplier.getString("partyName");
@@ -201,12 +248,18 @@ public class VendorOnBoardingEmailEvents {
             String coWorkId = coWork.getString("workEffortId");
             currentUrl += "/#/supplier/supplierapprove-managebyapplication/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode("SupplierParties('" + coWorkId + "')", "UTF-8");
             String contentStr = comments + "<br>";
-
+            String subject = supplierName + "(" + supplierId + ") onboarding process";
             String content = UtilEmail.getVendorOnBoardingTemp();
             content = content.replace("${{Title}}", "To Applicant");
             content = content.replace("${{Content}}", contentStr);
             content = content.replace("${{TargetUrl}}", currentUrl);
-            UtilEmail.sendEmail(emailUrl, supplierName + "(" + supplierId + ") onboarding process", content);
+
+            dispatcher.runSync("banfftech.createCommunicationEvent", UtilMisc.toMap("communicationEventId",
+                    delegator.getNextSeqId("CommunicationEvent"), "communicationEventTypeId", "AUTO_EMAIL_COMM",
+                    "contactMechIdFrom", "EMAIL100", "subject", subject, "contentMimeTypeId", "text/html", "content", content,
+                    "toString", emailUrl, "headerString", "Procurement System", "userLogin", Util.getSystemUser(delegator)));
+
+//            UtilEmail.sendEmail(emailUrl, supplierName + "(" + supplierId + ") onboarding process", content);
         } catch (Exception e) {
             Debug.logError(e, module);
         }
@@ -215,8 +268,9 @@ public class VendorOnBoardingEmailEvents {
     /**
      * 合规打回给采购
      */
-    public static void returnToProcurement(Delegator delegator, HttpServletRequest request, OdataOfbizEntity entity, String comments) {
+    public static void returnToProcurement(LocalDispatcher dispatcher, HttpServletRequest request, OdataOfbizEntity entity, String comments) {
         try {
+            Delegator delegator = dispatcher.getDelegator();
             String supplierId = (String) entity.getPropertyValue("partyId");
             GenericValue supplier = EntityQuery.use(delegator).from("Party").where("partyId", supplierId).queryOne();
             String supplierName = supplier.getString("partyName");
@@ -228,12 +282,16 @@ public class VendorOnBoardingEmailEvents {
             String coWorkId = coWork.getString("workEffortId");
             currentUrl += "/#/supplier/supplierapprove-managebyapplication/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode("SupplierParties('" + coWorkId + "')", "UTF-8");
             String contentStr = comments + "<br>";
-
+            String subject = supplierName + "(" + supplierId + ") onboarding process";
             String content = UtilEmail.getVendorOnBoardingTemp();
             content = content.replace("${{Title}}", "To Applicant");
             content = content.replace("${{Content}}", contentStr);
             content = content.replace("${{TargetUrl}}", currentUrl);
-            UtilEmail.sendEmail(emailUrl, supplierName + "(" + supplierId + ") onboarding process", content);
+            dispatcher.runSync("banfftech.createCommunicationEvent", UtilMisc.toMap("communicationEventId",
+                    delegator.getNextSeqId("CommunicationEvent"), "communicationEventTypeId", "AUTO_EMAIL_COMM",
+                    "contactMechIdFrom", "EMAIL100", "subject", subject, "contentMimeTypeId", "text/html", "content", content,
+                    "toString", emailUrl, "headerString", "Procurement System", "userLogin", Util.getSystemUser(delegator)));
+//            UtilEmail.sendEmail(emailUrl, supplierName + "(" + supplierId + ") onboarding process", content);
         } catch (Exception e) {
             Debug.logError(e, module);
         }
