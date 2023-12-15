@@ -29,8 +29,8 @@
         <Property Name="statusId">
             <Text Path="SupplierStatusItem/description" TextArrangement="TextOnly"/>
         </Property>
-        <Property Name="groupTypeId">
-            <Text Path="GroupTypeEnumeration/description" TextArrangement="TextOnly"/>
+        <Property Name="partyGroupTypeId">
+            <Text Path="PartyGroupType/description" TextArrangement="TextOnly"/>
             <ValueList WithFixedValues="true" CollectionPath="GroupTypeEnumerations"/>
         </Property>
         <Property Name="logoImageUrl" IsImageURL="true"/>
@@ -166,7 +166,7 @@
         <!-- Supplier DD -->
         <NavigationProperty Name="SupplierDDForm" Type="SupplierDDForm" Relations="PartyGroupAndContact" IsCollection="false"/>
 
-        <SelectionFields PropertyPath="partyName,groupTypeId"/>
+        <SelectionFields PropertyPath="partyName,partyGroupTypeId"/>
         <!--Annotation-->
         <FieldGroup Label="PartyBaseInfo" Qualifier="PartyBaseInfo">
             <DataField Values="tickerSymbol,ProductCategory/categoryName,usccNumber,cycleTime" Importance="High"/>
@@ -176,7 +176,7 @@
 <!--        <DataPoint Title="${complianceCheckWarning}" Value="complianceCheckWarning" Qualifier="complianceCheckWarning"-->
 <!--                   Criticality="checkWarningCritical"/>-->
         <FieldGroup Qualifier="PartyGroupFieldGroup" Label="PartyGroupFieldGroup">
-            <DataField Values="usccNumber,employeesSection,groupTypeId,annualRevenue,ListedCountry/geoId,comments"
+            <DataField Values="usccNumber,employeesSection,partyGroupTypeId,annualRevenue,ListedCountry/geoId,comments"
                        Importance="High"/>
         </FieldGroup>
         <FieldGroup Qualifier="WorkScope" Label="WorkScope">
@@ -184,7 +184,7 @@
         </FieldGroup>
         <FieldGroup Qualifier="PartyGroupFieldGroupWithAction" Label="PartyGroupFieldGroupWithAction">
             <DataField
-                    Values="usccNumber,employeesSection,groupTypeId,annualRevenue,ListedCountry/geoId,comments,priority"
+                    Values="usccNumber,employeesSection,partyGroupTypeId,annualRevenue,ListedCountry/geoId,comments,priority"
                     Importance="High"/>
             <DataFieldForAction Label="${UpdateBasicInfo}" Action="FillSupplierBaseInfo" Importance="High"
                                 Criticality="Positive" Inline="false" InvocationGrouping="Isolated"
@@ -218,7 +218,7 @@
         </FieldGroup>
 
         <LineItem>
-            <DataField Values="logoImageUrl,partyId,groupTypeId" Importance="High"/>
+            <DataField Values="logoImageUrl,partyId,partyGroupTypeId" Importance="High"/>
             <DataField Values="ddFormType" Criticality="ddFormTypeCritical" Importance="High"/>
             <DataField Values="PartyClassification/PartyClassificationGroup/description" Criticality="riskCritical"
                        Importance="High"/>
@@ -314,9 +314,9 @@
                 OfbizService="com.banfftech.events.SupplierEvents.createSupplierParty">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="true"/>
             <Parameter Name="partyName" Type="String" Label="${supplierActionPartyName}" Nullable="false"/>
-            <Parameter Name="groupTypeId" Type="String" Label="${groupTypeId}" Nullable="false">
+            <Parameter Name="partyGroupTypeId" Type="String" Label="${partyGroupTypeId}" Nullable="false">
                 <ValueList CollectionPath="GroupTypeEnumerations" WithFixedValues="true">
-                    <ParameterInOut LocalDataProperty="groupTypeId" ValueListProperty="enumId"/>
+                    <ParameterInOut LocalDataProperty="partyGroupTypeId" ValueListProperty="enumId"/>
                 </ValueList>
             </Parameter>
             <Parameter Name="priority" Type="String" Label="${Priority}">

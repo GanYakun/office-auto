@@ -220,4 +220,9 @@
 		<field name="approveComments" type="long-varchar"/>
 	</extend-entity>
 
+	<extend-entity entity-name="PartyGroupType">
+		<field name="typeCode" type="long-varchar"/>
+		<field name="sequenceId" type="id"/>
+	</extend-entity>
+
 </entitymodel>

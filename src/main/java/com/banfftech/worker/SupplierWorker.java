@@ -44,7 +44,7 @@ public class SupplierWorker {
     public static Boolean satisfiedNoDDRegular (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
         Boolean isGovernment = isGovernment((String) supplierParty.get("partyId"), delegator);
         Boolean isNoFormListCountry = isNoFormListCountry(supplierParty, delegator);
-        String vendorTypeEnumCode = getVendorTypeEnumCode(supplierParty, delegator);
+        String vendorTypeEnumCode = getVendorTypeCode(supplierParty, delegator);
 
         if (isGovernment || isNoFormListCountry || vendorTypeEnumCode.equals("NO_DD")){
             return true;
@@ -56,7 +56,7 @@ public class SupplierWorker {
 
     public static Boolean simplifiedDDRegular(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
 
-        String vendorTypeEnumCode = getVendorTypeEnumCode(supplierParty, delegator);
+        String vendorTypeEnumCode = getVendorTypeCode(supplierParty, delegator);
         if (vendorTypeEnumCode.equals("SIMPLIFIED_DD")){
             return true;
         }else {
@@ -66,7 +66,7 @@ public class SupplierWorker {
 
     public static Boolean standardDDRegular(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
 
-        String vendorTypeEnumCode = getVendorTypeEnumCode(supplierParty, delegator);
+        String vendorTypeEnumCode = getVendorTypeCode(supplierParty, delegator);
         if (vendorTypeEnumCode.equals("STANDARD_DD")){
             return true;
         }else {
@@ -86,13 +86,13 @@ public class SupplierWorker {
         return productCategory.getString("primaryParentCategoryId");
     }
 
-    private static String getVendorTypeEnumCode(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-        String groupTypeId = supplierParty.getString("groupTypeId");
-        GenericValue enumeration = delegator.findOne("Enumeration", UtilMisc.toMap("enumId", groupTypeId), true);
-        if (UtilValidate.isEmpty(enumeration)){
+    private static String getVendorTypeCode(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
+        String partyGroupTypeId = supplierParty.getString("partyGroupTypeId");
+        GenericValue PartyGroupType = delegator.findOne("PartyGroupType", UtilMisc.toMap("partyGroupTypeId", partyGroupTypeId, "partyId", supplierParty.get("partyId")), true);
+        if (UtilValidate.isEmpty(PartyGroupType)){
             return "";
         }
-        return enumeration.getString("enumCode");
+        return PartyGroupType.getString("typeCode");
     }
 
     private static Boolean isGovernment (String partyId, Delegator delegator) throws GenericEntityException {

@@ -34,7 +34,9 @@
         <Property Name="contactPhoneMobile" RelAlias="PersonAndContact" Field="phoneMobile" Computed="true"/>
         <Property Name="contactPhonePrimary" RelAlias="PersonAndContact" Field="primaryPhone" Computed="true"/>
         <Property Name="contactEmailPrimary" RelAlias="PersonAndContact" Field="primaryEmail" Computed="true"/>
-
+        <Property Name="employeesSection">
+            <Text Path="EmployeesEnumeration/description" TextArrangement="TextOnly"/>
+        </Property>
         <NavigationProperty Name="SupplierProduct"/>
         <NavigationProperty Name="ToShipment"/>
         <NavigationProperty Name="FromShipment"/>
@@ -46,9 +48,11 @@
         <NavigationProperty Name="NoteData" Type="NoteData" Relations="PartyNote/NoteData" IsCollection="true"/>
         <NavigationProperty Name="PurchaseOrder" Type="PurchaseOrder" Relations="OrderRole(roleTypeId=BILL_FROM_VENDOR)/OrderHeader" IsCollection="true"/>
         <NavigationProperty Name="Invoice"/>
+        <NavigationProperty Name="EmployeesEnumeration" Type="EmployeesEnumeration" Relations="EmployeesEnumeration"/>
         <NavigationProperty Name="PurchaseQuote" Type="PurchaseQuote" Relations="Quote" IsCollection="true"/>
         <NavigationProperty Name="AfterSalesService" Type="AfterSalesService" Relations="WorkEffortPartyAssignment(roleTypeId=SUPPLIER)/WorkEffort" IsCollection="true"/>
         <NavigationProperty Name="PartyClassification" IsCollection="false"/>
+        <NavigationProperty Name="ListedCountry" Type="ListedCountry" Relations="PartyGeo(partyGeoTypeId=LISTED_COUNTRY)/Geo" IsCollection="true"/>
         <NavigationProperty Name="SurveyQuestionAppl" Type="SurveyQuestionAppl" Relations="PartySurveyAppl/SurveyQuestionAppl" IsCollection="true"/>
         <SelectionFields PropertyPath="primaryPhone"/>
 
@@ -84,6 +88,12 @@
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
         </Action>
     </EntityType>
+
+    <EntityType Name="EmployeesEnumeration" Orderby="sequenceId" EntitySetName="EmployeesEnumerations" OfbizEntity="Enumeration" EntityCondition="enumTypeId=EMPLOYEES_ENUM" AutoProperties="true">
+        <Property Name="enumId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
     
     <EntityType Name="SurveyQuestionAppl" AutoProperties="true" EntitySetName="SurveyQuestionAppls" AutoSet="true"
                 Handler="component://officeauto/groovyScripts/partyManage/surveyQuestionAppl/generateEntityListFields.groovy">
@@ -101,6 +111,12 @@
     </EntityType>
 
     <EntityType Name="Survey" AutoSet="true" EntitySetName="Surveys" AutoProperties="true">
+    </EntityType>
+
+    <EntityType Name="ListedCountry" OfbizType="geoTypeId=COUNTRY" OfbizEntity="Geo" EntityCondition="geoId in (USA,UK,ARE,Europe,CHN)" AutoProperties="true" EntitySetName="ListedCountries">
+        <Property Name="geoId">
+            <Text Path="geoName" TextArrangement="TextOnly"/>
+        </Property>
     </EntityType>
 
     <EntityType Name="SurveyQuestionAnswer" AutoSet="true" EntitySetName="SurveyQuestionAnswers" AutoProperties="true">

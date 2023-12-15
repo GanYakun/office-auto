@@ -239,9 +239,6 @@
         <relation type="one-nofk" rel-entity-name="PartyGroupAndContact">
             <key-map field-name="partyId" rel-field-name="partyId"/>
         </relation>
-        <relation type="one-nofk" title="GroupType" rel-entity-name="Enumeration">
-            <key-map field-name="groupTypeId" rel-field-name="enumId"/>
-        </relation>
         <relation type="one-nofk" title="CreatedBy" rel-entity-name="UserLogin">
             <key-map field-name="createdByUserLogin" rel-field-name="userLoginId"/>
         </relation>
