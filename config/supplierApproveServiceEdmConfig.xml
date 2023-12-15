@@ -16,7 +16,7 @@
     <EntityType Name="SupplierParty" OfbizType="PartyRole/roleTypeId=SUPPLIER"
                 EntityCondition="approvePartyId=${company.partyId}" Orderby="-partyId"
                 OfbizEntity="WorkEffortAndPartyGroupContact" EntitySetName="SupplierParties" AutoSet="true"
-                Properties="logoImageUrl,partyId,partyName,annualRevenue,comments,createdDate,lastModifiedDate,approveComments,workEffortId"
+                Properties="logoImageUrl,partyId,partyName,annualRevenue,comments,createdDate,lastModifiedDate,approveComments,workEffortId,workEffortParentId"
                 AttrDateEntityName="PartyAttributeDate" AttrEntityName="PartyAttribute"
                 AutoLabel="true" SearchOption="partyName"
                 Handler="component://officeauto/groovyScripts/partyManage/supplierPartyApprove/generateEntityListFields.groovy">
