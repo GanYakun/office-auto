@@ -401,13 +401,13 @@ public class SupplierWorker {
     }
 
     public static Boolean procurementSubmitIsHidden(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-        Boolean procurementSubmitHidden = false;
+        Boolean procurementSubmitHidden = true;
         List<GenericValue> coworks = delegator.findByAnd("WorkEffort",
                 UtilMisc.toMap("partyId", supplierParty.get("partyId"), "workEffortTypeId", "COWORK"), null, true);
         if (UtilValidate.isNotEmpty(coworks)){
             GenericValue cowork = EntityUtil.getFirst(coworks);
-            if (cowork.get("currentStatusId").equals("REGISTERED") || cowork.get("currentStatusId").equals("ON_HOLD") || cowork.get("currentStatusId").equals("COMPLIANCE_REVIEW")){
-                procurementSubmitHidden = true;
+            if (cowork.get("currentStatusId").equals("PROCUREMENT_REVIEW") || cowork.get("currentStatusId").equals("COMPLETED_DD")){
+                procurementSubmitHidden = false;
             }
         }
         return procurementSubmitHidden;

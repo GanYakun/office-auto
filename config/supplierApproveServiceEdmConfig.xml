@@ -16,7 +16,7 @@
     <EntityType Name="SupplierParty" OfbizType="PartyRole/roleTypeId=SUPPLIER"
                 EntityCondition="approvePartyId=${company.partyId}" Orderby="-partyId"
                 OfbizEntity="WorkEffortAndPartyGroupContact" EntitySetName="SupplierParties" AutoSet="true"
-                AutoProperties="true"
+                Properties="logoImageUrl,partyId,partyName,annualRevenue,comments,createdDate,lastModifiedDate,approveComments,workEffortId"
                 AttrDateEntityName="PartyAttributeDate" AttrEntityName="PartyAttribute"
                 AutoLabel="true" SearchOption="partyName"
                 Handler="component://officeauto/groovyScripts/partyManage/supplierPartyApprove/generateEntityListFields.groovy">
@@ -38,7 +38,6 @@
         <!--供应商填写的ddForm类型-->
         <Property Name="ddFormType" Type="String" Label="${ddFormType}"/>
         <Property Name="ddFormTypeId" Type="String" Label="${ddFormType}"/>
-        <Property Name="ddFormStatusHistory" Type="String" IsAttribute="true"/>
         <!--供应商完成ddForm时间-->
         <Property Name="cycleTime" Type="String" Label="${cycleTime}"/>
         <Property Name="complianceCycleTime" Type="String" Label="${complianceCycleTime}"/>
@@ -51,9 +50,6 @@
         <Property Name="collectionDate" Type="Timestamp" IsDateAttribute="true"/>
         <!--文件上传完成时间-->
         <Property Name="finishDomUploadDate" Label="${finishDomUploadDate}" Type="Timestamp" IsDateAttribute="true"/>
-        <!--记录是否已完成文件上传-->
-        <Property Name="isFinishedDomUpload" Type="Boolean" IsAttribute="true"/>
-        <Property Name="totalAmount" Type="BigDecimal" Scale="3"/>
         <!--WorkEffort提交状态颜色显示-->
         <Property Name="criticalityValue" Type="numeric" Hidden="true" HiddenFilter="true"/>
         <!--供应商填写的ddForm类型的颜色显示-->
@@ -62,7 +58,7 @@
         <Property Name="riskCritical" Type="numeric" Hidden="true" HiddenFilter="true"/>
         <Property Name="ratingNumeric" Type="numeric" Label="${ratingNumeric}"/>
         <Property Name="processNumeric" Type="numeric" Label="processNumeric"/>
-        <Property Name="processCritical" Type="numeric"/>
+        <Property Name="processCritical" Type="numeric" Hidden="true"/>
         <!--供应商优先级颜色显示-->
         <Property Name="priorityCritical" Type="numeric" Hidden="true" HiddenFilter="true"/>
         <Property Name="statusId" Immutable="true" DefaultValue="PARTY_DISABLED">
@@ -81,12 +77,7 @@
         <!--供应商收藏时间-->
         <Property Name="lastSubmittedDate" Type="Timestamp" Label="${lastSubmittedDate}"/>
         <Property Name="usccNumber" Type="String" HiddenFilter="true"/>
-        <RelAlias Name="PersonAndContact"
-                  Relations="FromPartyRelationship(roleTypeIdTo=CONTACT and roleTypeIdFrom=SUPPLIER)/ToPersonAndContact"/>
-        <Property Name="contactName" RelAlias="PersonAndContact" Field="partyName" Computed="true"/>
-        <Property Name="contactPhoneMobile" RelAlias="PersonAndContact" Field="phoneMobile" Computed="true"/>
-        <Property Name="contactPhonePrimary" RelAlias="PersonAndContact" Field="primaryPhone" Computed="true"/>
-        <Property Name="contactEmailPrimary" RelAlias="PersonAndContact" Field="primaryEmail" Computed="true"/>
+
         <!-- Semantic Field -->
         <!-- 合规建议 -->
         <Property Name="complianceNote" Type="String" IsAttribute="true" Label="${complianceNote}"/>
@@ -101,15 +92,15 @@
         <Property Name="additionalProtection" Type="String" Label="${additionalProtection}" IsAttribute="true"/>
         <Property Name="complianceComments" Type="String" Label="${complianceComments}" IsAttribute="true"/>
         <Property Name="complianceCheckWarning" Type="String" IsAttribute="true"/>
-        <Property Name="checkWarningCritical" Type="numeric"/>
-        <Property Name="vendorTypeCritical" Type="numeric"/>
+        <Property Name="checkWarningCritical" Type="numeric" Hidden="true"/>
+        <Property Name="vendorTypeCritical" Type="numeric" Hidden="true"/>
         <Property Name="warningContent" Type="String" Label="${warningContent}"/>
         <!-- applicant提交按钮隐藏逻辑 -->
-        <Property Name="applicantSubmitHidden" Type="Boolean"/>
+        <Property Name="applicantSubmitHidden" Type="Boolean" Hidden="true"/>
         <!-- procurement提交按钮隐藏逻辑 -->
-        <Property Name="procurementSubmitHidden" Type="Boolean"/>
+        <Property Name="procurementSubmitHidden" Type="Boolean" Hidden="true"/>
         <!-- ddForm是否已提交 -->
-        <Property Name="ddFormIsSubmitted" Type="Boolean"/>
+        <Property Name="ddFormIsSubmitted" Type="Boolean" Hidden="true"/>
         <NavigationProperty Name="Product" Type="Product" Relations="SupplierProduct/Product" IsCollection="true"/>
         <NavigationProperty Name="Service" Type="Service" Relations="SupplierProduct/Product" IsCollection="true"/>
         <NavigationProperty Name="ToShipment"/>
@@ -198,11 +189,11 @@
 
 
         <FieldGroup Qualifier="SupplierTimeInfo" Label="SupplierTimeInfo">
-            <DataField Values="createdDate,lastModifiedDate,finishDomUploadDate,collectionDate,firstOrderDate"
+            <DataField Values="createdDate,lastModifiedDate,collectionDate,firstOrderDate"
                        Importance="High"/>
         </FieldGroup>
         <FieldGroup Qualifier="SupplierTimeInfoWithAction" Label="SupplierTimeInfoWithAction">
-            <DataField Values="createdDate,lastModifiedDate,finishDomUploadDate,collectionDate,firstOrderDate"
+            <DataField Values="createdDate,lastModifiedDate,collectionDate,firstOrderDate"
                        Importance="High"/>
             <DataFieldForAction Label="${UpdateSupplierTimeInfo}" Action="UpdateSupplierTimeInfo" Importance="High"
                                 Criticality="Positive" Inline="false" InvocationGrouping="Isolated"
