@@ -412,7 +412,7 @@ public class SupplierEvents {
         dispatcher.runSync("banfftech.createPartyRelationship",
                 UtilMisc.toMap("userLogin", userLogin, "roleTypeIdFrom", "COMPANY", "partyIdFrom", companyRelation.get("partyIdFrom"),
                         "roleTypeIdTo", "SUPPLIER", "partyIdTo", partyId));
-        String code = CommonUtils.getEncryptedPassword(delegator, "ofbiz");
+        String code = CommonUtils.getEncryptedPassword(delegator, "abc123");
         dispatcher.runSync("banfftech.createUserLogin",
                 UtilMisc.toMap("userLogin", userLogin, "partyId", partyId, "userLoginId", "supplier" + partyId, "currentPassword", code));
 

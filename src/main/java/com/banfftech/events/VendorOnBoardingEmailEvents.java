@@ -38,11 +38,6 @@ public class VendorOnBoardingEmailEvents {
             content = content.replace("${{Title}}", "To Procurement");
             content = content.replace("${{Content}}", contentStr);
             content = content.replace("${{TargetUrl}}", currentUrl);
-
-//            String content = UtilEmail.vendorOnBoardingTemp;
-//            content = content.replace("{{title}}", "To Procurement");
-//            content = content.replace("{{content}}", contentStr);
-//            content = content.replace("{{url}}", currentUrl);
             Debug.logInfo("===== Url: " + currentUrl, module);
             UtilEmail.sendEmail(procurement.getString("primaryEmail"), supplierName + "(" + supplierId + ") onboarding process", content);
         } catch (Exception e) {
@@ -69,13 +64,9 @@ public class VendorOnBoardingEmailEvents {
             content = content.replace("${{Title}}", "Dear Mr./Ms.");
             content = content.replace("${{Content}}", contentStr);
             content = content.replace("${{TargetUrl}}", currentUrl);
-
-//            String content = UtilEmail.vendorOnBoardingTemp;
-//            content = content.replace("{{title}}", "Hello!");
-//            content = content.replace("{{content}}", contentStr);
-//            content = content.replace("{{url}}", currentUrl);
             Debug.logInfo("===== Url: " + currentUrl, module);
-            UtilEmail.sendEmail(email, supplierName + "(" + supplierId + ") onboarding process", content);
+            UtilEmail.sendAttachmentEmail(email, supplierName + "(" + supplierId + ") onboarding process",
+                    content, "component://officeauto/documents/Business Code of Conduct.pdf");
         } catch (Exception e) {
             Debug.logError(e, module);
         }
@@ -104,11 +95,6 @@ public class VendorOnBoardingEmailEvents {
             content = content.replace("${{Title}}", "To Applicant");
             content = content.replace("${{Content}}", contentStr);
             content = content.replace("${{TargetUrl}}", currentUrl);
-
-//            String content = UtilEmail.vendorOnBoardingTemp;
-//            content = content.replace("{{title}}", "To Applicant");
-//            content = content.replace("{{content}}", contentStr);
-//            content = content.replace("{{url}}", currentUrl);
             Debug.logInfo("===== Url: " + currentUrl, module);
             UtilEmail.sendEmail(emailUrl, supplierName + "(" + supplierId + ") onboarding process", content);
         } catch (Exception e) {
@@ -136,11 +122,6 @@ public class VendorOnBoardingEmailEvents {
             content = content.replace("${{Title}}", "To Compliance");
             content = content.replace("${{Content}}", contentStr);
             content = content.replace("${{TargetUrl}}", currentUrl);
-
-//            String content = UtilEmail.vendorOnBoardingTemp;
-//            content = content.replace("{{title}}", "To Compliance");
-//            content = content.replace("{{content}}", contentStr);
-//            content = content.replace("{{url}}", currentUrl);
             Debug.logInfo("===== Url: " + currentUrl, module);
             UtilEmail.sendEmail(compliance.getString("primaryEmail"), supplierName + "(" + supplierId + ") onboarding process", content);
         } catch (Exception e) {
@@ -167,11 +148,6 @@ public class VendorOnBoardingEmailEvents {
             content = content.replace("${{Title}}", "To Procurement");
             content = content.replace("${{Content}}", contentStr);
             content = content.replace("${{TargetUrl}}", currentUrl);
-
-//            String content = UtilEmail.vendorOnBoardingTemp;
-//            content = content.replace("{{title}}", "To Procurement");
-//            content = content.replace("{{content}}", contentStr);
-//            content = content.replace("{{url}}", currentUrl);
             Debug.logInfo("===== Url: " + currentUrl, module);
             UtilEmail.sendEmail(procurement.getString("primaryEmail"), supplierName + "(" + supplierId + ") onboarding process", content);
         } catch (Exception e) {
@@ -202,11 +178,6 @@ public class VendorOnBoardingEmailEvents {
             content = content.replace("${{Title}}", "To Applicant");
             content = content.replace("${{Content}}", contentStr);
             content = content.replace("${{TargetUrl}}", currentUrl);
-
-//            String content = UtilEmail.vendorOnBoardingTemp;
-//            content = content.replace("{{title}}", "To Applicant");
-//            content = content.replace("{{content}}", contentStr);
-//            content = content.replace("{{url}}", currentUrl);
             UtilEmail.sendEmail(emailUrl, supplierName + "(" + supplierId + ") onboarding process", content);
         } catch (Exception e) {
             Debug.logError(e, module);
@@ -235,11 +206,6 @@ public class VendorOnBoardingEmailEvents {
             content = content.replace("${{Title}}", "To Applicant");
             content = content.replace("${{Content}}", contentStr);
             content = content.replace("${{TargetUrl}}", currentUrl);
-
-//            String content = UtilEmail.vendorOnBoardingTemp;
-//            content = content.replace("{{title}}", "To Applicant");
-//            content = content.replace("{{content}}", contentStr);
-//            content = content.replace("{{url}}", currentUrl);
             UtilEmail.sendEmail(emailUrl, supplierName + "(" + supplierId + ") onboarding process", content);
         } catch (Exception e) {
             Debug.logError(e, module);
@@ -267,11 +233,6 @@ public class VendorOnBoardingEmailEvents {
             content = content.replace("${{Title}}", "To Applicant");
             content = content.replace("${{Content}}", contentStr);
             content = content.replace("${{TargetUrl}}", currentUrl);
-
-//            String content = UtilEmail.vendorOnBoardingTemp;
-//            content = content.replace("{{title}}", "To Procurement");
-//            content = content.replace("{{content}}", contentStr);
-//            content = content.replace("{{url}}", currentUrl);
             UtilEmail.sendEmail(emailUrl, supplierName + "(" + supplierId + ") onboarding process", content);
         } catch (Exception e) {
             Debug.logError(e, module);
