@@ -45,7 +45,7 @@ public class VendorOnBoardingEmailEvents {
             String subject = supplierName + "(" + supplierId + ") onboarding process";
 
             dispatcher.runSync("banfftech.createCommunicationEvent", UtilMisc.toMap("communicationEventId",
-                            delegator.getNextSeqId("CommunicationEvent"), "communicationEventTypeId", "AUTO_EMAIL_COMM",
+                            delegator.getNextSeqId("CommunicationEvent"), "communicationEventTypeId", "AUTO_EMAIL_COMM","statusId", "COM_IN_PROGRESS",
                             "contactMechIdFrom", "EMAIL100", "subject", subject, "contentMimeTypeId", "text/html", "content", content,
                             "toString", procurement.getString("primaryEmail"), "headerString", "Procurement System", "userLogin", Util.getSystemUser(delegator)));
 
@@ -78,7 +78,7 @@ public class VendorOnBoardingEmailEvents {
             String subject = supplierName + "(" + supplierId + ") onboarding process";
             String communicationEventId = delegator.getNextSeqId("CommunicationEvent");
             dispatcher.runSync("banfftech.createCommunicationEvent", UtilMisc.toMap("communicationEventId",
-                    communicationEventId, "communicationEventTypeId", "AUTO_EMAIL_COMM",
+                    communicationEventId, "communicationEventTypeId", "AUTO_EMAIL_COMM","statusId", "COM_IN_PROGRESS",
                     "contactMechIdFrom", "EMAIL100", "subject", subject, "contentMimeTypeId", "text/html", "content", content,
                     "toString", email, "headerString", "Procurement System", "userLogin", Util.getSystemUser(delegator)));
             dispatcher.runSync("banfftech.createCommEventContentAssoc", UtilMisc.toMap("communicationEventId", communicationEventId,
@@ -115,7 +115,7 @@ public class VendorOnBoardingEmailEvents {
             content = content.replace("${{Content}}", contentStr);
             content = content.replace("${{TargetUrl}}", currentUrl);
             dispatcher.runSync("banfftech.createCommunicationEvent", UtilMisc.toMap("communicationEventId",
-                    delegator.getNextSeqId("CommunicationEvent"), "communicationEventTypeId", "AUTO_EMAIL_COMM",
+                    delegator.getNextSeqId("CommunicationEvent"), "communicationEventTypeId", "AUTO_EMAIL_COMM","statusId", "COM_IN_PROGRESS",
                     "contactMechIdFrom", "EMAIL100", "subject", subject, "contentMimeTypeId", "text/html", "content", content,
                     "toString", emailUrl, "headerString", "Procurement System", "userLogin", Util.getSystemUser(delegator)));
 
@@ -149,7 +149,7 @@ public class VendorOnBoardingEmailEvents {
             content = content.replace("${{Content}}", contentStr);
             content = content.replace("${{TargetUrl}}", currentUrl);
             dispatcher.runSync("banfftech.createCommunicationEvent", UtilMisc.toMap("communicationEventId",
-                    delegator.getNextSeqId("CommunicationEvent"), "communicationEventTypeId", "AUTO_EMAIL_COMM",
+                    delegator.getNextSeqId("CommunicationEvent"), "communicationEventTypeId", "AUTO_EMAIL_COMM","statusId", "COM_IN_PROGRESS",
                     "contactMechIdFrom", "EMAIL100", "subject", subject, "contentMimeTypeId", "text/html", "content", content,
                     "toString", compliance.getString("primaryEmail"), "headerString", "Procurement System", "userLogin", Util.getSystemUser(delegator)));
 
@@ -184,7 +184,7 @@ public class VendorOnBoardingEmailEvents {
 
 
             dispatcher.runSync("banfftech.createCommunicationEvent", UtilMisc.toMap("communicationEventId",
-                    delegator.getNextSeqId("CommunicationEvent"), "communicationEventTypeId", "AUTO_EMAIL_COMM",
+                    delegator.getNextSeqId("CommunicationEvent"), "communicationEventTypeId", "AUTO_EMAIL_COMM","statusId", "COM_IN_PROGRESS",
                     "contactMechIdFrom", "EMAIL100", "subject", subject, "contentMimeTypeId", "text/html", "content", content,
                     "toString", procurement.getString("primaryEmail"), "headerString", "Procurement System", "userLogin", Util.getSystemUser(delegator)));
 
@@ -220,7 +220,7 @@ public class VendorOnBoardingEmailEvents {
             content = content.replace("${{TargetUrl}}", currentUrl);
 
             dispatcher.runSync("banfftech.createCommunicationEvent", UtilMisc.toMap("communicationEventId",
-                    delegator.getNextSeqId("CommunicationEvent"), "communicationEventTypeId", "AUTO_EMAIL_COMM",
+                    delegator.getNextSeqId("CommunicationEvent"), "communicationEventTypeId", "AUTO_EMAIL_COMM","statusId", "COM_IN_PROGRESS",
                     "contactMechIdFrom", "EMAIL100", "subject", subject, "contentMimeTypeId", "text/html", "content", content,
                     "toString", emailUrl, "headerString", "Procurement System", "userLogin", Util.getSystemUser(delegator)));
 
@@ -255,7 +255,7 @@ public class VendorOnBoardingEmailEvents {
             content = content.replace("${{TargetUrl}}", currentUrl);
 
             dispatcher.runSync("banfftech.createCommunicationEvent", UtilMisc.toMap("communicationEventId",
-                    delegator.getNextSeqId("CommunicationEvent"), "communicationEventTypeId", "AUTO_EMAIL_COMM",
+                    delegator.getNextSeqId("CommunicationEvent"), "communicationEventTypeId", "AUTO_EMAIL_COMM","statusId", "COM_IN_PROGRESS",
                     "contactMechIdFrom", "EMAIL100", "subject", subject, "contentMimeTypeId", "text/html", "content", content,
                     "toString", emailUrl, "headerString", "Procurement System", "userLogin", Util.getSystemUser(delegator)));
 
@@ -288,7 +288,7 @@ public class VendorOnBoardingEmailEvents {
             content = content.replace("${{Content}}", contentStr);
             content = content.replace("${{TargetUrl}}", currentUrl);
             dispatcher.runSync("banfftech.createCommunicationEvent", UtilMisc.toMap("communicationEventId",
-                    delegator.getNextSeqId("CommunicationEvent"), "communicationEventTypeId", "AUTO_EMAIL_COMM",
+                    delegator.getNextSeqId("CommunicationEvent"), "communicationEventTypeId", "AUTO_EMAIL_COMM","statusId", "COM_IN_PROGRESS",
                     "contactMechIdFrom", "EMAIL100", "subject", subject, "contentMimeTypeId", "text/html", "content", content,
                     "toString", emailUrl, "headerString", "Procurement System", "userLogin", Util.getSystemUser(delegator)));
 //            UtilEmail.sendEmail(emailUrl, supplierName + "(" + supplierId + ") onboarding process", content);
