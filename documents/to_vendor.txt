@@ -1,12 +1,15 @@
-Dear Mr./Ms.,
+Subject: [Company Name] Vendor Registration Application
+Dear Sir/Madam,
 
+Your application for registration as a vendor with [Company Name] has been received.
 Please ensure that the following form is completed in its entirety.
-Failure to complete or sign will result in the form being returned and will delay due diligence activities.
-Please also ensure that a current (not expired) copy of the Business Partner's Commercial License (or Passport, if relevant) is submitted along with this form.
-Kindly provide documents for your entities.
-Looking forward to your reply.
+Failure to complete or sign the document will result in the form being returned and cause delay in due diligence activities.
+Along with this form, please also submit the following documents for your entities where applicable:
+1. A copy of the Business Partner's Commercial License (or Passport, if relevant)
+2. Ultimate beneficial owner (UBO) personal ID (passport or national ID card)
+3. Director/Officers personal ID (passport or national ID card)
 
-Thank you.
+Your prompt reply is highly appreciated.
 
 Kind regards,
 [Your Company Name]

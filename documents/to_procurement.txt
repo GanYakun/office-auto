@@ -1,30 +1,20 @@
 Subject: Procurement Review Task Assigned - [vendor name and id]
 Dear [procurement user],
 
-We are writing to inform you that [applicant user] has completed his/her data collection of [vendor name].
-He/She has submitted this vendor and its BPDD Form to you to review.
-You can access the system and start your work by clicking the following button: [Task Link]
-Please ensure that you complete your task within the stipulated time to maintain the vendor on-boarding work efficiency.
-Thank you for your attention to this matter.
-
-Best regards,
-Applicant of BU, [Company Name]
+This letter is intended to inform that [applicant user] has completed data collection of [vendor name].
+The related BPDD Form has been submitted for your review.
+You can access the system by clicking the following button: [Task Link]
 
 Please note that this is a system-generated email, do not reply directly to this email.
-If you have any questions or need assistance, please contact your supervisor or the system administrator.
+If you have any questions or need assistance, please contact the system administrator.
 
 ------------------------------------------------------------------------------------------------------------------------
 Subject: Compliance Review Completion Notification - [vendor name and id]
 Dear [procurement user],
 
-We are writing to inform you that [compliance user] has completed his/her review of [vendor name].
-He/She has sent the compliance response to you to proceed.
-You can access the system and start your work by clicking the following button: [Task Link]
-Please ensure that you complete your task within the stipulated time to maintain the vendor on-boarding work efficiency.
-Thank you for your attention to this matter.
-
-Best regards,
-Compliance Team, [Company Name]
+This is to inform you that [compliance user] has completed review of [vendor name].
+The compliance response has been sent to you to proceed.
+You can access the system by clicking the following button: [Task Link]
 
 Please note that this is a system-generated email, do not reply directly to this email.
-If you have any questions or need assistance, please contact your supervisor or the system administrator.
+If you have any questions or need assistance, please contact the system administrator.

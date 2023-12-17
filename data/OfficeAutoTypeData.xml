@@ -139,8 +139,8 @@ under the License.
     <!--Enumeration-->
     <PartyGroupType partyGroupTypeId="HIGHLY_REGULATED_ENTITY_TYPE" typeCode="NO_DD" sequenceId="01" description="Highly regulated entity"/>
     <PartyGroupType partyGroupTypeId="GOVERNMENTAL_AGENCIES_TYPE" typeCode="NO_DD" sequenceId="02" description="Governmental agencies"/>
-    <PartyGroupType partyGroupTypeId="LOW_VALUE_ONE-TIME_TRANSACTIONS_TYPE" typeCode="NO_DD" sequenceId="03" description="One-time low value transactions(<AED 5000)"/>
-    <PartyGroupType partyGroupTypeId="ROUTINE_AND_LOW_VALUE_TRANSACTIONS_TYPE" typeCode="SIMPLIFIED_DD" sequenceId="04" description="Routine and low value transactions(<AED 5000)"/>
+    <PartyGroupType partyGroupTypeId="LOW_VALUE_ONE-TIME_TRANSACTIONS_TYPE" typeCode="NO_DD" sequenceId="03" description="One-time low value transactions (&lt;AED 5000)"/>
+    <PartyGroupType partyGroupTypeId="ROUTINE_AND_LOW_VALUE_TRANSACTIONS_TYPE" typeCode="SIMPLIFIED_DD" sequenceId="04" description="Repetitive low value transactions (&lt;AED 5000)"/>
     <PartyGroupType partyGroupTypeId="OTHERS_TYPE" typeCode="STANDARD_DD" sequenceId="05" description="Others"/>
 
     <!--上市地区枚举值-->

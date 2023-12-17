@@ -11,4 +11,15 @@ Best regards,
 Procurement Team, [Company Name]
 
 Please note that this is a system-generated email, do not reply directly to this email.
-If you have any questions or need assistance, please contact your supervisor or the system administrator.
+If you have any questions or need assistance, please contact the system administrator.
+
+
+
+
+This letter is intended to inform that [procurement user] has completed review of [vendor name].
+The related BPDD Form has been submitted for your review.
+You can access the system by clicking the following button: [Task Link]
+Your prompt completion of the review is critical to ensure the vendor on-boarding efficiency.
+
+Please note that this is a system-generated email, do not reply directly to this email.
+If you have any questions or need assistance, please contact the system administrator.

@@ -1,11 +1,8 @@
-Subject: Vendor Registered - [vendor name and id]
+Subject: Vendor Registration Completed - [vendor name and id]
 Dear [applicant user],
 
-We are writing to inform you that the procurement team has completed the vendor on-boarding of [vendor name].
-You can access the system and see the details by clicking the following button: [Task Link]
-
-Best regards,
-Procurement Team, [Company Name]
+This is to inform you that [vendor name] has been registered.
+You can access the system and the case details by clicking the following button: [Task Link]
 
 Please note that this is a system-generated email, do not reply directly to this email.
-If you have any questions or need assistance, please contact your supervisor or the system administrator.
+If you have any questions or need assistance, please contact the system administrator.
