@@ -36,7 +36,7 @@
         <Property Name="logoImageUrl" IsImageURL="true"/>
         <Property Name="isGovernment" Type="Boolean" IsAttribute="true" Label="${isGovernment}"/>
         <!--供应商填写的ddForm类型-->
-        <Property Name="ddFormType" Type="String" Label="${ddFormType}"/>
+        <Property Name="ddFormType" Type="String" Label="${NONE}"/>
         <Property Name="ddFormTypeId" Type="String" Label="${ddFormType}"/>
         <!--供应商完成ddForm时间-->
         <Property Name="cycleTime" Type="String" Label="${cycleTime}"/>
