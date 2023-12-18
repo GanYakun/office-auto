@@ -14,7 +14,7 @@
 
     <!--======================================SupplierParty（主对象）========================================-->
     <EntityType Name="SupplierParty" OfbizType="PartyRole/roleTypeId=SUPPLIER"
-                EntityCondition="approvePartyId=${company.partyId}" Orderby="-partyId"
+                EntityCondition="approvePartyId=${company.partyId}" Orderby="-createdDate"
                 OfbizEntity="WorkEffortAndPartyGroupContact" EntitySetName="SupplierParties" AutoSet="true"
                 Properties="logoImageUrl,partyId,partyName,annualRevenue,comments,createdDate,lastModifiedDate,approveComments,workEffortId,workEffortTypeId,workEffortParentId,createdByUserLogin"
                 AttrDateEntityName="PartyAttributeDate" AttrEntityName="PartyAttribute"
