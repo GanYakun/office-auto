@@ -1,0 +1,11 @@
+<ofbiz-edm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="https://dev.odatalab.com/dtds/edmconfig.xsd" ImportGlobal="false">
+    <ImportEdm Path="component://officeauto/config/purchaseRequestManageEdmConfig.xml"/>
+    <!-- 主对象PurchaseRequest（采购请求）-->
+    <EntityType Name="ProductRequirement" OfbizEntity="Requirement" EntityCondition="requirementTypeId=PRODUCT_REQUIREMENT"
+                Properties="requirementId,requirementTypeId,facilityId,productId,statusId"
+                EntitySetName="PurchaseRequests" AutoSet="true">
+    </EntityType>
+
+
+</ofbiz-edm>
