@@ -1,7 +1,6 @@
 package com.banfftech.events;
 
 import com.banfftech.worker.SupplierWorker;
-import com.banfftech.worker.UtilEmail;
 import com.dpbird.odata.Util;
 import com.dpbird.odata.edm.OdataOfbizEntity;
 import org.apache.commons.io.FileUtils;
