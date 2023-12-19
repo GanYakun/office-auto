@@ -41,8 +41,6 @@
         <!--供应商完成ddForm时间-->
         <Property Name="cycleTime" Type="String" Label="${cycleTime}"/>
         <Property Name="complianceCycleTime" Type="String" Label="${complianceCycleTime}"/>
-        <!--供应商ddForm响应时间-->
-<!--        <Property Name="ddResponseTime" Type="String" Label="${ddResponseTime}"/>-->
         <Property Name="createSupplierHidden" Type="Boolean" Hidden="true"/>
         <!--首次订单时间-->
         <Property Name="firstOrderDate" Type="Timestamp" IsDateAttribute="true"/>
@@ -181,12 +179,6 @@
                                 Criticality="Positive" Inline="false" InvocationGrouping="Isolated"
                                 Hidden="disableEditSupplier"/>
         </FieldGroup>
-        <!--        <FieldGroup Qualifier="FileCountGroup" Label="FileCountGroup">-->
-        <!--            <DataField Values="fsCount" Importance="High" Criticality="fsCountCriticality"/>-->
-        <!--            <DataField Values="caCount" Importance="High" Criticality="caCountCriticality"/>-->
-        <!--            <DataField Values="ofCount" Importance="High" Criticality="ofCountCriticality"/>-->
-        <!--        </FieldGroup>-->
-
 
         <FieldGroup Qualifier="SupplierTimeInfo" Label="SupplierTimeInfo">
             <DataField Values="createdDate,lastModifiedDate,collectionDate,firstOrderDate"
