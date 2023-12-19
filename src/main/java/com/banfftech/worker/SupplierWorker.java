@@ -1,5 +1,6 @@
 package com.banfftech.worker;
 
+import com.banfftech.common.util.CommonUtils;
 import org.apache.commons.net.ntp.TimeStamp;
 import org.apache.ofbiz.base.util.UtilDateTime;
 import org.apache.ofbiz.base.util.UtilFormatOut;
@@ -409,8 +410,29 @@ public class SupplierWorker {
             if (cowork.get("currentStatusId").equals("PROCUREMENT_REVIEW") || cowork.get("currentStatusId").equals("COMPLETED_DD")){
                 procurementSubmitHidden = false;
             }
+            if (cowork.get("currentStatusId").equals("COMPLIANCE_REVIEW")){
+                //如果被合规拒绝 也可以reject
+                GenericValue complianceWorkEffort = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("approvePartyId", "HG").queryFirst();
+                if (UtilValidate.isNotEmpty(complianceWorkEffort) && "PROCESSED".equals(complianceWorkEffort.getString("currentStatusId"))) {
+                    procurementSubmitHidden = false;
+                }
+            }
         }
         return procurementSubmitHidden;
+    }
+
+    public static String getApplicantId(String vendorPartyId, Delegator delegator) throws GenericEntityException {
+        //获取申请人的部门
+        GenericValue firstTask = EntityQuery.use(delegator).from("WorkEffort").where("partyId", vendorPartyId, "workEffortTypeId", "COWORK_TASK").orderBy("createdDate").queryFirst();
+        GenericValue createUser = delegator.findOne("UserLogin", UtilMisc.toMap("userLoginId", firstTask.getString("createdByUserLogin")), false);
+        return createUser.getString("partyId");
+    }
+
+    public static String getApplicantCompanyId(String vendorPartyId, Delegator delegator) throws GenericEntityException {
+        //获取申请人的部门
+        GenericValue firstTask = EntityQuery.use(delegator).from("WorkEffort").where("partyId", vendorPartyId, "workEffortTypeId", "COWORK_TASK").orderBy("createdDate").queryFirst();
+        GenericValue createUser = delegator.findOne("UserLogin", UtilMisc.toMap("userLoginId", firstTask.getString("createdByUserLogin")), false);
+        return CommonUtils.getPartyCompany(createUser.getString("partyId"), delegator);
     }
 
 

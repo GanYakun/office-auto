@@ -43,14 +43,15 @@
       text-align: left;
       font-size: 16px;
       margin-bottom: 40px;
-      padding: 0px 40px 16px;
-      height: 207px;
+      padding: 20px 40px 16px;
+      min-height: 207px;
       border-top: 1.0px solid #dddddd;
       border-bottom: 1.0px solid #dddddd;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: flex-start;
+      gap: 15px;
     }
 
     .ViewBox {
@@ -87,22 +88,20 @@
         src="https://dpbird.oss-cn-hangzhou.aliyuncs.com/scy/daypop_logo.png" />
     </a>
     <div class="centreBox">
-      <p>
-        ${{Title}},
-      </p>
-      <p>
-        ${{Content}}
-      </p>
-      <a href="${{TargetUrl}}" class="ViewBox">
+      <div>
+        {{Content}}<br>
+      </div>
+      <a href="{{TargetUrl}}" class="ViewBox">
         View▸
       </a>
+      <div>
+        Please note that this is a system-generated email, do not reply directly to this email.<br>
+        If you have any questions or need assistance, please contact the system administrator.<br>
+      </div>
     </div>
     <div class="footerBox">
-      <a style=" margin: 0px 0px 10px; text-decoration: none; color: rgb(153, 153, 153);" href="#this">Reem Island,
-        Abu Dhabi, United Arab
-        Emirates</a>
-      <span>© Copyright DAYPOP. All
-        Rights Reserved</span>
+      <a style=" margin: 0px 0px 10px; text-decoration: none; color: rgb(153, 153, 153);" href="#this">Reem Island, Abu Dhabi, United Arab Emirates</a>
+      <span>© Copyright DAYPOP. All Rights Reserved</span>
     </div>
   </div>
 </body>

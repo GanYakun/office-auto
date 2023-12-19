@@ -1216,7 +1216,7 @@ under the License.
     <!-- 邮件 -->
     <DataResourceType dataResourceTypeId="LOCAL_FILE"/>
     <DataResource dataResourceId="EMAIL100" dataResourceName="Business Code of Conduct.pdf" dataResourceTypeId="LOCAL_FILE"
-                  mimeTypeId="application/octet-stream" objectInfo="component://officeauto/documents/VendorOnBoarding_temp.html"/>
+                  mimeTypeId="application/octet-stream" objectInfo="component://officeauto/documents/Business Code of Conduct.pdf"/>
     <Content contentId="EMAIL100" dataResourceId="EMAIL100" />
     <ContactMech contactMechId="EMAIL100" infoString="try028@163.com"/>
     <SystemProperty systemResourceId="general" systemPropertyId="defaultFromEmailAddress" systemPropertyValue="try028@163.com" description="general default 'fromEmailAddress' can be overridden in: EmailTemplateSetting"/>
