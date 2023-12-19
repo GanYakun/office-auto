@@ -204,7 +204,8 @@
     </EntityType>
 
     <EntityType Name="RelationshipAndToParty" AutoProperties="true" DraftEntityName="RelationshipAndToPartyDraft"
-                EntitySetName="RelationshipAndToParties" AttrEntityName="PartyRelationshipAttribute">
+                EntitySetName="RelationshipAndToParties" AttrEntityName="PartyRelationshipAttribute"
+                Handler="component://officeauto/groovyScripts/partyManage/ddForm/ddFormRelationship.groovy">
         <Property Name="partyRelationshipId" Computed="true"/>
         <Property Name="nationality" Label="${nationality}" Type="String" IsAttribute="true"/>
         <Property Name="copyIdentificationAttached" Type="Boolean" IsAttribute="true" Label="${copyIdentificationAttached}"/>
@@ -215,14 +216,22 @@
         <Property Name="personImageUrl" IsImageURL="true"/>
         <Property Name="primaryPhone" Label="${supplierActionPrimaryPhone}"/>
         <Property Name="primaryEmail" Label="${supplierActionPrimaryEmail}"/>
+        <!-- todo: add file upload -->
+        <Property Name="fileUrl" Type="String"/>
+        <Property Name="addNameForUpload" Type="String"/>
         <LineItem Qualifier="BeneficialPerson">
             <DataField Values="firstName,lastName,nationality,amount,copyIdentificationAttached" Importance="High"/>
         </LineItem>
         <LineItem Qualifier="BeneficialPerson_Upload">
             <DataField Values="firstName,lastName,nationality,amount,copyIdentificationAttached" Importance="High"/>
-            <DataFieldForAction Label="Upload" Action="UBOUpload" Importance="High" Criticality="Positive" Inline="true" InvocationGrouping="Isolated"/>        </LineItem>
+            <DataFieldForAction Label="Upload" Action="UBOUpload" Importance="High" Criticality="Positive" Inline="true" InvocationGrouping="Isolated"/>
+        </LineItem>
         <LineItem Qualifier="SeniorStaff">
             <DataField Values="firstName,lastName,nationality,positionTitle,copyIdentificationAttached" Importance="High"/>
+        </LineItem>
+        <LineItem Qualifier="SeniorStaff_Upload">
+            <DataField Values="firstName,lastName,nationality,positionTitle,copyIdentificationAttached" Importance="High"/>
+            <DataFieldForAction Label="Upload" Action="UBOUpload" Importance="High" Criticality="Positive" Inline="true" InvocationGrouping="Isolated"/>
         </LineItem>
         <LineItem Qualifier="ContactPersonList">
             <DataField Values="firstName,lastName,primaryPhone,primaryEmail,positionTitle" Importance="High"/>
