@@ -20,6 +20,7 @@ import org.apache.olingo.commons.api.edm.EdmBindingTarget;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 import java.util.Map;
 
 public class SupplierApproveEvents {
@@ -204,7 +205,7 @@ public class SupplierApproveEvents {
      * 完成注册
      */
     public static void completeCOWork(Map<String, Object> oDataContext, Map<String, Object> actionParameters, EdmBindingTarget edmBindingTarget)
-            throws GenericServiceException {
+            throws GenericServiceException, GenericEntityException, GeneralServiceException {
         Delegator delegator = (Delegator) oDataContext.get("delegator");
         LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
         GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
@@ -218,6 +219,12 @@ public class SupplierApproveEvents {
         //启用supplier
         dispatcher.runSync("banfftech.updateParty", UtilMisc.toMap("partyId", partyId,
                 "statusId", "PARTY_ENABLED", "userLogin", userLogin));
+        //查看是否有未完成的cowork_task, 全部结束掉
+        List<GenericValue> taskList = EntityQuery.use(delegator).from("WorkEffort").where("workEffortParentId", workEffortId, "currentStatusId", "NOT_PROCESSED").queryList();
+        for (GenericValue task : taskList) {
+            Map<String, Object> updateWorkMap = UtilMisc.toMap("workEffortId", task.getString("workEffortId"), "currentStatusId", "PROCESSED");
+            CommonUtils.setServiceFieldsAndRun(dispatcher.getDispatchContext(), updateWorkMap, "banfftech.updateWorkEffort", userLogin);
+        }
         //发送邮件
         VendorOnBoardingEmailEvents.vendorComplete(dispatcher, httpServletRequest, supplierParty);
     }

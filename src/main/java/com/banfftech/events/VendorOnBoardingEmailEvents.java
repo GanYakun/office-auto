@@ -60,9 +60,7 @@ public class VendorOnBoardingEmailEvents {
         try {
             Delegator delegator = dispatcher.getDelegator();
             String vendorId = (String) entity.getPropertyValue("partyId");
-            String applicantCompanyId = SupplierWorker.getApplicantCompanyId(vendorId, delegator);
             GenericValue vendor = EntityQuery.use(delegator).from("Party").where("partyId", vendorId).queryOne();
-            GenericValue applicantCompany = EntityQuery.use(delegator).from("Party").where("partyId", applicantCompanyId).queryOne();
             String vendorName = vendor.getString("partyName");
             //TODO: FE StickySession
             String currentUrl = "http://officeauto.officeauto.banff-tech.com/o3/#Supplier-DDForm&/SupplierDDForms('{id}')";
@@ -70,8 +68,6 @@ public class VendorOnBoardingEmailEvents {
             currentUrl = currentUrl.replace("{id}", supplierPartyId.toString());
             String subject = vendorName + " Vendor Registration Application";
             String content = getTemplate("applicant_to_vendor.html");
-            content = content.replace("{{CompanyName}}", vendorName);
-            content = content.replace("{{YourCompanyName}}", applicantCompany.getString("partyName"));
             content = content.replace("{{TargetUrl}}", currentUrl);
             //创建待发送邮件
             createCommunicationEvent(dispatcher, email, subject, content, "EMAIL100");
@@ -123,7 +119,6 @@ public class VendorOnBoardingEmailEvents {
             String content = getTemplate("procurement_to_compliance.html");
             content = content.replace("{{ProcurementUser}}", procurement.getString("partyName"));
             content = content.replace("{{VendorName}}", vendorName);
-            content = content.replace("{{ProcurementCompanyName}}", "Procurement Department");
             content = content.replace("{{TargetUrl}}", currentUrl);
             //创建待发送邮件
             createCommunicationEvent(dispatcher, compliance.getString("primaryEmail"), subject, content, null);
