@@ -984,7 +984,7 @@
     <!--==================================Party相关对象==============================================-->
     <!--Party-->
     <EntityType Name="Party" EntitySetName="Parties" AutoSet="true" AutoProperties="true"/>
-    <EntityType Name="PartyGroupType" EntitySetName="PartyGroupTypes" AutoSet="true" AutoProperties="true">
+    <EntityType Name="PartyGroupType" EntitySetName="PartyGroupTypes" Orderby="sequenceId" AutoSet="true" AutoProperties="true">
         <Property Name="partyGroupTypeId">
             <Text Path="description" TextArrangement="TextOnly"/>
         </Property>
