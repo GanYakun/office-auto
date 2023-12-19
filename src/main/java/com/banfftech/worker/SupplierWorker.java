@@ -285,15 +285,16 @@ public class SupplierWorker {
         String noUploadedFilesName = "";
         List<GenericValue> partyContents = delegator.findByAnd("PartyMediaResource",
                 UtilMisc.toMap("partyId", supplierParty.getString("partyId"),
-                        "parentTypeId", "SUPPORTED_FILE"), null, true);
-        for (GenericValue partyContent : partyContents){
-            GenericValue content = delegator.findOne("Content", UtilMisc.toMap("contentId", partyContent.get("contentId")), true);
-            GenericValue dataResource = delegator.findOne("DataResource", UtilMisc.toMap("dataResourceId", content.get("dataResourceId")), true);
-            if (UtilValidate.isEmpty(dataResource.get("dataResourceName"))){
-//                noUploadedFilesName = noUploadedFilesName.equals("Missing supported documents: ") ? "Missing supported documents: " + content.getString("contentName") : noUploadedFilesName + "、 " + content.getString("contentName");
-                noUploadedFilesName = "Missing supported documents";
-                return noUploadedFilesName;
-            }
+                        "partyContentTypeId", "COMMERCIAL_LICENSE"), null, true);
+        if (UtilValidate.isEmpty(partyContents)){
+            return "Missing Copy of Commercial License\n";
+        }
+        GenericValue commercialLicense = EntityUtil.getFirst(partyContents);
+        GenericValue content = delegator.findOne("Content", UtilMisc.toMap("contentId", commercialLicense.get("contentId")), true);
+        GenericValue dataResource = delegator.findOne("DataResource", UtilMisc.toMap("dataResourceId", content.get("dataResourceId")), true);
+        if (UtilValidate.isEmpty(dataResource.get("dataResourceName"))){
+            noUploadedFilesName = "Missing Copy of Commercial License\n";
+            return noUploadedFilesName;
         }
         return noUploadedFilesName;
     }
