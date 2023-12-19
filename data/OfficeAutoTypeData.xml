@@ -86,7 +86,10 @@ under the License.
 <!--    <PartyContentType partyContentTypeId="COMPLIANCE_VIEW" parentTypeId="SUPPORTED_FILE"/>-->
     <PartyContentType partyContentTypeId="SUPPORTED_FILE"/>
     <PartyContentType partyContentTypeId="COMPLIANCE_REPORT"/>
+    <!--UBO文件-->
     <PartyContentType partyContentTypeId="UBO_DOCUMENT"/>
+    <!--Direct身份证-->
+    <PartyContentType partyContentTypeId="DIRECTOR_COPY_ID"/>
     <PartyContentType partyContentTypeId="COMMERCIAL_LICENSE" />
 
     <PartyContentType partyContentTypeId="FINANCE_REPORT" parentTypeId="SUPPORTED_FILE"/>

@@ -317,25 +317,38 @@ public class SupplierWorker {
         return missingDoc;
     }
 
+    public static String noUploadCopyIdOfDir(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
+        String missingIdOfDir = "Missing ID copy of Director/Officer";
+        List<GenericValue> partyContents = delegator.findByAnd("PartyContent",
+                UtilMisc.toMap("partyId", supplierParty.getString("partyId"),
+                        "partyContentTypeId", "DIRECTOR_COPY_ID"), null, true);
+        if (UtilValidate.isNotEmpty(partyContents)){
+            return "";
+        }
+        return missingIdOfDir;
+    }
+
+    //控制警告内容输出格式
     public static String getWarningContent(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
         String warningString = getYesResponse(supplierParty, delegator);
         String noUploadedFilesName = noUploadedFiles(supplierParty, delegator);
         String noUploadUBODoc = noUploadUBODoc(supplierParty, delegator);
+        String missingIdOfDir = noUploadCopyIdOfDir(supplierParty, delegator);
         String str = "";
         List<String> stringList = new ArrayList<>();
         stringList.add(warningString);
         stringList.add(noUploadedFilesName);
         stringList.add(noUploadUBODoc);
+        stringList.add(missingIdOfDir);
         for (int i = 0; i < stringList.size(); i++) {
             String s = stringList.get(i);
             if (UtilValidate.isEmpty(s)) continue;
             if (UtilValidate.isNotEmpty(str)) {
-                str += ";\n" + s;
+                str += "\n" + s;
             } else {
                 str = s;
             }
         }
-        str += ".";
         return str;
     }
 
