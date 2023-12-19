@@ -91,16 +91,15 @@ public class VendorOnBoardingEmailEvents {
             GenericValue coWork = EntityQuery.use(delegator).from("WorkEffort").where("partyId", vendorId, "workEffortTypeId", "COWORK_TASK").orderBy("createdDate").queryFirst();
             GenericValue createUser = delegator.findOne("UserLogin", UtilMisc.toMap("userLoginId", coWork.getString("createdByUserLogin")), false);
             GenericValue applicantParty = EntityQuery.use(delegator).from("PartyAndContact").where("partyId", createUser.getString("partyId")).queryFirst();
-            String emailUrl = applicantParty.getString("primaryEmail");
             String coWorkId = coWork.getString("workEffortId");
             String odataId = "SupplierParties('" + coWorkId + "')";
-            //TODO:
             String currentUrl = "http://officeauto.banff-tech.com/#/supplier/supplierapprove-managebyapplication/SupplierPartiesObjectPage?queryEntity=" + URLEncoder.encode(odataId, "UTF-8");
-            String subject = "Procurement Review Task Assigned - " + vendorName + "(" + vendorId + ")";
+            String subject = "Vendor BPDD Form Completion Notification - " + vendorName + "(" + vendorId + ")";
             String content = getTemplate("vendor_to_applicant.html");
+            content = content.replace("{{VendorName}}", vendorName);
             content = content.replace("{{TargetUrl}}", currentUrl);
             //创建待发送邮件
-            createCommunicationEvent(dispatcher, emailUrl, subject, content, null);
+            createCommunicationEvent(dispatcher, applicantParty.getString("primaryEmail"), subject, content, null);
         } catch (Exception e) {
             Debug.logError(e, module);
         }
