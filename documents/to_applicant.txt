@@ -6,3 +6,14 @@ You can access the system and the case details by clicking the following button:
 
 Please note that this is a system-generated email, do not reply directly to this email.
 If you have any questions or need assistance, please contact the system administrator.
+
+------------------------------------------------------------------------------------------------------------------------
+Subject: Vendor BPDD Form Completion Notification - [vendor name and id]
+Dear [applicant user],
+
+This is to inform you that [vendor name] has completed the BPDD Form.
+It has been sent to you to proceed.
+You can access the system by clicking the following button: [Task Link]
+
+Please note that this is a system-generated email, do not reply directly to this email.
+If you have any questions or need assistance, please contact the system administrator.
