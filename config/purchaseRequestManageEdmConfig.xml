@@ -1,113 +1,11 @@
 <ofbiz-edm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:noNamespaceSchemaLocation="https://dev.odatalab.com/dtds/edmconfig.xsd" ImportGlobal="false">
     <!-- 主对象PurchaseRequest（采购请求）-->
-    <EntityType Name="PurchaseRequest" OfbizEntity="CustRequest" EntityCondition="custRequestTypeId=RF_PUR_QUOTE" AutoProperties="true" EntitySetName="PurchaseRequests" AutoSet="true"
-                Handler="component://bf-demo/groovyScripts/shipmentRequestManage/purchaseRequest/generateEntityListFields.groovy">
-        <LineItem>
-            <DataField Values="custRequestId,statusId" Importance="High"/>
-            <DataField Values="statusId" Criticality="statusColor" Importance="High"/>
-            <DataField Values="reason,fromPartyId,description,custRequestDate" Importance="High"/>
-            <Criticality Value="statusColor"/>
-        </LineItem>
-        <Property Name="statusColor"  Type="numeric" Hidden="true" HiddenFilter="true"/>
-        <SelectionFields PropertyPath="custRequestId,statusId,fromPartyId,custRequestDate"/>
+    <EntityType Name="PurchaseRequest" OfbizEntity="CustRequest" EntityCondition="custRequestTypeId=RF_PUR_QUOTE"
+                AutoProperties="true"
+                EntitySetName="PurchaseRequests" AutoSet="true">
 
-        <FieldGroup Label="BaseInfo" Qualifier="BaseInfo">
-            <DataField Values="fromPartyId,custRequestDate,reason"/>
-        </FieldGroup>
-
-        <Property Name="fromPartyId">
-            <Text Path="Employee/partyName" TextArrangement="TextOnly"/>
-            <ValueList CollectionPath="Employees" ParameterDisplayOnly="Department/partyName"/>
-        </Property>
-        <Property Name="statusId">
-            <Text Path="StatusItem/description" TextArrangement="TextOnly"/>
-            <ValueList CollectionPath="StatusItems" WithFixedValues="true"/>
-        </Property>
-
-        <HeaderInfo TypeName="采购请求" TypeNamePlural="采购请求列表">
-            <Title Path="custRequestId"/>
-            <Description Path="description"/>
-        </HeaderInfo>
-        <NavigationProperty Name="Employee" Type="Employee" Relations="FromParty"/>
-        <NavigationProperty Name="StatusItem"/>
-        <NavigationProperty Name="CustRequestItem"/>
-        <NavigationProperty Name="QuoteItem" Type="QuoteItem" Relations="Quote(quoteTypeId=PURCHASE_QUOTE)/QuoteItem"/>
     </EntityType>
 
-    <EntityType Name="QuoteItem" AutoSet="true" EntitySetName="QuoteItems" AutoProperties="true">
-        <LineItem Qualifier="QuoteItemLineItem">
-            <DataField Values="productId,Product/productName,quantity,quoteUnitPrice,comments" Importance="High"/>
-        </LineItem>
-
-        <NavigationProperty Name="Product"/>
-    </EntityType>
-
-    <EntityType Name="StatusItem" AutoProperties="true">
-        <Property Name="statusId">
-            <Text Path="description" TextArrangement="TextOnly"/>
-        </Property>
-    </EntityType>
-
-    <EntityType Name="Party" AutoProperties="true">
-        <Property Name="partyId">
-            <Text Path="partyName" TextArrangement="TextOnly"/>
-        </Property>
-    </EntityType>
-
-    <EntityType Name="Department" OfbizEntity="Party" EntityCondition="PartyRole/roleTypeId=DEPARTMENT" EntitySetName="Departments" AutoProperties="true" AutoSet="true"/>
-    <EntityType Name="Employee" OfbizEntity="Party" EntityCondition="PartyRole/roleTypeId=EMPLOYMENT" EntitySetName="Employees" AutoProperties="true" AutoSet="true">
-        <Property Name="partyId">
-            <Text Path="partyName" TextArrangement="TextOnly"/>
-        </Property>
-        <NavigationProperty Name="Person"/>
-        <NavigationProperty Name="PartyAndContact"/>
-        <NavigationProperty Name="Department" Type="Department" Relations="ToPartyRelationship(roleTypeIdFrom=DEPARTMENT)/FromParty"/>
-    </EntityType>
-    <EntityType Name="Person" AutoSet="true" AutoProperties="true" EntitySetName="Persons"/>
-    <EntityType Name="PartyAndContact" AutoSet="true" AutoProperties="true" EntitySetName="PartyAndContact"/>
-    <EntityType Name="Facility" AutoProperties="true"/>
-
-    <EntityType Name="CustRequestType" AutoProperties="true" AutoSet="true" EntitySetName="CustRequestTypes"/>
-
-    <EntityType Name="CustRequestItem" EntitySetName="CustRequestItems" DraftEntityName="ShipmentRequestCustRequestItemDraft" AutoSet="true"
-                Properties="statusId,quantity,selectedAmount,productId,description">
-        <Property Name="custRequestId" Computed="true"/>
-        <Property Name="productId" Label="产品ID"/>
-        <Property Name="custRequestItemSeqId" Computed="true"/>
-        <Property Name="statusId">
-            <Text Path="StatusItem/description" TextArrangement="TextOnly"/>
-            <ValueList CollectionPath="StatusItems" WithFixedValues="true"/>
-        </Property>
-
-        <NavigationProperty Name="Product" AutoBinding="true"/>
-        <NavigationProperty Name="StatusItem" AutoBinding="true"/>
-        <NavigationProperty Name="Facility" Relations="Product/Facility" Type="Facility" AutoBinding="true"/>
-
-        <LineItem Qualifier="CustRequestItemLineItem">
-            <DataField Values="productId,Product/productName,quantity"/>
-        </LineItem>
-    </EntityType>
-
-    <EntityType Name="Product" AutoProperties="true">
-        <Property Name="productId" Label="产品标识"/>
-        <Property Name="productName" Label="产品名称"/>
-        <ValueList CollectionPath="Products" Label="选择产品" ParameterDisplayOnly="productName"/>
-        <Property Name="facilityId" Label="仓库名称">
-            <Text Path="Facility/facilityName" TextArrangement="TextOnly"/>
-        </Property>
-        <NavigationProperty Name="Facility" AutoBinding="true"/>
-    </EntityType>
-
-    <!--=====================================    EntityContainer Definition Begin   =====================================-->
-    <EntityContainer>
-        <EntitySet EntityType="Product" Name="Products"/>
-        <EntitySet EntityType="Party" Name="Parties"/>
-        <EntitySet EntityType="Facility" Name="Facilities"/>
-        <EntitySet EntityType="StatusItem" Name="StatusItems" EntityCondition="statusTypeId=CUSTREQ_STTS"/>
-        <ActionImport Name="DiscardAction" Action="DiscardAction" />
-    </EntityContainer>
-    <!--=====================================    EntityContainer Definition End   =====================================-->
-    <Action Name="DiscardAction" />
 
 </ofbiz-edm>
