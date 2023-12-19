@@ -4,7 +4,10 @@
     <!-- 主对象PurchaseRequest（采购请求）-->
     <EntityType Name="ProductRequirement" OfbizEntity="Requirement" EntityCondition="requirementTypeId=PRODUCT_REQUIREMENT"
                 Properties="requirementId,requirementTypeId,facilityId,productId,statusId"
-                EntitySetName="PurchaseRequests" AutoSet="true">
+                EntitySetName="ProductRequirements" AutoSet="true">
+
+        <!--关联多个采购请求单-->
+        <NavigationProperty Name="PurchaseRequest" Type="PurchaseRequest" Relations="RequirementCustRequest/CustRequest" IsCollection="true"/>
     </EntityType>
 
 

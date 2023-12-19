@@ -1,11 +1,16 @@
 <ofbiz-edm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:noNamespaceSchemaLocation="https://dev.odatalab.com/dtds/edmconfig.xsd" ImportGlobal="false">
     <ImportEdm Path="component://officeauto/config/purchaseQuoteManageEdmConfig.xml"/>
+<!--    <ImportEdm Path="component://officeauto/config/requirementManageEdmConfig.xml"/>-->
     <!-- 主对象PurchaseRequest（采购请求）-->
     <EntityType Name="PurchaseRequest" OfbizEntity="CustRequest" EntityCondition="custRequestTypeId=RF_PUR_QUOTE"
                 AutoProperties="true"
                 EntitySetName="PurchaseRequests" AutoSet="true">
 
+        <!--关联到采购报价单-->
+        <NavigationProperty Name="PurchaseQuote" Type="PurchaseQuote" Relations="Quote" IsCollection="true"/>
+        <!--关联到产品需求单-->
+<!--        <NavigationProperty Name="ProductRequirement" Type="ProductRequirement" Relations="RequirementCustRequest/Requirement" IsCollection="true"/>-->
     </EntityType>
 
 
