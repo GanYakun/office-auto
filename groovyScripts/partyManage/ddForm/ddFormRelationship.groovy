@@ -27,6 +27,7 @@ def generateFields(Map<String, Object> context){
     List<Entity> entityList = context.parameters.entityList;
     entityList.each { entity ->
         entity.addProperty(new Property(null, "addNameForUpload",ValueType.PRIMITIVE, "Download"))
+        entity.addProperty(new Property(null, "fileUrl",ValueType.PRIMITIVE, "Download"))
     }
     return entityList;
 }
