@@ -9,6 +9,16 @@
         <NavigationProperty Name="PurchaseRequest" Type="PurchaseRequest" Relations="CustRequest" IsCollection="false"/>
         <!--关联到采购订单-->
         <NavigationProperty Name="PurchaseOrder" Type="PurchaseOrder" Relations="OrderHeader" IsCollection="true"/>
+
+        <Action Name="CreatePurchaseQuote" IsBound="true"
+                OfbizService="com.dpbird.odata.events.ActionEvents.createEntity">
+            <Parameter Name="purchaseRequest" Type="PurchaseRequest" Nullable="false" IsCollection="true"/>
+            <Parameter Name="partyId" Type="String" Label="${QuoteParty}">
+                <ValueList CollectionPath="QuoteParties" WithFixedValues="false" ParameterDisplayOnly="phoneMobile,primaryPhone,primaryEmail,address1">
+                    <ParameterInOut ValueListProperty="partyId" LocalDataProperty="partyId"/>
+                </ValueList>
+            </Parameter>
+        </Action>
     </EntityType>
 
     <EntityType Name="PurchaseRequest" OfbizEntity="CustRequest" EntityCondition="custRequestTypeId=RF_PUR_QUOTE"
@@ -21,5 +31,9 @@
                 SearchOption="orderId,orderName,StatusItem/description">
     </EntityType>
 
-
+    <EntityType Name="QuoteParty" OfbizEntity="PartyGroupAndContact" Properties="partyId,partyName,phoneMobile,primaryPhone,primaryEmail,address1" EntitySetName="QuoteParties">
+        <Property Name="partyId">
+            <Text Path="partyName" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
 </ofbiz-edm>

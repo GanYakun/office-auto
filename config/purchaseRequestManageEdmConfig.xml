@@ -9,6 +9,12 @@
         <NavigationProperty Name="PurchaseQuote" Type="PurchaseQuote" Relations="Quote" IsCollection="true"/>
         <!--关联到产品需求单-->
         <NavigationProperty Name="ProductRequirement" Type="ProductRequirement" Relations="RequirementCustRequest/Requirement" IsCollection="true"/>
+
+        <Action Name="CreatePurchaseRequest" IsBound="true" EntitySetPath="purchaseRequest"
+                OfbizService="com.dpbird.odata.events.ActionEvents.createEntity">
+            <Parameter Name="purchaseRequest" Type="PurchaseRequest" Nullable="false" IsCollection="true"/>
+            <Parameter Name="reason" Type="String" Label="${Reason}"/>
+        </Action>
     </EntityType>
 
     <EntityType Name="PurchaseQuote" OfbizEntity="Quote" EntityCondition="quoteTypeId=PURCHASE_QUOTE" EntitySetName="PurchaseQuotes"

@@ -1,11 +1,16 @@
 <ofbiz-edm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:noNamespaceSchemaLocation="https://dev.odatalab.com/dtds/edmconfig.xsd" ImportGlobal="false">
     <EntityType Name="PurchaseOrder" OfbizEntity="OrderHeader" EntitySetName="PurchaseOrderHeaders"
-                EntityCondition="orderTypeId=PURCHASE_ORDER" Properties="orderId,orderName,orderTypeId,orderName,statusId,quoteId,agreementId"
+                EntityCondition="orderTypeId=PURCHASE_ORDER" Properties="orderId,orderName,orderTypeId,orderName,orderDate,statusId,quoteId,agreementId"
                 SearchOption="orderId,orderName,StatusItem/description">
-        
+
         <!--采购报价单-->
         <NavigationProperty Name="PurchaseQuote" Type="PurchaseQuote" Relations="Quote" IsCollection="false"/>
+
+        <Action Name="CreatePurchaseOrder" IsBound="true"
+                OfbizService="com.dpbird.odata.events.ActionEvents.createEntity">
+            <Parameter Name="purchaseOrder" Type="PurchaseOrder" Nullable="false" IsCollection="true"/>
+        </Action>
     </EntityType>
 
     <EntityType Name="PurchaseQuote" OfbizEntity="Quote" EntityCondition="quoteTypeId=PURCHASE_QUOTE" EntitySetName="PurchaseQuotes"

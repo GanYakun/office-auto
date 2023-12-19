@@ -7,6 +7,11 @@
 
         <!--关联多个采购请求单-->
         <NavigationProperty Name="PurchaseRequest" Type="PurchaseRequest" Relations="RequirementCustRequest/CustRequest" IsCollection="true"/>
+
+        <Action Name="CreateProductRequirement" IsBound="true" EntitySetPath="productRequirement"
+                OfbizService="com.dpbird.odata.events.ActionEvents.createEntity">
+            <Parameter Name="productRequirement" Type="ProductRequirement" Nullable="false" IsCollection="true"/>
+        </Action>
     </EntityType>
 
     <EntityType Name="PurchaseRequest" OfbizEntity="CustRequest" EntityCondition="custRequestTypeId=RF_PUR_QUOTE"

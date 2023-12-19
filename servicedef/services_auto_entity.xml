@@ -199,4 +199,48 @@ under the License.
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
         <override name="agreementDate" mode="IN" optional="false"/>
     </service>
+
+    <service name="banfftech.createQuote" default-entity-name="Quote" engine="entity-auto" invoke="create" auth="true">
+        <description>Create a Quote</description>
+        <auto-attributes include="pk" mode="IN" optional="true"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+    <service name="banfftech.updateQuote" default-entity-name="Quote" engine="entity-auto" invoke="update" auth="true">
+        <description>Update a Quote</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+
+    <service name="banfftech.createCustRequest" default-entity-name="CustRequest" engine="entity-auto" invoke="create" auth="true">
+        <description>Create a CustRequest</description>
+        <auto-attributes include="pk" mode="IN" optional="true"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+    <service name="banfftech.updateCustRequest" default-entity-name="CustRequest" engine="entity-auto" invoke="update" auth="true">
+        <description>Update a CustRequest</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+
+    <service name="banfftech.createOrderHeader" default-entity-name="OrderHeader" engine="entity-auto" invoke="create" auth="true">
+        <description>Create a OrderHeader</description>
+        <auto-attributes include="pk" mode="IN" optional="true"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+    <service name="banfftech.updateOrderHeader" default-entity-name="OrderHeader" engine="entity-auto" invoke="update" auth="true">
+        <description>Update a OrderHeader</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+
+    <service name="banfftech.createRequirement" default-entity-name="Requirement" engine="entity-auto" invoke="create" auth="true">
+        <description>Create a Requirement</description>
+        <auto-attributes include="pk" mode="IN" optional="true"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+    <service name="banfftech.updateRequirement" default-entity-name="Requirement" engine="entity-auto" invoke="update" auth="true">
+        <description>Update a Requirement</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
 </services>
