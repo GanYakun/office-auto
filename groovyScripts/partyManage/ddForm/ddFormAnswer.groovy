@@ -1,5 +1,3 @@
-package com.banfftech.worker
-
 import com.dpbird.odata.Util
 import org.apache.ofbiz.base.util.Debug
 import org.apache.ofbiz.entity.util.EntityQuery
@@ -30,7 +28,9 @@ def generateFields(Map<String, Object> context){
     entityList.each { entity ->
         GenericValue answer = (GenericValue) entity.getGenericValue();
         String enumResponse = answer.getString("enumResponse");
-        entity.addProperty(new Property(null, "enumResponseCritical", ValueType.PRIMITIVE, "TRUE".equals(enumResponse) ? 2 : 3))
+        if (UtilValidate.isNotEmpty(enumResponse)){
+            entity.addProperty(new Property(null, "enumResponseCritical", ValueType.PRIMITIVE, "TRUE".equals(enumResponse) ? 2 : 3))
+        }
     }
     return entityList;
 }
