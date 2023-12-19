@@ -1,7 +1,5 @@
 <ofbiz-edm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:noNamespaceSchemaLocation="https://dev.odatalab.com/dtds/edmconfig.xsd" ImportGlobal="false">
-    <ImportEdm Path="component://officeauto/config/purchaseRequestManageEdmConfig.xml"/>
-<!--    <ImportEdm Path="component://officeauto/config/purchaseOrderManageEdmConfig.xml"/>-->
     <!--PurchaseQuote-->
     <EntityType Name="PurchaseQuote" OfbizEntity="Quote" EntityCondition="quoteTypeId=PURCHASE_QUOTE" EntitySetName="PurchaseQuotes"
                 AutoProperties="true"
@@ -10,7 +8,17 @@
         <!--关联到采购请求单-->
         <NavigationProperty Name="PurchaseRequest" Type="PurchaseRequest" Relations="CustRequest" IsCollection="false"/>
         <!--关联到采购订单-->
-<!--        <NavigationProperty Name="PurchaseOrder" Type="PurchaseOrder" Relations="OrderHeader" IsCollection="true"/>-->
+        <NavigationProperty Name="PurchaseOrder" Type="PurchaseOrder" Relations="OrderHeader" IsCollection="true"/>
+    </EntityType>
+
+    <EntityType Name="PurchaseRequest" OfbizEntity="CustRequest" EntityCondition="custRequestTypeId=RF_PUR_QUOTE"
+                AutoProperties="true"
+                EntitySetName="PurchaseRequests" AutoSet="true">
+    </EntityType>
+
+    <EntityType Name="PurchaseOrder" OfbizEntity="OrderHeader" EntitySetName="PurchaseOrderHeaders"
+                EntityCondition="orderTypeId=PURCHASE_ORDER" Properties="orderId,orderName,orderTypeId,orderName,statusId,quoteId,agreementId"
+                SearchOption="orderId,orderName,StatusItem/description">
     </EntityType>
 
 

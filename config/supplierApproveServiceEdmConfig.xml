@@ -97,6 +97,8 @@
         <Property Name="applicantSubmitHidden" Type="Boolean" Hidden="true"/>
         <!-- procurement提交按钮隐藏逻辑 -->
         <Property Name="procurementSubmitHidden" Type="Boolean" Hidden="true"/>
+        <!-- procurement拒绝按钮按钮隐藏逻辑 -->
+        <Property Name="procurementRejectHidden" Type="Boolean" Hidden="true"/>
         <!-- ddForm是否已提交 -->
         <Property Name="ddFormIsSubmitted" Type="Boolean" Hidden="true"/>
         <NavigationProperty Name="Product" Type="Product" Relations="SupplierProduct/Product" IsCollection="true"/>

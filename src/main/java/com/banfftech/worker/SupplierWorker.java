@@ -435,6 +435,26 @@ public class SupplierWorker {
         return procurementSubmitHidden;
     }
 
+    public static Boolean procurementRejectIsHidden(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
+        Boolean procurementRejectidden = true;
+        List<GenericValue> coworks = delegator.findByAnd("WorkEffort",
+                UtilMisc.toMap("partyId", supplierParty.get("partyId"), "workEffortTypeId", "COWORK"), null, true);
+        if (UtilValidate.isNotEmpty(coworks)){
+            GenericValue cowork = EntityUtil.getFirst(coworks);
+            if (cowork.get("currentStatusId").equals("PROCUREMENT_REVIEW")){
+                procurementRejectidden = false;
+            }
+            if (cowork.get("currentStatusId").equals("COMPLIANCE_REVIEW")){
+                //如果被合规拒绝 也可以reject
+                GenericValue complianceWorkEffort = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("approvePartyId", "HG").queryFirst();
+                if (UtilValidate.isNotEmpty(complianceWorkEffort) && "PROCESSED".equals(complianceWorkEffort.getString("currentStatusId"))) {
+                    procurementRejectidden = false;
+                }
+            }
+        }
+        return procurementRejectidden;
+    }
+
     public static String getApplicantId(String vendorPartyId, Delegator delegator) throws GenericEntityException {
         //获取申请人的部门
         GenericValue firstTask = EntityQuery.use(delegator).from("WorkEffort").where("partyId", vendorPartyId, "workEffortTypeId", "COWORK_TASK").orderBy("createdDate").queryFirst();
