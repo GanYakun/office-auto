@@ -1,5 +1,6 @@
 <ofbiz-edm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:noNamespaceSchemaLocation="https://dev.odatalab.com/dtds/edmconfig.xsd" ImportGlobal="false">
+    <ImportEdm Path="component://officeauto/config/purchaseQuoteManageEdmConfig.xml"/>
     <!-- 主对象PurchaseRequest（采购请求）-->
     <EntityType Name="PurchaseRequest" OfbizEntity="CustRequest" EntityCondition="custRequestTypeId=RF_PUR_QUOTE"
                 AutoProperties="true"

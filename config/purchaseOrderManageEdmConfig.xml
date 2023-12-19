@@ -1,12 +1,10 @@
 <ofbiz-edm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:noNamespaceSchemaLocation="https://dev.odatalab.com/dtds/edmconfig.xsd" ImportGlobal="false">
-
+    <ImportEdm Path="component://officeauto/config/purchaseQuoteManageEdmConfig.xml"/>
     <EntityType Name="PurchaseOrder" OfbizEntity="OrderHeader" EntitySetName="PurchaseOrderHeaders"
                 EntityCondition="orderTypeId=PURCHASE_ORDER" Properties="orderId,orderName,orderTypeId,orderName,statusId,quoteId,agreementId"
                 SearchOption="orderId,orderName,StatusItem/description">
 
     </EntityType>
-
-
 
 </ofbiz-edm>
