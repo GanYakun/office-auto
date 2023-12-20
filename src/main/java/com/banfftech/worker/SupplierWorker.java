@@ -244,7 +244,7 @@ public class SupplierWorker {
 
     public static Boolean isCheckWarning (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
         GenericValue checkAttributeEntity = delegator.findOne("PartyAttribute", UtilMisc.toMap("partyId", supplierParty.get("partyId"), "attrName", "complianceCheckWarning"), true);
-        if (UtilValidate.isNotEmpty(checkAttributeEntity)){
+        if (UtilValidate.isNotEmpty(checkAttributeEntity) && checkAttributeEntity.get("attrValue").equals("Warning")){
             return true;
         }else {
             return false;

@@ -1,6 +1,8 @@
 <ofbiz-edm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:noNamespaceSchemaLocation="https://dev.odatalab.com/dtds/edmconfig.xsd" ImportGlobal="false">
-    <!-- 主对象PurchaseRequest（采购请求）-->
+
+    <!-- ==============采购主对象（PurchaseRequest、Requirement、PurchaseQuote、PurchaseOrder）=============-->
+    <!--PurchaseRequest（采购请求）-->
     <EntityType Name="PurchaseRequest" OfbizEntity="CustRequest" EntityCondition="custRequestTypeId=RF_PUR_QUOTE"
                 AutoProperties="true"
                 EntitySetName="PurchaseRequests" AutoSet="true">
@@ -9,6 +11,19 @@
             <Title Path="custRequestName"/>
             <Description Path="description"/>
         </HeaderInfo>
+
+        <LineItem>
+            <DataField Values="fromPartyId,createdDate,responseRequiredDate,reason" Importance="High"/>
+            <DataFieldForAction Action="CreatePurchaseRequest" Label="${Create}" Inline="false" Importance="High" Criticality="Positive" InvocationGrouping="Isolated"/>
+        </LineItem>
+        <!--在Requirement里显示-->
+        <LineItem Qualifier="RelatedRequirement">
+            <DataField Values="fromPartyId,createdDate,responseRequiredDate,reason" Importance="High"/>
+        </LineItem>
+        <!--在PurchaseQuote里显示-->
+        <LineItem Qualifier="RelatedQuote">
+            <DataField Values="fromPartyId,createdDate,responseRequiredDate,reason" Importance="High"/>
+        </LineItem>
 
         <!--关联到采购报价单-->
         <NavigationProperty Name="PurchaseQuote" Type="PurchaseQuote" Relations="Quote" IsCollection="true"/>
@@ -23,6 +38,27 @@
         </Action>
     </EntityType>
 
+    <!--ProductRequirement（Requirement）-->
+    <EntityType Name="ProductRequirement" OfbizEntity="Requirement" EntityCondition="requirementTypeId=PRODUCT_REQUIREMENT"
+                Properties="requirementId,requirementTypeId,facilityId,productId,statusId"
+                EntitySetName="ProductRequirements" AutoSet="true">
+
+        <HeaderInfo TypeName="Requirement" TypeNamePlural="Requirements">
+            <Title Path="requirementId"/>
+            <Description Path="productId"/>
+        </HeaderInfo>
+
+        <!--关联多个采购请求单-->
+        <NavigationProperty Name="PurchaseRequest" Type="PurchaseRequest" Relations="RequirementCustRequest/CustRequest" IsCollection="true"/>
+
+        <Action Name="CreateProductRequirement" IsBound="true" EntitySetPath="productRequirement" SideEffects="true"
+                OfbizService="com.dpbird.odata.events.ActionEvents.createEntity">
+            <Parameter Name="productRequirement" Type="ProductRequirement" Nullable="false" IsCollection="true"/>
+            <Parameter Name="requirementTypeId" Type="String" Hidden="true" DefaultValue="PRODUCT_REQUIREMENT"/>
+        </Action>
+    </EntityType>
+
+    <!--PurchaseQuote（报价）-->
     <EntityType Name="PurchaseQuote" OfbizEntity="Quote" EntityCondition="quoteTypeId=PURCHASE_QUOTE" EntitySetName="PurchaseQuotes"
                 AutoProperties="true"
                 AutoSet="true">
@@ -39,6 +75,7 @@
 
     </EntityType>
 
+    <!--PurchaseOrder（订单）-->
     <EntityType Name="PurchaseOrder" OfbizEntity="OrderHeader" EntitySetName="PurchaseOrderHeaders"
                 EntityCondition="orderTypeId=PURCHASE_ORDER" Properties="orderId,orderName,orderTypeId,orderName,orderDate,statusId,quoteId,agreementId"
                 SearchOption="orderId,orderName,StatusItem/description">
@@ -51,24 +88,6 @@
         <!--采购报价单-->
         <NavigationProperty Name="PurchaseQuote" Type="PurchaseQuote" Relations="Quote" IsCollection="false"/>
 
-    </EntityType>
-
-    <EntityType Name="ProductRequirement" OfbizEntity="Requirement" EntityCondition="requirementTypeId=PRODUCT_REQUIREMENT"
-                Properties="requirementId,requirementTypeId,facilityId,productId,statusId"
-                EntitySetName="ProductRequirements" AutoSet="true">
-        <HeaderInfo TypeName="Requirement" TypeNamePlural="Requirements">
-            <Title Path="requirementId"/>
-            <Description Path="productId"/>
-        </HeaderInfo>
-
-        <!--关联多个采购请求单-->
-        <NavigationProperty Name="PurchaseRequest" Type="PurchaseRequest" Relations="RequirementCustRequest/CustRequest" IsCollection="true"/>
-
-        <Action Name="CreateProductRequirement" IsBound="true" EntitySetPath="productRequirement" SideEffects="true"
-                OfbizService="com.dpbird.odata.events.ActionEvents.createEntity">
-            <Parameter Name="productRequirement" Type="ProductRequirement" Nullable="false" IsCollection="true"/>
-            <Parameter Name="requirementTypeId" Type="String" Hidden="true" DefaultValue="PRODUCT_REQUIREMENT"/>
-        </Action>
     </EntityType>
 
 </ofbiz-edm>
