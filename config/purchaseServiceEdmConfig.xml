@@ -62,6 +62,7 @@
         <Action Name="CreateProductRequirement" IsBound="true" EntitySetPath="productRequirement" SideEffects="true"
                 OfbizService="com.dpbird.odata.events.ActionEvents.createEntity">
             <Parameter Name="productRequirement" Type="ProductRequirement" Nullable="false" IsCollection="true"/>
+            <Parameter Name="requirementTypeId" Type="String" Hidden="true" DefaultValue="PRODUCT_REQUIREMENT"/>
         </Action>
     </EntityType>
 
