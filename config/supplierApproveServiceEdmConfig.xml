@@ -543,24 +543,6 @@
         </Property>
     </EntityType>
 
-    <!-- 文件 -->
-    <EntityType Name="PartyMediaResource" EntitySetName="PartyMediaResources" Orderby="partyContentId"
-                Properties="partyContentId,partyId,contentId,contentName,otherData,mimeTypeId,dataResourceId,dataResourceName,fromDate,imageData,description"
-                Handler="component://officeauto/groovyScripts/partyManage/partyMedia/generateEntityListFields.groovy">
-        <!--        <LineItem Qualifier="FileList">-->
-        <!--            <DataField Values="contentName,createdDate,otherData" Importance="High"/>-->
-        <!--            <DataFieldForAction Label="${upload}" Action="UploadAction" Importance="High" Criticality="Positive" Inline="false" InvocationGrouping="Isolated"/>-->
-        <!--        </LineItem>-->
-        <Property Name="otherData" FileNamePath="dataResourceName"/>
-        <Property Name="fileUrl" Type="String"/>
-        <Property Name="uploadDocCritical" Type="numeric" Hidden="true"/>
-        <Property Name="addNameForUpload" Type="String"/>
-        <Action Name="UploadAction" IsBound="true" OfbizService="com.banfftech.events.UploadEvent.uploadFile">
-            <Parameter Name="partyMediaResource" Type="PartyMediaResource" Nullable="false" IsCollection="false"/>
-            <Parameter Name="file" Type="Stream" Nullable="false" IsCollection="false"/>
-        </Action>
-    </EntityType>
-
     <!-- 问卷和答案 -->
     <EntityType Name="SurveyQuestionAndAnswer" AutoProperties="true" EntitySetName="SurveyQuestionAndAnswers"
                 Handler="component://officeauto/groovyScripts/partyManage/surveyQuestionAppl/generateEntityListFields.groovy">

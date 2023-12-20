@@ -2,7 +2,6 @@ import com.dpbird.odata.Util
 import org.apache.ofbiz.base.util.Debug
 import org.apache.ofbiz.entity.util.EntityQuery
 import org.apache.ofbiz.service.ServiceUtil
-import org.apache.ofbiz.base.util.UtilValidate;
 import org.apache.olingo.commons.api.data.Entity
 import com.banfftech.common.util.CommonUtils;
 import com.dpbird.odata.edm.OdataOfbizEntity;
@@ -23,11 +22,23 @@ import java.sql.Timestamp;
 
 module = "generateFields.groovy";
 
-def generateFields(Map<String, Object> context){
+def generateFields(Map<String, Object> context) {
     List<Entity> entityList = context.parameters.entityList;
     entityList.each { entity ->
-//        entity.addProperty(new Property(null, "addNameForUpload",ValueType.PRIMITIVE, "Download"))
-//        entity.addProperty(new Property(null, "fileUrl",ValueType.PRIMITIVE, "Download"))
+        OdataOfbizEntity ofbizEntity = (OdataOfbizEntity) entity;
+        String findEntityName = "RelationshipAndToParty";
+        if (UtilValidate.isNotEmpty(ofbizEntity.getPropertyValue("draftUUID"))) {
+            findEntityName = "RelationshipAndToPartyDraft";
+        }
+        GenericValue genericValue = EntityQuery.use(delegator).from(findEntityName)
+                .where("partyRelationshipId", ofbizEntity.getPropertyValue("partyRelationshipId")).queryFirst();
+        Object fileContent = genericValue.get("dataResourceContent")
+        String partyRelationshipId = genericValue.getString("partyRelationshipId")
+        if (UtilValidate.isNotEmpty(fileContent)) {
+            entity.addProperty(new Property(null, "fileUrl",ValueType.PRIMITIVE, "/officeauto/control/odataAppSvc/supplierApproveService/RelationshipAndToParties('" + partyRelationshipId + "')/dataResourceContent"))
+        }
+        entity.addProperty(new Property(null, "addNameForUpload",ValueType.PRIMITIVE, UtilValidate.isNotEmpty(fileContent) ? "Download" : null))
+        entity.addProperty(new Property(null, "uploadDocCritical",ValueType.PRIMITIVE, UtilValidate.isNotEmpty(fileContent) ? 3L : 1L))
     }
     return entityList;
 }

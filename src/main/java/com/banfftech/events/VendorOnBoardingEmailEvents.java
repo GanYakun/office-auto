@@ -241,6 +241,9 @@ public class VendorOnBoardingEmailEvents {
     }
 
     private static void createCommunicationEvent(LocalDispatcher dispatcher, String email, String subject, String content, String contentId) throws GenericEntityException, GenericServiceException {
+        if (UtilValidate.isEmpty(email)) {
+            return;
+        }
         Delegator delegator = dispatcher.getDelegator();
         String communicationEventId = delegator.getNextSeqId("CommunicationEvent");
         dispatcher.runSync("banfftech.createCommunicationEvent", UtilMisc.toMap("communicationEventId", communicationEventId,
