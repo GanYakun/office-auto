@@ -256,6 +256,4 @@ public class SupplierWorker {
         GenericValue createUser = delegator.findOne("UserLogin", UtilMisc.toMap("userLoginId", firstTask.getString("createdByUserLogin")), false);
         return CommonUtils.getPartyCompany(createUser.getString("partyId"), delegator);
     }
-
-
 }

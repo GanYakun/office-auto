@@ -12,14 +12,33 @@
             <Description Path="description"/>
         </HeaderInfo>
 
-        <LineItem>
-            <DataField Values="fromPartyId,createdDate,responseRequiredDate,reason" Importance="High"/>
-            <DataFieldForAction Action="CreatePurchaseRequest" Label="${Create}" Inline="false" Importance="High" Criticality="Positive" InvocationGrouping="Isolated"/>
-        </LineItem>
         <!--在Requirement里显示-->
         <LineItem Qualifier="RelatedRequirement">
             <DataField Values="fromPartyId,createdDate,responseRequiredDate,reason" Importance="High"/>
         </LineItem>
+
+        <LineItem>
+            <DataField Values="fromPartyId,createdDate,responseRequiredDate,reason" Importance="High"/>
+        </LineItem>
+
+        <NavigationProperty Name="ProductRequirement" Type="ProductRequirement" Relations="RequirementCustRequest/Requirement" IsCollection="true"/>
+
+    </EntityType>
+
+    <EntityType Name="CatalogRequest" OfbizEntity="CustRequest" EntityCondition="custRequestTypeId=RF_CATALOG"
+                AutoProperties="true"
+                EntitySetName="CatalogRequests" AutoSet="true">
+
+        <HeaderInfo TypeName="Purchase Request" TypeNamePlural="Purchase Requests">
+            <Title Path="custRequestName"/>
+            <Description Path="description"/>
+        </HeaderInfo>
+
+        <LineItem>
+            <DataField Values="fromPartyId,createdDate,responseRequiredDate,reason" Importance="High"/>
+            <DataFieldForAction Action="CreatePurchaseRequest" Label="${Create}" Inline="false" Importance="High" Criticality="Positive" InvocationGrouping="Isolated"/>
+        </LineItem>
+
         <!--在PurchaseQuote里显示-->
         <LineItem Qualifier="RelatedQuote">
             <DataField Values="fromPartyId,createdDate,responseRequiredDate,reason" Importance="High"/>
@@ -32,15 +51,15 @@
 
         <Action Name="CreatePurchaseRequest" IsBound="true" EntitySetPath="purchaseRequest" SideEffects="true"
                 OfbizService="com.dpbird.odata.events.ActionEvents.createEntity">
-            <Parameter Name="purchaseRequest" Type="PurchaseRequest" Nullable="false" IsCollection="true"/>
+            <Parameter Name="catalogRequest" Type="CatalogRequest" Nullable="false" IsCollection="true"/>
             <Parameter Name="reason" Type="String" Label="${Reason}"/>
-            <Parameter Name="custRequestTypeId" Type="String" Hidden="true" DefaultValue="RF_PUR_QUOTE"/>
+            <Parameter Name="custRequestTypeId" Type="String" Hidden="true" DefaultValue="RF_CATALOG"/>
         </Action>
     </EntityType>
 
     <!--ProductRequirement（Requirement）-->
     <EntityType Name="ProductRequirement" OfbizEntity="Requirement" EntityCondition="requirementTypeId=PRODUCT_REQUIREMENT"
-                Properties="requirementId,requirementTypeId,facilityId,productId,statusId"
+                Properties="requirementId,requirementTypeId,facilityId,productId,statusId,quantity,reason,createdDate,createdByUserLogin"
                 EntitySetName="ProductRequirements" AutoSet="true">
 
         <HeaderInfo TypeName="Requirement" TypeNamePlural="Requirements">
@@ -48,12 +67,23 @@
             <Description Path="productId"/>
         </HeaderInfo>
 
+        <Property Name="productId">
+            <Text Path="Product/productName" TextArrangement="TextOnly"/>
+        </Property>
+
         <!--关联多个采购请求单-->
         <NavigationProperty Name="PurchaseRequest" Type="PurchaseRequest" Relations="RequirementCustRequest/CustRequest" IsCollection="true"/>
+        <NavigationProperty Name="Product" IsCollection="false"/>
 
         <Action Name="CreateProductRequirement" IsBound="true" EntitySetPath="productRequirement" SideEffects="true"
                 OfbizService="com.dpbird.odata.events.ActionEvents.createEntity">
             <Parameter Name="productRequirement" Type="ProductRequirement" Nullable="false" IsCollection="true"/>
+            <Parameter Name="productId" Type="String" Label="${ProductName}">
+                <ValueList CollectionPath="Products" ParameterDisplayOnly="quantityUomId,primaryProductCategoryId">
+                    <ParameterInOut LocalDataProperty="productId" ValueListProperty="productId"/>
+                </ValueList>
+            </Parameter>
+            <Parameter Name="quantity" Type="BigDecimal" Scale="2" Label="${Quantity}"/>
             <Parameter Name="requirementTypeId" Type="String" Hidden="true" DefaultValue="PRODUCT_REQUIREMENT"/>
         </Action>
     </EntityType>
@@ -88,6 +118,37 @@
         <!--采购报价单-->
         <NavigationProperty Name="PurchaseQuote" Type="PurchaseQuote" Relations="Quote" IsCollection="false"/>
 
+    </EntityType>
+
+    <!--Product（产品）-->
+    <EntityType Name="Product" EntitySetName="Products" AutoSet="true" AutoProperties="true"
+                OfbizType="productTypeId=FINISHED_GOOD">
+        <Property Name="quantityUomId" Immutable="true">
+            <Text Path="QuantityUom/description" TextArrangement="TextOnly"/>
+        </Property>
+        <Property Name="primaryProductCategoryId">
+            <Text Path="PrimaryProductCategory/categoryName" TextArrangement="TextOnly"/>
+        </Property>
+        <Property Name="productId">
+            <Text Path="productName" TextArrangement="TextOnly"/>
+        </Property>
+        <Property Name="productName" Immutable="true"/>
+        <NavigationProperty Name="QuantityUom"/>
+        <NavigationProperty Name="PrimaryProductCategory"/>
+
+    </EntityType>
+
+    <EntityType Name="Uom" AutoProperties="true" AutoSet="true" EntitySetName="Unm">
+        <Property Name="uomId">
+            <Text Path="description" TextArrangement="TextLast"/>
+        </Property>
+    </EntityType>
+
+    <EntityType Name="ProductCategory" AutoSet="true" EntityCondition="productCategoryTypeId=SUPPLIER_CATEGORY"
+                EntitySetName="ProductCategories" AutoProperties="true">
+        <Property Name="productCategoryId">
+            <Text Path="categoryName" TextArrangement="TextOnly"/>
+        </Property>
     </EntityType>
 
 </ofbiz-edm>
