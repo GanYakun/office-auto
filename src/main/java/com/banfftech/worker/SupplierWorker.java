@@ -1,21 +1,13 @@
 package com.banfftech.worker;
 
 import com.banfftech.common.util.CommonUtils;
-import org.apache.commons.net.ntp.TimeStamp;
-import org.apache.ofbiz.base.util.UtilDateTime;
-import org.apache.ofbiz.base.util.UtilFormatOut;
 import org.apache.ofbiz.base.util.UtilMisc;
 import org.apache.ofbiz.base.util.UtilValidate;
 import org.apache.ofbiz.entity.Delegator;
 import org.apache.ofbiz.entity.GenericEntityException;
 import org.apache.ofbiz.entity.GenericValue;
-import org.apache.ofbiz.entity.model.ModelEntity;
 import org.apache.ofbiz.entity.util.EntityQuery;
 import org.apache.ofbiz.entity.util.EntityUtil;
-import org.joda.time.DateTimeUtils;
-
-import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -141,21 +133,6 @@ public class SupplierWorker {
         return isSubmit;
     }
 
-    public static Long getClassificationRatingNumber (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-        Long criticalValue = 0L;
-        Map<String, Object> statusMap = UtilMisc.toMap("High",3L,"Low",1L,"Medium",2L);
-        List<GenericValue> partyClassifications = delegator.findByAnd("PartyClassification",
-                UtilMisc.toMap("partyId", supplierParty.get("partyId")), null, true);
-        if (UtilValidate.isNotEmpty(partyClassifications)){
-            GenericValue partyClassification = EntityUtil.getFirst(partyClassifications);
-            GenericValue partyClassificationGroup = delegator.findOne("PartyClassificationGroup",
-                    UtilMisc.toMap("partyClassificationGroupId", partyClassification.get("partyClassificationGroupId")), true);
-            String description = partyClassificationGroup.getString("description");
-            criticalValue = (Long) statusMap.get(description);
-        }
-        return criticalValue;
-    }
-
     public static Boolean isCheckWarning (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
         GenericValue checkAttributeEntity = delegator.findOne("PartyAttribute", UtilMisc.toMap("partyId", supplierParty.get("partyId"), "attrName", "complianceCheckWarning"), true);
         if (UtilValidate.isNotEmpty(checkAttributeEntity) && checkAttributeEntity.get("attrValue").equals("Warning")){
@@ -170,17 +147,6 @@ public class SupplierWorker {
         return (String) DDType.get(ddFormType);
     }
 
-    public static Long getUploadDocCriticalValue (GenericValue partyMedia, Delegator delegator) throws GenericEntityException {
-        GenericValue partyContent = delegator.findOne("PartyContent", UtilMisc.toMap("partyContentId", partyMedia.get("partyContentId")), true);
-        GenericValue content = delegator.findOne("Content", UtilMisc.toMap("contentId", partyContent.get("contentId")), true);
-        GenericValue dataResource = delegator.findOne("DataResource", UtilMisc.toMap("dataResourceId", content.get("dataResourceId")), true);
-        if (UtilValidate.isNotEmpty(dataResource.get("dataResourceName"))){
-            return 3L;
-        }else {
-            return 1L;
-        }
-    }
-
     public static String noUploadedFiles (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
         String noUploadedFilesName = "";
         List<GenericValue> partyContents = delegator.findByAnd("PartyMediaResource",
@@ -192,6 +158,9 @@ public class SupplierWorker {
         GenericValue commercialLicense = EntityUtil.getFirst(partyContents);
         GenericValue content = delegator.findOne("Content", UtilMisc.toMap("contentId", commercialLicense.get("contentId")), true);
         GenericValue dataResource = delegator.findOne("OtherDataResource", UtilMisc.toMap("dataResourceId", content.get("dataResourceId")), true);
+        if (UtilValidate.isEmpty(dataResource)){
+            return "Missing Copy of Commercial License";
+        }
         if (UtilValidate.isEmpty(dataResource.get("dataResourceContent"))){
             noUploadedFilesName = "Missing Copy of Commercial License";
             return noUploadedFilesName;
@@ -200,11 +169,10 @@ public class SupplierWorker {
     }
 
     public static String getYesResponse (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-        String warningString = "";
         if (isCheckWarning(supplierParty, delegator)){
-            warningString = "Compliance certifications warning";
+            return "Compliance certifications warning";
         }
-        return warningString;
+        return "";
     }
 
     public static String noUploadUBODoc(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
@@ -262,26 +230,18 @@ public class SupplierWorker {
         }else {
             return null;
         }
-
     }
 
-    public static Long getProcessNumeric (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-        Map<String, Object> processBarMap = UtilMisc.toMap("COWORK_CREATED", 1L, "REQUESTED_DD", 2L,
-                "SUBMITTED_DD", 3L, "PROCUREMENT_REVIEW", 4L, "COMPLIANCE_REVIEW", 5L, "COMPLETED_DD", 6L, "REGISTERED", 7L);
-        GenericValue workEffort = delegator.findOne("WorkEffort", UtilMisc.toMap("workEffortId", supplierParty.get("workEffortId")), true);
-        if (UtilValidate.isEmpty(workEffort.getString("workEffortParentId")) && workEffort.get("workEffortTypeId").equals("COWORK")){
-            return (Long) processBarMap.get(workEffort.getString("currentStatusId"));
-        }else if (UtilValidate.isNotEmpty(workEffort.getString("workEffortParentId"))){
-            List<GenericValue> parentSuppliers = delegator.findByAnd("WorkEffortAndPartyGroupContact", UtilMisc.toMap("workEffortId", workEffort.getString("workEffortParentId")), null, true);
-            GenericValue parentSupplier = EntityUtil.getFirst(parentSuppliers);
-            return (Long) processBarMap.get(parentSupplier.getString("currentStatusId"));
+    public static Long getUploadDocCriticalValue (GenericValue partyMedia, Delegator delegator) throws GenericEntityException {
+        GenericValue partyContent = delegator.findOne("PartyContent", UtilMisc.toMap("partyContentId", partyMedia.get("partyContentId")), true);
+        GenericValue content = delegator.findOne("Content", UtilMisc.toMap("contentId", partyContent.get("contentId")), true);
+        GenericValue dataResource = delegator.findOne("DataResource", UtilMisc.toMap("dataResourceId", content.get("dataResourceId")), true);
+        if (UtilValidate.isNotEmpty(dataResource.get("dataResourceName"))){
+            return 3L;
         }else {
-            return 0L;
+            return 1L;
         }
     }
-
-
-
 
     public static String getApplicantId(String vendorPartyId, Delegator delegator) throws GenericEntityException {
         //获取申请人的部门

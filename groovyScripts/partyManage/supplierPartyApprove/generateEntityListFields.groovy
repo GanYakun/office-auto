@@ -1,24 +1,17 @@
-import com.dpbird.odata.Util
-import org.apache.ofbiz.base.util.Debug
+
 import org.apache.ofbiz.entity.util.EntityQuery
-import org.apache.ofbiz.service.ServiceUtil
-import org.apache.ofbiz.base.util.UtilValidate;
 import org.apache.olingo.commons.api.data.Entity
-import com.banfftech.common.util.CommonUtils;
-import com.dpbird.odata.edm.OdataOfbizEntity;
 import org.apache.ofbiz.entity.GenericValue;
 import org.apache.ofbiz.base.util.UtilValidate;
-import java.math.BigDecimal;
-import org.apache.ofbiz.base.util.UtilMisc;
 import org.apache.ofbiz.entity.Delegator;
 import org.apache.ofbiz.base.util.UtilMisc;
 import com.banfftech.worker.SupplierWorker;
 import com.banfftech.worker.TimeCalculateWorker;
 import com.banfftech.worker.HiddenWorker;
+import com.banfftech.worker.NumericWorker;
 import com.banfftech.worker.CriticalValueWorker;
 import org.apache.olingo.commons.api.data.Property;
 import org.apache.olingo.commons.api.data.ValueType
-import sun.net.www.content.text.Generic
 
 
 import java.sql.Timestamp;
@@ -30,7 +23,6 @@ def generateFields(Map<String, Object> context){
     Delegator delegator = context.get("delegator");
     Map<String, Object> ddFormTypeMap = UtilMisc.toMap("No DD", 1L, "Simplified", 2L, "Standard", 3L);
     Map<String, Object> vendorTypeMap = UtilMisc.toMap("GOVERNMENTAL_AGENCIES_TYPE", 1L, "HIGHLY_REGULATED_ENTITY_TYPE", 1L, "LOW_VALUE_ONE-TIME_TRANSACTIONS_TYPE", 2L, "OTHERS_TYPE", 3L, "ROUTINE_AND_LOW_VALUE_TRANSACTIONS_TYPE", 5L);
-    Map<String, Object> ddFormDealMap = UtilMisc.toMap("Not Request", 5L, "Request", 2L, "Submitted", 3L, "Require Changes", 2L, "Wrong Types", 1L);
     Map<String, Object> priorityMap = UtilMisc.toMap("PRIORITY_HIGH", 1L, "PRIORITY_MEDIUM", 3L, "PRIORITY_LOW", 5L);
     entityList.each { entity ->
         String ddFormType;
@@ -54,9 +46,9 @@ def generateFields(Map<String, Object> context){
         //返回供应商要填写的ddForm类型ID
         ddFormTypeId = SupplierWorker.getDDFormTypeId(ddFormType);
         //根据Compliance评级返回数字，用于封装评级星星图
-        ratingNumeric = SupplierWorker.getClassificationRatingNumber(supplierParty, delegator);
+        ratingNumeric = NumericWorker.getClassificationRatingNumber(supplierParty, delegator);
         //根据Cowork状态返回数字，用于封装流程图
-        processNumeric = SupplierWorker.getProcessNumeric(supplierParty, delegator);
+        processNumeric = NumericWorker.getProcessNumeric(supplierParty, delegator);
         //ddForm是否已提交
         Boolean ddFormIsSubmitted = SupplierWorker.ddFormIsSubmitted(delegator, supplierParty);
         //查询applicant最后提交日期
