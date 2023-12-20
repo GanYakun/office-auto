@@ -141,92 +141,6 @@ public class SupplierWorker {
         return isSubmit;
     }
 
-    /**
-     * 计算表单填写周期
-     * @param supplierParty 供应商
-     * @param delegator
-     * @return cycleTime
-     */
-    public static String calculateCycleTime (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-
-        List<GenericValue> supplierWorkEfforts = delegator.findByAnd("WorkEffortAndPartyGroupContact",
-                UtilMisc.toMap("partyId", supplierParty.get("partyId"), "workEffortTypeId", "COWORK", "currentStatusId", "REGISTERED"), null, true);
-        if (UtilValidate.isEmpty(supplierWorkEfforts)){
-            return getDaysDifference(getFinishUploadDate(supplierParty, delegator), UtilDateTime.nowTimestamp());
-        }
-        GenericValue supplierWorkEffort = EntityUtil.getFirst(supplierWorkEfforts);
-        return getDaysDifference(getFinishUploadDate(supplierParty, delegator), supplierWorkEffort.getTimestamp("lastModifiedDate"));
-
-    }
-
-    private static Timestamp getFinishUploadDate (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-        GenericValue partyAttributeDate = delegator.findOne("PartyAttributeDate",
-                UtilMisc.toMap("partyId", supplierParty.get("partyId"), "attrName", "finishDomUploadDate"), true);
-        if (UtilValidate.isEmpty(partyAttributeDate)){
-            return UtilDateTime.nowTimestamp();
-        }
-        return partyAttributeDate.getTimestamp("attrValue");
-    }
-
-    //计算时间差，并转化为~days的时间格式
-    private static String getDaysDifference (Timestamp startDate, Timestamp completionDate){
-        String daysDifference = "0 days";
-        if (UtilValidate.isEmpty(startDate)){
-            startDate = UtilDateTime.nowTimestamp();
-        }
-        if (UtilValidate.isEmpty(completionDate)){
-            completionDate = UtilDateTime.nowTimestamp();
-        }
-        long startDateSeconds = startDate.getTime();
-        long completionDateSeconds = completionDate.getTime();
-        long differenceSeconds = completionDateSeconds - startDateSeconds;
-        double differenceDaysFloat = (double) differenceSeconds / (3600*1000*24);
-        double days = Math.floor(differenceDaysFloat);
-        if (days < 0){
-            return "0 days";
-        }
-        daysDifference = (int) days + " days";
-        return daysDifference;
-    }
-
-    /**
-     * 计算表单填写周期
-     * @param supplierParty 供应商
-     * @param delegator
-     * @return responseTime
-     */
-    public static String calculateResponseTime (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-
-        List<GenericValue> supplierWorkEfforts = delegator.findByAnd("WorkEffortAndPartyGroupContact",
-                UtilMisc.toMap("partyId", supplierParty.get("partyId"), "approvePartyId", supplierParty.get("partyId")), null, true);
-        if (UtilValidate.isEmpty(supplierWorkEfforts)){
-           return getDaysDifference(UtilDateTime.nowTimestamp(), getFinishUploadDate(supplierParty, delegator));
-        }
-        GenericValue supplierWorkEffort = EntityUtil.getFirst(supplierWorkEfforts);
-        return getDaysDifference(supplierWorkEffort.getTimestamp("createdDate"), getFinishUploadDate(supplierParty, delegator));
-    }
-
-    /**
-     * 返回供应商风险评级颜色显示值
-     * @param supplierParty 供应商
-     * @param delegator
-     * @return criticalValue
-     */
-    public static Long getClassificationCriticalValue (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-        Long criticalValue = 0L;
-        Map<String, Object> statusMap = UtilMisc.toMap("High",1L,"Low",3L,"Middle",4L);
-        List<GenericValue> partyClassifications = delegator.findByAnd("PartyClassification",
-                UtilMisc.toMap("partyId", supplierParty.get("partyId")), null, true);
-        if (UtilValidate.isNotEmpty(partyClassifications)){
-            GenericValue partyClassification = EntityUtil.getFirst(partyClassifications);
-            GenericValue partyClassificationGroup = delegator.findOne("PartyClassificationGroup",
-                    UtilMisc.toMap("partyClassificationGroupId", partyClassification.get("partyClassificationGroupId")), true);
-            String description = partyClassificationGroup.getString("description");
-            criticalValue = (Long) statusMap.get(description);
-        }
-        return criticalValue;
-    }
-
     public static Long getClassificationRatingNumber (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
         Long criticalValue = 0L;
         Map<String, Object> statusMap = UtilMisc.toMap("High",3L,"Low",1L,"Medium",2L);
@@ -254,20 +168,6 @@ public class SupplierWorker {
 
     public static String getDDFormTypeId (String ddFormType) {
         return (String) DDType.get(ddFormType);
-    }
-
-    public static Timestamp getLastSubmittedDate (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-        List<String> orderBy = new ArrayList<>();
-        orderBy.add("-statusDatetime");
-        GenericValue workEffortStatus = EntityQuery.use(delegator).from("WorkEffortStatus").
-                where(UtilMisc.toMap("workEffortId", supplierParty.get("workEffortId"), "statusId", "PROCESSED")).
-                orderBy(orderBy).queryFirst();
-        if (UtilValidate.isNotEmpty(workEffortStatus)){
-            return workEffortStatus.getTimestamp("statusDatetime");
-        }else {
-            return null;
-        }
-
     }
 
     public static Long getUploadDocCriticalValue (GenericValue partyMedia, Delegator delegator) throws GenericEntityException {
@@ -380,80 +280,8 @@ public class SupplierWorker {
         }
     }
 
-    public static Long getProcessCritical (Long processNumeric) {
-        if (UtilValidate.isEmpty(processNumeric)){
-            return 0L;
-        }
-        if (processNumeric == 0L){
-            return 0L;
-        }else if (0L < processNumeric && processNumeric <= 3L){
-            return 1L;
-        }else if (3L < processNumeric && processNumeric <= 5L){
-            return 2L;
-        }else {
-            return 3L;
-        }
-    }
 
-    public static Boolean applicantSubmitIsHidden(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-        if (getDDFormType(supplierParty, delegator).equals("No DD")){
-            return false;
-        }
 
-        GenericValue applicantWorkEffort = EntityQuery.use(delegator).from("WorkEffort").
-                where("partyId", supplierParty.getString("partyId"), "workEffortTypeId", "COWORK_TASK").orderBy("createdDate").queryFirst();
-
-        List<GenericValue> vendorWorkEfforts = delegator.findByAnd("WorkEffortAndPartyGroupContact",
-                UtilMisc.toMap("partyId", supplierParty.get("partyId"), "approvePartyId", supplierParty.get("partyId")), null, true);
-        if (UtilValidate.isEmpty(vendorWorkEfforts)){
-            return true;
-        }
-        GenericValue vendorWorkEffort = EntityUtil.getFirst(vendorWorkEfforts);
-        if (applicantWorkEffort.get("currentStatusId").equals("PROCESSED") || vendorWorkEffort.get("currentStatusId").equals("NOT_PROCESSED")){
-            return true;
-        }
-        return false;
-    }
-
-    public static Boolean procurementSubmitIsHidden(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-        Boolean procurementSubmitHidden = true;
-        List<GenericValue> coworks = delegator.findByAnd("WorkEffort",
-                UtilMisc.toMap("partyId", supplierParty.get("partyId"), "workEffortTypeId", "COWORK"), null, true);
-        if (UtilValidate.isNotEmpty(coworks)){
-            GenericValue cowork = EntityUtil.getFirst(coworks);
-            if (cowork.get("currentStatusId").equals("PROCUREMENT_REVIEW") || cowork.get("currentStatusId").equals("COMPLETED_DD")){
-                procurementSubmitHidden = false;
-            }
-            if (cowork.get("currentStatusId").equals("COMPLIANCE_REVIEW")){
-                //如果被合规拒绝 也可以reject
-                GenericValue complianceWorkEffort = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("approvePartyId", "HG").queryFirst();
-                if (UtilValidate.isNotEmpty(complianceWorkEffort) && "PROCESSED".equals(complianceWorkEffort.getString("currentStatusId"))) {
-                    procurementSubmitHidden = false;
-                }
-            }
-        }
-        return procurementSubmitHidden;
-    }
-
-    public static Boolean procurementRejectIsHidden(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-        Boolean procurementRejectHidden = true;
-        List<GenericValue> coworks = delegator.findByAnd("WorkEffort",
-                UtilMisc.toMap("partyId", supplierParty.get("partyId"), "workEffortTypeId", "COWORK"), null, true);
-        if (UtilValidate.isNotEmpty(coworks)){
-            GenericValue cowork = EntityUtil.getFirst(coworks);
-            if (cowork.get("currentStatusId").equals("PROCUREMENT_REVIEW")){
-                procurementRejectHidden = false;
-            }
-            if (cowork.get("currentStatusId").equals("COMPLIANCE_REVIEW")){
-                //如果被合规拒绝 也可以reject
-                GenericValue complianceWorkEffort = EntityQuery.use(delegator).from("WorkEffortAndPartyGroupContact").where("approvePartyId", "HG").queryFirst();
-                if (UtilValidate.isNotEmpty(complianceWorkEffort) && "PROCESSED".equals(complianceWorkEffort.getString("currentStatusId"))) {
-                    procurementRejectHidden = false;
-                }
-            }
-        }
-        return procurementRejectHidden;
-    }
 
     public static String getApplicantId(String vendorPartyId, Delegator delegator) throws GenericEntityException {
         //获取申请人的部门

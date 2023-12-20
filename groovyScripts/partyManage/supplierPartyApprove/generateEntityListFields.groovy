@@ -13,6 +13,8 @@ import org.apache.ofbiz.base.util.UtilMisc;
 import org.apache.ofbiz.entity.Delegator;
 import org.apache.ofbiz.base.util.UtilMisc;
 import com.banfftech.worker.SupplierWorker;
+import com.banfftech.worker.TimeCalculateWorker;
+import com.banfftech.worker.HiddenWorker;
 import com.banfftech.worker.CriticalValueWorker;
 import org.apache.olingo.commons.api.data.Property;
 import org.apache.olingo.commons.api.data.ValueType
@@ -42,24 +44,34 @@ def generateFields(Map<String, Object> context){
         priorityCritical = 0L;
         riskCritical = 0L;
         GenericValue supplierParty = (GenericValue) entity.getGenericValue();
-        Boolean applicantSubmitHidden = SupplierWorker.applicantSubmitIsHidden(supplierParty, delegator);
-        Boolean procurementSubmitHidden = SupplierWorker.procurementSubmitIsHidden(supplierParty, delegator);
-        Boolean procurementRejectHidden = SupplierWorker.procurementRejectIsHidden(supplierParty, delegator);
+        Boolean applicantSubmitHidden = HiddenWorker.applicantSubmitIsHidden(supplierParty, delegator);
+        Boolean procurementSubmitHidden = HiddenWorker.procurementSubmitIsHidden(supplierParty, delegator);
+        Boolean procurementRejectHidden = HiddenWorker.procurementRejectIsHidden(supplierParty, delegator);
+        //返回提示procurement的警告内容
         String warningContent = SupplierWorker.getWarningContent(supplierParty, delegator);
+        //返回供应商要填写的ddForm类型ID
         ddFormType = SupplierWorker.getDDFormType(supplierParty, delegator);
+        //返回供应商要填写的ddForm类型ID
         ddFormTypeId = SupplierWorker.getDDFormTypeId(ddFormType);
+        //根据Compliance评级返回数字，用于封装评级星星图
         ratingNumeric = SupplierWorker.getClassificationRatingNumber(supplierParty, delegator);
+        //根据Cowork状态返回数字，用于封装流程图
         processNumeric = SupplierWorker.getProcessNumeric(supplierParty, delegator);
-        processCritical = SupplierWorker.getProcessCritical(processNumeric);
-        vendorTypeCritical = vendorTypeMap.get(supplierParty.get("partyGroupTypeId"));
+        //ddForm是否已提交
         Boolean ddFormIsSubmitted = SupplierWorker.ddFormIsSubmitted(delegator, supplierParty);
-        Timestamp lastSubmittedDate = SupplierWorker.getLastSubmittedDate(supplierParty, delegator);
-        riskCritical = SupplierWorker.getClassificationCriticalValue(supplierParty, delegator);
+        //查询applicant最后提交日期
+        Timestamp lastSubmittedDate = TimeCalculateWorker.getLastSubmittedDate(supplierParty, delegator);
+        //查询cycleTime（逻辑未定）
+        String cycleTime = TimeCalculateWorker.calculateCycleTime(supplierParty, delegator);
+        String complianceCycleTime = TimeCalculateWorker.calculateCycleTime(supplierParty, delegator);
+        riskCritical = CriticalValueWorker.getClassificationCriticalValue(supplierParty, delegator);
+        processCritical = CriticalValueWorker.getProcessCritical(processNumeric);
+        vendorTypeCritical = vendorTypeMap.get(supplierParty.get("partyGroupTypeId"));
         if (UtilValidate.isNotEmpty(supplierParty.get("priority"))){
             priorityCritical = priorityMap.get(supplierParty.get("priority"));
         }
-        String cycleTime = SupplierWorker.calculateCycleTime(supplierParty, delegator);
-        String complianceCycleTime = SupplierWorker.calculateCycleTime(supplierParty, delegator);
+
+
         criticalityValue = 2L
         String statusId = supplierParty.getString("statusId");
         if (statusId.equals("PROCESSED") && UtilValidate.isNotEmpty(criticalityValue)){
