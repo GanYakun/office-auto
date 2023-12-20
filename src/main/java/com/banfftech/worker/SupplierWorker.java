@@ -287,13 +287,13 @@ public class SupplierWorker {
                 UtilMisc.toMap("partyId", supplierParty.getString("partyId"),
                         "partyContentTypeId", "COMMERCIAL_LICENSE"), null, true);
         if (UtilValidate.isEmpty(partyContents)){
-            return "Missing Copy of Commercial License\n";
+            return "Missing Copy of Commercial License";
         }
         GenericValue commercialLicense = EntityUtil.getFirst(partyContents);
         GenericValue content = delegator.findOne("Content", UtilMisc.toMap("contentId", commercialLicense.get("contentId")), true);
         GenericValue dataResource = delegator.findOne("DataResource", UtilMisc.toMap("dataResourceId", content.get("dataResourceId")), true);
         if (UtilValidate.isEmpty(dataResource.get("dataResourceName"))){
-            noUploadedFilesName = "Missing Copy of Commercial License\n";
+            noUploadedFilesName = "Missing Copy of Commercial License";
             return noUploadedFilesName;
         }
         return noUploadedFilesName;
