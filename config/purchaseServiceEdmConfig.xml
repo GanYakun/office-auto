@@ -10,7 +10,7 @@
         <!--关联到产品需求单-->
         <NavigationProperty Name="ProductRequirement" Type="ProductRequirement" Relations="RequirementCustRequest/Requirement" IsCollection="true"/>
 
-        <Action Name="CreatePurchaseRequest" IsBound="true" EntitySetPath="purchaseRequest"
+        <Action Name="CreatePurchaseRequest" IsBound="true" EntitySetPath="purchaseRequest" SideEffects="true"
                 OfbizService="com.dpbird.odata.events.ActionEvents.createEntity">
             <Parameter Name="purchaseRequest" Type="PurchaseRequest" Nullable="false" IsCollection="true"/>
             <Parameter Name="reason" Type="String" Label="${Reason}"/>
@@ -26,7 +26,7 @@
         <!--关联到采购订单-->
         <NavigationProperty Name="PurchaseOrder" Type="PurchaseOrder" Relations="OrderHeader" IsCollection="true"/>
 
-        <Action Name="CreatePurchaseQuote" IsBound="true"
+        <Action Name="CreatePurchaseQuote" IsBound="true" SideEffects="true"
                 OfbizService="com.dpbird.odata.events.ActionEvents.createEntity">
             <Parameter Name="purchaseRequest" Type="PurchaseRequest" Nullable="false" IsCollection="true"/>
             <Parameter Name="partyId" Type="String" Label="${QuoteParty}">
@@ -44,7 +44,7 @@
         <!--采购报价单-->
         <NavigationProperty Name="PurchaseQuote" Type="PurchaseQuote" Relations="Quote" IsCollection="false"/>
 
-        <Action Name="CreatePurchaseOrder" IsBound="true"
+        <Action Name="CreatePurchaseOrder" IsBound="true" SideEffects="true"
                 OfbizService="com.dpbird.odata.events.ActionEvents.createEntity">
             <Parameter Name="purchaseOrder" Type="PurchaseOrder" Nullable="false" IsCollection="true"/>
         </Action>
@@ -57,16 +57,10 @@
         <!--关联多个采购请求单-->
         <NavigationProperty Name="PurchaseRequest" Type="PurchaseRequest" Relations="RequirementCustRequest/CustRequest" IsCollection="true"/>
 
-        <Action Name="CreateProductRequirement" IsBound="true" EntitySetPath="productRequirement"
+        <Action Name="CreateProductRequirement" IsBound="true" EntitySetPath="productRequirement" SideEffects="true"
                 OfbizService="com.dpbird.odata.events.ActionEvents.createEntity">
             <Parameter Name="productRequirement" Type="ProductRequirement" Nullable="false" IsCollection="true"/>
         </Action>
     </EntityType>
 
-    <EntityType Name="ProductRequirement" OfbizEntity="Requirement" EntityCondition="requirementTypeId=PRODUCT_REQUIREMENT"
-                Properties="requirementId,requirementTypeId,facilityId,productId,statusId"
-                EntitySetName="ProductRequirements" AutoSet="true">
-
-        <NavigationProperty Name="PurchaseRequest" Type="PurchaseRequest" Relations="RequirementCustRequest/Requirement" IsCollection="true"/>
-    </EntityType>
 </ofbiz-edm>
