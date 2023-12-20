@@ -14,6 +14,7 @@
                 OfbizService="com.dpbird.odata.events.ActionEvents.createEntity">
             <Parameter Name="purchaseRequest" Type="PurchaseRequest" Nullable="false" IsCollection="true"/>
             <Parameter Name="reason" Type="String" Label="${Reason}"/>
+            <Parameter Name="custRequestTypeId" Type="String" Hidden="true" DefaultValue="RF_PUR_QUOTE"/>
         </Action>
     </EntityType>
 
@@ -47,6 +48,7 @@
         <Action Name="CreatePurchaseOrder" IsBound="true" SideEffects="true"
                 OfbizService="com.dpbird.odata.events.ActionEvents.createEntity">
             <Parameter Name="purchaseOrder" Type="PurchaseOrder" Nullable="false" IsCollection="true"/>
+            <Parameter Name="orderTypeId" Type="String" Hidden="true" DefaultValue="PURCHASE_ORDER"/>
         </Action>
     </EntityType>
 
