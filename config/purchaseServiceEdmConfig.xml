@@ -5,6 +5,11 @@
                 AutoProperties="true"
                 EntitySetName="PurchaseRequests" AutoSet="true">
 
+        <HeaderInfo TypeName="Purchase Request" TypeNamePlural="Purchase Requests">
+            <Title Path="custRequestName"/>
+            <Description Path="description"/>
+        </HeaderInfo>
+
         <!--关联到采购报价单-->
         <NavigationProperty Name="PurchaseQuote" Type="PurchaseQuote" Relations="Quote" IsCollection="true"/>
         <!--关联到产品需求单-->
@@ -22,39 +27,39 @@
                 AutoProperties="true"
                 AutoSet="true">
 
+        <HeaderInfo TypeName="Purchase Quote" TypeNamePlural="Purchase Quotes">
+            <Title Path="quoteName"/>
+            <Description Path="description"/>
+        </HeaderInfo>
+
         <!--关联到采购请求单-->
         <NavigationProperty Name="PurchaseRequest" Type="PurchaseRequest" Relations="CustRequest" IsCollection="false"/>
         <!--关联到采购订单-->
         <NavigationProperty Name="PurchaseOrder" Type="PurchaseOrder" Relations="OrderHeader" IsCollection="true"/>
 
-        <Action Name="CreatePurchaseQuote" IsBound="true" SideEffects="true"
-                OfbizService="com.dpbird.odata.events.ActionEvents.createEntity">
-            <Parameter Name="purchaseRequest" Type="PurchaseRequest" Nullable="false" IsCollection="true"/>
-            <Parameter Name="partyId" Type="String" Label="${QuoteParty}">
-                <ValueList CollectionPath="QuoteParties" WithFixedValues="false" ParameterDisplayOnly="phoneMobile,primaryPhone,primaryEmail,address1">
-                    <ParameterInOut ValueListProperty="partyId" LocalDataProperty="partyId"/>
-                </ValueList>
-            </Parameter>
-        </Action>
     </EntityType>
 
     <EntityType Name="PurchaseOrder" OfbizEntity="OrderHeader" EntitySetName="PurchaseOrderHeaders"
                 EntityCondition="orderTypeId=PURCHASE_ORDER" Properties="orderId,orderName,orderTypeId,orderName,orderDate,statusId,quoteId,agreementId"
                 SearchOption="orderId,orderName,StatusItem/description">
 
+        <HeaderInfo TypeName="Purchase Order" TypeNamePlural="Purchase Orders">
+            <Title Path="orderId"/>
+            <Description Path="orderName"/>
+        </HeaderInfo>
+
         <!--采购报价单-->
         <NavigationProperty Name="PurchaseQuote" Type="PurchaseQuote" Relations="Quote" IsCollection="false"/>
 
-        <Action Name="CreatePurchaseOrder" IsBound="true" SideEffects="true"
-                OfbizService="com.dpbird.odata.events.ActionEvents.createEntity">
-            <Parameter Name="purchaseOrder" Type="PurchaseOrder" Nullable="false" IsCollection="true"/>
-            <Parameter Name="orderTypeId" Type="String" Hidden="true" DefaultValue="PURCHASE_ORDER"/>
-        </Action>
     </EntityType>
 
     <EntityType Name="ProductRequirement" OfbizEntity="Requirement" EntityCondition="requirementTypeId=PRODUCT_REQUIREMENT"
                 Properties="requirementId,requirementTypeId,facilityId,productId,statusId"
                 EntitySetName="ProductRequirements" AutoSet="true">
+        <HeaderInfo TypeName="Requirement" TypeNamePlural="Requirements">
+            <Title Path="requirementId"/>
+            <Description Path="productId"/>
+        </HeaderInfo>
 
         <!--关联多个采购请求单-->
         <NavigationProperty Name="PurchaseRequest" Type="PurchaseRequest" Relations="RequirementCustRequest/CustRequest" IsCollection="true"/>
