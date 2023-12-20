@@ -1,7 +1,10 @@
+package com.banfftech.events
+
 import com.dpbird.odata.Util
 import org.apache.ofbiz.base.util.Debug
 import org.apache.ofbiz.entity.util.EntityQuery
 import org.apache.ofbiz.service.ServiceUtil
+import org.apache.ofbiz.base.util.UtilValidate;
 import org.apache.olingo.commons.api.data.Entity
 import com.banfftech.common.util.CommonUtils;
 import com.dpbird.odata.edm.OdataOfbizEntity;
@@ -22,15 +25,11 @@ import java.sql.Timestamp;
 
 module = "generateFields.groovy";
 
-def generateFields(Map<String, Object> context) {
+def generateFields(Map<String, Object> context){
     List<Entity> entityList = context.parameters.entityList;
     entityList.each { entity ->
         OdataOfbizEntity ofbizEntity = (OdataOfbizEntity) entity;
-        String findEntityName = "RelationshipAndToParty";
-        if (UtilValidate.isNotEmpty(ofbizEntity.getPropertyValue("draftUUID"))) {
-            findEntityName = "RelationshipAndToPartyDraft";
-        }
-        GenericValue genericValue = EntityQuery.use(delegator).from(findEntityName)
+        GenericValue genericValue = EntityQuery.use(delegator).from("RelationshipAndToParty")
                 .where("partyRelationshipId", ofbizEntity.getPropertyValue("partyRelationshipId")).queryFirst();
         Object fileContent = genericValue.get("dataResourceContent")
         String partyRelationshipId = genericValue.getString("partyRelationshipId")

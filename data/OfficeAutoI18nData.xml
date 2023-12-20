@@ -248,6 +248,8 @@ under the License.
     <Internationalization id="uploadDocuments_zh" lang="zh" property="uploadDocuments" value="上传文件"/>
     <Internationalization id="complianceCycleTime_en" lang="en" property="complianceCycleTime" value="Compliance cycle time"/>
     <Internationalization id="complianceCycleTime_zh" lang="zh" property="complianceCycleTime" value="Compliance cycle time"/>
+    <Internationalization id="File_en" lang="en" property="File" value="File"/>
+    <Internationalization id="File_zh" lang="zh" property="File" value="文件"/>
 
     <!-- entity label -->
     <DBEntity dbEntityId="CUST_REQ_10000" dbEntityName="CustRequest" dbEntityTypeId="PURCHASE_REQ" description="采购请求" isOpen="Y"/>

@@ -291,8 +291,8 @@ public class SupplierWorker {
         }
         GenericValue commercialLicense = EntityUtil.getFirst(partyContents);
         GenericValue content = delegator.findOne("Content", UtilMisc.toMap("contentId", commercialLicense.get("contentId")), true);
-        GenericValue dataResource = delegator.findOne("DataResource", UtilMisc.toMap("dataResourceId", content.get("dataResourceId")), true);
-        if (UtilValidate.isEmpty(dataResource.get("dataResourceName"))){
+        GenericValue dataResource = delegator.findOne("OtherDataResource", UtilMisc.toMap("dataResourceId", content.get("dataResourceId")), true);
+        if (UtilValidate.isEmpty(dataResource.get("dataResourceContent"))){
             noUploadedFilesName = "Missing Copy of Commercial License";
             return noUploadedFilesName;
         }
@@ -308,25 +308,25 @@ public class SupplierWorker {
     }
 
     public static String noUploadUBODoc(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-        String missingDoc = "Missing ID copy of UBO";
-        List<GenericValue> partyContents = delegator.findByAnd("PartyContent",
-                UtilMisc.toMap("partyId", supplierParty.getString("partyId"),
-                        "partyContentTypeId", "UBO_DOCUMENT"), null, true);
-        if (UtilValidate.isNotEmpty(partyContents)){
-            return "";
+        List<GenericValue> uboList = supplierParty.getRelated("FromRelationshipAndToParty", UtilMisc.toMap("roleTypeIdTo", "BENEFICIAL_PERSON",
+                "roleTypeIdFrom", "SUPPLIER"), null, false);
+        for (GenericValue genericValue : uboList) {
+            if (UtilValidate.isEmpty(genericValue.get("dataResourceContent"))) {
+                return "Missing ID copy of UBO";
+            }
         }
-        return missingDoc;
+        return "";
     }
 
     public static String noUploadCopyIdOfDir(GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-        String missingIdOfDir = "Missing ID copy of Director/Officer";
-        List<GenericValue> partyContents = delegator.findByAnd("PartyContent",
-                UtilMisc.toMap("partyId", supplierParty.getString("partyId"),
-                        "partyContentTypeId", "DIRECTOR_COPY_ID"), null, true);
-        if (UtilValidate.isNotEmpty(partyContents)){
-            return "";
+        List<GenericValue> seniorStaffList = supplierParty.getRelated("FromRelationshipAndToParty", UtilMisc.toMap("roleTypeIdTo", "SENIOR_STAFF",
+                "roleTypeIdFrom", "SUPPLIER"), null, false);
+        for (GenericValue genericValue : seniorStaffList) {
+            if (UtilValidate.isEmpty(genericValue.get("dataResourceContent"))) {
+                return "Missing ID copy of Director/Officer";
+            }
         }
-        return missingIdOfDir;
+        return "";
     }
 
     //控制警告内容输出格式
