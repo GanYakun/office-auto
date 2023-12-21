@@ -301,7 +301,6 @@ under the License.
     <!--供应商9004(standard DD)-->
     <WorkEffort workEffortId="8009" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8010" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-12-02 12:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-02 12:22:22.660"/>
     <WorkEffort workEffortId="8011" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8010" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-11-22 12:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-03 12:22:22.660"/>
-    <WorkEffort workEffortId="8025" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8010" priority="PRIORITY_HIGH" partyId="9004" createdDate="2023-11-22 12:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-03 12:22:22.660"/>
     <!--供应商9005(Simplified DD)-->
     <WorkEffort workEffortId="8014" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8013" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-11-29 12:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 12:22:22.660"/>
     <WorkEffort workEffortId="8015" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8013" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-11-18 09:18:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
@@ -371,7 +370,6 @@ under the License.
     <WorkEffortStatus workEffortId="8013" statusId="PROCUREMENT_REVIEW" statusDatetime="2023-12-03 16:30:22.660" setByUserLogin="applicant"/>
     <WorkEffortStatus workEffortId="8013" statusId="COMPLIANCE_REVIEW" statusDatetime="2023-12-04 14:30:22.660" setByUserLogin="applicant"/>
     <WorkEffortStatus workEffortId="8026" statusId="NOT_PROCESSED" statusDatetime="2023-12-03 16:30:22.660" setByUserLogin="applicant"/>
-    <WorkEffortStatus workEffortId="8026" statusId="PROCESSED" statusDatetime="2023-12-04 14:30:22.660" setByUserLogin="applicant"/>
     <!--供应商9006状态-->
     <WorkEffortStatus workEffortId="8017" statusId="NOT_PROCESSED" statusDatetime="2023-12-01 09:22:22.660" setByUserLogin="applicant"/>
     <WorkEffortStatus workEffortId="8017" statusId="PROCESSED" statusDatetime="2023-12-01 16:22:22.660" setByUserLogin="applicant"/>
@@ -425,7 +423,6 @@ under the License.
     <WorkEffortPartyAssignment workEffortPartyAssignment="9022" partyId="HG" workEffortId="8022"/>
     <WorkEffortPartyAssignment workEffortPartyAssignment="9023" partyId="HG" workEffortId="8023"/>
     <WorkEffortPartyAssignment workEffortPartyAssignment="9024" partyId="HG" workEffortId="8024"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9025" partyId="HG" workEffortId="8025"/>
     <WorkEffortPartyAssignment workEffortPartyAssignment="9026" partyId="HG" workEffortId="8026"/>
     <WorkEffortPartyAssignment workEffortPartyAssignment="9027" partyId="HG" workEffortId="8027"/>
     <WorkEffortPartyAssignment workEffortPartyAssignment="9029" partyId="CG" workEffortId="8029"/>
@@ -834,11 +831,10 @@ under the License.
     <DataResource dataResourceId="9005" objectInfo="" dataResourceName="Other Documents"                                />
     <DataResource dataResourceId="9006" objectInfo="" dataResourceName="Technical Eveluation Report"                    />
     <DataResource dataResourceId="9008" objectInfo="" dataResourceName="Full Name of Company or Individual Party Report"/>
-    <DataResource dataResourceId="9009" objectInfo="" dataResourceName="Share Holder Report"                            />
+    <DataResource dataResourceId="9009" objectInfo="" dataResourceName="Shareholder Report"                            />
     <DataResource dataResourceId="9010" objectInfo="" dataResourceName="Director Report"                                />
     <DataResource dataResourceId="9011" objectInfo="" dataResourceName="Key Officer Report"                             />
     <DataResource dataResourceId="9012" objectInfo="" dataResourceName="Previous Name Report"                           />
-    <DataResource dataResourceId="9013" objectInfo="" dataResourceName="Business Code of Conduct"                       />
     <DataResource dataResourceId="9014" objectInfo="" dataResourceName="Ultimate Beneficial Owners Report"              />
 
     <DataResource dataResourceId="9015" objectInfo="" dataResourceName="Latest Three-years Finance Audit Report"        />
@@ -850,11 +846,10 @@ under the License.
     <DataResource dataResourceId="9021" objectInfo="" dataResourceName="Other Documents"                                />
     <DataResource dataResourceId="9022" objectInfo="" dataResourceName="Technical Eveluation Report"                    />
     <DataResource dataResourceId="9024" objectInfo="" dataResourceName="Full Name of Company or Individual Party Report"/>
-    <DataResource dataResourceId="9025" objectInfo="" dataResourceName="Share Holder Report"                            />
+    <DataResource dataResourceId="9025" objectInfo="" dataResourceName="Shareholder Report"                            />
     <DataResource dataResourceId="9026" objectInfo="" dataResourceName="Director Report"                                />
     <DataResource dataResourceId="9027" objectInfo="" dataResourceName="Key Officer Report"                             />
     <DataResource dataResourceId="9028" objectInfo="" dataResourceName="Previous Name Report"                           />
-    <DataResource dataResourceId="9029" objectInfo="" dataResourceName="Business Code of Conduct"                       />
     <DataResource dataResourceId="9030" objectInfo="" dataResourceName="Ultimate Beneficial Owners Report"              />
 
     <DataResource dataResourceId="9031" objectInfo="" dataResourceName="Latest Three-years Finance Audit Report"        />
@@ -866,11 +861,10 @@ under the License.
     <DataResource dataResourceId="9037" objectInfo="" dataResourceName="Other Documents"                                />
     <DataResource dataResourceId="9038" objectInfo="" dataResourceName="Technical Eveluation Report"                    />
     <DataResource dataResourceId="9040" objectInfo="" dataResourceName="Full Name of Company or Individual Party Report"/>
-    <DataResource dataResourceId="9041" objectInfo="" dataResourceName="Share Holder Report"                            />
+    <DataResource dataResourceId="9041" objectInfo="" dataResourceName="Shareholder Report"                            />
     <DataResource dataResourceId="9042" objectInfo="" dataResourceName="Director Report"                                />
     <DataResource dataResourceId="9043" objectInfo="" dataResourceName="Key Officer Report"                             />
     <DataResource dataResourceId="9044" objectInfo="" dataResourceName="Previous Name Report"                           />
-    <DataResource dataResourceId="9045" objectInfo="" dataResourceName="Business Code of Conduct"                       />
     <DataResource dataResourceId="9046" objectInfo="" dataResourceName="Ultimate Beneficial Owners Report"              />
 
     <DataResource dataResourceId="9047" objectInfo="" dataResourceName="Latest Three-years Finance Audit Report"        />
@@ -882,11 +876,10 @@ under the License.
     <DataResource dataResourceId="9053" objectInfo="" dataResourceName="Other Documents"                                />
     <DataResource dataResourceId="9054" objectInfo="" dataResourceName="Technical Eveluation Report"                    />
     <DataResource dataResourceId="9056" objectInfo="" dataResourceName="Full Name of Company or Individual Party Report"/>
-    <DataResource dataResourceId="9057" objectInfo="" dataResourceName="Share Holder Report"                            />
+    <DataResource dataResourceId="9057" objectInfo="" dataResourceName="Shareholder Report"                            />
     <DataResource dataResourceId="9058" objectInfo="" dataResourceName="Director Report"                                />
     <DataResource dataResourceId="9059" objectInfo="" dataResourceName="Key Officer Report"                             />
     <DataResource dataResourceId="9060" objectInfo="" dataResourceName="Previous Name Report"                           />
-    <DataResource dataResourceId="9061" objectInfo="" dataResourceName="Business Code of Conduct"                       />
     <DataResource dataResourceId="9062" objectInfo="" dataResourceName="Ultimate Beneficial Owners Report"              />
 
     <DataResource dataResourceId="9063" objectInfo="" dataResourceName="Latest Three-years Finance Audit Report"        />
@@ -898,11 +891,10 @@ under the License.
     <DataResource dataResourceId="9069" objectInfo="" dataResourceName="Other Documents"                                />
     <DataResource dataResourceId="9070" objectInfo="" dataResourceName="Technical Eveluation Report"                    />
     <DataResource dataResourceId="9072" objectInfo="" dataResourceName="Full Name of Company or Individual Party Report"/>
-    <DataResource dataResourceId="9073" objectInfo="" dataResourceName="Share Holder Report"                            />
+    <DataResource dataResourceId="9073" objectInfo="" dataResourceName="Shareholder Report"                            />
     <DataResource dataResourceId="9074" objectInfo="" dataResourceName="Director Report"                                />
     <DataResource dataResourceId="9075" objectInfo="" dataResourceName="Key Officer Report"                             />
     <DataResource dataResourceId="9076" objectInfo="" dataResourceName="Previous Name Report"                           />
-    <DataResource dataResourceId="9077" objectInfo="" dataResourceName="Business Code of Conduct"                       />
     <DataResource dataResourceId="9078" objectInfo="" dataResourceName="Ultimate Beneficial Owners Report"              />
 
     <DataResource dataResourceId="9079" objectInfo="" dataResourceName="Latest Three-years Finance Audit Report"        />
@@ -914,11 +906,10 @@ under the License.
     <DataResource dataResourceId="9085" objectInfo="" dataResourceName="Other Documents"                                />
     <DataResource dataResourceId="9086" objectInfo="" dataResourceName="Technical Eveluation Report"                    />
     <DataResource dataResourceId="9088" objectInfo="" dataResourceName="Full Name of Company or Individual Party Report"/>
-    <DataResource dataResourceId="9089" objectInfo="" dataResourceName="Share Holder Report"                            />
+    <DataResource dataResourceId="9089" objectInfo="" dataResourceName="Shareholder Report"                            />
     <DataResource dataResourceId="9090" objectInfo="" dataResourceName="Director Report"                                />
     <DataResource dataResourceId="9091" objectInfo="" dataResourceName="Key Officer Report"                             />
     <DataResource dataResourceId="9092" objectInfo="" dataResourceName="Previous Name Report"                           />
-    <DataResource dataResourceId="9093" objectInfo="" dataResourceName="Business Code of Conduct"                       />
     <DataResource dataResourceId="9094" objectInfo="" dataResourceName="Ultimate Beneficial Owners Report"              />
 
     <DataResource dataResourceId="9095" objectInfo="" dataResourceName="Latest Three-years Finance Audit Report"        />
@@ -930,11 +921,10 @@ under the License.
     <DataResource dataResourceId="9101" objectInfo="" dataResourceName="Other Documents"                                />
     <DataResource dataResourceId="9102" objectInfo="" dataResourceName="Technical Eveluation Report"                    />
     <DataResource dataResourceId="9104" objectInfo="" dataResourceName="Full Name of Company or Individual Party Report"/>
-    <DataResource dataResourceId="9105" objectInfo="" dataResourceName="Share Holder Report"                            />
+    <DataResource dataResourceId="9105" objectInfo="" dataResourceName="Shareholder Report"                            />
     <DataResource dataResourceId="9106" objectInfo="" dataResourceName="Director Report"                                />
     <DataResource dataResourceId="9107" objectInfo="" dataResourceName="Key Officer Report"                             />
     <DataResource dataResourceId="9108" objectInfo="" dataResourceName="Previous Name Report"                           />
-    <DataResource dataResourceId="9109" objectInfo="" dataResourceName="Business Code of Conduct"                       />
     <DataResource dataResourceId="9110" objectInfo="" dataResourceName="Ultimate Beneficial Owners Report"              />
 
     <DataResource dataResourceId="9111" objectInfo="" dataResourceName="Latest Three-years Finance Audit Report"        />
@@ -946,11 +936,10 @@ under the License.
     <DataResource dataResourceId="9117" objectInfo="" dataResourceName="Other Documents"                                />
     <DataResource dataResourceId="9118" objectInfo="" dataResourceName="Technical Eveluation Report"                    />
     <DataResource dataResourceId="9120" objectInfo="" dataResourceName="Full Name of Company or Individual Party Report"/>
-    <DataResource dataResourceId="9121" objectInfo="" dataResourceName="Share Holder Report"                            />
+    <DataResource dataResourceId="9121" objectInfo="" dataResourceName="Shareholder Report"                            />
     <DataResource dataResourceId="9122" objectInfo="" dataResourceName="Director Report"                                />
     <DataResource dataResourceId="9123" objectInfo="" dataResourceName="Key Officer Report"                             />
     <DataResource dataResourceId="9124" objectInfo="" dataResourceName="Previous Name Report"                           />
-    <DataResource dataResourceId="9125" objectInfo="" dataResourceName="Business Code of Conduct"                       />
     <DataResource dataResourceId="9126" objectInfo="" dataResourceName="Ultimate Beneficial Owners Report"              />
 
     <Content contentId="8999" description="1" dataResourceId="8999" contentName="Latest Three-years Finance Audit Report"        />
@@ -962,11 +951,10 @@ under the License.
     <Content contentId="9005" description="8" dataResourceId="9005" contentName="Other Documents"                                />
     <Content contentId="9006" description="7" dataResourceId="9006" contentName="Technical Eveluation Report"                    />
     <Content contentId="9008" description="1" dataResourceId="9008" contentName="Full Name of Company or Individual Party Report"/>
-    <Content contentId="9009" description="2" dataResourceId="9009" contentName="Share Holder Report"                            />
+    <Content contentId="9009" description="2" dataResourceId="9009" contentName="Shareholder Report"                            />
     <Content contentId="9010" description="3" dataResourceId="9010" contentName="Director Report"                                />
     <Content contentId="9011" description="4" dataResourceId="9011" contentName="Key Officer Report"                             />
     <Content contentId="9012" description="5" dataResourceId="9012" contentName="Previous Name Report"                           />
-    <Content contentId="9013" description="6" dataResourceId="9013" contentName="Business Code of Conduct"                       />
     <Content contentId="9014" description="7" dataResourceId="9014" contentName="Ultimate Beneficial Owners Report"              />
 
     <Content contentId="9015" description="1" dataResourceId="9015" contentName="Latest Three-years Finance Audit Report"        />
@@ -978,11 +966,10 @@ under the License.
     <Content contentId="9021" description="8" dataResourceId="9021" contentName="Other Documents"                                />
     <Content contentId="9022" description="7" dataResourceId="9022" contentName="Technical Eveluation Report"                    />
     <Content contentId="9024" description="1" dataResourceId="9024" contentName="Full Name of Company or Individual Party Report"/>
-    <Content contentId="9025" description="2" dataResourceId="9025" contentName="Share Holder Report"                            />
+    <Content contentId="9025" description="2" dataResourceId="9025" contentName="Shareholder Report"                            />
     <Content contentId="9026" description="3" dataResourceId="9026" contentName="Director Report"                                />
     <Content contentId="9027" description="4" dataResourceId="9027" contentName="Key Officer Report"                             />
     <Content contentId="9028" description="5" dataResourceId="9028" contentName="Previous Name Report"                           />
-    <Content contentId="9029" description="6" dataResourceId="9029" contentName="Business Code of Conduct"                       />
     <Content contentId="9030" description="7" dataResourceId="9030" contentName="Ultimate Beneficial Owners Report"              />
 
     <Content contentId="9031" description="1" dataResourceId="9031" contentName="Latest Three-years Finance Audit Report"        />
@@ -994,11 +981,10 @@ under the License.
     <Content contentId="9037" description="8" dataResourceId="9037" contentName="Other Documents"                                />
     <Content contentId="9038" description="7" dataResourceId="9038" contentName="Technical Eveluation Report"                    />
     <Content contentId="9040" description="1" dataResourceId="9040" contentName="Full Name of Company or Individual Party Report"/>
-    <Content contentId="9041" description="2" dataResourceId="9041" contentName="Share Holder Report"                            />
+    <Content contentId="9041" description="2" dataResourceId="9041" contentName="Shareholder Report"                            />
     <Content contentId="9042" description="3" dataResourceId="9042" contentName="Director Report"                                />
     <Content contentId="9043" description="4" dataResourceId="9043" contentName="Key Officer Report"                             />
     <Content contentId="9044" description="5" dataResourceId="9044" contentName="Previous Name Report"                           />
-    <Content contentId="9045" description="6" dataResourceId="9045" contentName="Business Code of Conduct"                       />
     <Content contentId="9046" description="7" dataResourceId="9046" contentName="Ultimate Beneficial Owners Report"              />
 
     <Content contentId="9047" description="1" dataResourceId="9047" contentName="Latest Three-years Finance Audit Report"        />
@@ -1010,11 +996,10 @@ under the License.
     <Content contentId="9053" description="8" dataResourceId="9053" contentName="Other Documents"                                />
     <Content contentId="9054" description="7" dataResourceId="9054" contentName="Technical Eveluation Report"                    />
     <Content contentId="9056" description="1" dataResourceId="9056" contentName="Full Name of Company or Individual Party Report"/>
-    <Content contentId="9057" description="2" dataResourceId="9057" contentName="Share Holder Report"                            />
+    <Content contentId="9057" description="2" dataResourceId="9057" contentName="Shareholder Report"                            />
     <Content contentId="9058" description="3" dataResourceId="9058" contentName="Director Report"                                />
     <Content contentId="9059" description="4" dataResourceId="9059" contentName="Key Officer Report"                             />
     <Content contentId="9060" description="5" dataResourceId="9060" contentName="Previous Name Report"                           />
-    <Content contentId="9061" description="6" dataResourceId="9061" contentName="Business Code of Conduct"                       />
     <Content contentId="9062" description="7" dataResourceId="9062" contentName="Ultimate Beneficial Owners Report"              />
 
     <Content contentId="9063" description="1" dataResourceId="9063" contentName="Latest Three-years Finance Audit Report"        />
@@ -1026,11 +1011,10 @@ under the License.
     <Content contentId="9069" description="8" dataResourceId="9069" contentName="Other Documents"                                />
     <Content contentId="9070" description="7" dataResourceId="9070" contentName="Technical Eveluation Report"                    />
     <Content contentId="9072" description="1" dataResourceId="9072" contentName="Full Name of Company or Individual Party Report"/>
-    <Content contentId="9073" description="2" dataResourceId="9073" contentName="Share Holder Report"                            />
+    <Content contentId="9073" description="2" dataResourceId="9073" contentName="Shareholder Report"                            />
     <Content contentId="9074" description="3" dataResourceId="9074" contentName="Director Report"                                />
     <Content contentId="9075" description="4" dataResourceId="9075" contentName="Key Officer Report"                             />
     <Content contentId="9076" description="5" dataResourceId="9076" contentName="Previous Name Report"                           />
-    <Content contentId="9077" description="6" dataResourceId="9077" contentName="Business Code of Conduct"                       />
     <Content contentId="9078" description="7" dataResourceId="9078" contentName="Ultimate Beneficial Owners Report"              />
 
     <Content contentId="9079" description="1" dataResourceId="9079" contentName="Latest Three-years Finance Audit Report"        />
@@ -1042,11 +1026,10 @@ under the License.
     <Content contentId="9085" description="8" dataResourceId="9085" contentName="Other Documents"                                />
     <Content contentId="9086" description="7" dataResourceId="9086" contentName="Technical Eveluation Report"                    />
     <Content contentId="9088" description="1" dataResourceId="9088" contentName="Full Name of Company or Individual Party Report"/>
-    <Content contentId="9089" description="2" dataResourceId="9089" contentName="Share Holder Report"                            />
+    <Content contentId="9089" description="2" dataResourceId="9089" contentName="Shareholder Report"                            />
     <Content contentId="9090" description="3" dataResourceId="9090" contentName="Director Report"                                />
     <Content contentId="9091" description="4" dataResourceId="9091" contentName="Key Officer Report"                             />
     <Content contentId="9092" description="5" dataResourceId="9092" contentName="Previous Name Report"                           />
-    <Content contentId="9093" description="6" dataResourceId="9093" contentName="Business Code of Conduct"                       />
     <Content contentId="9094" description="7" dataResourceId="9094" contentName="Ultimate Beneficial Owners Report"              />
 
     <Content contentId="9095" description="1" dataResourceId="9095" contentName="Latest Three-years Finance Audit Report"        />
@@ -1058,11 +1041,10 @@ under the License.
     <Content contentId="9101" description="8" dataResourceId="9101" contentName="Other Documents"                                />
     <Content contentId="9102" description="7" dataResourceId="9102" contentName="Technical Eveluation Report"                    />
     <Content contentId="9104" description="1" dataResourceId="9104" contentName="Full Name of Company or Individual Party Report"/>
-    <Content contentId="9105" description="2" dataResourceId="9105" contentName="Share Holder Report"                            />
+    <Content contentId="9105" description="2" dataResourceId="9105" contentName="Shareholder Report"                            />
     <Content contentId="9106" description="3" dataResourceId="9106" contentName="Director Report"                                />
     <Content contentId="9107" description="4" dataResourceId="9107" contentName="Key Officer Report"                             />
     <Content contentId="9108" description="5" dataResourceId="9108" contentName="Previous Name Report"                           />
-    <Content contentId="9109" description="6" dataResourceId="9109" contentName="Business Code of Conduct"                       />
     <Content contentId="9110" description="7" dataResourceId="9110" contentName="Ultimate Beneficial Owners Report"              />
 
     <Content contentId="9111" description="1" dataResourceId="9111" contentName="Latest Three-years Finance Audit Report"        />
@@ -1074,11 +1056,10 @@ under the License.
     <Content contentId="9117" description="8" dataResourceId="9117" contentName="Other Documents"                                />
     <Content contentId="9118" description="7" dataResourceId="9118" contentName="Technical Eveluation Report"                    />
     <Content contentId="9120" description="1" dataResourceId="9120" contentName="Full Name of Company or Individual Party Report"/>
-    <Content contentId="9121" description="2" dataResourceId="9121" contentName="Share Holder Report"                            />
+    <Content contentId="9121" description="2" dataResourceId="9121" contentName="Shareholder Report"                            />
     <Content contentId="9122" description="3" dataResourceId="9122" contentName="Director Report"                                />
     <Content contentId="9123" description="4" dataResourceId="9123" contentName="Key Officer Report"                             />
     <Content contentId="9124" description="5" dataResourceId="9124" contentName="Previous Name Report"                           />
-    <Content contentId="9125" description="6" dataResourceId="9125" contentName="Business Code of Conduct"                       />
     <Content contentId="9126" description="7" dataResourceId="9126" contentName="Ultimate Beneficial Owners Report"              />
 
     <!--PartyContent-->
@@ -1095,7 +1076,6 @@ under the License.
     <PartyContent partyContentId="9010" partyId="9000" contentId="9010" partyContentTypeId="DIRECTOR_REPORT"/>
     <PartyContent partyContentId="9011" partyId="9000" contentId="9011" partyContentTypeId="KEY_OFFICER_REPORT"/>
     <PartyContent partyContentId="9012" partyId="9000" contentId="9012" partyContentTypeId="PREVIOUS_NAME_REPORT"/>
-    <PartyContent partyContentId="9013" partyId="9000" contentId="9013" partyContentTypeId="BUSINESS_CODE_CONDUCT"/>
     <PartyContent partyContentId="9014" partyId="9000" contentId="9014" partyContentTypeId="UBO_REPORT"/>
 
     <PartyContent partyContentId="9015" partyId="9001" contentId="9015" partyContentTypeId="FINANCE_REPORT"/>
@@ -1111,7 +1091,6 @@ under the License.
     <PartyContent partyContentId="9026" partyId="9001" contentId="9026" partyContentTypeId="DIRECTOR_REPORT"/>
     <PartyContent partyContentId="9027" partyId="9001" contentId="9027" partyContentTypeId="KEY_OFFICER_REPORT"/>
     <PartyContent partyContentId="9028" partyId="9001" contentId="9028" partyContentTypeId="PREVIOUS_NAME_REPORT"/>
-    <PartyContent partyContentId="9029" partyId="9001" contentId="9029" partyContentTypeId="BUSINESS_CODE_CONDUCT"/>
     <PartyContent partyContentId="9030" partyId="9001" contentId="9030" partyContentTypeId="UBO_REPORT"/>
 
     <PartyContent partyContentId="9031" partyId="9002" contentId="9031" partyContentTypeId="FINANCE_REPORT"/>
@@ -1127,7 +1106,6 @@ under the License.
     <PartyContent partyContentId="9042" partyId="9002" contentId="9042" partyContentTypeId="DIRECTOR_REPORT"/>
     <PartyContent partyContentId="9043" partyId="9002" contentId="9043" partyContentTypeId="KEY_OFFICER_REPORT"/>
     <PartyContent partyContentId="9044" partyId="9002" contentId="9044" partyContentTypeId="PREVIOUS_NAME_REPORT"/>
-    <PartyContent partyContentId="9045" partyId="9002" contentId="9045" partyContentTypeId="BUSINESS_CODE_CONDUCT"/>
     <PartyContent partyContentId="9046" partyId="9002" contentId="9046" partyContentTypeId="UBO_REPORT"/>
 
     <PartyContent partyContentId="9047" partyId="9003" contentId="9047" partyContentTypeId="FINANCE_REPORT"/>
@@ -1143,7 +1121,6 @@ under the License.
     <PartyContent partyContentId="9058" partyId="9003" contentId="9058" partyContentTypeId="DIRECTOR_REPORT"/>
     <PartyContent partyContentId="9059" partyId="9003" contentId="9059" partyContentTypeId="KEY_OFFICER_REPORT"/>
     <PartyContent partyContentId="9060" partyId="9003" contentId="9060" partyContentTypeId="PREVIOUS_NAME_REPORT"/>
-    <PartyContent partyContentId="9061" partyId="9003" contentId="9061" partyContentTypeId="BUSINESS_CODE_CONDUCT"/>
     <PartyContent partyContentId="9062" partyId="9003" contentId="9062" partyContentTypeId="UBO_REPORT"/>
 
     <PartyContent partyContentId="9063" partyId="9004" contentId="9063" partyContentTypeId="FINANCE_REPORT"/>
@@ -1159,7 +1136,6 @@ under the License.
     <PartyContent partyContentId="9074" partyId="9004" contentId="9074" partyContentTypeId="DIRECTOR_REPORT"/>
     <PartyContent partyContentId="9075" partyId="9004" contentId="9075" partyContentTypeId="KEY_OFFICER_REPORT"/>
     <PartyContent partyContentId="9076" partyId="9004" contentId="9076" partyContentTypeId="PREVIOUS_NAME_REPORT"/>
-    <PartyContent partyContentId="9077" partyId="9004" contentId="9077" partyContentTypeId="BUSINESS_CODE_CONDUCT"/>
     <PartyContent partyContentId="9078" partyId="9004" contentId="9078" partyContentTypeId="UBO_REPORT"/>
 
     <PartyContent partyContentId="9079" partyId="9005" contentId="9079" partyContentTypeId="FINANCE_REPORT"/>
@@ -1175,7 +1151,6 @@ under the License.
     <PartyContent partyContentId="9090" partyId="9005" contentId="9090" partyContentTypeId="DIRECTOR_REPORT"/>
     <PartyContent partyContentId="9091" partyId="9005" contentId="9091" partyContentTypeId="KEY_OFFICER_REPORT"/>
     <PartyContent partyContentId="9092" partyId="9005" contentId="9092" partyContentTypeId="PREVIOUS_NAME_REPORT"/>
-    <PartyContent partyContentId="9093" partyId="9005" contentId="9093" partyContentTypeId="BUSINESS_CODE_CONDUCT"/>
     <PartyContent partyContentId="9094" partyId="9005" contentId="9094" partyContentTypeId="UBO_REPORT"/>
 
     <PartyContent partyContentId="9095" partyId="9006" contentId="9095" partyContentTypeId="FINANCE_REPORT"/>
@@ -1191,7 +1166,6 @@ under the License.
     <PartyContent partyContentId="9106" partyId="9006" contentId="9106" partyContentTypeId="DIRECTOR_REPORT"/>
     <PartyContent partyContentId="9107" partyId="9006" contentId="9107" partyContentTypeId="KEY_OFFICER_REPORT"/>
     <PartyContent partyContentId="9108" partyId="9006" contentId="9108" partyContentTypeId="PREVIOUS_NAME_REPORT"/>
-    <PartyContent partyContentId="9109" partyId="9006" contentId="9109" partyContentTypeId="BUSINESS_CODE_CONDUCT"/>
     <PartyContent partyContentId="9110" partyId="9006" contentId="9110" partyContentTypeId="UBO_REPORT"/>
 
     <PartyContent partyContentId="9111" partyId="9007" contentId="9111" partyContentTypeId="FINANCE_REPORT"/>
@@ -1207,7 +1181,6 @@ under the License.
     <PartyContent partyContentId="9122" partyId="9007" contentId="9122" partyContentTypeId="DIRECTOR_REPORT"/>
     <PartyContent partyContentId="9123" partyId="9007" contentId="9123" partyContentTypeId="KEY_OFFICER_REPORT"/>
     <PartyContent partyContentId="9124" partyId="9007" contentId="9124" partyContentTypeId="PREVIOUS_NAME_REPORT"/>
-    <PartyContent partyContentId="9125" partyId="9007" contentId="9125" partyContentTypeId="BUSINESS_CODE_CONDUCT"/>
     <PartyContent partyContentId="9126" partyId="9007" contentId="9126" partyContentTypeId="UBO_REPORT"/>
 
     <!-- 邮件 -->
