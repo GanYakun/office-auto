@@ -288,7 +288,6 @@ under the License.
     <!--供应商9000(standard DD)-->
     <WorkEffort workEffortId="8000" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8001" priority="PRIORITY_HIGH" partyId="9000" createdDate="2023-11-28 10:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-11-29 10:43:22.660"/>
     <WorkEffort workEffortId="8012" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8001" priority="PRIORITY_HIGH" partyId="9000" createdDate="2023-11-26 10:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-11-18 10:43:22.660"/>
-    <WorkEffort workEffortId="8028" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8001" priority="PRIORITY_HIGH" partyId="9000" createdDate="2023-11-26 10:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-11-18 10:43:22.660"/>
     <!--供应商9001(standard DD)-->
     <WorkEffort workEffortId="8023" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8003" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-26 10:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-11-18 10:43:22.660"/>
     <WorkEffort workEffortId="8002" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8003" priority="PRIORITY_HIGH" partyId="9001" createdDate="2023-11-28 10:43:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-11-29 10:43:22.660"/>
@@ -306,7 +305,7 @@ under the License.
     <!--供应商9005(Simplified DD)-->
     <WorkEffort workEffortId="8014" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8013" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-11-29 12:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 12:22:22.660"/>
     <WorkEffort workEffortId="8015" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8013" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-11-18 09:18:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
-    <WorkEffort workEffortId="8026" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8013" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-11-18 09:18:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
+    <WorkEffort workEffortId="8026" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8013" priority="PRIORITY_MEDIUM" partyId="9005" createdDate="2023-11-18 09:18:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
     <!--供应商9006(standard DD)-->
     <WorkEffort workEffortId="8017" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8016" priority="PRIORITY_MEDIUM" partyId="9006" createdDate="2023-11-25 09:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
     <WorkEffort workEffortId="8018" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8016" priority="PRIORITY_MEDIUM" partyId="9006" createdDate="2023-11-23 09:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
@@ -314,7 +313,7 @@ under the License.
     <!--供应商9007(standard DD)-->
     <WorkEffort workEffortId="8020" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8019" priority="PRIORITY_HIGH" partyId="9007" createdDate="2023-11-23 09:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
     <WorkEffort workEffortId="8021" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8019" priority="PRIORITY_HIGH" partyId="9007" createdDate="2023-11-25 19:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
-    <WorkEffort workEffortId="8022" workEffortTypeId="COWORK_TASK" currentStatusId="NOT_PROCESSED" workEffortParentId="8019" priority="PRIORITY_HIGH" partyId="9007" createdDate="2023-11-25 19:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
+    <WorkEffort workEffortId="8022" workEffortTypeId="COWORK_TASK" currentStatusId="PROCESSED" workEffortParentId="8019" priority="PRIORITY_HIGH" partyId="9007" createdDate="2023-11-25 19:22:22.660" createdByUserLogin="applicant" lastModifiedDate="2023-12-01 09:22:22.660"/>
 
     <!--WorkEffortStatus-->
     <!--供应商9000状态-->
@@ -326,7 +325,6 @@ under the License.
     <WorkEffortStatus workEffortId="8012" statusId="PROCESSED" statusDatetime="2023-11-30 18:22:22.660" setByUserLogin="supplier9000"/>
     <WorkEffortStatus workEffortId="8001" statusId="SUBMITTED_DD" statusDatetime="2023-11-30 18:22:22.660" setByUserLogin="procurement"/>
     <WorkEffortStatus workEffortId="8001" statusId="PROCUREMENT_REVIEW" statusDatetime="2023-12-01 09:13:22.660" setByUserLogin="procurement"/>
-    <WorkEffortStatus workEffortId="8028" statusId="NOT_PROCESSED" statusDatetime="2023-12-01 11:13:22.660" setByUserLogin="compliance"/>
     <!--供应商9001状态-->
     <WorkEffortStatus workEffortId="8002" statusId="NOT_PROCESSED" statusDatetime="2023-12-01 09:22:22.660" setByUserLogin="applicant"/>
     <WorkEffortStatus workEffortId="8002" statusId="PROCESSED" statusDatetime="2023-12-01 16:22:22.660" setByUserLogin="applicant"/>
@@ -371,7 +369,7 @@ under the License.
     <WorkEffortStatus workEffortId="8015" statusId="PROCESSED" statusDatetime="2023-12-03 16:30:22.660" setByUserLogin="applicant"/>
     <WorkEffortStatus workEffortId="8013" statusId="SUBMITTED_DD" statusDatetime="2023-12-03 16:30:22.660" setByUserLogin="applicant"/>
     <WorkEffortStatus workEffortId="8013" statusId="PROCUREMENT_REVIEW" statusDatetime="2023-12-03 16:30:22.660" setByUserLogin="applicant"/>
-    <WorkEffortStatus workEffortId="8026" statusId="COMPLIANCE_REVIEW" statusDatetime="2023-12-04 14:30:22.660" setByUserLogin="applicant"/>
+    <WorkEffortStatus workEffortId="8013" statusId="COMPLIANCE_REVIEW" statusDatetime="2023-12-04 14:30:22.660" setByUserLogin="applicant"/>
     <WorkEffortStatus workEffortId="8026" statusId="NOT_PROCESSED" statusDatetime="2023-12-03 16:30:22.660" setByUserLogin="applicant"/>
     <WorkEffortStatus workEffortId="8026" statusId="PROCESSED" statusDatetime="2023-12-04 14:30:22.660" setByUserLogin="applicant"/>
     <!--供应商9006状态-->
@@ -430,7 +428,6 @@ under the License.
     <WorkEffortPartyAssignment workEffortPartyAssignment="9025" partyId="HG" workEffortId="8025"/>
     <WorkEffortPartyAssignment workEffortPartyAssignment="9026" partyId="HG" workEffortId="8026"/>
     <WorkEffortPartyAssignment workEffortPartyAssignment="9027" partyId="HG" workEffortId="8027"/>
-    <WorkEffortPartyAssignment workEffortPartyAssignment="9028" partyId="HG" workEffortId="8028"/>
     <WorkEffortPartyAssignment workEffortPartyAssignment="9029" partyId="CG" workEffortId="8029"/>
 
     <PartyAttribute partyId="9006" attrName="complianceCheckWarning" attrValue="Warning"/>
@@ -522,7 +519,6 @@ under the License.
 
     <PartyClassification partyId="9001" partyClassificationGroupId="LOW_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
     <PartyClassification partyId="9002" partyClassificationGroupId="HIGH_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
-    <PartyClassification partyId="9005" partyClassificationGroupId="LOW_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
     <PartyClassification partyId="9006" partyClassificationGroupId="HIGH_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
     <PartyClassification partyId="9007" partyClassificationGroupId="HIGH_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
 
@@ -1225,5 +1221,10 @@ under the License.
     <SystemProperty systemResourceId="general" systemPropertyId="mail.smtp.relay.host" systemPropertyValue="smtp.163.com" description="the default mail server to use"/>
     <SystemProperty systemResourceId="general" systemPropertyId="mail.smtp.auth.user" systemPropertyValue="try028@163.com" description="SMTP Auth username setting"/>
     <SystemProperty systemResourceId="general" systemPropertyId="mail.smtp.auth.password" systemPropertyValue="RTDDNJEMYVYRPYIX" description="SMTP Auth password setting"/>
+
+    <FacilityType facilityTypeId="WAREHOUSE" descripiton="Ware House"/>
+    <Facility facilityId="FAC0001" facilityTypeId="WAREHOUSE" facilityName="Shanghai Pudong General warehouse" ownerPartyId="Company" facilitySize="15" facilitySizeUomId="AREA_km2" openedDate="2023-01-28 11:45:31.928" description="Shanghai Pudong General warehouse"/>
+    <Facility facilityId="FAC0002" facilityTypeId="WAREHOUSE" facilityName="Zhejiang Wenzhou warehouse" ownerPartyId="Company" facilitySize="22" facilitySizeUomId="AREA_km2" openedDate="2023-01-28 11:45:31.928" description="Zhejiang Wenzhou warehouse"/>
+    <Facility facilityId="FAC0003" facilityTypeId="WAREHOUSE" facilityName="Office supplies warehouse" ownerPartyId="Company" facilitySize="220" facilitySizeUomId="AREA_m2" openedDate="2023-01-28 11:45:31.928" description="Office supplies warehouse"/>
 
 </entity-engine-xml>
