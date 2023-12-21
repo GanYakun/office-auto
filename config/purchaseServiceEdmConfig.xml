@@ -1,37 +1,9 @@
 <ofbiz-edm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:noNamespaceSchemaLocation="https://dev.odatalab.com/dtds/edmconfig.xsd" ImportGlobal="false">
 
-    <!-- ==============采购主对象（PurchaseRequest、Requirement、PurchaseQuote、PurchaseOrder）=============-->
-    <!--PurchaseRequest（采购请求）-->
-    <EntityType Name="PurchaseRequest" OfbizEntity="CustRequest" EntityCondition="custRequestTypeId=RF_PUR_QUOTE"
-                AutoProperties="true"
-                EntitySetName="PurchaseRequests" AutoSet="true">
-
-        <HeaderInfo TypeName="Purchase Request" TypeNamePlural="Purchase Requests">
-            <Title Path="custRequestName"/>
-            <Description Path="description"/>
-        </HeaderInfo>
-
-        <!--在Requirement里显示-->
-        <LineItem Qualifier="RelatedRequirement">
-            <DataField Values="fromPartyId,createdDate,responseRequiredDate,reason" Importance="High"/>
-        </LineItem>
-
-        <!--在Quote里显示-->
-        <LineItem Qualifier="RelatedPurchaseQuote">
-            <DataField Values="fromPartyId,createdDate,responseRequiredDate,reason" Importance="High"/>
-        </LineItem>
-
-        <LineItem>
-            <DataField Values="fromPartyId,createdDate,responseRequiredDate,reason" Importance="High"/>
-        </LineItem>
-
-        <NavigationProperty Name="ProductRequirement" Type="ProductRequirement" Relations="RequirementCustRequest/Requirement" IsCollection="true"/>
-        <NavigationProperty Name="PurchaseQuote" Type="PurchaseQuote" Relations="Quote"/>
-
-    </EntityType>
-
-    <EntityType Name="CatalogRequest" OfbizEntity="CustRequest" EntityCondition="custRequestTypeId=RF_CATALOG"
+    <!-- ==============采购主对象（CatalogRequest、Requirement、PurchaseRequest、PurchaseQuote、PurchaseOrder）=============-->
+    <!--CatalogRequest（由applicant创建，applicant才能看到，对应流程图第一步）-->
+    <EntityType Name="CatalogRequest" OfbizEntity="CustRequest" EntityCondition="custRequestTypeId=RF_CATALOG and fromPartyId=${userLogin.partyId}"
                 AutoProperties="true"
                 EntitySetName="CatalogRequests" AutoSet="true">
 
@@ -56,6 +28,7 @@
         <Property Name="statusId">
             <Text Path="CatalogRequestStatus/description" TextArrangement="TextOnly"/>
         </Property>
+        <Property Name="fromPartyId" DefaultValue="${userLogin.partyId}"/>
 
         <!--关联到采购报价单-->
         <NavigationProperty Name="PurchaseQuote" Type="PurchaseQuote" Relations="Quote" IsCollection="true"/>
@@ -127,6 +100,35 @@
             <Parameter Name="estimatedBudget" Type="BigDecimal" Scale="2" Label="${EstimatedBudget}"/>
             <Parameter Name="requirementTypeId" Type="String" Hidden="true" DefaultValue="PRODUCT_REQUIREMENT"/>
         </Action>
+    </EntityType>
+
+    <!--PurchaseRequest（采购请求RFQ）-->
+    <EntityType Name="PurchaseRequest" OfbizEntity="CustRequest" EntityCondition="custRequestTypeId=RF_PUR_QUOTE"
+                AutoProperties="true"
+                EntitySetName="PurchaseRequests" AutoSet="true">
+
+        <HeaderInfo TypeName="Purchase Request" TypeNamePlural="Purchase Requests">
+            <Title Path="custRequestName"/>
+            <Description Path="description"/>
+        </HeaderInfo>
+
+        <!--在Requirement里显示-->
+        <LineItem Qualifier="RelatedRequirement">
+            <DataField Values="fromPartyId,createdDate,responseRequiredDate,reason" Importance="High"/>
+        </LineItem>
+
+        <!--在Quote里显示-->
+        <LineItem Qualifier="RelatedPurchaseQuote">
+            <DataField Values="fromPartyId,createdDate,responseRequiredDate,reason" Importance="High"/>
+        </LineItem>
+
+        <LineItem>
+            <DataField Values="fromPartyId,createdDate,responseRequiredDate,reason" Importance="High"/>
+        </LineItem>
+
+        <NavigationProperty Name="ProductRequirement" Type="ProductRequirement" Relations="RequirementCustRequest/Requirement" IsCollection="true"/>
+        <NavigationProperty Name="PurchaseQuote" Type="PurchaseQuote" Relations="Quote"/>
+
     </EntityType>
 
     <!--PurchaseQuote（报价）-->

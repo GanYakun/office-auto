@@ -35,6 +35,7 @@ under the License.
     <RoleType description="Government Department" roleTypeId="GOVERNMENT_SUPPLIER" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
     <RoleType description="Beneficial Person" roleTypeId="BENEFICIAL_PERSON" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
     <RoleType description="Senior Staff" roleTypeId="SENIOR_STAFF" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
+    <RoleType description="IT Staff" roleTypeId="IT_STAFF" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
     <!--DDForm Business Relationship to Company-->
     <RoleType description="Business Relationship to Company" roleTypeId="BUSINESS_RELATIONSHIP" />
     <RoleType description="Agent" roleTypeId="AGENT" parentTypeId="BUSINESS_RELATIONSHIP" />
