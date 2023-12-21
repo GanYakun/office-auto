@@ -17,11 +17,17 @@
             <DataField Values="fromPartyId,createdDate,responseRequiredDate,reason" Importance="High"/>
         </LineItem>
 
+        <!--在Quote里显示-->
+        <LineItem Qualifier="RelatedPurchaseQuote">
+            <DataField Values="fromPartyId,createdDate,responseRequiredDate,reason" Importance="High"/>
+        </LineItem>
+
         <LineItem>
             <DataField Values="fromPartyId,createdDate,responseRequiredDate,reason" Importance="High"/>
         </LineItem>
 
         <NavigationProperty Name="ProductRequirement" Type="ProductRequirement" Relations="RequirementCustRequest/Requirement" IsCollection="true"/>
+        <NavigationProperty Name="PurchaseQuote" Type="PurchaseQuote" Relations="Quote"/>
 
     </EntityType>
 
@@ -67,6 +73,10 @@
             <Description Path="productId"/>
         </HeaderInfo>
 
+        <LineItem Qualifier="RelatedPurchaseRequest">
+            <DataField Values="productId,facilityId,statusId" Importance="High"/>
+        </LineItem>
+
         <Property Name="productId">
             <Text Path="Product/productName" TextArrangement="TextOnly"/>
         </Property>
@@ -98,6 +108,10 @@
             <Description Path="description"/>
         </HeaderInfo>
 
+        <LineItem Qualifier="RelatedPurchaseRequest">
+            <DataField Values="quoteName,partyId,statusId,validFromDate" Importance="High"/>
+        </LineItem>
+
         <!--关联到采购请求单-->
         <NavigationProperty Name="PurchaseRequest" Type="PurchaseRequest" Relations="CustRequest" IsCollection="false"/>
         <!--关联到采购订单-->
@@ -107,13 +121,17 @@
 
     <!--PurchaseOrder（订单）-->
     <EntityType Name="PurchaseOrder" OfbizEntity="OrderHeader" EntitySetName="PurchaseOrderHeaders"
-                EntityCondition="orderTypeId=PURCHASE_ORDER" Properties="orderId,orderName,orderTypeId,orderName,orderDate,statusId,quoteId,agreementId"
+                EntityCondition="orderTypeId=PURCHASE_ORDER" Properties="orderId,orderTypeId,orderName,orderDate,statusId,quoteId,agreementId"
                 SearchOption="orderId,orderName,StatusItem/description">
 
         <HeaderInfo TypeName="Purchase Order" TypeNamePlural="Purchase Orders">
             <Title Path="orderId"/>
             <Description Path="orderName"/>
         </HeaderInfo>
+
+        <LineItem Qualifier="RelatedQuote">
+            <DataField Values="orderName,orderDate,statusId" Importance="High"/>
+        </LineItem>
 
         <!--采购报价单-->
         <NavigationProperty Name="PurchaseQuote" Type="PurchaseQuote" Relations="Quote" IsCollection="false"/>
