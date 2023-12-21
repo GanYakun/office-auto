@@ -234,7 +234,7 @@
         <Action Name="FillPartyClassification" IsBound="true"
                 OfbizService="com.banfftech.events.SupplierEvents.fillPartyClassification">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
-            <Parameter Name="partyClassificationGroupId" Type="String" Label="${partyClassificationGroupId}">
+            <Parameter Name="partyClassificationGroupId" Type="String" Nullable="false" FieldControl="Mandatory" Label="${partyClassificationGroupId}">
                 <ValueList CollectionPath="PartyClassificationGroups" WithFixedValues="true">
                     <ParameterInOut LocalDataProperty="partyClassificationGroupId"
                                     ValueListProperty="partyClassificationGroupId"/>

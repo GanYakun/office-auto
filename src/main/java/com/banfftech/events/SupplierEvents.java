@@ -53,6 +53,9 @@ public class SupplierEvents {
                 }
             }
             String partyClassificationGroupId = (String) actionParameters.get("partyClassificationGroupId");
+            if (UtilValidate.isEmpty(partyClassificationGroupId)){
+                throw new OfbizODataException("The rating cannot be empty!");
+            }
             dispatcher.runSync("banfftech.createPartyClassification", UtilMisc.toMap("userLogin", userLogin,
                     "partyId", partyId, "partyClassificationGroupId", partyClassificationGroupId, "fromDate", UtilDateTime.nowTimestamp()));
             if (UtilValidate.isNotEmpty(adverseResults)) {
