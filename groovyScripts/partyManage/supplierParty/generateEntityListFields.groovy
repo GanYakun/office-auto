@@ -27,7 +27,7 @@ def generateFields(Map<String, Object> context){
         totalAmount = totalAmount.add(BigDecimal.valueOf(addTotal));
         criticalityValue = 1L
         riskCritical = 0L
-        riskCritical = SupplierWorker.getClassificationCriticalValue(supplierParty, delegator);
+//        riskCritical = SupplierWorker.getClassificationCriticalValue(supplierParty, delegator);
         String statusId = supplierParty.getString("statusId");
         if (statusId.equals("PARTY_ENABLED") && UtilValidate.isNotEmpty(criticalityValue)){
             criticalityValue = 3L
