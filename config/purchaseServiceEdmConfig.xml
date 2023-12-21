@@ -65,7 +65,7 @@
 
     <!--ProductRequirement（Requirement）-->
     <EntityType Name="ProductRequirement" OfbizEntity="Requirement" EntityCondition="requirementTypeId=PRODUCT_REQUIREMENT"
-                Properties="requirementId,requirementTypeId,facilityId,productId,statusId,quantity,reason,createdDate,createdByUserLogin"
+                Properties="requirementId,requirementTypeId,facilityId,estimatedBudget,requiredByDate,productId,statusId,quantity,reason,createdDate,createdByUserLogin"
                 EntitySetName="ProductRequirements" AutoSet="true">
 
         <HeaderInfo TypeName="Requirement" TypeNamePlural="Requirements">
@@ -80,10 +80,14 @@
         <Property Name="productId">
             <Text Path="Product/productName" TextArrangement="TextOnly"/>
         </Property>
+        <Property Name="facilityId">
+            <Text Path="Facility/facilityName" TextArrangement="TextOnly"/>
+        </Property>
 
         <!--关联多个采购请求单-->
         <NavigationProperty Name="PurchaseRequest" Type="PurchaseRequest" Relations="RequirementCustRequest/CustRequest" IsCollection="true"/>
         <NavigationProperty Name="Product" IsCollection="false"/>
+        <NavigationProperty Name="Facility" IsCollection="false"/>
 
         <Action Name="CreateProductRequirement" IsBound="true" EntitySetPath="productRequirement" SideEffects="true"
                 OfbizService="com.dpbird.odata.events.ActionEvents.createEntity">
@@ -93,7 +97,14 @@
                     <ParameterInOut LocalDataProperty="productId" ValueListProperty="productId"/>
                 </ValueList>
             </Parameter>
+            <Parameter Name="facilityId" Type="String" Label="${FacilityName}">
+                <ValueList CollectionPath="Facilities" ParameterDisplayOnly="facilitySize,openedDate">
+                    <ParameterInOut LocalDataProperty="facilityId" ValueListProperty="facilityId"/>
+                </ValueList>
+            </Parameter>
             <Parameter Name="quantity" Type="BigDecimal" Scale="2" Label="${Quantity}"/>
+            <Parameter Name="requiredByDate" Type="Timestamp" Label="${RequiredByDate}"/>
+            <Parameter Name="estimatedBudget" Type="BigDecimal" Scale="2" Label="${EstimatedBudget}"/>
             <Parameter Name="requirementTypeId" Type="String" Hidden="true" DefaultValue="PRODUCT_REQUIREMENT"/>
         </Action>
     </EntityType>
@@ -138,6 +149,7 @@
 
     </EntityType>
 
+    <!-- ==========================子对象（Product、Uom、ProductCategory）===========================-->
     <!--Product（产品）-->
     <EntityType Name="Product" EntitySetName="Products" AutoSet="true" AutoProperties="true"
                 OfbizType="productTypeId=FINISHED_GOOD">
@@ -156,16 +168,25 @@
 
     </EntityType>
 
+    <!--Uom-->
     <EntityType Name="Uom" AutoProperties="true" AutoSet="true" EntitySetName="Unm">
         <Property Name="uomId">
             <Text Path="description" TextArrangement="TextLast"/>
         </Property>
     </EntityType>
 
+    <!--ProductCategory-->
     <EntityType Name="ProductCategory" AutoSet="true" EntityCondition="productCategoryTypeId=SUPPLIER_CATEGORY"
                 EntitySetName="ProductCategories" AutoProperties="true">
         <Property Name="productCategoryId">
             <Text Path="categoryName" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+
+    <!--Facility-->
+    <EntityType Name="Facility" EntitySetName="Facilities" AutoProperties="true">
+        <Property Name="facilityId">
+            <Text Path="facilityName" TextArrangement="TextOnly"/>
         </Property>
     </EntityType>
 
