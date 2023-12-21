@@ -71,6 +71,10 @@ under the License.
     <StatusItem statusId="REGISTERED" statusTypeId="COWORK_STATUS" description="Registered"/>
     <StatusItem statusId="ON_HOLD" statusTypeId="COWORK_STATUS" description="On Hold"/>
 
+    <!--Applicant-Request(CatalogRequest)的状态-->
+    <StatusType statusTypeId="APTREQ_STTS"/>
+    <StatusItem statusId="ARQ_CREATED" statusTypeId="APTREQ_STTS" description="Created" statusCode="01"/>
+    <StatusItem statusId="ARQ_SUBMITTED" statusTypeId="APTREQ_STTS" description="Submitted" statusCode="02"/>
 
     <StatusValidChange statusId="PARTY_ENABLED" statusIdTo="PARTY_ON_HOLD"/>
     <StatusValidChange statusId="PARTY_ON_HOLD" statusIdTo="PARTY_ENABLED"/>

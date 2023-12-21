@@ -494,7 +494,7 @@ public class SupplierEvents {
         serviceParam.put("partyContentTypeId", "FULL_NAME_PARTY_REPORT");
         dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
 
-        serviceParam.put("contentName", "Share Holder Report");
+        serviceParam.put("contentName", "Shareholder Report");
         serviceParam.put("partyContentTypeId", "SHARE_HOLDER_REPORT");
         dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
 
@@ -508,10 +508,6 @@ public class SupplierEvents {
 
         serviceParam.put("contentName", "Previous Name Report");
         serviceParam.put("partyContentTypeId", "PREVIOUS_NAME_REPORT");
-        dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
-
-        serviceParam.put("contentName", "Business Code of Conduct");
-        serviceParam.put("partyContentTypeId", "BUSINESS_CODE_CONDUCT");
         dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
 
         serviceParam.put("contentName", "Ultimate Beneficial Owners Report");

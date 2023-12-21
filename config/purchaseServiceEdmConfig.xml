@@ -50,7 +50,7 @@
         </HeaderInfo>
 
         <LineItem>
-            <DataField Values="fromPartyId,createdDate,responseRequiredDate,reason" Importance="High"/>
+            <DataField Values="custRequestId,custRequestCategoryId,statusId,reason,custRequestDate" Importance="High"/>
             <DataFieldForAction Action="CreatePurchaseRequest" Label="${Create}" Inline="false" Importance="High" Criticality="Positive" InvocationGrouping="Isolated"/>
         </LineItem>
 
@@ -59,16 +59,36 @@
             <DataField Values="fromPartyId,createdDate,responseRequiredDate,reason" Importance="High"/>
         </LineItem>
 
+        <Property Name="custRequestCategoryId">
+            <Text Path="CustRequestCategory/description" TextArrangement="TextOnly"/>
+        </Property>
+        <Property Name="statusId">
+            <Text Path="CatalogRequestStatus/description" TextArrangement="TextOnly"/>
+        </Property>
+
         <!--关联到采购报价单-->
         <NavigationProperty Name="PurchaseQuote" Type="PurchaseQuote" Relations="Quote" IsCollection="true"/>
         <!--关联到产品需求单-->
         <NavigationProperty Name="ProductRequirement" Type="ProductRequirement" Relations="RequirementCustRequest/Requirement" IsCollection="true"/>
+        <!--请求种类-->
+        <NavigationProperty Name="CustRequestCategory"/>
+        <!--请求项-->
+        <NavigationProperty Name="CustRequestItem"/>
+        <!--请求状态-->
+        <NavigationProperty Name="CatalogRequestStatus" Type="CatalogRequestStatus" Relations="StatusItem"/>
 
         <Action Name="CreatePurchaseRequest" IsBound="true" EntitySetPath="purchaseRequest" SideEffects="true"
                 OfbizService="com.dpbird.odata.events.ActionEvents.createEntity">
             <Parameter Name="catalogRequest" Type="CatalogRequest" Nullable="false" IsCollection="true"/>
+            <Parameter Name="custRequestCategoryId" Type="String" Label="${CustRequestCategoryId}">
+                <ValueList WithFixedValues="true" CollectionPath="CustRequestCategories">
+                    <ParameterInOut ValueListProperty="custRequestCategoryId" LocalDataProperty="custRequestCategoryId"/>
+                </ValueList>
+            </Parameter>
             <Parameter Name="reason" Type="String" Label="${Reason}"/>
+            <Parameter Name="custRequestDate" Type="Timestamp" Label="${CustRequestDate}"/>
             <Parameter Name="custRequestTypeId" Type="String" Hidden="true" DefaultValue="RF_CATALOG"/>
+            <Parameter Name="statusId" Type="String" Hidden="true" DefaultValue="ARQ_CREATED"/>
         </Action>
     </EntityType>
 
@@ -174,7 +194,7 @@
 
     </EntityType>
 
-    <!-- ==========================子对象（Product、Uom、ProductCategory）===========================-->
+    <!-- ======================================子对象======================================-->
     <!--Product（产品）-->
     <EntityType Name="Product" EntitySetName="Products" AutoSet="true" AutoProperties="true"
                 OfbizType="productTypeId=FINISHED_GOOD">
@@ -219,6 +239,53 @@
         <Property Name="statusId">
             <Text Path="description" TextArrangement="TextOnly"/>
         </Property>
+    </EntityType>
+    <!--CustRequestCategory-->
+    <EntityType Name="CustRequestCategory" EntitySetName="CustRequestCategories" AutoProperties="true">
+        <Property Name="custRequestCategoryId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+
+    <!--CustRequestCategory(CatalogRequest的状态)-->
+    <EntityType Name="CatalogRequestStatus" EntityCondition="statusTypeId=APTREQ_STTS" AutoProperties="true" EntitySetName="CatalogRequestStatuses" OfbizEntity="StatusItem">
+        <Property Name="statusId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
+    <EntityType Name="CustRequestItem" EntitySetName="CustRequestItems" Properties="custRequestId,custRequestItemSeqId,productId,quantity,statusId,description,requiredByDate">
+        <LineItem Qualifier="RelatedCatalogRequest">
+            <DataField Values="custRequestItemSeqId,productId,quantity,statusId,description,requiredByDate" Importance="High"/>
+            <DataFieldForAction Action="CreateCustRequestItem" Label="${Create}" Inline="false" Importance="High" Criticality="Positive" InvocationGrouping="Isolated"/>
+            <DataFieldForAction Action="UpdateCustRequestItem" Label="${Update}" Inline="true" Importance="High" Criticality="Positive" InvocationGrouping="Isolated"/>
+        </LineItem>
+
+        <!--创建CustRequestItem-->
+        <Action Name="CreateCustRequestItem" IsBound="true" EntitySetPath="custRequestItem" SideEffects="true"
+                OfbizService="com.dpbird.odata.events.ActionEvents.createEntity">
+            <Parameter Name="custRequestItem" Type="CustRequestItem" Nullable="false" IsCollection="true"/>
+            <Parameter Name="productId" Type="String" Label="${ProductName}">
+                <ValueList CollectionPath="Products" ParameterDisplayOnly="quantityUomId,primaryProductCategoryId">
+                    <ParameterInOut ValueListProperty="productId" LocalDataProperty="productId"/>
+                </ValueList>
+            </Parameter>
+            <Parameter Name="quantity" Type="BigDecimal" Scale="2" Label="${Quantity}"/>
+            <Parameter Name="description" Type="String" Label="${Description}"/>
+            <Parameter Name="requiredByDate" Type="Timestamp" Label="${RequiredByDate}"/>
+        </Action>
+        <!--编辑CustRequestItem-->
+        <Action Name="UpdateCustRequestItem" IsBound="true" EntitySetPath="custRequestItem" SideEffects="true"
+                OfbizService="com.dpbird.odata.events.ActionEvents.createEntity">
+            <Parameter Name="custRequestItem" Type="CustRequestItem" Nullable="false" IsCollection="false"/>
+            <Parameter Name="productId" Type="String" DefaultValue="custRequestItem/productId" Label="${ProductName}">
+                <ValueList CollectionPath="Products" ParameterDisplayOnly="quantityUomId,primaryProductCategoryId">
+                    <ParameterInOut ValueListProperty="productId" LocalDataProperty="productId"/>
+                </ValueList>
+            </Parameter>
+            <Parameter Name="quantity" Type="BigDecimal" DefaultValue="custRequestItem/quantity" Scale="2" Label="${Quantity}"/>
+            <Parameter Name="description" Type="String" DefaultValue="custRequestItem/description" Label="${Description}"/>
+            <Parameter Name="requiredByDate" Type="Timestamp" DefaultValue="custRequestItem/requiredByDate" Label="${RequiredByDate}"/>
+        </Action>
     </EntityType>
 
 
