@@ -1,6 +1,6 @@
 <ofbiz-edm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:noNamespaceSchemaLocation="https://dev.odatalab.com/dtds/edmconfig.xsd" ImportGlobal="false">
-
+           xsi:noNamespaceSchemaLocation="/edmConfig.xsd" ImportGlobal="false">
+    
     <!-- ==============采购主对象（CatalogRequest、Requirement、PurchaseRequest、PurchaseQuote、PurchaseOrder）=============-->
     <!--CatalogRequest（由applicant创建，applicant才能看到，对应流程图第一步）-->
     <EntityType Name="CatalogRequest" OfbizEntity="CustRequest" EntityCondition="custRequestTypeId=RF_CATALOG and fromPartyId=${userLogin.partyId}"
@@ -56,6 +56,45 @@
         </Action>
     </EntityType>
 
+    <!-- ==============采购主对象（PurchaseRequest、Requirement、PurchaseQuote、PurchaseOrder）=============-->
+    <!--PurchaseRequest（采购请求）-->
+    <EntityType Name="PurchaseRequest" OfbizEntity="CustRequest" EntityCondition="custRequestTypeId=RF_PUR_QUOTE"
+                AutoProperties="true"
+                EntitySetName="PurchaseRequests" AutoSet="true">
+        <HeaderInfo TypeName="Purchase Request" TypeNamePlural="Purchase Requests">
+            <Title Path="custRequestName"/>
+            <Description Path="description"/>
+        </HeaderInfo>
+        <Property Name="statusId">
+            <Text Path="StatusItem/description" TextArrangement="TextOnly"/>
+        </Property>
+        <Identification>
+            <DataFieldForAction Action="RFQSubmit" Label="${Submit}" Criticality="Positive" InvocationGrouping="Isolated"/>
+        </Identification>
+        <HeaderFacets>
+            <ReferenceFacet Target="@UI.DataPoint#RFQ_CurrStatus" ID="RFQ_Status_Point" Label="Status"/>
+        </HeaderFacets>
+        <DataPoint Value="statusId" Title="Status" Qualifier="RFQ_CurrStatus"/>
+        <!--在Requirement里显示-->
+        <LineItem Qualifier="RelatedRequirement">
+            <DataField Values="fromPartyId,createdDate,responseRequiredDate,reason" Importance="High"/>
+        </LineItem>
+        <!--在Quote里显示-->
+        <LineItem Qualifier="RelatedPurchaseQuote">
+            <DataField Values="fromPartyId,createdDate,responseRequiredDate,reason" Importance="High"/>
+        </LineItem>
+        <LineItem>
+            <DataField Values="fromPartyId,createdDate,responseRequiredDate,reason" Importance="High"/>
+        </LineItem>
+        <NavigationProperty Name="ProductRequirement" Type="ProductRequirement" Relations="RequirementCustRequest/Requirement" IsCollection="true"/>
+        <NavigationProperty Name="PurchaseQuote" Type="PurchaseQuote" Relations="Quote"/>
+        <NavigationProperty Name="StatusItem" IsCollection="false"/>
+        <Action Name="RFQSubmit" IsBound="true" EntitySetPath="purchaseRequest" SideEffects="true"
+                OfbizService="com.banfftech.events.CustRequestEvents.rfqSubmit">
+            <Parameter Name="purchaseRequest" Type="PurchaseRequest" Nullable="false" IsCollection="false"/>
+        </Action>
+    </EntityType>
+
     <!--ProductRequirement（Requirement）-->
     <EntityType Name="ProductRequirement" OfbizEntity="Requirement" EntityCondition="requirementTypeId=PRODUCT_REQUIREMENT"
                 Properties="requirementId,requirementTypeId,facilityId,estimatedBudget,requiredByDate,productId,statusId,quantity,reason,createdDate,createdByUserLogin"
@@ -73,14 +112,25 @@
         <Property Name="productId">
             <Text Path="Product/productName" TextArrangement="TextOnly"/>
         </Property>
+        <Property Name="statusId" DefaultValue="REQUIREMENT_NOT_APPROVED">
+            <Text Path="StatusItem/description" TextArrangement="TextOnly"/>
+        </Property>
         <Property Name="facilityId">
             <Text Path="Facility/facilityName" TextArrangement="TextOnly"/>
         </Property>
+        <Identification>
+            <DataFieldForAction Action="ApproveRequirement" Label="${Approve}" Criticality="Positive" InvocationGrouping="Isolated"/>
+        </Identification>
+        <HeaderFacets>
+            <ReferenceFacet Target="@UI.DataPoint#CurrStatus" ID="Status_Point" Label="Status"/>
+        </HeaderFacets>
+        <DataPoint Value="statusId" Title="Status" Qualifier="CurrStatus"/>
 
         <!--关联多个采购请求单-->
         <NavigationProperty Name="PurchaseRequest" Type="PurchaseRequest" Relations="RequirementCustRequest/CustRequest" IsCollection="true"/>
         <NavigationProperty Name="Product" IsCollection="false"/>
         <NavigationProperty Name="Facility" IsCollection="false"/>
+        <NavigationProperty Name="StatusItem" IsCollection="false"/>
 
         <Action Name="CreateProductRequirement" IsBound="true" EntitySetPath="productRequirement" SideEffects="true"
                 OfbizService="com.dpbird.odata.events.ActionEvents.createEntity">
@@ -99,6 +149,11 @@
             <Parameter Name="requiredByDate" Type="Timestamp" Label="${RequiredByDate}"/>
             <Parameter Name="estimatedBudget" Type="BigDecimal" Scale="2" Label="${EstimatedBudget}"/>
             <Parameter Name="requirementTypeId" Type="String" Hidden="true" DefaultValue="PRODUCT_REQUIREMENT"/>
+        </Action>
+
+        <Action Name="ApproveRequirement" IsBound="true" EntitySetPath="productRequirement" SideEffects="true"
+                OfbizService="com.banfftech.events.RequirementEvents.approveRequirement">
+            <Parameter Name="productRequirement" Type="ProductRequirement" Nullable="false" IsCollection="false"/>
         </Action>
     </EntityType>
 
@@ -212,6 +267,11 @@
         </Property>
     </EntityType>
 
+    <EntityType Name="StatusItem" AutoProperties="true" EntitySetName="StatusItems">
+        <Property Name="statusId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
     <!--CustRequestCategory-->
     <EntityType Name="CustRequestCategory" EntitySetName="CustRequestCategories" AutoProperties="true">
         <Property Name="custRequestCategoryId">
@@ -225,7 +285,6 @@
             <Text Path="description" TextArrangement="TextOnly"/>
         </Property>
     </EntityType>
-
     <EntityType Name="CustRequestItem" EntitySetName="CustRequestItems" Properties="custRequestId,custRequestItemSeqId,productId,quantity,statusId,description,requiredByDate">
         <LineItem Qualifier="RelatedCatalogRequest">
             <DataField Values="custRequestItemSeqId,productId,quantity,statusId,description,requiredByDate" Importance="High"/>
@@ -260,7 +319,6 @@
             <Parameter Name="requiredByDate" Type="Timestamp" DefaultValue="custRequestItem/requiredByDate" Label="${RequiredByDate}"/>
         </Action>
     </EntityType>
-
 
 
 </ofbiz-edm>

@@ -222,6 +222,28 @@ under the License.
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
     </service>
 
+    <service name="banfftech.createCustRequestItem" default-entity-name="CustRequestItem" engine="entity-auto" invoke="create" auth="true">
+        <description>Create a CustRequestItem</description>
+        <auto-attributes include="pk" mode="INOUT" optional="true"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+    <service name="banfftech.updateCustRequestItem" default-entity-name="CustRequestItem" engine="entity-auto" invoke="update" auth="true">
+        <description>Update a CustRequestItem</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+
+    <service name="banfftech.createRequirementCustRequest" default-entity-name="RequirementCustRequest" engine="entity-auto" invoke="create" auth="true">
+        <description>Create a RequirementCustRequest</description>
+        <auto-attributes include="pk" mode="INOUT" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+    <service name="banfftech.updateRequirementCustRequest" default-entity-name="RequirementCustRequest" engine="entity-auto" invoke="update" auth="true">
+        <description>Update a RequirementCustRequest</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+
     <service name="banfftech.createOrderHeader" default-entity-name="OrderHeader" engine="entity-auto" invoke="create" auth="true">
         <description>Create a OrderHeader</description>
         <auto-attributes include="pk" mode="INOUT" optional="true"/>
@@ -229,17 +251,6 @@ under the License.
     </service>
     <service name="banfftech.updateOrderHeader" default-entity-name="OrderHeader" engine="entity-auto" invoke="update" auth="true">
         <description>Update a OrderHeader</description>
-        <auto-attributes include="pk" mode="IN" optional="false"/>
-        <auto-attributes include="nonpk" mode="IN" optional="true"/>
-    </service>
-
-    <service name="banfftech.createRequirement" default-entity-name="Requirement" engine="entity-auto" invoke="create" auth="true">
-        <description>Create a Requirement</description>
-        <auto-attributes include="pk" mode="INOUT" optional="true"/>
-        <auto-attributes include="nonpk" mode="IN" optional="true"/>
-    </service>
-    <service name="banfftech.updateRequirement" default-entity-name="Requirement" engine="entity-auto" invoke="update" auth="true">
-        <description>Update a Requirement</description>
         <auto-attributes include="pk" mode="IN" optional="false"/>
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
     </service>

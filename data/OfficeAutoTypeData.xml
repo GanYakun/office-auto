@@ -48,7 +48,7 @@ under the License.
     <RoleType description="Other (specify)" roleTypeId="OTHER_SPECIFY" parentTypeId="BUSINESS_RELATIONSHIP" />
     <RoleType description="Company" roleTypeId="COMPANY"/>
 
-    <CustRequestType description="采购请求" custRequestTypeId="PURCHASE_REQ"/>
+    <CustRequestType description="采购请求" custRequestTypeId="RF_PUR_QUOTE"/>
 
     <WorkEffortType description="工作流" workEffortTypeId="COWORK"/>
     <WorkEffortType description="工作流节点" workEffortTypeId="COWORK_TASK"/>
@@ -83,6 +83,18 @@ under the License.
     <StatusValidChange statusId="PARTY_DISABLED" statusIdTo="PARTY_ON_HOLD"/>
     <SurveyApplType surveyApplTypeId="DD_FORM" description="Due Diligence Form"/>
 
+
+    <!-- Requirement Status -->
+    <StatusType statusTypeId="REQUIREMENT_STATUS"/>
+    <StatusItem statusId="REQUIREMENT_NOT_APPROVED" statusTypeId="REQUIREMENT_STATUS" description="Pending approval"/>
+    <StatusItem statusId="REQUIREMENT_APPROVED" statusTypeId="REQUIREMENT_STATUS" description="Approved"/>
+    <StatusValidChange statusId="REQUIREMENT_NOT_APPROVED" statusIdTo="REQUIREMENT_APPROVED"/>
+
+    <!-- RFQ Status -->
+    <StatusType statusTypeId="RFQ_STATUS"/>
+    <StatusItem statusId="RFQ_CREATED" statusTypeId="RFQ_STATUS" description="Created"/>
+    <StatusItem statusId="RFQ_SUBMITTED" statusTypeId="RFQ_STATUS" description="Submitted"/>
+    <StatusValidChange statusId="RFQ_CREATED" statusIdTo="RFQ_SUBMITTED"/>
     <!-- Supported Documents -->
 <!--    <PartyContentType partyContentTypeId="SUPPORTED_FILE"/>-->
 <!--    <PartyContentType partyContentTypeId="SUPPLIER_VIEW" parentTypeId="SUPPORTED_FILE"/>-->
