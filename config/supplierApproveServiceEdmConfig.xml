@@ -152,7 +152,8 @@
         <!-- Compliance Report -->
         <NavigationProperty Name="ComplianceReport" Type="PartyMediaResource" Relations="PartyMediaResource(parentTypeId=COMPLIANCE_REPORT)" IsCollection="true"/>
         <!-- Compliance Supported Documents -->
-        <NavigationProperty Name="ComplianceViewFile" Type="PartyMediaResource" Relations="PartyMediaResource" IsCollection="true"/>
+        <NavigationProperty Name="ComplianceViewFile" Type="PartyMediaResource" IsCollection="true"
+                            Relations="PartyMediaResource(partyContentTypeId in FINANCE_REPORT,NDA,COMMERCIAL_LICENSE,VAT_CERTIFICATE,POA,SOQ,EVELUATION_REPORT,FULL_NAME_PARTY_REPORT,PREVIOUS_NAME_REPORT,SHARE_HOLDER_REPORT,UBO_REPORT,DIRECTOR_REPORT,KEY_OFFICER_REPORT,OTHER_DOCUMENTS)" />
 
         <!-- Supplier DD -->
         <NavigationProperty Name="SupplierDDForm" Type="SupplierDDForm" Relations="PartyGroupAndContact" IsCollection="false"/>
