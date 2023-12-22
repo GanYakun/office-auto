@@ -33,6 +33,9 @@ public class TimeCalculateWorker {
         orderBy.add("-statusDatetime");
         //查询procurement的WorkEffort
         GenericValue procurementWorkEffort = delegator.findOne("WorkEffort", UtilMisc.toMap("workEffortId", supplierParty.get("workEffortParentId")), true);
+        if (UtilValidate.isEmpty(procurementWorkEffort)){
+            return null;
+        }
         GenericValue workEffortStatus = EntityQuery.use(delegator).from("WorkEffortStatus").
                 where(UtilMisc.toMap("workEffortId", procurementWorkEffort.get("workEffortId"), "statusId", "COMPLIANCE_REVIEW")).
                 orderBy(orderBy).queryFirst();
