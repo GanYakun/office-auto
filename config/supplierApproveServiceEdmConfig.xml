@@ -72,8 +72,10 @@
         <Property Name="tickerSymbol">
             <Text Path="ListRegionEnumeration/description" TextArrangement="TextOnly"/>
         </Property>
-        <!--供应商收藏时间-->
+        <!--applicant最后提交时间-->
         <Property Name="lastSubmittedDate" Type="Timestamp" Label="${lastSubmittedDate}"/>
+        <!--procurement最后提交时间(compliance可见)-->
+        <Property Name="prLastSubmittedDate" Type="Timestamp" Label="${lastSubmittedDate}"/>
         <Property Name="usccNumber" Type="String" HiddenFilter="true"/>
 
         <!-- Semantic Field -->
@@ -222,7 +224,6 @@
 
         <HeaderInfo TypeName="Supplier Party" ImageUrl="logoImageUrl" TypeNamePlural="Supplier Party List">
             <Title Path="partyId"/>
-            <Description Path="workScope"/>
         </HeaderInfo>
 
         <!--上传头像-->

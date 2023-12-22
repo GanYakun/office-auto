@@ -14,24 +14,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TimeCalculateWorker {
-    public static Timestamp getLastSubmittedDate (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
-        List<GenericValue> workEffortAssignments = delegator.findByAnd("WorkEffortPartyAssignment", UtilMisc.toMap("workEffortId", supplierParty.get("workEffortId")), null, true);
-        GenericValue workEffortAssignment = EntityUtil.getFirst(workEffortAssignments);
-        String approvePartyId = workEffortAssignment.getString("partyId");
-        if (approvePartyId.equals("IT")){
-            return getStatusChangeDateTime(supplierParty, delegator, "PROCESSED");
-        }else if (approvePartyId.equals("CG")){
-            return getStatusChangeDateTime(supplierParty, delegator, "COMPLIANCE_REVIEW");
+    public static Timestamp getApplicantLastSubmittedDate (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
+        List<String> orderBy = new ArrayList<>();
+        orderBy.add("-statusDatetime");
+        GenericValue workEffortStatus = EntityQuery.use(delegator).from("WorkEffortStatus").
+                where(UtilMisc.toMap("workEffortId", supplierParty.get("workEffortId"), "statusId", "PROCESSED")).
+                orderBy(orderBy).queryFirst();
+        if (UtilValidate.isNotEmpty(workEffortStatus)){
+            return workEffortStatus.getTimestamp("statusDatetime");
         }else {
             return null;
         }
     }
 
-    private static Timestamp getStatusChangeDateTime (GenericValue supplierParty, Delegator delegator, String statusId) throws GenericEntityException {
+    //在compliance页面查询procurement最后提交时间
+    public static Timestamp getProcurementLastSubmittedDate (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
         List<String> orderBy = new ArrayList<>();
         orderBy.add("-statusDatetime");
+        //查询procurement的WorkEffort
+        GenericValue procurementWorkEffort = delegator.findOne("WorkEffort", UtilMisc.toMap("workEffortId", supplierParty.get("workEffortParentId")), true);
         GenericValue workEffortStatus = EntityQuery.use(delegator).from("WorkEffortStatus").
-                where(UtilMisc.toMap("workEffortId", supplierParty.get("workEffortId"), "statusId", statusId)).
+                where(UtilMisc.toMap("workEffortId", procurementWorkEffort.get("workEffortId"), "statusId", "COMPLIANCE_REVIEW")).
                 orderBy(orderBy).queryFirst();
         if (UtilValidate.isNotEmpty(workEffortStatus)){
             return workEffortStatus.getTimestamp("statusDatetime");
