@@ -100,6 +100,28 @@ under the License.
     <ContactMech contactMechId="it_staff_email" infoString="canyang.sun@banff-tech.com" contactMechTypeId="EMAIL_ADDRESS"/>
     <PartyContactMechPurpose partyId="it_staff" contactMechId="it_staff_email" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
 
+    <!-- requester请求人（对应applicant） -->
+    <Party partyId="requester" partyTypeId="PERSON" externalId="requester" partyName="Robe"/>
+    <Person partyId="requester"/>
+    <PartyRole partyId="requester" roleTypeId="REQUESTER"/>
+    <PartyRole partyId="requester" roleTypeId="ORD_EMPLOYEE"/>
+    <UserLogin userLoginId="requester" currentPassword="$SHA$LmYbgkkhIHM$WCNGozAT9Lqd-cJ2n7tNM2JekRM" passwordHint="" partyId="requester"/>
+    <UserLoginSecurityGroup groupId="SUPER" userLoginId="it_staff" fromDate="2001-01-01 12:00:00.0"/>
+    <PartyRelationship partyRelationshipId="PR10009" roleTypeIdFrom="DEPARTMENT" partyIdFrom="IT" partyIdTo="requester" roleTypeIdTo="ORD_EMPLOYEE"/>
+    <ContactMech contactMechId="requester_email" infoString="canyang.sun@banff-tech.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <PartyContactMechPurpose partyId="requester" contactMechId="requester_email" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+
+    <!-- buyer采购人员（对应procurement） -->
+    <Party partyId="buyer" partyTypeId="PERSON" externalId="buyer" partyName="Bob"/>
+    <Person partyId="buyer"/>
+    <PartyRole partyId="buyer" roleTypeId="Buyer"/>
+    <PartyRole partyId="buyer" roleTypeId="ORD_EMPLOYEE"/>
+    <UserLogin userLoginId="buyer" currentPassword="$SHA$LmYbgkkhIHM$WCNGozAT9Lqd-cJ2n7tNM2JekRM" passwordHint="" partyId="buyer"/>
+    <UserLoginSecurityGroup groupId="SUPER" userLoginId="buyer" fromDate="2001-01-01 12:00:00.0"/>
+    <PartyRelationship partyRelationshipId="PR10009" roleTypeIdFrom="DEPARTMENT" partyIdFrom="CG" partyIdTo="buyer" roleTypeIdTo="ORD_EMPLOYEE"/>
+    <ContactMech contactMechId="buyer_email" infoString="canyang.sun@banff-tech.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <PartyContactMechPurpose partyId="buyer" contactMechId="buyer_email" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+
 
     <!-- 采购 -->
     <Party partyId="procurement" partyTypeId="PERSON" externalId="procurement" partyName="Peter Ross"/>
@@ -607,23 +629,23 @@ under the License.
 <!--    <PartyQuestionAppl partyQuatsionApplId="9000" partyId="SUPPLIER0001" surveyQuestionId="9002" partyQuestionApplTypeId="DD_FORM" requiredField="Y" sequenceNum="1"/>-->
 <!--    <PartyQuestionAppl partyQuatsionApplId="9000" partyId="SUPPLIER0001" surveyQuestionId="9003" partyQuestionApplTypeId="DD_FORM" requiredField="Y" sequenceNum="1"/>-->
 
-    <UILabApp description="01" permissionId="01" uiLabAppId="UI10000" uiLabAppName="Applicant"/>
+    <UILabApp description="DD-Form" permissionId="DD" uiLabAppId="10002" uiLabAppName="DD-Form"/>
+    <UILabApp description="01" uiLabAppId="UI10000" uiLabAppName="Applicant"/>
     <UILabApp description="02" permissionId="02" uiLabAppId="UI10001" uiLabAppName="Compliance"/>
-    <UILabApp description="00" permissionId="00" uiLabAppId="UI10002" uiLabAppName="Approval"/>
+    <UILabApp description="00" permissionId="00"  uiLabAppId="UI10002" uiLabAppName="Approval"/>
     <UILabApp description="03" permissionId="03" uiLabAppId="UI10003" uiLabAppName="procurement"/>
     <UILabApp description="04" permissionId="04" uiLabAppId="UI10004" uiLabAppName="vendors"/>
-    <RoleTypeUILabApp roleTypeId="PROCUREMENT" roleTypeUILabAppId="UI1000" uiLabAppId="UI10000"/>
-    <RoleTypeUILabApp roleTypeId="APPLICANT" roleTypeUILabAppId="UI10000" uiLabAppId="UI10000"/>
-    <RoleTypeUILabApp roleTypeId="COMPLIANCE" roleTypeUILabAppId="UI10001" uiLabAppId="UI10001"/>
-    <RoleTypeUILabApp roleTypeId="CEO" roleTypeUILabAppId="UI10002" uiLabAppId="UI10002"/>
-    <RoleTypeUILabApp roleTypeId="CFO" roleTypeUILabAppId="UI10003" uiLabAppId="UI10002"/>
-    <RoleTypeUILabApp roleTypeId="CTO" roleTypeUILabAppId="UI10004" uiLabAppId="UI10002"/>
-    <RoleTypeUILabApp roleTypeId="PROCUREMENT" roleTypeUILabAppId="UI10005" uiLabAppId="UI10003"/>
-    <RoleTypeUILabApp roleTypeId="CONTACT" roleTypeUILabAppId="UI10006" uiLabAppId="UI10004"/>
-    <RoleTypeUILabApp roleTypeId="SUPPLIER" roleTypeUILabAppId="UI10007" uiLabAppId="UI10004"/>
-    <RoleTypeUILabApp roleTypeId="APPLICANT" roleTypeUILabAppId="UI10008" uiLabAppId="UI10004"/>
-    <RoleTypeUILabApp roleTypeId="PROCUREMENT" roleTypeUILabAppId="UI10009" uiLabAppId="UI10004"/>
 
+    <RoleTypeUILabApp roleTypeId="APPLICANT" roleTypeUILabAppId="10020" uiLabAppId="UI10000"/>
+    <RoleTypeUILabApp roleTypeId="COMPLIANCE" roleTypeUILabAppId="10021" uiLabAppId="UI10001"/>
+    <RoleTypeUILabApp roleTypeId="PROCUREMENT" roleTypeUILabAppId="10022" uiLabAppId="UI10003"/>
+    <RoleTypeUILabApp roleTypeId="APPLICANT" roleTypeUILabAppId="10023" uiLabAppId="UI10004"/>
+    <RoleTypeUILabApp roleTypeId="COMPLIANCE" roleTypeUILabAppId="10024" uiLabAppId="UI10004"/>
+    <RoleTypeUILabApp roleTypeId="PROCUREMENT" roleTypeUILabAppId="10025" uiLabAppId="UI10004"/>
+    <RoleTypeUILabApp roleTypeId="CONTACT" roleTypeUILabAppId="10026" uiLabAppId="10002"/>
+    <RoleTypeUILabApp roleTypeId="SUPPLIER" roleTypeUILabAppId="10027" uiLabAppId="10002"/>
+    <RoleTypeUILabApp roleTypeId="CEO" roleTypeUILabAppId="10028" uiLabAppId="UI10002"/>
+    
     <Party partyId="CONTACT00001" partyName="Zhang Zheng" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
     <Party partyId="CONTACT00002" partyName="Chen Xiaoxin" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
     <Party partyId="CONTACT00003" partyName="Yang Lin" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
