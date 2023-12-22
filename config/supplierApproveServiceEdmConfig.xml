@@ -340,13 +340,13 @@
                 StickySession="true">
             <Parameter Name="supplierParty" Type="SupplierParty" Nullable="false" IsCollection="false"/>
             <Parameter Name="target" Type="String" IsCollection="false"/>
-            <Parameter Name="noteInfo" Type="String" Label="${noteInfo}"/>
             <Parameter Name="ddFormType" Type="String" Label="${ddFormType}">
                 <ValueList WithFixedValues="true" CollectionPath="DDFormEnumerations">
                     <ParameterInOut LocalDataProperty="ddFormType" ValueListProperty="enumId"/>
                 </ValueList>
             </Parameter>
             <Parameter Name="email" Type="String" Label="${email}"/>
+            <Parameter Name="noteInfo" Type="String" Label="${noteInfo}"/>
             <ReturnType Type="SupplierParty"/>
         </Action>
         <!--推送到合规部门的Action-->

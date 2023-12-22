@@ -490,28 +490,28 @@ public class SupplierEvents {
         dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
 
         //compliance report内容
-        serviceParam.put("contentName", "Full Name of Company or Individual Party Report");
+        serviceParam.put("contentName", "Company and individual Report");
         serviceParam.put("partyContentTypeId", "FULL_NAME_PARTY_REPORT");
         dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
 
-        serviceParam.put("contentName", "Shareholder Report");
-        serviceParam.put("partyContentTypeId", "SHARE_HOLDER_REPORT");
-        dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
-
-        serviceParam.put("contentName", "Director Report");
-        serviceParam.put("partyContentTypeId", "DIRECTOR_REPORT");
-        dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
-
-        serviceParam.put("contentName", "Key Officer Report");
-        serviceParam.put("partyContentTypeId", "KEY_OFFICER_REPORT");
-        dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
-
-        serviceParam.put("contentName", "Previous Name Report");
+        serviceParam.put("contentName", "Previous Name of Business Partner Report");
         serviceParam.put("partyContentTypeId", "PREVIOUS_NAME_REPORT");
         dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
 
-        serviceParam.put("contentName", "Ultimate Beneficial Owners Report");
+        serviceParam.put("contentName", "Shareholder(s) Report");
+        serviceParam.put("partyContentTypeId", "SHARE_HOLDER_REPORT");
+        dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
+
+        serviceParam.put("contentName", "Ultimate Beneficial Owner(s) Report");
         serviceParam.put("partyContentTypeId", "UBO_REPORT");
+        dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
+
+        serviceParam.put("contentName", "Directors Report");
+        serviceParam.put("partyContentTypeId", "DIRECTOR_REPORT");
+        dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
+
+        serviceParam.put("contentName", "Key Officers Report");
+        serviceParam.put("partyContentTypeId", "KEY_OFFICER_REPORT");
         dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
     }
 

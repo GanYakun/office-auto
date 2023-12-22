@@ -690,6 +690,14 @@ under the License.
     <PartyRole partyId="CONTACT00013" roleTypeId="BENEFICIAL_PERSON"/>
     <PartyRole partyId="CONTACT00014" roleTypeId="BENEFICIAL_PERSON"/>
 
+    <PartyRole partyId="CONTACT00008" roleTypeId="SENIOR_STAFF"/>
+    <PartyRole partyId="CONTACT00009" roleTypeId="SENIOR_STAFF"/>
+    <PartyRole partyId="CONTACT00010" roleTypeId="SENIOR_STAFF"/>
+    <PartyRole partyId="CONTACT00011" roleTypeId="SENIOR_STAFF"/>
+    <PartyRole partyId="CONTACT00012" roleTypeId="SENIOR_STAFF"/>
+    <PartyRole partyId="CONTACT00013" roleTypeId="SENIOR_STAFF"/>
+    <PartyRole partyId="CONTACT00014" roleTypeId="SENIOR_STAFF"/>
+
     <PartyRelationship partyRelationshipId="9000" partyIdFrom="9000" partyIdTo="CONTACT00001" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
     <PartyRelationship partyRelationshipId="9001" partyIdFrom="9001" partyIdTo="CONTACT00002" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
     <PartyRelationship partyRelationshipId="9002" partyIdFrom="9002" partyIdTo="CONTACT00003" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="CONTACT" fromDate="2023-08-18 11:45:31.928"/>
@@ -702,9 +710,42 @@ under the License.
     <PartyRelationship partyRelationshipId="9008" partyIdFrom="9001" partyIdTo="CONTACT00009" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="BENEFICIAL_PERSON" fromDate="2023-08-18 11:45:31.928" amount="0.3"/>
     <PartyRelationship partyRelationshipId="9009" partyIdFrom="9002" partyIdTo="CONTACT00010" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="BENEFICIAL_PERSON" fromDate="2023-08-18 11:45:31.928" amount="0.3"/>
     <PartyRelationship partyRelationshipId="9010" partyIdFrom="9003" partyIdTo="CONTACT00011" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="BENEFICIAL_PERSON" fromDate="2023-08-18 11:45:31.928" amount="0.3"/>
-    <PartyRelationship partyRelationshipId="9011" partyIdFrom="9004" partyIdTo="CONTACT00012" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="BENEFICIAL_PERSON" fromDate="2023-08-18 11:45:31.928" amount="0.3"/>
+    <PartyRelationship partyRelationshipId="9011" partyIdFrom="9004" partyIdTo="CONTACT00012" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="BENEFICIAL_PERSON" fromDate="2023-08-18 11:45:31.928" amount="0.3" positionTitle="Manager"/>
     <PartyRelationship partyRelationshipId="9012" partyIdFrom="9005" partyIdTo="CONTACT00013" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="BENEFICIAL_PERSON" fromDate="2023-08-18 11:45:31.928" amount="0.3"/>
     <PartyRelationship partyRelationshipId="9013" partyIdFrom="9006" partyIdTo="CONTACT00014" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="BENEFICIAL_PERSON" fromDate="2023-08-18 11:45:31.928" amount="0.3"/>
+    <PartyRelationship partyRelationshipId="9014" partyIdFrom="9004" partyIdTo="CONTACT00013" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="BENEFICIAL_PERSON" fromDate="2023-08-18 11:45:31.928" amount="0.2" positionTitle="Manager"/>
+    <PartyRelationship partyRelationshipId="9015" partyIdFrom="9004" partyIdTo="CONTACT00008" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="SENIOR_STAFF" fromDate="2023-08-18 11:45:31.928" amount="0.2" positionTitle="Manager"/>
+    <PartyRelationship partyRelationshipId="9016" partyIdFrom="9004" partyIdTo="CONTACT00009" roleTypeIdFrom="SUPPLIER" roleTypeIdTo="SENIOR_STAFF" fromDate="2023-08-18 11:45:31.928" amount="0.2" positionTitle="Manager"/>
+
+    <PartyRelationshipAttribute partyRelationshipId="9011" attrName="nationality" attrValue="China"/>
+    <PartyRelationshipAttribute partyRelationshipId="9014" attrName="nationality" attrValue="China"/>
+    <PartyRelationshipAttribute partyRelationshipId="9015" attrName="nationality" attrValue="China"/>
+    <PartyRelationshipAttribute partyRelationshipId="9016" attrName="nationality" attrValue="China"/>
+
+    <DataResource dataResourceId="UBO0001"/>
+    <DataResource dataResourceId="UBO0002"/>
+    <DataResource dataResourceId="DIT0001"/>
+    <DataResource dataResourceId="DIT0002"/>
+    <DataResource dataResourceId="DIT0003"/>
+
+    <OtherDataResource dataResourceId="UBO0001" dataResourceContent=""/>
+    <OtherDataResource dataResourceId="UBO0002" dataResourceContent=""/>
+    <OtherDataResource dataResourceId="DIT0001" dataResourceContent=""/>
+    <OtherDataResource dataResourceId="DIT0002" dataResourceContent=""/>
+    <OtherDataResource dataResourceId="DIT0003" dataResourceContent=""/>
+
+    <Content contentId="UBO0001" dataResourceId="UBO0001"/>
+    <Content contentId="UBO0002" dataResourceId="UBO0002"/>
+    <Content contentId="DIT0001" dataResourceId="DIT0001"/>
+    <Content contentId="DIT0002" dataResourceId="DIT0002"/>
+    <Content contentId="DIT0003" dataResourceId="DIT0003"/>
+
+    <PartyContent partyId="CONTACT00012" contentId="UBO0001" partyContentId="UBO0001" partyContentTypeId="UBO_DOCUMENT"/>
+    <PartyContent partyId="CONTACT00013" contentId="UBO0002" partyContentId="UBO0002" partyContentTypeId="UBO_DOCUMENT"/>
+    <PartyContent partyId="CONTACT00008" contentId="DIT0001" partyContentId="DIT0001" partyContentTypeId="DIRECTOR_COPY_ID"/>
+    <PartyContent partyId="CONTACT00009" contentId="DIT0002" partyContentId="DIT0002" partyContentTypeId="DIRECTOR_COPY_ID"/>
+    <PartyContent partyId="CONTACT00005" contentId="DIT0003" partyContentId="DIT0003" partyContentTypeId="DIRECTOR_COPY_ID"/>
+
 
     <!--ContactMech(联系人电话)-->
     <ContactMech contactMechId="TELE_CONTACT00001" contactMechTypeId="TELECOM_NUMBER"/>
@@ -833,245 +874,245 @@ under the License.
     <PartyContactMechPurpose partyId="CONTACT00013" contactMechId="EMAIL_CONTACT00013" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
     <PartyContactMechPurpose partyId="CONTACT00014" contactMechId="EMAIL_CONTACT00014" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
 
-    <DataResource dataResourceId="8999" objectInfo="" dataResourceName="Latest Three-years Finance Audit Report"        />
-    <DataResource dataResourceId="9000" objectInfo="" dataResourceName="Non-disclosure Agreement (NDA)"                 />
-    <DataResource dataResourceId="9001" objectInfo="" dataResourceName="Copy of Commercial License"                     />
-    <DataResource dataResourceId="9002" objectInfo="" dataResourceName="Copy of VAT Certificate"                        />
-    <DataResource dataResourceId="9003" objectInfo="" dataResourceName="PoA (Power of Atterney)"                        />
-    <DataResource dataResourceId="9004" objectInfo="" dataResourceName="Statement of Qualifications (SOQ)"              />
-    <DataResource dataResourceId="9005" objectInfo="" dataResourceName="Other Documents"                                />
-    <DataResource dataResourceId="9006" objectInfo="" dataResourceName="Technical Eveluation Report"                    />
-    <DataResource dataResourceId="9008" objectInfo="" dataResourceName="Full Name of Company or Individual Party Report"/>
-    <DataResource dataResourceId="9009" objectInfo="" dataResourceName="Shareholder Report"                            />
-    <DataResource dataResourceId="9010" objectInfo="" dataResourceName="Director Report"                                />
-    <DataResource dataResourceId="9011" objectInfo="" dataResourceName="Key Officer Report"                             />
-    <DataResource dataResourceId="9012" objectInfo="" dataResourceName="Previous Name Report"                           />
-    <DataResource dataResourceId="9014" objectInfo="" dataResourceName="Ultimate Beneficial Owners Report"              />
+    <DataResource dataResourceId="8999" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9000" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9001" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9002" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9003" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9004" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9005" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9006" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9008" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9009" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9010" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9011" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9012" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9014" objectInfo="" dataResourceName=""/>
 
-    <DataResource dataResourceId="9015" objectInfo="" dataResourceName="Latest Three-years Finance Audit Report"        />
-    <DataResource dataResourceId="9016" objectInfo="" dataResourceName="Non-disclosure Agreement (NDA)"                 />
-    <DataResource dataResourceId="9017" objectInfo="" dataResourceName="Copy of Commercial License"                     />
-    <DataResource dataResourceId="9018" objectInfo="" dataResourceName="Copy of VAT Certificate"                        />
-    <DataResource dataResourceId="9019" objectInfo="" dataResourceName="PoA (Power of Atterney)"                        />
-    <DataResource dataResourceId="9020" objectInfo="" dataResourceName="Statement of Qualifications (SOQ)"              />
-    <DataResource dataResourceId="9021" objectInfo="" dataResourceName="Other Documents"                                />
-    <DataResource dataResourceId="9022" objectInfo="" dataResourceName="Technical Eveluation Report"                    />
-    <DataResource dataResourceId="9024" objectInfo="" dataResourceName="Full Name of Company or Individual Party Report"/>
-    <DataResource dataResourceId="9025" objectInfo="" dataResourceName="Shareholder Report"                            />
-    <DataResource dataResourceId="9026" objectInfo="" dataResourceName="Director Report"                                />
-    <DataResource dataResourceId="9027" objectInfo="" dataResourceName="Key Officer Report"                             />
-    <DataResource dataResourceId="9028" objectInfo="" dataResourceName="Previous Name Report"                           />
-    <DataResource dataResourceId="9030" objectInfo="" dataResourceName="Ultimate Beneficial Owners Report"              />
+    <DataResource dataResourceId="9015" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9016" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9017" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9018" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9019" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9020" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9021" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9022" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9024" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9025" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9026" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9027" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9028" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9030" objectInfo="" dataResourceName=""/>
 
-    <DataResource dataResourceId="9031" objectInfo="" dataResourceName="Latest Three-years Finance Audit Report"        />
-    <DataResource dataResourceId="9032" objectInfo="" dataResourceName="Non-disclosure Agreement (NDA)"                 />
-    <DataResource dataResourceId="9033" objectInfo="" dataResourceName="Copy of Commercial License"                     />
-    <DataResource dataResourceId="9034" objectInfo="" dataResourceName="Copy of VAT Certificate"                        />
-    <DataResource dataResourceId="9035" objectInfo="" dataResourceName="PoA (Power of Atterney)"                        />
-    <DataResource dataResourceId="9036" objectInfo="" dataResourceName="Statement of Qualifications (SOQ)"              />
-    <DataResource dataResourceId="9037" objectInfo="" dataResourceName="Other Documents"                                />
-    <DataResource dataResourceId="9038" objectInfo="" dataResourceName="Technical Eveluation Report"                    />
-    <DataResource dataResourceId="9040" objectInfo="" dataResourceName="Full Name of Company or Individual Party Report"/>
-    <DataResource dataResourceId="9041" objectInfo="" dataResourceName="Shareholder Report"                            />
-    <DataResource dataResourceId="9042" objectInfo="" dataResourceName="Director Report"                                />
-    <DataResource dataResourceId="9043" objectInfo="" dataResourceName="Key Officer Report"                             />
-    <DataResource dataResourceId="9044" objectInfo="" dataResourceName="Previous Name Report"                           />
-    <DataResource dataResourceId="9046" objectInfo="" dataResourceName="Ultimate Beneficial Owners Report"              />
+    <DataResource dataResourceId="9031" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9032" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9033" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9034" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9035" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9036" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9037" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9038" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9040" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9041" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9042" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9043" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9044" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9046" objectInfo="" dataResourceName=""/>
 
-    <DataResource dataResourceId="9047" objectInfo="" dataResourceName="Latest Three-years Finance Audit Report"        />
-    <DataResource dataResourceId="9048" objectInfo="" dataResourceName="Non-disclosure Agreement (NDA)"                 />
-    <DataResource dataResourceId="9049" objectInfo="" dataResourceName="Copy of Commercial License"                     />
-    <DataResource dataResourceId="9050" objectInfo="" dataResourceName="Copy of VAT Certificate"                        />
-    <DataResource dataResourceId="9051" objectInfo="" dataResourceName="PoA (Power of Atterney)"                        />
-    <DataResource dataResourceId="9052" objectInfo="" dataResourceName="Statement of Qualifications (SOQ)"              />
-    <DataResource dataResourceId="9053" objectInfo="" dataResourceName="Other Documents"                                />
-    <DataResource dataResourceId="9054" objectInfo="" dataResourceName="Technical Eveluation Report"                    />
-    <DataResource dataResourceId="9056" objectInfo="" dataResourceName="Full Name of Company or Individual Party Report"/>
-    <DataResource dataResourceId="9057" objectInfo="" dataResourceName="Shareholder Report"                            />
-    <DataResource dataResourceId="9058" objectInfo="" dataResourceName="Director Report"                                />
-    <DataResource dataResourceId="9059" objectInfo="" dataResourceName="Key Officer Report"                             />
-    <DataResource dataResourceId="9060" objectInfo="" dataResourceName="Previous Name Report"                           />
-    <DataResource dataResourceId="9062" objectInfo="" dataResourceName="Ultimate Beneficial Owners Report"              />
+    <DataResource dataResourceId="9047" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9048" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9049" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9050" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9051" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9052" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9053" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9054" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9056" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9057" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9058" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9059" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9060" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9062" objectInfo="" dataResourceName=""/>
 
-    <DataResource dataResourceId="9063" objectInfo="" dataResourceName="Latest Three-years Finance Audit Report"        />
-    <DataResource dataResourceId="9064" objectInfo="" dataResourceName="Non-disclosure Agreement (NDA)"                 />
-    <DataResource dataResourceId="9065" objectInfo="" dataResourceName="Copy of Commercial License"                     />
-    <DataResource dataResourceId="9066" objectInfo="" dataResourceName="Copy of VAT Certificate"                        />
-    <DataResource dataResourceId="9067" objectInfo="" dataResourceName="PoA (Power of Atterney)"                        />
-    <DataResource dataResourceId="9068" objectInfo="" dataResourceName="Statement of Qualifications (SOQ)"              />
-    <DataResource dataResourceId="9069" objectInfo="" dataResourceName="Other Documents"                                />
-    <DataResource dataResourceId="9070" objectInfo="" dataResourceName="Technical Eveluation Report"                    />
-    <DataResource dataResourceId="9072" objectInfo="" dataResourceName="Full Name of Company or Individual Party Report"/>
-    <DataResource dataResourceId="9073" objectInfo="" dataResourceName="Shareholder Report"                            />
-    <DataResource dataResourceId="9074" objectInfo="" dataResourceName="Director Report"                                />
-    <DataResource dataResourceId="9075" objectInfo="" dataResourceName="Key Officer Report"                             />
-    <DataResource dataResourceId="9076" objectInfo="" dataResourceName="Previous Name Report"                           />
-    <DataResource dataResourceId="9078" objectInfo="" dataResourceName="Ultimate Beneficial Owners Report"              />
+    <DataResource dataResourceId="9063" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9064" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9065" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9066" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9067" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9068" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9069" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9070" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9072" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9073" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9074" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9075" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9076" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9078" objectInfo="" dataResourceName=""/>
 
-    <DataResource dataResourceId="9079" objectInfo="" dataResourceName="Latest Three-years Finance Audit Report"        />
-    <DataResource dataResourceId="9080" objectInfo="" dataResourceName="Non-disclosure Agreement (NDA)"                 />
-    <DataResource dataResourceId="9081" objectInfo="" dataResourceName="Copy of Commercial License"                     />
-    <DataResource dataResourceId="9082" objectInfo="" dataResourceName="Copy of VAT Certificate"                        />
-    <DataResource dataResourceId="9083" objectInfo="" dataResourceName="PoA (Power of Atterney)"                        />
-    <DataResource dataResourceId="9084" objectInfo="" dataResourceName="Statement of Qualifications (SOQ)"              />
-    <DataResource dataResourceId="9085" objectInfo="" dataResourceName="Other Documents"                                />
-    <DataResource dataResourceId="9086" objectInfo="" dataResourceName="Technical Eveluation Report"                    />
-    <DataResource dataResourceId="9088" objectInfo="" dataResourceName="Full Name of Company or Individual Party Report"/>
-    <DataResource dataResourceId="9089" objectInfo="" dataResourceName="Shareholder Report"                            />
-    <DataResource dataResourceId="9090" objectInfo="" dataResourceName="Director Report"                                />
-    <DataResource dataResourceId="9091" objectInfo="" dataResourceName="Key Officer Report"                             />
-    <DataResource dataResourceId="9092" objectInfo="" dataResourceName="Previous Name Report"                           />
-    <DataResource dataResourceId="9094" objectInfo="" dataResourceName="Ultimate Beneficial Owners Report"              />
+    <DataResource dataResourceId="9079" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9080" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9081" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9082" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9083" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9084" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9085" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9086" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9088" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9089" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9090" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9091" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9092" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9094" objectInfo="" dataResourceName=""/>
 
-    <DataResource dataResourceId="9095" objectInfo="" dataResourceName="Latest Three-years Finance Audit Report"        />
-    <DataResource dataResourceId="9096" objectInfo="" dataResourceName="Non-disclosure Agreement (NDA)"                 />
-    <DataResource dataResourceId="9097" objectInfo="" dataResourceName="Copy of Commercial License"                     />
-    <DataResource dataResourceId="9098" objectInfo="" dataResourceName="Copy of VAT Certificate"                        />
-    <DataResource dataResourceId="9099" objectInfo="" dataResourceName="PoA (Power of Atterney)"                        />
-    <DataResource dataResourceId="9100" objectInfo="" dataResourceName="Statement of Qualifications (SOQ)"              />
-    <DataResource dataResourceId="9101" objectInfo="" dataResourceName="Other Documents"                                />
-    <DataResource dataResourceId="9102" objectInfo="" dataResourceName="Technical Eveluation Report"                    />
-    <DataResource dataResourceId="9104" objectInfo="" dataResourceName="Full Name of Company or Individual Party Report"/>
-    <DataResource dataResourceId="9105" objectInfo="" dataResourceName="Shareholder Report"                            />
-    <DataResource dataResourceId="9106" objectInfo="" dataResourceName="Director Report"                                />
-    <DataResource dataResourceId="9107" objectInfo="" dataResourceName="Key Officer Report"                             />
-    <DataResource dataResourceId="9108" objectInfo="" dataResourceName="Previous Name Report"                           />
-    <DataResource dataResourceId="9110" objectInfo="" dataResourceName="Ultimate Beneficial Owners Report"              />
+    <DataResource dataResourceId="9095" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9096" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9097" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9098" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9099" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9100" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9101" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9102" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9104" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9105" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9106" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9107" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9108" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9110" objectInfo="" dataResourceName=""/>
 
-    <DataResource dataResourceId="9111" objectInfo="" dataResourceName="Latest Three-years Finance Audit Report"        />
-    <DataResource dataResourceId="9112" objectInfo="" dataResourceName="Non-disclosure Agreement (NDA)"                 />
-    <DataResource dataResourceId="9113" objectInfo="" dataResourceName="Copy of Commercial License"                     />
-    <DataResource dataResourceId="9114" objectInfo="" dataResourceName="Copy of VAT Certificate"                        />
-    <DataResource dataResourceId="9115" objectInfo="" dataResourceName="PoA (Power of Atterney)"                        />
-    <DataResource dataResourceId="9116" objectInfo="" dataResourceName="Statement of Qualifications (SOQ)"              />
-    <DataResource dataResourceId="9117" objectInfo="" dataResourceName="Other Documents"                                />
-    <DataResource dataResourceId="9118" objectInfo="" dataResourceName="Technical Eveluation Report"                    />
-    <DataResource dataResourceId="9120" objectInfo="" dataResourceName="Full Name of Company or Individual Party Report"/>
-    <DataResource dataResourceId="9121" objectInfo="" dataResourceName="Shareholder Report"                            />
-    <DataResource dataResourceId="9122" objectInfo="" dataResourceName="Director Report"                                />
-    <DataResource dataResourceId="9123" objectInfo="" dataResourceName="Key Officer Report"                             />
-    <DataResource dataResourceId="9124" objectInfo="" dataResourceName="Previous Name Report"                           />
-    <DataResource dataResourceId="9126" objectInfo="" dataResourceName="Ultimate Beneficial Owners Report"              />
+    <DataResource dataResourceId="9111" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9112" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9113" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9114" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9115" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9116" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9117" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9118" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9120" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9121" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9122" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9123" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9124" objectInfo="" dataResourceName=""/>
+    <DataResource dataResourceId="9126" objectInfo="" dataResourceName=""/>
 
-    <Content contentId="8999" description="1" dataResourceId="8999" contentName="Latest Three-years Finance Audit Report"        />
-    <Content contentId="9000" description="2" dataResourceId="9000" contentName="Non-disclosure Agreement (NDA)"                 />
-    <Content contentId="9001" description="3" dataResourceId="9001" contentName="Copy of Commercial License"                     />
-    <Content contentId="9002" description="4" dataResourceId="9002" contentName="Copy of VAT Certificate"                        />
-    <Content contentId="9003" description="5" dataResourceId="9003" contentName="PoA (Power of Atterney)"                        />
-    <Content contentId="9004" description="6" dataResourceId="9004" contentName="Statement of Qualifications (SOQ)"              />
-    <Content contentId="9005" description="8" dataResourceId="9005" contentName="Other Documents"                                />
-    <Content contentId="9006" description="7" dataResourceId="9006" contentName="Technical Eveluation Report"                    />
-    <Content contentId="9008" description="1" dataResourceId="9008" contentName="Full Name of Company or Individual Party Report"/>
-    <Content contentId="9009" description="2" dataResourceId="9009" contentName="Shareholder Report"                            />
-    <Content contentId="9010" description="3" dataResourceId="9010" contentName="Director Report"                                />
-    <Content contentId="9011" description="4" dataResourceId="9011" contentName="Key Officer Report"                             />
-    <Content contentId="9012" description="5" dataResourceId="9012" contentName="Previous Name Report"                           />
-    <Content contentId="9014" description="7" dataResourceId="9014" contentName="Ultimate Beneficial Owners Report"              />
+    <Content contentId="8999" description="1" dataResourceId="8999" contentName="Latest Three-years Finance Audit Report"  createdDate=""                       />
+    <Content contentId="9000" description="2" dataResourceId="9000" contentName="Non-disclosure Agreement (NDA)"           createdDate=""                       />
+    <Content contentId="9001" description="3" dataResourceId="9001" contentName="Copy of Commercial License"               createdDate=""                       />
+    <Content contentId="9002" description="4" dataResourceId="9002" contentName="Copy of VAT Certificate"                  createdDate=""                       />
+    <Content contentId="9003" description="5" dataResourceId="9003" contentName="PoA (Power of Atterney)"                  createdDate=""                       />
+    <Content contentId="9004" description="6" dataResourceId="9004" contentName="Statement of Qualifications (SOQ)"        createdDate=""                       />
+    <Content contentId="9005" description="8" dataResourceId="9005" contentName="Other Documents"                          createdDate=""                       />
+    <Content contentId="9006" description="7" dataResourceId="9006" contentName="Technical Eveluation Report"              createdDate=""                       />
+    <Content contentId="9008" description="1" dataResourceId="9008" contentName="Company and individual Report"            createdDate="2023-12-25 11:45:31.928"/>
+    <Content contentId="9012" description="5" dataResourceId="9012" contentName="Previous Name of Business Partner Report" createdDate="2023-12-26 11:45:31.928"/>
+    <Content contentId="9009" description="2" dataResourceId="9009" contentName="Shareholder(s) Report"                    createdDate="2023-12-27 11:45:31.928"/>
+    <Content contentId="9014" description="7" dataResourceId="9014" contentName="Ultimate Beneficial Owner(s) Report"      createdDate="2023-12-28 11:45:31.928"/>
+    <Content contentId="9010" description="3" dataResourceId="9010" contentName="Directors Report"                         createdDate="2023-12-29 11:45:31.928"/>
+    <Content contentId="9011" description="4" dataResourceId="9011" contentName="Key Officers Report"                      createdDate="2023-12-30 11:45:31.928"/>
 
-    <Content contentId="9015" description="1" dataResourceId="9015" contentName="Latest Three-years Finance Audit Report"        />
-    <Content contentId="9016" description="2" dataResourceId="9016" contentName="Non-disclosure Agreement (NDA)"                 />
-    <Content contentId="9017" description="3" dataResourceId="9017" contentName="Copy of Commercial License"                     />
-    <Content contentId="9018" description="4" dataResourceId="9018" contentName="Copy of VAT Certificate"                        />
-    <Content contentId="9019" description="5" dataResourceId="9019" contentName="PoA (Power of Atterney)"                        />
-    <Content contentId="9020" description="6" dataResourceId="9020" contentName="Statement of Qualifications (SOQ)"              />
-    <Content contentId="9021" description="8" dataResourceId="9021" contentName="Other Documents"                                />
-    <Content contentId="9022" description="7" dataResourceId="9022" contentName="Technical Eveluation Report"                    />
-    <Content contentId="9024" description="1" dataResourceId="9024" contentName="Full Name of Company or Individual Party Report"/>
-    <Content contentId="9025" description="2" dataResourceId="9025" contentName="Shareholder Report"                            />
-    <Content contentId="9026" description="3" dataResourceId="9026" contentName="Director Report"                                />
-    <Content contentId="9027" description="4" dataResourceId="9027" contentName="Key Officer Report"                             />
-    <Content contentId="9028" description="5" dataResourceId="9028" contentName="Previous Name Report"                           />
-    <Content contentId="9030" description="7" dataResourceId="9030" contentName="Ultimate Beneficial Owners Report"              />
+    <Content contentId="9015" description="1" dataResourceId="9015" contentName="Latest Three-years Finance Audit Report"  createdDate=""                       />
+    <Content contentId="9016" description="2" dataResourceId="9016" contentName="Non-disclosure Agreement (NDA)"           createdDate=""                       />
+    <Content contentId="9017" description="3" dataResourceId="9017" contentName="Copy of Commercial License"               createdDate=""                       />
+    <Content contentId="9018" description="4" dataResourceId="9018" contentName="Copy of VAT Certificate"                  createdDate=""                       />
+    <Content contentId="9019" description="5" dataResourceId="9019" contentName="PoA (Power of Atterney)"                  createdDate=""                       />
+    <Content contentId="9020" description="6" dataResourceId="9020" contentName="Statement of Qualifications (SOQ)"        createdDate=""                       />
+    <Content contentId="9021" description="8" dataResourceId="9021" contentName="Other Documents"                          createdDate=""                       />
+    <Content contentId="9022" description="7" dataResourceId="9022" contentName="Technical Eveluation Report"              createdDate=""                       />
+    <Content contentId="9024" description="1" dataResourceId="9024" contentName="Company and individual Report"            createdDate="2023-12-25 11:45:31.928"/>
+    <Content contentId="9028" description="5" dataResourceId="9028" contentName="Previous Name of Business Partner Report" createdDate="2023-12-26 11:45:31.928"/>
+    <Content contentId="9025" description="2" dataResourceId="9025" contentName="Shareholder(s) Report"                    createdDate="2023-12-27 11:45:31.928"/>
+    <Content contentId="9030" description="7" dataResourceId="9030" contentName="Ultimate Beneficial Owner(s) Report"      createdDate="2023-12-28 11:45:31.928"/>
+    <Content contentId="9026" description="3" dataResourceId="9026" contentName="Directors Report"                         createdDate="2023-12-29 11:45:31.928"/>
+    <Content contentId="9027" description="4" dataResourceId="9027" contentName="Key Officers Report"                      createdDate="2023-12-30 11:45:31.928"/>
 
-    <Content contentId="9031" description="1" dataResourceId="9031" contentName="Latest Three-years Finance Audit Report"        />
-    <Content contentId="9032" description="2" dataResourceId="9032" contentName="Non-disclosure Agreement (NDA)"                 />
-    <Content contentId="9033" description="3" dataResourceId="9033" contentName="Copy of Commercial License"                     />
-    <Content contentId="9034" description="4" dataResourceId="9034" contentName="Copy of VAT Certificate"                        />
-    <Content contentId="9035" description="5" dataResourceId="9035" contentName="PoA (Power of Atterney)"                        />
-    <Content contentId="9036" description="6" dataResourceId="9036" contentName="Statement of Qualifications (SOQ)"              />
-    <Content contentId="9037" description="8" dataResourceId="9037" contentName="Other Documents"                                />
-    <Content contentId="9038" description="7" dataResourceId="9038" contentName="Technical Eveluation Report"                    />
-    <Content contentId="9040" description="1" dataResourceId="9040" contentName="Full Name of Company or Individual Party Report"/>
-    <Content contentId="9041" description="2" dataResourceId="9041" contentName="Shareholder Report"                            />
-    <Content contentId="9042" description="3" dataResourceId="9042" contentName="Director Report"                                />
-    <Content contentId="9043" description="4" dataResourceId="9043" contentName="Key Officer Report"                             />
-    <Content contentId="9044" description="5" dataResourceId="9044" contentName="Previous Name Report"                           />
-    <Content contentId="9046" description="7" dataResourceId="9046" contentName="Ultimate Beneficial Owners Report"              />
+    <Content contentId="9031" description="1" dataResourceId="9031" contentName="Latest Three-years Finance Audit Report"  createdDate=""                       />
+    <Content contentId="9032" description="2" dataResourceId="9032" contentName="Non-disclosure Agreement (NDA)"           createdDate=""                       />
+    <Content contentId="9033" description="3" dataResourceId="9033" contentName="Copy of Commercial License"               createdDate=""                       />
+    <Content contentId="9034" description="4" dataResourceId="9034" contentName="Copy of VAT Certificate"                  createdDate=""                       />
+    <Content contentId="9035" description="5" dataResourceId="9035" contentName="PoA (Power of Atterney)"                  createdDate=""                       />
+    <Content contentId="9036" description="6" dataResourceId="9036" contentName="Statement of Qualifications (SOQ)"        createdDate=""                       />
+    <Content contentId="9037" description="8" dataResourceId="9037" contentName="Other Documents"                          createdDate=""                       />
+    <Content contentId="9038" description="7" dataResourceId="9038" contentName="Technical Eveluation Report"              createdDate=""                       />
+    <Content contentId="9040" description="1" dataResourceId="9040" contentName="Company and individual Report"            createdDate="2023-12-25 11:45:31.928"/>
+    <Content contentId="9044" description="5" dataResourceId="9044" contentName="Previous Name of Business Partner Report" createdDate="2023-12-26 11:45:31.928"/>
+    <Content contentId="9041" description="2" dataResourceId="9041" contentName="Shareholder(s) Report"                    createdDate="2023-12-27 11:45:31.928"/>
+    <Content contentId="9046" description="7" dataResourceId="9046" contentName="Ultimate Beneficial Owner(s) Report"      createdDate="2023-12-28 11:45:31.928"/>
+    <Content contentId="9042" description="3" dataResourceId="9042" contentName="Directors Report"                         createdDate="2023-12-29 11:45:31.928"/>
+    <Content contentId="9043" description="4" dataResourceId="9043" contentName="Key Officers Report"                      createdDate="2023-12-30 11:45:31.928"/>
 
-    <Content contentId="9047" description="1" dataResourceId="9047" contentName="Latest Three-years Finance Audit Report"        />
-    <Content contentId="9048" description="2" dataResourceId="9048" contentName="Non-disclosure Agreement (NDA)"                 />
-    <Content contentId="9049" description="3" dataResourceId="9049" contentName="Copy of Commercial License"                     />
-    <Content contentId="9050" description="4" dataResourceId="9050" contentName="Copy of VAT Certificate"                        />
-    <Content contentId="9051" description="5" dataResourceId="9051" contentName="PoA (Power of Atterney)"                        />
-    <Content contentId="9052" description="6" dataResourceId="9052" contentName="Statement of Qualifications (SOQ)"              />
-    <Content contentId="9053" description="8" dataResourceId="9053" contentName="Other Documents"                                />
-    <Content contentId="9054" description="7" dataResourceId="9054" contentName="Technical Eveluation Report"                    />
-    <Content contentId="9056" description="1" dataResourceId="9056" contentName="Full Name of Company or Individual Party Report"/>
-    <Content contentId="9057" description="2" dataResourceId="9057" contentName="Shareholder Report"                            />
-    <Content contentId="9058" description="3" dataResourceId="9058" contentName="Director Report"                                />
-    <Content contentId="9059" description="4" dataResourceId="9059" contentName="Key Officer Report"                             />
-    <Content contentId="9060" description="5" dataResourceId="9060" contentName="Previous Name Report"                           />
-    <Content contentId="9062" description="7" dataResourceId="9062" contentName="Ultimate Beneficial Owners Report"              />
+    <Content contentId="9047" description="1" dataResourceId="9047" contentName="Latest Three-years Finance Audit Report"  createdDate=""                       />
+    <Content contentId="9048" description="2" dataResourceId="9048" contentName="Non-disclosure Agreement (NDA)"           createdDate=""                       />
+    <Content contentId="9049" description="3" dataResourceId="9049" contentName="Copy of Commercial License"               createdDate=""                       />
+    <Content contentId="9050" description="4" dataResourceId="9050" contentName="Copy of VAT Certificate"                  createdDate=""                       />
+    <Content contentId="9051" description="5" dataResourceId="9051" contentName="PoA (Power of Atterney)"                  createdDate=""                       />
+    <Content contentId="9052" description="6" dataResourceId="9052" contentName="Statement of Qualifications (SOQ)"        createdDate=""                       />
+    <Content contentId="9053" description="8" dataResourceId="9053" contentName="Other Documents"                          createdDate=""                       />
+    <Content contentId="9054" description="7" dataResourceId="9054" contentName="Technical Eveluation Report"              createdDate=""                       />
+    <Content contentId="9056" description="1" dataResourceId="9056" contentName="Company and individual Report"            createdDate="2023-12-25 11:45:31.928"/>
+    <Content contentId="9060" description="5" dataResourceId="9060" contentName="Previous Name of Business Partner Report" createdDate="2023-12-26 11:45:31.928"/>
+    <Content contentId="9057" description="2" dataResourceId="9057" contentName="Shareholder(s) Report"                    createdDate="2023-12-27 11:45:31.928"/>
+    <Content contentId="9062" description="7" dataResourceId="9062" contentName="Ultimate Beneficial Owner(s) Report"      createdDate="2023-12-28 11:45:31.928"/>
+    <Content contentId="9058" description="3" dataResourceId="9058" contentName="Directors Report"                         createdDate="2023-12-29 11:45:31.928"/>
+    <Content contentId="9059" description="4" dataResourceId="9059" contentName="Key Officers Report"                      createdDate="2023-12-30 11:45:31.928"/>
 
-    <Content contentId="9063" description="1" dataResourceId="9063" contentName="Latest Three-years Finance Audit Report"        />
-    <Content contentId="9064" description="2" dataResourceId="9064" contentName="Non-disclosure Agreement (NDA)"                 />
-    <Content contentId="9065" description="3" dataResourceId="9065" contentName="Copy of Commercial License"                     />
-    <Content contentId="9066" description="4" dataResourceId="9066" contentName="Copy of VAT Certificate"                        />
-    <Content contentId="9067" description="5" dataResourceId="9067" contentName="PoA (Power of Atterney)"                        />
-    <Content contentId="9068" description="6" dataResourceId="9068" contentName="Statement of Qualifications (SOQ)"              />
-    <Content contentId="9069" description="8" dataResourceId="9069" contentName="Other Documents"                                />
-    <Content contentId="9070" description="7" dataResourceId="9070" contentName="Technical Eveluation Report"                    />
-    <Content contentId="9072" description="1" dataResourceId="9072" contentName="Full Name of Company or Individual Party Report"/>
-    <Content contentId="9073" description="2" dataResourceId="9073" contentName="Shareholder Report"                            />
-    <Content contentId="9074" description="3" dataResourceId="9074" contentName="Director Report"                                />
-    <Content contentId="9075" description="4" dataResourceId="9075" contentName="Key Officer Report"                             />
-    <Content contentId="9076" description="5" dataResourceId="9076" contentName="Previous Name Report"                           />
-    <Content contentId="9078" description="7" dataResourceId="9078" contentName="Ultimate Beneficial Owners Report"              />
+    <Content contentId="9063" description="1" dataResourceId="9063" contentName="Latest Three-years Finance Audit Report"  createdDate=""                       />
+    <Content contentId="9064" description="2" dataResourceId="9064" contentName="Non-disclosure Agreement (NDA)"           createdDate=""                       />
+    <Content contentId="9065" description="3" dataResourceId="9065" contentName="Copy of Commercial License"               createdDate=""                       />
+    <Content contentId="9066" description="4" dataResourceId="9066" contentName="Copy of VAT Certificate"                  createdDate=""                       />
+    <Content contentId="9067" description="5" dataResourceId="9067" contentName="PoA (Power of Atterney)"                  createdDate=""                       />
+    <Content contentId="9068" description="6" dataResourceId="9068" contentName="Statement of Qualifications (SOQ)"        createdDate=""                       />
+    <Content contentId="9069" description="8" dataResourceId="9069" contentName="Other Documents"                          createdDate=""                       />
+    <Content contentId="9070" description="7" dataResourceId="9070" contentName="Technical Eveluation Report"              createdDate=""                       />
+    <Content contentId="9072" description="1" dataResourceId="9072" contentName="Company and individual Report"            createdDate="2023-12-25 11:45:31.928"/>
+    <Content contentId="9076" description="5" dataResourceId="9076" contentName="Previous Name of Business Partner Report" createdDate="2023-12-26 11:45:31.928"/>
+    <Content contentId="9073" description="2" dataResourceId="9073" contentName="Shareholder(s) Report"                    createdDate="2023-12-27 11:45:31.928"/>
+    <Content contentId="9078" description="7" dataResourceId="9078" contentName="Ultimate Beneficial Owner(s) Report"      createdDate="2023-12-28 11:45:31.928"/>
+    <Content contentId="9074" description="3" dataResourceId="9074" contentName="Directors Report"                         createdDate="2023-12-29 11:45:31.928"/>
+    <Content contentId="9075" description="4" dataResourceId="9075" contentName="Key Officers Report"                      createdDate="2023-12-30 11:45:31.928"/>
 
-    <Content contentId="9079" description="1" dataResourceId="9079" contentName="Latest Three-years Finance Audit Report"        />
-    <Content contentId="9080" description="2" dataResourceId="9080" contentName="Non-disclosure Agreement (NDA)"                 />
-    <Content contentId="9081" description="3" dataResourceId="9081" contentName="Copy of Commercial License"                     />
-    <Content contentId="9082" description="4" dataResourceId="9082" contentName="Copy of VAT Certificate"                        />
-    <Content contentId="9083" description="5" dataResourceId="9083" contentName="PoA (Power of Atterney)"                        />
-    <Content contentId="9084" description="6" dataResourceId="9084" contentName="Statement of Qualifications (SOQ)"              />
-    <Content contentId="9085" description="8" dataResourceId="9085" contentName="Other Documents"                                />
-    <Content contentId="9086" description="7" dataResourceId="9086" contentName="Technical Eveluation Report"                    />
-    <Content contentId="9088" description="1" dataResourceId="9088" contentName="Full Name of Company or Individual Party Report"/>
-    <Content contentId="9089" description="2" dataResourceId="9089" contentName="Shareholder Report"                            />
-    <Content contentId="9090" description="3" dataResourceId="9090" contentName="Director Report"                                />
-    <Content contentId="9091" description="4" dataResourceId="9091" contentName="Key Officer Report"                             />
-    <Content contentId="9092" description="5" dataResourceId="9092" contentName="Previous Name Report"                           />
-    <Content contentId="9094" description="7" dataResourceId="9094" contentName="Ultimate Beneficial Owners Report"              />
+    <Content contentId="9079" description="1" dataResourceId="9079" contentName="Latest Three-years Finance Audit Report"  createdDate=""                       />
+    <Content contentId="9080" description="2" dataResourceId="9080" contentName="Non-disclosure Agreement (NDA)"           createdDate=""                       />
+    <Content contentId="9081" description="3" dataResourceId="9081" contentName="Copy of Commercial License"               createdDate=""                       />
+    <Content contentId="9082" description="4" dataResourceId="9082" contentName="Copy of VAT Certificate"                  createdDate=""                       />
+    <Content contentId="9083" description="5" dataResourceId="9083" contentName="PoA (Power of Atterney)"                  createdDate=""                       />
+    <Content contentId="9084" description="6" dataResourceId="9084" contentName="Statement of Qualifications (SOQ)"        createdDate=""                       />
+    <Content contentId="9085" description="8" dataResourceId="9085" contentName="Other Documents"                          createdDate=""                       />
+    <Content contentId="9086" description="7" dataResourceId="9086" contentName="Technical Eveluation Report"              createdDate=""                       />
+    <Content contentId="9088" description="1" dataResourceId="9088" contentName="Company and individual Report"            createdDate="2023-12-25 11:45:31.928"/>
+    <Content contentId="9092" description="5" dataResourceId="9092" contentName="Previous Name of Business Partner Report" createdDate="2023-12-26 11:45:31.928"/>
+    <Content contentId="9089" description="2" dataResourceId="9089" contentName="Shareholder(s) Report"                    createdDate="2023-12-27 11:45:31.928"/>
+    <Content contentId="9094" description="7" dataResourceId="9094" contentName="Ultimate Beneficial Owner(s) Report"      createdDate="2023-12-28 11:45:31.928"/>
+    <Content contentId="9090" description="3" dataResourceId="9090" contentName="Directors Report"                         createdDate="2023-12-29 11:45:31.928"/>
+    <Content contentId="9091" description="4" dataResourceId="9091" contentName="Key Officers Report"                      createdDate="2023-12-30 11:45:31.928"/>
 
-    <Content contentId="9095" description="1" dataResourceId="9095" contentName="Latest Three-years Finance Audit Report"        />
-    <Content contentId="9096" description="2" dataResourceId="9096" contentName="Non-disclosure Agreement (NDA)"                 />
-    <Content contentId="9097" description="3" dataResourceId="9097" contentName="Copy of Commercial License"                     />
-    <Content contentId="9098" description="4" dataResourceId="9098" contentName="Copy of VAT Certificate"                        />
-    <Content contentId="9099" description="5" dataResourceId="9099" contentName="PoA (Power of Atterney)"                        />
-    <Content contentId="9100" description="6" dataResourceId="9100" contentName="Statement of Qualifications (SOQ)"              />
-    <Content contentId="9101" description="8" dataResourceId="9101" contentName="Other Documents"                                />
-    <Content contentId="9102" description="7" dataResourceId="9102" contentName="Technical Eveluation Report"                    />
-    <Content contentId="9104" description="1" dataResourceId="9104" contentName="Full Name of Company or Individual Party Report"/>
-    <Content contentId="9105" description="2" dataResourceId="9105" contentName="Shareholder Report"                            />
-    <Content contentId="9106" description="3" dataResourceId="9106" contentName="Director Report"                                />
-    <Content contentId="9107" description="4" dataResourceId="9107" contentName="Key Officer Report"                             />
-    <Content contentId="9108" description="5" dataResourceId="9108" contentName="Previous Name Report"                           />
-    <Content contentId="9110" description="7" dataResourceId="9110" contentName="Ultimate Beneficial Owners Report"              />
+    <Content contentId="9095" description="1" dataResourceId="9095" contentName="Latest Three-years Finance Audit Report"  createdDate=""                       />
+    <Content contentId="9096" description="2" dataResourceId="9096" contentName="Non-disclosure Agreement (NDA)"           createdDate=""                       />
+    <Content contentId="9097" description="3" dataResourceId="9097" contentName="Copy of Commercial License"               createdDate=""                       />
+    <Content contentId="9098" description="4" dataResourceId="9098" contentName="Copy of VAT Certificate"                  createdDate=""                       />
+    <Content contentId="9099" description="5" dataResourceId="9099" contentName="PoA (Power of Atterney)"                  createdDate=""                       />
+    <Content contentId="9100" description="6" dataResourceId="9100" contentName="Statement of Qualifications (SOQ)"        createdDate=""                       />
+    <Content contentId="9101" description="8" dataResourceId="9101" contentName="Other Documents"                          createdDate=""                       />
+    <Content contentId="9102" description="7" dataResourceId="9102" contentName="Technical Eveluation Report"              createdDate=""                       />
+    <Content contentId="9104" description="1" dataResourceId="9104" contentName="Company and individual Report"            createdDate="2023-12-25 11:45:31.928"/>
+    <Content contentId="9108" description="5" dataResourceId="9108" contentName="Previous Name of Business Partner Report" createdDate="2023-12-26 11:45:31.928"/>
+    <Content contentId="9105" description="2" dataResourceId="9105" contentName="Shareholder(s) Report"                    createdDate="2023-12-27 11:45:31.928"/>
+    <Content contentId="9110" description="7" dataResourceId="9110" contentName="Ultimate Beneficial Owner(s) Report"      createdDate="2023-12-28 11:45:31.928"/>
+    <Content contentId="9106" description="3" dataResourceId="9106" contentName="Directors Report"                         createdDate="2023-12-29 11:45:31.928"/>
+    <Content contentId="9107" description="4" dataResourceId="9107" contentName="Key Officers Report"                      createdDate="2023-12-30 11:45:31.928"/>
 
-    <Content contentId="9111" description="1" dataResourceId="9111" contentName="Latest Three-years Finance Audit Report"        />
-    <Content contentId="9112" description="2" dataResourceId="9112" contentName="Non-disclosure Agreement (NDA)"                 />
-    <Content contentId="9113" description="3" dataResourceId="9113" contentName="Copy of Commercial License"                     />
-    <Content contentId="9114" description="4" dataResourceId="9114" contentName="Copy of VAT Certificate"                        />
-    <Content contentId="9115" description="5" dataResourceId="9115" contentName="PoA (Power of Atterney)"                        />
-    <Content contentId="9116" description="6" dataResourceId="9116" contentName="Statement of Qualifications (SOQ)"              />
-    <Content contentId="9117" description="8" dataResourceId="9117" contentName="Other Documents"                                />
-    <Content contentId="9118" description="7" dataResourceId="9118" contentName="Technical Eveluation Report"                    />
-    <Content contentId="9120" description="1" dataResourceId="9120" contentName="Full Name of Company or Individual Party Report"/>
-    <Content contentId="9121" description="2" dataResourceId="9121" contentName="Shareholder Report"                            />
-    <Content contentId="9122" description="3" dataResourceId="9122" contentName="Director Report"                                />
-    <Content contentId="9123" description="4" dataResourceId="9123" contentName="Key Officer Report"                             />
-    <Content contentId="9124" description="5" dataResourceId="9124" contentName="Previous Name Report"                           />
-    <Content contentId="9126" description="7" dataResourceId="9126" contentName="Ultimate Beneficial Owners Report"              />
+    <Content contentId="9111" description="1" dataResourceId="9111" contentName="Latest Three-years Finance Audit Report"  createdDate=""                       />
+    <Content contentId="9112" description="2" dataResourceId="9112" contentName="Non-disclosure Agreement (NDA)"           createdDate=""                       />
+    <Content contentId="9113" description="3" dataResourceId="9113" contentName="Copy of Commercial License"               createdDate=""                       />
+    <Content contentId="9114" description="4" dataResourceId="9114" contentName="Copy of VAT Certificate"                  createdDate=""                       />
+    <Content contentId="9115" description="5" dataResourceId="9115" contentName="PoA (Power of Atterney)"                  createdDate=""                       />
+    <Content contentId="9116" description="6" dataResourceId="9116" contentName="Statement of Qualifications (SOQ)"        createdDate=""                       />
+    <Content contentId="9117" description="8" dataResourceId="9117" contentName="Other Documents"                          createdDate=""                       />
+    <Content contentId="9118" description="7" dataResourceId="9118" contentName="Technical Eveluation Report"              createdDate=""                       />
+    <Content contentId="9120" description="1" dataResourceId="9120" contentName="Company and individual Report"            createdDate="2023-12-25 11:45:31.928"/>
+    <Content contentId="9124" description="5" dataResourceId="9124" contentName="Previous Name of Business Partner Report" createdDate="2023-12-26 11:45:31.928"/>
+    <Content contentId="9121" description="2" dataResourceId="9121" contentName="Shareholder(s) Report"                    createdDate="2023-12-27 11:45:31.928"/>
+    <Content contentId="9126" description="7" dataResourceId="9126" contentName="Ultimate Beneficial Owner(s) Report"      createdDate="2023-12-28 11:45:31.928"/>
+    <Content contentId="9122" description="3" dataResourceId="9122" contentName="Directors Report"                         createdDate="2023-12-29 11:45:31.928"/>
+    <Content contentId="9123" description="4" dataResourceId="9123" contentName="Key Officers Report"                      createdDate="2023-12-30 11:45:31.928"/>
 
     <!--PartyContent-->
     <PartyContent partyContentId="8999" partyId="9000" contentId="8999" partyContentTypeId="FINANCE_REPORT"/>

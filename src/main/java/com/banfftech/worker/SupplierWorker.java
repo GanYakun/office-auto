@@ -180,7 +180,7 @@ public class SupplierWorker {
                 "roleTypeIdFrom", "SUPPLIER"), null, false);
         for (GenericValue genericValue : uboList) {
             if (UtilValidate.isEmpty(genericValue.get("dataResourceContent"))) {
-                return "Missing ID copy of UBO";
+                return "Missing ID copy of UBO(s)";
             }
         }
         return "";
