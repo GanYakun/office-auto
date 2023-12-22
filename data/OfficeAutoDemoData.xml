@@ -526,7 +526,6 @@ under the License.
     <ProductCategoryRole partyId="9007" productCategoryId="TECHNICAL_SERVICE_FEE" roleTypeId="SUPPLIER" fromDate="2023-05-13 15:10:00.0"/>
 
     <PartyClassification partyId="9001" partyClassificationGroupId="LOW_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
-    <PartyClassification partyId="9002" partyClassificationGroupId="HIGH_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
     <PartyClassification partyId="9006" partyClassificationGroupId="HIGH_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
     <PartyClassification partyId="9007" partyClassificationGroupId="HIGH_LEVEL" fromDate="2023-05-13 15:10:00.0"/>
 

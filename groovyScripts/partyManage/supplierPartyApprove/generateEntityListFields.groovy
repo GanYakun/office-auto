@@ -52,7 +52,9 @@ def generateFields(Map<String, Object> context){
         //ddForm是否已提交
         Boolean ddFormIsSubmitted = SupplierWorker.ddFormIsSubmitted(delegator, supplierParty);
         //查询applicant最后提交日期
-        Timestamp lastSubmittedDate = TimeCalculateWorker.getLastSubmittedDate(supplierParty, delegator);
+        Timestamp lastSubmittedDate = TimeCalculateWorker.getApplicantLastSubmittedDate(supplierParty, delegator);
+        //在compliance页面查询procurement最后提交日期
+        Timestamp prLastSubmittedDate = TimeCalculateWorker.getProcurementLastSubmittedDate(supplierParty, delegator);
         //查询cycleTime（逻辑未定）
         String cycleTime = TimeCalculateWorker.calculateCycleTime(supplierParty, delegator);
         String complianceCycleTime = TimeCalculateWorker.calculateCycleTime(supplierParty, delegator);
@@ -94,6 +96,7 @@ def generateFields(Map<String, Object> context){
         entity.addProperty(new Property(null, "complianceCycleTime", ValueType.PRIMITIVE, complianceCycleTime))
         entity.addProperty(new Property(null, "procurementSubmitHidden", ValueType.PRIMITIVE, procurementSubmitHidden))
         entity.addProperty(new Property(null, "procurementRejectHidden", ValueType.PRIMITIVE, procurementRejectHidden))
+        entity.addProperty(new Property(null, "prLastSubmittedDate", ValueType.PRIMITIVE, prLastSubmittedDate))
 
         //文件数量
         String supplierId = supplierParty.getString("partyId");
