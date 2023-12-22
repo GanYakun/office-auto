@@ -15,10 +15,23 @@ import java.util.List;
 
 public class TimeCalculateWorker {
     public static Timestamp getLastSubmittedDate (GenericValue supplierParty, Delegator delegator) throws GenericEntityException {
+        List<GenericValue> workEffortAssignments = delegator.findByAnd("WorkEffortPartyAssignment", UtilMisc.toMap("workEffortId", supplierParty.get("workEffortId")), null, true);
+        GenericValue workEffortAssignment = EntityUtil.getFirst(workEffortAssignments);
+        String approvePartyId = workEffortAssignment.getString("partyId");
+        if (approvePartyId.equals("IT")){
+            return getStatusChangeDateTime(supplierParty, delegator, "PROCESSED");
+        }else if (approvePartyId.equals("CG")){
+            return getStatusChangeDateTime(supplierParty, delegator, "COMPLIANCE_REVIEW");
+        }else {
+            return null;
+        }
+    }
+
+    private static Timestamp getStatusChangeDateTime (GenericValue supplierParty, Delegator delegator, String statusId) throws GenericEntityException {
         List<String> orderBy = new ArrayList<>();
         orderBy.add("-statusDatetime");
         GenericValue workEffortStatus = EntityQuery.use(delegator).from("WorkEffortStatus").
-                where(UtilMisc.toMap("workEffortId", supplierParty.get("workEffortId"), "statusId", "PROCESSED")).
+                where(UtilMisc.toMap("workEffortId", supplierParty.get("workEffortId"), "statusId", statusId)).
                 orderBy(orderBy).queryFirst();
         if (UtilValidate.isNotEmpty(workEffortStatus)){
             return workEffortStatus.getTimestamp("statusDatetime");
@@ -26,7 +39,6 @@ public class TimeCalculateWorker {
             return null;
         }
     }
-
     /**
      * 计算表单填写周期
      * @param supplierParty 供应商
