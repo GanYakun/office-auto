@@ -152,7 +152,7 @@
         <!-- Compliance Report -->
         <NavigationProperty Name="ComplianceReport" Type="PartyMediaResource" Relations="PartyMediaResource(parentTypeId=COMPLIANCE_REPORT)" IsCollection="true"/>
         <!-- Compliance Supported Documents -->
-        <NavigationProperty Name="ComplianceViewFile" Type="PartyMediaResource" Relations="PartyMediaResource(partyContentTypeId=VAT_CERTIFICATE)" IsCollection="true"/>
+        <NavigationProperty Name="ComplianceViewFile" Type="PartyMediaResource" Relations="PartyMediaResource" IsCollection="true"/>
 
         <!-- Supplier DD -->
         <NavigationProperty Name="SupplierDDForm" Type="SupplierDDForm" Relations="PartyGroupAndContact" IsCollection="false"/>
