@@ -15,11 +15,11 @@
         <RelAlias Name="PartyIdentification" Relations="PartyIdentification(partyIdentificationTypeId=REGISTRATION_NUMBER)"/>
         <RelAlias Name="TaxCodeRel" Relations="PartyIdentification(partyIdentificationTypeId=USCC_OF_CHINESE_ORG)"/>
         <RelAlias Name="WorkScopeAnswer" Relations="SurveyQuestionAnswer(surveyQuestionId=9004)"/>
-        <Property Name="partyName" Label="${NONE}"/>
-        <Property Name="dateIncorporation" IsDateAttribute="true" Type="Timestamp" Label="${NONE}"/>
-        <Property Name="businessLocation" Type="String" RelAlias="BusinessLocation" Field="information" Label="${BusinessLocation}"/>
-        <Property Name="registrationNumber" Type="String" RelAlias="PartyIdentification" Field="idValue" Label="${NONE}"/>
-        <Property Name="workScope" Type="String" RelAlias="WorkScopeAnswer" Field="textResponse" Label="${WorkScopeAnswer}"/>
+        <Property Name="partyName" Label="${NONE}" FieldControl="Mandatory"/>
+        <Property Name="dateIncorporation" IsDateAttribute="true" Type="Timestamp" Label="${NONE}" FieldControl="Mandatory"/>
+        <Property Name="businessLocation" Type="String" RelAlias="BusinessLocation" Field="information" Label="${BusinessLocation}" FieldControl="Mandatory"/>
+        <Property Name="registrationNumber" Type="String" RelAlias="PartyIdentification" Field="idValue" Label="${NONE}" FieldControl="Mandatory"/>
+        <Property Name="workScope" Type="String" RelAlias="WorkScopeAnswer" Field="textResponse" Label="${WorkScopeAnswer}" FieldControl="Mandatory"/>
         <Property Name="ddStatus" Type="String" Label="${ddFormDealStatus}"/>
         <LineItem>
             <DataField Values="partyName" Importance="High"/>
@@ -30,7 +30,7 @@
         </FieldGroup>
         <!-- 2.注册地 -->
         <FieldGroup Label="RegisteredAddress" Qualifier="RegisteredAddress">
-            <DataField Values="RegisterPostalAddress/countryGeoId,RegisterPostalAddress/stateProvinceGeoId,RegisterPostalAddress/cityGeoId,RegisterPostalAddress/address1" Importance="High"/>
+            <DataField Values="RegisterPostalAddress/countryGeoId,RegisterPostalAddress/stateProvinceGeoId,RegisterPostalAddress/cityGeoId,RegisterPostalAddress/address1,RegisterPostalAddress/address2" Importance="High"/>
         </FieldGroup>
         <!-- 3a-3b.成立日期, -->
         <FieldGroup Label="DateIncorporation" Qualifier="DateIncorporation">
@@ -99,10 +99,11 @@
 
     <EntityType Name="RegisterPostalAddress" OfbizEntity="PostalAddress" AutoProperties="true"
                 EntitySetName="RegisterPostalAddresses" DraftEntityName="PostalAddressesDDFormDraft">
+        <Property Name="address1" FieldControl="Mandatory"/>
         <LineItem Qualifier="PostalAddressLineItem">
             <DataField Values="countryGeoId,stateProvinceGeoId,cityGeoId,address1,address2,contactNumber,email" Importance="High"/>
         </LineItem>
-        <Property Name="countryGeoId">
+        <Property Name="countryGeoId" FieldControl="Mandatory">
             <Text Path="CountryGeo/geoName" TextArrangement="TextOnly"/>
             <ValueList CollectionPath="Countries" WithFixedValues="true">
                 <ParameterOut ValueListProperty="geoId" LocalDataProperty="countryGeoId"/>
@@ -134,6 +135,7 @@
             <Text Path="BooleanEnum/description" TextArrangement="TextOnly"/>
             <ValueList CollectionPath="BooleanEnums" WithFixedValues="true"/>
         </Property>
+        <Property Name="textResponse" FieldControl="Mandatory"/>
         <NavigationProperty Name="DDFormSurveyQuestion" Type="DDFormSurveyQuestion" Relations="SurveyQuestion" IsCollection="false"/>
         <NavigationProperty Name="BooleanEnum" Type="BooleanEnum" Relations="RepsEnumeration" IsCollection="false"/>
     </EntityType>
@@ -190,7 +192,7 @@
     </EntityType>
     <EntityType Name="BusinessRelationship" OfbizEntity="PartyRoleType" AutoProperties="true"
                 DraftEntityName="BusinessRelationshipDraft" EntitySetName="BusinessRelationships">
-        <Property Name="roleTypeId" Label="${BusinessRelationshipRoles}">
+        <Property Name="roleTypeId" Label="${BusinessRelationshipRoles}" FieldControl="Mandatory">
             <Text Path="description" TextArrangement="TextOnly"/>
             <ValueList CollectionPath="RoleTypes" WithFixedValues="true" Label="${RoleTypes}"/>
         </Property>
