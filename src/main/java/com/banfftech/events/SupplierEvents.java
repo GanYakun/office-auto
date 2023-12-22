@@ -485,9 +485,6 @@ public class SupplierEvents {
         serviceParam.put("partyContentTypeId", "EVELUATION_REPORT");
         dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
 
-        serviceParam.put("contentName", "Other Documents");
-        serviceParam.put("partyContentTypeId", "OTHER_DOCUMENTS");
-        dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
 
         //compliance report内容
         serviceParam.put("contentName", "Full Name of Company or Individual Party Report");
@@ -512,6 +509,11 @@ public class SupplierEvents {
 
         serviceParam.put("contentName", "Ultimate Beneficial Owners Report");
         serviceParam.put("partyContentTypeId", "UBO_REPORT");
+        dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
+
+        //other file
+        serviceParam.put("contentName", "Other Documents");
+        serviceParam.put("partyContentTypeId", "OTHER_DOCUMENTS");
         dispatcher.runSync("banfftech.createPartyMediaResource", serviceParam);
     }
 

@@ -83,8 +83,8 @@
     </EntityType>
 
     <EntityType Name="PartyMediaResource" EntitySetName="PartyMediaResources" DraftEntityName="DDFormPartyMediaResourceDraft"
-                Properties="partyContentId,partyId,contentId,contentName,otherData,mimeTypeId,dataResourceId,dataResourceName,fromDate,imageData,description"
-                Handler="component://officeauto/groovyScripts/partyManage/partyMedia/generateEntityListFields.groovy">
+                Properties="partyContentId,partyId,contentId,contentName,otherData,mimeTypeId,dataResourceId,dataResourceName,fromDate,imageData,description,createdDate"
+                Handler="component://officeauto/groovyScripts/partyManage/partyMedia/generateEntityListFields.groovy" Orderby="createdDate">
         <Property Name="contentName" Computed="true" />
         <Property Name="otherData" FileNamePath="dataResourceName" Label="${File}"/>
         <Property Name="fileUrl" Type="String"/>

@@ -95,10 +95,10 @@ under the License.
     <PartyRole partyId="it_staff" roleTypeId="IT_STAFF"/>
     <PartyRole partyId="it_staff" roleTypeId="ORD_EMPLOYEE"/>
     <UserLogin userLoginId="it_staff" currentPassword="$SHA$LmYbgkkhIHM$WCNGozAT9Lqd-cJ2n7tNM2JekRM" passwordHint="" partyId="it_staff"/>
-    <UserLoginSecurityGroup groupId="SUPER" userLoginId="applicant" fromDate="2001-01-01 12:00:00.0"/>
+    <UserLoginSecurityGroup groupId="SUPER" userLoginId="it_staff" fromDate="2001-01-01 12:00:00.0"/>
     <PartyRelationship partyRelationshipId="PR10009" roleTypeIdFrom="DEPARTMENT" partyIdFrom="IT" partyIdTo="it_staff" roleTypeIdTo="ORD_EMPLOYEE"/>
-    <ContactMech contactMechId="applicant_email" infoString="canyang.sun@banff-tech.com" contactMechTypeId="EMAIL_ADDRESS"/>
-    <PartyContactMechPurpose partyId="it_staff" contactMechId="applicant_email" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+    <ContactMech contactMechId="it_staff_email" infoString="canyang.sun@banff-tech.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <PartyContactMechPurpose partyId="it_staff" contactMechId="it_staff_email" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
 
 
     <!-- 采购 -->
