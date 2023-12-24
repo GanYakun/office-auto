@@ -146,6 +146,7 @@
 
 	<extend-entity entity-name="WorkEffort">
 		<field name="partyId" type="id"/>
+		<field name="approveComments" type="long-varchar"/>
 		<relation type="one" title="Priority" rel-entity-name="Enumeration">
 			<key-map field-name="priority" rel-field-name="enumId"/>
 		</relation>
@@ -214,10 +215,6 @@
 		<relation type="one-nofk" title="Employees" rel-entity-name="Enumeration">
 			<key-map field-name="attrValue" rel-field-name="enumId"/>
 		</relation>
-	</extend-entity>
-
-	<extend-entity entity-name="WorkEffort">
-		<field name="approveComments" type="long-varchar"/>
 	</extend-entity>
 
 	<extend-entity entity-name="PartyGroupType">
