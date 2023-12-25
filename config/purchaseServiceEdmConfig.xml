@@ -3,9 +3,7 @@
 
     <!-- ==============采购主对象（CatalogRequest、RequestWork、Requirement、PurchaseRequest、PurchaseQuote、PurchaseOrder）=============-->
     <!--CatalogRequest（由applicant创建，applicant才能看到，对应流程图第一步）-->
-    <EntityType Name="CatalogRequest" OfbizEntity="CustRequest" EntityCondition="custRequestTypeId=RF_CATALOG and fromPartyId=${userLogin.partyId}"
-                AutoProperties="true"
-                EntitySetName="CatalogRequests" AutoSet="true">
+    <EntityType Name="CatalogRequest" OfbizEntity="CustRequest" AutoProperties="true">
 
         <HeaderInfo TypeName="Purchase Request" TypeNamePlural="Purchase Requests">
             <Title Path="custRequestName"/>
@@ -54,7 +52,16 @@
             <Parameter Name="custRequestTypeId" Type="String" Hidden="true" DefaultValue="RF_CATALOG"/>
             <Parameter Name="statusId" Type="String" Hidden="true" DefaultValue="ARQ_CREATED"/>
         </Action>
+
+        <!--把request提交给IT部门查看-->
+        <Action Name="CatalogRequestSubmit" IsBound="true" EntitySetPath="catalogRequest" SideEffects="true"
+                OfbizService="com.banfftech.events.CustRequestEvents.catalogRequestSubmit">
+            <Parameter Name="catalogRequest" Type="CatalogRequest" Nullable="false" IsCollection="false"/>
+        </Action>
+
     </EntityType>
+
+    <EntityType Name="RequestWorkEffort" OfbizEntity="WorkEffort" EntitySetName="RequestWorkEfforts" Properties="workEffortId,workEffortName,currentStatusId"/>
 
     <!--PurchaseRequest（采购请求）-->
     <EntityType Name="PurchaseRequest" OfbizEntity="CustRequest" EntityCondition="custRequestTypeId=RF_PUR_QUOTE"
@@ -95,9 +102,8 @@
     </EntityType>
 
     <!--ProductRequirement（Requirement）-->
-    <EntityType Name="ProductRequirement" OfbizEntity="Requirement" EntityCondition="requirementTypeId=PRODUCT_REQUIREMENT"
-                Properties="requirementId,requirementTypeId,facilityId,estimatedBudget,requiredByDate,productId,statusId,quantity,reason,createdDate,createdByUserLogin"
-                EntitySetName="ProductRequirements" AutoSet="true">
+    <EntityType Name="ProductRequirement" OfbizEntity="Requirement"
+                Properties="requirementId,requirementTypeId,facilityId,estimatedBudget,requiredByDate,productId,statusId,quantity,reason,createdDate,createdByUserLogin">
 
         <HeaderInfo TypeName="Requirement" TypeNamePlural="Requirements">
             <Title Path="requirementId"/>
@@ -108,6 +114,7 @@
             <DataField Values="productId,facilityId,statusId" Importance="High"/>
         </LineItem>
 
+        <Property Name="partyId" DefaultValue="${userLogin.partyId}"/>
         <Property Name="productId">
             <Text Path="Product/productName" TextArrangement="TextOnly"/>
         </Property>
@@ -271,6 +278,12 @@
             <Text Path="description" TextArrangement="TextOnly"/>
         </Property>
     </EntityType>
+
+    <EntityType Name="RequestItemStatus" OfbizEntity="StatusItem" EntityCondition="statusTypeId=CRQ_ITEM_STTS" AutoProperties="true" EntitySetName="RequestItemStatuses">
+        <Property Name="statusId">
+            <Text Path="description" TextArrangement="TextOnly"/>
+        </Property>
+    </EntityType>
     <!--CustRequestCategory-->
     <EntityType Name="CustRequestCategory" EntitySetName="CustRequestCategories" AutoProperties="true">
         <Property Name="custRequestCategoryId">
@@ -290,10 +303,21 @@
             <DataFieldForAction Action="CreateCustRequestItem" Label="${Create}" Inline="false" Importance="High" Criticality="Positive" InvocationGrouping="Isolated"/>
             <DataFieldForAction Action="UpdateCustRequestItem" Label="${Update}" Inline="true" Importance="High" Criticality="Positive" InvocationGrouping="Isolated"/>
         </LineItem>
+        <LineItem Qualifier="RelatedCatalogRequestByIT">
+            <DataField Values="custRequestItemSeqId,productId,quantity,statusId,description,requiredByDate" Importance="High"/>
+            <DataFieldForAction Action="AssignTaskToFix" Label="${Fix}" Inline="true" Importance="High" Criticality="Positive" InvocationGrouping="Isolated"/>
+            <DataFieldForAction Action="GenerateRequirement" Label="${Requirement}" Inline="true" Importance="High" Criticality="Positive" InvocationGrouping="Isolated"/>
+        </LineItem>
+
+        <Property Name="statusId">
+            <Text Path="RequestItemStatus/description" TextArrangement="TextOnly"/>
+        </Property>
+
+        <NavigationProperty Name="RequestItemStatus" Type="RequestItemStatus" Relations="StatusItem"/>
 
         <!--创建CustRequestItem-->
         <Action Name="CreateCustRequestItem" IsBound="true" EntitySetPath="custRequestItem" SideEffects="true"
-                OfbizService="com.dpbird.odata.events.ActionEvents.createEntity">
+                OfbizService="com.dpbird.odata.events.ActionEvents.createNavigation">
             <Parameter Name="custRequestItem" Type="CustRequestItem" Nullable="false" IsCollection="true"/>
             <Parameter Name="productId" Type="String" Label="${ProductName}">
                 <ValueList CollectionPath="Products" ParameterDisplayOnly="quantityUomId,primaryProductCategoryId">
@@ -317,7 +341,32 @@
             <Parameter Name="description" Type="String" DefaultValue="custRequestItem/description" Label="${Description}"/>
             <Parameter Name="requiredByDate" Type="Timestamp" DefaultValue="custRequestItem/requiredByDate" Label="${RequiredByDate}"/>
         </Action>
+        <!--产生WorkEffort并指派给给IT人员维修-->
+        <Action Name="AssignTaskToFix" IsBound="true" EntitySetPath="custRequestItem" SideEffects="true"
+                OfbizService="com.dpbird.odata.events.ActionEvents.createEntity">
+            <Parameter Name="custRequestItem" Type="CustRequestItem" Nullable="false" IsCollection="false"/>
+            <Parameter Name="partyId" Type="String" Nullable="false" Label="${FixedByParty}"/>
+            <Parameter Name="quantity" Type="BigDecimal" Scale="2" Label="${Quantity}"/>
+        </Action>
+        <!--无法维修，需要采购，产生Requirement-->
+        <Action Name="GenerateRequirement" IsBound="true" EntitySetPath="custRequestItem" SideEffects="true"
+                OfbizService="com.banfftech.events.CustRequestEvents.generateRequirement">
+            <Parameter Name="custRequestItem" Type="CustRequestItem" Nullable="false" IsCollection="false"/>
+            <Parameter Name="facilityId" Type="String" Label="${FacilityName}">
+                <ValueList CollectionPath="Facilities" ParameterDisplayOnly="facilitySize,openedDate">
+                    <ParameterInOut LocalDataProperty="facilityId" ValueListProperty="facilityId"/>
+                </ValueList>
+            </Parameter>
+            <Parameter Name="estimatedBudget" Type="BigDecimal" Scale="2" Label="${EstimatedBudget}"/>
+            <Parameter Name="quantity" Type="BigDecimal" Scale="2" Label="${Quantity}"/>
+        </Action>
     </EntityType>
 
+    <EntityContainer>
+        <EntitySet Name="CatalogRequests" EntityType="CatalogRequest" EntityCondition="custRequestTypeId=RF_CATALOG and fromPartyId=${userLogin.partyId}"/>
+        <EntitySet Name="ITCatalogRequests" EntityType="CatalogRequest" EntityCondition="custRequestTypeId=RF_CATALOG"/>
+        <EntitySet Name="ProductRequirements" EntityType="ProductRequirement" EntityCondition="requirementTypeId=PRODUCT_REQUIREMENT and partyId=${userLogin.partyId}"/>
+        <EntitySet Name="CGProductRequirements" EntityType="ProductRequirement" EntityCondition="requirementTypeId=PRODUCT_REQUIREMENT"/>
+    </EntityContainer>
 
 </ofbiz-edm>

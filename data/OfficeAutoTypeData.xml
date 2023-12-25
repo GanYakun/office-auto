@@ -36,7 +36,9 @@ under the License.
     <RoleType description="Beneficial Person" roleTypeId="BENEFICIAL_PERSON" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
     <RoleType description="Senior Staff" roleTypeId="SENIOR_STAFF" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
     <RoleType description="IT Staff" roleTypeId="IT_STAFF" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
+    <RoleType description="IT Manager" roleTypeId="IT_MANAGER" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
     <RoleType description="Requester" roleTypeId="REQUESTER" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
+    <RoleType description="Requester Manager" roleTypeId="REQUESTER_MANAGER" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
     <RoleType description="Buyer" roleTypeId="BUYER" parentTypeId="SYSTEM_ROLE" isSystemRole="Y"/>
     <!--DDForm Business Relationship to Company-->
     <RoleType description="Business Relationship to Company" roleTypeId="BUSINESS_RELATIONSHIP" />
@@ -84,6 +86,7 @@ under the License.
     <StatusItem statusId="ARQ_CREATED" statusTypeId="APTREQ_STTS" description="Created" statusCode="01"/>
     <StatusItem statusId="ARQ_SUBMITTED" statusTypeId="APTREQ_STTS" description="Submitted" statusCode="02"/>
 
+    <StatusValidChange statusId="ARQ_CREATED" statusIdTo="ARQ_SUBMITTED"/>
     <StatusValidChange statusId="PARTY_ENABLED" statusIdTo="PARTY_ON_HOLD"/>
     <StatusValidChange statusId="PARTY_ON_HOLD" statusIdTo="PARTY_ENABLED"/>
     <StatusValidChange statusId="PARTY_ON_HOLD" statusIdTo="PARTY_DISABLED"/>

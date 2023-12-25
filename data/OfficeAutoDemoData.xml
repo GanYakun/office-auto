@@ -52,18 +52,21 @@ under the License.
     <Party partyId="CW" partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED" partyName="Finance Department" externalId="CW"/>
     <Party partyId="FW" partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED" partyName="LegalAffairs Department" externalId="FW"/>
     <Party partyId="IT" partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED" partyName="IT Department" externalId="IT"/>
+    <Party partyId="BU" partyTypeId="PARTY_GROUP" statusId="PARTY_ENABLED" partyName="BU Department" externalId="IT"/>
 
     <PartyGroup partyId="CG" groupName="Procurement" numEmployees="0"/>
     <PartyGroup partyId="HG" groupName="Compliance" numEmployees="0"/>
     <PartyGroup partyId="CW" groupName="Finance" numEmployees="0"/>
     <PartyGroup partyId="FW" groupName="LegalAffairs" numEmployees="0"/>
     <PartyGroup partyId="IT" groupName="IT" numEmployees="0"/>
+    <PartyGroup partyId="BU" groupName="BU Department" numEmployees="0"/>
 
     <PartyRole partyId="CG" roleTypeId="DEPARTMENT"/>
     <PartyRole partyId="HG" roleTypeId="DEPARTMENT"/>
     <PartyRole partyId="CW" roleTypeId="DEPARTMENT"/>
     <PartyRole partyId="FW" roleTypeId="DEPARTMENT"/>
     <PartyRole partyId="IT" roleTypeId="DEPARTMENT"/>
+    <PartyRole partyId="BU" roleTypeId="DEPARTMENT"/>
 
     <PartyRelationship partyRelationshipId="PR10000" partyIdFrom="Company" partyIdTo="CG" roleTypeIdTo="DEPARTMENT"/>
     <PartyRelationship partyRelationshipId="PR10001" partyIdFrom="Company" partyIdTo="HG" roleTypeIdTo="DEPARTMENT"/>
@@ -72,6 +75,7 @@ under the License.
     <PartyRelationship partyRelationshipId="PR10004" partyIdFrom="Company" partyIdTo="IT" roleTypeIdTo="DEPARTMENT"/>
     <PartyRelationship partyRelationshipId="CPY_DPT10000" partyIdFrom="Company_A" roleTypeIdFrom="COMPANY" partyIdTo="IT" roleTypeIdTo="DEPARTMENT"/>
     <PartyRelationship partyRelationshipId="CPY_DPT10001" partyIdFrom="Company_A" roleTypeIdFrom="COMPANY" partyIdTo="CG" roleTypeIdTo="DEPARTMENT"/>
+    <PartyRelationship partyRelationshipId="CPY_DPT10002" partyIdFrom="Company" roleTypeIdFrom="COMPANY" partyIdTo="BU" roleTypeIdTo="DEPARTMENT"/>
 
     <!-- 超级管理员 -->
     <Party partyId="admin" partyTypeId="PERSON" externalId="admin" partyName="超级管理员"/>
@@ -85,7 +89,7 @@ under the License.
     <PartyRole partyId="applicant" roleTypeId="ORD_EMPLOYEE"/>
     <UserLogin userLoginId="applicant" currentPassword="$SHA$LmYbgkkhIHM$WCNGozAT9Lqd-cJ2n7tNM2JekRM" passwordHint="" partyId="applicant"/>
     <UserLoginSecurityGroup groupId="SUPER" userLoginId="applicant" fromDate="2001-01-01 12:00:00.0"/>
-    <PartyRelationship partyRelationshipId="PR10008" roleTypeIdFrom="DEPARTMENT" partyIdFrom="IT" partyIdTo="applicant" roleTypeIdTo="ORD_EMPLOYEE"/>
+    <PartyRelationship partyRelationshipId="IT10008" roleTypeIdFrom="DEPARTMENT" partyIdFrom="IT" partyIdTo="applicant" roleTypeIdTo="ORD_EMPLOYEE"/>
     <ContactMech contactMechId="applicant_email" infoString="canyang.sun@banff-tech.com" contactMechTypeId="EMAIL_ADDRESS"/>
     <PartyContactMechPurpose partyId="applicant" contactMechId="applicant_email" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
 
@@ -96,9 +100,20 @@ under the License.
     <PartyRole partyId="it_staff" roleTypeId="ORD_EMPLOYEE"/>
     <UserLogin userLoginId="it_staff" currentPassword="$SHA$LmYbgkkhIHM$WCNGozAT9Lqd-cJ2n7tNM2JekRM" passwordHint="" partyId="it_staff"/>
     <UserLoginSecurityGroup groupId="SUPER" userLoginId="it_staff" fromDate="2001-01-01 12:00:00.0"/>
-    <PartyRelationship partyRelationshipId="PR10009" roleTypeIdFrom="DEPARTMENT" partyIdFrom="IT" partyIdTo="it_staff" roleTypeIdTo="ORD_EMPLOYEE"/>
+    <PartyRelationship partyRelationshipId="IT10013" roleTypeIdFrom="DEPARTMENT" partyIdFrom="IT" partyIdTo="it_staff" roleTypeIdTo="ORD_EMPLOYEE"/>
     <ContactMech contactMechId="it_staff_email" infoString="canyang.sun@banff-tech.com" contactMechTypeId="EMAIL_ADDRESS"/>
     <PartyContactMechPurpose partyId="it_staff" contactMechId="it_staff_email" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+
+    <!-- 公司IT经理 -->
+    <Party partyId="it_manager" partyTypeId="PERSON" externalId="it_manager" partyName="Iris Michelle"/>
+    <Person partyId="it_manager" personImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/de32462f-c677-4e3a-976f-fed452a85e31.png"/>
+    <PartyRole partyId="it_manager" roleTypeId="IT_MANAGER"/>
+    <PartyRole partyId="it_manager" roleTypeId="ORD_EMPLOYEE"/>
+    <UserLogin userLoginId="it_manager" currentPassword="$SHA$LmYbgkkhIHM$WCNGozAT9Lqd-cJ2n7tNM2JekRM" passwordHint="" partyId="it_manager"/>
+    <UserLoginSecurityGroup groupId="SUPER" userLoginId="it_staff" fromDate="2001-01-01 12:00:00.0"/>
+    <PartyRelationship partyRelationshipId="IT10009" roleTypeIdFrom="DEPARTMENT" partyIdFrom="IT" partyIdTo="it_manager" roleTypeIdTo="ORD_EMPLOYEE"/>
+    <ContactMech contactMechId="it_manager_email" infoString="canyang.sun@banff-tech.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <PartyContactMechPurpose partyId="it_manager" contactMechId="it_manager_email" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
 
     <!-- requester请求人（对应applicant） -->
     <Party partyId="requester" partyTypeId="PERSON" externalId="requester" partyName="Robe"/>
@@ -106,10 +121,21 @@ under the License.
     <PartyRole partyId="requester" roleTypeId="REQUESTER"/>
     <PartyRole partyId="requester" roleTypeId="ORD_EMPLOYEE"/>
     <UserLogin userLoginId="requester" currentPassword="$SHA$LmYbgkkhIHM$WCNGozAT9Lqd-cJ2n7tNM2JekRM" passwordHint="" partyId="requester"/>
-    <UserLoginSecurityGroup groupId="SUPER" userLoginId="it_staff" fromDate="2001-01-01 12:00:00.0"/>
-    <PartyRelationship partyRelationshipId="PR10009" roleTypeIdFrom="DEPARTMENT" partyIdFrom="IT" partyIdTo="requester" roleTypeIdTo="ORD_EMPLOYEE"/>
+    <UserLoginSecurityGroup groupId="SUPER" userLoginId="requester" fromDate="2001-01-01 12:00:00.0"/>
+    <PartyRelationship partyRelationshipId="BU10001" roleTypeIdFrom="DEPARTMENT" partyIdFrom="BU" partyIdTo="requester" roleTypeIdTo="ORD_EMPLOYEE"/>
     <ContactMech contactMechId="requester_email" infoString="canyang.sun@banff-tech.com" contactMechTypeId="EMAIL_ADDRESS"/>
     <PartyContactMechPurpose partyId="requester" contactMechId="requester_email" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
+
+    <!-- requester_manager请求人（request审批人） -->
+    <Party partyId="requester_manager" partyTypeId="PERSON" externalId="requester_manager请求人" partyName="Rose Michelle"/>
+    <Person partyId="requester_manager"/>
+    <PartyRole partyId="requester_manager" roleTypeId="REQUESTER_MANAGER"/>
+    <PartyRole partyId="requester_manager" roleTypeId="ORD_EMPLOYEE"/>
+    <UserLogin userLoginId="requester_manager" currentPassword="$SHA$LmYbgkkhIHM$WCNGozAT9Lqd-cJ2n7tNM2JekRM" passwordHint="" partyId="requester_manager"/>
+    <UserLoginSecurityGroup groupId="SUPER" userLoginId="requester_manager" fromDate="2001-01-01 12:00:00.0"/>
+    <PartyRelationship partyRelationshipId="BU10002" roleTypeIdFrom="DEPARTMENT" partyIdFrom="BU" partyIdTo="requester_manager" roleTypeIdTo="ORD_EMPLOYEE"/>
+    <ContactMech contactMechId="requester_manager_email" infoString="canyang.sun@banff-tech.com" contactMechTypeId="EMAIL_ADDRESS"/>
+    <PartyContactMechPurpose partyId="requester_manager" contactMechId="requester_manager_email" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
 
     <!-- buyer采购人员（对应procurement） -->
     <Party partyId="buyer" partyTypeId="PERSON" externalId="buyer" partyName="Bob"/>
@@ -118,7 +144,7 @@ under the License.
     <PartyRole partyId="buyer" roleTypeId="ORD_EMPLOYEE"/>
     <UserLogin userLoginId="buyer" currentPassword="$SHA$LmYbgkkhIHM$WCNGozAT9Lqd-cJ2n7tNM2JekRM" passwordHint="" partyId="buyer"/>
     <UserLoginSecurityGroup groupId="SUPER" userLoginId="buyer" fromDate="2001-01-01 12:00:00.0"/>
-    <PartyRelationship partyRelationshipId="PR10009" roleTypeIdFrom="DEPARTMENT" partyIdFrom="CG" partyIdTo="buyer" roleTypeIdTo="ORD_EMPLOYEE"/>
+    <PartyRelationship partyRelationshipId="PR10012" roleTypeIdFrom="DEPARTMENT" partyIdFrom="CG" partyIdTo="buyer" roleTypeIdTo="ORD_EMPLOYEE"/>
     <ContactMech contactMechId="buyer_email" infoString="canyang.sun@banff-tech.com" contactMechTypeId="EMAIL_ADDRESS"/>
     <PartyContactMechPurpose partyId="buyer" contactMechId="buyer_email" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2023-01-28 11:45:31.928"/>
 
