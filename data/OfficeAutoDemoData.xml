@@ -75,7 +75,7 @@ under the License.
     <PartyRelationship partyRelationshipId="PR10004" partyIdFrom="Company" partyIdTo="IT" roleTypeIdTo="DEPARTMENT"/>
     <PartyRelationship partyRelationshipId="CPY_DPT10000" partyIdFrom="Company_A" roleTypeIdFrom="COMPANY" partyIdTo="IT" roleTypeIdTo="DEPARTMENT"/>
     <PartyRelationship partyRelationshipId="CPY_DPT10001" partyIdFrom="Company_A" roleTypeIdFrom="COMPANY" partyIdTo="CG" roleTypeIdTo="DEPARTMENT"/>
-    <PartyRelationship partyRelationshipId="CPY_DPT10002" partyIdFrom="Company" roleTypeIdFrom="COMPANY" partyIdTo="BU" roleTypeIdTo="DEPARTMENT"/>
+    <PartyRelationship partyRelationshipId="CPY_DPT10002" partyIdFrom="Company" partyIdTo="BU" roleTypeIdTo="DEPARTMENT"/>
 
     <!-- 超级管理员 -->
     <Party partyId="admin" partyTypeId="PERSON" externalId="admin" partyName="超级管理员"/>
