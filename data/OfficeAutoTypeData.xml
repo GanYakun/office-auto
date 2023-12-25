@@ -54,6 +54,7 @@ under the License.
 
     <WorkEffortType description="工作流" workEffortTypeId="COWORK"/>
     <WorkEffortType description="工作流节点" workEffortTypeId="COWORK_TASK"/>
+    <WorkEffortType description="IT提交的WorkEffort" workEffortTypeId="REQ_TASK"/>
 
     <StatusType statusTypeId="COWORK_STATUS"/>
     <StatusItem statusId="NOT_PROCESSED" statusTypeId="COWORK_STATUS" description="待处理"/>

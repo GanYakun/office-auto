@@ -1,7 +1,7 @@
 <ofbiz-edm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:noNamespaceSchemaLocation="/edmConfig.xsd" ImportGlobal="false">
 
-    <!-- ==============采购主对象（CatalogRequest、Requirement、PurchaseRequest、PurchaseQuote、PurchaseOrder）=============-->
+    <!-- ==============采购主对象（CatalogRequest、RequestWork、Requirement、PurchaseRequest、PurchaseQuote、PurchaseOrder）=============-->
     <!--CatalogRequest（由applicant创建，applicant才能看到，对应流程图第一步）-->
     <EntityType Name="CatalogRequest" OfbizEntity="CustRequest" EntityCondition="custRequestTypeId=RF_CATALOG and fromPartyId=${userLogin.partyId}"
                 AutoProperties="true"
@@ -56,7 +56,6 @@
         </Action>
     </EntityType>
 
-    <!-- ==============采购主对象（PurchaseRequest、Requirement、PurchaseQuote、PurchaseOrder）=============-->
     <!--PurchaseRequest（采购请求）-->
     <EntityType Name="PurchaseRequest" OfbizEntity="CustRequest" EntityCondition="custRequestTypeId=RF_PUR_QUOTE"
                 AutoProperties="true"
