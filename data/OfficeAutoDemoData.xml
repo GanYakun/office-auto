@@ -667,6 +667,7 @@ under the License.
     <UILabApp description="requirement-procurement permission" permissionId="RMPP" uiLabAppId="UI10008" uiLabAppName="requirement-procurement"/>
     <UILabApp description="quote permission" permissionId="QEP" uiLabAppId="UI10009" uiLabAppName="quote-manage"/>
     <UILabApp description="order permission" permissionId="ORP" uiLabAppId="UI10010" uiLabAppName="order-manage"/>
+    <UILabApp description="request-it permission" permissionId="RIP" uiLabAppId="UI10011" uiLabAppName="it-request-applicant"/>
 
     <RoleTypeUILabApp roleTypeId="APPLICANT" roleTypeUILabAppId="10020" uiLabAppId="UI10000"/>
     <RoleTypeUILabApp roleTypeId="COMPLIANCE" roleTypeUILabAppId="10021" uiLabAppId="UI10001"/>
@@ -681,10 +682,12 @@ under the License.
     <RoleTypeUILabApp roleTypeId="IT_STAFF" roleTypeUILabAppId="10030" uiLabAppId="UI10005"/>
     <RoleTypeUILabApp roleTypeId="BUYER" roleTypeUILabAppId="10031" uiLabAppId="UI10006"/>
     <RoleTypeUILabApp roleTypeId="REQUESTER" roleTypeUILabAppId="10032" uiLabAppId="UI10007"/>
-    <RoleTypeUILabApp roleTypeId="IT_STAFF" roleTypeUILabAppId="10033" uiLabAppId="UI10007"/>
     <RoleTypeUILabApp roleTypeId="BUYER" roleTypeUILabAppId="10034" uiLabAppId="UI10008"/>
     <RoleTypeUILabApp roleTypeId="BUYER" roleTypeUILabAppId="10035" uiLabAppId="UI10009"/>
     <RoleTypeUILabApp roleTypeId="BUYER" roleTypeUILabAppId="10036" uiLabAppId="UI10010"/>
+    <RoleTypeUILabApp roleTypeId="IT_STAFF" roleTypeUILabAppId="10037" uiLabAppId="UI10011"/>
+    <RoleTypeUILabApp roleTypeId="IT_STAFF" roleTypeUILabAppId="10038" uiLabAppId="UI10008"/>
+    <RoleTypeUILabApp roleTypeId="IT_STAFF" roleTypeUILabAppId="10039" uiLabAppId="UI10006"/>
 
     <Party partyId="CONTACT00001" partyName="Zhang Zheng" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
     <Party partyId="CONTACT00002" partyName="Chen Xiaoxin" statusId="PARTY_ENABLED" partyTypeId="PERSON"/>
