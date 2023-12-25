@@ -1287,4 +1287,21 @@ under the License.
     <Facility facilityId="FAC0002" facilityTypeId="WAREHOUSE" facilityName="Zhejiang Wenzhou warehouse" ownerPartyId="Company" facilitySize="22" facilitySizeUomId="AREA_km2" openedDate="2023-01-28 11:45:31.928" description="Zhejiang Wenzhou warehouse"/>
     <Facility facilityId="FAC0003" facilityTypeId="WAREHOUSE" facilityName="Office supplies warehouse" ownerPartyId="Company" facilitySize="220" facilitySizeUomId="AREA_m2" openedDate="2023-01-28 11:45:31.928" description="Office supplies warehouse"/>
 
+    <!-- WorkEffort workflow template for vendor on-boarding -->
+    <WorkEffort workEffortId="WORKFLOW_START" workEffortTypeId="ACTIVITY_TEMPLATE" workEffortName="Start" description="The start activity of workflow globally" />
+    <WorkEffort workEffortId="WORKFLOW_END" workEffortTypeId="ACTIVITY_TEMPLATE" workEffortName="End" description="The end activity of workflow globally" />
+
+    <WorkEffort workEffortId="VOB_WORKFLOW" workEffortTypeId="WORK_FLOW_TEMPLATE" workEffortName="Vendor on-boarding" description="Vendor on-boarding template" workEffortPurposeTypeId="WFPT_VOB"/>
+    <WorkEffort workEffortId="VOB_DD_REQUEST" workEffortTypeId="ACTIVITY_TEMPLATE" workEffortName="BPDD Requested" description="Vendor on-boarding BPDD Requested" />
+    <WorkEffort workEffortId="VOB_DD_SUBMITTED" workEffortTypeId="ACTIVITY_TEMPLATE" workEffortName="BPDD Submitted" description="Vendor on-boarding BPDD Submitted" />
+    <WorkEffort workEffortId="VOB_PC_REVIEW" workEffortTypeId="ACTIVITY_TEMPLATE" workEffortName="Procurement Review" description="Vendor on-boarding Procurement Review" />
+    <WorkEffort workEffortId="VOB_CP_REVIEW" workEffortTypeId="ACTIVITY_TEMPLATE" workEffortName="Compliance Review" description="Vendor on-boarding Compliance Review" />
+    <WorkEffort workEffortId="VOB_DD_COMPLETE" workEffortTypeId="ACTIVITY_TEMPLATE" workEffortName="BPDD Completed" description="Vendor on-boarding BPDD Completed" />
+    <WorkEffortAssoc workEffortIdFrom="VOB_WORKFLOW" workEffortIdTo="WORKFLOW_START" workEffortAssocTypeId="WORKFLOW_ACTIVITY" sequenceNum="0" fromDate="2007-12-31 18:00:00.000"/>
+    <WorkEffortAssoc workEffortIdFrom="VOB_WORKFLOW" workEffortIdTo="VOB_DD_REQUEST" workEffortAssocTypeId="WORKFLOW_ACTIVITY" sequenceNum="20" fromDate="2007-12-31 18:00:00.000"/>
+    <WorkEffortAssoc workEffortIdFrom="VOB_WORKFLOW" workEffortIdTo="VOB_DD_SUBMITTED" workEffortAssocTypeId="WORKFLOW_ACTIVITY" sequenceNum="30" fromDate="2007-12-31 18:00:00.000"/>
+    <WorkEffortAssoc workEffortIdFrom="VOB_WORKFLOW" workEffortIdTo="VOB_PC_REVIEW" workEffortAssocTypeId="WORKFLOW_ACTIVITY" sequenceNum="40" fromDate="2007-12-31 18:00:00.000"/>
+    <WorkEffortAssoc workEffortIdFrom="VOB_WORKFLOW" workEffortIdTo="VOB_CP_REVIEW" workEffortAssocTypeId="WORKFLOW_ACTIVITY" sequenceNum="50" fromDate="2007-12-31 18:00:00.000"/>
+    <WorkEffortAssoc workEffortIdFrom="VOB_WORKFLOW" workEffortIdTo="VOB_DD_COMPLETE" workEffortAssocTypeId="WORKFLOW_ACTIVITY" sequenceNum="60" fromDate="2007-12-31 18:00:00.000"/>
+    <WorkEffortAssoc workEffortIdFrom="VOB_WORKFLOW" workEffortIdTo="WORKFLOW_END" workEffortAssocTypeId="WORKFLOW_ACTIVITY" sequenceNum="99" fromDate="2007-12-31 18:00:00.000"/>
 </entity-engine-xml>

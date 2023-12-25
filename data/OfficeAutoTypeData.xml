@@ -52,9 +52,13 @@ under the License.
 
     <CustRequestType description="采购请求" custRequestTypeId="RF_PUR_QUOTE"/>
 
+    <!-- COWORK related WorkEffortType will be deprecated -->
     <WorkEffortType description="工作流" workEffortTypeId="COWORK"/>
     <WorkEffortType description="工作流节点" workEffortTypeId="COWORK_TASK"/>
-    <WorkEffortType description="IT提交的WorkEffort" workEffortTypeId="REQ_TASK"/>
+    <WorkEffortType description="WorkEffort Submitted By IT" workEffortTypeId="REQ_TASK"/>
+    <!-- End of COWORK -->
+    <WorkEffortPurposeType description="Workflow for vendor on-boarding" workEffortPurposeTypeId="WFPT_VOB"/>
+
 
     <StatusType statusTypeId="COWORK_STATUS"/>
     <StatusItem statusId="NOT_PROCESSED" statusTypeId="COWORK_STATUS" description="待处理"/>
