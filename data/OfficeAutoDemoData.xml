@@ -106,7 +106,7 @@ under the License.
 
     <!-- 公司IT经理 -->
     <Party partyId="it_manager" partyTypeId="PERSON" externalId="it_manager" partyName="Iris Michelle"/>
-    <Person partyId="it_manager" personImageUrl="http://dpbird.oss-cn-hangzhou.aliyuncs.com/partyManage/partyImage/de32462f-c677-4e3a-976f-fed452a85e31.png"/>
+    <Person partyId="it_manager"/>
     <PartyRole partyId="it_manager" roleTypeId="IT_MANAGER"/>
     <PartyRole partyId="it_manager" roleTypeId="ORD_EMPLOYEE"/>
     <UserLogin userLoginId="it_manager" currentPassword="$SHA$LmYbgkkhIHM$WCNGozAT9Lqd-cJ2n7tNM2JekRM" passwordHint="" partyId="it_manager"/>
@@ -690,7 +690,7 @@ under the License.
     <RoleTypeUILabApp roleTypeId="IT_STAFF" roleTypeUILabAppId="10037" uiLabAppId="UI10011"/>
     <RoleTypeUILabApp roleTypeId="IT_MANAGER" roleTypeUILabAppId="10038" uiLabAppId="UI10008"/>
     <RoleTypeUILabApp roleTypeId="IT_STAFF" roleTypeUILabAppId="10039" uiLabAppId="UI10006"/>
-    <RoleTypeUILabApp roleTypeId="REQUESTER_MANAGER" roleTypeUILabAppId="10040" uiLabAppId="UI10012"/>
+    <RoleTypeUILabApp roleTypeId="REQUESTER_MANAGER" roleTypeUILabAppId="10044" uiLabAppId="UI10012"/>
     <RoleTypeUILabApp roleTypeId="BUYER" roleTypeUILabAppId="10040" uiLabAppId="UI10012"/>
     <RoleTypeUILabApp roleTypeId="IT_STAFF" roleTypeUILabAppId="10041" uiLabAppId="UI10013"/>
     <RoleTypeUILabApp roleTypeId="IT_MANAGER" roleTypeUILabAppId="10042" uiLabAppId="UI10013"/>

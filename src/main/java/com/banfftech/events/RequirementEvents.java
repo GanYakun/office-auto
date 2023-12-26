@@ -3,6 +3,7 @@ package com.banfftech.events;
 import com.dpbird.odata.edm.OdataOfbizEntity;
 import org.apache.ofbiz.base.util.UtilMisc;
 import org.apache.ofbiz.entity.Delegator;
+import org.apache.ofbiz.entity.GenericEntityException;
 import org.apache.ofbiz.entity.GenericValue;
 import org.apache.ofbiz.service.GenericServiceException;
 import org.apache.ofbiz.service.LocalDispatcher;
@@ -56,9 +57,18 @@ public class RequirementEvents {
         dispatcher.runSync("banfftech.createRequirementCustRequest",
                 UtilMisc.toMap("custRequestId", custRequestId, "custRequestItemSeqId", custRequestItemSeqId,
                         "requirementId", requirementGen.getString("requirementId"), "userLogin", userLogin));
-
-
     }
 
-
+    public static void submitRequirement(Map<String, Object> oDataContext, Map<String, Object> actionParameters, EdmBindingTarget edmBindingTarget) throws GenericServiceException, GenericEntityException {
+        Delegator delegator = (Delegator) oDataContext.get("delegator");
+        LocalDispatcher dispatcher = (LocalDispatcher) oDataContext.get("dispatcher");
+        GenericValue userLogin = (GenericValue) oDataContext.get("userLogin");
+        OdataOfbizEntity productRequirement = (OdataOfbizEntity) actionParameters.get("productRequirement");
+        GenericValue productRequirementGen = productRequirement.getGenericValue();
+        //状态改为已审提交
+        Map<String, Object> serviceParams = new HashMap<>(productRequirementGen.getPrimaryKey());
+        serviceParams.put("userLogin", userLogin);
+        serviceParams.put("statusId", "REQUIREMENT_NOT_APPROVED");
+        dispatcher.runSync("banfftech.updateRequirement", serviceParams);
+    }
 }
