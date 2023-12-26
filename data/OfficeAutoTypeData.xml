@@ -96,8 +96,10 @@ under the License.
 
     <!-- Requirement Status -->
     <StatusType statusTypeId="REQUIREMENT_STATUS"/>
+    <StatusItem statusId="REQUIREMENT_CREATED" statusTypeId="REQUIREMENT_STATUS" description="Created"/>
     <StatusItem statusId="REQUIREMENT_NOT_APPROVED" statusTypeId="REQUIREMENT_STATUS" description="Pending approval"/>
     <StatusItem statusId="REQUIREMENT_APPROVED" statusTypeId="REQUIREMENT_STATUS" description="Approved"/>
+    <StatusValidChange statusId="REQUIREMENT_CREATED" statusIdTo="REQUIREMENT_NOT_APPROVED"/>
     <StatusValidChange statusId="REQUIREMENT_NOT_APPROVED" statusIdTo="REQUIREMENT_APPROVED"/>
 
     <!-- RFQ Status -->

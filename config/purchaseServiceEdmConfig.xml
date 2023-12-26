@@ -124,9 +124,6 @@
         <Property Name="facilityId">
             <Text Path="Facility/facilityName" TextArrangement="TextOnly"/>
         </Property>
-        <Identification>
-            <DataFieldForAction Action="ApproveRequirement" Label="${Approve}" Criticality="Positive" InvocationGrouping="Isolated"/>
-        </Identification>
         <HeaderFacets>
             <ReferenceFacet Target="@UI.DataPoint#CurrStatus" ID="Status_Point" Label="Status"/>
         </HeaderFacets>
@@ -155,10 +152,15 @@
             <Parameter Name="requiredByDate" Type="Timestamp" Label="${RequiredByDate}"/>
             <Parameter Name="estimatedBudget" Type="BigDecimal" Scale="2" Label="${EstimatedBudget}"/>
             <Parameter Name="requirementTypeId" Type="String" Hidden="true" DefaultValue="PRODUCT_REQUIREMENT"/>
+            <Parameter Name="statusId" Type="String" Hidden="true" DefaultValue="REQUIREMENT_CREATED"/>
         </Action>
 
         <Action Name="ApproveRequirement" IsBound="true" EntitySetPath="productRequirement" SideEffects="true"
                 OfbizService="com.banfftech.events.RequirementEvents.approveRequirement">
+            <Parameter Name="productRequirement" Type="ProductRequirement" Nullable="false" IsCollection="false"/>
+        </Action>
+        <Action Name="SubmitRequirement" IsBound="true" EntitySetPath="productRequirement" SideEffects="true"
+                OfbizService="com.banfftech.events.RequirementEvents.submitRequirement">
             <Parameter Name="productRequirement" Type="ProductRequirement" Nullable="false" IsCollection="false"/>
         </Action>
     </EntityType>
@@ -366,7 +368,7 @@
         <EntitySet Name="CatalogRequests" EntityType="CatalogRequest" EntityCondition="custRequestTypeId=RF_CATALOG and fromPartyId=${userLogin.partyId}"/>
         <EntitySet Name="ITCatalogRequests" EntityType="CatalogRequest" EntityCondition="custRequestTypeId=RF_CATALOG"/>
         <EntitySet Name="ProductRequirements" EntityType="ProductRequirement" EntityCondition="requirementTypeId=PRODUCT_REQUIREMENT and partyId=${userLogin.partyId}"/>
-        <EntitySet Name="CGProductRequirements" EntityType="ProductRequirement" EntityCondition="requirementTypeId=PRODUCT_REQUIREMENT"/>
+        <EntitySet Name="CGProductRequirements" EntityType="ProductRequirement" EntityCondition="requirementTypeId=PRODUCT_REQUIREMENT and statusId=REQUIREMENT_NOT_APPROVED"/>
     </EntityContainer>
 
 </ofbiz-edm>
